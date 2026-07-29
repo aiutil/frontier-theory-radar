@@ -1,0 +1,64 @@
+{
+  "by_url": {
+    "http://arxiv.org/abs/2607.26041v1": {
+      "score": 84,
+      "value_type": "immediate",
+      "reason": "提出了针对计算机使用代理（CUA）的桌面 GUI 转移理解基准（Desktop-Delta Bench），填补了当前 CUA 评测的关键空白：现有基准只测端到端任务成功率或单帧定位，无法判断模型是否理解'一个动作产生了什么因果转移'。论文点出推理、远程输入、应用渲染、截图捕获是异步的，导致下一帧观测可能滞后于实际状态——这使得'能否重建任务相关的因果转移'成为 CUA 拒绝陈旧观测、验证进度、从失败恢复的核心能力。CUA 是当前最热的 Agent 方向之一（Claude Computer Use、OpenAI Operator 等），一个聚焦转移理解的基准对任何构建桌面/浏览器自动化代理的团队有直接评测价值。证据强度较高（benchmark 本身即评测方法论），但代码/benchmark 公开链接暂无待核验。",
+      "matched_topics": ["ai-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2607.26052v1": {
+      "score": 82,
+      "value_type": "immediate",
+      "reason": "针对 MoE-LoRA 路由的痛点提出简洁洞察：路由器输出分布本身就是逐 token 不确定性信号——分布峰值表示确信，平坦分布表示模糊。基于此提出 CARE（Confidence-Adaptive Routing of Experts），按置信度自适应调整激活专家数量，而非固定 k 个。这直接解决了'简单 token 过度分配专家、困难 token 服务不足'的资源错配问题。MoE-LoRA 是高效微调的热门路线，CARE 的设计原则（用路由器已有信号做自适应，无需额外模块）对推理与服务栈的工程优化有直接参考价值。方法论清晰、可低成本验证核心假设，但代码/benchmark 暂无待核验。",
+      "matched_topics": ["inference-serving", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2607.26057v1": {
+      "score": 80,
+      "value_type": "immediate",
+      "reason": "精确定位了在线策略蒸馏（OPD）的一个具体失败模式——prefix failure：学生一旦在推理前缀上选错方向，后续生成全部建立在偏差之上，产生错误监督并浪费算力。论文识别出师生续写不对称性（teacher 倾向于纠偏，student 倾向于延续原方向），并提出 trajectory-relayed 方法接力纠正。蒸馏是 LLM 训练管线的核心环节，prefix failure 是可观测、可量化的工程问题，对构建推理模型蒸馏流水线（如将大推理模型蒸馏到小模型）的团队有直接方法论价值。证据来自摘要自述的实验观察，代码/benchmark 暂无待核验。",
+      "matched_topics": ["inference-serving", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2607.26023v1": {
+      "score": 72,
+      "value_type": "trend",
+      "reason": "提出多模态图基础模型 CHARM，通过分层上下文建模实现零样本迁移，针对真实图节点关联文本、图像等多模态属性的场景。图基础模型（GFM）是正在兴起的趋势，CHARM 把多模态属性和零样本迁移结合，与知识图谱增强 Agent、多模态知识检索的方向相关。作为趋势资产，它提供了'多模态实体表示 + 图结构推理'的参考架构，但与当前 LLM/Agent 软件栈的直接迁移距离中等，需要配合实验验证才能判断具体落地阈值。证据依赖论文正文（摘要截断），代码/benchmark 暂无待核验。",
+      "matched_topics": ["rag-knowledge", "multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2607.26040v1": {
+      "score": 70,
+      "value_type": "trend",
+      "reason": "将非对称强化学习与 Dreamer 类世界模型结合，通过潜在引导（latent guidance）在训练时利用额外状态信息提升表征与策略质量，训练后丢弃额外信息实现部署时的高效推理。世界模型是 Agentic World Modeling 趋势的核心组件之一，'训练时用丰富信息、部署时用部分可观测信息'的非对称设计原则值得跟踪。但本文聚焦 RL 世界模型训练效率，与纯 LLM Agent 的迁移路径有一定距离，更多属于'世界模型架构'的长期参考。代码/benchmark 暂无待核验。",
+      "matched_topics": ["ai-agent", "multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2607.26042v1": {
+      "score": 56,
+      "value_type": "long_tail",
+      "reason": "VetClaw 是一个边缘-云端多模态 Agent 系统，用于兽医疾病筛查。其架构设计有一定参考价值：将 Agent 交互与工作流编排分离（边缘设备 OpenClaw 负责调度/工具/通知，LangGraph 管理服务器端 VLM 编排），用零样本分类。但兽医场景本身是高度垂直的，核心贡献是应用集成而非方法论创新。作为长尾资产：边缘-云端 Agent 编排的架构模式可复用于其他物联网/边缘 Agent 场景，但不宜作为重点投入方向。代码/benchmark 暂无待核验。",
+      "matched_topics": ["multimodal-agent", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2607.26034v1": {
+      "score": 54,
+      "value_type": "long_tail",
+      "reason": "通过受控行为实验研究 AI 竞赛中的安全-速度博弈：成对参与者在不确定性下反复选择安全或非安全开发，发现'落后感'会驱动不安全开发行为。对 AI 安全治理与政策讨论有参考价值——它用实验证据（而非纯理论）支持'竞争压力激励冒险'这一常见论断。作为长尾资产：安全治理和 AI 竞赛动态是持续重要的议题，方法论（framed behavioural experiment）可迁移。但与工程实践的直接距离较远，更多属于治理/伦理参考。代码/benchmark 不适用（行为实验）。",
+      "matched_topics": ["security-governance"]
+    },
+    "http://arxiv.org/abs/2607.26055v1": {
+      "score": 52,
+      "value_type": "long_tail",
+      "reason": "πR² 针对通用操作策略的反应性-延迟权衡：动作分块流策略开环执行，无法对执行中途到达的感官输入做出反应；重新规划受限于感知-动作管线（大型骨干网络+多步去噪）的高延迟。提出的解决方案聚焦机器人操作策略的低延迟反应式控制。方法本身有工程价值，但与 LLM/Agent 软件栈的直接迁移距离较远，更多属于机器人操控领域的专用贡献。如果团队涉及具身智能/机器人 Agent，可作为架构候选跟踪；否则作为长尾资产保存。代码/benchmark 暂无待核验。",
+      "matched_topics": ["multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2607.26038v1": {
+      "score": 38,
+      "value_type": "ignore",
+      "reason": "联邦纵向生存建模用于协作系统故障预测，解决跨组织传感器轨迹与故障时间记录无法集中汇聚的隐私问题，并放宽经典 Cox 比例风险假设。这是传统工业预测性维护方向的联邦学习方法论贡献，与当前 LLM/Agent/推理基础设施栈几乎无交集，且方法论迁移到 AI 工程场景的路径不清晰。当前不建议投入。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2607.26043v1": {
+      "score": 35,
+      "value_type": "ignore",
+      "reason": "针对乳腺钼靶影像的迁移学习框架（DITL），结合数据集信息改进分类与病灶诊断。这是高度垂直的医学影像应用论文，与本仓库关注的 AI Agent、推理基础设施、编码代理等方向无交集，且与既有忽略模式（医学影像分割）重合。当前不建议投入。",
+      "matched_topics": []
+    }
+  }
+}
