@@ -1,0 +1,152 @@
+
+# 论文价值发现系统 - 评分模型
+# 用于对论文进行价值判断、价值类型路由与行动建议分发
+
+positive_scores:
+  novelty:
+    name: "新意"
+    weight: 14
+    range: [0, 10]
+    description: "是否提出新命题、新方法、新证据或新的观察角度"
+
+  problem_importance:
+    name: "问题重要性"
+    weight: 12
+    range: [0, 10]
+    description: "是否触达长期关键问题、被忽略问题或高价值系统问题"
+
+  relevance:
+    name: "相关性"
+    weight: 13
+    range: [0, 10]
+    description: "与 AI Agent、Coding Agent、上下文系统、评测、平台工程等方向的相关性"
+
+  evidence_strength:
+    name: "证据强度"
+    weight: 10
+    range: [0, 10]
+    description: "实验、对照、消融、规模、代码与可核验链接是否充分"
+
+  engineering_testability:
+    name: "工程可验证性"
+    weight: 12
+    range: [0, 10]
+    description: "是否可做最小实验、是否有代码/benchmark、是否能落到真实工程场景"
+
+  trend_signal:
+    name: "趋势信号"
+    weight: 10
+    range: [0, 10]
+    description: "是否可能与多篇论文、项目、评测、社区或工程实践共同形成方向"
+
+  long_tail_potential:
+    name: "长尾潜力"
+    weight: 10
+    range: [0, 10]
+    description: "现在不热但未来可能变重要，或提出值得保存的问题/方法/反证"
+
+  asset_convertibility:
+    name: "资产可转化价值"
+    weight: 10
+    range: [0, 10]
+    description: "能否沉淀为 Prompt / Skill / Checklist / 模板 / 评测方法 / 架构模式"
+
+  actionability:
+    name: "行动可执行性"
+    weight: 9
+    range: [0, 10]
+    description: "今天是否值得读、值得试、值得转成实践任务"
+
+negative_scores:
+  noise_risk:
+    name: "噪声风险"
+    weight: -8
+    range: [0, 10]
+    description: "是否可能只是局部指标提升、包装过度或缺乏迁移意义"
+
+  weak_evidence_penalty:
+    name: "证据不足惩罚"
+    weight: -6
+    range: [0, 10]
+    description: "缺少实验、代码、对照或可核验路径"
+
+  low_relevance_penalty:
+    name: "弱相关惩罚"
+    weight: -6
+    range: [0, 10]
+    description: "与主要研究方向弱相关"
+
+  engineering_cost_penalty:
+    name: "工程成本惩罚"
+    weight: -5
+    range: [0, 10]
+    description: "即使有意思，但验证成本过高、路径过长、短期难落地"
+
+  reproducibility_risk:
+    name: "复现风险"
+    weight: -5
+    range: [0, 10]
+    description: "信息不足、实现不清、依赖过重、关键材料缺失"
+
+decision_rules:
+  focus:
+    name: "重点学习"
+    min_score: 80
+    color: "#22c55e"
+    description: "值得精读、做最小实验、沉淀研究资产"
+
+  trial:
+    name: "轻量试点"
+    min_score: 65
+    max_score: 79
+    color: "#3b82f6"
+    description: "值得今天试或本周做小验证"
+
+  watch:
+    name: "持续观察"
+    min_score: 50
+    max_score: 64
+    color: "#eab308"
+    description: "保留索引，等待更多证据或外部信号"
+
+  ignore:
+    name: "暂时忽略"
+    max_score: 49
+    color: "#94a3b8"
+    description: "仅保留最小索引，避免浪费注意力"
+
+value_type_rules:
+  immediate:
+    name: "即时价值"
+    description: "高相关、高可验证、高行动性，适合今天就读、今天就试"
+  trend:
+    name: "趋势价值"
+    description: "高趋势信号，需要纳入趋势雷达持续观察"
+  long_tail:
+    name: "长尾价值"
+    description: "暂不火但值得保存，等待未来信号触发"
+  ignore:
+    name: "暂时忽略"
+    description: "噪声或弱价值，仅保留最小索引"
+
+trend_stages:
+  - id: "emerging"
+    name: "萌芽"
+    color: "#8b5cf6"
+    description: "方向刚露头，工程证据稀薄"
+  - id: "rising"
+    name: "上升"
+    color: "#3b82f6"
+    description: "多源信号开始收敛，值得跟踪"
+  - id: "mainstream"
+    name: "主流化"
+    color: "#22c55e"
+    description: "已有稳定工程验证"
+  - id: "overheated"
+    name: "过热"
+    color: "#ef4444"
+    description: "关注过度，信号与价值不匹配"
+  - id: "noise"
+    name: "噪声"
+    color: "#94a3b8"
+    description: "缺少持续价值"

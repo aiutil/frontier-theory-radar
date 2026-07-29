@@ -1,0 +1,617 @@
+const DATA_BASE = './data';
+
+const valueTypeLabels = { immediate: '即时价值', trend: '趋势价值', long_tail: '长尾价值', ignore: '暂时忽略' };
+const trendStatusLabels = { emerging: '萌芽', rising: '上升', mainstream: '主流化', overheated: '过热', noise: '噪声', long_tail_watch: '长尾观察' };
+
+function q(key) { return new URLSearchParams(window.location.search).get(key); }
+function el(id) { return document.getElementById(id); }
+function escapeHtml(v) { return String(v ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+function formatDate(dateStr) { return dateStr || '未知'; }
+function maybeArray(v) { return Array.isArray(v) ? v : []; }
+function uniq(values) { return [...new Set(maybeArray(values).filter(Boolean))]; }
+
+async function loadJSON(name) {
+  try {
+    const res = await fetch(`${DATA_BASE}/${name}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return await res.json();
+  } catch (error) {
+    console.error(`loadJSON failed: ${name}`, error);
+    return null;
+  }
+}
+
+function setActiveNav() {
+  const page = document.body.dataset.page;
+  document.querySelectorAll('.navbar-links a').forEach(a => {
+    if (a.dataset.page === page) a.classList.add('active');
+  });
+}
+
+function initMobileMenu() {
+  const btn = document.querySelector('.navbar-toggle');
+  const menu = document.querySelector('.navbar-links');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', () => menu.classList.toggle('open'));
+}
+
+// Paper-link "More ▾" popover — single delegated listener, closes on outside click / Escape.
+function initPaperMoreMenus(root = document) {
+  const openMenus = new Set();
+  const closeAll = () => {
+    openMenus.forEach(m => {
+      m.classList.remove('open');
+      const btn = m.previousElementSibling;
+      if (btn && btn.classList?.contains('paper-link-more')) btn.setAttribute('aria-expanded', 'false');
+    });
+    openMenus.clear();
+  };
+  root.addEventListener('click', (e) => {
+    const moreBtn = e.target.closest('[data-paper-more]');
+    if (moreBtn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const menu = moreBtn.nextElementSibling;
+      if (!menu) return;
+      const wasOpen = menu.classList.contains('open');
+      closeAll();
+      if (!wasOpen) {
+        menu.classList.add('open');
+        moreBtn.setAttribute('aria-expanded', 'true');
+        openMenus.add(menu);
+      }
+      return;
+    }
+    if (!e.target.closest('.paper-link-menu')) closeAll();
+  });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeAll(); });
+}
+
+// Detect long-cell overflow and reveal "展开/收起" toggle only when text is actually clipped.
+function initLongCells(root = document) {
+  root.querySelectorAll('[data-long]').forEach(cell => {
+    const text = cell.querySelector('.long-cell-text');
+    const btn = cell.querySelector('.long-cell-toggle');
+    if (!text || !btn) return;
+    // Force layout, then compare scrollHeight vs clientHeight to decide if clamp is hiding content.
+    const overflows = text.scrollHeight - text.clientHeight > 1;
+    if (overflows) {
+      btn.hidden = false;
+      btn.addEventListener('click', () => {
+        const expanded = cell.classList.toggle('expanded');
+        btn.textContent = expanded ? '收起' : '展开';
+      });
+    }
+  });
+}
+
+// Attach to all .table-wrapper under a root: detect horizontal overflow → toggle .has-overflow
+// so the right-edge fade appears only when needed.
+function initTableOverflow(root = document) {
+  root.querySelectorAll('.table-wrapper').forEach(wrap => {
+    const check = () => wrap.classList.toggle('has-overflow', wrap.scrollWidth > wrap.clientWidth + 1);
+    check();
+    window.addEventListener('resize', check);
+    // Also re-check on font load (changes layout)
+    if (document.fonts?.ready) document.fonts.ready.then(check);
+  });
+}
+
+// Column hover — highlight all cells in the same column when a td is hovered.
+// Adds a brief visual aid for scanning a table column (academic style).
+function initColumnHover(root = document) {
+  root.querySelectorAll('.table-wrapper table').forEach(table => {
+    table.addEventListener('mouseover', (e) => {
+      const td = e.target.closest('td, th');
+      if (!td) return;
+      const idx = td.cellIndex;
+      table.querySelectorAll('tr').forEach(tr => {
+        const cell = tr.children[idx];
+        if (cell) cell.classList.add('col-hover');
+      });
+    });
+    table.addEventListener('mouseout', (e) => {
+      const td = e.target.closest('td, th');
+      if (!td) return;
+      const idx = td.cellIndex;
+      const to = e.relatedTarget;
+      if (to && to.closest && to.closest(`td, th`)?.cellIndex === idx) return;
+      table.querySelectorAll('.col-hover').forEach(c => c.classList.remove('col-hover'));
+    });
+  });
+}
+
+function badgeClass(name = '') {
+  if (['重点学习', '即时价值', 'immediate'].includes(name)) return 'badge-immediate';
+  if (['轻量试点', '趋势价值', 'trend', 'rising'].includes(name)) return 'badge-trend';
+  if (['持续观察', '长尾价值', 'long_tail', 'emerging', 'long_tail_watch'].includes(name)) return 'badge-long-tail';
+  if (['主流化', 'mainstream'].includes(name)) return 'badge-mainstream';
+  if (['过热', 'overheated'].includes(name)) return 'badge-overheated';
+  return 'badge-ignore';
+}
+
+function renderBadge(text, klass) { return `<span class="badge ${klass}">${escapeHtml(text)}</span>`; }
+function linkButton(label, url) { return url ? `<a class="paper-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(label)}</a>` : `<span class="paper-link disabled">${escapeHtml(label || '暂无')}</span>`; }
+// Paper link affordance: primary link (arXiv) as visible button, the rest as a "More ▾" popover.
+// This keeps the link column compact (one row, never wraps) regardless of how many URLs a paper has.
+function renderPaperLinks(paper) {
+  const primary = paper?.url || paper?.pdf_url;
+  if (!primary) return '<span class="muted">—</span>';
+  const primaryLabel = paper?.url ? 'arXiv' : 'PDF';
+
+  const secondary = [
+    paper?.url && paper?.pdf_url ? { label: 'PDF', href: paper.pdf_url } : null,
+    { label: 'OpenReview', href: paper?.openreview_url },
+    { label: 'Code', href: paper?.code_url },
+    { label: 'Benchmark', href: paper?.benchmark_url },
+    { label: 'Papers with Code', href: paper?.paperswithcode_url },
+  ].filter(x => x && x.href);
+
+  const primaryBtn = `<a class="paper-link paper-link-primary" href="${escapeHtml(primary)}" target="_blank" rel="noopener">${primaryLabel} ↗</a>`;
+  if (secondary.length === 0) return primaryBtn;
+
+  const moreBtn = `<button class="paper-link paper-link-more" type="button" aria-haspopup="true" aria-expanded="false" data-paper-more>更多 <span class="caret">▾</span></button>`;
+  const menu = `<div class="paper-link-menu" role="menu">${secondary.map(s => `<a class="paper-link paper-link-menu-item" href="${escapeHtml(s.href)}" target="_blank" rel="noopener" role="menuitem">${s.label} ↗</a>`).join('')}</div>`;
+  return `<div class="link-cluster">${primaryBtn}${moreBtn}${menu}</div>`;
+}
+function showState(id, html) { const node = el(id); if (node) node.innerHTML = html; }
+function showLoading(id) { showState(id, `<div class="loading"><div class="loading-spinner"></div><div>正在加载...</div></div>`); }
+function showError(id, msg) { showState(id, `<div class="error-state">${escapeHtml(msg)}</div>`); }
+function showEmpty(id, msg) { showState(id, `<div class="empty-state">${escapeHtml(msg)}</div>`); }
+
+function renderMermaidShell(code) {
+  return `<div class="mermaid-shell"><div class="mermaid">${escapeHtml(code)}</div><pre class="mermaid-fallback">${escapeHtml(code)}</pre></div>`;
+}
+
+async function enhanceMermaid() {
+  const shells = document.querySelectorAll('.mermaid-shell');
+  if (!shells.length) return;
+  if (!window.mermaid) {
+    shells.forEach(shell => {
+      const fallback = shell.querySelector('.mermaid-fallback');
+      if (fallback) fallback.style.display = 'block';
+      const node = shell.querySelector('.mermaid');
+      if (node) node.style.display = 'none';
+    });
+    return;
+  }
+  try {
+    window.mermaid.initialize({ startOnLoad: false, theme: 'base', securityLevel: 'loose', themeVariables: { primaryColor: '#f7f5f0', primaryTextColor: '#1a1a2e', primaryBorderColor: '#d4d0c8', lineColor: '#1a3a5c', secondaryColor: '#e8f0f7', tertiaryColor: '#fdfcfa', fontFamily: 'Georgia, "Source Serif Pro", serif' } });
+    await window.mermaid.run({ nodes: document.querySelectorAll('.mermaid') });
+    document.querySelectorAll('.mermaid-fallback').forEach(n => n.style.display = 'none');
+  } catch (e) {
+    console.error('Mermaid render failed', e);
+    document.querySelectorAll('.mermaid-fallback').forEach(n => n.style.display = 'block');
+  }
+}
+
+function renderTopicChips(topics, light = false) {
+  return maybeArray(topics).map(t => `<span class="topic-chip ${light ? 'topic-chip-light' : ''}">${escapeHtml(t)}</span>`).join('');
+}
+
+function renderDailySummaryRow(item) {
+  return `<article class="card daily-row-card">
+    <div class="daily-row-main">
+      <div class="daily-row-topline">
+        <span class="daily-row-date">${escapeHtml(item.date || '')}</span>
+        <div class="badge-group">
+          ${renderBadge(item.value_type_label || valueTypeLabels[item.value_type] || '待定', badgeClass(item.value_type))}
+          ${renderBadge(item.decision || '待定', badgeClass(item.decision))}
+        </div>
+      </div>
+      <div class="card-title daily-row-title"><a href="${escapeHtml(item.path || '#')}">${escapeHtml(item.deep_dive_title || '待分析')}</a></div>
+      <div class="daily-row-meta muted">趋势方向：${escapeHtml(item.main_topic || item.trend_label || '待补充')} · 阶段：${escapeHtml(item.stage_label || item.stage || '待补充')} · 分数：${escapeHtml(item.score || 0)}</div>
+      <div class="daily-card-insight daily-row-insight">${escapeHtml(item.one_line_judgement || '待补充价值判断')}</div>
+    </div>
+    <div class="daily-row-side">
+      <div class="muted daily-row-action-label">建议动作</div>
+      <div class="daily-row-action">${escapeHtml(item.daily_action || '待补充')}</div>
+      <a class="btn btn-secondary btn-sm" href="${escapeHtml(item.path || '#')}">查看日报</a>
+    </div>
+  </article>`;
+}
+
+function renderFilterBar(filters) {
+  return `<div class="filter-bar">${filters.join('')}</div>`;
+}
+
+function renderOptionList(values, selected, allLabel = '全部') {
+  return [`<option value="">${allLabel}</option>`].concat(values.map(v => `<option value="${escapeHtml(v)}" ${v === selected ? 'selected' : ''}>${escapeHtml(v)}</option>`)).join('');
+}
+
+function renderResultMeta(total, shown, extra = '') {
+  return `<div class="muted filter-summary">共 ${shown} / ${total} 条${extra ? ` · ${escapeHtml(extra)}` : ''}</div>`;
+}
+
+async function renderIndexPage() {
+  showLoading('index-root');
+  const [data, trends, paperIndex] = await Promise.all([loadJSON('latest.json'), loadJSON('trend-index.json'), loadJSON('paper-index.json')]);
+  if (!data) return showError('index-root', '首页数据加载失败，请稍后重试。');
+  const top = data.top_paper || {};
+  const latest = data.latest_daily || {};
+  const longTail = maybeArray(data.long_tail_highlights);
+  const recent = maybeArray(data.recent_dailies);
+  const topPapers = maybeArray(paperIndex?.papers).slice().sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, 3);
+  const trendCards = maybeArray(trends?.trends).slice(0, 4).map(t => `
+    <div class="card">
+      <div class="card-title"><a href="${escapeHtml(t.path || '#')}">${escapeHtml(t.title)}</a></div>
+      <div class="badge-group" style="margin-bottom:10px">${renderBadge(t.stage || '待定', badgeClass(t.stage || ''))}</div>
+      <div class="muted">关联论文：${escapeHtml(t.paper_count || 0)} · 最近更新：${escapeHtml(t.updated_at || '')}</div>
+      <p>${escapeHtml(t.key_insight || '待补充')}</p>
+      <a class="btn btn-secondary btn-sm" href="${escapeHtml(t.path || '#')}">查看趋势详情</a>
+    </div>
+  `).join('');
+
+  function topPaperCard(item) {
+    return `<div class="card"><div class="card-title"><a href="${escapeHtml(item.detail_path || '#')}">${escapeHtml(item.title || '')}</a></div><div class="badge-group" style="margin-bottom:10px">${renderBadge(item.value_type_label || '', badgeClass(item.value_type || ''))}${renderBadge(item.decision || '', badgeClass(item.decision || ''))}</div><div class="muted">${escapeHtml(item.source || '')} · 分数 ${escapeHtml(item.score || 0)}</div><p>${escapeHtml(item.brief_cn || item.one_line_judgement || '')}</p></div>`;
+  }
+  function longTailRow(item) {
+    return `<tr><td><a href="${escapeHtml(item.detail_path || '#')}">${escapeHtml(item.title)}</a></td><td>${escapeHtml(item.why_save || '待补充')}</td><td>${escapeHtml(item.future_trigger || '待补充')}</td><td>${escapeHtml(maybeArray(item.reusable_assets).join(' / ') || '待补充')}</td></tr>`;
+  }
+
+  let sections = '';
+  sections += `<section class="hero">
+      <div class="hero-badge"><span class="dot"></span>FRONTIER THEORY RADAR</div>
+      <h1>${escapeHtml(data.site_title || '前沿理论驱动技术雷达日报')}</h1>
+      <p>${escapeHtml(data.site_subtitle || '')}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="${escapeHtml(latest.path || 'daily.html')}">今日日报</a>
+        <a class="btn btn-secondary" href="papers.html">论文库</a>
+        <a class="btn btn-secondary" href="long-tail.html">长尾库</a>
+        <a class="btn btn-secondary" href="trends.html">趋势雷达</a>
+      </div>
+    </section>
+
+    <section class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-number">${escapeHtml(data.value_distribution?.immediate ?? 0)}</div><div class="kpi-label">即时价值</div></div>
+      <div class="kpi-card"><div class="kpi-number">${escapeHtml(data.value_distribution?.trend ?? 0)}</div><div class="kpi-label">趋势价值</div></div>
+      <div class="kpi-card"><div class="kpi-number">${escapeHtml(data.value_distribution?.long_tail ?? 0)}</div><div class="kpi-label">长尾价值</div></div>
+      <div class="kpi-card"><div class="kpi-number">${escapeHtml(data.value_distribution?.ignore ?? 0)}</div><div class="kpi-label">暂时忽略</div></div>
+    </section>`;
+
+  sections += `<section class="section">
+      <div class="card homepage-row-card">
+        <div class="section-title"><span class="section-icon">🎯</span>今日核心判断</div>
+        <div class="card-title" style="margin-top:14px"><a href="${escapeHtml(top.detail_path || '#')}">${escapeHtml(top.title || '待补充')}</a></div>
+        <div class="badge-group" style="margin-bottom:10px">
+          ${renderBadge(top.value_type_label || valueTypeLabels[top.value_type] || '待定', badgeClass(top.value_type || ''))}
+          ${renderBadge(top.decision || '待定', badgeClass(top.decision || ''))}
+        </div>
+        <p>${escapeHtml(top.one_line_judgement || '待补充')}</p>
+        <ul class="note-list">
+          <li><strong>今日建议动作：</strong>${escapeHtml(latest.daily_action || '待补充')}</li>
+          <li><strong>最大不确定性：</strong>${escapeHtml(latest.max_uncertainty || '待补充')}</li>
+          <li><strong>查看入口：</strong><a href="${escapeHtml(latest.path || 'daily.html')}">打开今日日报</a></li>
+        </ul>
+      </div>
+    </section>`;
+
+  sections += `<section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">📄</span>今日深挖论文</h2></div><div class="card homepage-row-card">
+        <div class="card-title"><a href="${escapeHtml(top.detail_path || '#')}">${escapeHtml(top.title || '待补充')}</a></div>
+        <div class="card-meta">${escapeHtml(formatDate(top.published))} · ${escapeHtml(top.source || '')} · 分数 ${escapeHtml(top.score || 0)}</div>
+        <p>${escapeHtml(top.brief_cn || top.one_line_judgement || '')}</p>
+        <div class="badge-group" style="margin-bottom:12px">${renderTopicChips(top.matched_topics)}</div>
+        ${renderPaperLinks(top)}
+      </div></section>`;
+
+  if (topPapers.length) {
+    sections += `<section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">⚡</span>高优先级候选</h2></div><div class="grid grid-3">${topPapers.map(topPaperCard).join('')}</div></section>`;
+  }
+
+  if (longTail.length) {
+    sections += `<section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">🧳</span>今日长尾保存</h2><span class="muted">${longTail.length} 篇</span></div><div class="table-wrapper"><table><thead><tr><th>论文标题</th><th>为什么保存</th><th>未来触发条件</th><th>可沉淀资产</th></tr></thead><tbody>${longTail.map(longTailRow).join('')}</tbody></table></div></section>`;
+  }
+
+  if (trendCards) {
+    sections += `<section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">📈</span>趋势雷达概览</h2><a href="trends.html">查看全部</a></div><div class="grid grid-2">${trendCards}</div></section>`;
+  }
+
+  sections += `<section class="section">
+      <div class="section-header"><h2 class="section-title"><span class="section-icon">📚</span>最近日报</h2><a href="daily.html">查看全部</a></div>
+      <div class="list-stack daily-row-list">${recent.map(renderDailySummaryRow).join('') || '<div class="card">暂无日报</div>'}</div>
+    </section>`;
+
+  showState('index-root', sections);
+  initPaperMoreMenus(el('index-root'));
+  initTableOverflow(el('index-root'));
+  initColumnHover(el('index-root'));
+}
+
+async function renderDailyPage() {
+  showLoading('daily-root');
+  const data = await loadJSON('daily-index.json');
+  if (!data) return showError('daily-root', '日报索引加载失败。');
+  const reports = maybeArray(data.reports);
+  if (!reports.length) return showEmpty('daily-root', '暂无日报数据。');
+  const selectedValue = q('value') || '';
+  const selectedDecision = q('decision') || '';
+  const reportsFiltered = reports.filter(item => (!selectedValue || item.value_type === selectedValue) && (!selectedDecision || item.decision === selectedDecision));
+  const valueSelect = `<label>价值类型 <select id="daily-filter-value"><option value="">全部</option>${uniq(reports.map(r => r.value_type).filter(Boolean)).map(v => `<option value="${escapeHtml(v)}" ${v === selectedValue ? 'selected' : ''}>${escapeHtml(valueTypeLabels[v] || v)}</option>`).join('')}</select></label>`;
+  const decisionSelect = `<label>判断 <select id="daily-filter-decision"><option value="">全部</option>${uniq(reports.map(r => r.decision).filter(Boolean)).map(v => `<option value="${escapeHtml(v)}" ${v === selectedDecision ? 'selected' : ''}>${escapeHtml(v)}</option>`).join('')}</select></label>`;
+  const html = `<div class="page-header"><h1>日报</h1><p>按时间线查看每天的深挖论文、判断结论与可执行动作，采用按行展示避免信息块失衡。</p></div>
+    ${renderFilterBar([valueSelect, decisionSelect])}
+    ${renderResultMeta(reports.length, reportsFiltered.length, '支持按价值类型与判断快速筛选')}
+    <div class="list-stack daily-row-list">${reportsFiltered.map(renderDailySummaryRow).join('') || '<div class="card">没有匹配的日报</div>'}</div>`;
+  showState('daily-root', html);
+  const apply = () => {
+    const params = new URLSearchParams(window.location.search);
+    const value = el('daily-filter-value')?.value || '';
+    const decision = el('daily-filter-decision')?.value || '';
+    value ? params.set('value', value) : params.delete('value');
+    decision ? params.set('decision', decision) : params.delete('decision');
+    window.location.search = params.toString();
+  };
+  el('daily-filter-value')?.addEventListener('change', apply);
+  el('daily-filter-decision')?.addEventListener('change', apply);
+}
+
+async function renderPapersPage() {
+  showLoading('papers-root');
+  const data = await loadJSON('paper-index.json');
+  if (!data) return showError('papers-root', '论文索引加载失败。');
+  const papers = maybeArray(data.papers);
+  const query = (q('q') || '').trim().toLowerCase();
+  const topic = q('topic') || '';
+  const source = q('source') || '';
+  const value = q('value') || '';
+  const decision = q('decision') || '';
+  const code = q('code') || '';
+  const benchmark = q('benchmark') || '';
+  const minScore = Number(q('min_score') || 0);
+  const allTopics = uniq(papers.flatMap(p => maybeArray(p.matched_topics)));
+  const allSources = uniq(papers.map(p => p.source).filter(Boolean));
+  const filtered = papers.filter(p => {
+    const text = `${p.title || ''} ${p.brief_cn || ''} ${maybeArray(p.matched_topics).join(' ')}`.toLowerCase();
+    if (query && !text.includes(query)) return false;
+    if (topic && !maybeArray(p.matched_topics).includes(topic)) return false;
+    if (source && p.source !== source) return false;
+    if (value && p.value_type !== value) return false;
+    if (decision && p.decision !== decision) return false;
+    if (code === 'yes' && !p.code_url) return false;
+    if (benchmark === 'yes' && !p.benchmark_url) return false;
+    if ((p.score || 0) < minScore) return false;
+    return true;
+  });
+  const html = `<div class="page-header"><h1>论文库</h1><p>沉淀所有被筛选、评分、判断过的论文，可按方向、价值类型、代码可用性与分数快速收敛。</p></div>
+  ${renderFilterBar([
+    `<label>关键词 <input id="paper-filter-q" type="search" value="${escapeHtml(q('q') || '')}" placeholder="标题 / 摘要 / 方向" /></label>`,
+    `<label>方向 <select id="paper-filter-topic">${renderOptionList(allTopics, topic, '全部方向')}</select></label>`,
+    `<label>来源 <select id="paper-filter-source">${renderOptionList(allSources, source, '全部来源')}</select></label>`,
+    `<label>价值类型 <select id="paper-filter-value"><option value="">全部价值类型</option>${uniq(papers.map(p => p.value_type).filter(Boolean)).map(v => `<option value="${escapeHtml(v)}" ${v===value?'selected':''}>${escapeHtml(valueTypeLabels[v] || v)}</option>`).join('')}</select></label>`,
+    `<label>判断 <select id="paper-filter-decision"><option value="">全部判断</option>${uniq(papers.map(p => p.decision).filter(Boolean)).map(v => `<option value="${escapeHtml(v)}" ${v===decision?'selected':''}>${escapeHtml(v)}</option>`).join('')}</select></label>`,
+    `<label>代码 <select id="paper-filter-code"><option value="">全部</option><option value="yes" ${code==='yes'?'selected':''}>仅看有代码</option></select></label>`,
+    `<label>Benchmark <select id="paper-filter-benchmark"><option value="">全部</option><option value="yes" ${benchmark==='yes'?'selected':''}>仅看有 Benchmark</option></select></label>`,
+    `<label>最低分 <select id="paper-filter-score"><option value="0">不限</option><option value="50" ${minScore===50?'selected':''}>50+</option><option value="65" ${minScore===65?'selected':''}>65+</option><option value="80" ${minScore===80?'selected':''}>80+</option></select></label>`,
+  ])}
+  ${renderResultMeta(papers.length, filtered.length, query ? `关键词：${query}` : '')}
+  <div class="table-wrapper"><table><colgroup><col><col><col><col><col><col><col><col></colgroup><thead><tr><th>论文标题</th><th>日期</th><th>来源</th><th>方向</th><th>价值类型</th><th>分数</th><th>判断</th><th>链接</th></tr></thead><tbody>
+  ${filtered.map(p => `<tr>
+    <td><a href="${escapeHtml(p.detail_path || '#')}">${escapeHtml(p.title || '')}</a><div class="muted cell-sub">${escapeHtml(p.brief_cn || '')}</div></td>
+    <td>${escapeHtml(p.first_seen_date || '')}</td>
+    <td>${escapeHtml(p.source || '')}</td>
+    <td>${escapeHtml(maybeArray(p.matched_topics).join(' / ') || '未分类')}</td>
+    <td>${renderBadge(p.value_type_label || '', badgeClass(p.value_type || ''))}</td>
+    <td class="num">${escapeHtml(p.score || 0)}</td>
+    <td>${renderBadge(p.decision || '待定', badgeClass(p.decision || ''))}</td>
+    <td>${renderPaperLinks(p)}</td>
+  </tr>`).join('') || '<tr><td colspan="8">没有匹配的论文</td></tr>'}
+  </tbody></table></div>`;
+  showState('papers-root', html);
+  initPaperMoreMenus(el('papers-root'));
+  initTableOverflow(el('papers-root'));
+  initColumnHover(el('papers-root'));
+  const apply = () => {
+    const params = new URLSearchParams();
+    const map = {
+      q: el('paper-filter-q')?.value?.trim() || '',
+      topic: el('paper-filter-topic')?.value || '',
+      source: el('paper-filter-source')?.value || '',
+      value: el('paper-filter-value')?.value || '',
+      decision: el('paper-filter-decision')?.value || '',
+      code: el('paper-filter-code')?.value || '',
+      benchmark: el('paper-filter-benchmark')?.value || '',
+      min_score: el('paper-filter-score')?.value || '0',
+    };
+    Object.entries(map).forEach(([k, v]) => { if (v && v !== '0') params.set(k, v); });
+    window.location.search = params.toString();
+  };
+  ['paper-filter-topic','paper-filter-source','paper-filter-value','paper-filter-decision','paper-filter-code','paper-filter-benchmark','paper-filter-score'].forEach(id => el(id)?.addEventListener('change', apply));
+  el('paper-filter-q')?.addEventListener('keydown', e => { if (e.key === 'Enter') apply(); });
+}
+
+async function renderTrendsPage() {
+  showLoading('trends-root');
+  const data = await loadJSON('trend-index.json');
+  if (!data) return showError('trends-root', '趋势索引加载失败。');
+  const trends = maybeArray(data.trends);
+  const stage = q('stage') || '';
+  const filtered = trends.filter(t => !stage || t.stage === stage);
+  const html = `<div class="page-header"><h1>趋势雷达</h1><p>只收纳确实有趋势价值的方向，并打通到趋势详情、相关论文与日报闭环。</p></div>
+    ${renderFilterBar([`<label>阶段 <select id="trend-filter-stage">${renderOptionList(uniq(trends.map(t => t.stage).filter(Boolean)), stage, '全部阶段')}</select></label>`])}
+    ${renderResultMeta(trends.length, filtered.length)}
+    <div class="grid grid-2">${filtered.map(t => `<div class="card"><div class="card-title"><a href="${escapeHtml(t.path || '#')}">${escapeHtml(t.title)}</a></div><div class="badge-group" style="margin-bottom:10px">${renderBadge(t.stage || '待定', badgeClass(t.stage || ''))}</div><p>${escapeHtml(t.key_insight || '')}</p><div class="muted">关联论文 ${escapeHtml(t.paper_count || 0)} · 最近更新 ${escapeHtml(t.updated_at || '')}</div><div style="margin-top:12px"><a class="btn btn-secondary btn-sm" href="${escapeHtml(t.path || '#')}">查看趋势详情</a></div></div>`).join('') || '<div class="card">没有匹配的趋势</div>'}</div>`;
+  showState('trends-root', html);
+  el('trend-filter-stage')?.addEventListener('change', () => {
+    const params = new URLSearchParams(window.location.search);
+    const value = el('trend-filter-stage')?.value || '';
+    value ? params.set('stage', value) : params.delete('stage');
+    window.location.search = params.toString();
+  });
+}
+
+async function renderLongTailPage() {
+  showLoading('long-tail-root');
+  const data = await loadJSON('long-tail-index.json');
+  if (!data) return showError('long-tail-root', '长尾库索引加载失败。');
+  const items = maybeArray(data.items);
+  // Cell helpers: long text gets a 2-line clamp + toggle "展开/收起" affordance; missing values render as "—".
+  const ph = (v) => v && String(v).trim() ? escapeHtml(v) : '<span class="muted">—</span>';
+  const longCell = (v) => {
+    const text = (v && String(v).trim()) || '';
+    if (!text) return '<span class="muted">—</span>';
+    return `<div class="long-cell" data-long><div class="long-cell-text">${escapeHtml(text)}</div><button class="long-cell-toggle" type="button" hidden>展开</button></div>`;
+  };
+  const html = `<div class="page-header"><h1>长尾库</h1><p>保存现在不火、没有成熟工程实践，但未来可能有价值的论文、方法、评测、反证和工程启发。</p></div>
+    <div class="callout" style="margin-bottom:16px"><strong>为什么需要长尾库：</strong>不是所有有价值论文都会立刻形成趋势。长尾库用于保存未来可能变重要的论文、方法、评测、反证和工程启发。</div>
+    <div class="table-wrapper"><table><colgroup><col><col><col><col><col><col><col></colgroup><thead><tr><th>论文标题</th><th>方向</th><th>长尾价值类型</th><th>为什么保存</th><th>未来触发条件</th><th>可沉淀资产</th><th>复盘时间</th></tr></thead><tbody>
+    ${items.map(item => `<tr>
+      <td><a href="${escapeHtml(item.detail_path || '#')}">${escapeHtml(item.title || '')}</a></td>
+      <td>${ph(item.direction)}</td>
+      <td>${ph(item.long_tail_type)}</td>
+      <td>${longCell(item.why_save)}</td>
+      <td>${longCell(item.future_trigger)}</td>
+      <td>${ph(maybeArray(item.reusable_assets).join(' / '))}</td>
+      <td class="num">${ph(item.revisit_date)}</td>
+    </tr>`).join('') || '<tr><td colspan="7">暂无长尾论文</td></tr>'}
+    </tbody></table></div>`;
+  showState('long-tail-root', html);
+  initTableOverflow(el('long-tail-root'));
+  initColumnHover(el('long-tail-root'));
+  initLongCells(el('long-tail-root'));
+}
+
+async function renderInsightsPage() {
+  showLoading('insights-root');
+  const data = await loadJSON('insight-index.json');
+  const papers = await loadJSON('paper-index.json');
+  if (!data) return showError('insights-root', '启发索引加载失败。');
+  const html = `<div class="page-header"><h1>启发</h1><p>沉淀 Prompt、Skill、Checklist、架构模式、评测方法与工程机会。</p></div>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">系统设计启发</div><ul class="note-list"><li>先做价值路由，再决定是否深挖。</li><li>长尾库是知识资产保留层。</li></ul></div>
+    <div class="card"><div class="card-title">Agent 工程启发</div><ul class="note-list"><li>让 Agent 先判断今天值不值得试。</li><li>输出应沉淀为 Skill / Checklist。</li></ul></div>
+    <div class="card"><div class="card-title">评测方法启发</div><ul class="note-list"><li>不仅评估方法效果，也评估是否值得投入。</li></ul></div>
+    <div class="card"><div class="card-title">来源论文</div>${maybeArray(papers?.papers).slice(0,6).map(p => `<div class="item-row"><a href="${escapeHtml(p.detail_path || '#')}">${escapeHtml(p.title)}</a><div class="muted">${escapeHtml(p.one_line_judgement || '')}</div></div>`).join('')}</div>
+  </div>`;
+  showState('insights-root', html);
+}
+
+async function renderSourcesPage() {
+  showLoading('sources-root');
+  const data = await loadJSON('source-index.json');
+  if (!data) return showError('sources-root', '数据源加载失败。');
+  const group = (title, items) => `<section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">📦</span>${escapeHtml(title)}</h2></div><div class="list-stack">${maybeArray(items).map(item => `<div class="source-item card"><div><div class="card-title">${escapeHtml(item.name)}</div><div class="muted">用途：${escapeHtml(item.purpose)} · 更新频率：${escapeHtml(item.frequency)}</div></div><div class="badge-group">${renderBadge(item.status || '', badgeClass(item.status || ''))}</div></div>`).join('')}</div></section>`;
+  showState('sources-root', `<div class="page-header"><h1>数据源</h1><p>固定数据源用于支持稳定的论文价值发现流程。</p></div>${group('理论源头', data.theory_sources)}${group('工程验证源', data.engineering_sources)}${group('社区弱信号', data.community_sources)}`);
+}
+
+async function renderAboutPage() {
+  showState('about-root', `<div class="page-header"><h1>关于</h1><p>从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。</p></div>
+  <div class="grid grid-2">
+    <div class="card"><div class="card-title">为什么先看论文</div><p>因为真正的方向变化通常先在论文中露头，再逐步外溢到工程、产品与团队实践。</p></div>
+    <div class="card"><div class="card-title">为什么不强制固定链路</div><p>“论文 → 理论 → 工程实践 → 趋势 → 启发 → 行动”仍然是常见研究路径，但不是所有论文都值得走完整链路。系统先做价值路由，再决定投入深度。</p></div>
+    <div class="card"><div class="card-title">如何过滤噪声</div><p>明确标记暂时忽略，避免把注意力浪费在新意弱、证据弱、相关性弱的论文上。</p></div>
+    <div class="card"><div class="card-title">趋势价值图说明</div><p>趋势价值图本质上不是“页面装饰图”，而是一套判断框架：一篇论文如果已经能指导今天的学习或实验，就归入即时价值；如果更适合持续跟踪其对工程生态的外溢，就归入趋势价值；如果现在不热但未来可能触发新机会，就进入长尾库；如果证据弱、相关性弱，就明确忽略。这个图说明的是分类逻辑，而不是要求每个页面重复展示同一张图。</p></div>
+    <div class="card"><div class="card-title">GitHub 仓库</div><p><a href="https://github.com/aiutil/frontier-theory-radar" target="_blank" rel="noopener noreferrer">lohasle/frontier-theory-radar</a></p></div>
+  </div>`);
+}
+
+async function renderDailyDetailPage() {
+  const date = q('date');
+  if (!date) return showError('daily-detail-root', '缺少 date 参数');
+  showLoading('daily-detail-root');
+  const detail = await loadJSON(`daily-details/${date}.json`);
+  if (!detail) return showError('daily-detail-root', `未找到 ${date} 的日报详情`);
+  const longTailRows = maybeArray(detail.long_tail_saved).map(item => `<tr>
+    <td><a href="${escapeHtml(item.detail_path || '#')}">${escapeHtml(item.title || '')}</a></td>
+    <td>${escapeHtml(item.why_save || '')}</td>
+    <td>${escapeHtml(item.future_trigger || '')}</td>
+    <td>${escapeHtml(maybeArray(item.reusable_assets).join(' / '))}</td>
+    <td>${escapeHtml(item.revisit_date || '')}</td>
+  </tr>`).join('');
+  const insights = detail.insights || {};
+  const deep = detail.deep_dive || {};
+  const html = `<div class="page-header"><h1>${escapeHtml(detail.title || '')}</h1><p>${escapeHtml(date)} · ${renderBadge(detail.value_type_label || '', badgeClass(detail.value_type || ''))} · ${renderBadge(detail.decision || '', badgeClass(detail.decision || ''))}</p></div>
+
+  <section class="section"><div class="card"><div class="card-title">标题区</div><ul class="note-list"><li><strong>今日最值得关注论文：</strong><a href="${escapeHtml(deep.detail_path || '#')}">${escapeHtml(detail.deep_dive_title || '')}</a></li><li><strong>今日建议动作：</strong>${escapeHtml(detail.daily_action || '')}</li><li><strong>分数：</strong>${escapeHtml(detail.score || 0)}</li><li><strong>趋势阶段：</strong>${escapeHtml(trendStatusLabels[detail.trend_stage] || detail.trend_stage || '待定')}</li></ul></div></section>
+
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">🔍</span>今日深挖论文解读</h2></div><div class="card"><div class="card-title"><a href="${escapeHtml(deep.detail_path || '#')}">${escapeHtml(deep.title || detail.deep_dive_title || '')}</a></div><p><strong>一句话本质：</strong>${escapeHtml(deep.one_line_essence || deep.one_line_judgement || '')}</p><p><strong>底层问题：</strong>${escapeHtml(deep.core_problem || '')}</p><p><strong>新命题 / 新方法 / 新证据：</strong>${escapeHtml(deep.new_claim_or_method || '')}</p><p><strong>研究位置：</strong>${escapeHtml(deep.research_position || '')}</p><p><strong>工程可验证性：</strong>${deep.engineering_testability?.has_code ? '有代码，可做最小实验。' : '暂无代码，先从 Prompt / 评测 / 架构草图验证。'}</p><p><strong>趋势关联：</strong>${escapeHtml(trendStatusLabels[deep.trend_relation?.status] || deep.trend_relation?.status || '待定')}</p><p><strong>相关趋势：</strong>${maybeArray(deep.trend_relation?.related_trends).map(slug => `<a href="trend-detail.html?id=${escapeHtml(slug)}">${escapeHtml(slug)}</a>`).join(' / ') || '暂无'}</p><p><strong>启发：</strong>${escapeHtml(maybeArray(insights.agent_engineering).join('；') || '')}</p>${renderPaperLinks(deep)}</div></section>
+
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">🧳</span>今日长尾保存</h2><button class="btn btn-secondary btn-sm" onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none'">${maybeArray(detail.long_tail_saved).length ? `展开 / 收起 (${maybeArray(detail.long_tail_saved).length} 篇)` : '无数据'}</button><div style="display:none;margin-top:12px"><div class="table-wrapper"><table><thead><tr><th>论文标题</th><th>为什么保存</th><th>未来触发条件</th><th>可沉淀资产</th><th>复盘时间</th></tr></thead><tbody>${longTailRows || '<tr><td colspan="5">暂无长尾保存论文</td></tr>'}</tbody></table></div></div></section>
+
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">📚</span>引用与延伸阅读</h2></div><div class="card">${renderPaperLinks(deep)}<div style="margin-top:16px">${detail.raw_markdown_html || ''}</div></div></section>
+
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">🚫</span>今日忽略理由</h2></div><div class="card"><ul class="note-list">${maybeArray(detail.ignore_reasons).map(x => `<li>${escapeHtml(x)}</li>`).join('') || '无'}</ul></div></section>`;
+  showState('daily-detail-root', html);
+  initPaperMoreMenus(el('daily-detail-root'));
+  initTableOverflow(el('daily-detail-root'));
+  initColumnHover(el('daily-detail-root'));
+}
+
+async function renderPaperDetailPage() {
+  const id = q('id');
+  if (!id) return showError('paper-detail-root', '缺少 id 参数');
+  showLoading('paper-detail-root');
+  const detail = await loadJSON(`paper-details/${id}.json`);
+  if (!detail) return showError('paper-detail-root', `未找到论文 ${id}`);
+  const scores = detail.value_scores || {};
+  const html = `<div class="page-header"><h1>论文详情</h1><p>${renderBadge(detail.value_type_label || '', badgeClass(detail.value_type || ''))} · 分数 ${escapeHtml(detail.score || 0)}</p></div>
+  <section class="section columns-2">
+    <div class="card"><div class="card-title">论文元信息</div><ul class="note-list"><li><strong>标题：</strong>${escapeHtml(detail.title || '')}</li><li><strong>作者：</strong>${escapeHtml(maybeArray(detail.authors).join(', ') || '暂无')}</li><li><strong>发布时间：</strong>${escapeHtml(detail.published || '')}</li><li><strong>来源：</strong>${escapeHtml(detail.source || '')}</li><li><strong>首次收录日期：</strong>${escapeHtml(detail.first_seen_date || '')}</li><li><strong>首次深挖日报：</strong>${detail.daily_path ? `<a href="${escapeHtml(detail.daily_path)}">查看日报</a>` : '暂无'}</li></ul>${renderPaperLinks(detail)}</div>
+    <div class="card"><div class="card-title">价值判断</div><ul class="note-list"><li><strong>价值类型：</strong>${escapeHtml(detail.value_type_label || '')}</li><li><strong>推荐动作：</strong>${escapeHtml(detail.one_line_judgement || '')}</li><li><strong>一句话判断：</strong>${escapeHtml(detail.one_line_judgement || '')}</li><li><strong>最大不确定性：</strong>${escapeHtml(maybeArray(detail.trend_relation?.uncertainties).join('；') || '待补充')}</li></ul></div>
+  </section>
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">🧭</span>论文价值发现图</h2></div>${renderMermaidShell(detail.mermaid?.value_discovery || '')}</section>
+  <section class="section grid grid-2">
+    <div class="card"><div class="card-title">一句话本质</div><p>${escapeHtml(detail.one_line_essence || '')}</p></div>
+    <div class="card"><div class="card-title">底层问题</div><p>${escapeHtml(detail.core_problem || '')}</p></div>
+    <div class="card"><div class="card-title">新命题 / 新方法 / 新证据</div><p>${escapeHtml(detail.new_claim_or_method || '')}</p></div>
+    <div class="card"><div class="card-title">研究位置</div><p>${escapeHtml(detail.research_position || '')}</p></div>
+  </section>
+  <section class="section columns-2">
+    <div class="card"><div class="card-title">工程可验证性</div><ul class="note-list"><li>是否有代码：${detail.engineering_testability?.has_code ? '有' : '暂无'}</li><li>是否有 Benchmark：${detail.engineering_testability?.has_benchmark ? '有' : '暂无'}</li><li>是否可复现：${detail.engineering_testability?.can_reproduce ? '较可复现' : '风险较高'}</li><li>最小实验：${escapeHtml(detail.engineering_testability?.minimum_experiment || '')}</li><li>工程场景：${escapeHtml(maybeArray(detail.engineering_testability?.engineering_scenarios).join(' / ') || '')}</li></ul></div>
+    <div class="card"><div class="card-title">趋势关联</div><ul class="note-list"><li>状态：${escapeHtml(trendStatusLabels[detail.trend_relation?.status] || detail.trend_relation?.status || '待定')}</li><li>关联趋势：${maybeArray(detail.trend_relation?.related_trends).map(slug => `<a href="trend-detail.html?id=${escapeHtml(slug)}">${escapeHtml(slug)}</a>`).join(' / ') || '暂无'}</li><li>证据：${escapeHtml(maybeArray(detail.trend_relation?.evidence).join('；') || '暂无')}</li></ul></div>
+  </section>
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">🧳</span>长尾价值</h2></div><div class="card"><ul class="note-list"><li><strong>为什么值得保存：</strong>${escapeHtml(detail.long_tail?.why_save || '')}</li><li><strong>未来触发条件：</strong>${escapeHtml(maybeArray(detail.long_tail?.future_trigger).join('；') || '')}</li><li><strong>可能应用场景：</strong>${escapeHtml(maybeArray(detail.long_tail?.possible_use_cases).join(' / ') || '')}</li><li><strong>可迁移资产：</strong>${escapeHtml(maybeArray(detail.long_tail?.reusable_assets).join(' / ') || '')}</li><li><strong>何时复盘：</strong>${escapeHtml(detail.long_tail?.revisit_date || detail.long_tail?.revisit_condition || '')}</li><li><strong>长尾库入口：</strong><a href="long-tail.html">查看长尾库</a></li></ul></div></section>
+  <section class="section columns-2"><div class="card"><div class="card-title">启发</div><ul class="note-list"><li><strong>系统设计：</strong>${escapeHtml(maybeArray(detail.insights?.system_design).join('；'))}</li><li><strong>Agent 工程：</strong>${escapeHtml(maybeArray(detail.insights?.agent_engineering).join('；'))}</li><li><strong>研发流程：</strong>${escapeHtml(maybeArray(detail.insights?.dev_process).join('；'))}</li><li><strong>评测方法：</strong>${escapeHtml(maybeArray(detail.insights?.evaluation).join('；'))}</li><li><strong>平台工程：</strong>${escapeHtml(maybeArray(detail.insights?.platform_engineering).join('；'))}</li><li><strong>个人学习：</strong>${escapeHtml(maybeArray(detail.insights?.personal_learning).join('；'))}</li></ul></div><div class="card"><div class="card-title">行动建议</div><ul class="note-list">${maybeArray(detail.actions?.immediate_actions).map(x => `<li>${escapeHtml(x)}</li>`).join('')}${maybeArray(detail.actions?.trend_actions).map(x => `<li>${escapeHtml(x)}</li>`).join('')}${maybeArray(detail.actions?.long_tail_actions).map(x => `<li>${escapeHtml(x)}</li>`).join('')}${detail.actions?.ignore_reason ? `<li>${escapeHtml(detail.actions.ignore_reason)}</li>` : ''}</ul></div></section>
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">📊</span>评分拆解</h2></div><div class="table-wrapper"><table><tbody>${Object.entries(scores).map(([k,v]) => `<tr><td>${escapeHtml(k)}</td><td class="num">${escapeHtml(v)}</td></tr>`).join('')}</tbody></table></div></section>`;
+  showState('paper-detail-root', html);
+  initPaperMoreMenus(el('paper-detail-root'));
+  initTableOverflow(el('paper-detail-root'));
+  initColumnHover(el('paper-detail-root'));
+  await enhanceMermaid();
+}
+
+async function renderTrendDetailPage() {
+  const id = q('id');
+  if (!id) return showError('trend-detail-root', '缺少 id 参数');
+  showLoading('trend-detail-root');
+  const detail = await loadJSON(`trend-details/${id}.json`);
+  if (!detail) return showError('trend-detail-root', `未找到趋势 ${id}`);
+  const relatedRows = maybeArray(detail.related_papers).map(p => `<tr>
+    <td><a href="${escapeHtml(p.detail_path || '#')}">${escapeHtml(p.title || '')}</a><div class="muted">${escapeHtml(p.brief_cn || p.one_line_judgement || '')}</div></td>
+    <td>${escapeHtml(p.source || '')}</td>
+    <td>${renderBadge(p.value_type_label || '', badgeClass(p.value_type || ''))}</td>
+    <td class="num">${escapeHtml(p.score || 0)}</td>
+    <td>${renderBadge(p.decision || '', badgeClass(p.decision || ''))}</td>
+    <td>${renderPaperLinks(p)}</td>
+  </tr>`).join('');
+  const topPaper = detail.top_paper || {};
+  const html = `<div class="page-header"><h1>${escapeHtml(detail.title || '')}</h1><p>${renderBadge(detail.stage || '', badgeClass(detail.stage || ''))} · 最近更新 ${escapeHtml(detail.updated_at || '')}</p></div>
+  <section class="section columns-2">
+    <div class="card"><div class="card-title">趋势判断</div><ul class="note-list"><li><strong>阶段：</strong>${escapeHtml(detail.stage || '待定')}</li><li><strong>关联论文：</strong>${escapeHtml(detail.paper_count || 0)}</li><li><strong>工程实践：</strong>${escapeHtml(detail.practice_count || 0)}</li><li><strong>优先主题：</strong>${escapeHtml(maybeArray(detail.priority_topics).join(' / ') || '暂无')}</li></ul></div>
+    <div class="card"><div class="card-title">趋势里的头号论文</div>${topPaper.title ? `<p><a href="${escapeHtml(topPaper.detail_path || '#')}">${escapeHtml(topPaper.title)}</a></p><div class="badge-group">${renderBadge(topPaper.value_type_label || '', badgeClass(topPaper.value_type || ''))}${renderBadge(topPaper.decision || '', badgeClass(topPaper.decision || ''))}</div><p style="margin-top:12px">${escapeHtml(topPaper.one_line_judgement || '')}</p>` : '<p>暂无趋势头号论文</p>'}</div>
+  </section>
+  <section class="section"><div class="grid grid-4 kpi-grid"><div class="kpi-card"><div class="kpi-number">${escapeHtml(detail.value_distribution?.immediate ?? 0)}</div><div class="kpi-label">即时价值</div></div><div class="kpi-card"><div class="kpi-number">${escapeHtml(detail.value_distribution?.trend ?? 0)}</div><div class="kpi-label">趋势价值</div></div><div class="kpi-card"><div class="kpi-number">${escapeHtml(detail.value_distribution?.long_tail ?? 0)}</div><div class="kpi-label">长尾价值</div></div><div class="kpi-card"><div class="kpi-number">${escapeHtml(detail.value_distribution?.ignore ?? 0)}</div><div class="kpi-label">暂时忽略</div></div></div></section>
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">📄</span>相关论文</h2><a href="papers.html?topic=${encodeURIComponent(maybeArray(detail.priority_topics)[0] || '')}">按主题查看论文库</a></div><div class="table-wrapper"><table><thead><tr><th>论文</th><th>来源</th><th>价值类型</th><th>分数</th><th>判断</th><th>链接</th></tr></thead><tbody>${relatedRows || '<tr><td colspan="6">暂无关联论文</td></tr>'}</tbody></table></div></section>
+  <section class="section"><div class="section-header"><h2 class="section-title"><span class="section-icon">📘</span>趋势研究记录</h2></div><div class="card">${detail.raw_markdown_html || '<p>暂无趋势研究记录。</p>'}<div style="margin-top:16px"><a class="btn btn-secondary btn-sm" href="${escapeHtml(detail.markdown_path || '#')}">查看原始 Markdown</a></div></div></section>`;
+  showState('trend-detail-root', html);
+  initPaperMoreMenus(el('trend-detail-root'));
+  initTableOverflow(el('trend-detail-root'));
+  initColumnHover(el('trend-detail-root'));
+  await enhanceMermaid();
+}
+
+document.addEventListener('DOMContentLoaded', async () => {
+  setActiveNav();
+  initMobileMenu();
+  const page = document.body.dataset.page;
+  if (page === 'index') await renderIndexPage();
+  if (page === 'daily') await renderDailyPage();
+  if (page === 'papers') await renderPapersPage();
+  if (page === 'trends') await renderTrendsPage();
+  if (page === 'long-tail') await renderLongTailPage();
+  if (page === 'insights') await renderInsightsPage();
+  if (page === 'sources') await renderSourcesPage();
+  if (page === 'about') await renderAboutPage();
+  if (page === 'daily-detail') await renderDailyDetailPage();
+  if (page === 'paper-detail') await renderPaperDetailPage();
+  if (page === 'trend-detail') await renderTrendDetailPage();
+});

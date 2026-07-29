@@ -1,0 +1,639 @@
+{
+  "date": "2026-07-29",
+  "total": 10,
+  "generated_at": "2026-07-29T04:32:38.791543",
+  "papers": [
+    {
+      "title": "The Physics of Multi-Turn Long-Horizon Planning: From Pre-training to Post-training via Single- and Multi-Teacher On-Policy Agentic Distillation",
+      "authors": [
+        "Tianyi Men",
+        "Zhuoran Jin",
+        "Kang Liu",
+        "Jun Zhao"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24720v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24720v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Multi-turn long-horizon planning is critical for foundation model agents, yet how to fundamentally improve it remains unclear. Existing models are trained on uncontrollable and opaque Internet data, making it difficult to identify how planning ability is acquired, shaped, and integrated. To address this challenge, we introduce a unified and controlled multi-turn environment that enables precise control. It allows systematically study long-horizon planning across three stages. (1) Planning abilit",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "world model",
+        "planning"
+      ],
+      "score": 86.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24720v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24720v1"
+        }
+      ],
+      "llm_reason": "直击 Agent 工程化最核心的未解难题：多轮长程规划能力究竟在训练的哪个阶段获得、如何被塑造。论文构建了一个统一可控的多轮环境，将规划能力的习得分解为预训练、对齐、智能体蒸馏三个阶段，并用单/多教师 on-policy 蒸馏系统性地隔离每个阶段的贡献。这对所有构建 Agent 的团队有直接方法论价值——当前业界普遍困惑'规划能力到底是基座模型带来的还是后训练/RL 蒸馏带来的'，这篇工作提供了可控实验范式来回答这个问题。工程价值高：多教师 on-policy agentic distillation 是可直接迁移到 Agent 训练管线的具体技术。证据强度中等偏高（受控环境+消融设计），但代码/benchmark 暂无待核验，摘要截断。",
+      "id": "the-physics-of-multi-turn-long-horizon-planning-from-pre-training-to-post-training-via-single-and-multi-teacher-on-policy-agentic-distillation",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "DataOrchestra: Learning to Orchestrate Per-Example Curation of Pretraining Data",
+      "authors": [
+        "Zhen Huang",
+        "Yikun Wang",
+        "Shijie Xia",
+        "Pengfei Liu"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24717v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24717v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Pretraining data processing is critical to the downstream performance of Large Language Models (LLMs). However, many existing approaches define a fixed processing strategy at the corpus or domain level and apply it uniformly to many examples, without adapting to the needs of each example. We propose DataOrchestra, a framework that unifies different processing operations and orchestrates an example-specific pipeline for each example. Given a chunk of pretraining data, an orchestrator decides whet",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 80.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24717v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24717v1"
+        }
+      ],
+      "llm_reason": "提出了 DataOrchestra——将预训练数据处理从'语料级固定策略'升级为'逐样本编排'的框架。orchestrator 对每个数据 chunk 决定执行哪些处理操作（过滤、去重、质量评分、格式转换等）。这直击 LLM 预训练数据工程的痛点：当前业界普遍用统一规则处理全量数据，但不同样本的质量、领域、噪声特性差异巨大，一刀切策略损失了大量信号。对任何自建预训练/继续预训练管线的团队，这是可借鉴的架构范式。作者团队（Shijie Xia、Pengfei Liu）在数据工程方向有积累。工程可验证性高（orchestrator 可用小模型实现，处理逻辑可独立验证），但完整效果需大规模预训练实验支撑，复现成本高。代码/benchmark 待核验。",
+      "id": "dataorchestra-learning-to-orchestrate-per-example-curation-of-pretraining-data",
+      "value_type": "immediate",
+      "matched_topics": [
+        "data-engineering",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.4,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "ClinFusion: A Vision-Centric Multimodal LLM System for Holistic Medical Understanding",
+      "authors": [
+        "Hangjie Yuan",
+        "Yichen Qian",
+        "Zhiwei Tang",
+        "Xianzhe Xu",
+        "Lirong Wu"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24743v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24743v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Multimodal large language models (MLLMs) hold immense potential to revolutionize clinical practice, yet deploying them in the medical domain is fundamentally a vision-centric challenge: models must absorb knowledge from heterogeneous 2D and 3D medical images, and evaluation protocols must align with radiologists' clinical practice and provide an accurate, fine-grained and factualness-driven assessment. In this paper, we introduce ClinFusion, a vision-centric MLLM designed for holistic medical un",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "evaluation",
+        "benchmark",
+        "multimodal",
+        "tool use"
+      ],
+      "score": 73.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24743v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24743v1"
+        }
+      ],
+      "llm_reason": "ClinFusion 将医疗多模态 LLM 部署重新定义为'以视觉为中心'的挑战：模型必须吸收异构 2D/3D 医学影像，评测协议须对齐放射科医生的临床实践并做细粒度、事实性驱动的评估。其方法论价值超出医疗领域本身——'vision-centric MLLM + 与领域专家工作流对齐的评测协议'是一个可迁移到任何专业领域（工业质检、遥感、法务文档）的系统设计模板。对构建领域垂直多模态 Agent 的团队有架构参考价值。作为趋势资产：多模态 MLLM 正从'通用图文'向'专业领域异构影像'深化，评测从'通用 benchmark'向'领域工作流对齐'演进。短期直接落地需自建医疗影像+评测协议，门槛较高。代码/benchmark 暂无待核验。",
+      "id": "clinfusion-a-vision-centric-multimodal-llm-system-for-holistic-medical-understanding",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Rethinking Classifier-Free Guidance in On-Policy Diffusion Distillation",
+      "authors": [
+        "Bingnan Li",
+        "Haozhe Wang",
+        "Haozhong Xiong",
+        "Fangtai Wu",
+        "Jinpeng Yu"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24731v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24731v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "On-policy distillation (OPD) adapts diffusion models by querying a teacher along trajectories generated by the current student, but how it should behave under classifier-free guidance (CFG), a default component of modern diffusion systems, remains poorly understood. Existing OPD methods naturally extend velocity matching to the CFG-composed prediction, directly matching teacher and student guided velocities. We show that this objective is under-identified at the branch level: positive- and negat",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "inference"
+      ],
+      "score": 70.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24731v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24731v1"
+        }
+      ],
+      "llm_reason": "揭示了一个被忽视的技术盲点：在 on-policy 扩散蒸馏（OPD）中使用 classifier-free guidance（CFG）时，直接匹配教师/学生 guided velocity 的目标是'分支级欠识别'的——正负条件分支的引导速度可能组合出相同的结果但对应完全不同的生成路径。这对所有做扩散模型蒸馏/加速部署的团队有直接价值：如果蒸馏目标本身欠识别，蒸馏出的学生模型可能存在隐性的生成质量退化。作者提出了重新思考 CFG 下 OPD 目标的方法论。属于推理加速/蒸馏方向的趋势资产，证据强度依赖论文正文的消融实验（摘要截断），代码/benchmark 待核验。",
+      "id": "rethinking-classifier-free-guidance-in-on-policy-diffusion-distillation",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Efficient LLM-Generated Shuttling Compilers for Complex Trapped-Ion Architectures",
+      "authors": [
+        "Fabian Kreppel",
+        "Reza Salkhordeh",
+        "Ferdinand Schmidt-Kaler",
+        "André Brinkmann"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24714v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24714v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Trapped-ion quantum computers rely on shuttling compilers, which cast an input algorithm into a sequence of ion-qubit movements within a given architecture. We present the first study in which a single frontier large language model (LLM), Claude Opus 4.7, generates and iteratively refines the full Python code of shuttling compilers from written specifications. We start with a compiler for (i) a linear segmented trap, extend it to (ii) a trap with junctions, and finally achieve efficient compilat",
+      "categories": [
+        "quant-ph",
+        "cs.AI",
+        "cs.ET"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24714v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24714v1"
+        }
+      ],
+      "llm_reason": "首个用单一前沿 LLM（Claude Opus 4.7）从书面规格生成并迭代优化完整 Python 离子穿梭编译器代码的研究——从线性分段阱到带结点的复杂架构。作为 coding-agent 的真实案例，它证明了前沿 LLM 在'领域专家级代码生成+迭代精化'上的能力边界：能处理量子计算编译器这种高度专业、强约束的代码任务。对评估 LLM 作为代码生成/软件工程 Agent 的能力上限有参考价值。作为长尾资产：它不是可直接迁移的方法，而是一个'LLM 能力前沿的探测点'，可用于校准对 LLM 编码能力的预期。工程可验证性高（编译器代码可执行验证），但与主流 AI Agent 工程栈的直接迁移距离中等。代码待核验。",
+      "id": "efficient-llm-generated-shuttling-compilers-for-complex-trapped-ion-architectures",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "coding-agent",
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "ERUnderstand: Evaluating Vision-Language Models on Structured ER Diagrams",
+      "authors": [
+        "Ali Ansari",
+        "Yasmin Mohammadi",
+        "Farnoush Nili",
+        "Parsa Esmaeilkhani",
+        "Longin Jan Latecki"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24707v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24707v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Entity-Relationship Diagrams (ERDs) are central to conceptual database design, yet they are typically available only as rendered images rather than machine-readable schemas, limiting AI-assisted database engineering. We introduce ERUnderstand, the first large-scale benchmark for structured understanding of ER diagrams, comprising 2,960 diagrams collected from curated educational sources, real-world schemas, and synthetically generated examples spanning diverse domains, notations, complexity leve",
+      "categories": [
+        "cs.AI",
+        "cs.CV",
+        "cs.DB"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "multimodal"
+      ],
+      "score": 40.7,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24707v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24707v1"
+        }
+      ],
+      "id": "erunderstand-evaluating-vision-language-models-on-structured-er-diagrams",
+      "value_type": "ignore",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "KANEx: Translating Kolmogorov-Arnold Networks' Interpretability to Medical Explainability",
+      "authors": [
+        "Krithi Shailya",
+        "Ananya Lakshmi Ravi",
+        "Venkatanathan K. V.",
+        "Sowmya S. Sundaram",
+        "Gokul S. Krishnan"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24730v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24730v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Computer vision models have become highly effective for medical applications, yet their black-box nature continues to undermine clinician trust. In clinical workflows, chest X-ray classifiers are increasingly paired with Vision-Language Models (VLMs) to generate natural-language explanations. However, these systems add linguistic fluency without addressing the underlying opacity of the visual model. With the emergence of Kolmogorov-Arnold Networks (KANs), whose spline-based components provide in",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 37.2,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24730v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24730v1"
+        }
+      ],
+      "id": "kanex-translating-kolmogorov-arnold-networks-interpretability-to-medical-explainability",
+      "value_type": "ignore",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Certified Parallel-in-Time Sinkhorn for Dynamic Entropic Optimal Transport",
+      "authors": [
+        "Xinyang Wen"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24741v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24741v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Dynamic applications, including optimal-transport Flow Matching, repeatedly solve related entropic optimal transport problems, yet conventional distributed Sinkhorn processes frames sequentially and synchronizes after every iteration. We present TemporalSinkhorn, a parallel-in-time executor that batches future candidates and their repairs without making output accuracy speculative. A centered, row-sharded certificate accepts only a deterministic safe prefix. The remaining candidates share packed",
+      "categories": [
+        "cs.DC",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 28.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24741v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24741v1"
+        }
+      ],
+      "id": "certified-parallel-in-time-sinkhorn-for-dynamic-entropic-optimal-transport",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Learning Distributions from Multiple Data Providers",
+      "authors": [
+        "Jon Kleinberg",
+        "Amin Saberi",
+        "Xizhi Tan",
+        "Grigoris Velegkas"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24732v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24732v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Motivated by learning from heterogeneous and overlapping data providers, we study a stylized model of distribution learning from restricted conditional samples. The goal is to learn an unknown distribution $p$ on a finite domain $[n]$. The learner is given a fixed family of queryable sets $\\mathscr{S} \\subseteq 2^{[n]}$, and each query to $S \\in \\mathscr{S}$ returns an independent sample from the conditional distribution $p(\\cdot \\mid S)$. Learnability is governed by the co-occurrence graph asso",
+      "categories": [
+        "cs.DS",
+        "cs.GT",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "keywords": [],
+      "score": 28.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24732v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24732v1"
+        }
+      ],
+      "id": "learning-distributions-from-multiple-data-providers",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Global Convergence of DGM and PINN Algorithms for Solving Nonlinear PDEs",
+      "authors": [
+        "Justin Sirignano",
+        "Konstantinos Spiliopoulos",
+        "Samuel Cohen"
+      ],
+      "published": "2026-07-27",
+      "updated": "2026-07-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.24726v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.24726v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The Deep Galerkin Method (DGM) and Physics Informed Neural Networks (PINNs) have become widely-used methods for solving partial differential equations (PDEs) in the rapidly growing field of scientific machine learning. In these methods, a neural network is trained to approximate the PDE solution by using (stochastic) gradient descent to minimize the PDE residual of the neural network. Due to the non-convexity of the PDE residual objective function, the trained neural network may, in principle, o",
+      "categories": [
+        "cs.LG",
+        "math.NA"
+      ],
+      "keywords": [],
+      "score": 28.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.24726v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.24726v1"
+        }
+      ],
+      "id": "global-convergence-of-dgm-and-pinn-algorithms-for-solving-nonlinear-pdes",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    }
+  ],
+  "scored_at": "2026-07-29"
+}
