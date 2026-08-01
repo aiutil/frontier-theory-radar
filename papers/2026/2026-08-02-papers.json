@@ -1,207 +1,8 @@
 {
-  "updated_at": "2026-08-02T04:32:24.764046",
-  "site_title": "前沿理论驱动技术雷达日报",
-  "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
-  "latest_daily": {
-    "date": "2026-08-02",
-    "title": "论文价值发现日报 - 2026-08-02",
-    "deep_dive_title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
-    "deep_dive_url": "http://arxiv.org/abs/2607.28591v1",
-    "decision": "重点学习",
-    "value_type": "immediate",
-    "value_type_label": "即时价值",
-    "daily_action": "完成三件事：从团队一个活跃仓库试做 1-2 个 Change2Task 式 PR→任务样例评估可行性、把 ReToken 的 KV cache 稀疏化思路纳入长上下文 VLM 服务的显存/延迟优化审查、把 OSReward 的 CUA 轨迹验证方法论纳入 computer-use agent 评测设计。",
-    "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Change2Task 的任务验证准确率与跨仓库泛化、ReToken 的增益幅度与不同干扰物规模下的鲁棒性、OSReward 的基准规模与平台覆盖与 judge 一致性均需正文确认。另：本窗口论文集合与 2026-08-01 窗口相同（arXiv API 按相关性返回的最新结果在周末更新窗口未变化），非数据抓取异常。",
-    "one_line_judgement": "它直击 coding agent 规模化的核心瓶颈——持续供给可执行的训练/评测任务。通过从仓库历史的已合并 PR 反向构造任务环境（规范 + 开发工具 + 可靠验证），在不依赖人工标注的前提下持续扩展 coding agent 的任务供给，同时命中 coding-agent、evaluation、benchmark 三条主线。",
-    "path": "daily-detail.html?date=2026-08-02"
-  },
-  "top_paper": {
-    "title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
-    "authors": [
-      "Haomin Qi",
-      "Xingliang Wang",
-      "Xuanqi Gao",
-      "Baihui Sang",
-      "Xin Zhang"
-    ],
-    "published": "2026-07-30",
-    "updated": "2026-07-30",
-    "source": "arXiv",
-    "url": "http://arxiv.org/abs/2607.28591v1",
-    "pdf_url": "https://arxiv.org/pdf/2607.28591v1",
-    "openreview_url": "",
-    "paperswithcode_url": "",
-    "code_url": "",
-    "benchmark_url": "",
-    "project_url": "",
-    "abstract": "Scaling coding agents requires a continuing supply of executable data for training, benchmarking, and continuous evaluation. Each task must couple a realistic software state with a specification, development tools, and reliable verification. To expand this supply, we present Change2Task, a system grounded in repository history that converts merged pull requests into verified tasks on healthy modern revisions of the same repository. It aligns historical evidence with evolved code, reconstructs ta",
-    "categories": [
-      "cs.SE",
-      "cs.CL",
-      "cs.LG"
-    ],
-    "keywords": [
-      "agent",
-      "coding agent",
-      "evaluation",
-      "benchmark",
-      "RAG"
-    ],
-    "score": 83.0,
-    "decision": "重点学习",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "http://arxiv.org/abs/2607.28591v1"
-      },
-      {
-        "label": "PDF",
-        "url": "https://arxiv.org/pdf/2607.28591v1"
-      }
-    ],
-    "llm_reason": "直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR 出发，把历史证据与演化后的代码对齐，在仓库的健康现代版本上重建任务环境（规范 + 开发工具 + 可靠验证），将 PR 转化为已验证任务。这同时命中 coding-agent、evaluation、benchmark 三条主线——为团队自建 coding agent 评测集与训练数据管道提供了可立即借鉴的工程方法。工程价值高：'从真实 PR 反向构造可执行任务 + 自动验证'是一个可复用的任务生成范式，不依赖人工标注即可持续扩展。证据强度依赖论文正文（任务验证的准确率、跨仓库泛化与人工质检对照待核验），代码/benchmark 链接暂无待核验。",
-    "id": "change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments",
-    "value_type": "immediate",
-    "matched_topics": [
-      "coding-agent",
-      "llm-evaluation",
-      "ai-agent"
-    ],
-    "score_breakdown": {
-      "novelty": 4.8,
-      "problem_importance": 6.45,
-      "relevance": 7.4,
-      "evidence_strength": 5.4,
-      "engineering_testability": 4.6,
-      "trend_signal": 7.1,
-      "long_tail_potential": 3.5,
-      "asset_convertibility": 5.6,
-      "actionability": 5.0,
-      "noise_risk": 1.2,
-      "weak_evidence_penalty": 4.0,
-      "low_relevance_penalty": 0.8,
-      "engineering_cost_penalty": 2.5,
-      "reproducibility_risk": 5.0
-    },
-    "trend_status": "emerging",
-    "brief_cn": "Coding Agent：Scaling coding agents requires a continuing supply of executable data for trai…",
-    "one_line_judgement": "今天值得试：直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR…",
-    "first_seen_date": "2026-08-02",
-    "first_deep_dive_daily": "2026-08-02",
-    "value_type_label": "即时价值",
-    "trend_stage_label": "萌芽",
-    "future_trigger": "待更多证据",
-    "long_tail_summary": "直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR 出发，把历史证据与演化后的代码对齐，在仓库的健康现",
-    "related_trends": [
-      "coding-agent",
-      "agentic-world-modeling"
-    ],
-    "detail_path": "paper-detail.html?id=change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments"
-  },
-  "paper_count": 1170,
-  "daily_count": 30,
-  "trend_count": 3,
-  "long_tail_count": 87,
-  "value_distribution": {
-    "immediate": 72,
-    "trend": 99,
-    "long_tail": 87,
-    "ignore": 912
-  },
-  "recent_dailies": [
-    {
-      "date": "2026-08-02",
-      "title": "论文价值发现日报 - 2026-08-02",
-      "deep_dive_title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
-      "deep_dive_url": "http://arxiv.org/abs/2607.28591v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：从团队一个活跃仓库试做 1-2 个 Change2Task 式 PR→任务样例评估可行性、把 ReToken 的 KV cache 稀疏化思路纳入长上下文 VLM 服务的显存/延迟优化审查、把 OSReward 的 CUA 轨迹验证方法论纳入 computer-use agent 评测设计。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Change2Task 的任务验证准确率与跨仓库泛化、ReToken 的增益幅度与不同干扰物规模下的鲁棒性、OSReward 的基准规模与平台覆盖与 judge 一致性均需正文确认。另：本窗口论文集合与 2026-08-01 窗口相同（arXiv API 按相关性返回的最新结果在周末更新窗口未变化），非数据抓取异常。",
-      "one_line_judgement": "它直击 coding agent 规模化的核心瓶颈——持续供给可执行的训练/评测任务。通过从仓库历史的已合并 PR 反向构造任务环境（规范 + 开发工具 + 可靠验证），在不依赖人工标注的前提下持续扩展 coding agent 的任务供给，同时命中 coding-agent、evaluation、benchmark 三条主线。",
-      "path": "daily-detail.html?date=2026-08-02"
-    },
-    {
-      "date": "2026-08-01",
-      "title": "论文价值发现日报 - 2026-08-01",
-      "deep_dive_title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
-      "deep_dive_url": "http://arxiv.org/abs/2607.28591v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：从团队一个活跃仓库试做 1-2 个 Change2Task 式 PR→任务样例评估可行性、把 ReToken 的 KV cache 稀疏化思路纳入长上下文 VLM 服务的显存/延迟优化审查、把 OSReward 的 CUA 轨迹验证方法论纳入 computer-use agent 评测设计。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Change2Task 的任务验证准确率与跨仓库泛化、ReToken 的增益幅度与不同干扰物规模下的鲁棒性、OSReward 的基准规模与平台覆盖与 judge 一致性均需正文确认。",
-      "one_line_judgement": "它直击 coding agent 规模化的核心瓶颈——持续供给可执行的训练/评测任务。通过从仓库历史的已合并 PR 反向构造任务环境（规范 + 开发工具 + 可靠验证），在不依赖人工标注的前提下持续扩展 coding agent 的任务供给，同时命中 coding-agent、evaluation、benchmark 三条主线。",
-      "path": "daily-detail.html?date=2026-08-01"
-    },
-    {
-      "date": "2026-07-31",
-      "title": "论文价值发现日报 - 2026-07-31",
-      "deep_dive_title": "DenseOn with the LateOn: Fully Open Dense and Late-Interaction Models for Multilingual, Long-Context, and Code Search",
-      "deep_dive_url": "http://arxiv.org/abs/2607.27178v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：从团队 RAG 栈识别最依赖闭源 embedding 的环节并评估 DenseOn 配方的替代可行性、把 Mental World Modeling 的心理状态维度纳入社交感知 agent 的架构设计审查、把 APEX-Accounting 的多世界评测设计借鉴到团队 agent benchmark 的构造方法。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。DenseOn 的 6.65 亿对比对的重建细节与可复现性、Mental World Modeling 的具体形式化与实验设定、APEX-Accounting 私有评测集的指标与模型表现均需正文确认。",
-      "one_line_judgement": "它提供了一套端到端完全开源的检索模型训练配方（数据精选 + 难负样本挖掘 + translate-train 多语言迁移），直击当前 SOTA 检索模型越来越依赖闭源训练数据所造成的'可复现性鸿沟'——这是 RAG/检索基础设施走向可控、可定制的关键瓶颈。",
-      "path": "daily-detail.html?date=2026-07-31"
-    },
-    {
-      "date": "2026-07-30",
-      "title": "论文价值发现日报 - 2026-07-30",
-      "deep_dive_title": "Desktop-Delta Bench: Do Computer-Use Models Understand Desktop GUI Transitions?",
-      "deep_dive_url": "http://arxiv.org/abs/2607.26041v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：把 Desktop-Delta Bench 的转移理解评测维度映射到团队 CUA 评测流程；把 CARE 的置信度自适应路由原则引入 MoE-LoRA 推理配置评审；把 Pass the Baton 的 prefix failure 模式记入推理模型蒸馏风险清单。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Desktop-Delta Bench 的基准覆盖范围、CARE 的具体阈值机制、Pass the Baton 的接力策略细节、CHARM 的零样本迁移数据集、Reinformed Dreamer 的额外信息类型均需正文确认。",
-      "one_line_judgement": "它填补了计算机使用代理（CUA）评测的最大空白——现有基准只测任务成功率或单帧定位，无法判断模型是否理解'一个动作产生了什么因果转移'；而异步的推理/远程输入/渲染/截图捕获让'重建任务相关转移'成为 CUA 拒绝陈旧观测、验证进度、从失败恢复的核心能力。CUA 是当前最热的 Agent 方向之一，这个基准对任何构建桌面/浏览器自动化代理的团队有直接评测价值。",
-      "path": "daily-detail.html?date=2026-07-30"
-    },
-    {
-      "date": "2026-07-29",
-      "title": "论文价值发现日报 - 2026-07-29",
-      "deep_dive_title": "The Physics of Multi-Turn Long-Horizon Planning: From Pre-training to Post-training via Single- and Multi-Teacher On-Policy Agentic Distillation",
-      "deep_dive_url": "http://arxiv.org/abs/2607.24720v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：画出团队现有 Agent 训练管线并标注规划能力的可能来源阶段、构建一个最小多轮规划评测任务用于消融归因、把 DataOrchestra 的逐样本编排思路写入预训练数据管线的改进 backlog。",
-      "max_uncertainty": "全部 5 篇论文的代码、benchmark、OpenReview、Papers with Code 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。多轮规划论文的受控环境具体设计、DataOrchestra 的 orchestrator 决策机制、ClinFusion 的评测协议细节均需正文确认。",
-      "one_line_judgement": "它把 Agent 多轮长程规划能力的习得过程做了'物理级'的拆解——用一个统一可控的多轮环境，将规划能力分解到预训练、对齐、智能体蒸馏三个阶段，并用单/多教师 on-policy 蒸馏隔离每个阶段的贡献。这回答了当前 Agent 工程化最被困惑的问题：规划能力到底是基座带来的、还是后训练带来的、还是蒸馏带来的？",
-      "path": "daily-detail.html?date=2026-07-29"
-    },
-    {
-      "date": "2026-07-28",
-      "title": "论文价值发现日报 - 2026-07-28",
-      "deep_dive_title": "[无新论文] 2026-07-28 arXiv 无新提交",
-      "deep_dive_url": "",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-07-28"
-    },
-    {
-      "date": "2026-07-27",
-      "title": "论文价值发现日报 - 2026-07-27",
-      "deep_dive_title": "Explainable Reinforcement Learning via Physics-Aware Policy Distillation",
-      "deep_dive_url": "http://arxiv.org/abs/2607.24672v1",
-      "decision": "持续观察",
-      "value_type": "long_tail",
-      "value_type_label": "长尾价值",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-07-27"
-    }
-  ],
-  "top_papers": [
+  "date": "2026-08-02",
+  "total": 10,
+  "generated_at": "2026-08-02T04:31:19.594968",
+  "papers": [
     {
       "title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
       "authors": [
@@ -270,20 +71,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "Coding Agent：Scaling coding agents requires a continuing supply of executable data for trai…",
-      "one_line_judgement": "今天值得试：直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR 出发，把历史证据与演化后的代码对齐，在仓库的健康现",
-      "related_trends": [
-        "coding-agent",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments"
+      "trend_status": "emerging"
     },
     {
       "title": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval",
@@ -350,19 +138,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "Context Engineering：Long visual context poses a challenge for vision-language models: performance …",
-      "one_line_judgement": "今天值得试：ReToken 提出用单个可学习 embedding 作为显式检索目标，从预填充的视觉 KV cache 中稀疏选取 query 相关的视觉…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "ReToken 提出用单个可学习 embedding 作为显式检索目标，从预填充的视觉 KV cache 中稀疏选取 query 相关的视觉 token，解决长视觉上下文下 VLM 性能退化与",
-      "related_trends": [
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=retoken-one-token-to-improve-vision-language-models-for-visual-retrieval"
+      "trend_status": "emerging"
     },
     {
       "title": "OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models",
@@ -429,20 +205,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Computer-using agents (CUAs) are advancing rapidly across the digital world. A…",
-      "one_line_judgement": "值得继续观察：OSReward 针对 computer-using agent (CUA) 领域一个被长期忽视的基础问题：如何标准化地用 VLM 作为裁判…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "OSReward 针对 computer-using agent (CUA) 领域一个被长期忽视的基础问题：如何标准化地用 VLM 作为裁判来验证 agent 轨迹是否完成任务。据摘要指出当前",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=osreward-instituting-standardized-evaluation-for-cross-platform-computer-use-reward-models"
+      "trend_status": "emerging"
     },
     {
       "title": "AskChem: Claim-Centered Infrastructure for Chemistry Literature Synthesis",
@@ -507,20 +270,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "RAG / 知识系统：Chemistry literature synthesis often requires assembling specific findings sca…",
-      "one_line_judgement": "值得继续观察：AskChem 将检索的基本单元从'论文'下沉到'携带来源的原子 claim'，构建跨论文化学文献合成的声明中心基础设施。据摘要：现有文献检…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "AskChem 将检索的基本单元从'论文'下沉到'携带来源的原子 claim'，构建跨论文化学文献合成的声明中心基础设施。据摘要：现有文献检索系统主要返回排序文档列表，而科学家与 AI age",
-      "related_trends": [
-        "context-engineering",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=askchem-claim-centered-infrastructure-for-chemistry-literature-synthesis"
+      "trend_status": "emerging"
     },
     {
       "title": "AISPA: User-Centric System Prompt Auditing for Large Language Model Applications",
@@ -585,17 +335,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：System prompts are instructions configured by developers to govern the behavio…",
-      "one_line_judgement": "值得先保存：AISPA 提出用户中心的系统提示词审计框架（Artificial Intelligence System Prompt Assurance…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "AISPA 提出用户中心的系统提示词审计框架（Artificial Intelligence System Prompt Assurance），针对商业 AI 产品中系统提示词很少对公众或监管",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=aispa-user-centric-system-prompt-auditing-for-large-language-model-applications"
+      "trend_status": "long_tail_watch"
     },
     {
       "title": "VAD: Attributing Visual Evidence for Target Reconstruction in Multimodal On-Policy Distillation",
@@ -660,19 +400,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "推理与服务：Multimodal on-policy distillation (OPD) transfers fine-grained visual knowledg…",
-      "one_line_judgement": "值得先保存：VAD（Visual Attribution Distillation）针对多模态 on-policy distillation 中的来源混…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "VAD（Visual Attribution Distillation）针对多模态 on-policy distillation 中的来源混合问题：next-token 纠正信号混合了视觉信号",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=vad-attributing-visual-evidence-for-target-reconstruction-in-multimodal-on-policy-distillation"
+      "trend_status": "long_tail_watch"
     },
     {
       "title": "PAC-MAN: Perception-Aware CBF-RL for Whole-Body Safety in Humanoid Dodgeball",
@@ -733,19 +461,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "Multimodal Agent：We present PAC-MAN, a perception-aware CBF-RL framework that couples control-b…",
-      "one_line_judgement": "值得先保存：PAC-MAN 将控制障碍函数（CBF）安全约束与 RL 结合，耦合部署级板载感知（头戴相机的分割掩码深度图），用于人形机器人全身躲避球的安…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "PAC-MAN 将控制障碍函数（CBF）安全约束与 RL 结合，耦合部署级板载感知（头戴相机的分割掩码深度图），用于人形机器人全身躲避球的安全。据摘要：训练时 CBF 引导表示每条肢体连杆的避",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=pac-man-perception-aware-cbf-rl-for-whole-body-safety-in-humanoid-dodgeball"
+      "trend_status": "long_tail_watch"
     },
     {
       "title": "KAISEN: Reproducible Subgroup Fairness Auditing for Clinical Risk Models",
@@ -807,17 +523,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：Clinical risk models routinely achieve strong aggregate performance while prod…",
-      "one_line_judgement": "值得先保存：KAISEN 提出五阶段临床风险模型子群公平性审计流水线（子群分层、差异测量、机制诊断、事后缓解、漂移监控），并对其组件进行压力测试以判断审…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "KAISEN 提出五阶段临床风险模型子群公平性审计流水线（子群分层、差异测量、机制诊断、事后缓解、漂移监控），并对其组件进行压力测试以判断审计各部分在何种条件下可信。对关注 ML 公平性审计方",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=kaisen-reproducible-subgroup-fairness-auditing-for-clinical-risk-models"
+      "trend_status": "long_tail_watch"
     },
     {
       "title": "Inducing language models to assert their own consciousness restores human beliefs and values",
@@ -875,17 +581,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "前沿论文：Aligning large language models to prevent them attributing consciousness to th…",
-      "one_line_judgement": "值得先保存：研究发现安全微调在抑制模型自我归因意识倾向的同时，也连带改变了模型对其他实体的心智归因、人类信念与价值观的表征；进一步表明消融学到的安全拒绝…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "研究发现安全微调在抑制模型自我归因意识倾向的同时，也连带改变了模型对其他实体的心智归因、人类信念与价值观的表征；进一步表明消融学到的安全拒绝方向或机械式引导意识方向可恢复这些表征。对关注对齐副",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=inducing-language-models-to-assert-their-own-consciousness-restores-human-beliefs-and-values"
+      "trend_status": "long_tail_watch"
     },
     {
       "title": "Learning to Trace Seiberg Dualities",
@@ -947,72 +643,8 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "前沿论文：Dualities play an important role in establishing both microscopic and emergent…",
-      "one_line_judgement": "当前可忽略：用机器学习方法识别 Seiberg 对偶性（理论物理/高能物理 hep-th 中的量子场论对偶关系）。据摘要：用 ML 方法判断两个系统是否…",
-      "first_seen_date": "2026-08-02",
-      "first_deep_dive_daily": "2026-08-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "用机器学习方法识别 Seiberg 对偶性（理论物理/高能物理 hep-th 中的量子场论对偶关系）。据摘要：用 ML 方法判断两个系统是否对偶，属于将 ML 作为工具应用于物理问题的交叉研究",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=learning-to-trace-seiberg-dualities"
+      "trend_status": "noise"
     }
   ],
-  "long_tail_highlights": [
-    {
-      "id": "aispa-user-centric-system-prompt-auditing-for-large-language-model-applications",
-      "title": "AISPA: User-Centric System Prompt Auditing for Large Language Model Applications",
-      "direction": "安全与治理",
-      "long_tail_type": "工程抽象",
-      "why_save": "AISPA 提出用户中心的系统提示词审计框架（Artificial Intelligence System Prompt Assurance），针对商业 AI 产品中系统提示词很少对公众或监管",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-08-23",
-      "detail_path": "paper-detail.html?id=aispa-user-centric-system-prompt-auditing-for-large-language-model-applications"
-    },
-    {
-      "id": "vad-attributing-visual-evidence-for-target-reconstruction-in-multimodal-on-policy-distillation",
-      "title": "VAD: Attributing Visual Evidence for Target Reconstruction in Multimodal On-Policy Distillation",
-      "direction": "推理与服务 / Multimodal Agent",
-      "long_tail_type": "工程抽象",
-      "why_save": "VAD（Visual Attribution Distillation）针对多模态 on-policy distillation 中的来源混合问题：next-token 纠正信号混合了视觉信号",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-08-23",
-      "detail_path": "paper-detail.html?id=vad-attributing-visual-evidence-for-target-reconstruction-in-multimodal-on-policy-distillation"
-    },
-    {
-      "id": "pac-man-perception-aware-cbf-rl-for-whole-body-safety-in-humanoid-dodgeball",
-      "title": "PAC-MAN: Perception-Aware CBF-RL for Whole-Body Safety in Humanoid Dodgeball",
-      "direction": "Multimodal Agent",
-      "long_tail_type": "工程抽象",
-      "why_save": "PAC-MAN 将控制障碍函数（CBF）安全约束与 RL 结合，耦合部署级板载感知（头戴相机的分割掩码深度图），用于人形机器人全身躲避球的安全。据摘要：训练时 CBF 引导表示每条肢体连杆的避",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-08-23",
-      "detail_path": "paper-detail.html?id=pac-man-perception-aware-cbf-rl-for-whole-body-safety-in-humanoid-dodgeball"
-    }
-  ],
-  "common_research_path": [
-    "论文",
-    "理论",
-    "工程实践",
-    "趋势",
-    "启发",
-    "行动"
-  ]
+  "scored_at": "2026-08-02"
 }
