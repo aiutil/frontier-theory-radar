@@ -80,13 +80,13 @@ python3 scripts/build_pages.py
 
 ## 最近 7 篇日报索引
 
+- [2026-08-03 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-03) · 即时价值 · 重点学习
 - [2026-08-02 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-02) · 即时价值 · 重点学习
 - [2026-08-01 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-01) · 即时价值 · 重点学习
 - [2026-07-31 · DenseOn with the LateOn: Fully Open Dense and Late-Interaction Models for Multilingual, Long-Context, and Code Search](daily-detail.html?date=2026-07-31) · 即时价值 · 重点学习
 - [2026-07-30 · Desktop-Delta Bench: Do Computer-Use Models Understand Desktop GUI Transitions?](daily-detail.html?date=2026-07-30) · 即时价值 · 重点学习
 - [2026-07-29 · The Physics of Multi-Turn Long-Horizon Planning: From Pre-training to Post-training via Single- and Multi-Teacher On-Policy Agentic Distillation](daily-detail.html?date=2026-07-29) · 即时价值 · 重点学习
 - [2026-07-28 · [无新论文] 2026-07-28 arXiv 无新提交](daily-detail.html?date=2026-07-28) · 暂时忽略 · 暂时忽略
-- [2026-07-27 · Explainable Reinforcement Learning via Physics-Aware Policy Distillation](daily-detail.html?date=2026-07-27) · 长尾价值 · 持续观察
 
 ## 当前重点趋势索引
 

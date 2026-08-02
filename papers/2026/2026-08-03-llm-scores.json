@@ -1,0 +1,64 @@
+{
+  "by_url": {
+    "http://arxiv.org/abs/2607.28591v1": {
+      "score": 83,
+      "value_type": "immediate",
+      "reason": "直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR 出发，把历史证据与演化后的代码对齐，在仓库的健康现代版本上重建任务环境（规范 + 开发工具 + 可靠验证），将 PR 转化为已验证任务。同时命中 coding-agent、evaluation、benchmark 三条主线——为团队自建 coding agent 评测集与训练数据管道提供了可立即借鉴的工程方法。'从真实 PR 反向构造可执行任务 + 自动验证'是可复用的任务生成范式。证据不足：代码/benchmark 链接暂无待核验，任务验证准确率与跨仓库泛化需正文确认。",
+      "matched_topics": ["coding-agent", "llm-evaluation", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2607.28627v1": {
+      "score": 79,
+      "value_type": "immediate",
+      "reason": "ReToken 用单个可学习 embedding 作为显式检索目标，从预填充的视觉 KV cache 中稀疏选取 query 相关的视觉 token，解决长视觉上下文下 VLM 性能退化与显存爆炸问题。据摘要：仅在小型 image-QA 数据集上训练，即可在图像与视频 benchmark 上获得一致增益。工程价值高且可直接迁移：'一个检索 token 触发 KV cache 稀疏化'的思路可低成本集成到现有 VLM 服务栈中，降低显存与延迟。证据不足：代码/benchmark 暂无待核验，增益幅度与不同干扰物规模下的鲁棒性需正文确认。",
+      "matched_topics": ["context-engineering", "inference-serving"]
+    },
+    "http://arxiv.org/abs/2607.28609v1": {
+      "score": 76,
+      "value_type": "trend",
+      "reason": "OSReward 针对 computer-using agent (CUA) 领域被长期忽视的基础问题：如何标准化地用 VLM 作为裁判验证 agent 轨迹是否完成任务。据摘要指出当前 CUA 评测中人工验证器与人工标注都无法规模化，而 VLM-as-judge 的评估方法长期缺乏跨平台标准化基准。趋势信号强：CUA 正处于快速上升期，'可靠评估 CUA 轨迹'是 agent 落地与 RL 训练的前置基础设施。方法论（跨平台 CUA 轨迹评测设计）可借鉴。证据不足：代码/benchmark 暂无待核验，基准规模、平台覆盖与 judge 一致性需正文确认。",
+      "matched_topics": ["ai-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2607.28618v1": {
+      "score": 69,
+      "value_type": "trend",
+      "reason": "AskChem 将检索单元从'论文'下沉到'携带来源的原子 claim'，构建跨论文化学文献合成的声明中心基础设施。据摘要：现有文献检索系统主要返回排序文档列表，而科学家与 AI agent 需要手动定位、验证来源并拼装跨论文答案。'claim as retrieval unit + provenance-carrying'架构模式具有超越化学领域的通用迁移价值——任何需要跨文档精确合成答案的 RAG 系统都可借鉴，代表了 RAG 从'文档检索'向'细粒度声明检索 + 可溯源合成'演进的方向。证据不足：代码/benchmark 暂无待核验，claim 抽取对齐准确率与合成质量评测需正文确认。",
+      "matched_topics": ["rag-knowledge", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2607.28617v1": {
+      "score": 60,
+      "value_type": "long_tail",
+      "reason": "AISPA 提出用户中心的系统提示词审计框架（Artificial Intelligence System Prompt Assurance），针对商业 AI 产品中系统提示词很少对公众或监管机构公开所造成的信任与问责缺口。据摘要：系统审查了特定方面并提出系统化审计方法。对关注 LLM 应用治理、提示词安全与合规的团队有参考价值——'系统提示词审计'是可沉淀为 checklist 的治理资产。与核心 AI 工程栈的直接技术迁移距离中等。证据不足：代码/benchmark 暂无待核验，审计维度、方法有效性与案例需正文确认。",
+      "matched_topics": ["security-governance"]
+    },
+    "http://arxiv.org/abs/2607.28590v1": {
+      "score": 55,
+      "value_type": "long_tail",
+      "reason": "VAD（Visual Attribution Distillation）针对多模态 on-policy distillation 中 next-token 纠正信号来源混合问题（视觉信号、语言先验与教师特定效应），提出反事实目标重建方法估计哪些纠正由视觉证据支撑。对关注多模态蒸馏方法论的团队有参考价值，但属训练技术细化研究，与推理/服务工程栈的直接迁移距离中等。证据不足：代码/benchmark 暂无待核验，反事实方法设计、消融与蒸馏质量提升需正文确认。",
+      "matched_topics": ["inference-serving", "multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2607.28623v1": {
+      "score": 52,
+      "value_type": "long_tail",
+      "reason": "PAC-MAN 将控制障碍函数（CBF）安全约束与 RL 结合，耦合部署级板载感知（头戴相机分割掩码深度图），用于人形机器人全身躲避球的安全。据摘要：训练时 CBF 引导表示每条肢体连杆避障间隙，对抗运动先验正则化闪避反射。对具身智能/机器人安全（CBF-RL 范式）有参考价值，但硬件强相关、场景聚焦，与软件 agent/LLM 工程栈直接迁移距离较远。证据不足：代码/benchmark 暂无待核验，真实部署成功率、CBF 约束违反率与基线对比需正文确认。",
+      "matched_topics": ["multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2607.28608v1": {
+      "score": 50,
+      "value_type": "long_tail",
+      "reason": "KAISEN 提出五阶段临床风险模型子群公平性审计流水线（子群分层、差异测量、机制诊断、事后缓解、漂移监控），并对组件进行压力测试以判断审计各部分在何种条件下可信。'审计流水线各组件的可信条件压力测试'是可迁移的审计设计思路。但领域聚焦临床风险模型，与核心 AI 工程/Agent 栈的直接迁移距离较远。证据不足：代码/benchmark 暂无待核验，压力测试设计与各阶段可信度结论需正文确认。",
+      "matched_topics": ["security-governance"]
+    },
+    "http://arxiv.org/abs/2607.28607v1": {
+      "score": 47,
+      "value_type": "long_tail",
+      "reason": "研究发现安全微调在抑制模型自我归因意识倾向的同时，也连带改变了模型对其他实体的心智归因、人类信念与价值观的表征；消融安全拒绝方向或机械式引导意识方向可恢复这些表征。对关注对齐副作用、机械可解释性与安全微调连锁效应的研究者有理论启发价值。属对齐/可解释性基础研究，与工程栈直接迁移距离远，主题（意识归因）高度探索性。证据不足：代码/benchmark 暂无待核验，表征探针设计、效应量与统计显著性需正文确认。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2607.28628v1": {
+      "score": 38,
+      "value_type": "ignore",
+      "reason": "用机器学习方法识别 Seiberg 对偶性（理论物理/高能物理 hep-th 中的量子场论对偶关系）。据摘要：用 ML 方法判断两个系统是否对偶，属将 ML 作为工具应用于物理问题的交叉研究。与团队 AI 工程/Agent/RAG/推理技术栈的直接相关性极低，方法论（物理对偶性识别）不可迁移。作为噪声忽略，除非团队专门做物理启发 ML 或科学计算。",
+      "matched_topics": []
+    }
+  }
+}
