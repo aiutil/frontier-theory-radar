@@ -1,0 +1,64 @@
+{
+  "by_url": {
+    "http://arxiv.org/abs/2607.29678v1": {
+      "score": 83,
+      "value_type": "immediate",
+      "reason": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销。据摘要：在两个 agent 生态的 153,951 次调用上测量，中位调用仅追加约 1.4K 字符，只有 1.0-3.6% 的调用重建会话——即绝大多数调用是增量追加而非全量重建。'精确有状态分词（exact stateful tokenization）'的工程价值明确且可立即迁移：只对受追加影响的尾部后缀重分词，复用已缓存的前缀 token 边界。同时命中 coding-agent 与 inference-serving 两条主线。证据强度高：有大规模真实调用的量化测量。证据不足：代码/benchmark 暂无待核验，精确分词的正确性保证、与不同分词器/服务的集成开销及延迟收益需正文确认。",
+      "matched_topics": ["coding-agent", "inference-serving", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2607.29658v1": {
+      "score": 81,
+      "value_type": "immediate",
+      "reason": "STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修复轨迹转化为分层的、可复用的计划树（从细粒度诊断动作到高层修复策略），编码经验以可迁移的形式存储并用于引导后续修复。'分层轨迹抽象 → 可复用修复计划库'是可立即迁移到团队自建 coding agent 记忆/经验复用层的工程范式，直接命中 coding-agent 与 context-engineering（agent 记忆）两条主线。方法论（轨迹→多层级抽象树→检索复用）比单一长上下文更有结构。证据不足：代码/benchmark 暂无待核验，计划复用的命中率、修复成功率提升幅度与跨仓库泛化需正文确认。",
+      "matched_topics": ["coding-agent", "context-engineering", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2607.29677v1": {
+      "score": 78,
+      "value_type": "immediate",
+      "reason": "ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记录完整性、来源 grounding 与成本的综合 benchmark（4,869 页 / 370 份企业文档）。对构建企业抽取 agent 的团队，'价值准确率 + 完整性 + grounding + 成本'这一多维评分体系是可直接借鉴的评测 rubric，命中 llm-evaluation 与 benchmark 两条主线。证据强度较高：有规模化标注基准与多维评分系统。证据不足：代码/benchmark 暂无待核验，文档/模式覆盖范围、评分一致性方法与公开可用性需正文确认。",
+      "matched_topics": ["llm-evaluation", "ai-agent", "rag-knowledge"]
+    },
+    "http://arxiv.org/abs/2607.29637v1": {
+      "score": 64,
+      "value_type": "trend",
+      "reason": "CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码区域），而非仅缩放分辨率。据摘要：最佳压缩设置随输入、任务与模型变化，因此固定比例策略受限，自适应方法更优。趋势信号明确：多模态代码理解正成为降低 MLLM 输入成本的一个方向，'自适应视觉压缩'可迁移到任何把代码/文档喂给 VLM 的服务路径。命中 multimodal-agent、inference-serving 与 coding-agent 的交叉。证据不足：代码/benchmark 暂无待核验，压缩比 vs 输出保真度的权衡曲线、跨模型泛化与对代码理解任务准确率的影响需正文确认。",
+      "matched_topics": ["multimodal-agent", "inference-serving", "coding-agent"]
+    },
+    "http://arxiv.org/abs/2607.29674v1": {
+      "score": 50,
+      "value_type": "long_tail",
+      "reason": "SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩阵感知分布式优化。据摘要指出：先符号化梯度再进 LMO 并不能修复其在线性函数上仍会上升的问题，并构造了显式反例说明 SignMuon 与 MuonSign 的局限。对关注大规模分布式训练通信压缩的团队有理论参考价值——揭示了 sign 压缩优化器的失效边界。但属优化器理论分析，与推理/服务工程栈的直接迁移距离中等。证据不足：代码/benchmark 暂无待核验，反例构造的普适性与对实际训练收敛的影响需正文确认。",
+      "matched_topics": ["inference-serving"]
+    },
+    "http://arxiv.org/abs/2607.29675v1": {
+      "score": 42,
+      "value_type": "ignore",
+      "reason": "DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/multimodal）为误命中——'multimodal'此处指多模态概率分布而非多模态模型。与团队 AI 工程/Agent/RAG/推理技术栈的直接相关性低，方法论（DP 密度模态估计）不可迁移。除非专门做隐私统计学习，否则忽略。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2607.29665v1": {
+      "score": 35,
+      "value_type": "ignore",
+      "reason": "从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选择，用于解耦方程选择与神经优化。属科学计算/物理启发的 ML 研究，与团队 AI 工程/Agent 技术栈的直接相关性极低，方法论（PDE 项选择）不可迁移。忽略。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2607.29659v1": {
+      "score": 40,
+      "value_type": "ignore",
+      "reason": "GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI 工程/Agent/RAG/推理技术栈的直接迁移距离远。除非团队专门做边缘端联邦学习，否则忽略。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2607.29657v1": {
+      "score": 38,
+      "value_type": "ignore",
+      "reason": "FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中关键词命中（RAG）为误命中——'检索'用于领域知识结构化而非 RAG 系统。领域高度聚焦建筑暖通，与团队 AI 技术栈直接相关性极低。忽略。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2607.29642v1": {
+      "score": 37,
+      "value_type": "ignore",
+      "reason": "在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现）。属计算语言学/语言演化的理论研究，与团队 AI 工程/Agent/推理技术栈的直接相关性极低。忽略，除非专门做语言涌现或符号系统研究。",
+      "matched_topics": []
+    }
+  }
+}

@@ -1,6 +1,1308 @@
 {
-  "updated_at": "2026-08-03T04:32:26.756140",
+  "updated_at": "2026-08-04T04:33:16.924407",
   "papers": {
+    "toktier-exact-stateful-tokenization-for-agentic-llm-serving": {
+      "id": "toktier-exact-stateful-tokenization-for-agentic-llm-serving",
+      "title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
+      "authors": [
+        "Zhenyu Zhang",
+        "Zhichao Cao"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29678v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29678v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 8.6,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 83.0,
+      "decision": "重点学习",
+      "one_line_judgement": "今天值得试：直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词…",
+      "one_line_essence": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销。据摘要：在两个 agent 生态的 153,951 次调用上测量，中位调用仅追加约 1.4K 字符，只有 1.0-3.6% 的调用重建会话——即绝大多数调用是增量追加而非全量重建。'精确有状态分词（exact stateful tokenization）'的工程价值明确且可立即迁移：只对受追加影响的尾部后缀重分词，复用已缓存的前缀 token 边界。同时命中 coding-agent 与 inference-serving 两条主线。证据强度高：有大规模真实调用的量化测量。证据不足：代码/benchmark 暂无待核验，精确分词的正确性保证、与不同分词器/服务的集成开销及延迟收益需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销。据摘要：在两个 agent 生态的 153,951 次调用上测量，中位调用仅追加约 1.4K 字符，只有 1.0-3.6% 的调用重建会话——即绝大多数调用是增量追加",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29678v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29678v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=toktier-exact-stateful-tokenization-for-agentic-llm-serving",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "reusing-past-repairs-through-hierarchical-trajectory-abstraction-for-coding-agents": {
+      "id": "reusing-past-repairs-through-hierarchical-trajectory-abstraction-for-coding-agents",
+      "title": "Reusing Past Repairs Through Hierarchical Trajectory Abstraction for Coding Agents",
+      "authors": [
+        "Yisen Xu",
+        "Jiayuan Zhou",
+        "Ruiqi Pan",
+        "Tse-Hsun Chen"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29658v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29658v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 7.4,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 81.0,
+      "decision": "重点学习",
+      "one_line_judgement": "今天值得试：STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修…",
+      "one_line_essence": "STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修复轨迹转化为分层的、可复用的计划树（从细粒度诊断动作到高层修复策略），编码经验以可迁移的形式存储并用于引导后续修复。'分层轨迹抽象 → 可复用修复计划库'是可立即迁移到团队自建 coding agent 记忆/经验复用层的工程范式，直接命中 coding-agent 与 context-engineering（agent 记忆）两条主线。方法论（轨迹→多层级抽象树→检索复用）比单一长上下文更有结构。证据不足：代码/benchmark 暂无待核验，计划复用的命中率、修复成功率提升幅度与跨仓库泛化需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修复轨迹转化为分层的、可复用的计划树（从细粒度诊断动作到高层修复策略），编码经验以可迁移的形式存储并用于引导后续修复。'分层轨迹抽象 → 可复用修复计划库'是可立即迁移到团队自建 coding agent 记忆/经验复用层",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "context-engineering",
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修复轨迹转化为分层的、可复用的计划树（从细粒度诊断动作",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29658v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29658v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=reusing-past-repairs-through-hierarchical-trajectory-abstraction-for-coding-agents",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=context-engineering",
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "extractbench-a-benchmark-for-schema-guided-enterprise-document-extraction": {
+      "id": "extractbench-a-benchmark-for-schema-guided-enterprise-document-extraction",
+      "title": "ExtractBench: A Benchmark for Schema-Guided Enterprise Document Extraction",
+      "authors": [
+        "Boyang Zhang",
+        "Adrian Lyjak",
+        "Eli Stewart",
+        "Zhaoqi Li",
+        "Simon Suo"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29677v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29677v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 7.4,
+        "evidence": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 78.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记…",
+      "one_line_essence": "ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记录完整性、来源 grounding 与成本的综合 benchmark（4,869 页 / 370 份企业文档）。对构建企业抽取 agent 的团队，'价值准确率 + 完整性 + grounding + 成本'这一多维评分体系是可直接借鉴的评测 rubric，命中 llm-evaluation 与 benchmark 两条主线。证据强度较高：有规模化标注基准与多维评分系统。证据不足：代码/benchmark 暂无待核验，文档/模式覆盖范围、评分一致性方法与公开可用性需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记录完整性、来源 grounding 与成本的综合 benchmark（4,869 页 / 370 份企业文档）。对构建企业抽取 agent 的团队，'价值准确率 + 完整性 + grounding + 成本'这一多维评分",
+      "research_position": "benchmark",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "agentic-world-modeling",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记录完整性、来源 grounding 与成本的综合 b",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29677v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29677v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=extractbench-a-benchmark-for-schema-guided-enterprise-document-extraction",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "codeshrink-adaptive-visual-compression-for-efficient-multimodal-code-understanding": {
+      "id": "codeshrink-adaptive-visual-compression-for-efficient-multimodal-code-understanding",
+      "title": "CodeShrink: Adaptive Visual Compression for Efficient Multimodal Code Understanding",
+      "authors": [
+        "Wenxin Tang",
+        "Jingyu Xiao",
+        "Zhenyu Liu",
+        "Zipeng Xie",
+        "Junliang Liu"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29637v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29637v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 64.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得继续观察：CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码…",
+      "one_line_essence": "CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码区域），而非仅缩放分辨率。据摘要：最佳压缩设置随输入、任务与模型变化，因此固定比例策略受限，自适应方法更优。趋势信号明确：多模态代码理解正成为降低 MLLM 输入成本的一个方向，'自适应视觉压缩'可迁移到任何把代码/文档喂给 VLM 的服务路径。命中 multimodal-agent、inference-serving 与 coding-agent 的交叉。证据不足：代码/benchmark 暂无待核验，压缩比 vs 输出保真度的权衡曲线、跨模型泛化与对代码理解任务准确率的影响需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码区域），而非仅缩放分辨率。据摘要：最佳压缩设置随输入、任务与模型变化，因此固定比例策略受限，自适应方法更优。趋势信号明确：多模态代码理解正成为降低 MLLM 输入成本的一个方向，'自适应视觉压缩'可迁移到任何把代码/文档",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码区域），而非仅缩放分辨率。据摘要：最佳压缩设置随输入",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29637v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29637v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=codeshrink-adaptive-visual-compression-for-efficient-multimodal-code-understanding",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "sign-compression-for-muon-signmuon-muonsign-and-the-limits-of-error-feedback": {
+      "id": "sign-compression-for-muon-signmuon-muonsign-and-the-limits-of-error-feedback",
+      "title": "Sign compression for Muon: SignMuon, MuonSign, and the Limits of Error Feedback",
+      "authors": [
+        "Maria Smirnova",
+        "Alexey Kravatskiy"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29674v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29674v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 50.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩…",
+      "one_line_essence": "SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩阵感知分布式优化。据摘要指出：先符号化梯度再进 LMO 并不能修复其在线性函数上仍会上升的问题，并构造了显式反例说明 SignMuon 与 MuonSign 的局限。对关注大规模分布式训练通信压缩的团队有理论参考价值——揭示了 sign 压缩优化器的失效边界。但属优化器理论分析，与推理/服务工程栈的直接迁移距离中等。证据不足：代码/benchmark 暂无待核验，反例构造的普适性与对实际训练收敛的影响需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩阵感知分布式优化。据摘要指出：先符号化梯度再进 LMO 并不能修复其在线性函数上仍会上升的问题，并构造了显式反例说明 SignMuon 与 MuonSign 的局限。对关注大规模分布式训练通信压缩的团队有理论参考价值——",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩阵感知分布式优化。据摘要指出：先符号化梯度再进 LM",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-08-25"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29674v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29674v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=sign-compression-for-muon-signmuon-muonsign-and-the-limits-of-error-feedback",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "differentially-private-nonparametric-modal-learning-with-applications-to-regression-and-clustering": {
+      "id": "differentially-private-nonparametric-modal-learning-with-applications-to-regression-and-clustering",
+      "title": "Differentially Private Nonparametric Modal Learning with Applications to Regression and Clustering",
+      "authors": [
+        "Arkajyoti Bhattacharjee",
+        "Arnab Auddy"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29675v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29675v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 42.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/mult…",
+      "one_line_essence": "DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/multimodal）为误命中——'multimodal'此处指多模态概率分布而非多模态模型。与团队 AI 工程/Agent/RAG/推理技术栈的直接相关性低，方法论（DP 密度模态估计）不可迁移。除非专门做隐私统计学习，否则忽略。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/multimodal）为误命中——'multimodal'此处指多模态概率分布而非多模态模型。与团队 AI 工程/Agent/RAG/推理技术栈的直接相关性低，方法论（DP 密度模态估计）不可迁移。除非专门做隐私统计学习，否则忽",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/multimodal）为误命中——'multimodal'此",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29675v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29675v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=differentially-private-nonparametric-modal-learning-with-applications-to-regression-and-clustering",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "gq-fsl-green-quantized-federated-split-learning": {
+      "id": "gq-fsl-green-quantized-federated-split-learning",
+      "title": "GQ-FSL: Green Quantized Federated Split Learning",
+      "authors": [
+        "Idan Roth",
+        "Lutz Lampe"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29659v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29659v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 2.4
+      },
+      "score": 40.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI …",
+      "one_line_essence": "GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI 工程/Agent/RAG/推理技术栈的直接迁移距离远。除非团队专门做边缘端联邦学习，否则忽略。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI 工程/Agent/RAG/推理技术栈的直接迁移距离远。除非团队专门做边缘端联邦学习，否则忽略。",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI 工程/Agent/RAG/推理技术栈的直接迁移距离远",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29659v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29659v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=gq-fsl-green-quantized-federated-split-learning",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "development-of-fdd-on-an-ontology-for-vav-hvac-system-fault-detection-and-diagnostics": {
+      "id": "development-of-fdd-on-an-ontology-for-vav-hvac-system-fault-detection-and-diagnostics",
+      "title": "Development of FDD-ON: an Ontology for VAV HVAC System Fault Detection and Diagnostics",
+      "authors": [
+        "Yimin Chen",
+        "Brian Fricke",
+        "Bo Shen",
+        "Jamie Lian",
+        "Mingkan Zhang"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29657v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29657v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 38.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中…",
+      "one_line_essence": "FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中关键词命中（RAG）为误命中——'检索'用于领域知识结构化而非 RAG 系统。领域高度聚焦建筑暖通，与团队 AI 技术栈直接相关性极低。忽略。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中关键词命中（RAG）为误命中——'检索'用于领域知识结构化而非 RAG 系统。领域高度聚焦建筑暖通，与团队 AI 技术栈直接相关性极低。忽略。",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中关键词命中（RAG）为误命中——'检索'用于领域知识",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29657v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29657v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=development-of-fdd-on-an-ontology-for-vav-hvac-system-fault-detection-and-diagnostics",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "evolving-language-compositionality-in-a-frequency-structured-meaning-space": {
+      "id": "evolving-language-compositionality-in-a-frequency-structured-meaning-space",
+      "title": "Evolving language compositionality in a frequency-structured meaning space",
+      "authors": [
+        "Fabio De Ponte",
+        "Eloise Gaines-White",
+        "Conor Houghton",
+        "Seth Bullock"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29642v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29642v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 37.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现…",
+      "one_line_essence": "在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现）。属计算语言学/语言演化的理论研究，与团队 AI 工程/Agent/推理技术栈的直接相关性极低。忽略，除非专门做语言涌现或符号系统研究。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现）。属计算语言学/语言演化的理论研究，与团队 AI 工程/Agent/推理技术栈的直接相关性极低。忽略，除非专门做语言涌现或符号系统研究。",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现）。属计算语言学/语言演化的理论研究，与团队 AI ",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29642v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29642v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=evolving-language-compositionality-in-a-frequency-structured-meaning-space",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "freeze-then-select-structured-field-adapters-and-stability-validated-weak-selection-for-pde-discovery-from-sparse-observations": {
+      "id": "freeze-then-select-structured-field-adapters-and-stability-validated-weak-selection-for-pde-discovery-from-sparse-observations",
+      "title": "Freeze, Then Select: Structured Field Adapters and Stability-Validated Weak Selection for PDE Discovery from Sparse Observations",
+      "authors": [
+        "Juncheng Zhong",
+        "Chenghuang Shen",
+        "Jianfeng Liu",
+        "Zhengdong Xiao",
+        "Longjiu Luo"
+      ],
+      "source": "arXiv",
+      "published": "2026-07-31",
+      "url": "http://arxiv.org/abs/2607.29665v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29665v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 35.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选…",
+      "one_line_essence": "从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选择，用于解耦方程选择与神经优化。属科学计算/物理启发的 ML 研究，与团队 AI 工程/Agent 技术栈的直接相关性极低，方法论（PDE 项选择）不可迁移。忽略。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选择，用于解耦方程选择与神经优化。属科学计算/物理启发的 ML 研究，与团队 AI 工程/Agent 技术栈的直接相关性极低，方法论（PDE 项选择）不可迁移。忽略。",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选择，用于解耦方程选择与神经优化。属科学计算/物理启发",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29665v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29665v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=freeze-then-select-structured-field-adapters-and-stability-validated-weak-selection-for-pde-discovery-from-sparse-observations",
+      "daily_path": "daily-detail.html?date=2026-08-04",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
     "change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments": {
       "id": "change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments",
       "title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",

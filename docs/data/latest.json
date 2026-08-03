@@ -1,114 +1,122 @@
 {
-  "updated_at": "2026-08-03T04:32:22.315315",
+  "updated_at": "2026-08-04T04:33:16.214374",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-08-03",
-    "title": "论文价值发现日报 - 2026-08-03",
-    "deep_dive_title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
-    "deep_dive_url": "http://arxiv.org/abs/2607.28591v1",
+    "date": "2026-08-04",
+    "title": "论文价值发现日报 - 2026-08-04",
+    "deep_dive_title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
+    "deep_dive_url": "http://arxiv.org/abs/2607.29678v1",
     "decision": "重点学习",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "完成三件事：从团队一个活跃仓库试做 1-2 个 Change2Task 式 PR→任务样例评估可行性、把 ReToken 的 KV cache 稀疏化思路纳入长上下文 VLM 服务的显存/延迟优化审查、把 OSReward 的 CUA 轨迹验证方法论纳入 computer-use agent 评测设计。",
-    "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Change2Task 的任务验证准确率与跨仓库泛化、ReToken 的增益幅度与不同干扰物规模下的鲁棒性、OSReward 的基准规模与平台覆盖与 judge 一致性均需正文确认。另：本窗口论文集合与 2026-08-01、2026-08-02 窗口相同（arXiv API 按相关性返回的最新结果在周末更新窗口未变化），非数据抓取异常。",
-    "one_line_judgement": "它直击 coding agent 规模化的核心瓶颈——持续供给可执行的训练/评测任务。通过从仓库历史的已合并 PR 反向构造任务环境（规范 + 开发工具 + 可靠验证），在不依赖人工标注的前提下持续扩展 coding agent 的任务供给，同时命中 coding-agent、evaluation、benchmark 三条主线。",
-    "path": "daily-detail.html?date=2026-08-03"
+    "daily_action": "完成三件事：从团队编码 agent 真实调用日志统计增量/全量调用比例以评估 TokTier 潜在收益、把 STAIR 的分层修复轨迹抽象纳入 coding agent 记忆层设计、把 ExtractBench 的多维评分 rubric 迁移到企业抽取 agent 评测。",
+    "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（多篇摘要截断）。TokTier 的分词正确性保证、跨分词器/服务集成开销与实测延迟收益，STAIR 的计划复用命中率、修复成功率提升与跨仓库泛化，ExtractBench 的文档/模式覆盖范围、评分一致性与公开可用性均需正文确认。另：#3 摘要中的 multimodal 指概率分布而非多模态模型、#8 的 RAG 为误命中（领域知识结构化而非 RAG 系统），已在评分中剔除。",
+    "one_line_judgement": "它直击 agentic LLM serving 一个被忽视却可量化的真实成本——编码 agent 每次工具调用后重提交长转录，前端仍对全文重新分词，导致即使 KV cache 命中也省不掉分词开销。据摘要，在两个 agent 生态的 153,951 次调用上测量，中位调用只追加约 1.4K 字符、仅 1.0-3.6% 的调用重建会话，'精确有状态分词'只重分词受追加影响的尾部后缀即可复用前缀 token 边界，同时命中 coding-agent 与 inference-serving。",
+    "path": "daily-detail.html?date=2026-08-04"
   },
   "top_paper": {
-    "title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
+    "title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
     "authors": [
-      "Haomin Qi",
-      "Xingliang Wang",
-      "Xuanqi Gao",
-      "Baihui Sang",
-      "Xin Zhang"
+      "Zhenyu Zhang",
+      "Zhichao Cao"
     ],
-    "published": "2026-07-30",
-    "updated": "2026-07-30",
+    "published": "2026-07-31",
+    "updated": "2026-07-31",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2607.28591v1",
-    "pdf_url": "https://arxiv.org/pdf/2607.28591v1",
+    "url": "http://arxiv.org/abs/2607.29678v1",
+    "pdf_url": "https://arxiv.org/pdf/2607.29678v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Scaling coding agents requires a continuing supply of executable data for training, benchmarking, and continuous evaluation. Each task must couple a realistic software state with a specification, development tools, and reliable verification. To expand this supply, we present Change2Task, a system grounded in repository history that converts merged pull requests into verified tasks on healthy modern revisions of the same repository. It aligns historical evidence with evolved code, reconstructs ta",
+    "abstract": "LLM serving systems cache prompt KV state, yet most front ends still re-tokenize the full request text on every call. The cost lands on coding agents, which resubmit a long transcript after each small tool result, and reuse is hard because even a short append can change token boundaries near the end of the previous sequence. Across 153,951 calls from two agent ecosystems, the median call appends about 1.4K characters, and only 1.0-3.6% of calls start or rebuild a session with contexts of million",
     "categories": [
-      "cs.SE",
       "cs.CL",
-      "cs.LG"
+      "cs.DC",
+      "cs.PF"
     ],
     "keywords": [
       "agent",
-      "coding agent",
-      "evaluation",
-      "benchmark",
-      "RAG"
+      "agentic",
+      "coding agent"
     ],
     "score": 83.0,
     "decision": "重点学习",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2607.28591v1"
+        "url": "http://arxiv.org/abs/2607.29678v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2607.28591v1"
+        "url": "https://arxiv.org/pdf/2607.29678v1"
       }
     ],
-    "llm_reason": "直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR 出发，把历史证据与演化后的代码对齐，在仓库的健康现代版本上重建任务环境（规范 + 开发工具 + 可靠验证），将 PR 转化为已验证任务。同时命中 coding-agent、evaluation、benchmark 三条主线——为团队自建 coding agent 评测集与训练数据管道提供了可立即借鉴的工程方法。'从真实 PR 反向构造可执行任务 + 自动验证'是可复用的任务生成范式。证据不足：代码/benchmark 链接暂无待核验，任务验证准确率与跨仓库泛化需正文确认。",
-    "id": "change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments",
+    "llm_reason": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销。据摘要：在两个 agent 生态的 153,951 次调用上测量，中位调用仅追加约 1.4K 字符，只有 1.0-3.6% 的调用重建会话——即绝大多数调用是增量追加而非全量重建。'精确有状态分词（exact stateful tokenization）'的工程价值明确且可立即迁移：只对受追加影响的尾部后缀重分词，复用已缓存的前缀 token 边界。同时命中 coding-agent 与 inference-serving 两条主线。证据强度高：有大规模真实调用的量化测量。证据不足：代码/benchmark 暂无待核验，精确分词的正确性保证、与不同分词器/服务的集成开销及延迟收益需正文确认。",
+    "id": "toktier-exact-stateful-tokenization-for-agentic-llm-serving",
     "value_type": "immediate",
     "matched_topics": [
       "coding-agent",
-      "llm-evaluation",
+      "inference-serving",
       "ai-agent"
     ],
     "score_breakdown": {
       "novelty": 4.8,
-      "problem_importance": 6.45,
-      "relevance": 7.4,
-      "evidence_strength": 5.4,
+      "problem_importance": 7.1,
+      "relevance": 8.6,
+      "evidence_strength": 4.5,
       "engineering_testability": 4.6,
-      "trend_signal": 7.1,
+      "trend_signal": 4.6,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 5.6,
+      "asset_convertibility": 6.2,
       "actionability": 5.0,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 4.0,
-      "low_relevance_penalty": 0.8,
+      "weak_evidence_penalty": 5.0,
+      "low_relevance_penalty": 0,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "brief_cn": "Coding Agent：Scaling coding agents requires a continuing supply of executable data for trai…",
-    "one_line_judgement": "今天值得试：直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR…",
-    "first_seen_date": "2026-08-03",
-    "first_deep_dive_daily": "2026-08-03",
+    "brief_cn": "Coding Agent：LLM serving systems cache prompt KV state, yet most front ends still re-tokeni…",
+    "one_line_judgement": "今天值得试：直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词…",
+    "first_seen_date": "2026-08-04",
+    "first_deep_dive_daily": "2026-08-04",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR 出发，把历史证据与演化后的代码对齐，在仓库的健康现",
+    "long_tail_summary": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销",
     "related_trends": [
       "coding-agent",
       "agentic-world-modeling"
     ],
-    "detail_path": "paper-detail.html?id=change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments"
+    "detail_path": "paper-detail.html?id=toktier-exact-stateful-tokenization-for-agentic-llm-serving"
   },
-  "paper_count": 1170,
+  "paper_count": 1180,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 87,
+  "long_tail_count": 88,
   "value_distribution": {
-    "immediate": 72,
-    "trend": 99,
-    "long_tail": 87,
-    "ignore": 912
+    "immediate": 75,
+    "trend": 100,
+    "long_tail": 88,
+    "ignore": 917
   },
   "recent_dailies": [
+    {
+      "date": "2026-08-04",
+      "title": "论文价值发现日报 - 2026-08-04",
+      "deep_dive_title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
+      "deep_dive_url": "http://arxiv.org/abs/2607.29678v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：从团队编码 agent 真实调用日志统计增量/全量调用比例以评估 TokTier 潜在收益、把 STAIR 的分层修复轨迹抽象纳入 coding agent 记忆层设计、把 ExtractBench 的多维评分 rubric 迁移到企业抽取 agent 评测。",
+      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（多篇摘要截断）。TokTier 的分词正确性保证、跨分词器/服务集成开销与实测延迟收益，STAIR 的计划复用命中率、修复成功率提升与跨仓库泛化，ExtractBench 的文档/模式覆盖范围、评分一致性与公开可用性均需正文确认。另：#3 摘要中的 multimodal 指概率分布而非多模态模型、#8 的 RAG 为误命中（领域知识结构化而非 RAG 系统），已在评分中剔除。",
+      "one_line_judgement": "它直击 agentic LLM serving 一个被忽视却可量化的真实成本——编码 agent 每次工具调用后重提交长转录，前端仍对全文重新分词，导致即使 KV cache 命中也省不掉分词开销。据摘要，在两个 agent 生态的 153,951 次调用上测量，中位调用只追加约 1.4K 字符、仅 1.0-3.6% 的调用重建会话，'精确有状态分词'只重分词受追加影响的尾部后缀即可复用前缀 token 边界，同时命中 coding-agent 与 inference-serving。",
+      "path": "daily-detail.html?date=2026-08-04"
+    },
     {
       "date": "2026-08-03",
       "title": "论文价值发现日报 - 2026-08-03",
@@ -186,163 +194,65 @@
       "max_uncertainty": "全部 5 篇论文的代码、benchmark、OpenReview、Papers with Code 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。多轮规划论文的受控环境具体设计、DataOrchestra 的 orchestrator 决策机制、ClinFusion 的评测协议细节均需正文确认。",
       "one_line_judgement": "它把 Agent 多轮长程规划能力的习得过程做了'物理级'的拆解——用一个统一可控的多轮环境，将规划能力分解到预训练、对齐、智能体蒸馏三个阶段，并用单/多教师 on-policy 蒸馏隔离每个阶段的贡献。这回答了当前 Agent 工程化最被困惑的问题：规划能力到底是基座带来的、还是后训练带来的、还是蒸馏带来的？",
       "path": "daily-detail.html?date=2026-07-29"
-    },
-    {
-      "date": "2026-07-28",
-      "title": "论文价值发现日报 - 2026-07-28",
-      "deep_dive_title": "[无新论文] 2026-07-28 arXiv 无新提交",
-      "deep_dive_url": "",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-07-28"
     }
   ],
   "top_papers": [
     {
-      "title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
+      "title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
       "authors": [
-        "Haomin Qi",
-        "Xingliang Wang",
-        "Xuanqi Gao",
-        "Baihui Sang",
-        "Xin Zhang"
+        "Zhenyu Zhang",
+        "Zhichao Cao"
       ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28591v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28591v1",
+      "url": "http://arxiv.org/abs/2607.29678v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29678v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Scaling coding agents requires a continuing supply of executable data for training, benchmarking, and continuous evaluation. Each task must couple a realistic software state with a specification, development tools, and reliable verification. To expand this supply, we present Change2Task, a system grounded in repository history that converts merged pull requests into verified tasks on healthy modern revisions of the same repository. It aligns historical evidence with evolved code, reconstructs ta",
+      "abstract": "LLM serving systems cache prompt KV state, yet most front ends still re-tokenize the full request text on every call. The cost lands on coding agents, which resubmit a long transcript after each small tool result, and reuse is hard because even a short append can change token boundaries near the end of the previous sequence. Across 153,951 calls from two agent ecosystems, the median call appends about 1.4K characters, and only 1.0-3.6% of calls start or rebuild a session with contexts of million",
       "categories": [
-        "cs.SE",
         "cs.CL",
-        "cs.LG"
+        "cs.DC",
+        "cs.PF"
       ],
       "keywords": [
         "agent",
-        "coding agent",
-        "evaluation",
-        "benchmark",
-        "RAG"
+        "agentic",
+        "coding agent"
       ],
       "score": 83.0,
       "decision": "重点学习",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28591v1"
+          "url": "http://arxiv.org/abs/2607.29678v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28591v1"
+          "url": "https://arxiv.org/pdf/2607.29678v1"
         }
       ],
-      "llm_reason": "直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR 出发，把历史证据与演化后的代码对齐，在仓库的健康现代版本上重建任务环境（规范 + 开发工具 + 可靠验证），将 PR 转化为已验证任务。同时命中 coding-agent、evaluation、benchmark 三条主线——为团队自建 coding agent 评测集与训练数据管道提供了可立即借鉴的工程方法。'从真实 PR 反向构造可执行任务 + 自动验证'是可复用的任务生成范式。证据不足：代码/benchmark 链接暂无待核验，任务验证准确率与跨仓库泛化需正文确认。",
-      "id": "change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments",
+      "llm_reason": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销。据摘要：在两个 agent 生态的 153,951 次调用上测量，中位调用仅追加约 1.4K 字符，只有 1.0-3.6% 的调用重建会话——即绝大多数调用是增量追加而非全量重建。'精确有状态分词（exact stateful tokenization）'的工程价值明确且可立即迁移：只对受追加影响的尾部后缀重分词，复用已缓存的前缀 token 边界。同时命中 coding-agent 与 inference-serving 两条主线。证据强度高：有大规模真实调用的量化测量。证据不足：代码/benchmark 暂无待核验，精确分词的正确性保证、与不同分词器/服务的集成开销及延迟收益需正文确认。",
+      "id": "toktier-exact-stateful-tokenization-for-agentic-llm-serving",
       "value_type": "immediate",
       "matched_topics": [
         "coding-agent",
-        "llm-evaluation",
+        "inference-serving",
         "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 5.4,
-        "engineering_testability": 4.6,
-        "trend_signal": 7.1,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "Coding Agent：Scaling coding agents requires a continuing supply of executable data for trai…",
-      "one_line_judgement": "今天值得试：直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "直击 coding agent 规模化的核心瓶颈：持续供给可执行的训练/评测任务。据摘要：Change2Task 从仓库历史中的已合并 PR 出发，把历史证据与演化后的代码对齐，在仓库的健康现",
-      "related_trends": [
-        "coding-agent",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=change2task-from-repository-changes-to-executable-coding-agent-tasks-and-environments"
-    },
-    {
-      "title": "ReToken: One Token to Improve Vision-Language Models for Visual Retrieval",
-      "authors": [
-        "Yao Xiao",
-        "Reuben Tan",
-        "Zhen Zhu",
-        "Yuqun Wu",
-        "Jianfeng Gao"
-      ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28627v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28627v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Long visual context poses a challenge for vision-language models: performance degrades as the number of distractors grows, and processing all tokens at once is computationally infeasible under GPU memory constraints. We present ReToken, a single learnable embedding trained as an explicit retrieval target that selects a sparse set of query-relevant visual tokens from a pre-filled visual KV cache. Trained on only a small image-QA dataset, ReToken yields consistent gains across image and video benc",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "keywords": [
-        "memory",
-        "benchmark",
-        "inference"
-      ],
-      "score": 79.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28627v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28627v1"
-        }
-      ],
-      "llm_reason": "ReToken 用单个可学习 embedding 作为显式检索目标，从预填充的视觉 KV cache 中稀疏选取 query 相关的视觉 token，解决长视觉上下文下 VLM 性能退化与显存爆炸问题。据摘要：仅在小型 image-QA 数据集上训练，即可在图像与视频 benchmark 上获得一致增益。工程价值高且可直接迁移：'一个检索 token 触发 KV cache 稀疏化'的思路可低成本集成到现有 VLM 服务栈中，降低显存与延迟。证据不足：代码/benchmark 暂无待核验，增益幅度与不同干扰物规模下的鲁棒性需正文确认。",
-      "id": "retoken-one-token-to-improve-vision-language-models-for-visual-retrieval",
-      "value_type": "immediate",
-      "matched_topics": [
-        "context-engineering",
-        "inference-serving"
       ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 7.1,
         "relevance": 8.6,
         "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.6,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
+        "asset_convertibility": 6.2,
         "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -351,144 +261,64 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "Context Engineering：Long visual context poses a challenge for vision-language models: performance …",
-      "one_line_judgement": "今天值得试：ReToken 用单个可学习 embedding 作为显式检索目标，从预填充的视觉 KV cache 中稀疏选取 query 相关的视觉 t…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
+      "brief_cn": "Coding Agent：LLM serving systems cache prompt KV state, yet most front ends still re-tokeni…",
+      "one_line_judgement": "今天值得试：直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "ReToken 用单个可学习 embedding 作为显式检索目标，从预填充的视觉 KV cache 中稀疏选取 query 相关的视觉 token，解决长视觉上下文下 VLM 性能退化与显存",
+      "long_tail_summary": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销",
       "related_trends": [
-        "context-engineering"
+        "coding-agent",
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=retoken-one-token-to-improve-vision-language-models-for-visual-retrieval"
+      "detail_path": "paper-detail.html?id=toktier-exact-stateful-tokenization-for-agentic-llm-serving"
     },
     {
-      "title": "OSReward: Instituting Standardized Evaluation for Cross-Platform Computer-Use Reward Models",
+      "title": "Reusing Past Repairs Through Hierarchical Trajectory Abstraction for Coding Agents",
       "authors": [
-        "Qiushi Sun",
-        "Kanzhi Cheng",
-        "Yian Wang",
-        "Bowen Yang",
-        "Hang Yan"
+        "Yisen Xu",
+        "Jiayuan Zhou",
+        "Ruiqi Pan",
+        "Tse-Hsun Chen"
       ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28609v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28609v1",
+      "url": "http://arxiv.org/abs/2607.29658v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29658v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Computer-using agents (CUAs) are advancing rapidly across the digital world. A CUA trajectory records the agent's actions, states, and reasoning. Verifying whether it fulfilled the task instruction is central to CUA evaluation, data curation, and reinforcement learning. Neither human-written verifiers nor human annotators can provide such verification at scale, so the field increasingly turns to vision-language models (VLMs) as judges of CUA trajectories. But a fundamental question has long gone",
+      "abstract": "Although LLM-driven repair agents can tackle complex, repository-level issues, they treat every issue independently and discard the procedural knowledge accumulated from previous repairs. We introduce STAIR, a framework that converts historical repair trajectories into hierarchical, reusable plans that can be adapted to steer future repairs. Each past trajectory is transformed into a multi-level tree that ranges from fine-grained diagnostic actions to high-level repair strategies, encoding exper",
       "categories": [
-        "cs.AI",
-        "cs.CL",
-        "cs.CV"
+        "cs.SE"
       ],
       "keywords": [
         "agent",
-        "evaluation",
-        "benchmark"
+        "coding agent"
       ],
-      "score": 76.0,
-      "decision": "轻量试点",
+      "score": 81.0,
+      "decision": "重点学习",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28609v1"
+          "url": "http://arxiv.org/abs/2607.29658v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28609v1"
+          "url": "https://arxiv.org/pdf/2607.29658v1"
         }
       ],
-      "llm_reason": "OSReward 针对 computer-using agent (CUA) 领域被长期忽视的基础问题：如何标准化地用 VLM 作为裁判验证 agent 轨迹是否完成任务。据摘要指出当前 CUA 评测中人工验证器与人工标注都无法规模化，而 VLM-as-judge 的评估方法长期缺乏跨平台标准化基准。趋势信号强：CUA 正处于快速上升期，'可靠评估 CUA 轨迹'是 agent 落地与 RL 训练的前置基础设施。方法论（跨平台 CUA 轨迹评测设计）可借鉴。证据不足：代码/benchmark 暂无待核验，基准规模、平台覆盖与 judge 一致性需正文确认。",
-      "id": "osreward-instituting-standardized-evaluation-for-cross-platform-computer-use-reward-models",
-      "value_type": "trend",
+      "llm_reason": "STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修复轨迹转化为分层的、可复用的计划树（从细粒度诊断动作到高层修复策略），编码经验以可迁移的形式存储并用于引导后续修复。'分层轨迹抽象 → 可复用修复计划库'是可立即迁移到团队自建 coding agent 记忆/经验复用层的工程范式，直接命中 coding-agent 与 context-engineering（agent 记忆）两条主线。方法论（轨迹→多层级抽象树→检索复用）比单一长上下文更有结构。证据不足：代码/benchmark 暂无待核验，计划复用的命中率、修复成功率提升幅度与跨仓库泛化需正文确认。",
+      "id": "reusing-past-repairs-through-hierarchical-trajectory-abstraction-for-coding-agents",
+      "value_type": "immediate",
       "matched_topics": [
-        "ai-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.95,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Computer-using agents (CUAs) are advancing rapidly across the digital world. A…",
-      "one_line_judgement": "值得继续观察：OSReward 针对 computer-using agent (CUA) 领域被长期忽视的基础问题：如何标准化地用 VLM 作为裁判验证…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "OSReward 针对 computer-using agent (CUA) 领域被长期忽视的基础问题：如何标准化地用 VLM 作为裁判验证 agent 轨迹是否完成任务。据摘要指出当前 CU",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=osreward-instituting-standardized-evaluation-for-cross-platform-computer-use-reward-models"
-    },
-    {
-      "title": "AskChem: Claim-Centered Infrastructure for Chemistry Literature Synthesis",
-      "authors": [
-        "Bing Yan",
-        "Gregory Wolfe",
-        "Stefano Martiniani",
-        "Kyunghyun Cho"
-      ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28618v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28618v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Chemistry literature synthesis often requires assembling specific findings scattered across many publications, yet existing literature-search systems primarily return ranked document lists. As a result, scientists and AI agents need to locate relevant information, verify their provenance, and assemble cross-paper answers manually. We present AskChem, a claim-centered infrastructure for cross-paper chemistry search. AskChem changes the unit of retrieval from the paper to the provenance-carrying c",
-      "categories": [
-        "cs.CL",
-        "cs.AI",
-        "cs.IR",
-        "cs.LG"
-      ],
-      "keywords": [
-        "agent"
-      ],
-      "score": 69.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28618v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28618v1"
-        }
-      ],
-      "llm_reason": "AskChem 将检索单元从'论文'下沉到'携带来源的原子 claim'，构建跨论文化学文献合成的声明中心基础设施。据摘要：现有文献检索系统主要返回排序文档列表，而科学家与 AI agent 需要手动定位、验证来源并拼装跨论文答案。'claim as retrieval unit + provenance-carrying'架构模式具有超越化学领域的通用迁移价值——任何需要跨文档精确合成答案的 RAG 系统都可借鉴，代表了 RAG 从'文档检索'向'细粒度声明检索 + 可溯源合成'演进的方向。证据不足：代码/benchmark 暂无待核验，claim 抽取对齐准确率与合成质量评测需正文确认。",
-      "id": "askchem-claim-centered-infrastructure-for-chemistry-literature-synthesis",
-      "value_type": "trend",
-      "matched_topics": [
-        "rag-knowledge",
+        "coding-agent",
+        "context-engineering",
         "ai-agent"
       ],
       "score_breakdown": {
@@ -497,10 +327,10 @@
         "relevance": 7.4,
         "evidence_strength": 4.5,
         "engineering_testability": 4.05,
-        "trend_signal": 3.5,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 0.8,
@@ -508,224 +338,161 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "RAG / 知识系统：Chemistry literature synthesis often requires assembling specific findings sca…",
-      "one_line_judgement": "值得继续观察：AskChem 将检索单元从'论文'下沉到'携带来源的原子 claim'，构建跨论文化学文献合成的声明中心基础设施。据摘要：现有文献检索系统…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
-      "value_type_label": "趋势价值",
+      "brief_cn": "Coding Agent：Although LLM-driven repair agents can tackle complex, repository-level issues,…",
+      "one_line_judgement": "今天值得试：STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "AskChem 将检索单元从'论文'下沉到'携带来源的原子 claim'，构建跨论文化学文献合成的声明中心基础设施。据摘要：现有文献检索系统主要返回排序文档列表，而科学家与 AI agent ",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修复轨迹转化为分层的、可复用的计划树（从细粒度诊断动作",
       "related_trends": [
+        "coding-agent",
         "context-engineering",
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=askchem-claim-centered-infrastructure-for-chemistry-literature-synthesis"
+      "detail_path": "paper-detail.html?id=reusing-past-repairs-through-hierarchical-trajectory-abstraction-for-coding-agents"
     },
     {
-      "title": "AISPA: User-Centric System Prompt Auditing for Large Language Model Applications",
+      "title": "ExtractBench: A Benchmark for Schema-Guided Enterprise Document Extraction",
       "authors": [
-        "Xiangning Lin",
-        "Shenzhe Zhu",
-        "Shu Yang",
-        "Zhenyu Zhang",
-        "Haoqian Zhang"
+        "Boyang Zhang",
+        "Adrian Lyjak",
+        "Eli Stewart",
+        "Zhaoqi Li",
+        "Simon Suo"
       ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28617v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28617v1",
+      "url": "http://arxiv.org/abs/2607.29677v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29677v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "System prompts are instructions configured by developers to govern the behaviors of foundation models in AI applications. They are used throughout commercial AI products, but are rarely disclosed to the public or regulators, creating a serious trust and accountability gap in the wide deployment of AI systems. In this paper, we introduce Artificial Intelligence System Prompt Assurance (AISPA), a user-centric framework for systematically auditing system prompts in AI systems. AISPA examines specif",
+      "abstract": "Enterprise workflows increasingly rely on agents for \\emph{schema-guided extraction}: given a document and a user-defined schema, the agent faithfully follows the schema to produce the correct output with source evidence as grounding metadata. We present ExtractBench, a benchmark for schema-guided extraction and, to our knowledge, the first to score value accuracy, record completeness at scale, grounding, and measured cost together. The evaluation system contains 4,869 pages across 370 enterpris",
       "categories": [
-        "cs.AI",
-        "cs.CL",
-        "cs.CY",
-        "cs.HC"
+        "cs.AI"
       ],
       "keywords": [
-        "RAG"
+        "agent",
+        "agentic",
+        "coding agent",
+        "evaluation",
+        "benchmark"
       ],
-      "score": 60.0,
-      "decision": "持续观察",
+      "score": 78.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28617v1"
+          "url": "http://arxiv.org/abs/2607.29677v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28617v1"
+          "url": "https://arxiv.org/pdf/2607.29677v1"
         }
       ],
-      "llm_reason": "AISPA 提出用户中心的系统提示词审计框架（Artificial Intelligence System Prompt Assurance），针对商业 AI 产品中系统提示词很少对公众或监管机构公开所造成的信任与问责缺口。据摘要：系统审查了特定方面并提出系统化审计方法。对关注 LLM 应用治理、提示词安全与合规的团队有参考价值——'系统提示词审计'是可沉淀为 checklist 的治理资产。与核心 AI 工程栈的直接技术迁移距离中等。证据不足：代码/benchmark 暂无待核验，审计维度、方法有效性与案例需正文确认。",
-      "id": "aispa-user-centric-system-prompt-auditing-for-large-language-model-applications",
-      "value_type": "long_tail",
+      "llm_reason": "ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记录完整性、来源 grounding 与成本的综合 benchmark（4,869 页 / 370 份企业文档）。对构建企业抽取 agent 的团队，'价值准确率 + 完整性 + grounding + 成本'这一多维评分体系是可直接借鉴的评测 rubric，命中 llm-evaluation 与 benchmark 两条主线。证据强度较高：有规模化标注基准与多维评分系统。证据不足：代码/benchmark 暂无待核验，文档/模式覆盖范围、评分一致性方法与公开可用性需正文确认。",
+      "id": "extractbench-a-benchmark-for-schema-guided-enterprise-document-extraction",
+      "value_type": "immediate",
       "matched_topics": [
-        "security-governance"
+        "llm-evaluation",
+        "ai-agent",
+        "rag-knowledge"
       ],
       "score_breakdown": {
         "novelty": 5.4,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 5.15,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：System prompts are instructions configured by developers to govern the behavio…",
-      "one_line_judgement": "值得先保存：AISPA 提出用户中心的系统提示词审计框架（Artificial Intelligence System Prompt Assurance…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "AISPA 提出用户中心的系统提示词审计框架（Artificial Intelligence System Prompt Assurance），针对商业 AI 产品中系统提示词很少对公众或监管",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=aispa-user-centric-system-prompt-auditing-for-large-language-model-applications"
-    },
-    {
-      "title": "VAD: Attributing Visual Evidence for Target Reconstruction in Multimodal On-Policy Distillation",
-      "authors": [
-        "Kangning Zhang",
-        "Yixing Li",
-        "Shuai Shao",
-        "Qingyao Li",
-        "Zhengxi Lu"
-      ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28590v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28590v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Multimodal on-policy distillation (OPD) transfers fine-grained visual knowledge by supervising student-generated trajectories with a privileged-view teacher. Yet its next-token corrections are source-mixed, combining visual signals with linguistic priors and teacher-specific effects. The key challenge is to estimate which corrections are supported by visual evidence, not merely where or how strongly to distill. We introduce Visual Attribution Distillation (VAD), a counterfactual target-reconstru",
-      "categories": [
-        "cs.CV",
-        "cs.CL"
-      ],
-      "keywords": [
-        "benchmark",
-        "multimodal"
-      ],
-      "score": 55.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28590v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28590v1"
-        }
-      ],
-      "llm_reason": "VAD（Visual Attribution Distillation）针对多模态 on-policy distillation 中 next-token 纠正信号来源混合问题（视觉信号、语言先验与教师特定效应），提出反事实目标重建方法估计哪些纠正由视觉证据支撑。对关注多模态蒸馏方法论的团队有参考价值，但属训练技术细化研究，与推理/服务工程栈的直接迁移距离中等。证据不足：代码/benchmark 暂无待核验，反事实方法设计、消融与蒸馏质量提升需正文确认。",
-      "id": "vad-attributing-visual-evidence-for-target-reconstruction-in-multimodal-on-policy-distillation",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "inference-serving",
-        "multimodal-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
         "problem_importance": 6.45,
         "relevance": 7.4,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
+        "weak_evidence_penalty": 4.0,
         "low_relevance_penalty": 0.8,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "推理与服务：Multimodal on-policy distillation (OPD) transfers fine-grained visual knowledg…",
-      "one_line_judgement": "值得先保存：VAD（Visual Attribution Distillation）针对多模态 on-policy distillation 中 nex…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "VAD（Visual Attribution Distillation）针对多模态 on-policy distillation 中 next-token 纠正信号来源混合问题（视觉信号、语言",
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Enterprise workflows increasingly rely on agents for \\emph{schema-guided extra…",
+      "one_line_judgement": "今天值得试：ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记录完整性、来源 grounding 与成本的综合 b",
       "related_trends": [
-        "agentic-world-modeling"
+        "coding-agent",
+        "agentic-world-modeling",
+        "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=vad-attributing-visual-evidence-for-target-reconstruction-in-multimodal-on-policy-distillation"
+      "detail_path": "paper-detail.html?id=extractbench-a-benchmark-for-schema-guided-enterprise-document-extraction"
     },
     {
-      "title": "PAC-MAN: Perception-Aware CBF-RL for Whole-Body Safety in Humanoid Dodgeball",
+      "title": "CodeShrink: Adaptive Visual Compression for Efficient Multimodal Code Understanding",
       "authors": [
-        "Lizhi Yang",
-        "Junheng Li",
-        "Aaron D. Ames"
+        "Wenxin Tang",
+        "Jingyu Xiao",
+        "Zhenyu Liu",
+        "Zipeng Xie",
+        "Junliang Liu"
       ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28623v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28623v1",
+      "url": "http://arxiv.org/abs/2607.29637v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29637v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "We present PAC-MAN, a perception-aware CBF-RL framework that couples control-barrier safety with deployment-realistic onboard sensing for whole-body humanoid dodgeball. The deployed policy sees the ball only as segmentation-masked depth from a head-mounted camera, while training-time CBF guidance represents clearance to every body link, and an adversarial motion prior regularizes the resulting evasive reflexes. We evaluate on a controlled any-link contact benchmark with seeded throws in two regi",
+      "abstract": "Rendering source code as images offers a promising way to reduce the input costs of Multimodal Large Language Models (MLLMs). Adjusting image resolution can trade visual token cost against content fidelity. However, resolution scaling alone overlooks two sources of inefficiency: blank regions created by line breaks and indentation, and code regions irrelevant to the current instruction. Moreover, the best compression setting varies across inputs, tasks, and models, limiting fixed-ratio strategie",
       "categories": [
-        "cs.RO",
-        "cs.AI"
+        "cs.CV",
+        "cs.SE"
       ],
       "keywords": [
-        "benchmark"
+        "agent",
+        "multimodal",
+        "inference"
       ],
-      "score": 52.0,
+      "score": 64.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28623v1"
+          "url": "http://arxiv.org/abs/2607.29637v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28623v1"
+          "url": "https://arxiv.org/pdf/2607.29637v1"
         }
       ],
-      "llm_reason": "PAC-MAN 将控制障碍函数（CBF）安全约束与 RL 结合，耦合部署级板载感知（头戴相机分割掩码深度图），用于人形机器人全身躲避球的安全。据摘要：训练时 CBF 引导表示每条肢体连杆避障间隙，对抗运动先验正则化闪避反射。对具身智能/机器人安全（CBF-RL 范式）有参考价值，但硬件强相关、场景聚焦，与软件 agent/LLM 工程栈直接迁移距离较远。证据不足：代码/benchmark 暂无待核验，真实部署成功率、CBF 约束违反率与基线对比需正文确认。",
-      "id": "pac-man-perception-aware-cbf-rl-for-whole-body-safety-in-humanoid-dodgeball",
-      "value_type": "long_tail",
+      "llm_reason": "CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码区域），而非仅缩放分辨率。据摘要：最佳压缩设置随输入、任务与模型变化，因此固定比例策略受限，自适应方法更优。趋势信号明确：多模态代码理解正成为降低 MLLM 输入成本的一个方向，'自适应视觉压缩'可迁移到任何把代码/文档喂给 VLM 的服务路径。命中 multimodal-agent、inference-serving 与 coding-agent 的交叉。证据不足：代码/benchmark 暂无待核验，压缩比 vs 输出保真度的权衡曲线、跨模型泛化与对代码理解任务准确率的影响需正文确认。",
+      "id": "codeshrink-adaptive-visual-compression-for-efficient-multimodal-code-understanding",
+      "value_type": "trend",
       "matched_topics": [
-        "multimodal-agent"
+        "multimodal-agent",
+        "inference-serving",
+        "coding-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 5.15,
         "relevance": 5.0,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.6,
-        "trend_signal": 5.45,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 7.0,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -733,132 +500,61 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "Multimodal Agent：We present PAC-MAN, a perception-aware CBF-RL framework that couples control-b…",
-      "one_line_judgement": "值得先保存：PAC-MAN 将控制障碍函数（CBF）安全约束与 RL 结合，耦合部署级板载感知（头戴相机分割掩码深度图），用于人形机器人全身躲避球的安全…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "PAC-MAN 将控制障碍函数（CBF）安全约束与 RL 结合，耦合部署级板载感知（头戴相机分割掩码深度图），用于人形机器人全身躲避球的安全。据摘要：训练时 CBF 引导表示每条肢体连杆避障间",
+      "trend_status": "emerging",
+      "brief_cn": "Multimodal Agent：Rendering source code as images offers a promising way to reduce the input cos…",
+      "one_line_judgement": "值得继续观察：CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码区域），而非仅缩放分辨率。据摘要：最佳压缩设置随输入",
       "related_trends": [
-        "agentic-world-modeling"
+        "agentic-world-modeling",
+        "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=pac-man-perception-aware-cbf-rl-for-whole-body-safety-in-humanoid-dodgeball"
+      "detail_path": "paper-detail.html?id=codeshrink-adaptive-visual-compression-for-efficient-multimodal-code-understanding"
     },
     {
-      "title": "KAISEN: Reproducible Subgroup Fairness Auditing for Clinical Risk Models",
+      "title": "Sign compression for Muon: SignMuon, MuonSign, and the Limits of Error Feedback",
       "authors": [
-        "Sparsh Roy",
-        "Samuel Girmachew",
-        "Nishita Chavan"
+        "Maria Smirnova",
+        "Alexey Kravatskiy"
       ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28608v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28608v1",
+      "url": "http://arxiv.org/abs/2607.29674v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29674v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Clinical risk models routinely achieve strong aggregate performance while producing materially different error rates across patient subgroups. Audit pipelines have been proposed to catch this, but their components are rarely stress-tested, so it is unclear which parts of an audit can be trusted and under what conditions. We present KAISEN, a five-phase audit pipeline covering subgroup stratification, disparity measurement, mechanism diagnostics, post-hoc mitigation, and drift monitoring, evaluat",
+      "abstract": "SignMuon compresses the Muon update to one bit per parameter by taking its elementwise sign, providing the most direct way to run a matrix-aware optimizer under an extremely low communication budget. It outperforms SignSGD in practice, yet it can ascend even on a linear function. Signing the gradient before the Linear Minimization Oracle (LMO), rather than after, does not repair this: we construct a small explicit instance on which sign-before (MuonUSign) and sign-on-both-sides (MuonSign) ascend",
       "categories": [
-        "cs.LG",
-        "q-bio.QM"
+        "math.OC",
+        "cs.LG"
       ],
-      "keywords": [
-        "benchmark",
-        "RAG"
-      ],
+      "keywords": [],
       "score": 50.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28608v1"
+          "url": "http://arxiv.org/abs/2607.29674v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28608v1"
+          "url": "https://arxiv.org/pdf/2607.29674v1"
         }
       ],
-      "llm_reason": "KAISEN 提出五阶段临床风险模型子群公平性审计流水线（子群分层、差异测量、机制诊断、事后缓解、漂移监控），并对组件进行压力测试以判断审计各部分在何种条件下可信。'审计流水线各组件的可信条件压力测试'是可迁移的审计设计思路。但领域聚焦临床风险模型，与核心 AI 工程/Agent 栈的直接迁移距离较远。证据不足：代码/benchmark 暂无待核验，压力测试设计与各阶段可信度结论需正文确认。",
-      "id": "kaisen-reproducible-subgroup-fairness-auditing-for-clinical-risk-models",
+      "llm_reason": "SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩阵感知分布式优化。据摘要指出：先符号化梯度再进 LMO 并不能修复其在线性函数上仍会上升的问题，并构造了显式反例说明 SignMuon 与 MuonSign 的局限。对关注大规模分布式训练通信压缩的团队有理论参考价值——揭示了 sign 压缩优化器的失效边界。但属优化器理论分析，与推理/服务工程栈的直接迁移距离中等。证据不足：代码/benchmark 暂无待核验，反例构造的普适性与对实际训练收敛的影响需正文确认。",
+      "id": "sign-compression-for-muon-signmuon-muonsign-and-the-limits-of-error-feedback",
       "value_type": "long_tail",
       "matched_topics": [
-        "security-governance"
+        "inference-serving"
       ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：Clinical risk models routinely achieve strong aggregate performance while prod…",
-      "one_line_judgement": "值得先保存：KAISEN 提出五阶段临床风险模型子群公平性审计流水线（子群分层、差异测量、机制诊断、事后缓解、漂移监控），并对组件进行压力测试以判断审计…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "KAISEN 提出五阶段临床风险模型子群公平性审计流水线（子群分层、差异测量、机制诊断、事后缓解、漂移监控），并对组件进行压力测试以判断审计各部分在何种条件下可信。'审计流水线各组件的可信条件",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=kaisen-reproducible-subgroup-fairness-auditing-for-clinical-risk-models"
-    },
-    {
-      "title": "Inducing language models to assert their own consciousness restores human beliefs and values",
-      "authors": [
-        "Junsol Kim",
-        "Winnie Street",
-        "Roberta Rocca",
-        "Diane M. Korngiebel",
-        "Adam Waytz"
-      ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28607v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28607v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Aligning large language models to prevent them attributing consciousness to themselves inadvertently alters their representations of mindedness in other entities alongside human beliefs and values. We demonstrate that safety fine-tuning suppresses models' tendencies to attribute minds not only to themselves, but also to non-human animals and natural objects, while also driving a reduction in spiritual belief. Both ablating the learned safety-refusal direction and mechanistically steering a consc",
-      "categories": [
-        "cs.CL"
-      ],
-      "keywords": [],
-      "score": 47.0,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28607v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28607v1"
-        }
-      ],
-      "llm_reason": "研究发现安全微调在抑制模型自我归因意识倾向的同时，也连带改变了模型对其他实体的心智归因、人类信念与价值观的表征；消融安全拒绝方向或机械式引导意识方向可恢复这些表征。对关注对齐副作用、机械可解释性与安全微调连锁效应的研究者有理论启发价值。属对齐/可解释性基础研究，与工程栈直接迁移距离远，主题（意识归因）高度探索性。证据不足：代码/benchmark 暂无待核验，表征探针设计、效应量与统计显著性需正文确认。",
-      "id": "inducing-language-models-to-assert-their-own-consciousness-restores-human-beliefs-and-values",
-      "value_type": "long_tail",
-      "matched_topics": [],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
@@ -876,70 +572,141 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "brief_cn": "前沿论文：Aligning large language models to prevent them attributing consciousness to th…",
-      "one_line_judgement": "值得先保存：研究发现安全微调在抑制模型自我归因意识倾向的同时，也连带改变了模型对其他实体的心智归因、人类信念与价值观的表征；消融安全拒绝方向或机械式引导…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
+      "brief_cn": "推理与服务：SignMuon compresses the Muon update to one bit per parameter by taking its ele…",
+      "one_line_judgement": "值得先保存：SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "研究发现安全微调在抑制模型自我归因意识倾向的同时，也连带改变了模型对其他实体的心智归因、人类信念与价值观的表征；消融安全拒绝方向或机械式引导意识方向可恢复这些表征。对关注对齐副作用、机械可解释",
+      "long_tail_summary": "SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩阵感知分布式优化。据摘要指出：先符号化梯度再进 LM",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=inducing-language-models-to-assert-their-own-consciousness-restores-human-beliefs-and-values"
+      "detail_path": "paper-detail.html?id=sign-compression-for-muon-signmuon-muonsign-and-the-limits-of-error-feedback"
     },
     {
-      "title": "Learning to Trace Seiberg Dualities",
+      "title": "Differentially Private Nonparametric Modal Learning with Applications to Regression and Clustering",
       "authors": [
-        "Jonathan J. Heckman",
-        "Shani Meynet",
-        "Alessandro Mininno",
-        "Gary Shiu"
+        "Arkajyoti Bhattacharjee",
+        "Arnab Auddy"
       ],
-      "published": "2026-07-30",
-      "updated": "2026-07-30",
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2607.28628v1",
-      "pdf_url": "https://arxiv.org/pdf/2607.28628v1",
+      "url": "http://arxiv.org/abs/2607.29675v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29675v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Dualities play an important role in establishing both microscopic and emergent phenomena in a wide range of physical systems. In practice, though, it can often be computationally challenging to establish when two systems are dual, even when all of the \"rules of the game\" are well-known. Said differently, when confronted with two systems, how can one efficiently establish that they are in fact dual? In this paper we use machine learning methods to address this question for Seiberg dualities of su",
+      "abstract": "Density modes provide a localized and interpretable summary of multimodal distributions, but their estimation under rigorous differential privacy constraints remains largely unexplored. We study differentially private recovery of density modes for multivariate distributions under local smoothness, curvature, and separation conditions. We propose DP-GRAMS, a mean-shift inspired method that performs noisy ascent on a differentially private score estimator. Assuming the density belongs locally to a",
       "categories": [
-        "hep-th",
-        "cs.AI",
+        "math.ST",
         "cs.LG",
-        "hep-ph"
+        "stat.ME",
+        "stat.ML"
       ],
       "keywords": [
-        "benchmark"
+        "RAG",
+        "multimodal"
       ],
-      "score": 38.0,
+      "score": 42.0,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2607.28628v1"
+          "url": "http://arxiv.org/abs/2607.29675v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2607.28628v1"
+          "url": "https://arxiv.org/pdf/2607.29675v1"
         }
       ],
-      "llm_reason": "用机器学习方法识别 Seiberg 对偶性（理论物理/高能物理 hep-th 中的量子场论对偶关系）。据摘要：用 ML 方法判断两个系统是否对偶，属将 ML 作为工具应用于物理问题的交叉研究。与团队 AI 工程/Agent/RAG/推理技术栈的直接相关性极低，方法论（物理对偶性识别）不可迁移。作为噪声忽略，除非团队专门做物理启发 ML 或科学计算。",
-      "id": "learning-to-trace-seiberg-dualities",
+      "llm_reason": "DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/multimodal）为误命中——'multimodal'此处指多模态概率分布而非多模态模型。与团队 AI 工程/Agent/RAG/推理技术栈的直接相关性低，方法论（DP 密度模态估计）不可迁移。除非专门做隐私统计学习，否则忽略。",
+      "id": "differentially-private-nonparametric-modal-learning-with-applications-to-regression-and-clustering",
+      "value_type": "ignore",
+      "matched_topics": [
+        "multimodal-agent",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "Multimodal Agent：Density modes provide a localized and interpretable summary of multimodal dist…",
+      "one_line_judgement": "当前可忽略：DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/mult…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/multimodal）为误命中——'multimodal'此",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=differentially-private-nonparametric-modal-learning-with-applications-to-regression-and-clustering"
+    },
+    {
+      "title": "GQ-FSL: Green Quantized Federated Split Learning",
+      "authors": [
+        "Idan Roth",
+        "Lutz Lampe"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29659v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29659v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Deploying state-of-the-art deep neural networks (DNNs) at the wireless edge is severely bottlenecked by the strict energy and resource constraints of mobile devices. While federated split learning (FSL) mitigates on-device computation by offloading workloads to an edge server, this may introduce systemic overheads, while the continuous exchange of cut-layer data, and submodels still incurs significant energy consumption (EC). To address this, we propose a green quantized FSL (GQ-FSL) framework t",
+      "categories": [
+        "cs.LG",
+        "cs.DC",
+        "eess.SP"
+      ],
+      "keywords": [],
+      "score": 40.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29659v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29659v1"
+        }
+      ],
+      "llm_reason": "GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI 工程/Agent/RAG/推理技术栈的直接迁移距离远。除非团队专门做边缘端联邦学习，否则忽略。",
+      "id": "gq-fsl-green-quantized-federated-split-learning",
       "value_type": "ignore",
       "matched_topics": [],
       "score_breakdown": {
-        "novelty": 5.4,
+        "novelty": 4.8,
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 4.6,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
+        "asset_convertibility": 5.4,
         "actionability": 5.0,
         "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
@@ -948,19 +715,245 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "noise",
-      "brief_cn": "前沿论文：Dualities play an important role in establishing both microscopic and emergent…",
-      "one_line_judgement": "当前可忽略：用机器学习方法识别 Seiberg 对偶性（理论物理/高能物理 hep-th 中的量子场论对偶关系）。据摘要：用 ML 方法判断两个系统是否…",
-      "first_seen_date": "2026-08-03",
-      "first_deep_dive_daily": "2026-08-03",
+      "brief_cn": "前沿论文：Deploying state-of-the-art deep neural networks (DNNs) at the wireless edge is…",
+      "one_line_judgement": "当前可忽略：GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI …",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "用机器学习方法识别 Seiberg 对偶性（理论物理/高能物理 hep-th 中的量子场论对偶关系）。据摘要：用 ML 方法判断两个系统是否对偶，属将 ML 作为工具应用于物理问题的交叉研究。",
+      "long_tail_summary": "GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI 工程/Agent/RAG/推理技术栈的直接迁移距离远",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=learning-to-trace-seiberg-dualities"
+      "detail_path": "paper-detail.html?id=gq-fsl-green-quantized-federated-split-learning"
+    },
+    {
+      "title": "Development of FDD-ON: an Ontology for VAV HVAC System Fault Detection and Diagnostics",
+      "authors": [
+        "Yimin Chen",
+        "Brian Fricke",
+        "Bo Shen",
+        "Jamie Lian",
+        "Mingkan Zhang"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29657v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29657v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Fault detection and diagnosis (FDD) technology is essential for improving HVAC system reliability, energy efficiency, and maintenance effectiveness. However, effective deployment of FDD solutions in buildings requires structured domain knowledge that can bridge heterogeneous data sources, diverse equipment types, and varied diagnostic outputs. Limited data interpretability and interoperability within the FDD domain have led to fragmented information silos, hindering the implementation of FDD and",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 38.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29657v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29657v1"
+        }
+      ],
+      "llm_reason": "FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中关键词命中（RAG）为误命中——'检索'用于领域知识结构化而非 RAG 系统。领域高度聚焦建筑暖通，与团队 AI 技术栈直接相关性极低。忽略。",
+      "id": "development-of-fdd-on-an-ontology-for-vav-hvac-system-fault-detection-and-diagnostics",
+      "value_type": "ignore",
+      "matched_topics": [
+        "rag-knowledge",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "RAG / 知识系统：Fault detection and diagnosis (FDD) technology is essential for improving HVAC…",
+      "one_line_judgement": "当前可忽略：FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中关键词命中（RAG）为误命中——'检索'用于领域知识",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=development-of-fdd-on-an-ontology-for-vav-hvac-system-fault-detection-and-diagnostics"
+    },
+    {
+      "title": "Evolving language compositionality in a frequency-structured meaning space",
+      "authors": [
+        "Fabio De Ponte",
+        "Eloise Gaines-White",
+        "Conor Houghton",
+        "Seth Bullock"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29642v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29642v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The iterated learning model was introduced to investigate language evolution: the way in which the characteristic properties of human languages have been shaped, at least partly, by repeated transmission from one language user to another. The key finding is that language compositionality can arise spontaneously as a consequence of language being passed repeatedly through a language learning bottleneck. Here we explore how changing the frequency of different meanings, so that some meanings occur ",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [],
+      "score": 37.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29642v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29642v1"
+        }
+      ],
+      "llm_reason": "在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现）。属计算语言学/语言演化的理论研究，与团队 AI 工程/Agent/推理技术栈的直接相关性极低。忽略，除非专门做语言涌现或符号系统研究。",
+      "id": "evolving-language-compositionality-in-a-frequency-structured-meaning-space",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：The iterated learning model was introduced to investigate language evolution: …",
+      "one_line_judgement": "当前可忽略：在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现）。属计算语言学/语言演化的理论研究，与团队 AI ",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=evolving-language-compositionality-in-a-frequency-structured-meaning-space"
+    },
+    {
+      "title": "Freeze, Then Select: Structured Field Adapters and Stability-Validated Weak Selection for PDE Discovery from Sparse Observations",
+      "authors": [
+        "Juncheng Zhong",
+        "Chenghuang Shen",
+        "Jianfeng Liu",
+        "Zhengdong Xiao",
+        "Longjiu Luo"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29665v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29665v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "PDE discovery from sparse observations requires reconstructing a continuous field and selecting the correct differential terms. Our analysis of optimization paths in coupled neural PDE discovery reveals three behaviors: the exact support can persist to the end of training, appear only transiently, or fail to emerge. To decouple equation selection from neural optimization, we develop a freeze-then-select method combining a structured field adapter with Stability-Validated Weak Selection (SVWS). T",
+      "categories": [
+        "cs.LG",
+        "math.NA"
+      ],
+      "keywords": [],
+      "score": 35.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29665v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29665v1"
+        }
+      ],
+      "llm_reason": "从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选择，用于解耦方程选择与神经优化。属科学计算/物理启发的 ML 研究，与团队 AI 工程/Agent 技术栈的直接相关性极低，方法论（PDE 项选择）不可迁移。忽略。",
+      "id": "freeze-then-select-structured-field-adapters-and-stability-validated-weak-selection-for-pde-discovery-from-sparse-observations",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：PDE discovery from sparse observations requires reconstructing a continuous fi…",
+      "one_line_judgement": "当前可忽略：从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选…",
+      "first_seen_date": "2026-08-04",
+      "first_deep_dive_daily": "2026-08-04",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选择，用于解耦方程选择与神经优化。属科学计算/物理启发",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=freeze-then-select-structured-field-adapters-and-stability-validated-weak-selection-for-pde-discovery-from-sparse-observations"
     }
   ],
   "long_tail_highlights": [
+    {
+      "id": "sign-compression-for-muon-signmuon-muonsign-and-the-limits-of-error-feedback",
+      "title": "Sign compression for Muon: SignMuon, MuonSign, and the Limits of Error Feedback",
+      "direction": "推理与服务",
+      "long_tail_type": "工程抽象",
+      "why_save": "SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩阵感知分布式优化。据摘要指出：先符号化梯度再进 LM",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-08-25",
+      "detail_path": "paper-detail.html?id=sign-compression-for-muon-signmuon-muonsign-and-the-limits-of-error-feedback"
+    },
     {
       "id": "aispa-user-centric-system-prompt-auditing-for-large-language-model-applications",
       "title": "AISPA: User-Centric System Prompt Auditing for Large Language Model Applications",
@@ -990,21 +983,6 @@
       ],
       "revisit_date": "2026-08-24",
       "detail_path": "paper-detail.html?id=vad-attributing-visual-evidence-for-target-reconstruction-in-multimodal-on-policy-distillation"
-    },
-    {
-      "id": "pac-man-perception-aware-cbf-rl-for-whole-body-safety-in-humanoid-dodgeball",
-      "title": "PAC-MAN: Perception-Aware CBF-RL for Whole-Body Safety in Humanoid Dodgeball",
-      "direction": "Multimodal Agent",
-      "long_tail_type": "工程抽象",
-      "why_save": "PAC-MAN 将控制障碍函数（CBF）安全约束与 RL 结合，耦合部署级板载感知（头戴相机分割掩码深度图），用于人形机器人全身躲避球的安全。据摘要：训练时 CBF 引导表示每条肢体连杆避障间",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-08-24",
-      "detail_path": "paper-detail.html?id=pac-man-perception-aware-cbf-rl-for-whole-body-safety-in-humanoid-dodgeball"
     }
   ],
   "common_research_path": [

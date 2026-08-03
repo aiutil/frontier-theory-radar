@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-03T04:32:22.320664",
+  "updated_at": "2026-08-04T04:33:16.219569",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-04",
+      "title": "论文价值发现日报 - 2026-08-04",
+      "deep_dive_title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
+      "deep_dive_url": "http://arxiv.org/abs/2607.29678v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：从团队编码 agent 真实调用日志统计增量/全量调用比例以评估 TokTier 潜在收益、把 STAIR 的分层修复轨迹抽象纳入 coding agent 记忆层设计、把 ExtractBench 的多维评分 rubric 迁移到企业抽取 agent 评测。",
+      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（多篇摘要截断）。TokTier 的分词正确性保证、跨分词器/服务集成开销与实测延迟收益，STAIR 的计划复用命中率、修复成功率提升与跨仓库泛化，ExtractBench 的文档/模式覆盖范围、评分一致性与公开可用性均需正文确认。另：#3 摘要中的 multimodal 指概率分布而非多模态模型、#8 的 RAG 为误命中（领域知识结构化而非 RAG 系统），已在评分中剔除。",
+      "one_line_judgement": "它直击 agentic LLM serving 一个被忽视却可量化的真实成本——编码 agent 每次工具调用后重提交长转录，前端仍对全文重新分词，导致即使 KV cache 命中也省不掉分词开销。据摘要，在两个 agent 生态的 153,951 次调用上测量，中位调用只追加约 1.4K 字符、仅 1.0-3.6% 的调用重建会话，'精确有状态分词'只重分词受追加影响的尾部后缀即可复用前缀 token 边界，同时命中 coding-agent 与 inference-serving。",
+      "path": "daily-detail.html?date=2026-08-04"
+    },
     {
       "date": "2026-08-03",
       "title": "论文价值发现日报 - 2026-08-03",
@@ -378,19 +391,6 @@
       "max_uncertainty": "Program-as-Weights 的编译成本与制品大小未知（摘要截断）；Online Safety Monitoring 的具体阈值校准方法需完整论文确认；Distributed Attacks 的防御方案可能不完整（偏威胁建模）；ReContext 的基线对比待确认",
       "one_line_judgement": "它提出一个全新的编程范式——把模糊函数（日志告警、JSON 修复、意图排序等无法用规则干净实现的任务）从'每次调用 LLM API'转变为'一次性编译成可在本地执行的紧凑神经制品'。这同时恢复了局部性、可复现性与低成本，直击当前把一切外包给 LLM API 时的三大痛点。范式级创新，可迁移到边缘部署、确定性管线、成本敏感场景。",
       "path": "daily-detail.html?date=2026-07-06"
-    },
-    {
-      "date": "2026-07-05",
-      "title": "论文价值发现日报 - 2026-07-05",
-      "deep_dive_title": "Distributed Attacks in Persistent-State AI Control",
-      "deep_dive_url": "http://arxiv.org/abs/2607.02514v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "精读 Distributed Attacks 的威胁模型与 Iterative VibeCoding 定义；盘点编码 Agent 工作流的跨会话状态共享，评估分布式载荷暴露面",
-      "max_uncertainty": "Iterative VibeCoding 的具体检测方法与防御基线待核验；论文代码/benchmark 开源状态暂无；分布式攻击在实际多人协作仓库中的误报率未披露",
-      "one_line_judgement": "首次将'迭代式编码 Agent + 持久化代码库'带来的攻击面形式化为 Iterative VibeCoding 控制场景，揭示 misaligned/prompt-injected Agent 可将攻击载荷分散到多个 PR，并选择'最自然掩护'的 PR 触发。这一'分布式 + 时序'威胁模型直接对 Claude Code、Codex、Cursor 等已上线编码 Agent 的部署提出新安全约束。",
-      "path": "daily-detail.html?date=2026-07-05"
     }
   ]
 }

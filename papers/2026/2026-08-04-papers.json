@@ -1,0 +1,630 @@
+{
+  "date": "2026-08-04",
+  "total": 10,
+  "generated_at": "2026-08-04T04:31:31.740322",
+  "papers": [
+    {
+      "title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
+      "authors": [
+        "Zhenyu Zhang",
+        "Zhichao Cao"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29678v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29678v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM serving systems cache prompt KV state, yet most front ends still re-tokenize the full request text on every call. The cost lands on coding agents, which resubmit a long transcript after each small tool result, and reuse is hard because even a short append can change token boundaries near the end of the previous sequence. Across 153,951 calls from two agent ecosystems, the median call appends about 1.4K characters, and only 1.0-3.6% of calls start or rebuild a session with contexts of million",
+      "categories": [
+        "cs.CL",
+        "cs.DC",
+        "cs.PF"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "coding agent"
+      ],
+      "score": 83.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29678v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29678v1"
+        }
+      ],
+      "llm_reason": "直击 agentic LLM serving 的一个被忽视的真实成本点：编码 agent 每次工具调用后重提交长转录，而前端仍对全文重新分词，导致即使 KV cache 命中也无法避免分词开销。据摘要：在两个 agent 生态的 153,951 次调用上测量，中位调用仅追加约 1.4K 字符，只有 1.0-3.6% 的调用重建会话——即绝大多数调用是增量追加而非全量重建。'精确有状态分词（exact stateful tokenization）'的工程价值明确且可立即迁移：只对受追加影响的尾部后缀重分词，复用已缓存的前缀 token 边界。同时命中 coding-agent 与 inference-serving 两条主线。证据强度高：有大规模真实调用的量化测量。证据不足：代码/benchmark 暂无待核验，精确分词的正确性保证、与不同分词器/服务的集成开销及延迟收益需正文确认。",
+      "id": "toktier-exact-stateful-tokenization-for-agentic-llm-serving",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "inference-serving",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Reusing Past Repairs Through Hierarchical Trajectory Abstraction for Coding Agents",
+      "authors": [
+        "Yisen Xu",
+        "Jiayuan Zhou",
+        "Ruiqi Pan",
+        "Tse-Hsun Chen"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29658v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29658v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Although LLM-driven repair agents can tackle complex, repository-level issues, they treat every issue independently and discard the procedural knowledge accumulated from previous repairs. We introduce STAIR, a framework that converts historical repair trajectories into hierarchical, reusable plans that can be adapted to steer future repairs. Each past trajectory is transformed into a multi-level tree that ranges from fine-grained diagnostic actions to high-level repair strategies, encoding exper",
+      "categories": [
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent"
+      ],
+      "score": 81.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29658v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29658v1"
+        }
+      ],
+      "llm_reason": "STAIR 解决 coding agent 的一个结构性低效：每次仓库级修复都被当作独立任务，丢弃了历史修复积累的过程知识。据摘要：将历史修复轨迹转化为分层的、可复用的计划树（从细粒度诊断动作到高层修复策略），编码经验以可迁移的形式存储并用于引导后续修复。'分层轨迹抽象 → 可复用修复计划库'是可立即迁移到团队自建 coding agent 记忆/经验复用层的工程范式，直接命中 coding-agent 与 context-engineering（agent 记忆）两条主线。方法论（轨迹→多层级抽象树→检索复用）比单一长上下文更有结构。证据不足：代码/benchmark 暂无待核验，计划复用的命中率、修复成功率提升幅度与跨仓库泛化需正文确认。",
+      "id": "reusing-past-repairs-through-hierarchical-trajectory-abstraction-for-coding-agents",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "context-engineering",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "ExtractBench: A Benchmark for Schema-Guided Enterprise Document Extraction",
+      "authors": [
+        "Boyang Zhang",
+        "Adrian Lyjak",
+        "Eli Stewart",
+        "Zhaoqi Li",
+        "Simon Suo"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29677v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29677v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Enterprise workflows increasingly rely on agents for \\emph{schema-guided extraction}: given a document and a user-defined schema, the agent faithfully follows the schema to produce the correct output with source evidence as grounding metadata. We present ExtractBench, a benchmark for schema-guided extraction and, to our knowledge, the first to score value accuracy, record completeness at scale, grounding, and measured cost together. The evaluation system contains 4,869 pages across 370 enterpris",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "coding agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 78.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29677v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29677v1"
+        }
+      ],
+      "llm_reason": "ExtractBench 针对企业工作流中 agent 的 schema-guided 文档抽取，提供了据摘要所知首个同时评分价值准确率、记录完整性、来源 grounding 与成本的综合 benchmark（4,869 页 / 370 份企业文档）。对构建企业抽取 agent 的团队，'价值准确率 + 完整性 + grounding + 成本'这一多维评分体系是可直接借鉴的评测 rubric，命中 llm-evaluation 与 benchmark 两条主线。证据强度较高：有规模化标注基准与多维评分系统。证据不足：代码/benchmark 暂无待核验，文档/模式覆盖范围、评分一致性方法与公开可用性需正文确认。",
+      "id": "extractbench-a-benchmark-for-schema-guided-enterprise-document-extraction",
+      "value_type": "immediate",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent",
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "CodeShrink: Adaptive Visual Compression for Efficient Multimodal Code Understanding",
+      "authors": [
+        "Wenxin Tang",
+        "Jingyu Xiao",
+        "Zhenyu Liu",
+        "Zipeng Xie",
+        "Junliang Liu"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29637v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29637v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Rendering source code as images offers a promising way to reduce the input costs of Multimodal Large Language Models (MLLMs). Adjusting image resolution can trade visual token cost against content fidelity. However, resolution scaling alone overlooks two sources of inefficiency: blank regions created by line breaks and indentation, and code regions irrelevant to the current instruction. Moreover, the best compression setting varies across inputs, tasks, and models, limiting fixed-ratio strategie",
+      "categories": [
+        "cs.CV",
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "multimodal",
+        "inference"
+      ],
+      "score": 64.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29637v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29637v1"
+        }
+      ],
+      "llm_reason": "CodeShrink 把源码渲染为图像以降低多模态大模型的输入成本，并提出自适应压缩（跳过换行/缩进产生的空白区域 + 与当前指令无关的代码区域），而非仅缩放分辨率。据摘要：最佳压缩设置随输入、任务与模型变化，因此固定比例策略受限，自适应方法更优。趋势信号明确：多模态代码理解正成为降低 MLLM 输入成本的一个方向，'自适应视觉压缩'可迁移到任何把代码/文档喂给 VLM 的服务路径。命中 multimodal-agent、inference-serving 与 coding-agent 的交叉。证据不足：代码/benchmark 暂无待核验，压缩比 vs 输出保真度的权衡曲线、跨模型泛化与对代码理解任务准确率的影响需正文确认。",
+      "id": "codeshrink-adaptive-visual-compression-for-efficient-multimodal-code-understanding",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "inference-serving",
+        "coding-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Sign compression for Muon: SignMuon, MuonSign, and the Limits of Error Feedback",
+      "authors": [
+        "Maria Smirnova",
+        "Alexey Kravatskiy"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29674v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29674v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "SignMuon compresses the Muon update to one bit per parameter by taking its elementwise sign, providing the most direct way to run a matrix-aware optimizer under an extremely low communication budget. It outperforms SignSGD in practice, yet it can ascend even on a linear function. Signing the gradient before the Linear Minimization Oracle (LMO), rather than after, does not repair this: we construct a small explicit instance on which sign-before (MuonUSign) and sign-on-both-sides (MuonSign) ascend",
+      "categories": [
+        "math.OC",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 50.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29674v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29674v1"
+        }
+      ],
+      "llm_reason": "SignMuon/Sign-on-both-sides 把 Muon 优化器更新压缩为逐元素符号（1 bit/参数），用于极低通信预算下的矩阵感知分布式优化。据摘要指出：先符号化梯度再进 LMO 并不能修复其在线性函数上仍会上升的问题，并构造了显式反例说明 SignMuon 与 MuonSign 的局限。对关注大规模分布式训练通信压缩的团队有理论参考价值——揭示了 sign 压缩优化器的失效边界。但属优化器理论分析，与推理/服务工程栈的直接迁移距离中等。证据不足：代码/benchmark 暂无待核验，反例构造的普适性与对实际训练收敛的影响需正文确认。",
+      "id": "sign-compression-for-muon-signmuon-muonsign-and-the-limits-of-error-feedback",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Differentially Private Nonparametric Modal Learning with Applications to Regression and Clustering",
+      "authors": [
+        "Arkajyoti Bhattacharjee",
+        "Arnab Auddy"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29675v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29675v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Density modes provide a localized and interpretable summary of multimodal distributions, but their estimation under rigorous differential privacy constraints remains largely unexplored. We study differentially private recovery of density modes for multivariate distributions under local smoothness, curvature, and separation conditions. We propose DP-GRAMS, a mean-shift inspired method that performs noisy ascent on a differentially private score estimator. Assuming the density belongs locally to a",
+      "categories": [
+        "math.ST",
+        "cs.LG",
+        "stat.ME",
+        "stat.ML"
+      ],
+      "keywords": [
+        "RAG",
+        "multimodal"
+      ],
+      "score": 42.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29675v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29675v1"
+        }
+      ],
+      "llm_reason": "DP-GRAMS 研究差分隐私下的非参数密度模态学习（mean-shift 启发方法），属统计学习理论。摘要中的关键词命中（RAG/multimodal）为误命中——'multimodal'此处指多模态概率分布而非多模态模型。与团队 AI 工程/Agent/RAG/推理技术栈的直接相关性低，方法论（DP 密度模态估计）不可迁移。除非专门做隐私统计学习，否则忽略。",
+      "id": "differentially-private-nonparametric-modal-learning-with-applications-to-regression-and-clustering",
+      "value_type": "ignore",
+      "matched_topics": [
+        "multimodal-agent",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "GQ-FSL: Green Quantized Federated Split Learning",
+      "authors": [
+        "Idan Roth",
+        "Lutz Lampe"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29659v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29659v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Deploying state-of-the-art deep neural networks (DNNs) at the wireless edge is severely bottlenecked by the strict energy and resource constraints of mobile devices. While federated split learning (FSL) mitigates on-device computation by offloading workloads to an edge server, this may introduce systemic overheads, while the continuous exchange of cut-layer data, and submodels still incurs significant energy consumption (EC). To address this, we propose a green quantized FSL (GQ-FSL) framework t",
+      "categories": [
+        "cs.LG",
+        "cs.DC",
+        "eess.SP"
+      ],
+      "keywords": [],
+      "score": 40.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29659v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29659v1"
+        }
+      ],
+      "llm_reason": "GQ-FSL 提出绿色量化联邦分割学习框架，降低无线边缘设备部署 DNN 的能耗与通信。属边缘/无线联邦学习基础设施研究，与团队核心 AI 工程/Agent/RAG/推理技术栈的直接迁移距离远。除非团队专门做边缘端联邦学习，否则忽略。",
+      "id": "gq-fsl-green-quantized-federated-split-learning",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.4,
+        "actionability": 5.0,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Development of FDD-ON: an Ontology for VAV HVAC System Fault Detection and Diagnostics",
+      "authors": [
+        "Yimin Chen",
+        "Brian Fricke",
+        "Bo Shen",
+        "Jamie Lian",
+        "Mingkan Zhang"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29657v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29657v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Fault detection and diagnosis (FDD) technology is essential for improving HVAC system reliability, energy efficiency, and maintenance effectiveness. However, effective deployment of FDD solutions in buildings requires structured domain knowledge that can bridge heterogeneous data sources, diverse equipment types, and varied diagnostic outputs. Limited data interpretability and interoperability within the FDD domain have led to fragmented information silos, hindering the implementation of FDD and",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 38.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29657v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29657v1"
+        }
+      ],
+      "llm_reason": "FDD-ON 是面向 VAV HVAC 系统故障检测与诊断的本体（ontology），用于桥接建筑领域异构数据源、设备类型与诊断输出。摘要中关键词命中（RAG）为误命中——'检索'用于领域知识结构化而非 RAG 系统。领域高度聚焦建筑暖通，与团队 AI 技术栈直接相关性极低。忽略。",
+      "id": "development-of-fdd-on-an-ontology-for-vav-hvac-system-fault-detection-and-diagnostics",
+      "value_type": "ignore",
+      "matched_topics": [
+        "rag-knowledge",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Evolving language compositionality in a frequency-structured meaning space",
+      "authors": [
+        "Fabio De Ponte",
+        "Eloise Gaines-White",
+        "Conor Houghton",
+        "Seth Bullock"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29642v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29642v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The iterated learning model was introduced to investigate language evolution: the way in which the characteristic properties of human languages have been shaped, at least partly, by repeated transmission from one language user to another. The key finding is that language compositionality can arise spontaneously as a consequence of language being passed repeatedly through a language learning bottleneck. Here we explore how changing the frequency of different meanings, so that some meanings occur ",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [],
+      "score": 37.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29642v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29642v1"
+        }
+      ],
+      "llm_reason": "在频率结构化意义空间中演化语言组合性，基于迭代学习模型研究语言演化（compositional structure 如何在传递瓶颈下自发涌现）。属计算语言学/语言演化的理论研究，与团队 AI 工程/Agent/推理技术栈的直接相关性极低。忽略，除非专门做语言涌现或符号系统研究。",
+      "id": "evolving-language-compositionality-in-a-frequency-structured-meaning-space",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Freeze, Then Select: Structured Field Adapters and Stability-Validated Weak Selection for PDE Discovery from Sparse Observations",
+      "authors": [
+        "Juncheng Zhong",
+        "Chenghuang Shen",
+        "Jianfeng Liu",
+        "Zhengdong Xiao",
+        "Longjiu Luo"
+      ],
+      "published": "2026-07-31",
+      "updated": "2026-07-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2607.29665v1",
+      "pdf_url": "https://arxiv.org/pdf/2607.29665v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "PDE discovery from sparse observations requires reconstructing a continuous field and selecting the correct differential terms. Our analysis of optimization paths in coupled neural PDE discovery reveals three behaviors: the exact support can persist to the end of training, appear only transiently, or fail to emerge. To decouple equation selection from neural optimization, we develop a freeze-then-select method combining a structured field adapter with Stability-Validated Weak Selection (SVWS). T",
+      "categories": [
+        "cs.LG",
+        "math.NA"
+      ],
+      "keywords": [],
+      "score": 35.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2607.29665v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2607.29665v1"
+        }
+      ],
+      "llm_reason": "从稀疏观测中发现偏微分方程（PDE discovery）：freeze-then-select 方法 + 结构化场适配器 + 稳定性验证弱选择，用于解耦方程选择与神经优化。属科学计算/物理启发的 ML 研究，与团队 AI 工程/Agent 技术栈的直接相关性极低，方法论（PDE 项选择）不可迁移。忽略。",
+      "id": "freeze-then-select-structured-field-adapters-and-stability-validated-weak-selection-for-pde-discovery-from-sparse-observations",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    }
+  ],
+  "scored_at": "2026-08-04"
+}
