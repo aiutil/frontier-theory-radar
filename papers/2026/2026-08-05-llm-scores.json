@@ -1,0 +1,64 @@
+{
+  "by_url": {
+    "http://arxiv.org/abs/2608.02583v1": {
+      "score": 80,
+      "value_type": "immediate",
+      "reason": "UEmbed 直击检索/嵌入这一 RAG 与搜索的基础设施：据摘要，将 Learned Sparse Retrieval（LSR）从 encoder-only 双向架构扩展到 decoder-only 统一模型，同时产出稀疏与稠密表示并支持多模态，而不必依赖额外跨模态辅助模块。'decoder-only 统一稀疏+稠密+多模态嵌入'是可立即迁移到团队检索/RAG 技术栈的工程范式——单一 decoder backbone 同时承担词法级稀疏匹配与语义级稠密检索，并打通图像/文本。同时命中 rag-knowledge、multimodal-agent 与 inference-serving（嵌入模型即服务路径）三条主线。证据强度中等偏上：方法路径清晰且有明确的问题定位（LSR 受限于 encoder、多模态依赖辅助模块）。证据不足：全部代码/benchmark/Papers with Code 链接暂无待核验；稀疏与稠稠表示的联合训练是否互相干扰、多模态场景下的检索质量提升幅度、与现有稠密检索基座（如 BGE/GTE）的对比需正文确认。",
+      "matched_topics": ["rag-knowledge", "multimodal-agent", "inference-serving"]
+    },
+    "http://arxiv.org/abs/2608.02582v1": {
+      "score": 78,
+      "value_type": "immediate",
+      "reason": "ACEM 提出 agentic 软件工程的新成本估算模型，据摘要指出：传统 COCOMO II/功能点/故事点假设开发成本主要由人工劳动驱动，而 agent 主导实现、人类聚焦规划/规约/验证后，新成本维度涌现——LLM token 消耗跨 agent 动作、Human-in-the-Loop（HITL）成本等。'后 COCOMO 的 agent SE 成本模型'是可立即迁移到团队 agent 工程经济性评估的框架——把 token 消耗、HITL 介入次数、验证成本纳入成本方程。命中 ai-agent、coding-agent 与 planning 主线，时效性强（agentic SE 成本建模是被普遍忽视但即将成为瓶颈的方向）。证据强度中等：成本维度划分清晰但尚处模型提出期。证据不足：全部代码/benchmark 暂无待核验；成本系数的实证标定方法、与真实 agentic 项目成本的拟合度、模型可校准性需正文确认。",
+      "matched_topics": ["ai-agent", "coding-agent", "context-engineering"]
+    },
+    "http://arxiv.org/abs/2608.02602v1": {
+      "score": 71,
+      "value_type": "trend",
+      "reason": "AURORA-LM 是连续潜空间扩散语言建模的方向性工作：据摘要，不同于图像/视频/音频已大量在连续潜空间建模，文本生成仍主要依赖离散 token；现有连续语言模型要么继承非为生成与解码联合设计的嵌入空间，要么压缩自编码潜变量以适配扩散从而牺牲 token 级保真。本文选择'保留高容量的自编码表示'而非简化表示来适配生成模型（摘要截断）。趋势信号明确：连续潜空间文本生成是 LLM 架构层面的潜在范式迁移方向，与离散 token 自回归形成对照。命中 cs.CL 主线。证据不足：摘要截断，方法完整度与关键设计待正文确认；属预训练级架构研究，与推理/服务/RAG 工程栈的直接迁移距离远；代码/benchmark 暂无待核验；连续表示的 token 级保真如何保证、与离散 token 模型的质量差距需正文确认。",
+      "matched_topics": ["ai-agent"]
+    },
+    "http://arxiv.org/abs/2608.02585v1": {
+      "score": 66,
+      "value_type": "trend",
+      "reason": "GradCuit 聚焦测试时潜变量推理：据摘要，基于优化的潜变量推理通过在测试时优化实例特定的连续状态（冻结模型参数）来改进 LLM 输出，但现有方法经解码 token 连接状态与推理轨迹，使序列级信用分配间接且难以看清潜变量更新如何塑造后续推理。GradCuit（gradient through circuit）在选定位置插入可优化潜变量状态，使梯度可经电路直接做信用分配。趋势信号明确：测试时计算/推理时优化是当下重要方向，与 test-time compute scaling 同属一条演进线。命中 cs.LG/cs.CL。证据强度中等：问题定位（信用分配不透明）与方法思路清晰。证据不足：摘要截断；代码/benchmark 暂无待核验；潜变量插入位置的选择策略、推理质量提升幅度与计算开销需正文确认。",
+      "matched_topics": ["inference-serving", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2608.02595v1": {
+      "score": 55,
+      "value_type": "long_tail",
+      "reason": "onepot-Bench 0 是面向实验室化学的 lab-aware in silico 基准：据摘要指出，语言模型在实验室科学（实验规划、执行、事后分析）中作用日增，但精确测量其能力困难——科学能力需要问题解决技能与领域直觉的结合，现有评测很少测量在物理实验室做可靠决策所需能力，且常依赖可能已进入训练数据的公开数据。方法论可迁移：'lab-aware + 防数据污染 + 问题解决与领域直觉解耦评测'的设计思路可借鉴到通用 agent 能力评测。命中 llm-evaluation 与 planning/benchmark 主线。但领域高度聚焦化学，与团队 AI 工程/Agent/RAG 技术栈直接迁移距离中等。证据强度中等：基准设计动机清晰。证据不足：代码/benchmark 暂无待核验；基准规模、任务类型覆盖、防污染的具体机制与公开可用性需正文确认。",
+      "matched_topics": ["llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2608.02575v1": {
+      "score": 50,
+      "value_type": "long_tail",
+      "reason": "揭示扩散模型中伪随机流（PRNG 轨道）作为可学习输入影响生成质量：据摘要，扩散模型依赖随机输入，但在有限精度硬件上'随机性'实为伪随机规则生成的确定性数值轨道；可访问的轨道结构可成为可学习输入并影响训练与生成，因为实现的损失及其梯度依赖于每步消耗的具体伪随机值。一个小型 MLP 即可从轨道近期历史预测下一值。这是关于训练可复现性与随机数质量的反直觉发现，对关注扩散模型训练动力学/可复现性的团队有长尾参考价值。命中 cs.LG/stat.ML。证据强度中等：有可测量的可预测性证据（MLP 预测）。证据不足：代码/benchmark 暂无待核验；对最终生成质量的影响幅度、跨 PRNG 实现的普适性、缓解策略需正文确认。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2608.02578v1": {
+      "score": 48,
+      "value_type": "long_tail",
+      "reason": "CoWAM 为双臂机器人策略与世界动作模型（WAM）提供选择性干预层：据摘要，WAM 用动作条件的预测未来增强机器人策略，但合理的未来本身不足以改变双臂策略应执行的动作。CoWAM 把同步、角色兼容性、碰撞收敛表达为协调契约，结合类型化可执行性检查、事件条件验证与校准的干预门控，在保持名义策略的同时做选择性干预。趋势信号中等：世界模型用于机器人是上升方向，'选择性干预 + 协调契约'的思路可迁移到任何'预测未来 + 何时干预'的 agent 架构。但领域高度聚焦双臂机器人，与团队以文本/Agent/RAG 为核心的技术栈直接迁移距离远。命中 cs.RO/cs.AI。证据不足：代码/benchmark 暂无待核验；干预门控的误报/漏报率、对真实双臂任务成功率的影响需正文确认。",
+      "matched_topics": ["multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2608.02599v1": {
+      "score": 38,
+      "value_type": "ignore",
+      "reason": "用可执行框架桥接 AI 与电力系统教育，提出 engineering-grounded AI（EGAI）使 AI 工作流遵循既定工程与电力系统领域规范。摘要中关键词命中（RAG）为误命中——此处指教学/领域知识组织而非 RAG 检索系统。领域高度聚焦电力系统教育，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低。忽略，除非专门做电力系统或工程教育。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2608.02588v1": {
+      "score": 32,
+      "value_type": "ignore",
+      "reason": "稀疏最小二乘中的条件数屏障：在随机精确体积 Small-Set Expansion Hypothesis 假设下，证明 Axiotis-Sviridenko 猜想的下界（稀疏凸优化中对受限条件数的线性依赖无法被多项式时间算法改进）。摘要中关键词命中（agent/agentic/RAG）均为误命中——这是稀疏优化与计算复杂度理论。纯理论/算法研究，与团队 AI 工程/Agent 技术栈直接相关性极低。忽略，除非专门做稀疏优化算法理论。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2608.02576v1": {
+      "score": 30,
+      "value_type": "ignore",
+      "reason": "单纯形乘积空间上函数的光滑重参数化：用逐元素严格凸的光滑参数化替换乘积单纯形，将约束优化转为无约束，应用于概率张量分解与函数数据配准（SRVF 表示）。属数值优化/统计学习方法论，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（单纯形约束重参数化）不可迁移。忽略。",
+      "matched_topics": []
+    }
+  }
+}

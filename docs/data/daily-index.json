@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-04T04:33:16.219569",
+  "updated_at": "2026-08-05T04:33:45.424203",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-05",
+      "title": "论文价值发现日报 - 2026-08-05",
+      "deep_dive_title": "UEmbed: Unified Sparse and Dense Multimodal Embeddings",
+      "deep_dive_url": "http://arxiv.org/abs/2608.02583v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：把 UEmbed 的 decoder-only 统一嵌入思路纳入团队检索/RAG 嵌入模型选型清单并评估服务路径简化潜力、用 ACEM 的成本维度（token 消耗 + HITL + 验证）对团队一个真实 agent 项目做经济性估算、对 AURORA-LM 的连续潜空间文本生成建立趋势观察卡片。",
+      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（AURORA-LM 与 GradCuit 的摘要均截断）。UEmbed 的稀疏-稠密联合训练是否互相干扰、多模态检索质量提升幅度与现有稠密基座对比，ACEM 的成本系数实证标定方法与模型可校准性，AURORA-LM 的连续表示 token 级保真保证与离散 token 质量差距，GradCuit 的潜变量插入位置选择策略与推理计算开销均需正文确认。另：#3（电力系统教育）、#4（稀疏优化理论）的关键词命中（RAG/agent/agentic）为误命中，已在评分中剔除。",
+      "one_line_judgement": "它把 Learned Sparse Retrieval（LSR）从 encoder-only 双向架构扩展到 decoder-only 统一模型，单一 backbone 同时产出稀疏（词法级）与稠密（语义级）表示并支持多模态，不必依赖额外跨模态辅助模块。这直接命中检索/嵌入这条 RAG 与搜索的基础设施主线，是可迁移到团队检索/RAG 技术栈的工程范式。",
+      "path": "daily-detail.html?date=2026-08-05"
+    },
     {
       "date": "2026-08-04",
       "title": "论文价值发现日报 - 2026-08-04",
@@ -378,19 +391,6 @@
       "max_uncertainty": "Program-as-Weights 的编译成本与制品大小未知（摘要截断）；Online Safety Monitoring 的具体阈值校准方法需完整论文确认；Distributed Attacks 的防御方案可能不完整（偏威胁建模）；ReContext 的基线对比待确认。数据源层面：今日论文与昨日完全重叠，需关注 fetch 窗口是否应在不同时间抓取以获取新批次",
       "one_line_judgement": "它提出一个全新的编程范式——把模糊函数（日志告警、JSON 修复、意图排序等无法用规则干净实现的任务）从'每次调用 LLM API'转变为'一次性编译成可在本地执行的紧凑神经制品'。这同时恢复了局部性、可复现性与低成本，直击当前把一切外包给 LLM API 时的三大痛点。范式级创新，可迁移到边缘部署、确定性管线、成本敏感场景。",
       "path": "daily-detail.html?date=2026-07-07"
-    },
-    {
-      "date": "2026-07-06",
-      "title": "论文价值发现日报 - 2026-07-06",
-      "deep_dive_title": "Program-as-Weights: A Programming Paradigm for Fuzzy Functions",
-      "deep_dive_url": "http://arxiv.org/abs/2607.02512v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "精读 Program-as-Weights 的编译流程，识别当前管线中最依赖 LLM API 的 1-2 个模糊函数，评估用编译替代的最小验证方案",
-      "max_uncertainty": "Program-as-Weights 的编译成本与制品大小未知（摘要截断）；Online Safety Monitoring 的具体阈值校准方法需完整论文确认；Distributed Attacks 的防御方案可能不完整（偏威胁建模）；ReContext 的基线对比待确认",
-      "one_line_judgement": "它提出一个全新的编程范式——把模糊函数（日志告警、JSON 修复、意图排序等无法用规则干净实现的任务）从'每次调用 LLM API'转变为'一次性编译成可在本地执行的紧凑神经制品'。这同时恢复了局部性、可复现性与低成本，直击当前把一切外包给 LLM API 时的三大痛点。范式级创新，可迁移到边缘部署、确定性管线、成本敏感场景。",
-      "path": "daily-detail.html?date=2026-07-06"
     }
   ]
 }

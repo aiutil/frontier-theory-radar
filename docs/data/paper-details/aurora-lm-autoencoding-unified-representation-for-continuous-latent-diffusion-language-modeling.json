@@ -1,0 +1,134 @@
+{
+  "id": "aurora-lm-autoencoding-unified-representation-for-continuous-latent-diffusion-language-modeling",
+  "title": "AURORA-LM: Autoencoding Unified Representation for Continuous-Latent Diffusion Language Modeling",
+  "authors": [
+    "Jiajun Liang",
+    "Yucheng Liao",
+    "Yukang Cao",
+    "Jiazhe Wei",
+    "Ken Li"
+  ],
+  "source": "arXiv",
+  "published": "2026-08-03",
+  "url": "http://arxiv.org/abs/2608.02602v1",
+  "pdf_url": "https://arxiv.org/pdf/2608.02602v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-08-05",
+  "first_deep_dive_daily": "2026-08-05",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 71.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：AURORA-LM 是连续潜空间扩散语言建模的方向性工作：据摘要，不同于图像/视频/音频已大量在连续潜空间建模，文本生成仍主要依赖离散 to…",
+  "one_line_essence": "AURORA-LM 是连续潜空间扩散语言建模的方向性工作：据摘要，不同于图像/视频/音频已大量在连续潜空间建模，文本生成仍主要依赖离散 token；现有连续语言模型要么继承非为生成与解码联合设计的嵌入空间，要么压缩自编码潜变量以适配扩散从而牺牲 token 级保真。本文选择'保留高容量的自编码表示'而非简化表示来适配生成模型（摘要截断）。趋势信号明确：连续潜空间文本生成是 LLM 架构层面的潜在范式迁移方向，与离散 token 自回归形成对照。命中 cs.CL 主线。证据不足：摘要截断，方法完整度与关键设计待正文确认；属预训练级架构研究，与推理/服务/RAG 工程栈的直接迁移距离远；代码/benchmark 暂无待核验；连续表示的 token 级保真如何保证、与离散 token 模型的质量差距需正文确认。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "AURORA-LM 是连续潜空间扩散语言建模的方向性工作：据摘要，不同于图像/视频/音频已大量在连续潜空间建模，文本生成仍主要依赖离散 token；现有连续语言模型要么继承非为生成与解码联合设计的嵌入空间，要么压缩自编码潜变量以适配扩散从而牺牲 token 级保真。本文选择'保留高容量的自编码表示'而非简化表示来适配生成模型（摘要截断）。趋势信号明确：连续潜",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "AURORA-LM 是连续潜空间扩散语言建模的方向性工作：据摘要，不同于图像/视频/音频已大量在连续潜空间建模，文本生成仍主要依赖离散 token；现有连续语言模型要么继承非为生成与解码联合设",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2608.02602v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2608.02602v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=aurora-lm-autoencoding-unified-representation-for-continuous-latent-diffusion-language-modeling",
+  "daily_path": "daily-detail.html?date=2026-08-05",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
