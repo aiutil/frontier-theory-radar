@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-05T04:33:45.424203",
+  "updated_at": "2026-08-06T04:33:13.911411",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-06",
+      "title": "论文价值发现日报 - 2026-08-06",
+      "deep_dive_title": "When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings",
+      "deep_dive_url": "http://arxiv.org/abs/2608.03994v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：把 ALiBi 数值下溢检查加入团队 LLM 推理质量回归测试与位置编码选型清单、评估 TurnSight 轮次级 hindsight 自蒸馏对团队 agent 工具调用训练的迁移价值、用 test-time scaling 的三类推理 regime 区分建立团队推理算法选型框架。",
+      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（ParVL 摘要截断）。When Attention Goes Blind 的下溢具体触发条件、四种缓解策略的定量对比与受影响 SOTA 模型清单，TurnSight 轮次级监督的具体构造与教师上下文从状态派生的机制，Test-Time Scaling 三类推理 regime 的定量边界与可复现性协议细节，PAST-Bench 的任务序列规模与'改进'度量指标均需正文确认。另：#5（WorldCup Arena）摘要关键词 RAG 为误命中（指服务端网络搜索而非 RAG 系统），已在评分中剔除。",
+      "one_line_judgement": "它揭示了一个被忽视的推理正确性缺陷——ALiBi 位置编码的线性偏置缩放在浮点精度下下溢，把大量注意力权重清零，使受影响的注意力头'部分失明'。作者不仅刻画了失效模式，还在基于 ALiBi 的 SOTA 预训练模型中证实其出现，并用 148M 参数从头预训练实验做系统验证。这是对任何使用 ALiBi 系位置编码的 LLM 推理/选型都有即时工程价值的发现，可直接迁移到团队推理质量排查与位置编码选型清单。",
+      "path": "daily-detail.html?date=2026-08-06"
+    },
     {
       "date": "2026-08-05",
       "title": "论文价值发现日报 - 2026-08-05",
@@ -378,19 +391,6 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-07-08"
-    },
-    {
-      "date": "2026-07-07",
-      "title": "论文价值发现日报 - 2026-07-07",
-      "deep_dive_title": "Program-as-Weights: A Programming Paradigm for Fuzzy Functions",
-      "deep_dive_url": "http://arxiv.org/abs/2607.02512v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "复核 Program-as-Weights 的编译流程（因今日与昨日论文重叠，重点转为：确认是否已有官方代码/复现，并对比昨日已建立的判断）；识别当前管线中最依赖 LLM API 的 1-2 个模糊函数，评估用编译替代的最小验证方案",
-      "max_uncertainty": "Program-as-Weights 的编译成本与制品大小未知（摘要截断）；Online Safety Monitoring 的具体阈值校准方法需完整论文确认；Distributed Attacks 的防御方案可能不完整（偏威胁建模）；ReContext 的基线对比待确认。数据源层面：今日论文与昨日完全重叠，需关注 fetch 窗口是否应在不同时间抓取以获取新批次",
-      "one_line_judgement": "它提出一个全新的编程范式——把模糊函数（日志告警、JSON 修复、意图排序等无法用规则干净实现的任务）从'每次调用 LLM API'转变为'一次性编译成可在本地执行的紧凑神经制品'。这同时恢复了局部性、可复现性与低成本，直击当前把一切外包给 LLM API 时的三大痛点。范式级创新，可迁移到边缘部署、确定性管线、成本敏感场景。",
-      "path": "daily-detail.html?date=2026-07-07"
     }
   ]
 }

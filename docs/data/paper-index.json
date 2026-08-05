@@ -1,7 +1,766 @@
 {
-  "updated_at": "2026-08-05T04:33:45.426536",
-  "total": 1190,
+  "updated_at": "2026-08-06T04:33:13.914933",
+  "total": 1200,
   "papers": [
+    {
+      "title": "When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings",
+      "authors": [
+        "Christopher Schröder",
+        "Lukas Gienapp",
+        "Ferdinand Schlatt",
+        "Martin Potthast",
+        "Gerhard Heyer"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.03994v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.03994v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We identify a previously overlooked failure mode of ALiBi positional encoding: its linear bias scaling underflows floating-point precision, which zeroes out a large fraction of attention weights and renders the affected attention heads partially blind. We analyze this failure mode, characterize its impact, and examine four mitigation strategies. We further demonstrate its occurrence in state-of-the-art pretrained models based on ALiBi. Comprehensive pretraining experiments with 148M-parameter de",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 82.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.03994v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.03994v1"
+        }
+      ],
+      "llm_reason": "When Attention Goes Blind 直击一个被忽视的推理正确性/数值稳定性缺陷：据摘要，ALiBi 位置编码的线性偏置缩放在浮点精度下下溢，使大量注意力权重被清零，导致受影响的注意力头'部分失明'。作者分析该失效模式、刻画其影响、检验四种缓解策略，并进一步在基于 ALiBi 的 SOTA 预训练模型中证实其出现，另用 148M 参数从头预训练实验做系统验证。这是一个对任何使用 ALiBi 系位置编码的模型服务/选型都有即时工程价值的发现——'位置编码数值下溢让注意力头失明'可直接迁移到团队 LLM 推理质量排查与位置编码选型清单。命中 inference-serving 与 context-engineering（长上下文外推依赖位置编码）主线。证据强度高：有失效模式刻画 + SOTA 模型实证 + 从头预训练对照实验三重证据。证据不足：全部代码/benchmark/Papers with Code 链接暂无待核验；具体哪些 SOTA 模型受影响、四种缓解策略的定量对比、下溢触发上下文长度阈值需正文确认。",
+      "id": "when-attention-goes-blind-numerical-failure-in-alibi-positional-encodings",
+      "value_type": "immediate",
+      "matched_topics": [
+        "inference-serving",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "推理与服务：We identify a previously overlooked failure mode of ALiBi positional encoding:…",
+      "one_line_judgement": "今天值得试：When Attention Goes Blind 直击一个被忽视的推理正确性/数值稳定性缺陷：据摘要，ALiBi 位置编码的线性偏置缩放在…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "When Attention Goes Blind 直击一个被忽视的推理正确性/数值稳定性缺陷：据摘要，ALiBi 位置编码的线性偏置缩放在浮点精度下下溢，使大量注意力权重被清零，导致受影响的",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=when-attention-goes-blind-numerical-failure-in-alibi-positional-encodings"
+    },
+    {
+      "title": "TurnSight: Turn-Level Hindsight Self-Distillation for Tool-Integrated Reasoning",
+      "authors": [
+        "Changle Qu",
+        "Sunhao Dai",
+        "Hengyi Cai",
+        "Yuqi Zhou",
+        "Xinran Chen"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.04007v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04007v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Tool-Integrated Reasoning (TIR) enables LLMs to solve complex tasks through iterative tool interactions. However, existing reinforcement learning methods often rely on trajectory-level supervision, limiting fine-grained credit assignment in long-horizon TIR scenarios. On-policy self-distillation offers denser signals through teacher branches with privileged context, but existing approaches typically derive such context from ground-truth answers or retrieved skills, which may not reflect the stat",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "benchmark"
+      ],
+      "score": 78.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.04007v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.04007v1"
+        }
+      ],
+      "llm_reason": "TurnSight 聚焦工具集成推理（TIR）的细粒度信用分配：据摘要，现有 RL 方法依赖轨迹级监督，限制了长程 TIR 场景下的细粒度信用分配；on-policy 自蒸馏可通过带特权上下文的教师分支提供更密信号，但现有方法通常从正确答案或检索到的技能派生上下文，未必反映状态。TurnSight 提出 turn-level（轮次级）hindsight 自蒸馏用于工具集成推理。这是一个对 agent/工具调用训练有即时工程价值的方法——'把轨迹级监督下沉到轮次级 + 从推理状态而非正确答案派生教师上下文'可直接迁移到团队 agent 训练与工具调用策略优化。命中 ai-agent、coding-agent（TIR 覆盖代码工具调用）主线。证据强度中等偏上：问题定位（轨迹级监督粒度不足、特权上下文来源不当）与方法思路清晰。证据不足：全部代码/benchmark 暂无待核验；轮次级监督的具体构造、教师上下文从状态派生的机制、在长程多工具场景的增益幅度需正文确认。",
+      "id": "turnsight-turn-level-hindsight-self-distillation-for-tool-integrated-reasoning",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "coding-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Tool-Integrated Reasoning (TIR) enables LLMs to solve complex tasks through it…",
+      "one_line_judgement": "今天值得试：TurnSight 聚焦工具集成推理（TIR）的细粒度信用分配：据摘要，现有 RL 方法依赖轨迹级监督，限制了长程 TIR 场景下的细粒度信…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "TurnSight 聚焦工具集成推理（TIR）的细粒度信用分配：据摘要，现有 RL 方法依赖轨迹级监督，限制了长程 TIR 场景下的细粒度信用分配；on-policy 自蒸馏可通过带特权上下文",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=turnsight-turn-level-hindsight-self-distillation-for-tool-integrated-reasoning"
+    },
+    {
+      "title": "Test-Time Scaling in Reasoning LLMs: Inference Regimes, Evaluation, and Reproducibility",
+      "authors": [
+        "Mohsen Hariri",
+        "Weicong Chen",
+        "Nahal Shahini",
+        "Vikash Singh",
+        "Kai Ye"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.04001v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04001v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large language models can solve substantially harder reasoning problems with more inference-time compute. The term \"test-time scaling,\" however, now covers diverse inference algorithms that extend deliberation along a single trajectory, sample completed candidates and aggregate them through voting or verification, or search over unfinished partial states. These algorithms differ in their statistical structure, compute accounting, and failure modes. Treating these procedures as interchangeable un",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "inference"
+      ],
+      "score": 75.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.04001v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.04001v1"
+        }
+      ],
+      "llm_reason": "Test-Time Scaling in Reasoning LLMs 是对 test-time scaling 这一当前核心趋势的系统化梳理：据摘要，'test-time scaling'现已涵盖多种推理算法——沿单条轨迹延长思考、采样完整候选并通过投票/验证聚合、在未完成的部分状态上搜索；这些算法在统计结构、计算记账与失效模式上各异，被当作可互换会掩盖差异。本文对推理 regime、评测与可复现性做统一处理。趋势信号极强：test-time compute scaling 是当下最重要的推理侧范式之一，而'区分不同推理 regime 的统计结构与失效模式'正是工程落地最缺的判断框架。命中 inference-serving 与 llm-evaluation 主线。证据强度中等：作为系统化研究，问题框架清晰（区分三类推理算法及其不可互换性），但具体实验设计与可复现性协议需正文确认。证据不足：全部代码/benchmark 暂无待核验；三类 regime 的具体定量边界、可复现性协议的细节、对主流 reasoning 模型的评测覆盖需正文确认。",
+      "id": "test-time-scaling-in-reasoning-llms-inference-regimes-evaluation-and-reproducibility",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "推理与服务：Large language models can solve substantially harder reasoning problems with m…",
+      "one_line_judgement": "值得继续观察：Test-Time Scaling in Reasoning LLMs 是对 test-time scaling 这一当前核心趋势的系统化梳…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "Test-Time Scaling in Reasoning LLMs 是对 test-time scaling 这一当前核心趋势的系统化梳理：据摘要，'test-time scaling'现",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=test-time-scaling-in-reasoning-llms-inference-regimes-evaluation-and-reproducibility"
+    },
+    {
+      "title": "PAST-Bench: Benchmarking the Foundations of Recursive Self-Improvement in Personal Agents",
+      "authors": [
+        "Shuhan Xue",
+        "Zixin Ding",
+        "Yichen Shen",
+        "Yinjie Wang",
+        "Zhenfei Yin"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.04003v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04003v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Recursive self-improvement requires agents to turn accumulated experience into better future behavior. Personal AI agents offer a concrete setting for studying this capability because they retain preferences, task histories, tool routines, and learned skills across sessions. Yet whether retained experience actually improves them over time has not been systematically tested. We introduce PAST-Bench, a benchmark designed to isolate this question. Each agent runs through ordered sequences of fresh-",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 72.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.04003v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.04003v1"
+        }
+      ],
+      "llm_reason": "PAST-Bench 把'递归自我改进'这一长期命题落地到 personal agent 的可测量场景：据摘要，递归自我改进要求 agent 把积累的经验转化为更好的未来行为；personal agent 因跨会话保留偏好、任务历史、工具例程与习得技能而成为研究该能力的具体设置，但'保留的经验是否真的随时间改进 agent'从未被系统检验。PAST-Bench 设计为隔离这一问题：每个 agent 跑过有序的新任务序列。趋势信号强：agent 的长期记忆与跨会话自我改进是 agent 工程的核心方向，而'经验是否真的带来改进'正是团队评估 memory/技能沉淀 ROI 时最该问的问题。命中 ai-agent、context-engineering（memory）与 llm-evaluation 主线。证据强度中等：基准动机与隔离设计清晰。证据不足：全部代码/benchmark/RAG 链接暂无待核验（摘要关键词 RAG 为宽泛命中，实际指跨会话经验保留而非检索增强系统）；任务序列规模、'改进'的度量指标、基线 agent 的覆盖需正文确认。",
+      "id": "past-bench-benchmarking-the-foundations-of-recursive-self-improvement-in-personal-agents",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Recursive self-improvement requires agents to turn accumulated experience into…",
+      "one_line_judgement": "值得继续观察：PAST-Bench 把'递归自我改进'这一长期命题落地到 personal agent 的可测量场景：据摘要，递归自我改进要求 agent…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "PAST-Bench 把'递归自我改进'这一长期命题落地到 personal agent 的可测量场景：据摘要，递归自我改进要求 agent 把积累的经验转化为更好的未来行为；personal",
+      "related_trends": [
+        "agentic-world-modeling",
+        "context-engineering",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=past-bench-benchmarking-the-foundations-of-recursive-self-improvement-in-personal-agents"
+    },
+    {
+      "title": "SocietyBench: Forecasting Counterfactual Social-World Evolution",
+      "authors": [
+        "Zhenran Wang",
+        "Zhonghan Bian",
+        "Jinsong Li",
+        "Zhangyang Qi"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.04009v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04009v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large language models (LLMs), and the agents built on top of them, are now benchmarked heavily on whether they can finish a task -- fix a bug, drive a browser, operate a GUI. A complementary social ability, namely how well a model understands and forecasts the way real social events unfold, has barely been measured. We introduce SocietyBench, an end-to-end benchmark that takes a one-line event topic, collects Web news and social-media posts across five platforms, distills them into a date-indexe",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark"
+      ],
+      "score": 64.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.04009v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.04009v1"
+        }
+      ],
+      "llm_reason": "SocietyBench 补齐了一个被忽视的 agent 能力维度：据摘要，LLM 及其上的 agent 在'能否完成任务'（修 bug、驱动浏览器、操作 GUI）上已被大量评测，但一种互补的社会能力——理解并预测真实社会事件如何展开——几乎未被测量。SocietyBench 是端到端基准：从一行事件主题出发，跨五个平台采集 Web 新闻与社交媒体帖子，蒸馏为按日期索引的形式。趋势信号中等偏上：'模型能否预测真实世界事件走向'是 forecasting/世界建模能力的评测延伸，与 agent 的前瞻规划相关。命中 ai-agent 与 llm-evaluation 主线。证据强度中等：基准设计动机清晰（补齐社会预测维度）。证据不足：全部代码/benchmark 暂无待核验；五平台数据采集的抗污染机制、预测准确度的度量、与 forecasting 文献的定位需正文确认。",
+      "id": "societybench-forecasting-counterfactual-social-world-evolution",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Large language models (LLMs), and the agents built on top of them, are now ben…",
+      "one_line_judgement": "值得继续观察：SocietyBench 补齐了一个被忽视的 agent 能力维度：据摘要，LLM 及其上的 agent 在'能否完成任务'（修 bug、驱…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "SocietyBench 补齐了一个被忽视的 agent 能力维度：据摘要，LLM 及其上的 agent 在'能否完成任务'（修 bug、驱动浏览器、操作 GUI）上已被大量评测，但一种互补的",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=societybench-forecasting-counterfactual-social-world-evolution"
+    },
+    {
+      "title": "WorldCup Arena: Prospective, Leakage-Free Evaluation of Frontier LLMs on a Live Tournament",
+      "authors": [
+        "Zhenran Wang",
+        "Zhonghan Bian",
+        "Jinsong Li",
+        "Zhangyang Qi"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.04008v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04008v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Benchmarks that measure the forecasting ability of large language models are almost always retrospective: the event has happened, the answer is somewhere on the Web, and the evaluation must defend itself against memorisation. We report the opposite design. Over the 39 days of the 2026 FIFA World Cup, six frontier LLMs -- all with extended thinking and native server-side web search -- were asked before every kickoff, one match at a time, to fill in a seven-market prediction card for all 104 match",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 60.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.04008v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.04008v1"
+        }
+      ],
+      "llm_reason": "WorldCup Arena 提供了一种反直觉的评测设计：据摘要，衡量 LLM 预测能力的基准几乎都是回顾性的（事件已发生、答案在网上、评测必须防御记忆），本文报告相反设计——在 2026 FIFA 世界杯 39 天内，6 个带扩展思考与原生服务端网络搜索的前沿 LLM，在每场开赛前逐场填写七市场预测卡。这是一个'前瞻 + 无泄漏'评测范式的方法论参考：用未发生事件做评测天然防数据污染。对关注评测治理的团队有长尾参考价值。命中 llm-evaluation 主线。但领域聚焦体育赛事预测，与团队 AI 工程/Agent/RAG 技术栈直接迁移距离中等。证据强度中等：39 天 × 104 场的真实前瞻数据是较强的方法论证据。证据不足：代码/benchmark 暂无待核验；摘要关键词 RAG 为误命中（指服务端网络搜索而非 RAG 系统）；七市场预测的具体度量、模型间差异的统计显著性需正文确认。",
+      "id": "worldcup-arena-prospective-leakage-free-evaluation-of-frontier-llms-on-a-live-tournament",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Benchmarks that measure the forecasting ability of large language models are a…",
+      "one_line_judgement": "值得先保存：WorldCup Arena 提供了一种反直觉的评测设计：据摘要，衡量 LLM 预测能力的基准几乎都是回顾性的（事件已发生、答案在网上、评测…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "WorldCup Arena 提供了一种反直觉的评测设计：据摘要，衡量 LLM 预测能力的基准几乎都是回顾性的（事件已发生、答案在网上、评测必须防御记忆），本文报告相反设计——在 2026 F",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=worldcup-arena-prospective-leakage-free-evaluation-of-frontier-llms-on-a-live-tournament"
+    },
+    {
+      "title": "ParVL: Parallel Scaling and Expandable Compute Allocation for Multimodal LLMs",
+      "authors": [
+        "Yang Yang",
+        "Qinyu Zhao",
+        "Mouxiang Chen",
+        "Xiaohui Li",
+        "Lixin Gu"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.04010v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.04010v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Existing scaling strategies for Multimodal Large Language Models (MLLMs) typically expand either model parameters or sequential inference computation, incurring substantial memory or latency overhead. More importantly, most existing methods fail to alter the rigid, fixed computation allocation between the Vision Transformer and the Large Language Model components, limiting task-specific optimization. To address this, we introduce the Parallel Vision-Language (ParVL) scaling framework for MLLMs, ",
+      "categories": [
+        "cs.CV",
+        "cs.CL"
+      ],
+      "keywords": [
+        "memory",
+        "multimodal",
+        "inference"
+      ],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.04010v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.04010v1"
+        }
+      ],
+      "llm_reason": "ParVL 关注多模态 LLM 的计算分配：据摘要，现有 MLLM 扩展策略要么扩大参数要么增加序列推理计算，带来高内存或延迟开销；更关键的是大多数方法无法改变 Vision Transformer 与 LLM 组件之间刚性的固定计算分配，限制了任务特定优化。ParVL 提出 Parallel Vision-Language 扩展框架。趋势信号中等：'ViT-LLM 间计算分配可调'是 MLLM 推理效率的一个方向，但摘要截断，方法完整度待确认。命中 inference-serving 与 multimodal-agent 主线。证据强度中等：问题定位（ViT-LLM 计算分配刚性）清晰。证据不足：摘要截断，ParVL 的并行扩展与可扩展计算分配的具体机制需正文确认；代码/benchmark 暂无待核验；与现有 MLLM 推理优化方法的对比需正文确认。",
+      "id": "parvl-parallel-scaling-and-expandable-compute-allocation-for-multimodal-llms",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "推理与服务：Existing scaling strategies for Multimodal Large Language Models (MLLMs) typic…",
+      "one_line_judgement": "值得先保存：ParVL 关注多模态 LLM 的计算分配：据摘要，现有 MLLM 扩展策略要么扩大参数要么增加序列推理计算，带来高内存或延迟开销；更关键的…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "ParVL 关注多模态 LLM 的计算分配：据摘要，现有 MLLM 扩展策略要么扩大参数要么增加序列推理计算，带来高内存或延迟开销；更关键的是大多数方法无法改变 Vision Transfor",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=parvl-parallel-scaling-and-expandable-compute-allocation-for-multimodal-llms"
+    },
+    {
+      "title": "Agogic: Performance-Timed Music Tokens for LLM-Native Text-to-Symbolic-Music Generation",
+      "authors": [
+        "Junhao Chen",
+        "Mingjin Chen",
+        "Jingjia Mao",
+        "Lin Chen",
+        "Saining Zhang"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.03999v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.03999v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Text-to-music language models begin with a choice usually made by default: how to tokenize music. Normally entangled with backbone, data, and recipe, its effect has never been measured in isolation. We fix pretrained Qwen3.5 (0.8B-27B), data, budget, and decoding, and swap only the representation across seven tokenizations, anchoring texture metrics to each representation's model-free ceiling. The ordering is clean and surprising: representation, not model size, is the binding variable for distr",
+      "categories": [
+        "cs.SD",
+        "cs.CL"
+      ],
+      "keywords": [],
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.03999v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.03999v1"
+        }
+      ],
+      "llm_reason": "Agogic 提供了一个反直觉且可迁移的实验发现：据摘要，文本到音乐的语言模型始于一个通常被默认的选择——如何 token 化音乐；该选择通常与 backbone、数据、配方纠缠，其孤立影响从未被测量。作者固定预训练 Qwen3.5（0.8B-27B）、数据、预算与解码，只替换表示（跨七种 tokenization），并将纹理指标锚定到每种表示的无模型上限。结果干净且令人惊讶：表示而非模型大小，是分布质量的绑定变量。这是一个关于'表示比规模更绑定'的方法论发现，可迁移到任何模态的 tokenization 选型决策。命中 cs.CL/cs.SD。证据强度中等偏上：控制变量实验设计严谨（只换表示）。证据不足：代码/benchmark 暂无待核验；领域聚焦符号音乐生成，与团队以文本/Agent 为核心的技术栈直接迁移距离远；七种 tokenization 的具体定义、纹理指标的可迁移性需正文确认。",
+      "id": "agogic-performance-timed-music-tokens-for-llm-native-text-to-symbolic-music-generation",
+      "value_type": "long_tail",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "前沿论文：Text-to-music language models begin with a choice usually made by default: how…",
+      "one_line_judgement": "值得先保存：Agogic 提供了一个反直觉且可迁移的实验发现：据摘要，文本到音乐的语言模型始于一个通常被默认的选择——如何 token 化音乐；该选择通…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "Agogic 提供了一个反直觉且可迁移的实验发现：据摘要，文本到音乐的语言模型始于一个通常被默认的选择——如何 token 化音乐；该选择通常与 backbone、数据、配方纠缠，其孤立影响从",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=agogic-performance-timed-music-tokens-for-llm-native-text-to-symbolic-music-generation"
+    },
+    {
+      "title": "string2string Studio: An Interactive, In-Browser Platform for String-to-String Algorithms",
+      "authors": [
+        "Mirac Suzgun",
+        "James Zou",
+        "Stuart M. Shieber",
+        "Dan Jurafsky"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.03984v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.03984v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We present string2string Studio, an interactive in-browser platform for string-to-string analysis across natural language processing, computational biology, and the digital humanities. The system integrates six main modules (alignment, distance, similarity, search, generation metrics, and BLAST homology search), operating at character, word, token, line, and residue levels. Its C++-based algorithms compile to WebAssembly, so core operations run locally by default without any installation or data",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 45.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.03984v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.03984v1"
+        }
+      ],
+      "llm_reason": "string2string Studio 是一个浏览器内的字符串到字符串算法交互平台：据摘要，整合对齐、距离、相似度、搜索、生成指标与 BLAST 同源搜索六大模块，覆盖字符/词/token/行/残基层级；C++ 算法编译为 WebAssembly，核心运算默认本地运行免安装。作为研究/教学工具有参考价值，WebAssembly 本地运算的设计思路对'隐私优先的浏览器内 NLP 工具'有启发。命中 cs.CL。证据强度中等：系统描述清晰。证据不足：代码/benchmark 暂无待核验；与团队 AI 工程/Agent/RAG/推理技术栈直接相关性低，属通用 NLP 工具基础设施；六大模块的算法覆盖深度与可用性需正文确认。",
+      "id": "string2string-studio-an-interactive-in-browser-platform-for-string-to-string-algorithms",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "RAG / 知识系统：We present string2string Studio, an interactive in-browser platform for string…",
+      "one_line_judgement": "值得先保存：string2string Studio 是一个浏览器内的字符串到字符串算法交互平台：据摘要，整合对齐、距离、相似度、搜索、生成指标与 BL…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "string2string Studio 是一个浏览器内的字符串到字符串算法交互平台：据摘要，整合对齐、距离、相似度、搜索、生成指标与 BLAST 同源搜索六大模块，覆盖字符/词/token/",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=string2string-studio-an-interactive-in-browser-platform-for-string-to-string-algorithms"
+    },
+    {
+      "title": "Assessment of Conditional Diffusion Model for Synthetic Histopathology Image Generation",
+      "authors": [
+        "Seyed Kahaki",
+        "Shijie Li",
+        "Weijie Chen",
+        "Nicholas Petrick"
+      ],
+      "published": "2026-08-04",
+      "updated": "2026-08-04",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.03990v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.03990v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Synthetic histopathology image generation has emerged as an approach that may address data scarcity in computational pathology, yet current evaluation methodologies may not fully assess synthetic data quality for medical applications. This work investigates and addresses limitations in existing evaluation metrics, investigating an approach for assessing synthetic histopathology image quality through domain-specific metrics and downstream task validation. We show that conventional synthetic data ",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 35.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.03990v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.03990v1"
+        }
+      ],
+      "llm_reason": "面向组织病理学合成图像生成的条件扩散模型评估：据摘要，合成组织病理图像生成可作为解决计算病理学数据稀缺的方法，但现有评估方法可能未充分评估医学应用的合成数据质量；本文调查并解决现有评估指标的局限，通过领域特定指标与下游任务验证评估合成图像质量。摘要关键词命中（evaluation/benchmark）为宽泛命中。领域高度聚焦医学影像/病理学合成数据，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（医学合成图像评估）不可迁移。忽略，除非专门做医学影像或合成数据评估。",
+      "id": "assessment-of-conditional-diffusion-model-for-synthetic-histopathology-image-generation",
+      "value_type": "ignore",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "LLM 评测：Synthetic histopathology image generation has emerged as an approach that may …",
+      "one_line_judgement": "当前可忽略：面向组织病理学合成图像生成的条件扩散模型评估：据摘要，合成组织病理图像生成可作为解决计算病理学数据稀缺的方法，但现有评估方法可能未充分评估医…",
+      "first_seen_date": "2026-08-06",
+      "first_deep_dive_daily": "2026-08-06",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "面向组织病理学合成图像生成的条件扩散模型评估：据摘要，合成组织病理图像生成可作为解决计算病理学数据稀缺的方法，但现有评估方法可能未充分评估医学应用的合成数据质量；本文调查并解决现有评估指标的局",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=assessment-of-conditional-diffusion-model-for-synthetic-histopathology-image-generation"
+    },
     {
       "title": "UEmbed: Unified Sparse and Dense Multimodal Embeddings",
       "authors": [

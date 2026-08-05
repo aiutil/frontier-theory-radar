@@ -1,0 +1,64 @@
+{
+  "by_url": {
+    "http://arxiv.org/abs/2608.03994v1": {
+      "score": 82,
+      "value_type": "immediate",
+      "reason": "When Attention Goes Blind 直击一个被忽视的推理正确性/数值稳定性缺陷：据摘要，ALiBi 位置编码的线性偏置缩放在浮点精度下下溢，使大量注意力权重被清零，导致受影响的注意力头'部分失明'。作者分析该失效模式、刻画其影响、检验四种缓解策略，并进一步在基于 ALiBi 的 SOTA 预训练模型中证实其出现，另用 148M 参数从头预训练实验做系统验证。这是一个对任何使用 ALiBi 系位置编码的模型服务/选型都有即时工程价值的发现——'位置编码数值下溢让注意力头失明'可直接迁移到团队 LLM 推理质量排查与位置编码选型清单。命中 inference-serving 与 context-engineering（长上下文外推依赖位置编码）主线。证据强度高：有失效模式刻画 + SOTA 模型实证 + 从头预训练对照实验三重证据。证据不足：全部代码/benchmark/Papers with Code 链接暂无待核验；具体哪些 SOTA 模型受影响、四种缓解策略的定量对比、下溢触发上下文长度阈值需正文确认。",
+      "matched_topics": ["inference-serving", "context-engineering"]
+    },
+    "http://arxiv.org/abs/2608.04007v1": {
+      "score": 78,
+      "value_type": "immediate",
+      "reason": "TurnSight 聚焦工具集成推理（TIR）的细粒度信用分配：据摘要，现有 RL 方法依赖轨迹级监督，限制了长程 TIR 场景下的细粒度信用分配；on-policy 自蒸馏可通过带特权上下文的教师分支提供更密信号，但现有方法通常从正确答案或检索到的技能派生上下文，未必反映状态。TurnSight 提出 turn-level（轮次级）hindsight 自蒸馏用于工具集成推理。这是一个对 agent/工具调用训练有即时工程价值的方法——'把轨迹级监督下沉到轮次级 + 从推理状态而非正确答案派生教师上下文'可直接迁移到团队 agent 训练与工具调用策略优化。命中 ai-agent、coding-agent（TIR 覆盖代码工具调用）主线。证据强度中等偏上：问题定位（轨迹级监督粒度不足、特权上下文来源不当）与方法思路清晰。证据不足：全部代码/benchmark 暂无待核验；轮次级监督的具体构造、教师上下文从状态派生的机制、在长程多工具场景的增益幅度需正文确认。",
+      "matched_topics": ["ai-agent", "coding-agent"]
+    },
+    "http://arxiv.org/abs/2608.04001v1": {
+      "score": 75,
+      "value_type": "trend",
+      "reason": "Test-Time Scaling in Reasoning LLMs 是对 test-time scaling 这一当前核心趋势的系统化梳理：据摘要，'test-time scaling'现已涵盖多种推理算法——沿单条轨迹延长思考、采样完整候选并通过投票/验证聚合、在未完成的部分状态上搜索；这些算法在统计结构、计算记账与失效模式上各异，被当作可互换会掩盖差异。本文对推理 regime、评测与可复现性做统一处理。趋势信号极强：test-time compute scaling 是当下最重要的推理侧范式之一，而'区分不同推理 regime 的统计结构与失效模式'正是工程落地最缺的判断框架。命中 inference-serving 与 llm-evaluation 主线。证据强度中等：作为系统化研究，问题框架清晰（区分三类推理算法及其不可互换性），但具体实验设计与可复现性协议需正文确认。证据不足：全部代码/benchmark 暂无待核验；三类 regime 的具体定量边界、可复现性协议的细节、对主流 reasoning 模型的评测覆盖需正文确认。",
+      "matched_topics": ["inference-serving", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2608.04003v1": {
+      "score": 72,
+      "value_type": "trend",
+      "reason": "PAST-Bench 把'递归自我改进'这一长期命题落地到 personal agent 的可测量场景：据摘要，递归自我改进要求 agent 把积累的经验转化为更好的未来行为；personal agent 因跨会话保留偏好、任务历史、工具例程与习得技能而成为研究该能力的具体设置，但'保留的经验是否真的随时间改进 agent'从未被系统检验。PAST-Bench 设计为隔离这一问题：每个 agent 跑过有序的新任务序列。趋势信号强：agent 的长期记忆与跨会话自我改进是 agent 工程的核心方向，而'经验是否真的带来改进'正是团队评估 memory/技能沉淀 ROI 时最该问的问题。命中 ai-agent、context-engineering（memory）与 llm-evaluation 主线。证据强度中等：基准动机与隔离设计清晰。证据不足：全部代码/benchmark/RAG 链接暂无待核验（摘要关键词 RAG 为宽泛命中，实际指跨会话经验保留而非检索增强系统）；任务序列规模、'改进'的度量指标、基线 agent 的覆盖需正文确认。",
+      "matched_topics": ["ai-agent", "context-engineering", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2608.04009v1": {
+      "score": 64,
+      "value_type": "trend",
+      "reason": "SocietyBench 补齐了一个被忽视的 agent 能力维度：据摘要，LLM 及其上的 agent 在'能否完成任务'（修 bug、驱动浏览器、操作 GUI）上已被大量评测，但一种互补的社会能力——理解并预测真实社会事件如何展开——几乎未被测量。SocietyBench 是端到端基准：从一行事件主题出发，跨五个平台采集 Web 新闻与社交媒体帖子，蒸馏为按日期索引的形式。趋势信号中等偏上：'模型能否预测真实世界事件走向'是 forecasting/世界建模能力的评测延伸，与 agent 的前瞻规划相关。命中 ai-agent 与 llm-evaluation 主线。证据强度中等：基准设计动机清晰（补齐社会预测维度）。证据不足：全部代码/benchmark 暂无待核验；五平台数据采集的抗污染机制、预测准确度的度量、与 forecasting 文献的定位需正文确认。",
+      "matched_topics": ["ai-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2608.04008v1": {
+      "score": 60,
+      "value_type": "long_tail",
+      "reason": "WorldCup Arena 提供了一种反直觉的评测设计：据摘要，衡量 LLM 预测能力的基准几乎都是回顾性的（事件已发生、答案在网上、评测必须防御记忆），本文报告相反设计——在 2026 FIFA 世界杯 39 天内，6 个带扩展思考与原生服务端网络搜索的前沿 LLM，在每场开赛前逐场填写七市场预测卡。这是一个'前瞻 + 无泄漏'评测范式的方法论参考：用未发生事件做评测天然防数据污染。对关注评测治理的团队有长尾参考价值。命中 llm-evaluation 主线。但领域聚焦体育赛事预测，与团队 AI 工程/Agent/RAG 技术栈直接迁移距离中等。证据强度中等：39 天 × 104 场的真实前瞻数据是较强的方法论证据。证据不足：代码/benchmark 暂无待核验；摘要关键词 RAG 为误命中（指服务端网络搜索而非 RAG 系统）；七市场预测的具体度量、模型间差异的统计显著性需正文确认。",
+      "matched_topics": ["llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2608.04010v1": {
+      "score": 58,
+      "value_type": "long_tail",
+      "reason": "ParVL 关注多模态 LLM 的计算分配：据摘要，现有 MLLM 扩展策略要么扩大参数要么增加序列推理计算，带来高内存或延迟开销；更关键的是大多数方法无法改变 Vision Transformer 与 LLM 组件之间刚性的固定计算分配，限制了任务特定优化。ParVL 提出 Parallel Vision-Language 扩展框架。趋势信号中等：'ViT-LLM 间计算分配可调'是 MLLM 推理效率的一个方向，但摘要截断，方法完整度待确认。命中 inference-serving 与 multimodal-agent 主线。证据强度中等：问题定位（ViT-LLM 计算分配刚性）清晰。证据不足：摘要截断，ParVL 的并行扩展与可扩展计算分配的具体机制需正文确认；代码/benchmark 暂无待核验；与现有 MLLM 推理优化方法的对比需正文确认。",
+      "matched_topics": ["inference-serving", "multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2608.03999v1": {
+      "score": 52,
+      "value_type": "long_tail",
+      "reason": "Agogic 提供了一个反直觉且可迁移的实验发现：据摘要，文本到音乐的语言模型始于一个通常被默认的选择——如何 token 化音乐；该选择通常与 backbone、数据、配方纠缠，其孤立影响从未被测量。作者固定预训练 Qwen3.5（0.8B-27B）、数据、预算与解码，只替换表示（跨七种 tokenization），并将纹理指标锚定到每种表示的无模型上限。结果干净且令人惊讶：表示而非模型大小，是分布质量的绑定变量。这是一个关于'表示比规模更绑定'的方法论发现，可迁移到任何模态的 tokenization 选型决策。命中 cs.CL/cs.SD。证据强度中等偏上：控制变量实验设计严谨（只换表示）。证据不足：代码/benchmark 暂无待核验；领域聚焦符号音乐生成，与团队以文本/Agent 为核心的技术栈直接迁移距离远；七种 tokenization 的具体定义、纹理指标的可迁移性需正文确认。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2608.03984v1": {
+      "score": 45,
+      "value_type": "long_tail",
+      "reason": "string2string Studio 是一个浏览器内的字符串到字符串算法交互平台：据摘要，整合对齐、距离、相似度、搜索、生成指标与 BLAST 同源搜索六大模块，覆盖字符/词/token/行/残基层级；C++ 算法编译为 WebAssembly，核心运算默认本地运行免安装。作为研究/教学工具有参考价值，WebAssembly 本地运算的设计思路对'隐私优先的浏览器内 NLP 工具'有启发。命中 cs.CL。证据强度中等：系统描述清晰。证据不足：代码/benchmark 暂无待核验；与团队 AI 工程/Agent/RAG/推理技术栈直接相关性低，属通用 NLP 工具基础设施；六大模块的算法覆盖深度与可用性需正文确认。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2608.03990v1": {
+      "score": 35,
+      "value_type": "ignore",
+      "reason": "面向组织病理学合成图像生成的条件扩散模型评估：据摘要，合成组织病理图像生成可作为解决计算病理学数据稀缺的方法，但现有评估方法可能未充分评估医学应用的合成数据质量；本文调查并解决现有评估指标的局限，通过领域特定指标与下游任务验证评估合成图像质量。摘要关键词命中（evaluation/benchmark）为宽泛命中。领域高度聚焦医学影像/病理学合成数据，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（医学合成图像评估）不可迁移。忽略，除非专门做医学影像或合成数据评估。",
+      "matched_topics": []
+    }
+  }
+}
