@@ -80,19 +80,19 @@ python3 scripts/build_pages.py
 
 ## 最近 7 篇日报索引
 
+- [2026-08-07 · Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning](daily-detail.html?date=2026-08-07) · 即时价值 · 重点学习
 - [2026-08-06 · When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings](daily-detail.html?date=2026-08-06) · 即时价值 · 重点学习
 - [2026-08-05 · UEmbed: Unified Sparse and Dense Multimodal Embeddings](daily-detail.html?date=2026-08-05) · 即时价值 · 重点学习
 - [2026-08-04 · TokTier: Exact Stateful Tokenization for Agentic LLM Serving](daily-detail.html?date=2026-08-04) · 即时价值 · 重点学习
 - [2026-08-03 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-03) · 即时价值 · 重点学习
 - [2026-08-02 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-02) · 即时价值 · 重点学习
 - [2026-08-01 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-01) · 即时价值 · 重点学习
-- [2026-07-31 · DenseOn with the LateOn: Fully Open Dense and Late-Interaction Models for Multilingual, Long-Context, and Code Search](daily-detail.html?date=2026-07-31) · 即时价值 · 重点学习
 
 ## 当前重点趋势索引
 
-- [Agentic World Modeling](trend-detail.html?id=agentic-world-modeling) · 上升 · 关联论文 410
-- [Coding Agent](trend-detail.html?id=coding-agent) · 主流化 · 关联论文 335
-- [Context Engineering](trend-detail.html?id=context-engineering) · 上升 · 关联论文 410
+- [Agentic World Modeling](trend-detail.html?id=agentic-world-modeling) · 上升 · 关联论文 413
+- [Coding Agent](trend-detail.html?id=coding-agent) · 主流化 · 关联论文 337
+- [Context Engineering](trend-detail.html?id=context-engineering) · 上升 · 关联论文 413
 
 ## 启发沉淀说明
 

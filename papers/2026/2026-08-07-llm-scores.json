@@ -1,0 +1,64 @@
+{
+  "by_url": {
+    "http://arxiv.org/abs/2608.05144v1": {
+      "score": 80,
+      "value_type": "immediate",
+      "reason": "Argus 直接命中 AI Agent 架构主线：据摘要，它是一个持久化、自演化的 agentic runtime，由 Manager、Planner、Engineer、Reviewer 四角色在持久项目状态上执行有界任务（bounded missions）；其核心设计是把稳定的用户意图与可变的操作目标、约束、验证标准分离，并接入 memories、skills、procedure（摘要截断）。'把用户意图与操作目标/约束/验证标准分离'+'持久项目状态 + 角色分工 + 有界任务'是任何构建多步 agent 的团队都可直接参考的架构模式——尤其适用于需要 agent 在证据支持时坚持、在测量发现失败时转向的长程推理场景。命中 ai-agent 主线（keywords: agent/agentic/benchmark）。证据强度中等偏上：角色分工与状态分离的架构描述清晰，'持久 + 自演化 + 有界任务'的设计约束有针对性。证据不足：全部 code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 procedure 之后的内容缺失；有界任务的边界如何定义、自演化机制的具体实现、与现有 agent 框架的定量对比需正文确认。",
+      "matched_topics": ["ai-agent"]
+    },
+    "http://arxiv.org/abs/2608.05148v1": {
+      "score": 76,
+      "value_type": "immediate",
+      "reason": "Reasoning Core 命中推理训练数据生成主线：据摘要，它是一个包含 50 个程序化生成器的集合，覆盖数学、逻辑、规划、状态跟踪、形式语言、结构化数据、博弈、因果、代码九大类，配备语义评分器、难度控制和任务评估器；在 matched completion-supervised 协议下与 Procedural Warmup、Rea（摘要截断）对比。'程序化生成可验证推理问题 + 难度控制 + 语义评分器'可直接迁移到团队的推理训练数据合成流水线——尤其适用于需要规模化生产可验证 CoT 训练数据的场景。命中 ai-agent（planning）与 context-engineering 主线。证据强度中等偏上：50 个生成器的覆盖面广、有 matched protocol 对照实验。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致对比基线 Rea 之后的内容缺失；生成器的具体构造、难度控制机制、与基线的定量增益需正文确认。",
+      "matched_topics": ["ai-agent", "context-engineering"]
+    },
+    "http://arxiv.org/abs/2608.05141v1": {
+      "score": 71,
+      "value_type": "trend",
+      "reason": "OctoLong 命中 context-engineering 与 coding-agent 主线：据摘要，现有长上下文语料被书籍、论文、代码仓库主导，这些资源有限且长距离依赖稀疏；OctoLong 提出一个 context engineering 流水线，用 AST 解析器、language server 后端和包管理器（摘要截断）从跨仓库代码上下文构造长上下文训练数据，用于 mid-training。'用 AST + language server + 包管理器从跨仓库代码构造长距离依赖丰富的长上下文语料'是一个对长上下文模型训练数据工程有参考价值的方法论。趋势信号中等偏上：长上下文是当前核心能力需求，而高质量长上下文训练语料的构造方法是被忽视的工程问题。证据强度中等：流水线组件（AST/language server/package manager）描述清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致流水线完整流程缺失；mid-training 的具体协议、长上下文性能提升的定量结果需正文确认；摘要关键词 agent/agentic 为宽泛命中（指 agentic workflows 是长上下文需求来源之一），实际是训练数据工程而非 agent 方法。",
+      "matched_topics": ["context-engineering", "coding-agent"]
+    },
+    "http://arxiv.org/abs/2608.05139v1": {
+      "score": 70,
+      "value_type": "trend",
+      "reason": "Skill Entropy 命中 llm-evaluation 与 long-horizon reasoning 主线：据摘要，长程推理要求模型在推理链中切换不同技能（如先做数学推导，再用结果规划调度）；本文称之为 cross-skill long-horizon tasks——步骤需要不同推理技能且依赖前序输出的多步任务；现有 benchmark 通常只评估单项技能，缺少衡量模型技能切换能力的原则化方法；本文提出 Skill Entropy 填补这一空白。'衡量模型在推理链中切换技能的能力'是一个对评估 agent/长程推理有直接参考价值的评测视角——尤其适用于需要判断模型在多技能串联任务上真实能力的场景。命中 llm-evaluation 主线。证据强度中等：问题定位（现有 benchmark 缺少技能切换度量）与评测动机清晰。证据不足：全部 code/benchmark 暂无待核验；Skill Entropy 的具体数学定义、cross-skill 任务集的构造、与现有 benchmark 的相关性分析需正文确认。",
+      "matched_topics": ["llm-evaluation", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2608.05126v1": {
+      "score": 66,
+      "value_type": "trend",
+      "reason": "Spoken Function Calling (SFC) 命中 ai-agent 与 function calling 主线：据摘要，传统 SLU 在领域内监督微调后能有效提取封闭任务的语义，但在开放领域任务中利用 in-context learning 的能力受限，因其规则定义模糊；本文提出 SFC 这一新的语义理解视角（摘要截断），面向 Large Audio Language Models。'把 function calling 的语义理解范式扩展到语音模态'是 function calling 能力从文本向多模态延伸的一个趋势信号——尤其适用于需要语音交互的 agent 场景。命中 ai-agent（function calling）主线。证据强度中等：问题定位（传统 SLU 难以利用 ICL）清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 SFC 具体方法缺失；SFC 与文本 function calling 的对应关系、在 audio LLM 上的实验设计需正文确认；摘要关键词 RAG 为宽泛命中，实际指 spoken language understanding 而非检索增强生成系统。",
+      "matched_topics": ["ai-agent"]
+    },
+    "http://arxiv.org/abs/2608.05136v1": {
+      "score": 58,
+      "value_type": "long_tail",
+      "reason": "The Loss Does Not See the Basis, but Adam Does 提供了一个关于优化器隐式偏置的理论发现：据摘要，在分解模型 W=UV^T 上，梯度下降隐式偏向低秩解，而 Adam 从同样小初始化出发则不会；作者将差异追溯到 loss 的 gauge symmetry（在 (U,V)→(UQ,VQ) 下的不变性），指出梯度流的低秩机制仅在优化器 gauge-equivariant 时才可用——这是必要但不充分条件；梯度下降、动量、'shared-sca'（摘要截断）满足该条件。这是一个关于'为什么 GD 找低秩但 Adam 不找'的理论解释，对理解训练动态与优化器选型有长尾参考价值。命中 cs.LG（理论）。证据强度中等偏上：理论推导（gauge equivariance 条件）逻辑清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 shared-sca 之后的内容缺失；gauge-equivariant 条件的完整刻画、实验验证需正文确认；理论性较强，与团队以 Agent/工程为核心的技术栈直接迁移距离中等。",
+      "matched_topics": []
+    },
+    "http://arxiv.org/abs/2608.05131v1": {
+      "score": 56,
+      "value_type": "long_tail",
+      "reason": "OPD-V 关注多模态 LLM 的模态不平衡：据摘要，On-Policy Self-Distillation (OPSD) 已成为改善 MLLM 视觉推理的标准后训练方法，现有方法从多样输入源提取特权信息指导自蒸馏，但忽略了 Modality Imbalance——当文本信息主导生成时，模型无法充分整合多模态输入，精心设计的特权信息（摘要截断）失效。'模态不平衡削弱多模态自蒸馏的特权信息效果'是一个对多模态模型后训练有参考价值的问题定位。命中 multimodal-agent 主线。证据强度中等：问题定位（modality imbalance）清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 OPD-V 的具体方法（modality balance 如何实现）缺失；实验设计与定量增益需正文确认。",
+      "matched_topics": ["multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2608.05127v1": {
+      "score": 54,
+      "value_type": "long_tail",
+      "reason": "SSTQ 关注分布式优化中的隐私保护与通信效率：据摘要，在分布式优化中实现 local differential privacy 同时保持低通信成本仍有挑战；现有向量量化方法（如 vqSGD）使用高维几何构造但带来不利的维度相关方差；SSTQ 结合过完备等范数紧框架、坐标子采样和隐私感知的一维量化（摘要截断）。'过完备紧框架 + 坐标子采样 + 隐私感知量化'是一个对分布式/联邦学习场景的隐私 + 通信效率优化有参考价值的方法。作者阵容强（Javanmard, Woodruff, Mirrokni）。命中 security-governance 与 inference-serving 交叉。证据强度中等偏上：数学构造（紧框架 + 子采样）描述严谨。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致两个变体的完整描述缺失；与 vqSGD 的定量对比、方差改进的理论界需正文确认；与团队以 Agent/LLM 为核心的技术栈直接迁移距离中等（适用于分布式训练/推理通信压缩场景）。",
+      "matched_topics": ["security-governance", "inference-serving"]
+    },
+    "http://arxiv.org/abs/2608.05138v1": {
+      "score": 46,
+      "value_type": "long_tail",
+      "reason": "Teaching Nemotron Greek 是对 Nemotron 检索栈的端到端 Modern Greek 适配：据摘要，涵盖语料挖掘、合成监督、检索模型训练、reranker 适配、reader 微调和新基准 HERA；研究表明参数（摘要截断）量级的适配即可有效。其 RAG 适配方法论（语料挖掘→合成监督→检索/重排/阅读器微调→基准）对低资源语言或领域专属 RAG 适配有可迁移参考价值。命中 rag-knowledge 主线。证据强度中等：端到端流程描述清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断；领域聚焦 Modern Greek，与团队以 Agent/LLM 为核心的技术栈直接迁移距离较远；具体增益数字需正文确认。",
+      "matched_topics": ["rag-knowledge"]
+    },
+    "http://arxiv.org/abs/2608.05132v1": {
+      "score": 34,
+      "value_type": "ignore",
+      "reason": "Predicting Brain Morphometry with MT-GNN 聚焦预测皮层下结构形状演化：据摘要，用 per-structure 图网络预测 future per-vertex first fundamental form（度量张量）在连续时间上的演化，用于预后与临床试验富集。领域高度聚焦医学影像/神经形态测量，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（mesh 演化预测）不可迁移。忽略，除非专门做医学影像或纵向 shape 预测。",
+      "matched_topics": []
+    }
+  }
+}
