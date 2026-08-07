@@ -1,109 +1,100 @@
-# 前沿理论驱动技术雷达日报
+# 前沿理论驱动技术雷达
 
-[English](README.md) · [在线站点](https://radar.aiutil.com) · [AIUtil](https://aiutil.com)
+<h3 align="center">用可追溯证据判断：哪些前沿 AI 论文现在值得行动、哪些值得观察、哪些应当暂缓。</h3>
 
-> 面向资深架构师与 AI 研究员的论文价值发现系统。
+<p align="center">
+  每日完成论文采集、价值路由、深度判断与趋势沉淀，区分即时价值、趋势价值、长尾价值与噪声。
+</p>
 
-**核心目标：从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。**
+<p align="center">
+  <a href="README.md">English</a> ·
+  <a href="https://radar.aiutil.com">在线雷达</a> ·
+  <a href="https://radar.aiutil.com/daily.html">日报</a> ·
+  <a href="https://radar.aiutil.com/about.html">研究方法</a>
+</p>
 
-## 项目定位
+<p align="center">
+  <a href="https://github.com/aiutil/frontier-theory-radar/actions/workflows/ci.yml"><img alt="研究流水线" src="https://img.shields.io/github/actions/workflow/status/aiutil/frontier-theory-radar/ci.yml?branch=main&style=flat-square&label=research%20pipeline"></a>
+  <a href="LICENSE"><img alt="Apache-2.0 许可证" src="https://img.shields.io/badge/license-Apache--2.0-2563eb?style=flat-square"></a>
+  <img alt="每日研究" src="https://img.shields.io/badge/cadence-daily-0f766e?style=flat-square">
+</p>
 
-这个项目不是普通论文摘要站，也不是热点搬运器。
-它关注的是：在海量论文中，哪些值得今天就读、哪些值得纳入趋势观察、哪些值得作为长尾资产保存、哪些应该明确忽略。
+![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 价值类型说明
+## 最新研究 · 2026-08-07
 
-- **即时价值（immediate）**：今天就值得读、值得试、值得转成 Prompt / Skill / Checklist / 最小实验。
-- **趋势价值（trend）**：需要与多篇论文、开源项目、Benchmark、工程实践共同观察 7-30 天。
-- **长尾价值（long_tail）**：现在不火，但提出了好问题、好评测、好反证、好抽象，值得保存。
-- **暂时忽略（ignore）**：新意弱、证据弱、相关性弱、难迁移或缺少资产价值。
+| 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
+| ---: | ---: | ---: | ---: | ---: |
+| 10 | 81 | 108 | 99 | 922 |
 
-## 常见研究路径（不是强制模板）
+**今日深挖：** [Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning](daily/2026/2026-08-07.md) · 即时价值 · 重点学习
 
-项目仍保留“论文 → 理论 → 工程实践 → 趋势 → 启发 → 行动”作为**常见研究路径**，但不再把它作为所有论文的强制结构。
-真实流程先做**价值路由**，再决定是否进入更深研究链路。
+**核心判断：** Argus 提出一个持久化、自演化的 agentic runtime——Manager/Planner/Engineer/Reviewer 四角色在持久项目状态上执行有界任务，核心设计是把稳定的用户意图与可变的操作目标、约束、验证标准分离。这是任何构建多步 agent 团队可直接参考的架构模式（证据支持时坚持、测量发现失败时转向）。Reasoning Core 则提供 50 个覆盖九大类的程序化推理数据生成器（含语义评分器、难度控制、任务评估器），可直接迁移到团队的推理训练数据合成流水线。
 
-## 页面说明
+**建议动作：** 完成三件事：把 Argus 的四层分离架构模式（意图/操作目标/约束/验证标准 + 持久状态 + 角色分工 + 有界任务）纳入团队 agent 设计参考文档；评估 Reasoning Core 的 50 个程序化生成器能否补充团队推理训练数据合成流水线（若开源则挑 2-3 个试跑）；为 OctoLong、Skill Entropy 建立趋势观察卡片。
 
-- **首页**：论文价值发现工作台
-- **日报**：每日候选论文、价值分布、今日重点与长尾保存
-- **日报详情页**：某天的完整价值判断报告
-- **论文库**：所有被筛选、评分、判断过的论文
-- **论文详情页**：长期论文研究档案
-- **趋势雷达**：只收纳确实有趋势价值的方向
-- **长尾库**：保存现在不火但未来可能有价值的论文
-- **启发**：Prompt / Skill / Checklist / 架构模式 / 评测方法 / 工程机会
-- **数据源**：固定数据源与接入状态
-- **关于**：方法论与使用说明
+![最近三十次研究活动](docs/images/research-activity.svg)
 
-## 数据结构说明
+## 最近 7 期日报
 
-- `docs/data/latest.json`：首页汇总、今日重点、价值分布
-- `docs/data/daily-index.json`：日报列表
-- `docs/data/paper-index.json`：论文库索引
-- `docs/data/trend-index.json`：趋势雷达索引
-- `docs/data/insight-index.json`：启发索引
-- `docs/data/long-tail-index.json`：长尾库索引
-- `docs/data/daily-details/<date>.json`：单日详细价值报告
-- `docs/data/paper-details/<paper-id>.json`：单篇论文研究档案
+| 日期 | 深挖论文 | 价值类型 | 判断 |
+| --- | --- | --- | --- |
+| [2026-08-07](daily/2026/2026-08-07.md) | Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning | 即时价值 | 重点学习 |
+| [2026-08-06](daily/2026/2026-08-06.md) | When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings | 即时价值 | 重点学习 |
+| [2026-08-05](daily/2026/2026-08-05.md) | UEmbed: Unified Sparse and Dense Multimodal Embeddings | 即时价值 | 重点学习 |
+| [2026-08-04](daily/2026/2026-08-04.md) | TokTier: Exact Stateful Tokenization for Agentic LLM Serving | 即时价值 | 重点学习 |
+| [2026-08-03](daily/2026/2026-08-03.md) | Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments | 即时价值 | 重点学习 |
+| [2026-08-02](daily/2026/2026-08-02.md) | Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments | 即时价值 | 重点学习 |
+| [2026-08-01](daily/2026/2026-08-01.md) | Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments | 即时价值 | 重点学习 |
 
-## Mermaid 图表说明
+## 当前重点趋势
 
-GitHub Pages 使用固定 Mermaid 模板展示：
-- 论文价值发现图
-- 研究证据图
-- 行动路由图
+| 方向 | 阶段 | 关联论文 |
+| --- | --- | ---: |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 413 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 337 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 413 |
 
-目标是稳定、可读、可复用，不追求每天自由生成复杂图。
+## 为什么做这个项目
 
-## 固定数据源
+论文聚合站通常优化“新”和“热”，本项目优化“判断”：哪些值得今天试验，哪些需要连续观察，哪些虽然不热但应该保留，哪些证据不足应明确暂缓。每个结论都保留来源，并写清当前最大不确定性。
 
-- 理论源头：arXiv、OpenReview、Hugging Face Daily Papers、Papers with Code
-- 工程验证源：GitHub Search / Trending、大厂 Engineering Blog、CNCF / InfoQ / Thoughtworks Radar、Hacker News / Reddit / X
+## 研究工作流
 
-## 本地运行
-
-```bash
-./run_daily.sh [YYYY-MM-DD]
-# 或分步运行
-python3 scripts/fetch_papers.py
-python3 scripts/score_papers.py 2026-04-28
-python3 scripts/generate_daily.py 2026-04-28
-python3 scripts/update_index.py 2026-04-28
-python3 scripts/build_pages.py
+```mermaid
+flowchart LR
+  A["采集论文"] --> B["评估相关性与证据"]
+  B --> C["价值路由"]
+  C --> D["今日深挖"]
+  C --> E["趋势观察"]
+  C --> F["长尾保存"]
+  D --> G["行动与可复用资产"]
 ```
 
-## GitHub Pages
+- `papers/`：按日期保存来源快照和评分候选。
+- `daily/`：保存每次研究运行的人类可读判断记录。
+- `trends/`、`insights/`：沉淀跨日趋势与可复用发现。
+- `docs/data/`：在线站点使用的结构化公开投影。
+- `scripts/generate_readme.py`：从已提交证据生成双语 README 和活动图表。
 
-- 仓库设置：Settings → Pages → Source 选择 **GitHub Actions**
-- 页面地址：`https://radar.aiutil.com/index.html`
+## 证据边界
 
-## 最近 7 篇日报索引
+评分与结论属于研究判断，不等于独立复现。论文摘要、作者自述 Benchmark、开源实现与第三方复现是不同证据等级。代码缺失、摘要截断或 Benchmark 未核验时，会明确标注，不把推断包装成事实。
 
-- [2026-08-07 · Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning](daily-detail.html?date=2026-08-07) · 即时价值 · 重点学习
-- [2026-08-06 · When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings](daily-detail.html?date=2026-08-06) · 即时价值 · 重点学习
-- [2026-08-05 · UEmbed: Unified Sparse and Dense Multimodal Embeddings](daily-detail.html?date=2026-08-05) · 即时价值 · 重点学习
-- [2026-08-04 · TokTier: Exact Stateful Tokenization for Agentic LLM Serving](daily-detail.html?date=2026-08-04) · 即时价值 · 重点学习
-- [2026-08-03 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-03) · 即时价值 · 重点学习
-- [2026-08-02 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-02) · 即时价值 · 重点学习
-- [2026-08-01 · Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments](daily-detail.html?date=2026-08-01) · 即时价值 · 重点学习
+## 本地运行与验证
 
-## 当前重点趋势索引
+```bash
+./run_daily.sh 2026-08-07
+python3 -m pytest tests
+python3 scripts/generate_readme.py
+```
 
-- [Agentic World Modeling](trend-detail.html?id=agentic-world-modeling) · 上升 · 关联论文 413
-- [Coding Agent](trend-detail.html?id=coding-agent) · 主流化 · 关联论文 337
-- [Context Engineering](trend-detail.html?id=context-engineering) · 上升 · 关联论文 413
+生产定时任务运行在 AIUtil 私有自动化环境中，凭据和私有运行记忆不进入本仓库。生成后的 Markdown、SVG、JSON 和来源链接均可通过 Git 历史审阅。
 
-## 启发沉淀说明
+## 安全
 
-启发页用于沉淀跨论文可复用资产，包括：
-- Prompt 模板
-- Skill 草案
-- Checklist
-- 架构模式
-- 评测方法
-- 学习与复盘决策
+请勿提交数据源凭据、API Token、私有论文集合或运营记忆。安全问题请通过 [GitHub Security Advisories](https://github.com/aiutil/frontier-theory-radar/security/advisories/new) 私下报告。
 
 ## 开源协议
 
-本项目采用 Apache License 2.0，详见 [NOTICE](NOTICE)。
+Apache License 2.0，详见 [NOTICE](NOTICE)。
