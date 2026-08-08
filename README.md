@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-08-08
+## Latest research run · 2026-08-09
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 83 | 111 | 102 | 924 |
 
-**Deep dive:** [The Bitter Lesson of Tool Calling](daily/2026/2026-08-08.md) · Immediate · 轻量试点
+**Deep dive:** [The Bitter Lesson of Tool Calling](daily/2026/2026-08-09.md) · Immediate · 轻量试点
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,13 +35,13 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-08-09](daily/2026/2026-08-09.md) | The Bitter Lesson of Tool Calling | Immediate | 轻量试点 |
 | [2026-08-08](daily/2026/2026-08-08.md) | The Bitter Lesson of Tool Calling | Immediate | 轻量试点 |
 | [2026-08-07](daily/2026/2026-08-07.md) | Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning | Immediate | 重点学习 |
 | [2026-08-06](daily/2026/2026-08-06.md) | When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings | Immediate | 重点学习 |
 | [2026-08-05](daily/2026/2026-08-05.md) | UEmbed: Unified Sparse and Dense Multimodal Embeddings | Immediate | 重点学习 |
 | [2026-08-04](daily/2026/2026-08-04.md) | TokTier: Exact Stateful Tokenization for Agentic LLM Serving | Immediate | 重点学习 |
 | [2026-08-03](daily/2026/2026-08-03.md) | Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments | Immediate | 重点学习 |
-| [2026-08-02](daily/2026/2026-08-02.md) | Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments | Immediate | 重点学习 |
 
 ## Directions under active observation
 

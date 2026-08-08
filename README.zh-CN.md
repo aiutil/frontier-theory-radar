@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-08-08
+## 最新研究 · 2026-08-09
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 83 | 111 | 102 | 924 |
 
-**今日深挖：** [The Bitter Lesson of Tool Calling](daily/2026/2026-08-08.md) · 即时价值 · 轻量试点
+**今日深挖：** [The Bitter Lesson of Tool Calling](daily/2026/2026-08-09.md) · 即时价值 · 轻量试点
 
-**核心判断：** The Bitter Lesson of Tool Calling 系统性跨代际实证对比程序化工具调用（PTC，写脚本链式/并行调工具）与原生 JSON 工具调用，在真实世界任务条件下——它直接回答'该让 agent 写脚本调工具还是逐个 JSON 调工具'这个工程选型问题，标题致敬 Rich Sutton 的 Bitter Lesson 暗示可能有反直觉发现。AV-AIVAT 用 anytime-valid stopping 让 agent 对战评估在证据充足时立即停止，声称比基线便宜 74x 且置信水平有效——它解决'该打多少局才能可信判断 agent 强弱'这个 agent A/B 评估的高频痛点。
+**核心判断：** 这是数据源（arXiv API 按 submittedDate 降序返回最新 10 篇）在周末无新发布时的预期行为——同批次重复。The Bitter Lesson 系统性跨代际实证对比程序化工具调用（PTC，写脚本链式/并行调工具）与原生 JSON 工具调用，AV-AIVAT 用 anytime-valid stopping 让 agent 对战评估在证据充足时立即停止（声称 74x cheaper）。两者结论已在昨日日报给出，今日无新增证据。
 
-**建议动作：** 完成三件事：把 The Bitter Lesson of Tool Calling 的 PTC vs JSON 跨代际实证结论纳入团队 tool-use agent 选型参考文档；评估 AV-AIVAT 的 anytime-valid stopping 能否引入团队 agent A/B 评估流程降低评估推理成本（若开源则在一个内部 agent 对比任务上试跑）；为 MIST（选择性信任评测）、CalibForge（对抗性 solver 校准合成 agent 任务）、Resourced Authority（计算预算自执行 agent 治理）建立趋势观察卡片。
+**建议动作：** 今日（2026-08-09，重复批次）动作：确认数据源重复（已完成，URL 集合与 2026-08-08 完全相同）；不重复产出新深读分析；保持流水线连续性（score/generate_daily/update_index/build_pages/generate_readme 全链路运行）；确保 README 与活动图同步。下一个工作日（周一）arXiv 恢复发布后做新一轮价值路由。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,13 +39,13 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-08-09](daily/2026/2026-08-09.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
 | [2026-08-08](daily/2026/2026-08-08.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
 | [2026-08-07](daily/2026/2026-08-07.md) | Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning | 即时价值 | 重点学习 |
 | [2026-08-06](daily/2026/2026-08-06.md) | When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings | 即时价值 | 重点学习 |
 | [2026-08-05](daily/2026/2026-08-05.md) | UEmbed: Unified Sparse and Dense Multimodal Embeddings | 即时价值 | 重点学习 |
 | [2026-08-04](daily/2026/2026-08-04.md) | TokTier: Exact Stateful Tokenization for Agentic LLM Serving | 即时价值 | 重点学习 |
 | [2026-08-03](daily/2026/2026-08-03.md) | Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments | 即时价值 | 重点学习 |
-| [2026-08-02](daily/2026/2026-08-02.md) | Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 

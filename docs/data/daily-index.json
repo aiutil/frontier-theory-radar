@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-08T04:33:18.064531",
+  "updated_at": "2026-08-09T04:33:40.616648",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-09",
+      "title": "论文价值发现日报 - 2026-08-09",
+      "deep_dive_title": "The Bitter Lesson of Tool Calling",
+      "deep_dive_url": "http://arxiv.org/abs/2608.06370v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今日（2026-08-09，重复批次）动作：确认数据源重复（已完成，URL 集合与 2026-08-08 完全相同）；不重复产出新深读分析；保持流水线连续性（score/generate_daily/update_index/build_pages/generate_readme 全链路运行）；确保 README 与活动图同步。下一个工作日（周一）arXiv 恢复发布后做新一轮价值路由。",
+      "max_uncertainty": "今日（2026-08-09）特有不确定性：数据源重复——fetch_papers.py 返回的 10 篇与 2026-08-08 完全相同（URL 集合一致，仅顺序不同），这是 arXiv 周末无新发布的预期行为。批次内不确定性（沿用昨日）：全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 8 篇摘要截断；Tracing the Heart 摘要关键词 agent/evaluation/RAG 为宽泛误命中（实际指临床数据处理流程而非 agent/RAG 系统），已在评分中剔除。",
+      "one_line_judgement": "这是数据源（arXiv API 按 submittedDate 降序返回最新 10 篇）在周末无新发布时的预期行为——同批次重复。The Bitter Lesson 系统性跨代际实证对比程序化工具调用（PTC，写脚本链式/并行调工具）与原生 JSON 工具调用，AV-AIVAT 用 anytime-valid stopping 让 agent 对战评估在证据充足时立即停止（声称 74x cheaper）。两者结论已在昨日日报给出，今日无新增证据。",
+      "path": "daily-detail.html?date=2026-08-09"
+    },
     {
       "date": "2026-08-08",
       "title": "论文价值发现日报 - 2026-08-08",
@@ -378,19 +391,6 @@
       "max_uncertainty": "暂无公开代码和数据集（code_url/benchmark_url 均为空），真实环境评测的可复现性和安全性约束（如何安全地在真实工具上评测 Agent）的细节不明。任务分类法是否经过充分的跨模型验证、以及评测成本（真实环境部署的工程开销）是否可控，均待核验。",
       "one_line_judgement": "它直击 Agent 评测的核心痛点——现有 benchmark 依赖沙箱、单轮、能力混合，无法评测真实环境中的主动式 Agent。提出真实环境+多轮交互+能力解耦的三维评测框架，是 Agent 质量保障基础设施的关键拼图。",
       "path": "daily-detail.html?date=2026-07-11"
-    },
-    {
-      "date": "2026-07-10",
-      "title": "论文价值发现日报 - 2026-07-10",
-      "deep_dive_title": "Co-LMLM: Continuous-Query Limited Memory Language Models",
-      "deep_dive_url": "http://arxiv.org/abs/2607.07707v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成摘要与方法精读，重点理解连续键的表示方式与查询时机；随后设计一个最小实验：在现有 RAG 管线中模拟'多步连续检索 vs 单次前缀检索'的效果差异。",
-      "max_uncertainty": "暂无公开代码与 benchmark（code_url/benchmark_url 均为空），实验细节与可复现性待核验；连续键的训练稳定性和推理延迟的实际表现尚不清楚。",
-      "one_line_judgement": "它把知识库检索从'生成前一次拼接'升级为'生成全程连续查询'，直击 LLM 知识可控性、可更新性与检索精度的核心痛点，与 Agent 记忆系统和 RAG 演进高度对齐。",
-      "path": "daily-detail.html?date=2026-07-10"
     }
   ]
 }
