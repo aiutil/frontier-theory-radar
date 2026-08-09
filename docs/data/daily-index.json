@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-09T04:33:40.616648",
+  "updated_at": "2026-08-10T04:32:51.587949",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-10",
+      "title": "论文价值发现日报 - 2026-08-10",
+      "deep_dive_title": "The Bitter Lesson of Tool Calling",
+      "deep_dive_url": "http://arxiv.org/abs/2608.06370v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：在团队一个真实 tool-use agent 任务上设计 PTC vs JSON 工具调用的最小对比实验（同一模型、同一工具集、两种调用范式）；评估 AV-AIVAT 的 anytime-valid stopping 能否接入现有 agent 评估流水线；为 MIST（选择性信任）、CalibForge（任务自动合成）、Resourced Authority（计算预算治理）维持趋势观察卡片。",
+      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 MIST、AV-AIVAT、CalibForge、Resourced Authority、An Optimal PAC、Low Frequency Trap、XAI Challenges 共 7 篇摘要截断。The Bitter Lesson 的具体定量对比结果、AV-AIVAT 的 certified anytime-valid 技术细节与 74x 基线对照、MIST 的第四种条件名称与 selective context preference optimization 方法、CalibForge 的校准机制与任务规模、Resourced Authority 的治理周期机制均需正文确认。另：Tracing the Heart 摘要关键词 agent/evaluation/RAG 为宽泛命中（指临床数据处理流程而非 agent/RAG 系统），已在评分中剔除。",
+      "one_line_judgement": "The Bitter Lesson of Tool Calling 直接命中 ai-agent 主线——据摘要，程序化工具调用（PTC，用能链式/并行的脚本替换僵化 JSON 调用）与原生 JSON 工具调用的系统性跨代际实证对比，回答了'该让 agent 写脚本调工具还是逐个 JSON 调工具'这个工程选型问题，标题致敬 Rich Sutton 的 Bitter Lesson 暗示可能有反直觉发现。AV-AIVAT 则命中 agent 评估与推理成本主线——'anytime-valid stopping 让 agent 对战评估在证据足够时立即停止、74x 更便宜且置信水平有效'，直接解决'该打多少局才能可信地判断 agent 强弱'的高频痛点。两者都属于即时工程价值，对构建 tool-use agent 与做 agent A/B 评估的团队有直接参考价值。",
+      "path": "daily-detail.html?date=2026-08-10"
+    },
     {
       "date": "2026-08-09",
       "title": "论文价值发现日报 - 2026-08-09",
@@ -378,19 +391,6 @@
       "max_uncertainty": "主要不确定性：(1) 五篇均为 2026-07-09 新发，代码/数据集链接均暂缺（待核验），可复现性未验证；(2) UniClawBench 与 AUTOPILOT-VQA 的数据集规模与标注协议未明，将决定基准可信度；(3) SLORR 缺数十亿参数尺度证据，泛化性待验证；(4) fetch 阶段部分论文 keywords 被误标（如把理论论文标为 RAG），已手动修正分类。",
       "one_line_judgement": "它直击 Agent 工程最大评测缺口，把评测从‘单能力点的聚合分数’重构为‘按能力正交分解的任务分类法’，让失败可被归因；对任何自研 Agent 团队都是可立刻对照的评测骨架。",
       "path": "daily-detail.html?date=2026-07-12"
-    },
-    {
-      "date": "2026-07-11",
-      "title": "论文价值发现日报 - 2026-07-11",
-      "deep_dive_title": "UniClawBench: A Universal Benchmark for Proactive Agents on Real-World Tasks",
-      "deep_dive_url": "http://arxiv.org/abs/2607.08768v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "精读论文的评测框架设计和任务分类法，提取'能力解耦'的分类维度；将 UniClawBench 的任务分类思路映射到自研 Agent 系统的测试用例结构中，设计一个最小评测原型——选择 2-3 个真实工具（如文件系统操作、API 调用），构建多轮交互测试场景。",
-      "max_uncertainty": "暂无公开代码和数据集（code_url/benchmark_url 均为空），真实环境评测的可复现性和安全性约束（如何安全地在真实工具上评测 Agent）的细节不明。任务分类法是否经过充分的跨模型验证、以及评测成本（真实环境部署的工程开销）是否可控，均待核验。",
-      "one_line_judgement": "它直击 Agent 评测的核心痛点——现有 benchmark 依赖沙箱、单轮、能力混合，无法评测真实环境中的主动式 Agent。提出真实环境+多轮交互+能力解耦的三维评测框架，是 Agent 质量保障基础设施的关键拼图。",
-      "path": "daily-detail.html?date=2026-07-11"
     }
   ]
 }
