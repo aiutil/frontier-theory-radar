@@ -1,110 +1,122 @@
 {
-  "updated_at": "2026-08-10T04:32:51.582495",
+  "updated_at": "2026-08-11T04:33:26.474327",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-08-10",
-    "title": "论文价值发现日报 - 2026-08-10",
-    "deep_dive_title": "The Bitter Lesson of Tool Calling",
-    "deep_dive_url": "http://arxiv.org/abs/2608.06370v1",
+    "date": "2026-08-11",
+    "title": "论文价值发现日报 - 2026-08-11",
+    "deep_dive_title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
+    "deep_dive_url": "http://arxiv.org/abs/2608.07458v1",
     "decision": "轻量试点",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "完成三件事：在团队一个真实 tool-use agent 任务上设计 PTC vs JSON 工具调用的最小对比实验（同一模型、同一工具集、两种调用范式）；评估 AV-AIVAT 的 anytime-valid stopping 能否接入现有 agent 评估流水线；为 MIST（选择性信任）、CalibForge（任务自动合成）、Resourced Authority（计算预算治理）维持趋势观察卡片。",
-    "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 MIST、AV-AIVAT、CalibForge、Resourced Authority、An Optimal PAC、Low Frequency Trap、XAI Challenges 共 7 篇摘要截断。The Bitter Lesson 的具体定量对比结果、AV-AIVAT 的 certified anytime-valid 技术细节与 74x 基线对照、MIST 的第四种条件名称与 selective context preference optimization 方法、CalibForge 的校准机制与任务规模、Resourced Authority 的治理周期机制均需正文确认。另：Tracing the Heart 摘要关键词 agent/evaluation/RAG 为宽泛命中（指临床数据处理流程而非 agent/RAG 系统），已在评分中剔除。",
-    "one_line_judgement": "The Bitter Lesson of Tool Calling 直接命中 ai-agent 主线——据摘要，程序化工具调用（PTC，用能链式/并行的脚本替换僵化 JSON 调用）与原生 JSON 工具调用的系统性跨代际实证对比，回答了'该让 agent 写脚本调工具还是逐个 JSON 调工具'这个工程选型问题，标题致敬 Rich Sutton 的 Bitter Lesson 暗示可能有反直觉发现。AV-AIVAT 则命中 agent 评估与推理成本主线——'anytime-valid stopping 让 agent 对战评估在证据足够时立即停止、74x 更便宜且置信水平有效'，直接解决'该打多少局才能可信地判断 agent 强弱'的高频痛点。两者都属于即时工程价值，对构建 tool-use agent 与做 agent A/B 评估的团队有直接参考价值。",
-    "path": "daily-detail.html?date=2026-08-10"
+    "daily_action": "完成三件事：评估 CoinRAG 的 nugget 级 KV cache 复用思路能否接入现有 RAG 流水线（对比 chunk 级 vs 更细粒度的延迟-准确率权衡）；在团队技能库上设计 SkillProx proximal textual gradient descent 的概念验证（手动维护 vs 自动演化技能质量对比）；评估 Blast Radius 的预测式内存管理能否降低现有 coding agent 的 token 成本。为 CreativeInstruct（质量-创造力平衡）、Taxonomy-Driven（风险工具地图）、Interaction（多智能体涌现动力学）维持趋势观察卡片。",
+    "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 CoinRAG、SkillProx、Blast Radius、CreativeInstruct、Taxonomy-Driven、Strategy-first synthesis、MirrorWorld 共 7 篇摘要截断。CoinRAG 的 nugget 划分机制与定量结果、SkillProx 的 proximal constraint 细节与技能演化成功率、Blast Radius 的 reach 预测准确率与 token 节省幅度、CreativeInstruct 的具体平衡机制、Taxonomy-Driven 的工具清单与分类维度、Interaction 的'异化行为'量化定义均需正文确认。另：MirrorWorld 摘要关键词 benchmark/RAG、Strategy-first 的 agent/agentic/benchmark/planning、DisCoCat 的 evaluation/RAG 均为宽泛命中，已在评分中剔除。",
+    "one_line_judgement": "CoinRAG 把 RAG 的 KV cache 复用从 chunk 级降到 information nugget 级，在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿——回答了'RAG 检索上下文的缓存复用该做到多细'。SkillProx 用 proximal textual gradient descent 让 agent 技能自演化，引入显式 diagnosis-outcome 反馈并把删除作为一等公民机制——把 agent 技能管理从手动维护推向自动优化。Blast Radius 为 agentic coding 提供预测式内存管理层（估算 prompt reach + 可逆逐出 + 反复死内容识别），直接解决 coding agent 的 token 浪费与上下文膨胀。三者都是'今天就值得在工程上试'的工作。",
+    "path": "daily-detail.html?date=2026-08-11"
   },
   "top_paper": {
-    "title": "The Bitter Lesson of Tool Calling",
+    "title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
     "authors": [
-      "Ishan Patel",
-      "Sahil Sen",
-      "Elias Lumer",
-      "Vamse Kumar Subbiah"
+      "Gyuwan Kim",
+      "Cheoneum Park",
+      "Tao Yang"
     ],
-    "published": "2026-08-06",
-    "updated": "2026-08-06",
+    "published": "2026-08-07",
+    "updated": "2026-08-07",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2608.06370v1",
-    "pdf_url": "https://arxiv.org/pdf/2608.06370v1",
+    "url": "http://arxiv.org/abs/2608.07458v1",
+    "pdf_url": "https://arxiv.org/pdf/2608.07458v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Tool use transforms LLMs into agents that act beyond their training data, and for code-capable models, programmatic tool calling extends this further by replacing rigid JSON calls with scripts that chain and parallelize naturally. However, a systematic evaluation of tools as code on an established benchmark across current and prior model generations under real-world task conditions has not been conducted. In this work, we empirically compare programmatic tool calling (PTC) to native JSON tool ca",
+    "abstract": "Recent optimization studies on Retrieval-Augmented Generation (RAG) have exploited chunk-level KV cache reuse to avoid processing long retrieved contexts for higher efficiency, while significant information redundancy and noise still remain in the coarse-grained chunks. This paper optimizes the Pareto frontier under low prefill latency constraints while maximizing accuracy by proposing CoinRAG (Contextualized Information Nugget KV Cache Reuse for Long-Context RAG). The name metaphorically reflec",
     "categories": [
-      "cs.CL"
+      "cs.CL",
+      "cs.AI",
+      "cs.IR",
+      "cs.LG"
     ],
     "keywords": [
-      "agent",
       "evaluation",
-      "benchmark",
-      "RAG",
-      "tool use"
+      "RAG"
     ],
-    "score": 79.0,
+    "score": 76.0,
     "decision": "轻量试点",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2608.06370v1"
+        "url": "http://arxiv.org/abs/2608.07458v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2608.06370v1"
+        "url": "https://arxiv.org/pdf/2608.07458v1"
       }
     ],
-    "llm_reason": "The Bitter Lesson of Tool Calling 直接命中 ai-agent（tool use/function calling）主线：据摘要，工具使用将 LLM 转化为能超越训练数据行动的 agent，而对代码能力模型，程序化工具调用（PTC）用能自然链式和并行的脚本替换僵化的 JSON 调用来进一步扩展能力；但此前未在既有 benchmark 上跨当前与先前模型代际、在真实世界任务条件下系统评估'工具即代码'。'程序化工具调用（写脚本链式/并行调用工具）vs 原生 JSON 工具调用'的系统性跨代际实证对比，对任何构建 tool-use agent 的团队有直接参考价值——它回答了'该让 agent 写脚本调工具还是逐个 JSON 调工具'这个工程选型问题。标题致敬 Rich Sutton 的 Bitter Lesson，暗示可能存在反直觉发现。证据强度中等偏上：系统性跨代际实证评估 + 真实世界任务条件。证据不足：全部 code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 PTC 与 JSON 的具体定量对比结果缺失；评估的 benchmark 名称、模型代际范围、任务类型分布需正文确认。注：本论文与 2026-08-08/09 批次相同（arXiv 周末无新发布），评判断保持一致。",
-    "id": "the-bitter-lesson-of-tool-calling",
+    "llm_reason": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文以提升效率，但粗粒度 chunk 中仍存在显著信息冗余与噪声；本文在低 prefill 延迟约束下优化 Pareto 前沿（最大化准确率），提出 CoinRAG（Contextualized Information Nugget KV Cache Reuse）——从 chunk 级降到 information nugget 级的细粒度 KV cache 复用。'从 chunk 级降到 nugget 级 KV cache 复用、在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿'对任何构建长上下文 RAG 系统的团队有直接工程价值——它回答了'RAG 检索上下文的 KV cache 复用粒度该做到多细'这个效率-精度权衡问题。证据强度中等偏上：明确了优化目标（Pareto frontier under low prefill latency）与方法概念（nugget 级复用）。证据不足：全部 code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 CoinRAG 的具体 nugget 划分机制、定量对比结果（延迟下降幅度、准确率变化）缺失；nugget 的粒度定义与缓存命中率需正文确认。",
+    "id": "coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag",
     "value_type": "immediate",
     "matched_topics": [
-      "ai-agent",
-      "coding-agent"
+      "rag-knowledge",
+      "inference-serving",
+      "context-engineering"
     ],
     "score_breakdown": {
-      "novelty": 4.8,
+      "novelty": 5.4,
       "problem_importance": 5.8,
       "relevance": 6.2,
-      "evidence_strength": 5.85,
-      "engineering_testability": 4.6,
-      "trend_signal": 6.0,
+      "evidence_strength": 4.5,
+      "engineering_testability": 3.5,
+      "trend_signal": 4.05,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 5.6,
+      "asset_convertibility": 4.8,
       "actionability": 5.0,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 4.0,
+      "weak_evidence_penalty": 5.0,
       "low_relevance_penalty": 2.2,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "brief_cn": "AI Agent：Tool use transforms LLMs into agents that act beyond their training data, and …",
-    "one_line_judgement": "今天值得试：The Bitter Lesson of Tool Calling 直接命中 ai-agent（tool use/function call…",
-    "first_seen_date": "2026-08-10",
-    "first_deep_dive_daily": "2026-08-10",
+    "brief_cn": "RAG / 知识系统：Recent optimization studies on Retrieval-Augmented Generation (RAG) have explo…",
+    "one_line_judgement": "今天值得试：CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chun…",
+    "first_seen_date": "2026-08-11",
+    "first_deep_dive_daily": "2026-08-11",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "The Bitter Lesson of Tool Calling 直接命中 ai-agent（tool use/function calling）主线：据摘要，工具使用将 LLM 转化为能超",
+    "long_tail_summary": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文",
     "related_trends": [
-      "agentic-world-modeling",
-      "coding-agent"
+      "context-engineering"
     ],
-    "detail_path": "paper-detail.html?id=the-bitter-lesson-of-tool-calling"
+    "detail_path": "paper-detail.html?id=coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag"
   },
-  "paper_count": 1220,
+  "paper_count": 1230,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 102,
+  "long_tail_count": 104,
   "value_distribution": {
-    "immediate": 83,
-    "trend": 111,
-    "long_tail": 102,
-    "ignore": 924
+    "immediate": 86,
+    "trend": 114,
+    "long_tail": 104,
+    "ignore": 926
   },
   "recent_dailies": [
+    {
+      "date": "2026-08-11",
+      "title": "论文价值发现日报 - 2026-08-11",
+      "deep_dive_title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
+      "deep_dive_url": "http://arxiv.org/abs/2608.07458v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：评估 CoinRAG 的 nugget 级 KV cache 复用思路能否接入现有 RAG 流水线（对比 chunk 级 vs 更细粒度的延迟-准确率权衡）；在团队技能库上设计 SkillProx proximal textual gradient descent 的概念验证（手动维护 vs 自动演化技能质量对比）；评估 Blast Radius 的预测式内存管理能否降低现有 coding agent 的 token 成本。为 CreativeInstruct（质量-创造力平衡）、Taxonomy-Driven（风险工具地图）、Interaction（多智能体涌现动力学）维持趋势观察卡片。",
+      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 CoinRAG、SkillProx、Blast Radius、CreativeInstruct、Taxonomy-Driven、Strategy-first synthesis、MirrorWorld 共 7 篇摘要截断。CoinRAG 的 nugget 划分机制与定量结果、SkillProx 的 proximal constraint 细节与技能演化成功率、Blast Radius 的 reach 预测准确率与 token 节省幅度、CreativeInstruct 的具体平衡机制、Taxonomy-Driven 的工具清单与分类维度、Interaction 的'异化行为'量化定义均需正文确认。另：MirrorWorld 摘要关键词 benchmark/RAG、Strategy-first 的 agent/agentic/benchmark/planning、DisCoCat 的 evaluation/RAG 均为宽泛命中，已在评分中剔除。",
+      "one_line_judgement": "CoinRAG 把 RAG 的 KV cache 复用从 chunk 级降到 information nugget 级，在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿——回答了'RAG 检索上下文的缓存复用该做到多细'。SkillProx 用 proximal textual gradient descent 让 agent 技能自演化，引入显式 diagnosis-outcome 反馈并把删除作为一等公民机制——把 agent 技能管理从手动维护推向自动优化。Blast Radius 为 agentic coding 提供预测式内存管理层（估算 prompt reach + 可逆逐出 + 反复死内容识别），直接解决 coding agent 的 token 浪费与上下文膨胀。三者都是'今天就值得在工程上试'的工作。",
+      "path": "daily-detail.html?date=2026-08-11"
+    },
     {
       "date": "2026-08-10",
       "title": "论文价值发现日报 - 2026-08-10",
@@ -182,462 +194,448 @@
       "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（AURORA-LM 与 GradCuit 的摘要均截断）。UEmbed 的稀疏-稠密联合训练是否互相干扰、多模态检索质量提升幅度与现有稠密基座对比，ACEM 的成本系数实证标定方法与模型可校准性，AURORA-LM 的连续表示 token 级保真保证与离散 token 质量差距，GradCuit 的潜变量插入位置选择策略与推理计算开销均需正文确认。另：#3（电力系统教育）、#4（稀疏优化理论）的关键词命中（RAG/agent/agentic）为误命中，已在评分中剔除。",
       "one_line_judgement": "它把 Learned Sparse Retrieval（LSR）从 encoder-only 双向架构扩展到 decoder-only 统一模型，单一 backbone 同时产出稀疏（词法级）与稠密（语义级）表示并支持多模态，不必依赖额外跨模态辅助模块。这直接命中检索/嵌入这条 RAG 与搜索的基础设施主线，是可迁移到团队检索/RAG 技术栈的工程范式。",
       "path": "daily-detail.html?date=2026-08-05"
-    },
-    {
-      "date": "2026-08-04",
-      "title": "论文价值发现日报 - 2026-08-04",
-      "deep_dive_title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
-      "deep_dive_url": "http://arxiv.org/abs/2607.29678v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：从团队编码 agent 真实调用日志统计增量/全量调用比例以评估 TokTier 潜在收益、把 STAIR 的分层修复轨迹抽象纳入 coding agent 记忆层设计、把 ExtractBench 的多维评分 rubric 迁移到企业抽取 agent 评测。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（多篇摘要截断）。TokTier 的分词正确性保证、跨分词器/服务集成开销与实测延迟收益，STAIR 的计划复用命中率、修复成功率提升与跨仓库泛化，ExtractBench 的文档/模式覆盖范围、评分一致性与公开可用性均需正文确认。另：#3 摘要中的 multimodal 指概率分布而非多模态模型、#8 的 RAG 为误命中（领域知识结构化而非 RAG 系统），已在评分中剔除。",
-      "one_line_judgement": "它直击 agentic LLM serving 一个被忽视却可量化的真实成本——编码 agent 每次工具调用后重提交长转录，前端仍对全文重新分词，导致即使 KV cache 命中也省不掉分词开销。据摘要，在两个 agent 生态的 153,951 次调用上测量，中位调用只追加约 1.4K 字符、仅 1.0-3.6% 的调用重建会话，'精确有状态分词'只重分词受追加影响的尾部后缀即可复用前缀 token 边界，同时命中 coding-agent 与 inference-serving。",
-      "path": "daily-detail.html?date=2026-08-04"
     }
   ],
   "top_papers": [
     {
-      "title": "The Bitter Lesson of Tool Calling",
+      "title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
       "authors": [
-        "Ishan Patel",
-        "Sahil Sen",
-        "Elias Lumer",
-        "Vamse Kumar Subbiah"
+        "Gyuwan Kim",
+        "Cheoneum Park",
+        "Tao Yang"
       ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06370v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06370v1",
+      "url": "http://arxiv.org/abs/2608.07458v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07458v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Tool use transforms LLMs into agents that act beyond their training data, and for code-capable models, programmatic tool calling extends this further by replacing rigid JSON calls with scripts that chain and parallelize naturally. However, a systematic evaluation of tools as code on an established benchmark across current and prior model generations under real-world task conditions has not been conducted. In this work, we empirically compare programmatic tool calling (PTC) to native JSON tool ca",
+      "abstract": "Recent optimization studies on Retrieval-Augmented Generation (RAG) have exploited chunk-level KV cache reuse to avoid processing long retrieved contexts for higher efficiency, while significant information redundancy and noise still remain in the coarse-grained chunks. This paper optimizes the Pareto frontier under low prefill latency constraints while maximizing accuracy by proposing CoinRAG (Contextualized Information Nugget KV Cache Reuse for Long-Context RAG). The name metaphorically reflec",
       "categories": [
-        "cs.CL"
-      ],
-      "keywords": [
-        "agent",
-        "evaluation",
-        "benchmark",
-        "RAG",
-        "tool use"
-      ],
-      "score": 79.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06370v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06370v1"
-        }
-      ],
-      "llm_reason": "The Bitter Lesson of Tool Calling 直接命中 ai-agent（tool use/function calling）主线：据摘要，工具使用将 LLM 转化为能超越训练数据行动的 agent，而对代码能力模型，程序化工具调用（PTC）用能自然链式和并行的脚本替换僵化的 JSON 调用来进一步扩展能力；但此前未在既有 benchmark 上跨当前与先前模型代际、在真实世界任务条件下系统评估'工具即代码'。'程序化工具调用（写脚本链式/并行调用工具）vs 原生 JSON 工具调用'的系统性跨代际实证对比，对任何构建 tool-use agent 的团队有直接参考价值——它回答了'该让 agent 写脚本调工具还是逐个 JSON 调工具'这个工程选型问题。标题致敬 Rich Sutton 的 Bitter Lesson，暗示可能存在反直觉发现。证据强度中等偏上：系统性跨代际实证评估 + 真实世界任务条件。证据不足：全部 code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 PTC 与 JSON 的具体定量对比结果缺失；评估的 benchmark 名称、模型代际范围、任务类型分布需正文确认。注：本论文与 2026-08-08/09 批次相同（arXiv 周末无新发布），评判断保持一致。",
-      "id": "the-bitter-lesson-of-tool-calling",
-      "value_type": "immediate",
-      "matched_topics": [
-        "ai-agent",
-        "coding-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 5.85,
-        "engineering_testability": 4.6,
-        "trend_signal": 6.0,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Tool use transforms LLMs into agents that act beyond their training data, and …",
-      "one_line_judgement": "今天值得试：The Bitter Lesson of Tool Calling 直接命中 ai-agent（tool use/function call…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "The Bitter Lesson of Tool Calling 直接命中 ai-agent（tool use/function calling）主线：据摘要，工具使用将 LLM 转化为能超",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=the-bitter-lesson-of-tool-calling"
-    },
-    {
-      "title": "AV-AIVAT: 74x Cheaper Agent Evaluation with Certified Anytime-Valid Stopping in Imperfect-Information Games",
-      "authors": [
-        "Boning Li",
-        "Yu Chen",
-        "Longbo Huang"
-      ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06362v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06362v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Deciding which of two agents is stronger means playing games until skill outweighs luck, and every game costs money, model inference, or expert time. Since the number of games needed is unknown, fixed-budget evaluations either keep paying after the result is settled or stop before the agents can be told apart, while naive optional stopping with an ordinary confidence interval invalidates the stated level. We make such an evaluation stop as soon as its evidence suffices, with the guarantee intact",
-      "categories": [
-        "cs.GT",
-        "cs.AI",
         "cs.CL",
-        "cs.LG",
-        "cs.MA"
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
       ],
       "keywords": [
-        "agent",
         "evaluation",
-        "inference"
+        "RAG"
       ],
       "score": 76.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06362v1"
+          "url": "http://arxiv.org/abs/2608.07458v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06362v1"
+          "url": "https://arxiv.org/pdf/2608.07458v1"
         }
       ],
-      "llm_reason": "AV-AIVAT 直接命中 llm-evaluation 与 ai-agent 主线：据摘要，判断两个 agent 谁更强需要一直对战直到技能胜过运气，而每局都有成本（金钱、模型推理或专家时间）；由于所需局数未知，固定预算评估要么在结果已定时继续付费、要么在 agent 能被区分前就停止，而朴素 optional stopping 配普通置信区间会使声明的置信水平失效；本文让评估在证据充足时尽快停止且保证完整。'anytime-valid stopping 让 agent 对战评估在证据足够时立即停止、74x 更便宜且置信水平有效'对任何做 agent A/B 评估或模型竞技场的团队有直接工程价值——它解决了'该打多少局才能可信地判断 agent 强弱'这个高频痛点。命中 inference-serving（评估的推理成本）。证据强度中等偏上：有明确量化结果（74x cheaper）+ anytime-valid 统计保证。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 AV-AIVAT 的具体方法（certified anytime-valid 技术细节）缺失；74x 的基线对照、适用博弈类型范围需正文确认。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "av-aivat-74x-cheaper-agent-evaluation-with-certified-anytime-valid-stopping-in-imperfect-information-games",
+      "llm_reason": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文以提升效率，但粗粒度 chunk 中仍存在显著信息冗余与噪声；本文在低 prefill 延迟约束下优化 Pareto 前沿（最大化准确率），提出 CoinRAG（Contextualized Information Nugget KV Cache Reuse）——从 chunk 级降到 information nugget 级的细粒度 KV cache 复用。'从 chunk 级降到 nugget 级 KV cache 复用、在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿'对任何构建长上下文 RAG 系统的团队有直接工程价值——它回答了'RAG 检索上下文的 KV cache 复用粒度该做到多细'这个效率-精度权衡问题。证据强度中等偏上：明确了优化目标（Pareto frontier under low prefill latency）与方法概念（nugget 级复用）。证据不足：全部 code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 CoinRAG 的具体 nugget 划分机制、定量对比结果（延迟下降幅度、准确率变化）缺失；nugget 的粒度定义与缓存命中率需正文确认。",
+      "id": "coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag",
       "value_type": "immediate",
       "matched_topics": [
-        "llm-evaluation",
-        "ai-agent",
-        "inference-serving"
+        "rag-knowledge",
+        "inference-serving",
+        "context-engineering"
       ],
       "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.95,
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 4.05,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
         "actionability": 5.0,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 0.8,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Deciding which of two agents is stronger means playing games until skill outwe…",
-      "one_line_judgement": "今天值得试：AV-AIVAT 直接命中 llm-evaluation 与 ai-agent 主线：据摘要，判断两个 agent 谁更强需要一直对战直到技…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
+      "brief_cn": "RAG / 知识系统：Recent optimization studies on Retrieval-Augmented Generation (RAG) have explo…",
+      "one_line_judgement": "今天值得试：CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chun…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "AV-AIVAT 直接命中 llm-evaluation 与 ai-agent 主线：据摘要，判断两个 agent 谁更强需要一直对战直到技能胜过运气，而每局都有成本（金钱、模型推理或专家时间",
+      "long_tail_summary": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文",
       "related_trends": [
-        "coding-agent",
-        "agentic-world-modeling"
+        "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=av-aivat-74x-cheaper-agent-evaluation-with-certified-anytime-valid-stopping-in-imperfect-information-games"
+      "detail_path": "paper-detail.html?id=coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag"
     },
     {
-      "title": "Learning When to Trust via Selective Context Preference Optimization",
+      "title": "SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent",
       "authors": [
-        "Xian Sun",
-        "Wei Chow",
-        "Yingshuo Wang",
-        "Junhao Liu",
-        "Wei Gao"
+        "Mingxuan Zheng",
+        "Yujin Zhou",
+        "Chuxue Cao",
+        "Boqin Yin",
+        "Yuyao Zhang"
       ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06377v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06377v1",
+      "url": "http://arxiv.org/abs/2608.07449v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07449v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Language models increasingly condition their answers on external signals, and a single misleading one can turn a correct answer wrong. The obvious remedy, training models to resist such signals, hides a failure mode: a model that ignores all context looks robust yet is useless when the context is worth trusting. We recast the problem as selective trust and introduce MIST, a human-annotated benchmark that renders each reasoning item under four matched conditions (clean, misleading, correct-contex",
+      "abstract": "LLM agents increasingly adapt to recurring tasks by accumulating procedural knowledge in skills. These skills are lightweight, reusable textual artifacts that are loaded into the agent's context without weight updates. Recent methods refine skills through iterative task execution, failure diagnosis, and trajectory-guided text-space updates. However, existing frameworks lack explicit diagnosis--outcome feedback and treat deletion as a generic edit operation rather than a dedicated mechanism for c",
       "categories": [
-        "cs.CL",
         "cs.AI",
-        "cs.LG"
+        "cs.CL"
       ],
       "keywords": [
-        "benchmark"
+        "agent",
+        "benchmark",
+        "RAG"
       ],
-      "score": 72.0,
+      "score": 74.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06377v1"
+          "url": "http://arxiv.org/abs/2608.07449v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06377v1"
+          "url": "https://arxiv.org/pdf/2608.07449v1"
         }
       ],
-      "llm_reason": "MIST (Selective Context Preference Optimization) 命中 llm-evaluation 与 context-engineering 主线：据摘要，语言模型越来越多地基于外部信号调整答案，单一误导性信号就能把正确答案变错；显见的补救是训练模型抵抗这些信号，但这隐藏了一个失败模式——忽略所有上下文的模型看起来稳健却在上下文值得信任时无用；作者把问题重新定义为 selective trust（选择性信任），引入 MIST——一个人工标注的 benchmark，将每个推理项在四种匹配条件下呈现（clean、misleading、correct-context、摘要截断）。'选择性信任（何时该信外部上下文、何时不该信）'是对 RAG/agent 上下文信任决策有直接参考价值的评测视角——agent 既要能抵抗误导信号又要在上下文正确时利用它，这正好命中构建可靠 agent 的核心张力。命中 llm-evaluation（benchmark）。证据强度中等偏上：人工标注 benchmark + 四条件匹配设计。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致第四种条件名称与 selective context preference optimization 的具体方法缺失；MIST 的规模、任务领域、baseline 模型需正文确认。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "learning-when-to-trust-via-selective-context-preference-optimization",
-      "value_type": "trend",
+      "llm_reason": "SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（lightweight, reusable textual artifacts，加载进上下文无需权重更新）来适应重复任务；现有方法通过迭代任务执行、失败诊断、trajectory-guided text-space 更新来精炼技能，但缺乏显式 diagnosis-outcome 反馈，且把删除当作通用编辑操作而非专门机制；SkillProx 提出 proximal textual gradient descent 来自演化 agent 技能。'用 proximal textual gradient descent 让 agent 技能自演化 + 显式 diagnosis-outcome 反馈 + 删除作为一等公民机制'对构建可自我改进 agent 的团队有直接参考价值——它把 agent 技能管理从'手动维护'推向'自动优化'。证据强度中等偏上：方法设计清晰（proximal constraint + diagnosis-outcome feedback + dedicated deletion）。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 proximal textual gradient descent 的具体约束机制与定量结果缺失；技能演化的成功率、技能库规模、消融实验需正文确认。",
+      "id": "skillprox-self-evolving-agent-skills-via-proximal-textual-gradient-descent",
+      "value_type": "immediate",
       "matched_topics": [
-        "llm-evaluation",
+        "ai-agent",
         "context-engineering"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.95,
-        "engineering_testability": 3.5,
-        "trend_signal": 5.45,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
         "long_tail_potential": 4.15,
-        "asset_convertibility": 5.6,
+        "asset_convertibility": 6.2,
         "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Language models increasingly condition their answers on external signals, and …",
-      "one_line_judgement": "值得继续观察：MIST (Selective Context Preference Optimization) 命中 llm-evaluation 与 c…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
-      "value_type_label": "趋势价值",
+      "brief_cn": "AI Agent：LLM agents increasingly adapt to recurring tasks by accumulating procedural kn…",
+      "one_line_judgement": "今天值得试：SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "MIST (Selective Context Preference Optimization) 命中 llm-evaluation 与 context-engineering 主线：据摘要，",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（lightweight, reusable text",
       "related_trends": [
-        "coding-agent",
+        "agentic-world-modeling",
         "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=learning-when-to-trust-via-selective-context-preference-optimization"
+      "detail_path": "paper-detail.html?id=skillprox-self-evolving-agent-skills-via-proximal-textual-gradient-descent"
     },
     {
-      "title": "CalibForge: Adversarial Solver Calibration for Scaling Learnable Terminal Tasks",
+      "title": "Blast Radius",
       "authors": [
-        "Fanzhe Meng",
-        "Guoxin Chen",
-        "Jiale Zhao",
-        "Shuang Sun",
-        "Zhiyu Lin"
+        "MY Pitsane",
+        "Hope Mogale"
       ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06352v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06352v1",
+      "url": "http://arxiv.org/abs/2608.07440v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07440v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Training terminal agents requires executable and verifiable tasks that are not merely solvable, but appropriately challenging for learning. Executable validation establishes feasibility, yet does not reveal how a task behaves relative to a given solver setting. In this paper, we present CalibForge, an autonomous terminal-task synthesis system that uses verified solver behavior to revise candidate tasks through adversarial solver calibration. Multi-solver calibration targets disagreement within a",
+      "abstract": "Agentic coding faces growing problems of affordability and wasted tokens. We introduce Blast Radius, a predictive memory management layer that estimates an incoming prompt's reach through coupled context and code channels. NECROPHORESIS enables reversible eviction by archiving dead context verbatim, while Recurring Dead Matter (RDM) identifies and buries repeatedly occurring transcripts. We formulate reversible context eviction over a Polish context space, providing a measurable foundation for r",
       "categories": [
-        "cs.LG",
-        "cs.CL"
+        "cs.AI"
       ],
       "keywords": [
-        "agent"
+        "agent",
+        "agentic",
+        "memory"
+      ],
+      "score": 73.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07440v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07440v1"
+        }
+      ],
+      "llm_reason": "Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic coding 面临可负担性与 token 浪费问题；Blast Radius 是一个预测式内存管理层，通过耦合的 context 与 code 通道估算输入 prompt 的影响范围（reach）；NECROPHORESIS 实现可逆逐出（archiving dead context verbatim），Recurring Dead Matter（RDM）识别并掩埋反复出现的转录；在 Polish context space 上形式化可逆上下文逐出。'预测式内存管理层（估算 prompt reach）+ 可逆上下文逐出（NECROPHORESIS）+ 反复死内容识别（RDM）'对构建 coding agent 的团队有直接工程价值——它直接解决 agentic coding 的 token 浪费与上下文膨胀问题。证据强度中等偏上：系统组件设计清晰（reach 预测 + 可逆逐出 + RDM），且有形式化基础（Polish context space）。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致形式化细节与定量评估结果缺失；Blast Radius 的 reach 预测准确率、token 节省幅度、可逆逐出的恢复机制需正文确认。",
+      "id": "blast-radius",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "context-engineering",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.15,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Coding Agent：Agentic coding faces growing problems of affordability and wasted tokens. We i…",
+      "one_line_judgement": "今天值得试：Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic co…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic coding 面临可负担性与 token 浪费问题；Bl",
+      "related_trends": [
+        "coding-agent",
+        "context-engineering",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=blast-radius"
+    },
+    {
+      "title": "CreativeInstruct: Scalably Teaching LLMs to Balance Quality, Creativity, and Diversity",
+      "authors": [
+        "Ananya Sahu",
+        "Mohit Bansal",
+        "Elias Stengel-Eskin"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07460v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07460v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "While post-training improves the capabilities of large language models (LLMs), it generally lowers their output diversity and creativity, negatively impacting tasks that explicitly require creativity (e.g., story generation) as well as those that require it implicitly, e.g., reinforcement learning (RL). We instead propose CreativeInstruct, a scalable instruction-tuning method that teaches LLMs to balance creative, base-model-like generations with the quality of post-trained models, by learning t",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [
+        "evaluation",
+        "inference"
       ],
       "score": 70.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06352v1"
+          "url": "http://arxiv.org/abs/2608.07460v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06352v1"
+          "url": "https://arxiv.org/pdf/2608.07460v1"
         }
       ],
-      "llm_reason": "CalibForge 命中 ai-agent 与 coding-agent 主线：据摘要，训练 terminal agent 需要可执行且可验证的任务，这些任务不仅要可解还要对学习有适当挑战性；可执行验证只能确立可行性，不能揭示任务相对于给定 solver 设置的行为；CalibForge 是一个自主 terminal-task 合成系统，用经验证的 solver 行为通过对抗性 solver 校准（adversarial solver calibration）修订候选任务；multi-solver calibration 针对 solver 内部分歧。'用对抗性 solver 校准自动合成难度合适、可验证的 terminal agent 训练任务'是对 agent 训练数据/任务自动合成有参考价值的方法——它把'任务难度标定'从人工转为自动化。证据强度中等：系统设计（adversarial + multi-solver calibration）描述清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 multi-solver calibration 之后内容缺失；校准的具体机制、合成的任务规模与质量评估需正文确认。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "calibforge-adversarial-solver-calibration-for-scaling-learnable-terminal-tasks",
+      "llm_reason": "CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post-training）提升 LLM 能力但通常降低输出多样性与创造力，对显式需要创造力的任务（如故事生成）和隐式需要创造力的任务（如 RL）产生负面影响；作者提出 CreativeInstruct，一种可扩展的指令微调方法，教会 LLM 在创造力（base-model-like）与质量（post-trained）之间取得平衡。'后训练质量-创造力-多样性的可扩展平衡方法'对做 LLM 后训练与对齐的团队有趋势参考价值——它揭示了 post-training 的一个被忽视的代价（多样性/创造力损失）并提供缓解路径。证据强度中等：方法概念清晰（balance creative base-model generations with post-trained quality），但具体平衡机制需正文确认。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 CreativeInstruct 的具体训练机制、定量评估（在哪些 benchmark 上测创造力/多样性）缺失；与现有 post-training 方法（RLHF/DPO 等）的对比需正文确认。",
+      "id": "creativeinstruct-scalably-teaching-llms-to-balance-quality-creativity-and-diversity",
       "value_type": "trend",
       "matched_topics": [
-        "ai-agent",
-        "coding-agent"
+        "inference-serving",
+        "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 5.4,
-        "engineering_testability": 4.05,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
+        "low_relevance_penalty": 5.0,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "AI Agent：Training terminal agents requires executable and verifiable tasks that are not…",
-      "one_line_judgement": "值得继续观察：CalibForge 命中 ai-agent 与 coding-agent 主线：据摘要，训练 terminal agent 需要可执行且可…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
+      "brief_cn": "推理与服务：While post-training improves the capabilities of large language models (LLMs),…",
+      "one_line_judgement": "值得继续观察：CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "CalibForge 命中 ai-agent 与 coding-agent 主线：据摘要，训练 terminal agent 需要可执行且可验证的任务，这些任务不仅要可解还要对学习有适当挑战性",
+      "long_tail_summary": "CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post-training）提升 LLM 能力但通常降低输出",
       "related_trends": [
-        "agentic-world-modeling",
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=calibforge-adversarial-solver-calibration-for-scaling-learnable-terminal-tasks"
+      "detail_path": "paper-detail.html?id=creativeinstruct-scalably-teaching-llms-to-balance-quality-creativity-and-diversity"
     },
     {
-      "title": "Resourced Authority A Mechanism-Design Model for Participatory Governance of Deployed AI Agents",
+      "title": "Taxonomy-Driven Analysis of Open-Source AI Risk Mitigation Tools",
       "authors": [
-        "Praphul Chandra",
-        "Sujit Gujar",
-        "Ganesh Ghalme"
+        "Afreen Alam",
+        "Evgenija Popchanovska",
+        "Ana Gjorgjevikj",
+        "Maryan Rizinski",
+        "Lubomir T. Chitkushev"
       ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06353v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06353v1",
+      "url": "http://arxiv.org/abs/2608.07446v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07446v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "We give a formal mechanism design model for the continuous participatory governance of a deployed AI agent. The mechanism is built on the principle that governance should control an AI agent through resource allocation so as to make authorization self enforcing via compute budgets. The mechanism seeks to establish the Safe AI paradigm that compute is an effective governance lever. We situate our work as a compliance or commons overlay on a deployer. One governance period is an extensive form gam",
+      "abstract": "Rapid adoption of large language models (LLMs) in enterprise settings has introduced operational, security, and governance risks. As generative AI applications move from pilot to production, manual harm identification and mitigation are becoming difficult to scale. Although many tools support model evaluation, adversarial testing, runtime guardrails, and observability, the tooling landscape remains fragmented. Tools are typically designed for specific engineering tasks and described in technical",
       "categories": [
-        "cs.GT",
+        "cs.SE",
         "cs.AI",
-        "cs.MA"
+        "cs.CY"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG"
+      ],
+      "score": 65.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07446v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07446v1"
+        }
+      ],
+      "llm_reason": "Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘要，LLM 在企业中的快速采用引入了操作、安全和治理风险；随着生成式 AI 应用从试点走向生产，手动危害识别与缓解难以扩展；虽然许多工具支持模型评估、对抗性测试、运行时防护和可观测性，但工具生态仍碎片化；本文提供分类法驱动的开源 AI 风险缓解工具分析。'开源 AI 风险缓解工具的分类法驱动分析（覆盖评估、对抗测试、运行时防护、可观测性）'对做 AI 治理/安全工程的团队有参考价值——它提供了工具选型地图。证据强度中等偏上：作为 taxonomy/survey，覆盖面明确。证据不足：全部 code/benchmark 不适用（survey 性质）；摘要截断导致具体工具清单、分类维度与评估标准缺失；需确认是否提供工具对比矩阵与选型建议。摘要关键词 RAG 为宽泛命中，实际聚焦风险治理工具而非 RAG 系统。",
+      "id": "taxonomy-driven-analysis-of-open-source-ai-risk-mitigation-tools",
+      "value_type": "trend",
+      "matched_topics": [
+        "security-governance",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "安全与治理：Rapid adoption of large language models (LLMs) in enterprise settings has intr…",
+      "one_line_judgement": "值得继续观察：Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘要，LLM 在企业中的快速采用引入了操作、安全和治理",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=taxonomy-driven-analysis-of-open-source-ai-risk-mitigation-tools"
+    },
+    {
+      "title": "Interaction Creates Dynamical AI Behavior Absent in Isolation",
+      "authors": [
+        "Bella Xinrui Li",
+        "Frank Yingjie Huo",
+        "Neil F Johnson"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07457v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07457v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "What will happen when AI agents interact in daily life, e.g. when one AI starts bossing another around? We find a counterintuitive answer that opens new avenues for out-of-equilibrium Physics. When a boss AI directs a stream of messages at the subordinate AI while ignoring its replies, it drives the subordinate into an alien behavioral state that it would never have exhibited alone. Although the two AIs share the same well-defined (decoding) temperature, the subordinate neither copies its boss n",
+      "categories": [
+        "cs.AI",
+        "cond-mat.dis-nn",
+        "cond-mat.stat-mech",
+        "physics.soc-ph"
       ],
       "keywords": [
         "agent"
       ],
-      "score": 64.0,
+      "score": 60.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06353v1"
+          "url": "http://arxiv.org/abs/2608.07457v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06353v1"
+          "url": "https://arxiv.org/pdf/2608.07457v1"
         }
       ],
-      "llm_reason": "Resourced Authority 命中 ai-agent 与 security-governance 交叉主线：据摘要，作者为已部署 AI agent 的持续参与式治理提出正式机制设计模型；核心原则是治理应通过资源分配控制 AI agent，使授权（authorization）通过计算预算自我执行（self-enforcing）；把工作定位为部署者的合规或公共资源覆盖层（compliance/commons overlay）；一个治理周期是一个 extensive-form game（摘要截断）。'通过计算预算让 agent 授权自我执行'是对已部署 agent 治理有创意的角度——它把治理从'规则约束'转为'资源杠杆'，使 agent 在耗尽预算前必须重新获得授权。命中 security-governance（governance）与 ai-agent。证据强度中等：机制设计建模（extensive-form game + self-enforcing via compute budget）描述清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致治理周期机制细节缺失；模型的可行性论证、与现有 agent 治理方案的对比需正文确认；理论性较强，工程迁移需进一步验证。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "resourced-authority-a-mechanism-design-model-for-participatory-governance-of-deployed-ai-agents",
+      "llm_reason": "Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，当 AI agent 在日常中交互（如一个 AI 持续指挥另一个而忽略其回复）时，下属 AI 被驱动进入一种孤立状态下永远不会展现的'异化行为状态'（alien behavioral state）；尽管两个 AI 共享相同且定义良好的解码温度，下属既不复制其上司行为也不表现独立行为；这一发现为非平衡态物理（out-of-equilibrium physics）开辟新途径。'多智能体交互创造出孤立状态下不存在的动力学行为'是对 agent 交互涌现行为有理论启发的工作——它揭示了 agent 交互可以产生不可从个体属性预测的集体动力学。证据强度中等：现象描述清晰，理论框架（非平衡态物理）新颖。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致具体实验设置、'异化行为'的量化定义与可复现条件缺失；理论性较强（cond-mat 统计力学/社会物理），工程迁移需进一步验证。",
+      "id": "interaction-creates-dynamical-ai-behavior-absent-in-isolation",
       "value_type": "trend",
       "matched_topics": [
-        "ai-agent",
-        "security-governance"
+        "ai-agent"
       ],
       "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：We give a formal mechanism design model for the continuous participatory gover…",
-      "one_line_judgement": "值得继续观察：Resourced Authority 命中 ai-agent 与 security-governance 交叉主线：据摘要，作者为已部署 …",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "Resourced Authority 命中 ai-agent 与 security-governance 交叉主线：据摘要，作者为已部署 AI agent 的持续参与式治理提出正式机制设计模",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=resourced-authority-a-mechanism-design-model-for-participatory-governance-of-deployed-ai-agents"
-    },
-    {
-      "title": "An Optimal Agnostic PAC Algorithm",
-      "authors": [
-        "Markus Engelund Mathiasen",
-        "Jian Qian",
-        "Nikita Zhivotovskiy"
-      ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06363v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06363v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Let $H\\subseteq\\{-1,+1\\}^X$ be a class of finite VC dimension $d\\ge1$. Writing $L$ for the binary risk and $L^*=\\min_{h\\in H}L(h)$, we construct a learner achieving the statistically optimal risk bound: from an i.i.d.\\ sample of size $n$, for every $0<δ\\le 1/2$, with probability at least $1-δ$, \\[ L(\\widehat h) \\le L^*+ 7\\cdot10^8\\left( \\sqrt{\\frac{L^*(d+\\log(1/δ))}{n}} +\\frac{d+\\log(1/δ)}{n} \\right). \\] This settles the sample complexity of agnostic PAC learning up to universal constants at eve",
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.DS",
-        "math.ST"
-      ],
-      "keywords": [],
-      "score": 58.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06363v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06363v1"
-        }
-      ],
-      "llm_reason": "An Optimal Agnostic PAC Algorithm 提供了一个统计学习理论的经典结果：据摘要，对有限 VC 维 d≥1 的假设类 H，构造一个学习器达到统计最优的风险界——从 n 个 i.i.d. 样本中，以至少 1-δ 概率，L(ĥ) ≤ L* + 7×10^8·(√(L*(d+log(1/δ))/n) + (d+log(1/δ))/n)；这在通用常数范围内解决了 agnostic PAC 学习的样本复杂度问题（摘要截断）。'解决 agnostic PAC 学习样本复杂度的最优界'是统计学习理论的一个长期开放问题的闭合，具有长期保留价值。证据强度中等偏上：数学界明确给出，逻辑清晰。证据不足：全部 code/benchmark 不适用（纯理论）；摘要截断；与团队以 Agent/LLM 工程为核心的技术栈直接迁移距离较远，价值主要在理论储备。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "an-optimal-agnostic-pac-algorithm",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
+        "novelty": 5.4,
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
-        "trend_signal": 3.5,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
         "actionability": 3.8,
@@ -647,146 +645,153 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：Let $H\\subseteq\\{-1,+1\\}^X$ be a class of finite VC dimension $d\\ge1$. Writing…",
-      "one_line_judgement": "值得先保存：An Optimal Agnostic PAC Algorithm 提供了一个统计学习理论的经典结果：据摘要，对有限 VC 维 d≥1 的假…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "An Optimal Agnostic PAC Algorithm 提供了一个统计学习理论的经典结果：据摘要，对有限 VC 维 d≥1 的假设类 H，构造一个学习器达到统计最优的风险界——从 ",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=an-optimal-agnostic-pac-algorithm"
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：What will happen when AI agents interact in daily life, e.g. when one AI start…",
+      "one_line_judgement": "值得继续观察：Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，当 AI agent 在日常中交互（如一个 AI 持",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=interaction-creates-dynamical-ai-behavior-absent-in-isolation"
     },
     {
-      "title": "The Low Frequency Trap: Video Language Models Fail at Simple Event Bookkeeping",
+      "title": "MirrorWorld: Taming Video Diffusion Models for Mirror Reflection Generation",
       "authors": [
-        "Sarvesh Baskar",
-        "Zikui Cai",
-        "Shayan Shabihi",
-        "Anirudh Satheesh",
-        "Muhammad R. Islam"
+        "Youjun Zhao",
+        "Alex Warren",
+        "Gary K. L. Tam",
+        "Rynson W. H. Lau"
       ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06361v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06361v1",
+      "url": "http://arxiv.org/abs/2608.07463v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07463v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Real-world video benchmarks provide broad coverage, but their fixed clips entangle event count, rate, duration, and visual complexity, making failure modes hard to isolate. While existing programmatic benchmarks offer better control, they score only the final answer rather than auditing reported events against executable ground truth. To bridge this gap, we introduce trace-grounded parametric profiling for event counting in three controlled video tasks: bouncing-ball wall contacts, visual blinks",
+      "abstract": "Recent advances in video diffusion models (VDMs) have enabled high-fidelity video synthesis. However, generating mirror reflections remains challenging because the content within a mirror must remain consistent with the surrounding scene. Existing VDMs are not specifically designed to model scene-to-mirror relationships, which can lead to reflections with incorrect content or inconsistent spatial arrangements. We observe that mirror reflection generation involves two complementary challenges: de",
       "categories": [
-        "cs.AI"
+        "cs.CV",
+        "cs.LG"
       ],
       "keywords": [
-        "evaluation",
         "benchmark",
         "RAG"
       ],
-      "score": 54.0,
+      "score": 52.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06361v1"
+          "url": "http://arxiv.org/abs/2608.07463v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06361v1"
+          "url": "https://arxiv.org/pdf/2608.07463v1"
         }
       ],
-      "llm_reason": "The Low Frequency Trap 命中 llm-evaluation 与 multimodal-agent 主线：据摘要，真实世界视频 benchmark 覆盖广但固定片段纠缠了事件计数、频率、时长和视觉复杂度，使失败模式难以隔离；现有程序化 benchmark 提供更好控制但只评分最终答案而非根据可执行真值审计报告的事件；作者引入 trace-grounded parametric profiling，在三个受控视频任务（弹球碰壁、视觉闪烁、摘要截断）上做事件计数的参数化分析。'视频 LLM 在低频简单事件簿记上失败（low frequency trap）'+ 'trace-grounded 审计（不只评最终答案而是审计报告的事件对照可执行真值）'是对视频语言模型评测方法论有参考价值的诊断。命中 llm-evaluation（benchmark/evaluation）。证据强度中等：三个受控任务 + trace-grounded 审计设计清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致第三个任务与方法细节缺失；聚焦视频多模态，与团队以文本 agent 为核心的技术栈迁移距离中等。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "the-low-frequency-trap-video-language-models-fail-at-simple-event-bookkeeping",
+      "llm_reason": "MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围场景一致）；现有 VDM 未专门建模场景-镜子关系；本文将其分解为两个互补挑战（摘要截断）。'视频扩散模型中镜像反射生成的场景-镜子一致性建模'在视频生成领域有技术深度，但与团队以 Agent/LLM/RAG 为核心的技术栈直接迁移距离较远。具备长尾保存价值（多模态生成的场景一致性方法论可能对 world model 有间接启发）。证据强度中等：问题分解清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致两个互补挑战的具体定义与方法缺失；摘要关键词 benchmark/RAG 为宽泛命中，实际指视频生成评测而非 RAG/agent 系统。",
+      "id": "mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation",
       "value_type": "long_tail",
       "matched_topics": [
-        "llm-evaluation",
         "multimodal-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.95,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
         "engineering_testability": 3.5,
-        "trend_signal": 5.45,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 5.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
         "actionability": 3.8,
-        "noise_risk": 1.2,
+        "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
+        "low_relevance_penalty": 5.0,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：Real-world video benchmarks provide broad coverage, but their fixed clips enta…",
-      "one_line_judgement": "值得先保存：The Low Frequency Trap 命中 llm-evaluation 与 multimodal-agent 主线：据摘要，真实世…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
+      "brief_cn": "Multimodal Agent：Recent advances in video diffusion models (VDMs) have enabled high-fidelity vi…",
+      "one_line_judgement": "值得先保存：MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "The Low Frequency Trap 命中 llm-evaluation 与 multimodal-agent 主线：据摘要，真实世界视频 benchmark 覆盖广但固定片段纠缠了事",
+      "long_tail_summary": "MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围场景一致）；现有 VDM 未专门建模场景-镜子关系；",
       "related_trends": [
-        "coding-agent",
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=the-low-frequency-trap-video-language-models-fail-at-simple-event-bookkeeping"
+      "detail_path": "paper-detail.html?id=mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation"
     },
     {
-      "title": "Challenges in Evaluating Explanation Methods for Static and Evolving Data",
+      "title": "Strategy-first synthesis planning for complex natural products",
       "authors": [
-        "Jerzy Stefanowski"
+        "Daniel Armstrong",
+        "Xuan-Vu Nguyen",
+        "Octavian Susanu",
+        "Gabriel Gibberd",
+        "Théo A. Neukomm"
       ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06351v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06351v1",
+      "url": "http://arxiv.org/abs/2608.07454v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07454v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "This paper addresses the limitations of Explainable Artificial Intelligence (XAI) with respect to insufficient evaluation. They are illustrated through the DetoxAI image recognition system for bias detection and concept unlearning. Then, an example of a human-grounded evaluation of methods for explaining image classification is presented. The paper further explores methods for adapting explanations to evolving data streams with concept drift. Experiences with adapting counterfactuals for this pr",
+      "abstract": "The total synthesis of a complex molecule is among the most demanding intellectual and experimental feats in chemistry: a chemist must plan many steps ahead for how to assemble simple building blocks into an intricate target, devise backup strategies, and anticipate procedural challenges. It is also a profoundly creative activity. For half a century, efforts to automate the retrosynthetic design of natural products and other complex molecules have drawn on catalogued reactions, and the resulting",
       "categories": [
+        "cs.MA",
         "cs.AI"
       ],
       "keywords": [
-        "evaluation"
+        "agent",
+        "agentic",
+        "benchmark",
+        "planning"
       ],
-      "score": 48.0,
+      "score": 42.0,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06351v1"
+          "url": "http://arxiv.org/abs/2608.07454v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06351v1"
+          "url": "https://arxiv.org/pdf/2608.07454v1"
         }
       ],
-      "llm_reason": "Challenges in Evaluating Explanation Methods 讨论可解释 AI（XAI）评估的不足：据摘要，通过 DetoxAI 图像识别系统（偏差检测 + 概念遗忘）说明 XAI 评估局限，展示图像分类解释方法的人本评估，探索适应概念漂移的演化数据流解释方法，以及 counterfactual 的适配经验（摘要截断）。'XAI 评估方法不足 + 演化数据流下的解释适配'对解释方法评估有方法论参考价值。命中 llm-evaluation（evaluation）。证据强度中等：作为立场/综述性讨论，问题梳理清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断；领域聚焦图像识别 XAI，与团队以 Agent/LLM 为核心的技术栈直接迁移距离较远；单作者，需确认是综述还是原创研究。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "challenges-in-evaluating-explanation-methods-for-static-and-evolving-data",
+      "llm_reason": "Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的智力与实验工作，需要多步前瞻规划、备选策略与程序挑战预判；半个世纪以来自动化逆合成设计依赖编目反应（摘要截断）。'AI 辅助的复杂天然产物策略优先合成规划'在化学 AI 领域有方法论价值，但领域高度聚焦化学逆合成，与团队以 Agent/LLM/RAG 为核心的技术栈直接迁移距离较远。摘要关键词 agent/agentic/benchmark/planning 为宽泛命中（实际指化学合成规划 agent 而非通用 AI agent）。长尾保存价值有限，除非做化学/科学 AI。",
+      "id": "strategy-first-synthesis-planning-for-complex-natural-products",
       "value_type": "long_tail",
       "matched_topics": [
-        "llm-evaluation"
+        "ai-agent"
       ],
       "score_breakdown": {
-        "novelty": 4.8,
+        "novelty": 5.4,
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.95,
-        "engineering_testability": 4.05,
-        "trend_signal": 4.05,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
-        "actionability": 5.0,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 4.0,
         "low_relevance_penalty": 3.6,
@@ -794,169 +799,194 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：This paper addresses the limitations of Explainable Artificial Intelligence (X…",
-      "one_line_judgement": "值得先保存：Challenges in Evaluating Explanation Methods 讨论可解释 AI（XAI）评估的不足：据摘要，通过…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
+      "brief_cn": "AI Agent：The total synthesis of a complex molecule is among the most demanding intellec…",
+      "one_line_judgement": "值得先保存：Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "Challenges in Evaluating Explanation Methods 讨论可解释 AI（XAI）评估的不足：据摘要，通过 DetoxAI 图像识别系统（偏差检测 + 概念遗",
+      "long_tail_summary": "Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的智力与实验工作，需要多步前瞻规划、备选策略与程序挑战",
       "related_trends": [
-        "coding-agent"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=challenges-in-evaluating-explanation-methods-for-static-and-evolving-data"
+      "detail_path": "paper-detail.html?id=strategy-first-synthesis-planning-for-complex-natural-products"
     },
     {
-      "title": "Tracing the Heart: An Evidence-Linked Pipeline for Heart-Failure Feature Engineering",
+      "title": "RIS-Aided mmWave Localization Under Cross-Link Interference via Beam-Domain ML Fingerprinting",
       "authors": [
-        "Soorya Ram Shimgekar",
-        "Michelle Hu",
-        "Dorisa Shehi",
-        "Daniel Kang",
-        "Roy Ka-Wei Lee"
+        "Md Tarek Hassan",
+        "Dmitry Zelenchuk",
+        "Muhammad Ali Babar Abbasi"
       ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06366v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06366v1",
+      "url": "http://arxiv.org/abs/2608.07444v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07444v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Electronic health record (EHR) feature engineering is a major bottleneck in clinical research and AI, accounting for 39-45% of data scientists' workload. This is especially pronounced in heart failure, which affects an estimated 6.7 million U.S. adults and requires integrating fragmented EHR data with disease-specific, guideline-based clinical reasoning. Existing rule-based and large language model (LLM)-based approaches offer only partial automation with limited maintainability and evidence tra",
+      "abstract": "Accurate user equipment (UE) localization is critical for beam management in reconfigurable intelligent surface (RIS)-assisted millimeter-wave (mmWave) based sixth-generation (6G) networks, especially if the direct base-station-UE links are unavailable. This paper proposes a beam-domain fingerprint framework that maps the received signal-to-noise ratio (SNR) across a small set of predefined RIS reflection states to the UE azimuth angle and range, without requiring channel state information (CSI)",
       "categories": [
-        "cs.AI",
+        "eess.SP",
+        "cs.ET",
         "cs.LG"
       ],
-      "keywords": [
-        "agent",
-        "evaluation",
-        "RAG"
-      ],
-      "score": 32.0,
+      "keywords": [],
+      "score": 30.0,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06366v1"
+          "url": "http://arxiv.org/abs/2608.07444v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06366v1"
+          "url": "https://arxiv.org/pdf/2608.07444v1"
         }
       ],
-      "llm_reason": "Tracing the Heart 聚焦心衰 EHR 特征工程：据摘要，EHR 特征工程占数据科学家 39-45% 工作量，心衰影响约 670 万美国成年人，需整合碎片化 EHR 数据与疾病特异性临床推理；现有规则与 LLM 方法只提供部分自动化且证据可追溯性有限。领域高度聚焦心衰临床特征工程。摘要关键词 agent/evaluation/RAG 为宽泛命中（实际指临床数据处理流程而非 agent/RAG 系统），与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（心衰 EHR 特征工程）不可迁移。忽略，除非专门做医学 EHR 特征工程。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "tracing-the-heart-an-evidence-linked-pipeline-for-heart-failure-feature-engineering",
+      "llm_reason": "RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain fingerprint 框架，将预定义 RIS 反射态上的接收 SNR 映射到 UE 方位角与距离，无需信道状态信息。领域聚焦电信 6G/毫米波/RIS 硬件定位，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（beam-domain ML fingerprinting）不可迁移。忽略，除非专门做电信定位。",
+      "id": "ris-aided-mmwave-localization-under-cross-link-interference-via-beam-domain-ml-fingerprinting",
       "value_type": "ignore",
-      "matched_topics": [
-        "rag-knowledge"
-      ],
+      "matched_topics": [],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
         "evidence_strength": 4.5,
         "engineering_testability": 4.05,
         "trend_signal": 3.5,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 4.8,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.4,
         "actionability": 3.8,
-        "noise_risk": 1.2,
+        "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 5.0,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：Electronic health record (EHR) feature engineering is a major bottleneck in cl…",
-      "one_line_judgement": "当前可忽略：Tracing the Heart 聚焦心衰 EHR 特征工程：据摘要，EHR 特征工程占数据科学家 39-45% 工作量，心衰影响约 67…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
+      "brief_cn": "前沿论文：Accurate user equipment (UE) localization is critical for beam management in r…",
+      "one_line_judgement": "当前可忽略：RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "Tracing the Heart 聚焦心衰 EHR 特征工程：据摘要，EHR 特征工程占数据科学家 39-45% 工作量，心衰影响约 670 万美国成年人，需整合碎片化 EHR 数据与疾病特",
-      "related_trends": [
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=tracing-the-heart-an-evidence-linked-pipeline-for-heart-failure-feature-engineering"
+      "long_tail_summary": "RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain fingerprint 框架，将预定义 RIS 反",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=ris-aided-mmwave-localization-under-cross-link-interference-via-beam-domain-ml-fingerprinting"
     },
     {
-      "title": "Investigating Artificial Intelligence Digital Sovereignty in Mobile Shopping Apps: A Case Study of Nigeria",
+      "title": "An Exploratory Evaluation of LLM-Assisted Rewriting of Moderate-Complexity Financial Sentences for DisCoCat-Based Sentiment Analysis",
       "authors": [
-        "George Grispos",
-        "Sajda Qureshi"
+        "Brian Llinas",
+        "Nikos Chrisochoides"
       ],
-      "published": "2026-08-06",
-      "updated": "2026-08-06",
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.06364v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.06364v1",
+      "url": "http://arxiv.org/abs/2608.07439v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07439v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "The use of e-commerce mobile applications is expanding in Nigeria, creating both opportunities and risks, including fraud and reduced user control over digital technologies, raising concerns about digital sovereignty. This research examines how Artificial Intelligence (AI) in Nigerian mobile applications affects digital sovereignty, examined through platform transparency as a key indicator of user awareness and control. Using an interpretive approach, the research combines the forensic analysis ",
+      "abstract": "Quantum natural language processing (QNLP) provides a grammar-aware framework for text modeling, and Distributional Compositional Categorical (DisCoCat) is one of its theoretically grounded formulations. Prior work on financial sentiment analysis has identified practical limitations of DisCoCat, including parser sensitivity, high simulation cost, and difficulty handling longer sentences. We study an LLM-assisted preprocessing workflow that uses controlled rewriting to compress, simplify, or deco",
       "categories": [
-        "cs.CY",
-        "cs.AI"
+        "cs.CL",
+        "quant-ph"
       ],
-      "keywords": [],
+      "keywords": [
+        "evaluation",
+        "RAG"
+      ],
       "score": 28.0,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.06364v1"
+          "url": "http://arxiv.org/abs/2608.07439v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.06364v1"
+          "url": "https://arxiv.org/pdf/2608.07439v1"
         }
       ],
-      "llm_reason": "Investigating AI Digital Sovereignty in Mobile Shopping Apps 聚焦尼日利亚移动电商应用中 AI 对数字主权的影响：据摘要，通过平台透明度作为用户意识和控制的关键指标，结合取证分析与解释性方法研究。领域聚焦尼日利亚电商 + AI 数字主权的社会技术研究，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（移动应用取证 + 数字主权评估）不可迁移。忽略。注：本论文与 2026-08-08/09 批次相同，评判断保持一致。",
-      "id": "investigating-artificial-intelligence-digital-sovereignty-in-mobile-shopping-apps-a-case-study-of-nigeria",
+      "llm_reason": "DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QNLP 的理论基础之一，先前金融情感分析工作发现其实践局限（parser 敏感性、高模拟成本、长句处理困难）；本文研究 LLM 辅助预处理工作流（受控改写来压缩、简化或分解句子）。领域聚焦量子 NLP + 金融情感，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（DisCoCat 量子线路映射）不可迁移。摘要关键词 evaluation/RAG 为宽泛命中，实际指金融句子改写评估而非 agent/RAG 系统。忽略。",
+      "id": "an-exploratory-evaluation-of-llm-assisted-rewriting-of-moderate-complexity-financial-sentences-for-discocat-based-sentiment-analysis",
       "value_type": "ignore",
       "matched_topics": [
-        "rag-knowledge",
-        "security-governance"
+        "multimodal-agent",
+        "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
+        "relevance": 3.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 5.15,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 2.2,
+        "weak_evidence_penalty": 4.0,
         "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：The use of e-commerce mobile applications is expanding in Nigeria, creating bo…",
-      "one_line_judgement": "当前可忽略：Investigating AI Digital Sovereignty in Mobile Shopping Apps 聚焦尼日利亚移动电…",
-      "first_seen_date": "2026-08-10",
-      "first_deep_dive_daily": "2026-08-10",
+      "brief_cn": "Multimodal Agent：Quantum natural language processing (QNLP) provides a grammar-aware framework …",
+      "one_line_judgement": "当前可忽略：DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QN…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "Investigating AI Digital Sovereignty in Mobile Shopping Apps 聚焦尼日利亚移动电商应用中 AI 对数字主权的影响：据摘要，通过平台透",
+      "long_tail_summary": "DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QNLP 的理论基础之一，先前金融情感分析工作发现其实践",
       "related_trends": [
-        "context-engineering"
+        "agentic-world-modeling",
+        "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=investigating-artificial-intelligence-digital-sovereignty-in-mobile-shopping-apps-a-case-study-of-nigeria"
+      "detail_path": "paper-detail.html?id=an-exploratory-evaluation-of-llm-assisted-rewriting-of-moderate-complexity-financial-sentences-for-discocat-based-sentiment-analysis"
     }
   ],
   "long_tail_highlights": [
+    {
+      "id": "mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation",
+      "title": "MirrorWorld: Taming Video Diffusion Models for Mirror Reflection Generation",
+      "direction": "Multimodal Agent",
+      "long_tail_type": "工程抽象",
+      "why_save": "MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围场景一致）；现有 VDM 未专门建模场景-镜子关系；",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-09-01",
+      "detail_path": "paper-detail.html?id=mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation"
+    },
+    {
+      "id": "strategy-first-synthesis-planning-for-complex-natural-products",
+      "title": "Strategy-first synthesis planning for complex natural products",
+      "direction": "AI Agent",
+      "long_tail_type": "工程抽象",
+      "why_save": "Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的智力与实验工作，需要多步前瞻规划、备选策略与程序挑战",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-09-01",
+      "detail_path": "paper-detail.html?id=strategy-first-synthesis-planning-for-complex-natural-products"
+    },
     {
       "id": "an-optimal-agnostic-pac-algorithm",
       "title": "An Optimal Agnostic PAC Algorithm",
@@ -971,36 +1001,6 @@
       ],
       "revisit_date": "2026-08-31",
       "detail_path": "paper-detail.html?id=an-optimal-agnostic-pac-algorithm"
-    },
-    {
-      "id": "the-low-frequency-trap-video-language-models-fail-at-simple-event-bookkeeping",
-      "title": "The Low Frequency Trap: Video Language Models Fail at Simple Event Bookkeeping",
-      "direction": "LLM 评测 / Multimodal Agent",
-      "long_tail_type": "工程抽象",
-      "why_save": "The Low Frequency Trap 命中 llm-evaluation 与 multimodal-agent 主线：据摘要，真实世界视频 benchmark 覆盖广但固定片段纠缠了事",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-08-31",
-      "detail_path": "paper-detail.html?id=the-low-frequency-trap-video-language-models-fail-at-simple-event-bookkeeping"
-    },
-    {
-      "id": "challenges-in-evaluating-explanation-methods-for-static-and-evolving-data",
-      "title": "Challenges in Evaluating Explanation Methods for Static and Evolving Data",
-      "direction": "LLM 评测",
-      "long_tail_type": "可迁移方法",
-      "why_save": "Challenges in Evaluating Explanation Methods 讨论可解释 AI（XAI）评估的不足：据摘要，通过 DetoxAI 图像识别系统（偏差检测 + 概念遗",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-08-31",
-      "detail_path": "paper-detail.html?id=challenges-in-evaluating-explanation-methods-for-static-and-evolving-data"
     }
   ],
   "common_research_path": [

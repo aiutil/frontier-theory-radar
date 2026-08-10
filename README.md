@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-08-10
+## Latest research run · 2026-08-11
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 83 | 111 | 102 | 924 |
+| 10 | 86 | 114 | 104 | 926 |
 
-**Deep dive:** [The Bitter Lesson of Tool Calling](daily/2026/2026-08-10.md) · Immediate · 轻量试点
+**Deep dive:** [CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG](daily/2026/2026-08-11.md) · Immediate · 轻量试点
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,21 +35,21 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-08-11](daily/2026/2026-08-11.md) | CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG | Immediate | 轻量试点 |
 | [2026-08-10](daily/2026/2026-08-10.md) | The Bitter Lesson of Tool Calling | Immediate | 轻量试点 |
 | [2026-08-09](daily/2026/2026-08-09.md) | The Bitter Lesson of Tool Calling | Immediate | 轻量试点 |
 | [2026-08-08](daily/2026/2026-08-08.md) | The Bitter Lesson of Tool Calling | Immediate | 轻量试点 |
 | [2026-08-07](daily/2026/2026-08-07.md) | Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning | Immediate | 重点学习 |
 | [2026-08-06](daily/2026/2026-08-06.md) | When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings | Immediate | 重点学习 |
 | [2026-08-05](daily/2026/2026-08-05.md) | UEmbed: Unified Sparse and Dense Multimodal Embeddings | Immediate | 重点学习 |
-| [2026-08-04](daily/2026/2026-08-04.md) | TokTier: Exact Stateful Tokenization for Agentic LLM Serving | Immediate | 重点学习 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 416 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 343 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 416 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 419 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 347 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 419 |
 
 ## Why this repository exists
 

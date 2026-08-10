@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-08-10
+## 最新研究 · 2026-08-11
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 83 | 111 | 102 | 924 |
+| 10 | 86 | 114 | 104 | 926 |
 
-**今日深挖：** [The Bitter Lesson of Tool Calling](daily/2026/2026-08-10.md) · 即时价值 · 轻量试点
+**今日深挖：** [CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG](daily/2026/2026-08-11.md) · 即时价值 · 轻量试点
 
-**核心判断：** The Bitter Lesson of Tool Calling 直接命中 ai-agent 主线——据摘要，程序化工具调用（PTC，用能链式/并行的脚本替换僵化 JSON 调用）与原生 JSON 工具调用的系统性跨代际实证对比，回答了'该让 agent 写脚本调工具还是逐个 JSON 调工具'这个工程选型问题，标题致敬 Rich Sutton 的 Bitter Lesson 暗示可能有反直觉发现。AV-AIVAT 则命中 agent 评估与推理成本主线——'anytime-valid stopping 让 agent 对战评估在证据足够时立即停止、74x 更便宜且置信水平有效'，直接解决'该打多少局才能可信地判断 agent 强弱'的高频痛点。两者都属于即时工程价值，对构建 tool-use agent 与做 agent A/B 评估的团队有直接参考价值。
+**核心判断：** CoinRAG 把 RAG 的 KV cache 复用从 chunk 级降到 information nugget 级，在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿——回答了'RAG 检索上下文的缓存复用该做到多细'。SkillProx 用 proximal textual gradient descent 让 agent 技能自演化，引入显式 diagnosis-outcome 反馈并把删除作为一等公民机制——把 agent 技能管理从手动维护推向自动优化。Blast Radius 为 agentic coding 提供预测式内存管理层（估算 prompt reach + 可逆逐出 + 反复死内容识别），直接解决 coding agent 的 token 浪费与上下文膨胀。三者都是'今天就值得在工程上试'的工作。
 
-**建议动作：** 完成三件事：在团队一个真实 tool-use agent 任务上设计 PTC vs JSON 工具调用的最小对比实验（同一模型、同一工具集、两种调用范式）；评估 AV-AIVAT 的 anytime-valid stopping 能否接入现有 agent 评估流水线；为 MIST（选择性信任）、CalibForge（任务自动合成）、Resourced Authority（计算预算治理）维持趋势观察卡片。
+**建议动作：** 完成三件事：评估 CoinRAG 的 nugget 级 KV cache 复用思路能否接入现有 RAG 流水线（对比 chunk 级 vs 更细粒度的延迟-准确率权衡）；在团队技能库上设计 SkillProx proximal textual gradient descent 的概念验证（手动维护 vs 自动演化技能质量对比）；评估 Blast Radius 的预测式内存管理能否降低现有 coding agent 的 token 成本。为 CreativeInstruct（质量-创造力平衡）、Taxonomy-Driven（风险工具地图）、Interaction（多智能体涌现动力学）维持趋势观察卡片。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-08-11](daily/2026/2026-08-11.md) | CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG | 即时价值 | 轻量试点 |
 | [2026-08-10](daily/2026/2026-08-10.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
 | [2026-08-09](daily/2026/2026-08-09.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
 | [2026-08-08](daily/2026/2026-08-08.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
 | [2026-08-07](daily/2026/2026-08-07.md) | Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning | 即时价值 | 重点学习 |
 | [2026-08-06](daily/2026/2026-08-06.md) | When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings | 即时价值 | 重点学习 |
 | [2026-08-05](daily/2026/2026-08-05.md) | UEmbed: Unified Sparse and Dense Multimodal Embeddings | 即时价值 | 重点学习 |
-| [2026-08-04](daily/2026/2026-08-04.md) | TokTier: Exact Stateful Tokenization for Agentic LLM Serving | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 416 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 343 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 416 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 419 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 347 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 419 |
 
 ## 为什么做这个项目
 

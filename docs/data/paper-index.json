@@ -1,7 +1,765 @@
 {
-  "updated_at": "2026-08-10T04:32:51.590356",
-  "total": 1220,
+  "updated_at": "2026-08-11T04:33:26.482289",
+  "total": 1230,
   "papers": [
+    {
+      "title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
+      "authors": [
+        "Gyuwan Kim",
+        "Cheoneum Park",
+        "Tao Yang"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07458v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07458v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Recent optimization studies on Retrieval-Augmented Generation (RAG) have exploited chunk-level KV cache reuse to avoid processing long retrieved contexts for higher efficiency, while significant information redundancy and noise still remain in the coarse-grained chunks. This paper optimizes the Pareto frontier under low prefill latency constraints while maximizing accuracy by proposing CoinRAG (Contextualized Information Nugget KV Cache Reuse for Long-Context RAG). The name metaphorically reflec",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.IR",
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG"
+      ],
+      "score": 76.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07458v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07458v1"
+        }
+      ],
+      "llm_reason": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文以提升效率，但粗粒度 chunk 中仍存在显著信息冗余与噪声；本文在低 prefill 延迟约束下优化 Pareto 前沿（最大化准确率），提出 CoinRAG（Contextualized Information Nugget KV Cache Reuse）——从 chunk 级降到 information nugget 级的细粒度 KV cache 复用。'从 chunk 级降到 nugget 级 KV cache 复用、在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿'对任何构建长上下文 RAG 系统的团队有直接工程价值——它回答了'RAG 检索上下文的 KV cache 复用粒度该做到多细'这个效率-精度权衡问题。证据强度中等偏上：明确了优化目标（Pareto frontier under low prefill latency）与方法概念（nugget 级复用）。证据不足：全部 code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 CoinRAG 的具体 nugget 划分机制、定量对比结果（延迟下降幅度、准确率变化）缺失；nugget 的粒度定义与缓存命中率需正文确认。",
+      "id": "coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag",
+      "value_type": "immediate",
+      "matched_topics": [
+        "rag-knowledge",
+        "inference-serving",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "RAG / 知识系统：Recent optimization studies on Retrieval-Augmented Generation (RAG) have explo…",
+      "one_line_judgement": "今天值得试：CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chun…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag"
+    },
+    {
+      "title": "SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent",
+      "authors": [
+        "Mingxuan Zheng",
+        "Yujin Zhou",
+        "Chuxue Cao",
+        "Boqin Yin",
+        "Yuyao Zhang"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07449v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07449v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM agents increasingly adapt to recurring tasks by accumulating procedural knowledge in skills. These skills are lightweight, reusable textual artifacts that are loaded into the agent's context without weight updates. Recent methods refine skills through iterative task execution, failure diagnosis, and trajectory-guided text-space updates. However, existing frameworks lack explicit diagnosis--outcome feedback and treat deletion as a generic edit operation rather than a dedicated mechanism for c",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 74.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07449v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07449v1"
+        }
+      ],
+      "llm_reason": "SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（lightweight, reusable textual artifacts，加载进上下文无需权重更新）来适应重复任务；现有方法通过迭代任务执行、失败诊断、trajectory-guided text-space 更新来精炼技能，但缺乏显式 diagnosis-outcome 反馈，且把删除当作通用编辑操作而非专门机制；SkillProx 提出 proximal textual gradient descent 来自演化 agent 技能。'用 proximal textual gradient descent 让 agent 技能自演化 + 显式 diagnosis-outcome 反馈 + 删除作为一等公民机制'对构建可自我改进 agent 的团队有直接参考价值——它把 agent 技能管理从'手动维护'推向'自动优化'。证据强度中等偏上：方法设计清晰（proximal constraint + diagnosis-outcome feedback + dedicated deletion）。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 proximal textual gradient descent 的具体约束机制与定量结果缺失；技能演化的成功率、技能库规模、消融实验需正文确认。",
+      "id": "skillprox-self-evolving-agent-skills-via-proximal-textual-gradient-descent",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：LLM agents increasingly adapt to recurring tasks by accumulating procedural kn…",
+      "one_line_judgement": "今天值得试：SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（lightweight, reusable text",
+      "related_trends": [
+        "agentic-world-modeling",
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=skillprox-self-evolving-agent-skills-via-proximal-textual-gradient-descent"
+    },
+    {
+      "title": "Blast Radius",
+      "authors": [
+        "MY Pitsane",
+        "Hope Mogale"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07440v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07440v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Agentic coding faces growing problems of affordability and wasted tokens. We introduce Blast Radius, a predictive memory management layer that estimates an incoming prompt's reach through coupled context and code channels. NECROPHORESIS enables reversible eviction by archiving dead context verbatim, while Recurring Dead Matter (RDM) identifies and buries repeatedly occurring transcripts. We formulate reversible context eviction over a Polish context space, providing a measurable foundation for r",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "memory"
+      ],
+      "score": 73.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07440v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07440v1"
+        }
+      ],
+      "llm_reason": "Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic coding 面临可负担性与 token 浪费问题；Blast Radius 是一个预测式内存管理层，通过耦合的 context 与 code 通道估算输入 prompt 的影响范围（reach）；NECROPHORESIS 实现可逆逐出（archiving dead context verbatim），Recurring Dead Matter（RDM）识别并掩埋反复出现的转录；在 Polish context space 上形式化可逆上下文逐出。'预测式内存管理层（估算 prompt reach）+ 可逆上下文逐出（NECROPHORESIS）+ 反复死内容识别（RDM）'对构建 coding agent 的团队有直接工程价值——它直接解决 agentic coding 的 token 浪费与上下文膨胀问题。证据强度中等偏上：系统组件设计清晰（reach 预测 + 可逆逐出 + RDM），且有形式化基础（Polish context space）。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致形式化细节与定量评估结果缺失；Blast Radius 的 reach 预测准确率、token 节省幅度、可逆逐出的恢复机制需正文确认。",
+      "id": "blast-radius",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "context-engineering",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.15,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Coding Agent：Agentic coding faces growing problems of affordability and wasted tokens. We i…",
+      "one_line_judgement": "今天值得试：Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic co…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic coding 面临可负担性与 token 浪费问题；Bl",
+      "related_trends": [
+        "coding-agent",
+        "context-engineering",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=blast-radius"
+    },
+    {
+      "title": "CreativeInstruct: Scalably Teaching LLMs to Balance Quality, Creativity, and Diversity",
+      "authors": [
+        "Ananya Sahu",
+        "Mohit Bansal",
+        "Elias Stengel-Eskin"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07460v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07460v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "While post-training improves the capabilities of large language models (LLMs), it generally lowers their output diversity and creativity, negatively impacting tasks that explicitly require creativity (e.g., story generation) as well as those that require it implicitly, e.g., reinforcement learning (RL). We instead propose CreativeInstruct, a scalable instruction-tuning method that teaches LLMs to balance creative, base-model-like generations with the quality of post-trained models, by learning t",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [
+        "evaluation",
+        "inference"
+      ],
+      "score": 70.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07460v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07460v1"
+        }
+      ],
+      "llm_reason": "CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post-training）提升 LLM 能力但通常降低输出多样性与创造力，对显式需要创造力的任务（如故事生成）和隐式需要创造力的任务（如 RL）产生负面影响；作者提出 CreativeInstruct，一种可扩展的指令微调方法，教会 LLM 在创造力（base-model-like）与质量（post-trained）之间取得平衡。'后训练质量-创造力-多样性的可扩展平衡方法'对做 LLM 后训练与对齐的团队有趋势参考价值——它揭示了 post-training 的一个被忽视的代价（多样性/创造力损失）并提供缓解路径。证据强度中等：方法概念清晰（balance creative base-model generations with post-trained quality），但具体平衡机制需正文确认。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 CreativeInstruct 的具体训练机制、定量评估（在哪些 benchmark 上测创造力/多样性）缺失；与现有 post-training 方法（RLHF/DPO 等）的对比需正文确认。",
+      "id": "creativeinstruct-scalably-teaching-llms-to-balance-quality-creativity-and-diversity",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "推理与服务：While post-training improves the capabilities of large language models (LLMs),…",
+      "one_line_judgement": "值得继续观察：CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post-training）提升 LLM 能力但通常降低输出",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=creativeinstruct-scalably-teaching-llms-to-balance-quality-creativity-and-diversity"
+    },
+    {
+      "title": "Taxonomy-Driven Analysis of Open-Source AI Risk Mitigation Tools",
+      "authors": [
+        "Afreen Alam",
+        "Evgenija Popchanovska",
+        "Ana Gjorgjevikj",
+        "Maryan Rizinski",
+        "Lubomir T. Chitkushev"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07446v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07446v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Rapid adoption of large language models (LLMs) in enterprise settings has introduced operational, security, and governance risks. As generative AI applications move from pilot to production, manual harm identification and mitigation are becoming difficult to scale. Although many tools support model evaluation, adversarial testing, runtime guardrails, and observability, the tooling landscape remains fragmented. Tools are typically designed for specific engineering tasks and described in technical",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.CY"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG"
+      ],
+      "score": 65.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07446v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07446v1"
+        }
+      ],
+      "llm_reason": "Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘要，LLM 在企业中的快速采用引入了操作、安全和治理风险；随着生成式 AI 应用从试点走向生产，手动危害识别与缓解难以扩展；虽然许多工具支持模型评估、对抗性测试、运行时防护和可观测性，但工具生态仍碎片化；本文提供分类法驱动的开源 AI 风险缓解工具分析。'开源 AI 风险缓解工具的分类法驱动分析（覆盖评估、对抗测试、运行时防护、可观测性）'对做 AI 治理/安全工程的团队有参考价值——它提供了工具选型地图。证据强度中等偏上：作为 taxonomy/survey，覆盖面明确。证据不足：全部 code/benchmark 不适用（survey 性质）；摘要截断导致具体工具清单、分类维度与评估标准缺失；需确认是否提供工具对比矩阵与选型建议。摘要关键词 RAG 为宽泛命中，实际聚焦风险治理工具而非 RAG 系统。",
+      "id": "taxonomy-driven-analysis-of-open-source-ai-risk-mitigation-tools",
+      "value_type": "trend",
+      "matched_topics": [
+        "security-governance",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "安全与治理：Rapid adoption of large language models (LLMs) in enterprise settings has intr…",
+      "one_line_judgement": "值得继续观察：Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘要，LLM 在企业中的快速采用引入了操作、安全和治理",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=taxonomy-driven-analysis-of-open-source-ai-risk-mitigation-tools"
+    },
+    {
+      "title": "Interaction Creates Dynamical AI Behavior Absent in Isolation",
+      "authors": [
+        "Bella Xinrui Li",
+        "Frank Yingjie Huo",
+        "Neil F Johnson"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07457v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07457v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "What will happen when AI agents interact in daily life, e.g. when one AI starts bossing another around? We find a counterintuitive answer that opens new avenues for out-of-equilibrium Physics. When a boss AI directs a stream of messages at the subordinate AI while ignoring its replies, it drives the subordinate into an alien behavioral state that it would never have exhibited alone. Although the two AIs share the same well-defined (decoding) temperature, the subordinate neither copies its boss n",
+      "categories": [
+        "cs.AI",
+        "cond-mat.dis-nn",
+        "cond-mat.stat-mech",
+        "physics.soc-ph"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "score": 60.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07457v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07457v1"
+        }
+      ],
+      "llm_reason": "Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，当 AI agent 在日常中交互（如一个 AI 持续指挥另一个而忽略其回复）时，下属 AI 被驱动进入一种孤立状态下永远不会展现的'异化行为状态'（alien behavioral state）；尽管两个 AI 共享相同且定义良好的解码温度，下属既不复制其上司行为也不表现独立行为；这一发现为非平衡态物理（out-of-equilibrium physics）开辟新途径。'多智能体交互创造出孤立状态下不存在的动力学行为'是对 agent 交互涌现行为有理论启发的工作——它揭示了 agent 交互可以产生不可从个体属性预测的集体动力学。证据强度中等：现象描述清晰，理论框架（非平衡态物理）新颖。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致具体实验设置、'异化行为'的量化定义与可复现条件缺失；理论性较强（cond-mat 统计力学/社会物理），工程迁移需进一步验证。",
+      "id": "interaction-creates-dynamical-ai-behavior-absent-in-isolation",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：What will happen when AI agents interact in daily life, e.g. when one AI start…",
+      "one_line_judgement": "值得继续观察：Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，当 AI agent 在日常中交互（如一个 AI 持",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=interaction-creates-dynamical-ai-behavior-absent-in-isolation"
+    },
+    {
+      "title": "MirrorWorld: Taming Video Diffusion Models for Mirror Reflection Generation",
+      "authors": [
+        "Youjun Zhao",
+        "Alex Warren",
+        "Gary K. L. Tam",
+        "Rynson W. H. Lau"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07463v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07463v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Recent advances in video diffusion models (VDMs) have enabled high-fidelity video synthesis. However, generating mirror reflections remains challenging because the content within a mirror must remain consistent with the surrounding scene. Existing VDMs are not specifically designed to model scene-to-mirror relationships, which can lead to reflections with incorrect content or inconsistent spatial arrangements. We observe that mirror reflection generation involves two complementary challenges: de",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07463v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07463v1"
+        }
+      ],
+      "llm_reason": "MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围场景一致）；现有 VDM 未专门建模场景-镜子关系；本文将其分解为两个互补挑战（摘要截断）。'视频扩散模型中镜像反射生成的场景-镜子一致性建模'在视频生成领域有技术深度，但与团队以 Agent/LLM/RAG 为核心的技术栈直接迁移距离较远。具备长尾保存价值（多模态生成的场景一致性方法论可能对 world model 有间接启发）。证据强度中等：问题分解清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致两个互补挑战的具体定义与方法缺失；摘要关键词 benchmark/RAG 为宽泛命中，实际指视频生成评测而非 RAG/agent 系统。",
+      "id": "mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Recent advances in video diffusion models (VDMs) have enabled high-fidelity vi…",
+      "one_line_judgement": "值得先保存：MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围场景一致）；现有 VDM 未专门建模场景-镜子关系；",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation"
+    },
+    {
+      "title": "Strategy-first synthesis planning for complex natural products",
+      "authors": [
+        "Daniel Armstrong",
+        "Xuan-Vu Nguyen",
+        "Octavian Susanu",
+        "Gabriel Gibberd",
+        "Théo A. Neukomm"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07454v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07454v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The total synthesis of a complex molecule is among the most demanding intellectual and experimental feats in chemistry: a chemist must plan many steps ahead for how to assemble simple building blocks into an intricate target, devise backup strategies, and anticipate procedural challenges. It is also a profoundly creative activity. For half a century, efforts to automate the retrosynthetic design of natural products and other complex molecules have drawn on catalogued reactions, and the resulting",
+      "categories": [
+        "cs.MA",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "planning"
+      ],
+      "score": 42.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07454v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07454v1"
+        }
+      ],
+      "llm_reason": "Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的智力与实验工作，需要多步前瞻规划、备选策略与程序挑战预判；半个世纪以来自动化逆合成设计依赖编目反应（摘要截断）。'AI 辅助的复杂天然产物策略优先合成规划'在化学 AI 领域有方法论价值，但领域高度聚焦化学逆合成，与团队以 Agent/LLM/RAG 为核心的技术栈直接迁移距离较远。摘要关键词 agent/agentic/benchmark/planning 为宽泛命中（实际指化学合成规划 agent 而非通用 AI agent）。长尾保存价值有限，除非做化学/科学 AI。",
+      "id": "strategy-first-synthesis-planning-for-complex-natural-products",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：The total synthesis of a complex molecule is among the most demanding intellec…",
+      "one_line_judgement": "值得先保存：Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的智力与实验工作，需要多步前瞻规划、备选策略与程序挑战",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=strategy-first-synthesis-planning-for-complex-natural-products"
+    },
+    {
+      "title": "RIS-Aided mmWave Localization Under Cross-Link Interference via Beam-Domain ML Fingerprinting",
+      "authors": [
+        "Md Tarek Hassan",
+        "Dmitry Zelenchuk",
+        "Muhammad Ali Babar Abbasi"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07444v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07444v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Accurate user equipment (UE) localization is critical for beam management in reconfigurable intelligent surface (RIS)-assisted millimeter-wave (mmWave) based sixth-generation (6G) networks, especially if the direct base-station-UE links are unavailable. This paper proposes a beam-domain fingerprint framework that maps the received signal-to-noise ratio (SNR) across a small set of predefined RIS reflection states to the UE azimuth angle and range, without requiring channel state information (CSI)",
+      "categories": [
+        "eess.SP",
+        "cs.ET",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 30.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07444v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07444v1"
+        }
+      ],
+      "llm_reason": "RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain fingerprint 框架，将预定义 RIS 反射态上的接收 SNR 映射到 UE 方位角与距离，无需信道状态信息。领域聚焦电信 6G/毫米波/RIS 硬件定位，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（beam-domain ML fingerprinting）不可迁移。忽略，除非专门做电信定位。",
+      "id": "ris-aided-mmwave-localization-under-cross-link-interference-via-beam-domain-ml-fingerprinting",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.4,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：Accurate user equipment (UE) localization is critical for beam management in r…",
+      "one_line_judgement": "当前可忽略：RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain fingerprint 框架，将预定义 RIS 反",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=ris-aided-mmwave-localization-under-cross-link-interference-via-beam-domain-ml-fingerprinting"
+    },
+    {
+      "title": "An Exploratory Evaluation of LLM-Assisted Rewriting of Moderate-Complexity Financial Sentences for DisCoCat-Based Sentiment Analysis",
+      "authors": [
+        "Brian Llinas",
+        "Nikos Chrisochoides"
+      ],
+      "published": "2026-08-07",
+      "updated": "2026-08-07",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.07439v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07439v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Quantum natural language processing (QNLP) provides a grammar-aware framework for text modeling, and Distributional Compositional Categorical (DisCoCat) is one of its theoretically grounded formulations. Prior work on financial sentiment analysis has identified practical limitations of DisCoCat, including parser sensitivity, high simulation cost, and difficulty handling longer sentences. We study an LLM-assisted preprocessing workflow that uses controlled rewriting to compress, simplify, or deco",
+      "categories": [
+        "cs.CL",
+        "quant-ph"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG"
+      ],
+      "score": 28.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07439v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07439v1"
+        }
+      ],
+      "llm_reason": "DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QNLP 的理论基础之一，先前金融情感分析工作发现其实践局限（parser 敏感性、高模拟成本、长句处理困难）；本文研究 LLM 辅助预处理工作流（受控改写来压缩、简化或分解句子）。领域聚焦量子 NLP + 金融情感，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（DisCoCat 量子线路映射）不可迁移。摘要关键词 evaluation/RAG 为宽泛命中，实际指金融句子改写评估而非 agent/RAG 系统。忽略。",
+      "id": "an-exploratory-evaluation-of-llm-assisted-rewriting-of-moderate-complexity-financial-sentences-for-discocat-based-sentiment-analysis",
+      "value_type": "ignore",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 3.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 5.15,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 2.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "Multimodal Agent：Quantum natural language processing (QNLP) provides a grammar-aware framework …",
+      "one_line_judgement": "当前可忽略：DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QN…",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QNLP 的理论基础之一，先前金融情感分析工作发现其实践",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=an-exploratory-evaluation-of-llm-assisted-rewriting-of-moderate-complexity-financial-sentences-for-discocat-based-sentiment-analysis"
+    },
     {
       "title": "The Bitter Lesson of Tool Calling",
       "authors": [

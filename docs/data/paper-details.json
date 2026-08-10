@@ -1,6 +1,1327 @@
 {
-  "updated_at": "2026-08-10T04:32:52.468172",
+  "updated_at": "2026-08-11T04:33:27.356783",
   "papers": {
+    "coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag": {
+      "id": "coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag",
+      "title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
+      "authors": [
+        "Gyuwan Kim",
+        "Cheoneum Park",
+        "Tao Yang"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07458v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07458v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 76.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chun…",
+      "one_line_essence": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文以提升效率，但粗粒度 chunk 中仍存在显著信息冗余与噪声；本文在低 prefill 延迟约束下优化 Pareto 前沿（最大化准确率），提出 CoinRAG（Contextualized Information Nugget KV Cache Reuse）——从 chunk 级降到 information nugget 级的细粒度 KV cache 复用。'从 chunk 级降到 nugget 级 KV cache 复用、在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿'对任何构建长上下文 RAG 系统的团队有直接工程价值——它回答了'RAG 检索上下文的 KV cache 复用粒度该做到多细'这个效率-精度权衡问题。证据强度中等偏上：明确了优化目标（Pareto frontier under low prefill latency）与方法概念（nugget 级复用）。证据不足：全部 code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 CoinRAG 的具体 nugget 划分机制、定量对比结果（延迟下降幅度、准确率变化）缺失；nugget 的粒度定义与缓存命中率需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文以提升效率，但粗粒度 chunk 中仍存在显著信息冗余与噪声；本文在低 prefill 延迟约束下优化 Pareto 前沿（最大化准确率），提出 CoinRAG（Con",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "CoinRAG 直接命中 rag-knowledge 与 inference-serving 主线：据摘要，RAG 优化研究已利用 chunk 级 KV cache 复用来避免处理长检索上下文",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07458v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07458v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=coinrag-contextualized-information-nugget-kv-cache-reuse-for-long-context-rag",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "skillprox-self-evolving-agent-skills-via-proximal-textual-gradient-descent": {
+      "id": "skillprox-self-evolving-agent-skills-via-proximal-textual-gradient-descent",
+      "title": "SkillProx: Self-Evolving Agent Skills via Proximal Textual Gradient Descent",
+      "authors": [
+        "Mingxuan Zheng",
+        "Yujin Zhou",
+        "Chuxue Cao",
+        "Boqin Yin",
+        "Yuyao Zhang"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07449v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07449v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 74.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（…",
+      "one_line_essence": "SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（lightweight, reusable textual artifacts，加载进上下文无需权重更新）来适应重复任务；现有方法通过迭代任务执行、失败诊断、trajectory-guided text-space 更新来精炼技能，但缺乏显式 diagnosis-outcome 反馈，且把删除当作通用编辑操作而非专门机制；SkillProx 提出 proximal textual gradient descent 来自演化 agent 技能。'用 proximal textual gradient descent 让 agent 技能自演化 + 显式 diagnosis-outcome 反馈 + 删除作为一等公民机制'对构建可自我改进 agent 的团队有直接参考价值——它把 agent 技能管理从'手动维护'推向'自动优化'。证据强度中等偏上：方法设计清晰（proximal constraint + diagnosis-outcome feedback + dedicated deletion）。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 proximal textual gradient descent 的具体约束机制与定量结果缺失；技能演化的成功率、技能库规模、消融实验需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（lightweight, reusable textual artifacts，加载进上下文无需权重更新）来适应重复任务；现有方法通过迭代任务执行、失败诊断、trajectory-guided text-space 更新",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "SkillProx 直接命中 ai-agent 与 context-engineering 主线：据摘要，LLM agent 通过积累技能（lightweight, reusable text",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07449v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07449v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=skillprox-self-evolving-agent-skills-via-proximal-textual-gradient-descent",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "blast-radius": {
+      "id": "blast-radius",
+      "title": "Blast Radius",
+      "authors": [
+        "MY Pitsane",
+        "Hope Mogale"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07440v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07440v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.15,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 73.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic co…",
+      "one_line_essence": "Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic coding 面临可负担性与 token 浪费问题；Blast Radius 是一个预测式内存管理层，通过耦合的 context 与 code 通道估算输入 prompt 的影响范围（reach）；NECROPHORESIS 实现可逆逐出（archiving dead context verbatim），Recurring Dead Matter（RDM）识别并掩埋反复出现的转录；在 Polish context space 上形式化可逆上下文逐出。'预测式内存管理层（估算 prompt reach）+ 可逆上下文逐出（NECROPHORESIS）+ 反复死内容识别（RDM）'对构建 coding agent 的团队有直接工程价值——它直接解决 agentic coding 的 token 浪费与上下文膨胀问题。证据强度中等偏上：系统组件设计清晰（reach 预测 + 可逆逐出 + RDM），且有形式化基础（Polish context space）。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致形式化细节与定量评估结果缺失；Blast Radius 的 reach 预测准确率、token 节省幅度、可逆逐出的恢复机制需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic coding 面临可负担性与 token 浪费问题；Blast Radius 是一个预测式内存管理层，通过耦合的 context 与 code 通道估算输入 prompt 的影响范围（reach）；NECROPHORESIS",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "context-engineering",
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Blast Radius 直接命中 coding-agent 与 context-engineering 主线：据摘要，agentic coding 面临可负担性与 token 浪费问题；Bl",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07440v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07440v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=blast-radius",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=context-engineering",
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "creativeinstruct-scalably-teaching-llms-to-balance-quality-creativity-and-diversity": {
+      "id": "creativeinstruct-scalably-teaching-llms-to-balance-quality-creativity-and-diversity",
+      "title": "CreativeInstruct: Scalably Teaching LLMs to Balance Quality, Creativity, and Diversity",
+      "authors": [
+        "Ananya Sahu",
+        "Mohit Bansal",
+        "Elias Stengel-Eskin"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07460v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07460v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 70.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post…",
+      "one_line_essence": "CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post-training）提升 LLM 能力但通常降低输出多样性与创造力，对显式需要创造力的任务（如故事生成）和隐式需要创造力的任务（如 RL）产生负面影响；作者提出 CreativeInstruct，一种可扩展的指令微调方法，教会 LLM 在创造力（base-model-like）与质量（post-trained）之间取得平衡。'后训练质量-创造力-多样性的可扩展平衡方法'对做 LLM 后训练与对齐的团队有趋势参考价值——它揭示了 post-training 的一个被忽视的代价（多样性/创造力损失）并提供缓解路径。证据强度中等：方法概念清晰（balance creative base-model generations with post-trained quality），但具体平衡机制需正文确认。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致 CreativeInstruct 的具体训练机制、定量评估（在哪些 benchmark 上测创造力/多样性）缺失；与现有 post-training 方法（RLHF/DPO 等）的对比需正文确认。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post-training）提升 LLM 能力但通常降低输出多样性与创造力，对显式需要创造力的任务（如故事生成）和隐式需要创造力的任务（如 RL）产生负面影响；作者提出 CreativeInstruct，一种可扩展的指令微调方法",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "CreativeInstruct 命中 inference-serving 与 llm-evaluation 主线：据摘要，后训练（post-training）提升 LLM 能力但通常降低输出",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07460v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07460v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=creativeinstruct-scalably-teaching-llms-to-balance-quality-creativity-and-diversity",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "taxonomy-driven-analysis-of-open-source-ai-risk-mitigation-tools": {
+      "id": "taxonomy-driven-analysis-of-open-source-ai-risk-mitigation-tools",
+      "title": "Taxonomy-Driven Analysis of Open-Source AI Risk Mitigation Tools",
+      "authors": [
+        "Afreen Alam",
+        "Evgenija Popchanovska",
+        "Ana Gjorgjevikj",
+        "Maryan Rizinski",
+        "Lubomir T. Chitkushev"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07446v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07446v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 7.4,
+        "evidence": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 4.15,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 65.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘…",
+      "one_line_essence": "Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘要，LLM 在企业中的快速采用引入了操作、安全和治理风险；随着生成式 AI 应用从试点走向生产，手动危害识别与缓解难以扩展；虽然许多工具支持模型评估、对抗性测试、运行时防护和可观测性，但工具生态仍碎片化；本文提供分类法驱动的开源 AI 风险缓解工具分析。'开源 AI 风险缓解工具的分类法驱动分析（覆盖评估、对抗测试、运行时防护、可观测性）'对做 AI 治理/安全工程的团队有参考价值——它提供了工具选型地图。证据强度中等偏上：作为 taxonomy/survey，覆盖面明确。证据不足：全部 code/benchmark 不适用（survey 性质）；摘要截断导致具体工具清单、分类维度与评估标准缺失；需确认是否提供工具对比矩阵与选型建议。摘要关键词 RAG 为宽泛命中，实际聚焦风险治理工具而非 RAG 系统。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘要，LLM 在企业中的快速采用引入了操作、安全和治理风险；随着生成式 AI 应用从试点走向生产，手动危害识别与缓解难以扩展；虽然许多工具支持模型评估、对抗性测试、运行时防护和可观测性，但工具生态仍碎片化；本文提供分类法驱",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Taxonomy-Driven Analysis 命中 security-governance 与 llm-evaluation 主线：据摘要，LLM 在企业中的快速采用引入了操作、安全和治理",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07446v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07446v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=taxonomy-driven-analysis-of-open-source-ai-risk-mitigation-tools",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "interaction-creates-dynamical-ai-behavior-absent-in-isolation": {
+      "id": "interaction-creates-dynamical-ai-behavior-absent-in-isolation",
+      "title": "Interaction Creates Dynamical AI Behavior Absent in Isolation",
+      "authors": [
+        "Bella Xinrui Li",
+        "Frank Yingjie Huo",
+        "Neil F Johnson"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07457v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07457v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 60.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得继续观察：Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，…",
+      "one_line_essence": "Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，当 AI agent 在日常中交互（如一个 AI 持续指挥另一个而忽略其回复）时，下属 AI 被驱动进入一种孤立状态下永远不会展现的'异化行为状态'（alien behavioral state）；尽管两个 AI 共享相同且定义良好的解码温度，下属既不复制其上司行为也不表现独立行为；这一发现为非平衡态物理（out-of-equilibrium physics）开辟新途径。'多智能体交互创造出孤立状态下不存在的动力学行为'是对 agent 交互涌现行为有理论启发的工作——它揭示了 agent 交互可以产生不可从个体属性预测的集体动力学。证据强度中等：现象描述清晰，理论框架（非平衡态物理）新颖。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致具体实验设置、'异化行为'的量化定义与可复现条件缺失；理论性较强（cond-mat 统计力学/社会物理），工程迁移需进一步验证。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，当 AI agent 在日常中交互（如一个 AI 持续指挥另一个而忽略其回复）时，下属 AI 被驱动进入一种孤立状态下永远不会展现的'异化行为状态'（alien behavioral state）；尽管两个 AI 共享相",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Interaction Creates Dynamical AI Behavior 命中 ai-agent 主线并带来新颖理论视角：据摘要，当 AI agent 在日常中交互（如一个 AI 持",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07457v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07457v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=interaction-creates-dynamical-ai-behavior-absent-in-isolation",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation": {
+      "id": "mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation",
+      "title": "MirrorWorld: Taming Video Diffusion Models for Mirror Reflection Generation",
+      "authors": [
+        "Youjun Zhao",
+        "Alex Warren",
+        "Gary K. L. Tam",
+        "Rynson W. H. Lau"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07463v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07463v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 52.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围…",
+      "one_line_essence": "MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围场景一致）；现有 VDM 未专门建模场景-镜子关系；本文将其分解为两个互补挑战（摘要截断）。'视频扩散模型中镜像反射生成的场景-镜子一致性建模'在视频生成领域有技术深度，但与团队以 Agent/LLM/RAG 为核心的技术栈直接迁移距离较远。具备长尾保存价值（多模态生成的场景一致性方法论可能对 world model 有间接启发）。证据强度中等：问题分解清晰。证据不足：全部 code/benchmark 暂无待核验；摘要截断导致两个互补挑战的具体定义与方法缺失；摘要关键词 benchmark/RAG 为宽泛命中，实际指视频生成评测而非 RAG/agent 系统。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围场景一致）；现有 VDM 未专门建模场景-镜子关系；本文将其分解为两个互补挑战（摘要截断）。'视频扩散模型中镜像反射生成的场景-镜子一致性建模'在视频生成领域有技术深度，但与团队以 Agent/LLM/RAG 为核心的技",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "MirrorWorld 聚焦视频扩散模型的镜像反射生成：据摘要，视频扩散模型已实现高保真视频合成，但生成镜像反射仍具挑战性（镜子内容须与周围场景一致）；现有 VDM 未专门建模场景-镜子关系；",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-09-01"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07463v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07463v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=mirrorworld-taming-video-diffusion-models-for-mirror-reflection-generation",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "strategy-first-synthesis-planning-for-complex-natural-products": {
+      "id": "strategy-first-synthesis-planning-for-complex-natural-products",
+      "title": "Strategy-first synthesis planning for complex natural products",
+      "authors": [
+        "Daniel Armstrong",
+        "Xuan-Vu Nguyen",
+        "Octavian Susanu",
+        "Gabriel Gibberd",
+        "Théo A. Neukomm"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07454v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07454v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 42.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "值得先保存：Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的…",
+      "one_line_essence": "Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的智力与实验工作，需要多步前瞻规划、备选策略与程序挑战预判；半个世纪以来自动化逆合成设计依赖编目反应（摘要截断）。'AI 辅助的复杂天然产物策略优先合成规划'在化学 AI 领域有方法论价值，但领域高度聚焦化学逆合成，与团队以 Agent/LLM/RAG 为核心的技术栈直接迁移距离较远。摘要关键词 agent/agentic/benchmark/planning 为宽泛命中（实际指化学合成规划 agent 而非通用 AI agent）。长尾保存价值有限，除非做化学/科学 AI。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的智力与实验工作，需要多步前瞻规划、备选策略与程序挑战预判；半个世纪以来自动化逆合成设计依赖编目反应（摘要截断）。'AI 辅助的复杂天然产物策略优先合成规划'在化学 AI 领域有方法论价值，但领域高度聚焦化学逆合成，与团队",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Strategy-first synthesis planning 聚焦复杂天然产物的全合成规划：据摘要，复杂分子全合成是化学中最具挑战性的智力与实验工作，需要多步前瞻规划、备选策略与程序挑战",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-09-01"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07454v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07454v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=strategy-first-synthesis-planning-for-complex-natural-products",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "ris-aided-mmwave-localization-under-cross-link-interference-via-beam-domain-ml-fingerprinting": {
+      "id": "ris-aided-mmwave-localization-under-cross-link-interference-via-beam-domain-ml-fingerprinting",
+      "title": "RIS-Aided mmWave Localization Under Cross-Link Interference via Beam-Domain ML Fingerprinting",
+      "authors": [
+        "Md Tarek Hassan",
+        "Dmitry Zelenchuk",
+        "Muhammad Ali Babar Abbasi"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07444v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07444v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 30.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain…",
+      "one_line_essence": "RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain fingerprint 框架，将预定义 RIS 反射态上的接收 SNR 映射到 UE 方位角与距离，无需信道状态信息。领域聚焦电信 6G/毫米波/RIS 硬件定位，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（beam-domain ML fingerprinting）不可迁移。忽略，除非专门做电信定位。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain fingerprint 框架，将预定义 RIS 反射态上的接收 SNR 映射到 UE 方位角与距离，无需信道状态信息。领域聚焦电信 6G/毫米波/RIS 硬件定位，与团队 AI 工程/Agent/RAG/推理技术栈直接",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "RIS-Aided mmWave Localization 聚焦 6G 网络中 RIS 辅助毫米波定位：据摘要，提出 beam-domain fingerprint 框架，将预定义 RIS 反",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07444v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07444v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=ris-aided-mmwave-localization-under-cross-link-interference-via-beam-domain-ml-fingerprinting",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "an-exploratory-evaluation-of-llm-assisted-rewriting-of-moderate-complexity-financial-sentences-for-discocat-based-sentiment-analysis": {
+      "id": "an-exploratory-evaluation-of-llm-assisted-rewriting-of-moderate-complexity-financial-sentences-for-discocat-based-sentiment-analysis",
+      "title": "An Exploratory Evaluation of LLM-Assisted Rewriting of Moderate-Complexity Financial Sentences for DisCoCat-Based Sentiment Analysis",
+      "authors": [
+        "Brian Llinas",
+        "Nikos Chrisochoides"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-07",
+      "url": "http://arxiv.org/abs/2608.07439v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.07439v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-11",
+      "first_deep_dive_daily": "2026-08-11",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.4,
+        "evidence": 4.95,
+        "engineering_testability": 5.15,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 2.2
+      },
+      "score": 28.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QN…",
+      "one_line_essence": "DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QNLP 的理论基础之一，先前金融情感分析工作发现其实践局限（parser 敏感性、高模拟成本、长句处理困难）；本文研究 LLM 辅助预处理工作流（受控改写来压缩、简化或分解句子）。领域聚焦量子 NLP + 金融情感，与团队 AI 工程/Agent/RAG/推理技术栈直接相关性极低，方法论（DisCoCat 量子线路映射）不可迁移。摘要关键词 evaluation/RAG 为宽泛命中，实际指金融句子改写评估而非 agent/RAG 系统。忽略。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QNLP 的理论基础之一，先前金融情感分析工作发现其实践局限（parser 敏感性、高模拟成本、长句处理困难）；本文研究 LLM 辅助预处理工作流（受控改写来压缩、简化或分解句子）。领域聚焦量子 NLP + 金融情感，与团队",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "DisCoCat Sentiment Analysis 聚焦量子自然语言处理（QNLP）用于金融情感分析：据摘要，DisCoCat 是 QNLP 的理论基础之一，先前金融情感分析工作发现其实践",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.07439v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.07439v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=an-exploratory-evaluation-of-llm-assisted-rewriting-of-moderate-complexity-financial-sentences-for-discocat-based-sentiment-analysis",
+      "daily_path": "daily-detail.html?date=2026-08-11",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
     "the-bitter-lesson-of-tool-calling": {
       "id": "the-bitter-lesson-of-tool-calling",
       "title": "The Bitter Lesson of Tool Calling",

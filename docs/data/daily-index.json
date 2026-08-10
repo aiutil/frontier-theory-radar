@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-10T04:32:51.587949",
+  "updated_at": "2026-08-11T04:33:26.479798",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-11",
+      "title": "论文价值发现日报 - 2026-08-11",
+      "deep_dive_title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
+      "deep_dive_url": "http://arxiv.org/abs/2608.07458v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：评估 CoinRAG 的 nugget 级 KV cache 复用思路能否接入现有 RAG 流水线（对比 chunk 级 vs 更细粒度的延迟-准确率权衡）；在团队技能库上设计 SkillProx proximal textual gradient descent 的概念验证（手动维护 vs 自动演化技能质量对比）；评估 Blast Radius 的预测式内存管理能否降低现有 coding agent 的 token 成本。为 CreativeInstruct（质量-创造力平衡）、Taxonomy-Driven（风险工具地图）、Interaction（多智能体涌现动力学）维持趋势观察卡片。",
+      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 CoinRAG、SkillProx、Blast Radius、CreativeInstruct、Taxonomy-Driven、Strategy-first synthesis、MirrorWorld 共 7 篇摘要截断。CoinRAG 的 nugget 划分机制与定量结果、SkillProx 的 proximal constraint 细节与技能演化成功率、Blast Radius 的 reach 预测准确率与 token 节省幅度、CreativeInstruct 的具体平衡机制、Taxonomy-Driven 的工具清单与分类维度、Interaction 的'异化行为'量化定义均需正文确认。另：MirrorWorld 摘要关键词 benchmark/RAG、Strategy-first 的 agent/agentic/benchmark/planning、DisCoCat 的 evaluation/RAG 均为宽泛命中，已在评分中剔除。",
+      "one_line_judgement": "CoinRAG 把 RAG 的 KV cache 复用从 chunk 级降到 information nugget 级，在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿——回答了'RAG 检索上下文的缓存复用该做到多细'。SkillProx 用 proximal textual gradient descent 让 agent 技能自演化，引入显式 diagnosis-outcome 反馈并把删除作为一等公民机制——把 agent 技能管理从手动维护推向自动优化。Blast Radius 为 agentic coding 提供预测式内存管理层（估算 prompt reach + 可逆逐出 + 反复死内容识别），直接解决 coding agent 的 token 浪费与上下文膨胀。三者都是'今天就值得在工程上试'的工作。",
+      "path": "daily-detail.html?date=2026-08-11"
+    },
     {
       "date": "2026-08-10",
       "title": "论文价值发现日报 - 2026-08-10",
@@ -378,19 +391,6 @@
       "max_uncertainty": "最大不确定性是外部可复现资产缺失：今日前五篇论文的代码、benchmark、Papers with Code 链接均为空，当前证据仅基于 arXiv 摘要与论文自述，需后续核验。",
       "one_line_judgement": "UniClawBench 将 Agent 能力定义从单轮问答升级为多轮主动执行，直接可用作自家 Agent 产品的对标评测；SLORR 无状态、无额外参数、无需 SVD，可即插即用集成到训练 pipeline，对边缘部署尤其有价值。",
       "path": "daily-detail.html?date=2026-07-13"
-    },
-    {
-      "date": "2026-07-12",
-      "title": "论文价值发现日报 - 2026-07-12",
-      "deep_dive_title": "UniClawBench: A Universal Benchmark for Proactive Agents on Real-World Tasks",
-      "deep_dive_url": "http://arxiv.org/abs/2607.08768v1",
-      "decision": "重点学习",
-      "value_type": "trend",
-      "value_type_label": "趋势价值",
-      "daily_action": "① 把 UniClawBench 的能力正交轴思路套到本团队 Agent eval 上做重构草案；② 在一条 SFT 流水线插入 SLORR 做最小 A/B；③ 给 RAG 语料预处理加一个 kNN 图社区发现的中间步骤。",
-      "max_uncertainty": "主要不确定性：(1) 五篇均为 2026-07-09 新发，代码/数据集链接均暂缺（待核验），可复现性未验证；(2) UniClawBench 与 AUTOPILOT-VQA 的数据集规模与标注协议未明，将决定基准可信度；(3) SLORR 缺数十亿参数尺度证据，泛化性待验证；(4) fetch 阶段部分论文 keywords 被误标（如把理论论文标为 RAG），已手动修正分类。",
-      "one_line_judgement": "它直击 Agent 工程最大评测缺口，把评测从‘单能力点的聚合分数’重构为‘按能力正交分解的任务分类法’，让失败可被归因；对任何自研 Agent 团队都是可立刻对照的评测骨架。",
-      "path": "daily-detail.html?date=2026-07-12"
     }
   ]
 }
