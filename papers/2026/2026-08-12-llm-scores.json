@@ -1,0 +1,64 @@
+{
+  "by_url": {
+    "https://arxiv.org/abs/2608.07532": {
+      "score": 72,
+      "value_type": "immediate",
+      "reason": "Dynamic Coalition Formation 直接命中 ai-agent 主线：据摘要，现代 agentic AI 系统组合多个异构技能 LLM agent，但多数架构要么固定通信、要么全广播，二者在 agent 数与通信链增加时都会推高 token 成本、延迟、冗余与错误传播；本文把 agent 选择与通信建模为合作博弈，提出任务条件净效用 U(C|x)=V(C|x)-Σc_i，分离联盟层价值与个体成本，并引入通信定价。'用合作博弈论对多 agent 联盟形成与通信定价建模（任务条件净效用 + 通信定价）'对构建多 agent 系统的团队有直接工程价值——它把'该激活哪些 agent、谁该跟谁通信'从一个经验问题变成一个可优化的效用问题，直接关系多 agent 系统的成本控制（token/延迟/冗余）。证据强度中等偏上：博弈模型与效用函数定义清晰，且关键词含 benchmark/evaluation 表明有实验。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致联盟形成算法（如 Shapley/核心解/贪心）、通信定价机制与定量对比结果缺失；与固定/广播基线的 token 成本下降幅度需正文确认。关键词 RAG 为宽泛命中，实际聚焦多 agent 通信优化而非检索增强。",
+      "matched_topics": ["ai-agent", "inference-serving"]
+    },
+    "https://arxiv.org/abs/2608.07528": {
+      "score": 70,
+      "value_type": "immediate",
+      "reason": "The Knowing-Saying Gap 直接命中 llm-evaluation 与 security-governance 主线：据摘要，线性探针能以近乎完美准确率检测语言模型中被破坏的上下文，但这并不能转化为可靠的失败预测；跨多跳算术链，检测破坏的探针对最终答案正确性无信息量；被强制进入结构化置信度格式的模型坍缩到两个不可区分错误率的值；探针跨跳持久性失效。'探针能“看到”错误但置信度“说不出”——探针检测能力与失败预测能力的解离'对做 LLM 部署监控的团队有直接工程价值——它是一篇反例/警示性工作，直接质疑'用探针做运行时错误检测'和'用结构化置信度做可靠性保证'两类常见做法的有效性，对设计幻觉监控/可信度评估的团队是关键反证。证据强度高：明确描述了多组实验发现（多跳算术链、探针跨跳持久性、结构化置信度坍缩）且为负面/反直觉结果，证据可信度高。证据不足：code/benchmark 暂无待核验；摘要截断导致具体探针架构、模型规模、定量准确率/校准指标缺失；多跳算术链以外的任务泛化性需正文确认。",
+      "matched_topics": ["llm-evaluation", "security-governance"]
+    },
+    "https://arxiv.org/abs/2608.07538": {
+      "score": 68,
+      "value_type": "immediate",
+      "reason": "When LLM Agents Negotiate 命中 ai-agent 与 llm-evaluation 主线：据摘要，随着 LLM agent 从决策支持走向自主采购，企业需知道委托谈判者是否创造价值、是否可预测地分配价值、是否避免亏损合同；研究一个典型供应链议价问题（拥有私人需求信息的买方与无信息卖方谈判数量-支付合同），用 9840 次 LLM-to-LLM 谈判对 9 个 OpenAI/Google/Alibaba 模型与经验证的完美贝叶斯均衡做基准对比。'用 9840 次 LLM 谈判对 9 个模型与完美贝叶斯均衡做基准——回答“LLM 能否在私人信息下可靠议价”'对构建自主交易/采购 agent 的团队有直接参考价值。证据强度高：实验规模大（9840 次谈判、9 模型），且有明确理论基准（完美贝叶斯均衡）。证据不足：code/benchmark 暂无待核验；摘要截断导致具体 9 个模型清单、价值创造/分配/亏损率定量结果缺失；任务为单一供应链议价场景，泛化到其他议价/合同类型需正文确认。",
+      "matched_topics": ["ai-agent", "llm-evaluation"]
+    },
+    "https://arxiv.org/abs/2608.07533": {
+      "score": 66,
+      "value_type": "trend",
+      "reason": "MetaSpace 命中 multimodal-agent 与 llm-evaluation 主线：据摘要，具身 agent 评估主要依赖两种范式——手工标注的 VQA 对与高层任务完成指标（导航/操作成功率）；前者劳动密集且标注质量不一，后者可能掩盖关键脆弱性（agent 完成任务却隐藏缺陷）；本文提出 MetaSpace，用蜕变测试（metamorphic testing）评估具身 agent 的空间认知。'用蜕变测试评估具身 agent 空间认知——绕开手工 VQA 与粗粒度任务完成指标的双盲区'对做具身/多模态 agent 评估的团队有趋势参考价值，它提供了第三种评估范式（基于蜕变关系的系统性扰动测试）。证据强度中等偏上：评估方法设计清晰（蜕变测试 + 空间认知聚焦）。证据不足：code/benchmark 暂无待核验；摘要截断导致蜕变关系定义、被测 agent 清单、定量脆弱性发现缺失；关键词 RAG 为宽泛命中，实际聚焦具身 agent 空间认知评估。",
+      "matched_topics": ["multimodal-agent", "llm-evaluation"]
+    },
+    "https://arxiv.org/abs/2608.07524": {
+      "score": 63,
+      "value_type": "trend",
+      "reason": "Data-Centric Parallel (DCP) 命中 inference-serving 主线：据摘要，在变长长序列上训练深度学习模型有显著计算挑战；现有方法在效率与易用性间艰难权衡——静态配置导致负载不均低效，复杂方法引入显著复杂度与代码改动；DCP 核心原则是让数据本身驱动运行时，据摘要截断处判断其通过数据特性决定并行/调度策略来打破该权衡。'让数据本身驱动运行时以打破变长长序列训练的效率-易用性权衡'对做大规模训练系统的团队有趋势参考价值。证据强度中等：问题与核心原则清晰，但具体机制（据摘要截断）需正文确认。证据不足：code/benchmark 暂无待核验；摘要截断导致 DCP 具体运行时机制、定量效率提升（吞吐/内存）、与现有序列并行方法的对比缺失；团队作者是 Yang You（ sequences parallelism 领域），可信度较高但仍需正文核验。",
+      "matched_topics": ["inference-serving"]
+    },
+    "https://arxiv.org/abs/2608.07474": {
+      "score": 58,
+      "value_type": "trend",
+      "reason": "Flow-by-Flow 命中 security-governance 主线：据摘要，先前工作表明在高损失域中当 AI 输出速率 V 超过人类认知容量 C_max 时人在环监督在结构上不可持续；但操作性约束不是 V 本身而是 V×L（L 为单项认知负载，含分诊、判断、响应）；三者对 AI 能力提升响应不对称——分诊成本不随模型变强而下降（因为语义不可判定性是通用检测器内禀的）；据摘要判断本文提出 flow-by-flow 的内容判断旁路来治理高损失域 AI 输出。'把人在环瓶颈从 V 重新定义为 V×L，并指出分诊成本不可随模型能力下降——为高损失域 AI 输出治理提供结构性分析'对做 AI 输出审核/治理工程的团队有趋势参考价值。证据强度中等：结构性约束（V×L）与不对称响应分析清晰，属概念/立场性分析。证据不足：code/benchmark 不适用（概念性工作）；摘要截断导致 flow-by-flow 旁路的具体机制、定量或案例验证缺失；摘要关键词 evaluation 为宽泛命中，实际聚焦治理框架而非通用评测。",
+      "matched_topics": ["security-governance"]
+    },
+    "https://arxiv.org/abs/2608.07530": {
+      "score": 55,
+      "value_type": "long_tail",
+      "reason": "NL2SHACL-Bench 命中 rag-knowledge 与 llm-evaluation 的边缘：据摘要，SHACL 是验证 RDF 知识图谱一致性的核心技术，但编写 SHACL shape 需多数领域专家缺乏的技术专长；将自然语言需求翻译为 SHACL 可降低门槛；但目前无专用 NL2SHACL benchmark，且评估生成 shape 需超越字符串比较（语义等价 shape 可有序列化与结构差异）；本文构建 NL2SHACL benchmark 套件。'自然语言到 SHACL 的专用 benchmark + 超越字符串比较的语义等价评估方法'对做知识图谱/结构化约束生成的团队有长尾保存价值——NL2SHACL 是 NL2* 任务族的一个具体实例，其语义等价评估方法可迁移到其他结构化生成评测。证据强度中等偏上：benchmark 构建目标与评估难点清晰。证据不足：code/benchmark 暂无待核验；摘要截断导致 benchmark 规模、shape 数量、基线模型、定量指标缺失；领域聚焦知识图谱约束，与团队以 Agent/LLM 为核心的技术栈直接迁移距离中等。",
+      "matched_topics": ["rag-knowledge", "llm-evaluation"]
+    },
+    "https://arxiv.org/abs/2608.07473": {
+      "score": 48,
+      "value_type": "long_tail",
+      "reason": "Argumentative Foundation for Evaluative AI 命中 ai-agent 与 llm-evaluation 的理论侧：据摘要，Evaluative AI（EAI）通过呈现竞争假设及其正反证据来支持人类决策（而非给单一推荐）；本文倡导计算论证（computational argumentation）作为为可解释、可争辩 EAI 提供形式化可计算基础的特别合适范式，为分布式与人本 EAI 研究议程奠基。'用计算论证为 Evaluative AI 提供形式化基础（可解释 + 可争辩）'是立场性/议程性工作，对关注可解释决策与论证式 AI 的团队有理论储备价值。证据强度偏弱：属 position paper（立场/议程），无实验/定量证据，主要为概念论证。证据不足：code/benchmark 不适用（立场论文）；摘要截断导致具体论证形式化框架、与现有 EAI 实现的对接缺失；作为研究议程其短期工程可转化性低，需长期跟踪是否有实现跟进。",
+      "matched_topics": ["ai-agent", "llm-evaluation"]
+    },
+    "https://arxiv.org/abs/2608.07480": {
+      "score": 35,
+      "value_type": "ignore",
+      "reason": "Emotion in active inference driving 聚焦用主动推理（active inference）建模人类驾驶中的情感状态：据摘要，主动推理已用于建模生物与人工系统的适应性行为并已应用于人类驾驶，但现有驾驶主动推理模型未处理交通中一个重要行为决定因素——情感状态；本文在非交通领域已有主动推理情感研究基础上扩展到驾驶场景。领域聚焦驾驶行为建模 + 情感认知建模（cs.HC/cs.RO），与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远。主动推理框架虽有理论趣味但驾驶情感建模的方法论不可直接迁移到 LLM agent 工程。code/benchmark 暂无待核验。忽略，除非专门做自动驾驶/具身认知建模。摘要关键词 agent/inference 为宽泛命中（active inference 是理论框架名，非 LLM agent）。",
+      "matched_topics": []
+    },
+    "https://arxiv.org/abs/2608.07476": {
+      "score": 30,
+      "value_type": "ignore",
+      "reason": "Determinization in Structure Theories 聚焦形式逻辑与结构理论的形式化框架：据摘要，发展从多元结构理论构造规范解释的形式框架；结构理论是三元组 T=(Σ,A,I)（签名、公理、推理策略），其可接受解释族收集所有全局一致的结构结论赋值；区分三级规范化（闭包稳定、全局完成、确定化）。领域聚焦 cs.LO（数理逻辑）与抽象结构理论，属纯理论/形式化工作，与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接相关性极低，方法论（结构理论的闭包/可比性/联合可接受性）不可迁移到 LLM agent 工程。code/benchmark 不适用（纯理论）。忽略。摘要关键词 inference 为宽泛命中（指形式推理策略而非 LLM 推理）。",
+      "matched_topics": []
+    }
+  }
+}
