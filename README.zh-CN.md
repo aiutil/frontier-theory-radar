@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-08-12
+## 最新研究 · 2026-08-13
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 89 | 117 | 106 | 928 |
+| 10 | 90 | 120 | 109 | 931 |
 
-**今日深挖：** [Dynamic Coalition Formation and Communication Pricing in Skill-Based Agentic AI Systems](daily/2026/2026-08-12.md) · 即时价值 · 轻量试点
+**今日深挖：** [Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation](daily/2026/2026-08-13.md) · 即时价值 · 轻量试点
 
-**核心判断：** Dynamic Coalition Formation 把'该激活哪些 agent、谁该跟谁通信'从经验问题变成可优化的合作博弈效用问题（任务条件净效用 U(C|x)=V(C|x)-Σc_i + 通信定价），直接关系多 agent 系统的 token/延迟/冗余成本控制。The Knowing-Saying Gap 是一篇反例/警示性工作——探针能近乎完美地检测被破坏上下文，却对最终答案正确性毫无预测力，被强制结构化的置信度坍缩到两个不可区分错误率的值；它直接质疑'用探针做运行时错误检测'和'用结构化置信度做可靠性保证'两类常见做法。When LLM Agents Negotiate 用 9840 次 LLM-to-LLM 谈判对 9 个模型与完美贝叶斯均衡做基准，回答'LLM 能否在私人信息下可靠议价'。三者都是'今天就值得在工程/评估上参考'的工作。
+**核心判断：** Test-Time Self-Evolving 解决一个实际部署瓶颈——GUI agent 模型冻结后无法适配未见界面，其'探索→反思→on-policy 自蒸馏'闭环无需人工标注即可运行，直接关系 GUI/自动化 agent 的部署鲁棒性。How to Verify Consistency of Probabilistic Claims 把'AI 是否诚实报告概率'从信任问题变成可验证的密码学问题（interactive PCP），且作者阵容极强（Bengio + Goldwasser 图灵奖级），对 AI 安全/治理方向是强信号。Surgical WAM 代表世界模型范式向更多具身场景的扩展——用廉价视频替代昂贵动作标注来学习操作策略。
 
-**建议动作：** 完成三件事：用 Coalition 的合作博弈效用模型审计现有多 agent 编排（哪些通信链是必要的、能否用通信定价裁剪冗余、联盟层价值与个体成本是否分离）；把 Knowing-Saying Gap 的三组反证纳入团队 LLM 监控设计复核清单（探针检测≠失败预测、结构化置信度≠校准保证）；参考 Negotiate 的 9 模型 × 完美贝叶斯均衡基准为自主交易 agent 设计上线门槛。为 MetaSpace、DCP、Flow-by-Flow 维持趋势观察卡片。
+**建议动作：** 完成三件事：评估 Test-Time Self-Evolving 的'探索→反思→自蒸馏'闭环能否迁移到团队的 GUI/自动化 agent 场景——盘点现有部署后自适应方案的盲区（是否有反思信号、自蒸馏是否稳定、对新界面的适配质量如何）；为 How to Verify Consistency 建立趋势观察卡片（跟踪是否有从理论到 LLM 概率验证的工程化跟进，关注 Bengio/Goldwasser 后续工作）；评估 Surgical WAM 的世界模型范式在团队具身/多模态场景上的适用性（是否有廉价视频源可替代昂贵标注）。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-08-13](daily/2026/2026-08-13.md) | Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation | 即时价值 | 轻量试点 |
 | [2026-08-12](daily/2026/2026-08-12.md) | Dynamic Coalition Formation and Communication Pricing in Skill-Based Agentic AI Systems | 即时价值 | 轻量试点 |
 | [2026-08-11](daily/2026/2026-08-11.md) | CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG | 即时价值 | 轻量试点 |
 | [2026-08-10](daily/2026/2026-08-10.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
 | [2026-08-09](daily/2026/2026-08-09.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
 | [2026-08-08](daily/2026/2026-08-08.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
 | [2026-08-07](daily/2026/2026-08-07.md) | Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning | 即时价值 | 重点学习 |
-| [2026-08-06](daily/2026/2026-08-06.md) | When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 420 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 352 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 420 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 422 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 356 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 422 |
 
 ## 为什么做这个项目
 

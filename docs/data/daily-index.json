@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-12T04:34:01.205157",
+  "updated_at": "2026-08-13T04:33:27.334136",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-13",
+      "title": "论文价值发现日报 - 2026-08-13",
+      "deep_dive_title": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
+      "deep_dive_url": "http://arxiv.org/abs/2608.11191v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：评估 Test-Time Self-Evolving 的'探索→反思→自蒸馏'闭环能否迁移到团队的 GUI/自动化 agent 场景——盘点现有部署后自适应方案的盲区（是否有反思信号、自蒸馏是否稳定、对新界面的适配质量如何）；为 How to Verify Consistency 建立趋势观察卡片（跟踪是否有从理论到 LLM 概率验证的工程化跟进，关注 Bengio/Goldwasser 后续工作）；评估 Surgical WAM 的世界模型范式在团队具身/多模态场景上的适用性（是否有廉价视频源可替代昂贵标注）。",
+      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 Surgical WAM、ConVAWG、SAE Instability、Grothendieck、Test-Time Self-Evolving、Group Rec、TrustNLP、Quantum Softmax 共 8 篇摘要截断。Test-Time Self-Evolving 的闭环组件设计与定量提升、How to Verify 的 PCP soundness 参数与电路规模约束、Surgical WAM 的 WAM 架构与数据效率提升、MultiModal Code-Switching 的交错机制与对比基线均需正文确认。另：Test-Time Self-Evolving/Surgical WAM/TrustNLP 的关键词 RAG 为宽泛命中，已在评分中剔除。",
+      "one_line_judgement": "Test-Time Self-Evolving 解决一个实际部署瓶颈——GUI agent 模型冻结后无法适配未见界面，其'探索→反思→on-policy 自蒸馏'闭环无需人工标注即可运行，直接关系 GUI/自动化 agent 的部署鲁棒性。How to Verify Consistency of Probabilistic Claims 把'AI 是否诚实报告概率'从信任问题变成可验证的密码学问题（interactive PCP），且作者阵容极强（Bengio + Goldwasser 图灵奖级），对 AI 安全/治理方向是强信号。Surgical WAM 代表世界模型范式向更多具身场景的扩展——用廉价视频替代昂贵动作标注来学习操作策略。",
+      "path": "daily-detail.html?date=2026-08-13"
+    },
     {
       "date": "2026-08-12",
       "title": "论文价值发现日报 - 2026-08-12",
@@ -378,19 +391,6 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-07-15"
-    },
-    {
-      "date": "2026-07-14",
-      "title": "论文价值发现日报 - 2026-07-14",
-      "deep_dive_title": "Scalable Visual Pretraining for Language Intelligence",
-      "deep_dive_url": "http://arxiv.org/abs/2607.09657v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成两件事：审查现有文档智能/RAG pipeline 中的视觉信息丢失环节并形成被丢弃信号清单；用 CSB 数据集对自家 VLM 做一轮复杂场景认知盲区测试。",
-      "max_uncertainty": "最大不确定性是外部可复现资产缺失：今日前五篇论文的代码、benchmark、Papers with Code 链接均为空，当前证据仅基于 arXiv 摘要与论文自述，需后续核验。视觉预训练的数据规模与下游增益数据、VEXAIoT 在真实 IoT 固件上的有效性均为关键未知项。",
-      "one_line_judgement": "视觉预训练论文论证了'纯文本会丢弃不可恢复的语义'——公式排版、图表空间关系被 OCR 管线全部抹掉，而多模态预训练可在源端保留这些信号；VLM 错误演进的十年回溯则提供了从'准不准'到'为什么错'的系统性诊断框架，可立即转化为回归测试套件。",
-      "path": "daily-detail.html?date=2026-07-14"
     }
   ]
 }

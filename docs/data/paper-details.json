@@ -1,6 +1,1318 @@
 {
-  "updated_at": "2026-08-12T04:34:02.082863",
+  "updated_at": "2026-08-13T04:33:28.227322",
   "papers": {
+    "test-time-self-evolving-gui-visual-grounding-via-reflection-guided-on-policy-self-distillation": {
+      "id": "test-time-self-evolving-gui-visual-grounding-via-reflection-guided-on-policy-self-distillation",
+      "title": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
+      "authors": [
+        "Shiyu Xuan",
+        "Zechao Li"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11191v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11191v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 71.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI …",
+      "one_line_essence": "Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI Visual Grounding 是 GUI agent 的基础能力，现有模型部署后冻结参数，无法适配未见界面；近期 test-time RL 方法无法对失败探索进行反思；本文提出 Test-Time Self-Evolving 框架，使模型部署后无需人工标注即可自我改进，构建反思引导的 on-policy self-distillation 闭环。'测试时自我进化——无需人工标注即可通过反思引导的 on-policy 自蒸馏让 GUI agent 适配未见界面'对构建 GUI/自动化 agent 的团队有直接工程价值——它指向一个实际部署瓶颈（模型冻结后无法适配新界面），且给出的方案（闭环：探索→反思→自蒸馏）可在不依赖人工标注的前提下运行。证据强度中等偏上：关键词含 agent/evaluation/benchmark/RAG 表明有实验与基准评估。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致闭环的具体组件设计（反思信号如何生成、自蒸馏的稳定性机制）、定量提升幅度、被测 GUI 框架清单缺失；关键词 RAG 为宽泛命中，实际聚焦 test-time 自进化而非检索增强。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI Visual Grounding 是 GUI agent 的基础能力，现有模型部署后冻结参数，无法适配未见界面；近期 test-time RL 方法无法对失败探索进行反思；本文提出 Test-Time Self-Evol",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI Visual Grounding 是 GUI age",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11191v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11191v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=test-time-self-evolving-gui-visual-grounding-via-reflection-guided-on-policy-self-distillation",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "how-to-verify-consistency-of-probabilistic-claims": {
+      "id": "how-to-verify-consistency-of-probabilistic-claims",
+      "title": "How to Verify Consistency of Probabilistic Claims",
+      "authors": [
+        "Orr Paradise",
+        "Oliver Richardson",
+        "Yoshua Bengio",
+        "Shafi Goldwasser"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11181v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11181v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 68.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：How to Verify Consistency of Probabilistic Claims 命中 security-governan…",
+      "one_line_essence": "How to Verify Consistency of Probabilistic Claims 命中 security-governance 主线：据摘要，当概率预测器回答大量条件概率查询时，其回答是否自洽，以及能否在多项式时间内验证——该问题对 AI safety 有意义（安全性源自对 AI 行为可能导致的不良结果的概率预测的诚实性）；本文构造了一个 interactive PCP（概率可检查证明）：预测模型由概率电路 P 与置信度电路 Q 指定，二者组合后可被验证。'用 interactive PCP 在多项式时间内验证概率预测器的自洽性——为 AI safety 的诚实性声明提供密码学级可验证基础'对做 AI 安全/治理的团队有趋势参考价值，它把'AI 是否诚实报告概率'从信任问题变成可验证的密码学问题。证据强度高：作者阵容极强（Orr Paradise、Oliver Richardson、Yoshua Bengio、Shafi Goldwasser——图灵奖级），且方法构造（interactive PCP）定义清晰。证据不足：code/benchmark 暂无待核验（理论工作通常无代码）；摘要截断导致 PCP 的具体 soundness/completeness 参数、电路规模约束、与实际 LLM 概率输出的对接路径缺失；作为理论工作，短期工程可转化性取决于能否将 LLM 的概率声明映射到概率电路形式。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "How to Verify Consistency of Probabilistic Claims 命中 security-governance 主线：据摘要，当概率预测器回答大量条件概率查询时，其回答是否自洽，以及能否在多项式时间内验证——该问题对 AI safety 有意义（安全性源自对 AI 行为可能导致的不良结果的概率预测的诚实性）；本文构造了一个 ",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "How to Verify Consistency of Probabilistic Claims 命中 security-governance 主线：据摘要，当概率预测器回答大量条件概率查询",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11181v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11181v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=how-to-verify-consistency-of-probabilistic-claims",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "surgical-wam-a-world-action-model-for-data-efficient-surgical-robot-learning": {
+      "id": "surgical-wam-a-world-action-model-for-data-efficient-surgical-robot-learning",
+      "title": "Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning",
+      "authors": [
+        "Wenrui Bao",
+        "Tianyun Jiang",
+        "Zhiben Chen",
+        "Ser-Nam Lim",
+        "Peter D. Peng"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11204v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11204v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 64.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得继续观察：Surgical WAM 命中 multimodal-agent 主线：据摘要，学习可靠的手术操作策略受限于动作标注示范的稀缺——带同步运动…",
+      "one_line_essence": "Surgical WAM 命中 multimodal-agent 主线：据摘要，学习可靠的手术操作策略受限于动作标注示范的稀缺——带同步运动学的遥操作手术机器人（如 dVRK）轨迹采集成本高，而手术任务需要精确接触处理、长程推理与双臂协调；内窥镜视频相对廉价且丰富，利用它的自然方式是学习世界模型。'用世界-动作模型（WAM）从廉价内窥镜视频学习，减少对昂贵动作标注示范的依赖——data-efficient surgical robot learning'对做世界模型/具身 agent 的团队有趋势参考价值——world model 作为 data-efficient learning 的范式正在扩展到更多具身场景。证据强度中等偏上：问题定义清晰（动作标注稀缺 vs 视频丰富），关键词含 world model/evaluation 表明有评估。证据不足：code/benchmark 暂无待核验；摘要截断导致 WAM 的具体架构（视频如何转化为可执行策略）、与基线（纯模仿学习/RL）的定量对比、数据效率提升幅度缺失；手术领域特异性高，向通用具身 agent 的迁移需正文确认；关键词 RAG 为宽泛命中。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Surgical WAM 命中 multimodal-agent 主线：据摘要，学习可靠的手术操作策略受限于动作标注示范的稀缺——带同步运动学的遥操作手术机器人（如 dVRK）轨迹采集成本高，而手术任务需要精确接触处理、长程推理与双臂协调；内窥镜视频相对廉价且丰富，利用它的自然方式是学习世界模型。'用世界-动作模型（WAM）从廉价内窥镜视频学习，减少对昂贵动",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Surgical WAM 命中 multimodal-agent 主线：据摘要，学习可靠的手术操作策略受限于动作标注示范的稀缺——带同步运动学的遥操作手术机器人（如 dVRK）轨迹采集成本高，",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11204v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11204v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=surgical-wam-a-world-action-model-for-data-efficient-surgical-robot-learning",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "multimodal-code-switching-interleaving-visual-objects-into-language-for-explicit-object-level-alignment": {
+      "id": "multimodal-code-switching-interleaving-visual-objects-into-language-for-explicit-object-level-alignment",
+      "title": "MultiModal Code-Switching: Interleaving Visual Objects into Language for Explicit Object-Level Alignment",
+      "authors": [
+        "Changhao Xiang",
+        "Shangyu Xing",
+        "Zhen Wu",
+        "Jianbing Zhang",
+        "Xinyu Dai"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11167v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11167v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 62.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得继续观察：MultiModal Code-Switching 命中 multimodal-agent 主线：据摘要，现有 MLLM 主要依赖图文对做模…",
+      "one_line_essence": "MultiModal Code-Switching 命中 multimodal-agent 主线：据摘要，现有 MLLM 主要依赖图文对做模态对齐预训练，将全局图像表示映射到长文本描述；但图像级对齐存在指代歧义——模型难以从全局表示推断多个视觉对象与文本实体的对应关系，导致数据效率低与语义接地不足；本文提出 MultiModal Code-Switching，将视觉对象交错插入语言以实现显式对象级对齐。'用 code-switching（视觉对象交错嵌入语言）替代图像级全局对齐，解决 MLLM 的指代歧义与语义接地不足'对做多模态模型训练的团队有趋势参考价值——它指向一个具体的训练范式改进（对象级对齐 vs 全局对齐）。证据强度中等：问题（指代歧义）与方法概念（code-switching 交错）清晰。证据不足：code/benchmark 暂无待核验；摘要截断导致 code-switching 的具体实现机制（如何检测/分割视觉对象、如何与文本 token 交错）、定量对比（与图像级对齐基线的数据效率/接地质量差异）缺失。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "MultiModal Code-Switching 命中 multimodal-agent 主线：据摘要，现有 MLLM 主要依赖图文对做模态对齐预训练，将全局图像表示映射到长文本描述；但图像级对齐存在指代歧义——模型难以从全局表示推断多个视觉对象与文本实体的对应关系，导致数据效率低与语义接地不足；本文提出 MultiModal Code-Switching",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "MultiModal Code-Switching 命中 multimodal-agent 主线：据摘要，现有 MLLM 主要依赖图文对做模态对齐预训练，将全局图像表示映射到长文本描述；但图像",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11167v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11167v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=multimodal-code-switching-interleaving-visual-objects-into-language-for-explicit-object-level-alignment",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "beyond-a-bag-of-features-set-level-instability-in-sparse-autoencoders": {
+      "id": "beyond-a-bag-of-features-set-level-instability-in-sparse-autoencoders",
+      "title": "Beyond a Bag of Features: Set-Level Instability in Sparse Autoencoders",
+      "authors": [
+        "Nikolai Bolik",
+        "Lennart Stöpler",
+        "Artur Andrzejak"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11197v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11197v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 58.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：Beyond a Bag of Features: SAE Set-Level Instability 命 mechanistic inte…",
+      "one_line_essence": "Beyond a Bag of Features: SAE Set-Level Instability 命 mechanistic interpretability 侧：据摘要，Shani et al. (2026) 表明 LLM 表示能广泛恢复人类类别边界但无法反映细粒度典型性结构，其分析用稠密表示上的余弦相似度；本文改用 SAE 潜在集合上的重叠作为更具可解释性的相似度度量，验证该集合级度量的有效性（SAE 潜在集合能恢复受控玩具模型中的并集式组合结构），并发现 set-level instability（集合级不稳定性）问题。'用 SAE 潜在集合重叠替代余弦相似度做可解释性分析，并揭示其集合级不稳定性'对做 LLM 可解释性/SAE 工程的团队有长尾保存价值——它是对 SAE 作为可解释性工具的可靠性评估，指出其潜在集合存在不稳定性。证据强度中等偏上：在受控玩具模型上验证 + 对真实模型的分析。证据不足：code/benchmark 暂无待核验；摘要截断导致不稳定性的具体成因、规模、对下游可解释性分析的影响程度缺失；与团队以 Agent/LLM 工程为核心的技术栈直接迁移距离中等（取决于是否做 SAE 可解释性工作）。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Beyond a Bag of Features: SAE Set-Level Instability 命 mechanistic interpretability 侧：据摘要，Shani et al. (2026) 表明 LLM 表示能广泛恢复人类类别边界但无法反映细粒度典型性结构，其分析用稠密表示上的余弦相似度；本文改用 SAE 潜在集合上的重叠作为更具",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Beyond a Bag of Features: SAE Set-Level Instability 命 mechanistic interpretability 侧：据摘要，Shani e",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-09-03"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11197v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11197v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=beyond-a-bag-of-features-set-level-instability-in-sparse-autoencoders",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "from-interpretability-to-control-insights-from-six-years-of-the-trustnlp-workshop": {
+      "id": "from-interpretability-to-control-insights-from-six-years-of-the-trustnlp-workshop",
+      "title": "From Interpretability to Control: Insights from Six Years of the TrustNLP Workshop",
+      "authors": [
+        "Rahul Gupta",
+        "Abhinav Mohanty",
+        "Anaelia Ovalle",
+        "Anil Ramakrishna",
+        "Anubrata Das"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11171v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11171v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 2.4
+      },
+      "score": 55.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：From Interpretability to Control: TrustNLP Workshop 命中 llm-evaluation …",
+      "one_line_essence": "From Interpretability to Control: TrustNLP Workshop 命中 llm-evaluation 与 security-governance 主线：据摘要，TrustNLP workshop（自 2021 年与 ACL 共址）从 8 篇论文增长到 41 篇，记录了领域从静态模型的事后可解释性到生成式系统的机制理解与主动控制的转变；本文综合 144 篇会议论文，沿六个信任维度（基于 TrustLLM、DecodingTrust 框架）分类。'六年的 TrustNLP 综述（144 篇）——记录从事后可解释性到机制理解与主动控制的领域转变，含六维信任分类'对做 LLM 信任/安全评估的团队有长尾参考价值——它是该领域的系统性文献综述与趋势地图。证据强度中等偏上：综述 144 篇论文，分类框架基于既有框架（TrustLLM/DecodingTrust）。证据不足：code/benchmark 不适用（综述论文）；摘要截断导致六个信任维度的具体定义、关键发现、从可解释性到控制转变的定量证据缺失；作为综述其短期工程可转化性低，主要作为参考地图。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "From Interpretability to Control: TrustNLP Workshop 命中 llm-evaluation 与 security-governance 主线：据摘要，TrustNLP workshop（自 2021 年与 ACL 共址）从 8 篇论文增长到 41 篇，记录了领域从静态模型的事后可解释性到生成式系统的机制理解与主",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "From Interpretability to Control: TrustNLP Workshop 命中 llm-evaluation 与 security-governance 主线：据",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-09-03"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11171v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11171v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=from-interpretability-to-control-insights-from-six-years-of-the-trustnlp-workshop",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "are-we-really-making-progress-in-group-recommendation-unmasking-the-tie-breaking-illusion": {
+      "id": "are-we-really-making-progress-in-group-recommendation-unmasking-the-tie-breaking-illusion",
+      "title": "Are We Really Making Progress in Group Recommendation? Unmasking the Tie-Breaking Illusion",
+      "authors": [
+        "Song-Duo Ma",
+        "Pu-Jen Cheng"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11190v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11190v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 5.4,
+        "engineering_testability": 4.05,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 52.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：Are We Really Making Progress in Group Recommendation? 命中 llm-evaluati…",
+      "one_line_essence": "Are We Really Making Progress in Group Recommendation? 命中 llm-evaluation 的方法论侧：据摘要，近期群组推荐方法在标准基准上报告了强劲改进，但这些增益是否真正反映群组偏好建模的进步尚不清楚；本文表明多个近期方法受到系统性评估偏差影响——训练时分数压缩与评估时确定性 tie-breaking 的交互所致；具体而言，BPR 目标前额外的 sigmoid 变换会极大影响结果。'揭示群组推荐中 tie-breaking 导致的评估假象——训练时 sigmoid 压缩与评估时确定性 tie-breaking 的交互造成系统性偏差'对做推荐/排序系统评估的团队有长尾参考价值——它揭示了一类容易被忽视的评估偏差（tie-breaking 与分数压缩的交互），该教训可迁移到其他排序/推荐评测。证据强度中等偏上：发现了具体的偏差机制（sigmoid + tie-breaking 交互）。证据不足：code/benchmark 暂无待核验；摘要截断导致受影响方法清单、偏差量级、修正后排名变化缺失；群组推荐领域与团队技术栈的直接迁移距离中等（评估方法论教训可迁移，具体方法不可迁移）。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Are We Really Making Progress in Group Recommendation? 命中 llm-evaluation 的方法论侧：据摘要，近期群组推荐方法在标准基准上报告了强劲改进，但这些增益是否真正反映群组偏好建模的进步尚不清楚；本文表明多个近期方法受到系统性评估偏差影响——训练时分数压缩与评估时确定性 tie-breaking",
+      "research_position": "benchmark",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Are We Really Making Progress in Group Recommendation? 命中 llm-evaluation 的方法论侧：据摘要，近期群组推荐方法在标准基准",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-09-03"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11190v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11190v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=are-we-really-making-progress-in-group-recommendation-unmasking-the-tie-breaking-illusion",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "long-horizon-ai-research-for-grothendieck-constant-a-case-study-in-human-ai-mathematical-collaboration": {
+      "id": "long-horizon-ai-research-for-grothendieck-constant-a-case-study-in-human-ai-mathematical-collaboration",
+      "title": "Long-Horizon AI Research for Grothendieck Constant: A Case Study in Human-AI Mathematical Collaboration",
+      "authors": [
+        "Alan Li",
+        "Rahul Saha",
+        "Anton Xue",
+        "Swarat Chaudhuri",
+        "Adam Klivans"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11195v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11195v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 45.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：Long-Horizon AI Research for Grothendieck Constant 聚焦人机数学协作案例研究：据摘要，AI…",
+      "one_line_essence": "Long-Horizon AI Research for Grothendieck Constant 聚焦人机数学协作案例研究：据摘要，AI agent 越来越多地用于数学研究，但如何有效使用尚不清楚；本文展示了一个关于用 AI 改进 Grothendieck 常数 K_G 界限的广泛案例研究（K_G 捕获组合问题与其连续松弛之间的硬度），将已知界限收紧到 6π/11 ≤ K_G ≤ π/(2log(1+√2)) - 10^{-...}。领域聚焦数学研究协作（cs.AI/cs.CC/cs.HC/math.FA），与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远。案例研究有启发性（展示 long-horizon AI 数学研究的协作模式），但对 LLM agent 工程的方法论贡献有限——它是'AI 做数学'的案例而非'如何构建更好 agent'的方法。code/benchmark 暂无待核验。关键词 agent 为宽泛命中（指 AI 辅助数学研究，非 LLM agent 架构）。忽略，除非专门做人机协作/AI for math。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "Long-Horizon AI Research for Grothendieck Constant 聚焦人机数学协作案例研究：据摘要，AI agent 越来越多地用于数学研究，但如何有效使用尚不清楚；本文展示了一个关于用 AI 改进 Grothendieck 常数 K_G 界限的广泛案例研究（K_G 捕获组合问题与其连续松弛之间的硬度），将已知界限收紧到 ",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [
+          "agentic-world-modeling",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "Long-Horizon AI Research for Grothendieck Constant 聚焦人机数学协作案例研究：据摘要，AI agent 越来越多地用于数学研究，但如何有效使用",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11195v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11195v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=long-horizon-ai-research-for-grothendieck-constant-a-case-study-in-human-ai-mathematical-collaboration",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "convawg-a-retrieval-grounded-framework-for-controlled-synthetic-dialogue-generation-in-violence-against-women-and-girls": {
+      "id": "convawg-a-retrieval-grounded-framework-for-controlled-synthetic-dialogue-generation-in-violence-against-women-and-girls",
+      "title": "ConVAWG: A Retrieval-Grounded Framework for Controlled Synthetic Dialogue Generation in Violence Against Women and Girls",
+      "authors": [
+        "Chen Lyu",
+        "Xingwei Tan",
+        "Simon Cullen",
+        "Shelley Wilson",
+        "Lois Arthurs"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11200v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11200v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 38.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：ConVAWG 聚焦在敏感领域（针对妇女和女童的暴力，VAWG）的可控合成对话生成：据摘要，合成对话生成为研究真实数据难以获取/发布/标注的…",
+      "one_line_essence": "ConVAWG 聚焦在敏感领域（针对妇女和女童的暴力，VAWG）的可控合成对话生成：据摘要，合成对话生成为研究真实数据难以获取/发布/标注的敏感领域的对话动态提供途径；潜在虐待可能在线或离线发生——威胁与胁迫可直接出现在消息中，而监视、隔离、跟踪与身体暴力可能在对话中被计划、披露或提及；隐私与法律约束使大规模真实对话数据集发布困难。领域聚焦敏感领域合成对话生成（cs.CL/cs.AI/cs.LG），与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远。retrieval-grounded 生成框架概念有一定迁移性，但领域特异性（VAWG 对话内容控制）限制了直接工程价值。code/benchmark 暂无待核验。关键词 evaluation 为宽泛命中。忽略，除非专门做敏感领域合成数据生成。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "ConVAWG 聚焦在敏感领域（针对妇女和女童的暴力，VAWG）的可控合成对话生成：据摘要，合成对话生成为研究真实数据难以获取/发布/标注的敏感领域的对话动态提供途径；潜在虐待可能在线或离线发生——威胁与胁迫可直接出现在消息中，而监视、隔离、跟踪与身体暴力可能在对话中被计划、披露或提及；隐私与法律约束使大规模真实对话数据集发布困难。领域聚焦敏感领域合成对话生",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "ConVAWG 聚焦在敏感领域（针对妇女和女童的暴力，VAWG）的可控合成对话生成：据摘要，合成对话生成为研究真实数据难以获取/发布/标注的敏感领域的对话动态提供途径；潜在虐待可能在线或离线发",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11200v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11200v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=convawg-a-retrieval-grounded-framework-for-controlled-synthetic-dialogue-generation-in-violence-against-women-and-girls",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "a-quantum-roadmap-for-softmax-attention-exact-born-rule-analogs-for-softmax-attention-on-the-probability-simplex": {
+      "id": "a-quantum-roadmap-for-softmax-attention-exact-born-rule-analogs-for-softmax-attention-on-the-probability-simplex",
+      "title": "A Quantum Roadmap for Softmax Attention: Exact Born-Rule Analogs for Softmax Attention on the Probability Simplex",
+      "authors": [
+        "Eric A. F. Reinhardt",
+        "Adam J. Hauser"
+      ],
+      "source": "arXiv",
+      "published": "2026-08-11",
+      "url": "http://arxiv.org/abs/2608.11173v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.11173v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-08-13",
+      "first_deep_dive_daily": "2026-08-13",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 32.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：A Quantum Roadmap for Softmax Attention 聚焦量子计算与注意力机制的理论连接：据摘要，注意力机制是 T…",
+      "one_line_essence": "A Quantum Roadmap for Softmax Attention 聚焦量子计算与注意力机制的理论连接：据摘要，注意力机制是 Transformer 等现代 AI 模型的基础；在输入输出绑定到概率单纯形的一类问题中（所有输出和为一），softmax 注意力允许精确的逐分量量子实现——注意力分数是振幅编码输入的块编码投影上的 Hadamard-test 统计量；指数 softmax 是余弦平方族的内部。领域聚焦量子计算（quant-ph/cs.LG），属纯理论工作，与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接相关性极低，方法论（softmax 注意力的量子 Born-rule 类比）在短期至中期内不可迁移到实用 LLM 工程。code/benchmark 不适用（纯理论）。忽略。该工作在量子 ML 理论上有趣味，但对 LLM 工程实践无直接贡献。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "A Quantum Roadmap for Softmax Attention 聚焦量子计算与注意力机制的理论连接：据摘要，注意力机制是 Transformer 等现代 AI 模型的基础；在输入输出绑定到概率单纯形的一类问题中（所有输出和为一），softmax 注意力允许精确的逐分量量子实现——注意力分数是振幅编码输入的块编码投影上的 Hadamard-te",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "A Quantum Roadmap for Softmax Attention 聚焦量子计算与注意力机制的理论连接：据摘要，注意力机制是 Transformer 等现代 AI 模型的基础；在输",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.11173v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.11173v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=a-quantum-roadmap-for-softmax-attention-exact-born-rule-analogs-for-softmax-attention-on-the-probability-simplex",
+      "daily_path": "daily-detail.html?date=2026-08-13",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
     "dynamic-coalition-formation-and-communication-pricing-in-skill-based-agentic-ai-systems": {
       "id": "dynamic-coalition-formation-and-communication-pricing-in-skill-based-agentic-ai-systems",
       "title": "Dynamic Coalition Formation and Communication Pricing in Skill-Based Agentic AI Systems",
