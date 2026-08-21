@@ -1,62 +1,64 @@
 {
-  "updated_at": "2026-08-13T04:33:27.328655",
+  "updated_at": "2026-08-21T11:32:49.001196",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-08-13",
-    "title": "论文价值发现日报 - 2026-08-13",
-    "deep_dive_title": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
-    "deep_dive_url": "http://arxiv.org/abs/2608.11191v1",
+    "date": "2026-08-21",
+    "title": "论文价值发现日报 - 2026-08-21",
+    "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
+    "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
     "decision": "轻量试点",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "完成三件事：评估 Test-Time Self-Evolving 的'探索→反思→自蒸馏'闭环能否迁移到团队的 GUI/自动化 agent 场景——盘点现有部署后自适应方案的盲区（是否有反思信号、自蒸馏是否稳定、对新界面的适配质量如何）；为 How to Verify Consistency 建立趋势观察卡片（跟踪是否有从理论到 LLM 概率验证的工程化跟进，关注 Bengio/Goldwasser 后续工作）；评估 Surgical WAM 的世界模型范式在团队具身/多模态场景上的适用性（是否有廉价视频源可替代昂贵标注）。",
-    "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 Surgical WAM、ConVAWG、SAE Instability、Grothendieck、Test-Time Self-Evolving、Group Rec、TrustNLP、Quantum Softmax 共 8 篇摘要截断。Test-Time Self-Evolving 的闭环组件设计与定量提升、How to Verify 的 PCP soundness 参数与电路规模约束、Surgical WAM 的 WAM 架构与数据效率提升、MultiModal Code-Switching 的交错机制与对比基线均需正文确认。另：Test-Time Self-Evolving/Surgical WAM/TrustNLP 的关键词 RAG 为宽泛命中，已在评分中剔除。",
-    "one_line_judgement": "Test-Time Self-Evolving 解决一个实际部署瓶颈——GUI agent 模型冻结后无法适配未见界面，其'探索→反思→on-policy 自蒸馏'闭环无需人工标注即可运行，直接关系 GUI/自动化 agent 的部署鲁棒性。How to Verify Consistency of Probabilistic Claims 把'AI 是否诚实报告概率'从信任问题变成可验证的密码学问题（interactive PCP），且作者阵容极强（Bengio + Goldwasser 图灵奖级），对 AI 安全/治理方向是强信号。Surgical WAM 代表世界模型范式向更多具身场景的扩展——用廉价视频替代昂贵动作标注来学习操作策略。",
-    "path": "daily-detail.html?date=2026-08-13"
+    "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
+    "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
+    "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
+    "path": "daily-detail.html?date=2026-08-21"
   },
   "top_paper": {
-    "title": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
+    "title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
     "authors": [
-      "Shiyu Xuan",
-      "Zechao Li"
+      "Yizhe Chi",
+      "Wenyi Li",
+      "Deyao Hong",
+      "Xiaoqiu Wang",
+      "Mingju Gao"
     ],
-    "published": "2026-08-11",
-    "updated": "2026-08-11",
+    "published": "2026-08-20",
+    "updated": "2026-08-20",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2608.11191v1",
-    "pdf_url": "https://arxiv.org/pdf/2608.11191v1",
+    "url": "http://arxiv.org/abs/2608.20318v1",
+    "pdf_url": "https://arxiv.org/pdf/2608.20318v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "GUI Visual Grounding is a fundamental capability for GUI agents. Existing models typically freeze their parameters after deployment, limiting their ability to adapt to unseen interfaces. Although recent methods attempt to adapt models via test-time reinforcement learning, they cannot reflect upon failed exploration. To overcome this, we propose a Test-Time Self-Evolving framework that enables models to improve after deployment without human-annotated ground truth. It constructs a closed-loop of ",
+    "abstract": "Recursive self-improvement (RSI) asks whether an AI system can improve the process that produces AI systems, so that the next system inherits the improvement. That process is the training algorithm: a better objective or update rule improves the compute\\mbox{-}capability exchange rate for every subsequent run, including the one that produces the next agent. Whether RSI is feasible therefore turns on whether an agent can design training algorithms. No benchmark isolates that ability: existing sui",
     "categories": [
-      "cs.CV",
       "cs.AI",
-      "cs.CL"
+      "cs.CL",
+      "cs.LG"
     ],
     "keywords": [
       "agent",
-      "evaluation",
       "benchmark",
       "RAG"
     ],
-    "score": 71.0,
+    "score": 72.0,
     "decision": "轻量试点",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2608.11191v1"
+        "url": "http://arxiv.org/abs/2608.20318v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2608.11191v1"
+        "url": "https://arxiv.org/pdf/2608.20318v1"
       }
     ],
-    "llm_reason": "Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI Visual Grounding 是 GUI agent 的基础能力，现有模型部署后冻结参数，无法适配未见界面；近期 test-time RL 方法无法对失败探索进行反思；本文提出 Test-Time Self-Evolving 框架，使模型部署后无需人工标注即可自我改进，构建反思引导的 on-policy self-distillation 闭环。'测试时自我进化——无需人工标注即可通过反思引导的 on-policy 自蒸馏让 GUI agent 适配未见界面'对构建 GUI/自动化 agent 的团队有直接工程价值——它指向一个实际部署瓶颈（模型冻结后无法适配新界面），且给出的方案（闭环：探索→反思→自蒸馏）可在不依赖人工标注的前提下运行。证据强度中等偏上：关键词含 agent/evaluation/benchmark/RAG 表明有实验与基准评估。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致闭环的具体组件设计（反思信号如何生成、自蒸馏的稳定性机制）、定量提升幅度、被测 GUI 框架清单缺失；关键词 RAG 为宽泛命中，实际聚焦 test-time 自进化而非检索增强。",
-    "id": "test-time-self-evolving-gui-visual-grounding-via-reflection-guided-on-policy-self-distillation",
+    "llm_reason": "AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'，从而改进下一代系统的 compute-capability exchange rate；现有基准都不隔离这一能力。本文提出 AI4AI-Bench，专注评估 agent 设计训练算法的能力。'专门评估 agent 设计训练算法能力的基准——把 RSI 的核心（改进训练算法本身）从总任务里隔离出来'对做 agent / 自动 ML 研究或希望把 agent 推到训练侧研究的团队有直接价值——它把'agent 改进算法'从一个含糊愿景变成可测量对象。证据强度中等：关键词含 agent/benchmark/RAG 表明有评估设计；摘要自述动机与问题清晰。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致具体任务设置（训练算法修改的搜索形式、奖励/评分机制、与基线 agent 的对比）缺失；关键词 RAG 为宽泛命中，实际聚焦训练算法设计而非检索增强。",
+    "id": "ai4ai-bench-benchmarking-llm-agents-in-algorithmic-design-for-recursive-self-improvement",
     "value_type": "immediate",
     "matched_topics": [
       "ai-agent",
@@ -66,12 +68,12 @@
       "novelty": 4.8,
       "problem_importance": 5.8,
       "relevance": 6.2,
-      "evidence_strength": 4.5,
-      "engineering_testability": 4.6,
-      "trend_signal": 3.5,
+      "evidence_strength": 4.95,
+      "engineering_testability": 4.05,
+      "trend_signal": 5.45,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 6.2,
-      "actionability": 3.8,
+      "asset_convertibility": 5.6,
+      "actionability": 5.0,
       "noise_risk": 1.2,
       "weak_evidence_penalty": 5.0,
       "low_relevance_penalty": 2.2,
@@ -79,166 +81,168 @@
       "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "brief_cn": "AI Agent：GUI Visual Grounding is a fundamental capability for GUI agents. Existing mode…",
-    "one_line_judgement": "今天值得试：Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI …",
-    "first_seen_date": "2026-08-13",
-    "first_deep_dive_daily": "2026-08-13",
+    "brief_cn": "AI Agent：Recursive self-improvement (RSI) asks whether an AI system can improve the pro…",
+    "one_line_judgement": "今天值得试：AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'…",
+    "first_seen_date": "2026-08-21",
+    "first_deep_dive_daily": "2026-08-21",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI Visual Grounding 是 GUI age",
+    "long_tail_summary": "AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'，从而改进下一代系统的 compute-capabi",
     "related_trends": [
       "agentic-world-modeling",
       "coding-agent"
     ],
-    "detail_path": "paper-detail.html?id=test-time-self-evolving-gui-visual-grounding-via-reflection-guided-on-policy-self-distillation"
+    "detail_path": "paper-detail.html?id=ai4ai-bench-benchmarking-llm-agents-in-algorithmic-design-for-recursive-self-improvement"
   },
-  "paper_count": 1250,
+  "paper_count": 1600,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 109,
+  "long_tail_count": 114,
   "value_distribution": {
-    "immediate": 90,
-    "trend": 120,
-    "long_tail": 109,
-    "ignore": 931
+    "immediate": 91,
+    "trend": 125,
+    "long_tail": 114,
+    "ignore": 1270
   },
   "recent_dailies": [
     {
-      "date": "2026-08-13",
-      "title": "论文价值发现日报 - 2026-08-13",
-      "deep_dive_title": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
-      "deep_dive_url": "http://arxiv.org/abs/2608.11191v1",
+      "date": "2026-08-21",
+      "title": "论文价值发现日报 - 2026-08-21",
+      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
+      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
       "decision": "轻量试点",
       "value_type": "immediate",
       "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 Test-Time Self-Evolving 的'探索→反思→自蒸馏'闭环能否迁移到团队的 GUI/自动化 agent 场景——盘点现有部署后自适应方案的盲区（是否有反思信号、自蒸馏是否稳定、对新界面的适配质量如何）；为 How to Verify Consistency 建立趋势观察卡片（跟踪是否有从理论到 LLM 概率验证的工程化跟进，关注 Bengio/Goldwasser 后续工作）；评估 Surgical WAM 的世界模型范式在团队具身/多模态场景上的适用性（是否有廉价视频源可替代昂贵标注）。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 Surgical WAM、ConVAWG、SAE Instability、Grothendieck、Test-Time Self-Evolving、Group Rec、TrustNLP、Quantum Softmax 共 8 篇摘要截断。Test-Time Self-Evolving 的闭环组件设计与定量提升、How to Verify 的 PCP soundness 参数与电路规模约束、Surgical WAM 的 WAM 架构与数据效率提升、MultiModal Code-Switching 的交错机制与对比基线均需正文确认。另：Test-Time Self-Evolving/Surgical WAM/TrustNLP 的关键词 RAG 为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "Test-Time Self-Evolving 解决一个实际部署瓶颈——GUI agent 模型冻结后无法适配未见界面，其'探索→反思→on-policy 自蒸馏'闭环无需人工标注即可运行，直接关系 GUI/自动化 agent 的部署鲁棒性。How to Verify Consistency of Probabilistic Claims 把'AI 是否诚实报告概率'从信任问题变成可验证的密码学问题（interactive PCP），且作者阵容极强（Bengio + Goldwasser 图灵奖级），对 AI 安全/治理方向是强信号。Surgical WAM 代表世界模型范式向更多具身场景的扩展——用廉价视频替代昂贵动作标注来学习操作策略。",
-      "path": "daily-detail.html?date=2026-08-13"
+      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
+      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
+      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
+      "path": "daily-detail.html?date=2026-08-21"
     },
     {
-      "date": "2026-08-12",
-      "title": "论文价值发现日报 - 2026-08-12",
-      "deep_dive_title": "Dynamic Coalition Formation and Communication Pricing in Skill-Based Agentic AI Systems",
-      "deep_dive_url": "https://arxiv.org/abs/2608.07532",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：用 Coalition 的合作博弈效用模型审计现有多 agent 编排（哪些通信链是必要的、能否用通信定价裁剪冗余、联盟层价值与个体成本是否分离）；把 Knowing-Saying Gap 的三组反证纳入团队 LLM 监控设计复核清单（探针检测≠失败预测、结构化置信度≠校准保证）；参考 Negotiate 的 9 模型 × 完美贝叶斯均衡基准为自主交易 agent 设计上线门槛。为 MetaSpace、DCP、Flow-by-Flow 维持趋势观察卡片。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 Determinization、Emotion driving、DCP、Knowing-Saying Gap、NL2SHACL、Coalition、MetaSpace、Negotiate 共 8 篇摘要截断。Coalition 的联盟形成算法与通信定价机制、Knowing-Saying Gap 的探针架构与模型规模、Negotiate 的 9 模型清单与亏损率、DCP 的运行时机制、MetaSpace 的蜕变关系定义均需正文确认。另：Coalition/MetaSpace 的关键词 RAG、Emotion driving 的 agent/inference 均为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "Dynamic Coalition Formation 把'该激活哪些 agent、谁该跟谁通信'从经验问题变成可优化的合作博弈效用问题（任务条件净效用 U(C|x)=V(C|x)-Σc_i + 通信定价），直接关系多 agent 系统的 token/延迟/冗余成本控制。The Knowing-Saying Gap 是一篇反例/警示性工作——探针能近乎完美地检测被破坏上下文，却对最终答案正确性毫无预测力，被强制结构化的置信度坍缩到两个不可区分错误率的值；它直接质疑'用探针做运行时错误检测'和'用结构化置信度做可靠性保证'两类常见做法。When LLM Agents Negotiate 用 9840 次 LLM-to-LLM 谈判对 9 个模型与完美贝叶斯均衡做基准，回答'LLM 能否在私人信息下可靠议价'。三者都是'今天就值得在工程/评估上参考'的工作。",
-      "path": "daily-detail.html?date=2026-08-12"
+      "date": "2026-08-20",
+      "title": "论文价值发现日报 - 2026-08-20",
+      "deep_dive_title": "Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search",
+      "deep_dive_url": "http://arxiv.org/abs/2608.20317v1",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-08-20"
     },
     {
-      "date": "2026-08-11",
-      "title": "论文价值发现日报 - 2026-08-11",
-      "deep_dive_title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
-      "deep_dive_url": "http://arxiv.org/abs/2608.07458v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 CoinRAG 的 nugget 级 KV cache 复用思路能否接入现有 RAG 流水线（对比 chunk 级 vs 更细粒度的延迟-准确率权衡）；在团队技能库上设计 SkillProx proximal textual gradient descent 的概念验证（手动维护 vs 自动演化技能质量对比）；评估 Blast Radius 的预测式内存管理能否降低现有 coding agent 的 token 成本。为 CreativeInstruct（质量-创造力平衡）、Taxonomy-Driven（风险工具地图）、Interaction（多智能体涌现动力学）维持趋势观察卡片。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 CoinRAG、SkillProx、Blast Radius、CreativeInstruct、Taxonomy-Driven、Strategy-first synthesis、MirrorWorld 共 7 篇摘要截断。CoinRAG 的 nugget 划分机制与定量结果、SkillProx 的 proximal constraint 细节与技能演化成功率、Blast Radius 的 reach 预测准确率与 token 节省幅度、CreativeInstruct 的具体平衡机制、Taxonomy-Driven 的工具清单与分类维度、Interaction 的'异化行为'量化定义均需正文确认。另：MirrorWorld 摘要关键词 benchmark/RAG、Strategy-first 的 agent/agentic/benchmark/planning、DisCoCat 的 evaluation/RAG 均为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "CoinRAG 把 RAG 的 KV cache 复用从 chunk 级降到 information nugget 级，在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿——回答了'RAG 检索上下文的缓存复用该做到多细'。SkillProx 用 proximal textual gradient descent 让 agent 技能自演化，引入显式 diagnosis-outcome 反馈并把删除作为一等公民机制——把 agent 技能管理从手动维护推向自动优化。Blast Radius 为 agentic coding 提供预测式内存管理层（估算 prompt reach + 可逆逐出 + 反复死内容识别），直接解决 coding agent 的 token 浪费与上下文膨胀。三者都是'今天就值得在工程上试'的工作。",
-      "path": "daily-detail.html?date=2026-08-11"
+      "date": "2026-08-19",
+      "title": "论文价值发现日报 - 2026-08-19",
+      "deep_dive_title": "Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI",
+      "deep_dive_url": "http://arxiv.org/abs/2608.19487v1",
+      "decision": "持续观察",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-08-19"
     },
     {
-      "date": "2026-08-10",
-      "title": "论文价值发现日报 - 2026-08-10",
-      "deep_dive_title": "The Bitter Lesson of Tool Calling",
-      "deep_dive_url": "http://arxiv.org/abs/2608.06370v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：在团队一个真实 tool-use agent 任务上设计 PTC vs JSON 工具调用的最小对比实验（同一模型、同一工具集、两种调用范式）；评估 AV-AIVAT 的 anytime-valid stopping 能否接入现有 agent 评估流水线；为 MIST（选择性信任）、CalibForge（任务自动合成）、Resourced Authority（计算预算治理）维持趋势观察卡片。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 MIST、AV-AIVAT、CalibForge、Resourced Authority、An Optimal PAC、Low Frequency Trap、XAI Challenges 共 7 篇摘要截断。The Bitter Lesson 的具体定量对比结果、AV-AIVAT 的 certified anytime-valid 技术细节与 74x 基线对照、MIST 的第四种条件名称与 selective context preference optimization 方法、CalibForge 的校准机制与任务规模、Resourced Authority 的治理周期机制均需正文确认。另：Tracing the Heart 摘要关键词 agent/evaluation/RAG 为宽泛命中（指临床数据处理流程而非 agent/RAG 系统），已在评分中剔除。",
-      "one_line_judgement": "The Bitter Lesson of Tool Calling 直接命中 ai-agent 主线——据摘要，程序化工具调用（PTC，用能链式/并行的脚本替换僵化 JSON 调用）与原生 JSON 工具调用的系统性跨代际实证对比，回答了'该让 agent 写脚本调工具还是逐个 JSON 调工具'这个工程选型问题，标题致敬 Rich Sutton 的 Bitter Lesson 暗示可能有反直觉发现。AV-AIVAT 则命中 agent 评估与推理成本主线——'anytime-valid stopping 让 agent 对战评估在证据足够时立即停止、74x 更便宜且置信水平有效'，直接解决'该打多少局才能可信地判断 agent 强弱'的高频痛点。两者都属于即时工程价值，对构建 tool-use agent 与做 agent A/B 评估的团队有直接参考价值。",
-      "path": "daily-detail.html?date=2026-08-10"
+      "date": "2026-08-18",
+      "title": "论文价值发现日报 - 2026-08-18",
+      "deep_dive_title": "ComponentBench: Diagnosing Component-Level Failures in Computer-Use Agents",
+      "deep_dive_url": "http://arxiv.org/abs/2608.18307v1",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-08-18"
     },
     {
-      "date": "2026-08-09",
-      "title": "论文价值发现日报 - 2026-08-09",
-      "deep_dive_title": "The Bitter Lesson of Tool Calling",
-      "deep_dive_url": "http://arxiv.org/abs/2608.06370v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "今日（2026-08-09，重复批次）动作：确认数据源重复（已完成，URL 集合与 2026-08-08 完全相同）；不重复产出新深读分析；保持流水线连续性（score/generate_daily/update_index/build_pages/generate_readme 全链路运行）；确保 README 与活动图同步。下一个工作日（周一）arXiv 恢复发布后做新一轮价值路由。",
-      "max_uncertainty": "今日（2026-08-09）特有不确定性：数据源重复——fetch_papers.py 返回的 10 篇与 2026-08-08 完全相同（URL 集合一致，仅顺序不同），这是 arXiv 周末无新发布的预期行为。批次内不确定性（沿用昨日）：全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 8 篇摘要截断；Tracing the Heart 摘要关键词 agent/evaluation/RAG 为宽泛误命中（实际指临床数据处理流程而非 agent/RAG 系统），已在评分中剔除。",
-      "one_line_judgement": "这是数据源（arXiv API 按 submittedDate 降序返回最新 10 篇）在周末无新发布时的预期行为——同批次重复。The Bitter Lesson 系统性跨代际实证对比程序化工具调用（PTC，写脚本链式/并行调工具）与原生 JSON 工具调用，AV-AIVAT 用 anytime-valid stopping 让 agent 对战评估在证据充足时立即停止（声称 74x cheaper）。两者结论已在昨日日报给出，今日无新增证据。",
-      "path": "daily-detail.html?date=2026-08-09"
+      "date": "2026-08-17",
+      "title": "论文价值发现日报 - 2026-08-17",
+      "deep_dive_title": "KernelArc: A Multi-Agent Framework for GPU Kernel Optimization",
+      "deep_dive_url": "http://arxiv.org/abs/2608.17071v1",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-08-17"
     },
     {
-      "date": "2026-08-08",
-      "title": "论文价值发现日报 - 2026-08-08",
-      "deep_dive_title": "The Bitter Lesson of Tool Calling",
-      "deep_dive_url": "http://arxiv.org/abs/2608.06370v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：把 The Bitter Lesson of Tool Calling 的 PTC vs JSON 跨代际实证结论纳入团队 tool-use agent 选型参考文档；评估 AV-AIVAT 的 anytime-valid stopping 能否引入团队 agent A/B 评估流程降低评估推理成本（若开源则在一个内部 agent 对比任务上试跑）；为 MIST（选择性信任评测）、CalibForge（对抗性 solver 校准合成 agent 任务）、Resourced Authority（计算预算自执行 agent 治理）建立趋势观察卡片。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 The Bitter Lesson、AV-AIVAT、MIST、CalibForge、Resourced Authority、Low Frequency Trap、Optimal Agnostic PAC、XAI Challenges 共 8 篇摘要截断。The Bitter Lesson 的具体定量对比结果与 benchmark 名称、AV-AIVAT 的 certified anytime-valid 技术细节与 74x 基线对照、MIST 的第四种条件名称与 selective context preference optimization 方法、CalibForge 的 multi-solver calibration 之后内容、Resourced Authority 的治理周期机制、Low Frequency Trap 的第三个任务与方法细节均需正文确认。另：Tracing the Heart 摘要关键词 agent/evaluation/RAG 为宽泛误命中（实际指临床数据处理流程而非 agent/RAG 系统），已在评分中剔除。",
-      "one_line_judgement": "The Bitter Lesson of Tool Calling 系统性跨代际实证对比程序化工具调用（PTC，写脚本链式/并行调工具）与原生 JSON 工具调用，在真实世界任务条件下——它直接回答'该让 agent 写脚本调工具还是逐个 JSON 调工具'这个工程选型问题，标题致敬 Rich Sutton 的 Bitter Lesson 暗示可能有反直觉发现。AV-AIVAT 用 anytime-valid stopping 让 agent 对战评估在证据充足时立即停止，声称比基线便宜 74x 且置信水平有效——它解决'该打多少局才能可信判断 agent 强弱'这个 agent A/B 评估的高频痛点。",
-      "path": "daily-detail.html?date=2026-08-08"
+      "date": "2026-08-16",
+      "title": "论文价值发现日报 - 2026-08-16",
+      "deep_dive_title": "PLSQLBench: Benchmarking LLM Systems for Executable Procedural Database Programming",
+      "deep_dive_url": "http://arxiv.org/abs/2608.15931v1",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-08-16"
     },
     {
-      "date": "2026-08-07",
-      "title": "论文价值发现日报 - 2026-08-07",
-      "deep_dive_title": "Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning",
-      "deep_dive_url": "http://arxiv.org/abs/2608.05144v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：把 Argus 的四层分离架构模式（意图/操作目标/约束/验证标准 + 持久状态 + 角色分工 + 有界任务）纳入团队 agent 设计参考文档；评估 Reasoning Core 的 50 个程序化生成器能否补充团队推理训练数据合成流水线（若开源则挑 2-3 个试跑）；为 OctoLong、Skill Entropy 建立趋势观察卡片。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 Argus、Reasoning Core、OctoLong、OPD-V、SSTQ、Skill Entropy、SFC、Nemotron Greek 共 8 篇摘要截断。Argus 的有界任务边界定义与自演化机制、Reasoning Core 的生成器具体构造与基线定量增益、OctoLong 的 mid-training 协议与长上下文性能提升幅度、Skill Entropy 的数学定义与 cross-skill 任务集、SFC 的具体方法均需正文确认。另：OctoLong 摘要关键词 agent/agentic 为宽泛命中（指 agentic workflows 是长上下文需求来源），SFC 摘要关键词 RAG 为误命中，已在评分中剔除。",
-      "one_line_judgement": "Argus 提出一个持久化、自演化的 agentic runtime——Manager/Planner/Engineer/Reviewer 四角色在持久项目状态上执行有界任务，核心设计是把稳定的用户意图与可变的操作目标、约束、验证标准分离。这是任何构建多步 agent 团队可直接参考的架构模式（证据支持时坚持、测量发现失败时转向）。Reasoning Core 则提供 50 个覆盖九大类的程序化推理数据生成器（含语义评分器、难度控制、任务评估器），可直接迁移到团队的推理训练数据合成流水线。",
-      "path": "daily-detail.html?date=2026-08-07"
+      "date": "2026-08-15",
+      "title": "论文价值发现日报 - 2026-08-15",
+      "deep_dive_title": "Agentic-SQL Revisited: Autonomy-Based Taxonomy and Empirical Benchmark Analysis for LLM Text-to-SQL",
+      "deep_dive_url": "http://arxiv.org/abs/2608.15389v1",
+      "decision": "持续观察",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-08-15"
     }
   ],
   "top_papers": [
     {
-      "title": "Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation",
+      "title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
       "authors": [
-        "Shiyu Xuan",
-        "Zechao Li"
+        "Yizhe Chi",
+        "Wenyi Li",
+        "Deyao Hong",
+        "Xiaoqiu Wang",
+        "Mingju Gao"
       ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11191v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11191v1",
+      "url": "http://arxiv.org/abs/2608.20318v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20318v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "GUI Visual Grounding is a fundamental capability for GUI agents. Existing models typically freeze their parameters after deployment, limiting their ability to adapt to unseen interfaces. Although recent methods attempt to adapt models via test-time reinforcement learning, they cannot reflect upon failed exploration. To overcome this, we propose a Test-Time Self-Evolving framework that enables models to improve after deployment without human-annotated ground truth. It constructs a closed-loop of ",
+      "abstract": "Recursive self-improvement (RSI) asks whether an AI system can improve the process that produces AI systems, so that the next system inherits the improvement. That process is the training algorithm: a better objective or update rule improves the compute\\mbox{-}capability exchange rate for every subsequent run, including the one that produces the next agent. Whether RSI is feasible therefore turns on whether an agent can design training algorithms. No benchmark isolates that ability: existing sui",
       "categories": [
-        "cs.CV",
         "cs.AI",
-        "cs.CL"
+        "cs.CL",
+        "cs.LG"
       ],
       "keywords": [
         "agent",
-        "evaluation",
         "benchmark",
         "RAG"
       ],
-      "score": 71.0,
+      "score": 72.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11191v1"
+          "url": "http://arxiv.org/abs/2608.20318v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11191v1"
+          "url": "https://arxiv.org/pdf/2608.20318v1"
         }
       ],
-      "llm_reason": "Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI Visual Grounding 是 GUI agent 的基础能力，现有模型部署后冻结参数，无法适配未见界面；近期 test-time RL 方法无法对失败探索进行反思；本文提出 Test-Time Self-Evolving 框架，使模型部署后无需人工标注即可自我改进，构建反思引导的 on-policy self-distillation 闭环。'测试时自我进化——无需人工标注即可通过反思引导的 on-policy 自蒸馏让 GUI agent 适配未见界面'对构建 GUI/自动化 agent 的团队有直接工程价值——它指向一个实际部署瓶颈（模型冻结后无法适配新界面），且给出的方案（闭环：探索→反思→自蒸馏）可在不依赖人工标注的前提下运行。证据强度中等偏上：关键词含 agent/evaluation/benchmark/RAG 表明有实验与基准评估。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致闭环的具体组件设计（反思信号如何生成、自蒸馏的稳定性机制）、定量提升幅度、被测 GUI 框架清单缺失；关键词 RAG 为宽泛命中，实际聚焦 test-time 自进化而非检索增强。",
-      "id": "test-time-self-evolving-gui-visual-grounding-via-reflection-guided-on-policy-self-distillation",
+      "llm_reason": "AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'，从而改进下一代系统的 compute-capability exchange rate；现有基准都不隔离这一能力。本文提出 AI4AI-Bench，专注评估 agent 设计训练算法的能力。'专门评估 agent 设计训练算法能力的基准——把 RSI 的核心（改进训练算法本身）从总任务里隔离出来'对做 agent / 自动 ML 研究或希望把 agent 推到训练侧研究的团队有直接价值——它把'agent 改进算法'从一个含糊愿景变成可测量对象。证据强度中等：关键词含 agent/benchmark/RAG 表明有评估设计；摘要自述动机与问题清晰。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致具体任务设置（训练算法修改的搜索形式、奖励/评分机制、与基线 agent 的对比）缺失；关键词 RAG 为宽泛命中，实际聚焦训练算法设计而非检索增强。",
+      "id": "ai4ai-bench-benchmarking-llm-agents-in-algorithmic-design-for-recursive-self-improvement",
       "value_type": "immediate",
       "matched_topics": [
         "ai-agent",
@@ -248,12 +252,12 @@
         "novelty": 4.8,
         "problem_importance": 5.8,
         "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.6,
-        "trend_signal": 3.5,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 5.45,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 3.8,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 2.2,
@@ -261,294 +265,532 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "AI Agent：GUI Visual Grounding is a fundamental capability for GUI agents. Existing mode…",
-      "one_line_judgement": "今天值得试：Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI …",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
+      "brief_cn": "AI Agent：Recursive self-improvement (RSI) asks whether an AI system can improve the pro…",
+      "one_line_judgement": "今天值得试：AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "Test-Time Self-Evolving GUI Visual Grounding 直接命中 ai-agent 主线：据摘要，GUI Visual Grounding 是 GUI age",
+      "long_tail_summary": "AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'，从而改进下一代系统的 compute-capabi",
       "related_trends": [
         "agentic-world-modeling",
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=test-time-self-evolving-gui-visual-grounding-via-reflection-guided-on-policy-self-distillation"
+      "detail_path": "paper-detail.html?id=ai4ai-bench-benchmarking-llm-agents-in-algorithmic-design-for-recursive-self-improvement"
     },
     {
-      "title": "How to Verify Consistency of Probabilistic Claims",
+      "title": "Inducing Task Models from Computer-Use Traces",
       "authors": [
-        "Orr Paradise",
-        "Oliver Richardson",
-        "Yoshua Bengio",
-        "Shafi Goldwasser"
+        "Yucheng Jiang",
+        "Zora Zhiruo Wang",
+        "Ruishi Chen",
+        "Diyi Yang"
       ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11181v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11181v1",
+      "url": "http://arxiv.org/abs/2608.20319v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20319v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "When a probabilistic predictor answers many conditional-probability queries, are its answers self-consistent, and can this be verified in polynomial time? This problem is of interest for AI safety, where safety is derived from honesty about probabilistic predictions of unwanted outcomes potentially caused by an AI action. We construct an interactive PCP as follows. Let a predictive model be specified by a probability circuit P and a circuit Q which outputs confidence in predictions. Together, P ",
+      "abstract": "Naturalistic computer-use traces, passively recorded screenshots and mouse or keyboard actions, are a valuable resource for deriving symbolic, auditable, and reusable models of how everyday work is done. Such models matter as computer-use agents enter real work, where agents need to learn how tasks are actually performed, and organizations need to audit and reuse that knowledge. However, inducing such task models is challenging, as activity is observed only as low-level events and real-world wor",
       "categories": [
-        "cs.CC",
-        "cs.AI",
-        "cs.LG"
+        "cs.CL",
+        "cs.AI"
       ],
-      "keywords": [],
+      "keywords": [
+        "agent"
+      ],
       "score": 68.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11181v1"
+          "url": "http://arxiv.org/abs/2608.20319v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11181v1"
+          "url": "https://arxiv.org/pdf/2608.20319v1"
         }
       ],
-      "llm_reason": "How to Verify Consistency of Probabilistic Claims 命中 security-governance 主线：据摘要，当概率预测器回答大量条件概率查询时，其回答是否自洽，以及能否在多项式时间内验证——该问题对 AI safety 有意义（安全性源自对 AI 行为可能导致的不良结果的概率预测的诚实性）；本文构造了一个 interactive PCP（概率可检查证明）：预测模型由概率电路 P 与置信度电路 Q 指定，二者组合后可被验证。'用 interactive PCP 在多项式时间内验证概率预测器的自洽性——为 AI safety 的诚实性声明提供密码学级可验证基础'对做 AI 安全/治理的团队有趋势参考价值，它把'AI 是否诚实报告概率'从信任问题变成可验证的密码学问题。证据强度高：作者阵容极强（Orr Paradise、Oliver Richardson、Yoshua Bengio、Shafi Goldwasser——图灵奖级），且方法构造（interactive PCP）定义清晰。证据不足：code/benchmark 暂无待核验（理论工作通常无代码）；摘要截断导致 PCP 的具体 soundness/completeness 参数、电路规模约束、与实际 LLM 概率输出的对接路径缺失；作为理论工作，短期工程可转化性取决于能否将 LLM 的概率声明映射到概率电路形式。",
-      "id": "how-to-verify-consistency-of-probabilistic-claims",
+      "llm_reason": "Inducing Task Models from Computer-Use Traces 命中 ai-agent 与 context-engineering 主线：据摘要，自然产生的电脑使用 trace（屏幕截图 + 鼠标/键盘）是构建'可审计、可复用、符号化任务模型'的宝贵资源，但 trace 只是底层事件，真实工作流又长又有噪声；本文研究从这种 trace 归纳出结构化任务模型。'从被动的电脑使用 trace 中归纳符号化任务模型——让 computer-use agent 能学会任务如何真正被执行、且组织能审计与复用'对做 GUI/电脑使用 agent 的团队有趋势参考价值——它指向一个关键缺口：当前 GUI agent 多依赖演示模仿，缺乏可审计、可复用的任务知识库。证据强度中等：摘要明确研究问题与方法动机，关键词含 agent。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致归纳算法（如何从长程事件序列中得到可审计的符号模型）、评估协议、与现有 GUI agent 框架的结合点缺失；摘要聚焦问题与动机而非实验结果。",
+      "id": "inducing-task-models-from-computer-use-traces",
       "value_type": "trend",
       "matched_topics": [
-        "security-governance"
+        "ai-agent",
+        "context-engineering"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
-        "noise_risk": 2.4,
+        "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "安全与治理：When a probabilistic predictor answers many conditional-probability queries, a…",
-      "one_line_judgement": "值得继续观察：How to Verify Consistency of Probabilistic Claims 命中 security-governan…",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
+      "brief_cn": "AI Agent：Naturalistic computer-use traces, passively recorded screenshots and mouse or …",
+      "one_line_judgement": "值得继续观察：Inducing Task Models from Computer-Use Traces 命中 ai-agent 与 context-en…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "How to Verify Consistency of Probabilistic Claims 命中 security-governance 主线：据摘要，当概率预测器回答大量条件概率查询",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=how-to-verify-consistency-of-probabilistic-claims"
+      "long_tail_summary": "Inducing Task Models from Computer-Use Traces 命中 ai-agent 与 context-engineering 主线：据摘要，自然产生的电脑使用",
+      "related_trends": [
+        "agentic-world-modeling",
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=inducing-task-models-from-computer-use-traces"
     },
     {
-      "title": "Surgical WAM: A World-Action Model for Data-Efficient Surgical Robot Learning",
+      "title": "Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search",
       "authors": [
-        "Wenrui Bao",
-        "Tianyun Jiang",
-        "Zhiben Chen",
-        "Ser-Nam Lim",
-        "Peter D. Peng"
+        "Sahel Sharifymoghaddam",
+        "Lingwei Gu",
+        "Yijun Ge",
+        "Jimmy Lin"
       ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11204v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11204v1",
+      "url": "http://arxiv.org/abs/2608.20317v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20317v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Learning reliable surgical manipulation policies is bottlenecked by the scarcity of action-labeled demonstrations: teleoperated surgical robot (e.g., dVRK) trajectories with synchronized kinematics are costly to collect, while surgical tasks demand precise contact handling, long-horizon reasoning, and bimanual coordination. Endoscopic video is comparatively inexpensive and abundant relative to synchronized video--kinematics trajectories, and a natural way to exploit it is to learn world models o",
+      "abstract": "The BrowseComp-Plus benchmark disentangled the evaluation of agentic search by replacing opaque web search with a fixed corpus, so that an agent's role can be separated from the retriever's. That corpus, however, holds only about 100K documents and was assembled from the supporting documents of the benchmark's own queries plus mined hard negatives, so the evidence and the distractors were both selected per query. We introduce $\\text{BrowseComp-Plus}_{\\text{CM}}$, which keeps the BrowseComp-Plus ",
       "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.CV"
+        "cs.IR"
       ],
       "keywords": [
-        "world model",
+        "agent",
+        "agentic",
         "evaluation",
-        "RAG"
+        "benchmark"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20317v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20317v1"
+        }
+      ],
+      "llm_reason": "BrowseComp-Plus onto ClimbMix 命中 rag-knowledge 与 ai-agent 主线：据摘要，BrowseComp-Plus 把 agentic search 评测与 web 检索解耦，改用固定语料以隔离 agent 与 retriever 的贡献；该语料只有 ~100K 文档、由支持文档 + 挖掘的 hard negative 组成，证据与干扰项均按 query 选择。本文提出 BrowseComp-Plus_CM：保留原任务，但把语料换成 ClimbMix（更大、更贴近真实检索场景、不会让干扰项与证据同源）。'用更真实、不会同源泄露的语料重做 BrowseComp-Plus——让 agentic search 评测能区分'agent 是否真懂检索'与'语料是否泄题''对做 agent 检索/RAG 评测的团队有趋势参考价值——它指向一个普遍的评测偏差（语料与 query 同源选择干扰项会让 agent 看起来更强）。证据强度中等偏上：明确指出前作语料缺陷，并提出改进。证据不足：code/benchmark 暂无待核验；摘要截断导致 ClimbMix 的规模、来源、与 BrowseComp-Plus 的定量差异缺失；OpenReview/Papers with Code 链接暂无。",
+      "id": "projecting-browsecomp-plus-onto-climbmix-toward-more-realistic-corpora-for-agentic-search",
+      "value_type": "trend",
+      "matched_topics": [
+        "rag-knowledge",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.55,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "RAG / 知识系统：The BrowseComp-Plus benchmark disentangled the evaluation of agentic search by…",
+      "one_line_judgement": "值得继续观察：BrowseComp-Plus onto ClimbMix 命中 rag-knowledge 与 ai-agent 主线：据摘要，Brows…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "BrowseComp-Plus onto ClimbMix 命中 rag-knowledge 与 ai-agent 主线：据摘要，BrowseComp-Plus 把 agentic searc",
+      "related_trends": [
+        "context-engineering",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=projecting-browsecomp-plus-onto-climbmix-toward-more-realistic-corpora-for-agentic-search"
+    },
+    {
+      "title": "Pandora's AI Model Routing Box: Efficient Allocation with Costly Value Estimation",
+      "authors": [
+        "Adam Fisch",
+        "Shubhendu Trivedi",
+        "Fantine Huot",
+        "William W. Cohen",
+        "Michael Kaisers"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20316v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20316v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Heterogeneous AI systems composed of multiple models, architectures, harnesses, or inference-time settings can improve quality and efficiency by routing queries to the specialist who can answer most effectively at the lowest cost. Routing requires estimating each specialist's expected return, but this value estimation has a cost. Cheap estimators (e.g., embedding-based predictors) are fast but noisy, while accurate estimators (e.g., fine-tuned models with access to retrieval results or partial r",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark",
+        "inference"
       ],
       "score": 64.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11204v1"
+          "url": "http://arxiv.org/abs/2608.20316v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11204v1"
+          "url": "https://arxiv.org/pdf/2608.20316v1"
         }
       ],
-      "llm_reason": "Surgical WAM 命中 multimodal-agent 主线：据摘要，学习可靠的手术操作策略受限于动作标注示范的稀缺——带同步运动学的遥操作手术机器人（如 dVRK）轨迹采集成本高，而手术任务需要精确接触处理、长程推理与双臂协调；内窥镜视频相对廉价且丰富，利用它的自然方式是学习世界模型。'用世界-动作模型（WAM）从廉价内窥镜视频学习，减少对昂贵动作标注示范的依赖——data-efficient surgical robot learning'对做世界模型/具身 agent 的团队有趋势参考价值——world model 作为 data-efficient learning 的范式正在扩展到更多具身场景。证据强度中等偏上：问题定义清晰（动作标注稀缺 vs 视频丰富），关键词含 world model/evaluation 表明有评估。证据不足：code/benchmark 暂无待核验；摘要截断导致 WAM 的具体架构（视频如何转化为可执行策略）、与基线（纯模仿学习/RL）的定量对比、数据效率提升幅度缺失；手术领域特异性高，向通用具身 agent 的迁移需正文确认；关键词 RAG 为宽泛命中。",
-      "id": "surgical-wam-a-world-action-model-for-data-efficient-surgical-robot-learning",
+      "llm_reason": "Pandora's AI Model Routing Box 命中 inference-serving 与 ai-agent 主线：据摘要，异构 AI 系统（多模型 / 架构 / harness / 推理设置）可通过将 query 路由到能以最低成本最有效回答的 specialist 来提升质量与效率；但路由需要估计每个 specialist 的预期回报，而价值估计本身有成本——便宜估计器（embedding-based）快但噪声大，准确估计器（带 retrieval 的微调模型）慢但准。本文研究如何在'价值估计有成本'约束下做高效路由。'把价值估计成本纳入路由决策——便宜估计器 + 准确估计器的混合路由，避免每次都付出昂贵的精确评估'对做推理服务 / 多模型路由 / 成本敏感系统的团队有趋势参考价值——它把'哪个 specialist 最值'从一个纯评估问题变成一个 cost-constrained decision 问题。证据强度中等偏上：问题定义清晰，作者阵容强（含 William W. Cohen）。证据不足：code/benchmark 暂无待核验；摘要截断导致混合策略的具体形式、估计误差与成本权衡的定量结果、是否给出可复用算法框架缺失。",
+      "id": "pandora-s-ai-model-routing-box-efficient-allocation-with-costly-value-estimation",
       "value_type": "trend",
       "matched_topics": [
-        "multimodal-agent"
+        "inference-serving",
+        "ai-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
         "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
-        "actionability": 3.8,
+        "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "Multimodal Agent：Learning reliable surgical manipulation policies is bottlenecked by the scarci…",
-      "one_line_judgement": "值得继续观察：Surgical WAM 命中 multimodal-agent 主线：据摘要，学习可靠的手术操作策略受限于动作标注示范的稀缺——带同步运动…",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
+      "brief_cn": "推理与服务：Heterogeneous AI systems composed of multiple models, architectures, harnesses…",
+      "one_line_judgement": "值得继续观察：Pandora's AI Model Routing Box 命中 inference-serving 与 ai-agent 主线：据摘要，…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "Surgical WAM 命中 multimodal-agent 主线：据摘要，学习可靠的手术操作策略受限于动作标注示范的稀缺——带同步运动学的遥操作手术机器人（如 dVRK）轨迹采集成本高，",
+      "long_tail_summary": "Pandora's AI Model Routing Box 命中 inference-serving 与 ai-agent 主线：据摘要，异构 AI 系统（多模型 / 架构 / harnes",
       "related_trends": [
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=surgical-wam-a-world-action-model-for-data-efficient-surgical-robot-learning"
+      "detail_path": "paper-detail.html?id=pandora-s-ai-model-routing-box-efficient-allocation-with-costly-value-estimation"
     },
     {
-      "title": "MultiModal Code-Switching: Interleaving Visual Objects into Language for Explicit Object-Level Alignment",
+      "title": "ConceptGuard: Benchmarking Context-Sensitive Unlearning in Large Language Models",
       "authors": [
-        "Changhao Xiang",
-        "Shangyu Xing",
-        "Zhen Wu",
-        "Jianbing Zhang",
-        "Xinyu Dai"
+        "Sahil Kale",
+        "Ian Harris"
       ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11167v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11167v1",
+      "url": "http://arxiv.org/abs/2608.20338v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20338v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Existing Multimodal Large Language Models (MLLMs) predominantly rely on image-text pairs for modality alignment pretraining, mapping global image representations to long textual descriptions. However, this image-level alignment suffers from referential ambiguity: models struggle to infer the correspondences between multiple visual objects and textual entities from the global representation, leading to data inefficiency and suboptimal semantic grounding. To address this, we propose MultiModal Cod",
+      "abstract": "Large Language Models (LLMs) increasingly require selective removal of harmful or sensitive knowledge, called unlearning, yet existing methods and benchmarks fail to evaluate this capability completely. Current approaches rely on disjoint forget and retain sets composed of independent facts, and measure success using simple and direct factual recall. This framing fails to capture a key requirement of unlearning, namely the ability to eliminate harmful behaviors while preserving benign and benefi",
       "categories": [
-        "cs.CV",
-        "cs.CL",
-        "cs.LG"
+        "cs.CL"
       ],
       "keywords": [
-        "multimodal"
+        "evaluation",
+        "benchmark"
       ],
       "score": 62.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11167v1"
+          "url": "http://arxiv.org/abs/2608.20338v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11167v1"
+          "url": "https://arxiv.org/pdf/2608.20338v1"
         }
       ],
-      "llm_reason": "MultiModal Code-Switching 命中 multimodal-agent 主线：据摘要，现有 MLLM 主要依赖图文对做模态对齐预训练，将全局图像表示映射到长文本描述；但图像级对齐存在指代歧义——模型难以从全局表示推断多个视觉对象与文本实体的对应关系，导致数据效率低与语义接地不足；本文提出 MultiModal Code-Switching，将视觉对象交错插入语言以实现显式对象级对齐。'用 code-switching（视觉对象交错嵌入语言）替代图像级全局对齐，解决 MLLM 的指代歧义与语义接地不足'对做多模态模型训练的团队有趋势参考价值——它指向一个具体的训练范式改进（对象级对齐 vs 全局对齐）。证据强度中等：问题（指代歧义）与方法概念（code-switching 交错）清晰。证据不足：code/benchmark 暂无待核验；摘要截断导致 code-switching 的具体实现机制（如何检测/分割视觉对象、如何与文本 token 交错）、定量对比（与图像级对齐基线的数据效率/接地质量差异）缺失。",
-      "id": "multimodal-code-switching-interleaving-visual-objects-into-language-for-explicit-object-level-alignment",
+      "llm_reason": "ConceptGuard 命中 llm-evaluation 与 security-governance 主线：据摘要，LLM 需要选择性删除有害/敏感知识（unlearning），但现有方法和基准都用不相交的 forget/retain 集 + 简单直接的事实回忆评估；这无法捕捉 unlearning 的关键需求——在保留良性、有益知识的同时消除有害行为。本文提出 ConceptGuard，关注 context-sensitive unlearning。'用 context-sensitive unlearning 评估替代孤立事实删除评估——更接近真实合规需求（既要去有害，又要留有用）'对做 LLM 安全/合规/数据治理的团队有趋势参考价值——它指向当前 unlearning 评估与实际部署需求之间的脱节。证据强度中等：关键词含 evaluation/benchmark，摘要明确方法动机。证据不足：code/benchmark 暂无待核验；摘要截断导致具体评估协议、context-sensitive 的定义、与现有 unlearning 方法的定量对比缺失。",
+      "id": "conceptguard-benchmarking-context-sensitive-unlearning-in-large-language-models",
       "value_type": "trend",
       "matched_topics": [
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Large Language Models (LLMs) increasingly require selective removal of harmful…",
+      "one_line_judgement": "值得继续观察：ConceptGuard 命中 llm-evaluation 与 security-governance 主线：据摘要，LLM 需要选择性删…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "ConceptGuard 命中 llm-evaluation 与 security-governance 主线：据摘要，LLM 需要选择性删除有害/敏感知识（unlearning），但现有方法",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=conceptguard-benchmarking-context-sensitive-unlearning-in-large-language-models"
+    },
+    {
+      "title": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
+      "authors": [
+        "Narges Ahmadi",
+        "Yubo Jiao",
+        "Jônatas Augusto Manzolli",
+        "Jiangbo Yu",
+        "Luis Miranda-Moreno"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20320v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20320v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Travel behavior research increasingly combines digital data collection with predictive modeling, yet these stages are often developed and evaluated separately. This study proposes a three-agent workflow integrating conversational data collection, structured data processing, and behavioral prediction. A chatbot-administered, image-augmented stated-preference survey collected mode choices from student commuters across five predefined weather scenarios, yielding 454 respondent-scenario observations",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "multimodal"
+      ],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20320v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20320v1"
+        }
+      ],
+      "llm_reason": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction 命中 ai-agent 与 multimodal-agent 主线：据摘要，旅行行为研究通常把数据收集与预测建模分开评估；本文提出三 agent 工作流——对话式数据收集、结构化数据处理、行为预测。聊天机器人 + 图像增强的偏好调查收集了 5 种天气场景下学生通勤的模式选择，454 份观察。'用三 agent 工作流（对话收集 + 结构化处理 + 行为预测）把数据收集与预测建模整合到端到端流程，并在天气敏感出行需求上做实证'对做 agentic data pipeline / 多模态对话式调研的团队有趋势参考价值——它示范了 agent 工作流如何把'主动数据收集'与'下游建模'整合。证据强度中等：给出具体数据规模（454 观察）与流程。证据不足：code/benchmark 暂无待核验；摘要截断导致三 agent 的具体实现细节、对话→结构化数据的转换机制、模型预测的定量指标缺失；领域聚焦出行行为，与通用 agent 工程的直接迁移距离中等。",
+      "id": "an-agentic-approach-for-active-data-collection-travel-behavior-modeling-and-weather-sensitive-demand-prediction",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
         "multimodal-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 5.35,
+        "asset_convertibility": 6.2,
+        "actionability": 4.4,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Travel behavior research increasingly combines digital data collection with pr…",
+      "one_line_judgement": "值得继续观察：An Agentic Approach for Active Data Collection, Travel Behavior Modeli…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive ",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=an-agentic-approach-for-active-data-collection-travel-behavior-modeling-and-weather-sensitive-demand-prediction"
+    },
+    {
+      "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
+      "authors": [
+        "Shiao Xie",
+        "Siyu Chen",
+        "Jianwei Lv",
+        "Bo Yuan",
+        "Yujin Wang"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20331v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20331v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Personalized interpretation of medical reports has emerged as an increasingly important need among patients. Addressing this need requires both evidence-grounded medical factuality and context-dependent patient communication, yet existing medical vision-language tasks do not adequately capture these dual requirements. To bridge this gap, we introduce Patient-oriented Medical Report Interpretation (PMRI), a novel open-ended multimodal generation task that requires models to explain medical report",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "RAG",
+        "multimodal"
+      ],
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20331v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20331v1"
+        }
+      ],
+      "llm_reason": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation 命中 llm-evaluation 与 multimodal-agent 主线：据摘要，个性化医学报告解读既需循证医学事实性，又需结合上下文的患者沟通，现有医学视觉-语言任务未充分捕捉双重需求；本文提出 PMRI 任务（面向患者的医学报告解读，开域多模态生成），并用 grounded checklist 对齐奖励学习（G-CARL）训练模型。'用 checklist-aligned reward 把医学多模态生成的'事实正确 + 患者沟通'双重需求变成可对齐的优化目标'对做医学多模态生成 / 对齐奖励学习的团队有长尾参考价值——checklist 形式的对齐奖励是相对易迁移的工程抽象。证据强度中等：关键词含 evaluation/benchmark/RAG/multimodal，方法命名清晰。证据不足：code/benchmark 暂无待核验；摘要截断导致 checklist 来源（专家 / 自动生成）、G-CARL 的训练细节、定量结果缺失；医学领域特异性高，与团队通用 agent 工程栈的直接迁移距离中等偏远。",
+      "id": "g-carl-grounded-checklist-aligned-reward-learning-for-patient-oriented-medical-report-interpretation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 4.0,
+        "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "Multimodal Agent：Existing Multimodal Large Language Models (MLLMs) predominantly rely on image-…",
-      "one_line_judgement": "值得继续观察：MultiModal Code-Switching 命中 multimodal-agent 主线：据摘要，现有 MLLM 主要依赖图文对做模…",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "MultiModal Code-Switching 命中 multimodal-agent 主线：据摘要，现有 MLLM 主要依赖图文对做模态对齐预训练，将全局图像表示映射到长文本描述；但图像",
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Personalized interpretation of medical reports has emerged as an increasingly …",
+      "one_line_judgement": "值得先保存：G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriente…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpret",
       "related_trends": [
+        "coding-agent",
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=multimodal-code-switching-interleaving-visual-objects-into-language-for-explicit-object-level-alignment"
+      "detail_path": "paper-detail.html?id=g-carl-grounded-checklist-aligned-reward-learning-for-patient-oriented-medical-report-interpretation"
     },
     {
-      "title": "Beyond a Bag of Features: Set-Level Instability in Sparse Autoencoders",
+      "title": "Information on trajectories: martingales and random times",
       "authors": [
-        "Nikolai Bolik",
-        "Lennart Stöpler",
-        "Artur Andrzejak"
+        "Akshay Balsubramani"
       ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11197v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11197v1",
+      "url": "http://arxiv.org/abs/2608.20337v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20337v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Shani et al. (2026) show that LLM representations broadly recover human category boundaries, while failing to reflect fine-grained typicality structure. Their analysis uses cosine similarity over dense model representations. We revisit their approach using overlap over active sparse autoencoder (SAE) latent sets as a more interpretable similarity measure. We first verify that this set-level measure is meaningful: SAE latent sets can recover union-like compositional structure in controlled toy mo",
+      "abstract": "Accounting for information flow on the path space of trajectories of a nonnegative martingale yields exact variational identities for it, even at arbitrary random times. This recovers the widely used classical concentration inequalities, from Ville to PAC-Bayes, and measures what each one discards. The tail a bound controls is itself a relative entropy, resolved by the chain rule into per-step conditional divergences. The discarded slack has an exact form in each of three geometries: a Gibbs til",
       "categories": [
+        "math.PR",
+        "cs.IT",
         "cs.LG",
-        "cs.CL"
+        "math.ST"
       ],
       "keywords": [],
-      "score": 58.0,
+      "score": 52.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11197v1"
+          "url": "http://arxiv.org/abs/2608.20337v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11197v1"
+          "url": "https://arxiv.org/pdf/2608.20337v1"
         }
       ],
-      "llm_reason": "Beyond a Bag of Features: SAE Set-Level Instability 命 mechanistic interpretability 侧：据摘要，Shani et al. (2026) 表明 LLM 表示能广泛恢复人类类别边界但无法反映细粒度典型性结构，其分析用稠密表示上的余弦相似度；本文改用 SAE 潜在集合上的重叠作为更具可解释性的相似度度量，验证该集合级度量的有效性（SAE 潜在集合能恢复受控玩具模型中的并集式组合结构），并发现 set-level instability（集合级不稳定性）问题。'用 SAE 潜在集合重叠替代余弦相似度做可解释性分析，并揭示其集合级不稳定性'对做 LLM 可解释性/SAE 工程的团队有长尾保存价值——它是对 SAE 作为可解释性工具的可靠性评估，指出其潜在集合存在不稳定性。证据强度中等偏上：在受控玩具模型上验证 + 对真实模型的分析。证据不足：code/benchmark 暂无待核验；摘要截断导致不稳定性的具体成因、规模、对下游可解释性分析的影响程度缺失；与团队以 Agent/LLM 工程为核心的技术栈直接迁移距离中等（取决于是否做 SAE 可解释性工作）。",
-      "id": "beyond-a-bag-of-features-set-level-instability-in-sparse-autoencoders",
+      "llm_reason": "Information on trajectories: martingales and random times 命中 security-governance 主线（理论侧）：据摘要，在非负 martingale 轨迹的路径空间上考虑信息流，可得到精确的变分恒等式（即使在任意随机时刻），恢复 Ville 到 PAC-Bayes 的经典浓度不等式并衡量每个不等式丢弃了什么；受控的尾部界本身是相对熵，由链式法则分解为逐步条件散度。'在路径空间上把 martingale 信息流统一起来，把经典浓度不等式（Ville→PAC-Bayes）变成变分恒等式，并分解为逐步相对熵'对做 PAC-Bayes / 信息论 / 泛化界理论研究的团队有长尾保存价值——它是连接经典浓度不等式与 PAC-Bayes 的统一框架，且指出每种不等式到底丢弃了什么。证据强度中等偏上：理论定义清晰，给出恒等式形式。证据不足：code/benchmark 不适用（纯理论）；摘要截断导致 Gibbs tiling 等三种几何的具体形式、与其他浓度界的定量对比缺失；作为理论工作，对 LLM/agent 工程的短期可迁移性低，仅作长期理论资产保存。",
+      "id": "information-on-trajectories-martingales-and-random-times",
       "value_type": "long_tail",
       "matched_topics": [
-        "llm-evaluation"
+        "security-governance"
       ],
       "score_breakdown": {
-        "novelty": 5.4,
+        "novelty": 4.8,
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
+        "long_tail_potential": 4.15,
         "asset_convertibility": 4.0,
         "actionability": 3.8,
         "noise_risk": 2.4,
@@ -558,135 +800,130 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：Shani et al. (2026) show that LLM representations broadly recover human catego…",
-      "one_line_judgement": "值得先保存：Beyond a Bag of Features: SAE Set-Level Instability 命 mechanistic inte…",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
+      "brief_cn": "安全与治理：Accounting for information flow on the path space of trajectories of a nonnega…",
+      "one_line_judgement": "值得先保存：Information on trajectories: martingales and random times 命中 security-…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "Beyond a Bag of Features: SAE Set-Level Instability 命 mechanistic interpretability 侧：据摘要，Shani e",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=beyond-a-bag-of-features-set-level-instability-in-sparse-autoencoders"
+      "long_tail_summary": "Information on trajectories: martingales and random times 命中 security-governance 主线（理论侧）：据摘要，在非负",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=information-on-trajectories-martingales-and-random-times"
     },
     {
-      "title": "From Interpretability to Control: Insights from Six Years of the TrustNLP Workshop",
+      "title": "$TCP_α$: Margin-Controlled Confidence estimation for reliable Music Information Retrieval",
       "authors": [
-        "Rahul Gupta",
-        "Abhinav Mohanty",
-        "Anaelia Ovalle",
-        "Anil Ramakrishna",
-        "Anubrata Das"
+        "Parampreet Singh",
+        "Anushka Singh",
+        "Sumit Kumar",
+        "Vipul Arora"
       ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11171v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11171v1",
+      "url": "http://arxiv.org/abs/2608.20326v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20326v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "The Workshop on Trustworthy Natural Language Processing (TrustNLP), co-located with major ACL conferences since 2021, has grown from 8 proceedings papers to 41 over six editions, documenting a field-wide transition from post-hoc interpretability of static models to mechanistic understanding and proactive control of generative systems. We synthesize insights from all 144 proceedings papers, classifying them along six trust dimensions grounded in established frameworks (TrustLLM, DecodingTrust). W",
+      "abstract": "Deep neural networks are often overconfident, assigning high confidence even to incorrect predictions. Consequently, users lack a reliable signal for deciding when a prediction can be trusted. Post-hoc confidence estimation addresses this by training a lightweight auxiliary head over a frozen classifier. Existing targets, however, suffer from inherent ambiguity: they assign overlapping confidence values to correct and incorrect predictions, while errors near the decision boundary receive confide",
       "categories": [
-        "cs.CL",
-        "cs.AI",
-        "cs.CY"
+        "eess.AS",
+        "cs.LG"
       ],
-      "keywords": [
-        "RAG"
-      ],
-      "score": 55.0,
-      "decision": "持续观察",
+      "keywords": [],
+      "score": 48.0,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11171v1"
+          "url": "http://arxiv.org/abs/2608.20326v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11171v1"
+          "url": "https://arxiv.org/pdf/2608.20326v1"
         }
       ],
-      "llm_reason": "From Interpretability to Control: TrustNLP Workshop 命中 llm-evaluation 与 security-governance 主线：据摘要，TrustNLP workshop（自 2021 年与 ACL 共址）从 8 篇论文增长到 41 篇，记录了领域从静态模型的事后可解释性到生成式系统的机制理解与主动控制的转变；本文综合 144 篇会议论文，沿六个信任维度（基于 TrustLLM、DecodingTrust 框架）分类。'六年的 TrustNLP 综述（144 篇）——记录从事后可解释性到机制理解与主动控制的领域转变，含六维信任分类'对做 LLM 信任/安全评估的团队有长尾参考价值——它是该领域的系统性文献综述与趋势地图。证据强度中等偏上：综述 144 篇论文，分类框架基于既有框架（TrustLLM/DecodingTrust）。证据不足：code/benchmark 不适用（综述论文）；摘要截断导致六个信任维度的具体定义、关键发现、从可解释性到控制转变的定量证据缺失；作为综述其短期工程可转化性低，主要作为参考地图。",
-      "id": "from-interpretability-to-control-insights-from-six-years-of-the-trustnlp-workshop",
-      "value_type": "long_tail",
+      "llm_reason": "TCP_α: Margin-Controlled Confidence estimation for reliable Music Information Retrieval 聚焦音乐信息检索的置信度估计：据摘要，深度网络常过度自信，正确与错误预测被分配重叠置信度，决策边界附近的错误处理混乱；本文提出 TCP_α（margin-controlled 置信度估计）改善 post-hoc 校准。领域聚焦 eess.AS/cs.LG 的音乐信息检索，关键词无 agent/multimodal 等相关命中；与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远。置信度校准本身是有用的方法论，但音乐领域特异性限制了对通用 LLM 工程的直接价值。code/benchmark 暂无待核验。忽略，除非做通用置信度校准或音频相关 agent 工作。",
+      "id": "tcp-margin-controlled-confidence-estimation-for-reliable-music-information-retrieval",
+      "value_type": "ignore",
       "matched_topics": [
-        "llm-evaluation",
-        "security-governance"
+        "rag-knowledge"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.6,
-        "trend_signal": 4.05,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.4,
-        "actionability": 5.0,
-        "noise_risk": 2.4,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：The Workshop on Trustworthy Natural Language Processing (TrustNLP), co-located…",
-      "one_line_judgement": "值得先保存：From Interpretability to Control: TrustNLP Workshop 命中 llm-evaluation …",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "From Interpretability to Control: TrustNLP Workshop 命中 llm-evaluation 与 security-governance 主线：据",
+      "trend_status": "noise",
+      "brief_cn": "RAG / 知识系统：Deep neural networks are often overconfident, assigning high confidence even t…",
+      "one_line_judgement": "当前可忽略：TCP_α: Margin-Controlled Confidence estimation for reliable Music Info…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "TCP_α: Margin-Controlled Confidence estimation for reliable Music Information Retrieval 聚焦音乐信息检索",
       "related_trends": [
-        "coding-agent"
+        "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=from-interpretability-to-control-insights-from-six-years-of-the-trustnlp-workshop"
+      "detail_path": "paper-detail.html?id=tcp-margin-controlled-confidence-estimation-for-reliable-music-information-retrieval"
     },
     {
-      "title": "Are We Really Making Progress in Group Recommendation? Unmasking the Tie-Breaking Illusion",
+      "title": "A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring and sleep interruption detection",
       "authors": [
-        "Song-Duo Ma",
-        "Pu-Jen Cheng"
+        "Anton Lambrecht",
+        "Reda El Hail",
+        "Xianjun Jiao",
+        "Pieter Crombez",
+        "Dominique Schreurs"
       ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11190v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11190v1",
+      "url": "http://arxiv.org/abs/2608.20322v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20322v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Recent group recommendation methods have reported strong improvements on standard benchmarks, but it remains unclear whether these gains always reflect genuine advances in modeling group preferences. In this paper, we show that several recent methods are affected by a systematic evaluation bias caused by the interaction between training-time score compression and evaluation-time deterministic tie-breaking. Specifically, an additional sigmoid transformation before the BPR objective can greatly in",
+      "abstract": "Despite their growing importance for contact-free radio frequency (RF) based healthcare monitoring, different radio technologies such as frequency-modulated continuous wave (FMCW) radar, impulse radio ultra-wideband (IR-UWB), and Wi-Fi sensing are rarely compared under identical deployment conditions, as existing studies typically differ in hardware, datasets, and evaluation methodologies. In addition, the performance of ceiling-mounted radars, despite their practical deployment and cost advanta",
       "categories": [
-        "cs.IR"
+        "cs.LG"
       ],
       "keywords": [
-        "evaluation",
-        "benchmark"
+        "evaluation"
       ],
-      "score": 52.0,
-      "decision": "持续观察",
+      "score": 42.0,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11190v1"
+          "url": "http://arxiv.org/abs/2608.20322v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11190v1"
+          "url": "https://arxiv.org/pdf/2608.20322v1"
         }
       ],
-      "llm_reason": "Are We Really Making Progress in Group Recommendation? 命中 llm-evaluation 的方法论侧：据摘要，近期群组推荐方法在标准基准上报告了强劲改进，但这些增益是否真正反映群组偏好建模的进步尚不清楚；本文表明多个近期方法受到系统性评估偏差影响——训练时分数压缩与评估时确定性 tie-breaking 的交互所致；具体而言，BPR 目标前额外的 sigmoid 变换会极大影响结果。'揭示群组推荐中 tie-breaking 导致的评估假象——训练时 sigmoid 压缩与评估时确定性 tie-breaking 的交互造成系统性偏差'对做推荐/排序系统评估的团队有长尾参考价值——它揭示了一类容易被忽视的评估偏差（tie-breaking 与分数压缩的交互），该教训可迁移到其他排序/推荐评测。证据强度中等偏上：发现了具体的偏差机制（sigmoid + tie-breaking 交互）。证据不足：code/benchmark 暂无待核验；摘要截断导致受影响方法清单、偏差量级、修正后排名变化缺失；群组推荐领域与团队技术栈的直接迁移距离中等（评估方法论教训可迁移，具体方法不可迁移）。",
-      "id": "are-we-really-making-progress-in-group-recommendation-unmasking-the-tie-breaking-illusion",
-      "value_type": "long_tail",
+      "llm_reason": "Ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring 聚焦三种射频技术（FMCW / IR-UWB / Wi-Fi）在卧室活动监测与睡眠中断检测上的同条件对比：据摘要，现有研究通常硬件、数据集、评估方式各异，难以横向比较；本文在同部署条件下对比三种天花板安装雷达。领域聚焦 cs.LG 的射频感知（健康监测），与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接相关性极低。关键词 evaluation 为宽泛命中（指射频方法对比，非 LLM 评测）。code/benchmark 暂无待核验。忽略，除非做健康/感知方向的工程工作。",
+      "id": "a-comparison-between-ceiling-mounted-fmcw-ir-uwb-and-wi-fi-radar-for-in-bedroom-human-activity-monitoring-and-sleep-interruption-detection",
+      "value_type": "ignore",
       "matched_topics": [
         "llm-evaluation"
       ],
@@ -694,11 +931,11 @@
         "novelty": 4.8,
         "problem_importance": 5.15,
         "relevance": 5.0,
-        "evidence_strength": 5.4,
-        "engineering_testability": 4.05,
-        "trend_signal": 6.0,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
+        "asset_convertibility": 4.8,
         "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 4.0,
@@ -706,288 +943,66 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：Recent group recommendation methods have reported strong improvements on stand…",
-      "one_line_judgement": "值得先保存：Are We Really Making Progress in Group Recommendation? 命中 llm-evaluati…",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "Are We Really Making Progress in Group Recommendation? 命中 llm-evaluation 的方法论侧：据摘要，近期群组推荐方法在标准基准",
+      "trend_status": "noise",
+      "brief_cn": "LLM 评测：Despite their growing importance for contact-free radio frequency (RF) based h…",
+      "one_line_judgement": "当前可忽略：Ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human acti…",
+      "first_seen_date": "2026-08-21",
+      "first_deep_dive_daily": "2026-08-21",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "Ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring 聚焦三种射频技术（F",
       "related_trends": [
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=are-we-really-making-progress-in-group-recommendation-unmasking-the-tie-breaking-illusion"
-    },
-    {
-      "title": "Long-Horizon AI Research for Grothendieck Constant: A Case Study in Human-AI Mathematical Collaboration",
-      "authors": [
-        "Alan Li",
-        "Rahul Saha",
-        "Anton Xue",
-        "Swarat Chaudhuri",
-        "Adam Klivans"
-      ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11195v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11195v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "AI agents are increasingly used in mathematics research, but it is often unclear how to use them effectively. Towards this, we present an extensive case study of how AI was used to improve bounds on the Grothendieck constant $K_G$, which captures the hardness between combinatorial problems and their continuous relaxations. Specifically, while the precise value of $K_G$ is not known, we recently tightened the best known bounds to \\[ \\frac{6π}{11} \\;\\le\\; K_G \\;\\le\\; \\fracπ{2\\log(1+\\sqrt2)} - 10^{",
-      "categories": [
-        "cs.AI",
-        "cs.CC",
-        "cs.HC",
-        "math.FA"
-      ],
-      "keywords": [
-        "agent"
-      ],
-      "score": 45.0,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11195v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11195v1"
-        }
-      ],
-      "llm_reason": "Long-Horizon AI Research for Grothendieck Constant 聚焦人机数学协作案例研究：据摘要，AI agent 越来越多地用于数学研究，但如何有效使用尚不清楚；本文展示了一个关于用 AI 改进 Grothendieck 常数 K_G 界限的广泛案例研究（K_G 捕获组合问题与其连续松弛之间的硬度），将已知界限收紧到 6π/11 ≤ K_G ≤ π/(2log(1+√2)) - 10^{-...}。领域聚焦数学研究协作（cs.AI/cs.CC/cs.HC/math.FA），与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远。案例研究有启发性（展示 long-horizon AI 数学研究的协作模式），但对 LLM agent 工程的方法论贡献有限——它是'AI 做数学'的案例而非'如何构建更好 agent'的方法。code/benchmark 暂无待核验。关键词 agent 为宽泛命中（指 AI 辅助数学研究，非 LLM agent 架构）。忽略，除非专门做人机协作/AI for math。",
-      "id": "long-horizon-ai-research-for-grothendieck-constant-a-case-study-in-human-ai-mathematical-collaboration",
-      "value_type": "ignore",
-      "matched_topics": [
-        "ai-agent",
-        "rag-knowledge"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "AI Agent：AI agents are increasingly used in mathematics research, but it is often uncle…",
-      "one_line_judgement": "当前可忽略：Long-Horizon AI Research for Grothendieck Constant 聚焦人机数学协作案例研究：据摘要，AI…",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "Long-Horizon AI Research for Grothendieck Constant 聚焦人机数学协作案例研究：据摘要，AI agent 越来越多地用于数学研究，但如何有效使用",
-      "related_trends": [
-        "agentic-world-modeling",
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=long-horizon-ai-research-for-grothendieck-constant-a-case-study-in-human-ai-mathematical-collaboration"
-    },
-    {
-      "title": "ConVAWG: A Retrieval-Grounded Framework for Controlled Synthetic Dialogue Generation in Violence Against Women and Girls",
-      "authors": [
-        "Chen Lyu",
-        "Xingwei Tan",
-        "Simon Cullen",
-        "Shelley Wilson",
-        "Lois Arthurs"
-      ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11200v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11200v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Synthetic dialogue generation offers a way to study conversational dynamics in sensitive domains where real data are difficult to access, release, or annotate. The underlying abuse may occur online or offline: threats and coercion can appear directly in messages, while behaviours such as surveillance, isolation, stalking, and physical violence may be planned, disclosed, or referred to conversationally. Privacy and legal constraints make it difficult the release of large-scale real conversation d",
-      "categories": [
-        "cs.CL",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "keywords": [
-        "evaluation"
-      ],
-      "score": 38.0,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11200v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11200v1"
-        }
-      ],
-      "llm_reason": "ConVAWG 聚焦在敏感领域（针对妇女和女童的暴力，VAWG）的可控合成对话生成：据摘要，合成对话生成为研究真实数据难以获取/发布/标注的敏感领域的对话动态提供途径；潜在虐待可能在线或离线发生——威胁与胁迫可直接出现在消息中，而监视、隔离、跟踪与身体暴力可能在对话中被计划、披露或提及；隐私与法律约束使大规模真实对话数据集发布困难。领域聚焦敏感领域合成对话生成（cs.CL/cs.AI/cs.LG），与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远。retrieval-grounded 生成框架概念有一定迁移性，但领域特异性（VAWG 对话内容控制）限制了直接工程价值。code/benchmark 暂无待核验。关键词 evaluation 为宽泛命中。忽略，除非专门做敏感领域合成数据生成。",
-      "id": "convawg-a-retrieval-grounded-framework-for-controlled-synthetic-dialogue-generation-in-violence-against-women-and-girls",
-      "value_type": "ignore",
-      "matched_topics": [
-        "rag-knowledge",
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：Synthetic dialogue generation offers a way to study conversational dynamics in…",
-      "one_line_judgement": "当前可忽略：ConVAWG 聚焦在敏感领域（针对妇女和女童的暴力，VAWG）的可控合成对话生成：据摘要，合成对话生成为研究真实数据难以获取/发布/标注的…",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "ConVAWG 聚焦在敏感领域（针对妇女和女童的暴力，VAWG）的可控合成对话生成：据摘要，合成对话生成为研究真实数据难以获取/发布/标注的敏感领域的对话动态提供途径；潜在虐待可能在线或离线发",
-      "related_trends": [
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=convawg-a-retrieval-grounded-framework-for-controlled-synthetic-dialogue-generation-in-violence-against-women-and-girls"
-    },
-    {
-      "title": "A Quantum Roadmap for Softmax Attention: Exact Born-Rule Analogs for Softmax Attention on the Probability Simplex",
-      "authors": [
-        "Eric A. F. Reinhardt",
-        "Adam J. Hauser"
-      ],
-      "published": "2026-08-11",
-      "updated": "2026-08-11",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.11173v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.11173v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "The attention mechanism forms the foundation of many modern AI models such as the Transformer. In one subclass of problems where attention is used, inputs and outputs are bound to the probability simplex so that all outputs sum to one. In this setting, softmax attention admits an exact, component-by-component quantum realization. Attention scores are Hadamard-test statistics on block-encoded projections of amplitude-encoded inputs. The exponential softmax is the interior of a cosine-squared fami",
-      "categories": [
-        "quant-ph",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 32.0,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.11173v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.11173v1"
-        }
-      ],
-      "llm_reason": "A Quantum Roadmap for Softmax Attention 聚焦量子计算与注意力机制的理论连接：据摘要，注意力机制是 Transformer 等现代 AI 模型的基础；在输入输出绑定到概率单纯形的一类问题中（所有输出和为一），softmax 注意力允许精确的逐分量量子实现——注意力分数是振幅编码输入的块编码投影上的 Hadamard-test 统计量；指数 softmax 是余弦平方族的内部。领域聚焦量子计算（quant-ph/cs.LG），属纯理论工作，与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接相关性极低，方法论（softmax 注意力的量子 Born-rule 类比）在短期至中期内不可迁移到实用 LLM 工程。code/benchmark 不适用（纯理论）。忽略。该工作在量子 ML 理论上有趣味，但对 LLM 工程实践无直接贡献。",
-      "id": "a-quantum-roadmap-for-softmax-attention-exact-born-rule-analogs-for-softmax-attention-on-the-probability-simplex",
-      "value_type": "ignore",
-      "matched_topics": [],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "前沿论文：The attention mechanism forms the foundation of many modern AI models such as …",
-      "one_line_judgement": "当前可忽略：A Quantum Roadmap for Softmax Attention 聚焦量子计算与注意力机制的理论连接：据摘要，注意力机制是 T…",
-      "first_seen_date": "2026-08-13",
-      "first_deep_dive_daily": "2026-08-13",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "A Quantum Roadmap for Softmax Attention 聚焦量子计算与注意力机制的理论连接：据摘要，注意力机制是 Transformer 等现代 AI 模型的基础；在输",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=a-quantum-roadmap-for-softmax-attention-exact-born-rule-analogs-for-softmax-attention-on-the-probability-simplex"
+      "detail_path": "paper-detail.html?id=a-comparison-between-ceiling-mounted-fmcw-ir-uwb-and-wi-fi-radar-for-in-bedroom-human-activity-monitoring-and-sleep-interruption-detection"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "beyond-a-bag-of-features-set-level-instability-in-sparse-autoencoders",
-      "title": "Beyond a Bag of Features: Set-Level Instability in Sparse Autoencoders",
-      "direction": "LLM 评测",
+      "id": "g-carl-grounded-checklist-aligned-reward-learning-for-patient-oriented-medical-report-interpretation",
+      "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
+      "direction": "LLM 评测 / Multimodal Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "Beyond a Bag of Features: SAE Set-Level Instability 命 mechanistic interpretability 侧：据摘要，Shani e",
+      "why_save": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpret",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-03",
-      "detail_path": "paper-detail.html?id=beyond-a-bag-of-features-set-level-instability-in-sparse-autoencoders"
+      "revisit_date": "2026-09-11",
+      "detail_path": "paper-detail.html?id=g-carl-grounded-checklist-aligned-reward-learning-for-patient-oriented-medical-report-interpretation"
     },
     {
-      "id": "from-interpretability-to-control-insights-from-six-years-of-the-trustnlp-workshop",
-      "title": "From Interpretability to Control: Insights from Six Years of the TrustNLP Workshop",
-      "direction": "LLM 评测 / 安全与治理",
+      "id": "information-on-trajectories-martingales-and-random-times",
+      "title": "Information on trajectories: martingales and random times",
+      "direction": "安全与治理",
       "long_tail_type": "工程抽象",
-      "why_save": "From Interpretability to Control: TrustNLP Workshop 命中 llm-evaluation 与 security-governance 主线：据",
+      "why_save": "Information on trajectories: martingales and random times 命中 security-governance 主线（理论侧）：据摘要，在非负",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-03",
-      "detail_path": "paper-detail.html?id=from-interpretability-to-control-insights-from-six-years-of-the-trustnlp-workshop"
+      "revisit_date": "2026-09-11",
+      "detail_path": "paper-detail.html?id=information-on-trajectories-martingales-and-random-times"
     },
     {
-      "id": "are-we-really-making-progress-in-group-recommendation-unmasking-the-tie-breaking-illusion",
-      "title": "Are We Really Making Progress in Group Recommendation? Unmasking the Tie-Breaking Illusion",
-      "direction": "LLM 评测",
-      "long_tail_type": "可迁移方法",
-      "why_save": "Are We Really Making Progress in Group Recommendation? 命中 llm-evaluation 的方法论侧：据摘要，近期群组推荐方法在标准基准",
+      "id": "accelerated-genetic-programming-hyper-heuristics-for-simulation-based-scheduling-via-agentic-ai",
+      "title": "Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI",
+      "direction": "AI Agent / RAG / 知识系统",
+      "long_tail_type": "工程抽象",
+      "why_save": "AI Agent：Python is widely used in scientific research because it enables rapid developm…",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-03",
-      "detail_path": "paper-detail.html?id=are-we-really-making-progress-in-group-recommendation-unmasking-the-tie-breaking-illusion"
+      "revisit_date": "2026-09-09",
+      "detail_path": "paper-detail.html?id=accelerated-genetic-programming-hyper-heuristics-for-simulation-based-scheduling-via-agentic-ai"
     }
   ],
   "common_research_path": [

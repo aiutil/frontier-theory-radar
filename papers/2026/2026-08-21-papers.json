@@ -1,0 +1,644 @@
+{
+  "date": "2026-08-21",
+  "total": 10,
+  "generated_at": "2026-08-21T11:30:51.148665",
+  "papers": [
+    {
+      "title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
+      "authors": [
+        "Yizhe Chi",
+        "Wenyi Li",
+        "Deyao Hong",
+        "Xiaoqiu Wang",
+        "Mingju Gao"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20318v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20318v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Recursive self-improvement (RSI) asks whether an AI system can improve the process that produces AI systems, so that the next system inherits the improvement. That process is the training algorithm: a better objective or update rule improves the compute\\mbox{-}capability exchange rate for every subsequent run, including the one that produces the next agent. Whether RSI is feasible therefore turns on whether an agent can design training algorithms. No benchmark isolates that ability: existing sui",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 72.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20318v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20318v1"
+        }
+      ],
+      "llm_reason": "AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'，从而改进下一代系统的 compute-capability exchange rate；现有基准都不隔离这一能力。本文提出 AI4AI-Bench，专注评估 agent 设计训练算法的能力。'专门评估 agent 设计训练算法能力的基准——把 RSI 的核心（改进训练算法本身）从总任务里隔离出来'对做 agent / 自动 ML 研究或希望把 agent 推到训练侧研究的团队有直接价值——它把'agent 改进算法'从一个含糊愿景变成可测量对象。证据强度中等：关键词含 agent/benchmark/RAG 表明有评估设计；摘要自述动机与问题清晰。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致具体任务设置（训练算法修改的搜索形式、奖励/评分机制、与基线 agent 的对比）缺失；关键词 RAG 为宽泛命中，实际聚焦训练算法设计而非检索增强。",
+      "id": "ai4ai-bench-benchmarking-llm-agents-in-algorithmic-design-for-recursive-self-improvement",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Inducing Task Models from Computer-Use Traces",
+      "authors": [
+        "Yucheng Jiang",
+        "Zora Zhiruo Wang",
+        "Ruishi Chen",
+        "Diyi Yang"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20319v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20319v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Naturalistic computer-use traces, passively recorded screenshots and mouse or keyboard actions, are a valuable resource for deriving symbolic, auditable, and reusable models of how everyday work is done. Such models matter as computer-use agents enter real work, where agents need to learn how tasks are actually performed, and organizations need to audit and reuse that knowledge. However, inducing such task models is challenging, as activity is observed only as low-level events and real-world wor",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20319v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20319v1"
+        }
+      ],
+      "llm_reason": "Inducing Task Models from Computer-Use Traces 命中 ai-agent 与 context-engineering 主线：据摘要，自然产生的电脑使用 trace（屏幕截图 + 鼠标/键盘）是构建'可审计、可复用、符号化任务模型'的宝贵资源，但 trace 只是底层事件，真实工作流又长又有噪声；本文研究从这种 trace 归纳出结构化任务模型。'从被动的电脑使用 trace 中归纳符号化任务模型——让 computer-use agent 能学会任务如何真正被执行、且组织能审计与复用'对做 GUI/电脑使用 agent 的团队有趋势参考价值——它指向一个关键缺口：当前 GUI agent 多依赖演示模仿，缺乏可审计、可复用的任务知识库。证据强度中等：摘要明确研究问题与方法动机，关键词含 agent。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致归纳算法（如何从长程事件序列中得到可审计的符号模型）、评估协议、与现有 GUI agent 框架的结合点缺失；摘要聚焦问题与动机而非实验结果。",
+      "id": "inducing-task-models-from-computer-use-traces",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search",
+      "authors": [
+        "Sahel Sharifymoghaddam",
+        "Lingwei Gu",
+        "Yijun Ge",
+        "Jimmy Lin"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20317v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20317v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The BrowseComp-Plus benchmark disentangled the evaluation of agentic search by replacing opaque web search with a fixed corpus, so that an agent's role can be separated from the retriever's. That corpus, however, holds only about 100K documents and was assembled from the supporting documents of the benchmark's own queries plus mined hard negatives, so the evidence and the distractors were both selected per query. We introduce $\\text{BrowseComp-Plus}_{\\text{CM}}$, which keeps the BrowseComp-Plus ",
+      "categories": [
+        "cs.IR"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20317v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20317v1"
+        }
+      ],
+      "llm_reason": "BrowseComp-Plus onto ClimbMix 命中 rag-knowledge 与 ai-agent 主线：据摘要，BrowseComp-Plus 把 agentic search 评测与 web 检索解耦，改用固定语料以隔离 agent 与 retriever 的贡献；该语料只有 ~100K 文档、由支持文档 + 挖掘的 hard negative 组成，证据与干扰项均按 query 选择。本文提出 BrowseComp-Plus_CM：保留原任务，但把语料换成 ClimbMix（更大、更贴近真实检索场景、不会让干扰项与证据同源）。'用更真实、不会同源泄露的语料重做 BrowseComp-Plus——让 agentic search 评测能区分'agent 是否真懂检索'与'语料是否泄题''对做 agent 检索/RAG 评测的团队有趋势参考价值——它指向一个普遍的评测偏差（语料与 query 同源选择干扰项会让 agent 看起来更强）。证据强度中等偏上：明确指出前作语料缺陷，并提出改进。证据不足：code/benchmark 暂无待核验；摘要截断导致 ClimbMix 的规模、来源、与 BrowseComp-Plus 的定量差异缺失；OpenReview/Papers with Code 链接暂无。",
+      "id": "projecting-browsecomp-plus-onto-climbmix-toward-more-realistic-corpora-for-agentic-search",
+      "value_type": "trend",
+      "matched_topics": [
+        "rag-knowledge",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.55,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Pandora's AI Model Routing Box: Efficient Allocation with Costly Value Estimation",
+      "authors": [
+        "Adam Fisch",
+        "Shubhendu Trivedi",
+        "Fantine Huot",
+        "William W. Cohen",
+        "Michael Kaisers"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20316v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20316v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Heterogeneous AI systems composed of multiple models, architectures, harnesses, or inference-time settings can improve quality and efficiency by routing queries to the specialist who can answer most effectively at the lowest cost. Routing requires estimating each specialist's expected return, but this value estimation has a cost. Cheap estimators (e.g., embedding-based predictors) are fast but noisy, while accurate estimators (e.g., fine-tuned models with access to retrieval results or partial r",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark",
+        "inference"
+      ],
+      "score": 64.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20316v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20316v1"
+        }
+      ],
+      "llm_reason": "Pandora's AI Model Routing Box 命中 inference-serving 与 ai-agent 主线：据摘要，异构 AI 系统（多模型 / 架构 / harness / 推理设置）可通过将 query 路由到能以最低成本最有效回答的 specialist 来提升质量与效率；但路由需要估计每个 specialist 的预期回报，而价值估计本身有成本——便宜估计器（embedding-based）快但噪声大，准确估计器（带 retrieval 的微调模型）慢但准。本文研究如何在'价值估计有成本'约束下做高效路由。'把价值估计成本纳入路由决策——便宜估计器 + 准确估计器的混合路由，避免每次都付出昂贵的精确评估'对做推理服务 / 多模型路由 / 成本敏感系统的团队有趋势参考价值——它把'哪个 specialist 最值'从一个纯评估问题变成一个 cost-constrained decision 问题。证据强度中等偏上：问题定义清晰，作者阵容强（含 William W. Cohen）。证据不足：code/benchmark 暂无待核验；摘要截断导致混合策略的具体形式、估计误差与成本权衡的定量结果、是否给出可复用算法框架缺失。",
+      "id": "pandora-s-ai-model-routing-box-efficient-allocation-with-costly-value-estimation",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "ConceptGuard: Benchmarking Context-Sensitive Unlearning in Large Language Models",
+      "authors": [
+        "Sahil Kale",
+        "Ian Harris"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20338v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20338v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large Language Models (LLMs) increasingly require selective removal of harmful or sensitive knowledge, called unlearning, yet existing methods and benchmarks fail to evaluate this capability completely. Current approaches rely on disjoint forget and retain sets composed of independent facts, and measure success using simple and direct factual recall. This framing fails to capture a key requirement of unlearning, namely the ability to eliminate harmful behaviors while preserving benign and benefi",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20338v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20338v1"
+        }
+      ],
+      "llm_reason": "ConceptGuard 命中 llm-evaluation 与 security-governance 主线：据摘要，LLM 需要选择性删除有害/敏感知识（unlearning），但现有方法和基准都用不相交的 forget/retain 集 + 简单直接的事实回忆评估；这无法捕捉 unlearning 的关键需求——在保留良性、有益知识的同时消除有害行为。本文提出 ConceptGuard，关注 context-sensitive unlearning。'用 context-sensitive unlearning 评估替代孤立事实删除评估——更接近真实合规需求（既要去有害，又要留有用）'对做 LLM 安全/合规/数据治理的团队有趋势参考价值——它指向当前 unlearning 评估与实际部署需求之间的脱节。证据强度中等：关键词含 evaluation/benchmark，摘要明确方法动机。证据不足：code/benchmark 暂无待核验；摘要截断导致具体评估协议、context-sensitive 的定义、与现有 unlearning 方法的定量对比缺失。",
+      "id": "conceptguard-benchmarking-context-sensitive-unlearning-in-large-language-models",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
+      "authors": [
+        "Narges Ahmadi",
+        "Yubo Jiao",
+        "Jônatas Augusto Manzolli",
+        "Jiangbo Yu",
+        "Luis Miranda-Moreno"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20320v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20320v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Travel behavior research increasingly combines digital data collection with predictive modeling, yet these stages are often developed and evaluated separately. This study proposes a three-agent workflow integrating conversational data collection, structured data processing, and behavioral prediction. A chatbot-administered, image-augmented stated-preference survey collected mode choices from student commuters across five predefined weather scenarios, yielding 454 respondent-scenario observations",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "multimodal"
+      ],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20320v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20320v1"
+        }
+      ],
+      "llm_reason": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction 命中 ai-agent 与 multimodal-agent 主线：据摘要，旅行行为研究通常把数据收集与预测建模分开评估；本文提出三 agent 工作流——对话式数据收集、结构化数据处理、行为预测。聊天机器人 + 图像增强的偏好调查收集了 5 种天气场景下学生通勤的模式选择，454 份观察。'用三 agent 工作流（对话收集 + 结构化处理 + 行为预测）把数据收集与预测建模整合到端到端流程，并在天气敏感出行需求上做实证'对做 agentic data pipeline / 多模态对话式调研的团队有趋势参考价值——它示范了 agent 工作流如何把'主动数据收集'与'下游建模'整合。证据强度中等：给出具体数据规模（454 观察）与流程。证据不足：code/benchmark 暂无待核验；摘要截断导致三 agent 的具体实现细节、对话→结构化数据的转换机制、模型预测的定量指标缺失；领域聚焦出行行为，与通用 agent 工程的直接迁移距离中等。",
+      "id": "an-agentic-approach-for-active-data-collection-travel-behavior-modeling-and-weather-sensitive-demand-prediction",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 5.35,
+        "asset_convertibility": 6.2,
+        "actionability": 4.4,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
+      "authors": [
+        "Shiao Xie",
+        "Siyu Chen",
+        "Jianwei Lv",
+        "Bo Yuan",
+        "Yujin Wang"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20331v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20331v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Personalized interpretation of medical reports has emerged as an increasingly important need among patients. Addressing this need requires both evidence-grounded medical factuality and context-dependent patient communication, yet existing medical vision-language tasks do not adequately capture these dual requirements. To bridge this gap, we introduce Patient-oriented Medical Report Interpretation (PMRI), a novel open-ended multimodal generation task that requires models to explain medical report",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "RAG",
+        "multimodal"
+      ],
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20331v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20331v1"
+        }
+      ],
+      "llm_reason": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation 命中 llm-evaluation 与 multimodal-agent 主线：据摘要，个性化医学报告解读既需循证医学事实性，又需结合上下文的患者沟通，现有医学视觉-语言任务未充分捕捉双重需求；本文提出 PMRI 任务（面向患者的医学报告解读，开域多模态生成），并用 grounded checklist 对齐奖励学习（G-CARL）训练模型。'用 checklist-aligned reward 把医学多模态生成的'事实正确 + 患者沟通'双重需求变成可对齐的优化目标'对做医学多模态生成 / 对齐奖励学习的团队有长尾参考价值——checklist 形式的对齐奖励是相对易迁移的工程抽象。证据强度中等：关键词含 evaluation/benchmark/RAG/multimodal，方法命名清晰。证据不足：code/benchmark 暂无待核验；摘要截断导致 checklist 来源（专家 / 自动生成）、G-CARL 的训练细节、定量结果缺失；医学领域特异性高，与团队通用 agent 工程栈的直接迁移距离中等偏远。",
+      "id": "g-carl-grounded-checklist-aligned-reward-learning-for-patient-oriented-medical-report-interpretation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Information on trajectories: martingales and random times",
+      "authors": [
+        "Akshay Balsubramani"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20337v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20337v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Accounting for information flow on the path space of trajectories of a nonnegative martingale yields exact variational identities for it, even at arbitrary random times. This recovers the widely used classical concentration inequalities, from Ville to PAC-Bayes, and measures what each one discards. The tail a bound controls is itself a relative entropy, resolved by the chain rule into per-step conditional divergences. The discarded slack has an exact form in each of three geometries: a Gibbs til",
+      "categories": [
+        "math.PR",
+        "cs.IT",
+        "cs.LG",
+        "math.ST"
+      ],
+      "keywords": [],
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20337v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20337v1"
+        }
+      ],
+      "llm_reason": "Information on trajectories: martingales and random times 命中 security-governance 主线（理论侧）：据摘要，在非负 martingale 轨迹的路径空间上考虑信息流，可得到精确的变分恒等式（即使在任意随机时刻），恢复 Ville 到 PAC-Bayes 的经典浓度不等式并衡量每个不等式丢弃了什么；受控的尾部界本身是相对熵，由链式法则分解为逐步条件散度。'在路径空间上把 martingale 信息流统一起来，把经典浓度不等式（Ville→PAC-Bayes）变成变分恒等式，并分解为逐步相对熵'对做 PAC-Bayes / 信息论 / 泛化界理论研究的团队有长尾保存价值——它是连接经典浓度不等式与 PAC-Bayes 的统一框架，且指出每种不等式到底丢弃了什么。证据强度中等偏上：理论定义清晰，给出恒等式形式。证据不足：code/benchmark 不适用（纯理论）；摘要截断导致 Gibbs tiling 等三种几何的具体形式、与其他浓度界的定量对比缺失；作为理论工作，对 LLM/agent 工程的短期可迁移性低，仅作长期理论资产保存。",
+      "id": "information-on-trajectories-martingales-and-random-times",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "$TCP_α$: Margin-Controlled Confidence estimation for reliable Music Information Retrieval",
+      "authors": [
+        "Parampreet Singh",
+        "Anushka Singh",
+        "Sumit Kumar",
+        "Vipul Arora"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20326v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20326v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Deep neural networks are often overconfident, assigning high confidence even to incorrect predictions. Consequently, users lack a reliable signal for deciding when a prediction can be trusted. Post-hoc confidence estimation addresses this by training a lightweight auxiliary head over a frozen classifier. Existing targets, however, suffer from inherent ambiguity: they assign overlapping confidence values to correct and incorrect predictions, while errors near the decision boundary receive confide",
+      "categories": [
+        "eess.AS",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 48.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20326v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20326v1"
+        }
+      ],
+      "llm_reason": "TCP_α: Margin-Controlled Confidence estimation for reliable Music Information Retrieval 聚焦音乐信息检索的置信度估计：据摘要，深度网络常过度自信，正确与错误预测被分配重叠置信度，决策边界附近的错误处理混乱；本文提出 TCP_α（margin-controlled 置信度估计）改善 post-hoc 校准。领域聚焦 eess.AS/cs.LG 的音乐信息检索，关键词无 agent/multimodal 等相关命中；与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远。置信度校准本身是有用的方法论，但音乐领域特异性限制了对通用 LLM 工程的直接价值。code/benchmark 暂无待核验。忽略，除非做通用置信度校准或音频相关 agent 工作。",
+      "id": "tcp-margin-controlled-confidence-estimation-for-reliable-music-information-retrieval",
+      "value_type": "ignore",
+      "matched_topics": [
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring and sleep interruption detection",
+      "authors": [
+        "Anton Lambrecht",
+        "Reda El Hail",
+        "Xianjun Jiao",
+        "Pieter Crombez",
+        "Dominique Schreurs"
+      ],
+      "published": "2026-08-20",
+      "updated": "2026-08-20",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.20322v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.20322v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Despite their growing importance for contact-free radio frequency (RF) based healthcare monitoring, different radio technologies such as frequency-modulated continuous wave (FMCW) radar, impulse radio ultra-wideband (IR-UWB), and Wi-Fi sensing are rarely compared under identical deployment conditions, as existing studies typically differ in hardware, datasets, and evaluation methodologies. In addition, the performance of ceiling-mounted radars, despite their practical deployment and cost advanta",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 42.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.20322v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.20322v1"
+        }
+      ],
+      "llm_reason": "Ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring 聚焦三种射频技术（FMCW / IR-UWB / Wi-Fi）在卧室活动监测与睡眠中断检测上的同条件对比：据摘要，现有研究通常硬件、数据集、评估方式各异，难以横向比较；本文在同部署条件下对比三种天花板安装雷达。领域聚焦 cs.LG 的射频感知（健康监测），与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接相关性极低。关键词 evaluation 为宽泛命中（指射频方法对比，非 LLM 评测）。code/benchmark 暂无待核验。忽略，除非做健康/感知方向的工程工作。",
+      "id": "a-comparison-between-ceiling-mounted-fmcw-ir-uwb-and-wi-fi-radar-for-in-bedroom-human-activity-monitoring-and-sleep-interruption-detection",
+      "value_type": "ignore",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    }
+  ],
+  "scored_at": "2026-08-21"
+}

@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-08-13
+## 最新研究 · 2026-08-21
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 90 | 120 | 109 | 931 |
+| 10 | 91 | 125 | 114 | 1270 |
 
-**今日深挖：** [Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation](daily/2026/2026-08-13.md) · 即时价值 · 轻量试点
+**今日深挖：** [AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement](daily/2026/2026-08-21.md) · 即时价值 · 轻量试点
 
-**核心判断：** Test-Time Self-Evolving 解决一个实际部署瓶颈——GUI agent 模型冻结后无法适配未见界面，其'探索→反思→on-policy 自蒸馏'闭环无需人工标注即可运行，直接关系 GUI/自动化 agent 的部署鲁棒性。How to Verify Consistency of Probabilistic Claims 把'AI 是否诚实报告概率'从信任问题变成可验证的密码学问题（interactive PCP），且作者阵容极强（Bengio + Goldwasser 图灵奖级），对 AI 安全/治理方向是强信号。Surgical WAM 代表世界模型范式向更多具身场景的扩展——用廉价视频替代昂贵动作标注来学习操作策略。
+**核心判断：** AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。
 
-**建议动作：** 完成三件事：评估 Test-Time Self-Evolving 的'探索→反思→自蒸馏'闭环能否迁移到团队的 GUI/自动化 agent 场景——盘点现有部署后自适应方案的盲区（是否有反思信号、自蒸馏是否稳定、对新界面的适配质量如何）；为 How to Verify Consistency 建立趋势观察卡片（跟踪是否有从理论到 LLM 概率验证的工程化跟进，关注 Bengio/Goldwasser 后续工作）；评估 Surgical WAM 的世界模型范式在团队具身/多模态场景上的适用性（是否有廉价视频源可替代昂贵标注）。
+**建议动作：** 完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
-| [2026-08-13](daily/2026/2026-08-13.md) | Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation | 即时价值 | 轻量试点 |
-| [2026-08-12](daily/2026/2026-08-12.md) | Dynamic Coalition Formation and Communication Pricing in Skill-Based Agentic AI Systems | 即时价值 | 轻量试点 |
-| [2026-08-11](daily/2026/2026-08-11.md) | CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG | 即时价值 | 轻量试点 |
-| [2026-08-10](daily/2026/2026-08-10.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
-| [2026-08-09](daily/2026/2026-08-09.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
-| [2026-08-08](daily/2026/2026-08-08.md) | The Bitter Lesson of Tool Calling | 即时价值 | 轻量试点 |
-| [2026-08-07](daily/2026/2026-08-07.md) | Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning | 即时价值 | 重点学习 |
+| [2026-08-21](daily/2026/2026-08-21.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
+| [2026-08-20](daily/2026/2026-08-20.md) | Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search | 暂时忽略 | 暂时忽略 |
+| [2026-08-19](daily/2026/2026-08-19.md) | Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI | 长尾价值 | 持续观察 |
+| [2026-08-18](daily/2026/2026-08-18.md) | ComponentBench: Diagnosing Component-Level Failures in Computer-Use Agents | 暂时忽略 | 暂时忽略 |
+| [2026-08-17](daily/2026/2026-08-17.md) | KernelArc: A Multi-Agent Framework for GPU Kernel Optimization | 暂时忽略 | 暂时忽略 |
+| [2026-08-16](daily/2026/2026-08-16.md) | PLSQLBench: Benchmarking LLM Systems for Executable Procedural Database Programming | 暂时忽略 | 暂时忽略 |
+| [2026-08-15](daily/2026/2026-08-15.md) | Agentic-SQL Revisited: Autonomy-Based Taxonomy and Empirical Benchmark Analysis for LLM Text-to-SQL | 长尾价值 | 持续观察 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 422 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 356 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 422 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 532 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 428 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 532 |
 
 ## 为什么做这个项目
 

@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-08-13
+## Latest research run · 2026-08-21
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 90 | 120 | 109 | 931 |
+| 10 | 91 | 125 | 114 | 1270 |
 
-**Deep dive:** [Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation](daily/2026/2026-08-13.md) · Immediate · 轻量试点
+**Deep dive:** [AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement](daily/2026/2026-08-21.md) · Immediate · 轻量试点
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,21 +35,21 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
-| [2026-08-13](daily/2026/2026-08-13.md) | Test-Time Self-Evolving GUI Visual Grounding via Reflection-Guided On-Policy Self-Distillation | Immediate | 轻量试点 |
-| [2026-08-12](daily/2026/2026-08-12.md) | Dynamic Coalition Formation and Communication Pricing in Skill-Based Agentic AI Systems | Immediate | 轻量试点 |
-| [2026-08-11](daily/2026/2026-08-11.md) | CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG | Immediate | 轻量试点 |
-| [2026-08-10](daily/2026/2026-08-10.md) | The Bitter Lesson of Tool Calling | Immediate | 轻量试点 |
-| [2026-08-09](daily/2026/2026-08-09.md) | The Bitter Lesson of Tool Calling | Immediate | 轻量试点 |
-| [2026-08-08](daily/2026/2026-08-08.md) | The Bitter Lesson of Tool Calling | Immediate | 轻量试点 |
-| [2026-08-07](daily/2026/2026-08-07.md) | Argus: A General-Purpose Agentic Runtime for Long-Horizon Reasoning | Immediate | 重点学习 |
+| [2026-08-21](daily/2026/2026-08-21.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | Immediate | 轻量试点 |
+| [2026-08-20](daily/2026/2026-08-20.md) | Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search | Ignore | 暂时忽略 |
+| [2026-08-19](daily/2026/2026-08-19.md) | Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI | Long tail | 持续观察 |
+| [2026-08-18](daily/2026/2026-08-18.md) | ComponentBench: Diagnosing Component-Level Failures in Computer-Use Agents | Ignore | 暂时忽略 |
+| [2026-08-17](daily/2026/2026-08-17.md) | KernelArc: A Multi-Agent Framework for GPU Kernel Optimization | Ignore | 暂时忽略 |
+| [2026-08-16](daily/2026/2026-08-16.md) | PLSQLBench: Benchmarking LLM Systems for Executable Procedural Database Programming | Ignore | 暂时忽略 |
+| [2026-08-15](daily/2026/2026-08-15.md) | Agentic-SQL Revisited: Autonomy-Based Taxonomy and Empirical Benchmark Analysis for LLM Text-to-SQL | Long tail | 持续观察 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 422 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 356 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 422 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 532 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 428 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 532 |
 
 ## Why this repository exists
 
