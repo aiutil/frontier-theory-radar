@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-21T11:32:49.006621",
+  "updated_at": "2026-08-23T04:33:39.427410",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-23",
+      "title": "论文价值发现日报 - 2026-08-23",
+      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
+      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
+      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
+      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
+      "path": "daily-detail.html?date=2026-08-23"
+    },
     {
       "date": "2026-08-21",
       "title": "论文价值发现日报 - 2026-08-21",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 5 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。SoftReason 的具体可微演绎机制、嵌入维度下界证明的常数因子、PG-KINN 的 PDE benchmark 规模均需正文确认。",
       "one_line_judgement": "它消除了经典神经符号管线中'感知-推理'之间的离散接口，让潜在感知事实与知识图谱规则在同一可微框架内联合优化——直击 Agent 推理管线最大的工程瓶颈：梯度断裂导致错误无法端到端修正。",
       "path": "daily-detail.html?date=2026-07-24"
-    },
-    {
-      "date": "2026-07-23",
-      "title": "论文价值发现日报 - 2026-07-23",
-      "deep_dive_title": "Copy Less, Ground More: Overcoming Repetitive Copying in Long-Context Reasoning via Evidence-Aware Reinforcement Learning",
-      "deep_dive_url": "http://arxiv.org/abs/2607.19345v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：在长文档 QA 集上加输入复制率检测验证失败模式、列出 CodeRescue 路由策略的最小 A/B 实验设计、把 Agents in the Wild 的部署挑战整理成 agent 上线 checklist 初稿。",
-      "max_uncertainty": "全部 5 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述，论文正文的实验规模、基线对比与统计显著性尚待核验。",
-      "one_line_judgement": "它首次把'长上下文推理中模型反复复制输入而不真正解题'定义为一个可量化失败模式，并给出 RL 级别的系统性修正方案，直击 RAG、长文档问答、代码库理解等高频场景的工程痛点。",
-      "path": "daily-detail.html?date=2026-07-23"
     }
   ]
 }
