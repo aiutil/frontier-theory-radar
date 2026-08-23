@@ -1,204 +1,8 @@
 {
-  "updated_at": "2026-08-24T04:33:09.035160",
-  "site_title": "前沿理论驱动技术雷达日报",
-  "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
-  "latest_daily": {
-    "date": "2026-08-24",
-    "title": "论文价值发现日报 - 2026-08-24",
-    "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-    "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
-    "decision": "轻量试点",
-    "value_type": "immediate",
-    "value_type_label": "即时价值",
-    "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
-    "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
-    "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
-    "path": "daily-detail.html?date=2026-08-24"
-  },
-  "top_paper": {
-    "title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-    "authors": [
-      "Yizhe Chi",
-      "Wenyi Li",
-      "Deyao Hong",
-      "Xiaoqiu Wang",
-      "Mingju Gao"
-    ],
-    "published": "2026-08-20",
-    "updated": "2026-08-20",
-    "source": "arXiv",
-    "url": "http://arxiv.org/abs/2608.20318v1",
-    "pdf_url": "https://arxiv.org/pdf/2608.20318v1",
-    "openreview_url": "",
-    "paperswithcode_url": "",
-    "code_url": "",
-    "benchmark_url": "",
-    "project_url": "",
-    "abstract": "Recursive self-improvement (RSI) asks whether an AI system can improve the process that produces AI systems, so that the next system inherits the improvement. That process is the training algorithm: a better objective or update rule improves the compute\\mbox{-}capability exchange rate for every subsequent run, including the one that produces the next agent. Whether RSI is feasible therefore turns on whether an agent can design training algorithms. No benchmark isolates that ability: existing sui",
-    "categories": [
-      "cs.AI",
-      "cs.CL",
-      "cs.LG"
-    ],
-    "keywords": [
-      "agent",
-      "benchmark",
-      "RAG"
-    ],
-    "score": 72.0,
-    "decision": "轻量试点",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "http://arxiv.org/abs/2608.20318v1"
-      },
-      {
-        "label": "PDF",
-        "url": "https://arxiv.org/pdf/2608.20318v1"
-      }
-    ],
-    "llm_reason": "AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'，从而改进下一代系统的 compute-capability exchange rate；现有基准都不隔离这一能力。本文提出 AI4AI-Bench，专注评估 agent 设计训练算法的能力。'专门评估 agent 设计训练算法能力的基准——把 RSI 的核心（改进训练算法本身）从总任务里隔离出来'对做 agent / 自动 ML 研究或希望把 agent 推到训练侧研究的团队有直接价值——它把'agent 改进算法'从一个含糊愿景变成可测量对象。证据强度中等：关键词含 agent/benchmark/RAG 表明有评估设计；摘要自述动机与问题清晰。证据不足：code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；摘要截断导致具体任务设置（训练算法修改的搜索形式、奖励/评分机制、与基线 agent 的对比）缺失；关键词 RAG 为宽泛命中，实际聚焦训练算法设计而非检索增强。",
-    "id": "ai4ai-bench-benchmarking-llm-agents-in-algorithmic-design-for-recursive-self-improvement",
-    "value_type": "immediate",
-    "matched_topics": [
-      "ai-agent",
-      "llm-evaluation"
-    ],
-    "score_breakdown": {
-      "novelty": 4.8,
-      "problem_importance": 5.8,
-      "relevance": 6.2,
-      "evidence_strength": 4.95,
-      "engineering_testability": 4.05,
-      "trend_signal": 5.45,
-      "long_tail_potential": 3.5,
-      "asset_convertibility": 5.6,
-      "actionability": 5.0,
-      "noise_risk": 1.2,
-      "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 2.2,
-      "engineering_cost_penalty": 2.5,
-      "reproducibility_risk": 5.0
-    },
-    "trend_status": "emerging",
-    "brief_cn": "AI Agent：Recursive self-improvement (RSI) asks whether an AI system can improve the pro…",
-    "one_line_judgement": "今天值得试：AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'…",
-    "first_seen_date": "2026-08-24",
-    "first_deep_dive_daily": "2026-08-24",
-    "value_type_label": "即时价值",
-    "trend_stage_label": "萌芽",
-    "future_trigger": "待更多证据",
-    "long_tail_summary": "AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'，从而改进下一代系统的 compute-capabi",
-    "related_trends": [
-      "agentic-world-modeling",
-      "coding-agent"
-    ],
-    "detail_path": "paper-detail.html?id=ai4ai-bench-benchmarking-llm-agents-in-algorithmic-design-for-recursive-self-improvement"
-  },
-  "paper_count": 1600,
-  "daily_count": 30,
-  "trend_count": 3,
-  "long_tail_count": 114,
-  "value_distribution": {
-    "immediate": 91,
-    "trend": 125,
-    "long_tail": 114,
-    "ignore": 1270
-  },
-  "recent_dailies": [
-    {
-      "date": "2026-08-24",
-      "title": "论文价值发现日报 - 2026-08-24",
-      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
-      "path": "daily-detail.html?date=2026-08-24"
-    },
-    {
-      "date": "2026-08-23",
-      "title": "论文价值发现日报 - 2026-08-23",
-      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
-      "path": "daily-detail.html?date=2026-08-23"
-    },
-    {
-      "date": "2026-08-21",
-      "title": "论文价值发现日报 - 2026-08-21",
-      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
-      "path": "daily-detail.html?date=2026-08-21"
-    },
-    {
-      "date": "2026-08-20",
-      "title": "论文价值发现日报 - 2026-08-20",
-      "deep_dive_title": "Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20317v1",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-08-20"
-    },
-    {
-      "date": "2026-08-19",
-      "title": "论文价值发现日报 - 2026-08-19",
-      "deep_dive_title": "Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI",
-      "deep_dive_url": "http://arxiv.org/abs/2608.19487v1",
-      "decision": "持续观察",
-      "value_type": "long_tail",
-      "value_type_label": "长尾价值",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-08-19"
-    },
-    {
-      "date": "2026-08-18",
-      "title": "论文价值发现日报 - 2026-08-18",
-      "deep_dive_title": "ComponentBench: Diagnosing Component-Level Failures in Computer-Use Agents",
-      "deep_dive_url": "http://arxiv.org/abs/2608.18307v1",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-08-18"
-    },
-    {
-      "date": "2026-08-17",
-      "title": "论文价值发现日报 - 2026-08-17",
-      "deep_dive_title": "KernelArc: A Multi-Agent Framework for GPU Kernel Optimization",
-      "deep_dive_url": "http://arxiv.org/abs/2608.17071v1",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-08-17"
-    }
-  ],
-  "top_papers": [
+  "date": "2026-08-24",
+  "total": 10,
+  "generated_at": "2026-08-24T04:31:02.609462",
+  "papers": [
     {
       "title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
       "authors": [
@@ -264,20 +68,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Recursive self-improvement (RSI) asks whether an AI system can improve the pro…",
-      "one_line_judgement": "今天值得试：AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "AI4AI-Bench 命中 ai-agent 主线：据摘要，递归自我改进（RSI）的关键是'能否由一个 agent 设计出更好的训练算法'，从而改进下一代系统的 compute-capabi",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=ai4ai-bench-benchmarking-llm-agents-in-algorithmic-design-for-recursive-self-improvement"
+      "trend_status": "emerging"
     },
     {
       "title": "Inducing Task Models from Computer-Use Traces",
@@ -340,20 +131,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Naturalistic computer-use traces, passively recorded screenshots and mouse or …",
-      "one_line_judgement": "值得继续观察：Inducing Task Models from Computer-Use Traces 命中 ai-agent 与 context-en…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "Inducing Task Models from Computer-Use Traces 命中 ai-agent 与 context-engineering 主线：据摘要，自然产生的电脑使用",
-      "related_trends": [
-        "agentic-world-modeling",
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=inducing-task-models-from-computer-use-traces"
+      "trend_status": "emerging"
     },
     {
       "title": "Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search",
@@ -418,20 +196,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "RAG / 知识系统：The BrowseComp-Plus benchmark disentangled the evaluation of agentic search by…",
-      "one_line_judgement": "值得继续观察：BrowseComp-Plus onto ClimbMix 命中 rag-knowledge 与 ai-agent 主线：据摘要，Brows…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "BrowseComp-Plus onto ClimbMix 命中 rag-knowledge 与 ai-agent 主线：据摘要，BrowseComp-Plus 把 agentic searc",
-      "related_trends": [
-        "context-engineering",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=projecting-browsecomp-plus-onto-climbmix-toward-more-realistic-corpora-for-agentic-search"
+      "trend_status": "emerging"
     },
     {
       "title": "Pandora's AI Model Routing Box: Efficient Allocation with Costly Value Estimation",
@@ -495,19 +260,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "推理与服务：Heterogeneous AI systems composed of multiple models, architectures, harnesses…",
-      "one_line_judgement": "值得继续观察：Pandora's AI Model Routing Box 命中 inference-serving 与 ai-agent 主线：据摘要，…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "Pandora's AI Model Routing Box 命中 inference-serving 与 ai-agent 主线：据摘要，异构 AI 系统（多模型 / 架构 / harnes",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=pandora-s-ai-model-routing-box-efficient-allocation-with-costly-value-estimation"
+      "trend_status": "emerging"
     },
     {
       "title": "ConceptGuard: Benchmarking Context-Sensitive Unlearning in Large Language Models",
@@ -568,19 +321,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Large Language Models (LLMs) increasingly require selective removal of harmful…",
-      "one_line_judgement": "值得继续观察：ConceptGuard 命中 llm-evaluation 与 security-governance 主线：据摘要，LLM 需要选择性删…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "ConceptGuard 命中 llm-evaluation 与 security-governance 主线：据摘要，LLM 需要选择性删除有害/敏感知识（unlearning），但现有方法",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=conceptguard-benchmarking-context-sensitive-unlearning-in-large-language-models"
+      "trend_status": "emerging"
     },
     {
       "title": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive Demand Prediction",
@@ -647,19 +388,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Travel behavior research increasingly combines digital data collection with pr…",
-      "one_line_judgement": "值得继续观察：An Agentic Approach for Active Data Collection, Travel Behavior Modeli…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "An Agentic Approach for Active Data Collection, Travel Behavior Modeling, and Weather-Sensitive ",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=an-agentic-approach-for-active-data-collection-travel-behavior-modeling-and-weather-sensitive-demand-prediction"
+      "trend_status": "emerging"
     },
     {
       "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
@@ -727,20 +456,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：Personalized interpretation of medical reports has emerged as an increasingly …",
-      "one_line_judgement": "值得先保存：G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriente…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpret",
-      "related_trends": [
-        "coding-agent",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=g-carl-grounded-checklist-aligned-reward-learning-for-patient-oriented-medical-report-interpretation"
+      "trend_status": "long_tail_watch"
     },
     {
       "title": "Information on trajectories: martingales and random times",
@@ -799,17 +515,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：Accounting for information flow on the path space of trajectories of a nonnega…",
-      "one_line_judgement": "值得先保存：Information on trajectories: martingales and random times 命中 security-…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "Information on trajectories: martingales and random times 命中 security-governance 主线（理论侧）：据摘要，在非负",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=information-on-trajectories-martingales-and-random-times"
+      "trend_status": "long_tail_watch"
     },
     {
       "title": "$TCP_α$: Margin-Controlled Confidence estimation for reliable Music Information Retrieval",
@@ -869,19 +575,7 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：Deep neural networks are often overconfident, assigning high confidence even t…",
-      "one_line_judgement": "当前可忽略：TCP_α: Margin-Controlled Confidence estimation for reliable Music Info…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "TCP_α: Margin-Controlled Confidence estimation for reliable Music Information Retrieval 聚焦音乐信息检索",
-      "related_trends": [
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=tcp-margin-controlled-confidence-estimation-for-reliable-music-information-retrieval"
+      "trend_status": "noise"
     },
     {
       "title": "A comparison between ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring and sleep interruption detection",
@@ -943,74 +637,8 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "LLM 评测：Despite their growing importance for contact-free radio frequency (RF) based h…",
-      "one_line_judgement": "当前可忽略：Ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human acti…",
-      "first_seen_date": "2026-08-24",
-      "first_deep_dive_daily": "2026-08-24",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "Ceiling-mounted FMCW, IR-UWB and Wi-Fi radar for in-bedroom human activity monitoring 聚焦三种射频技术（F",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=a-comparison-between-ceiling-mounted-fmcw-ir-uwb-and-wi-fi-radar-for-in-bedroom-human-activity-monitoring-and-sleep-interruption-detection"
+      "trend_status": "noise"
     }
   ],
-  "long_tail_highlights": [
-    {
-      "id": "g-carl-grounded-checklist-aligned-reward-learning-for-patient-oriented-medical-report-interpretation",
-      "title": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpretation",
-      "direction": "LLM 评测 / Multimodal Agent",
-      "long_tail_type": "工程抽象",
-      "why_save": "G-CARL: Grounded Checklist-Aligned Reward Learning for Patient-Oriented Medical Report Interpret",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-09-14",
-      "detail_path": "paper-detail.html?id=g-carl-grounded-checklist-aligned-reward-learning-for-patient-oriented-medical-report-interpretation"
-    },
-    {
-      "id": "information-on-trajectories-martingales-and-random-times",
-      "title": "Information on trajectories: martingales and random times",
-      "direction": "安全与治理",
-      "long_tail_type": "工程抽象",
-      "why_save": "Information on trajectories: martingales and random times 命中 security-governance 主线（理论侧）：据摘要，在非负",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-09-14",
-      "detail_path": "paper-detail.html?id=information-on-trajectories-martingales-and-random-times"
-    },
-    {
-      "id": "accelerated-genetic-programming-hyper-heuristics-for-simulation-based-scheduling-via-agentic-ai",
-      "title": "Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI",
-      "direction": "AI Agent / RAG / 知识系统",
-      "long_tail_type": "工程抽象",
-      "why_save": "AI Agent：Python is widely used in scientific research because it enables rapid developm…",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-09-09",
-      "detail_path": "paper-detail.html?id=accelerated-genetic-programming-hyper-heuristics-for-simulation-based-scheduling-via-agentic-ai"
-    }
-  ],
-  "common_research_path": [
-    "论文",
-    "理论",
-    "工程实践",
-    "趋势",
-    "启发",
-    "行动"
-  ]
+  "scored_at": "2026-08-24"
 }
