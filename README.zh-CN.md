@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-08-24
+## 最新研究 · 2026-08-25
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 91 | 125 | 114 | 1270 |
+| 10 | 92 | 128 | 115 | 1275 |
 
-**今日深挖：** [AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement](daily/2026/2026-08-24.md) · 即时价值 · 轻量试点
+**今日深挖：** [Natural-Language Workflows Are Not Software Yet: Artifact-Driven Compilation for Reliable Agent Execution](daily/2026/2026-08-25.md) · 即时价值 · 轻量试点
 
-**核心判断：** AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。
+**核心判断：** Artic 把自然语言工作流转成 artifact 形式，强迫把隐式数据依赖外化为可被求解的输入——这是当前 agent 工作流易碎（长程/分支下 context 压力失效）的关键工程缺口，可直接对接到 LangGraph/DSPy/Temporal 这类编排器的'workflow-as-input'思路。AI with Authority 论证机器验证是规模化调度自主机器工作的前提——'不可腐化裁判'作为一项基础设施命题，足以催生一整个工程方向：verification-first agent runtimes、evaluator harness 与 runtime rollback。Asymmetric Capacity Allocation 则用 self-refinement 三阶段容量异构的实验探索，支撑'mixed-size pipeline 是 LLM 工程的成本金矿'这一更普遍趋势。三者共同折射：agent 价值密度正在从模型能力转向'基础设施（编译、验证、容量编排）'。
 
-**建议动作：** 完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。
+**建议动作：** 完成三件事：(1) Artic 落地：选一条高频长程工作流，把自然语言步骤描述 schema-化为 typed intermediate representation，跑样本验证对'隐式数据依赖漏判'的修复比例。(2) Verification-first 盘点：写出团队当前 agent runtime 已有/可补的 verifier 锚点清单（spec check / output schema validation / tool-call replay audit / deterministic replay 各一项）。(3) Asymmetric capacity 实验：固定生成侧强模型，在 critique 与 revision 阶段试 30%/10% 成本模型替代，绘制 cost-quality Pareto 曲线。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-08-25](daily/2026/2026-08-25.md) | Natural-Language Workflows Are Not Software Yet: Artifact-Driven Compilation for Reliable Agent Execution | 即时价值 | 轻量试点 |
 | [2026-08-24](daily/2026/2026-08-24.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-23](daily/2026/2026-08-23.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-21](daily/2026/2026-08-21.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-20](daily/2026/2026-08-20.md) | Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search | 暂时忽略 | 暂时忽略 |
 | [2026-08-19](daily/2026/2026-08-19.md) | Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI | 长尾价值 | 持续观察 |
 | [2026-08-18](daily/2026/2026-08-18.md) | ComponentBench: Diagnosing Component-Level Failures in Computer-Use Agents | 暂时忽略 | 暂时忽略 |
-| [2026-08-17](daily/2026/2026-08-17.md) | KernelArc: A Multi-Agent Framework for GPU Kernel Optimization | 暂时忽略 | 暂时忽略 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 532 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 428 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 532 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 534 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 433 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 534 |
 
 ## 为什么做这个项目
 

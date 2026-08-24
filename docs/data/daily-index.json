@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-24T04:33:09.040522",
+  "updated_at": "2026-08-25T04:33:22.107197",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-25",
+      "title": "论文价值发现日报 - 2026-08-25",
+      "deep_dive_title": "Natural-Language Workflows Are Not Software Yet: Artifact-Driven Compilation for Reliable Agent Execution",
+      "deep_dive_url": "http://arxiv.org/abs/2608.21341v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：(1) Artic 落地：选一条高频长程工作流，把自然语言步骤描述 schema-化为 typed intermediate representation，跑样本验证对'隐式数据依赖漏判'的修复比例。(2) Verification-first 盘点：写出团队当前 agent runtime 已有/可补的 verifier 锚点清单（spec check / output schema validation / tool-call replay audit / deterministic replay 各一项）。(3) Asymmetric capacity 实验：固定生成侧强模型，在 critique 与 revision 阶段试 30%/10% 成本模型替代，绘制 cost-quality Pareto 曲线。",
+      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；今日 10 篇中 4 篇摘要存在截断（AI with Authority、TurboBias、Asymmetric Capacity Allocation、PerturbRx 等），影响具体方法/实验设置的判断；Artic 的 artifact 具体表示形式（数据结构？schema？typed IR？）、AI with Authority 验证栈端到端形式（spec 形式化？equi-check？）、Asymmetric Capacity 的具体实验规模、Truthful Calibration 的证明与对 LLM evaluator 的具体意涵均需正文确认；今日未出现昨日的 AI4AI-Bench（该结论不跨日）；RAG 关键词在 Primal Acceleration 与 Across-Design Pricing 上为误标签，已在评分中剔除。",
+      "one_line_judgement": "Artic 把自然语言工作流转成 artifact 形式，强迫把隐式数据依赖外化为可被求解的输入——这是当前 agent 工作流易碎（长程/分支下 context 压力失效）的关键工程缺口，可直接对接到 LangGraph/DSPy/Temporal 这类编排器的'workflow-as-input'思路。AI with Authority 论证机器验证是规模化调度自主机器工作的前提——'不可腐化裁判'作为一项基础设施命题，足以催生一整个工程方向：verification-first agent runtimes、evaluator harness 与 runtime rollback。Asymmetric Capacity Allocation 则用 self-refinement 三阶段容量异构的实验探索，支撑'mixed-size pipeline 是 LLM 工程的成本金矿'这一更普遍趋势。三者共同折射：agent 价值密度正在从模型能力转向'基础设施（编译、验证、容量编排）'。",
+      "path": "daily-detail.html?date=2026-08-25"
+    },
     {
       "date": "2026-08-24",
       "title": "论文价值发现日报 - 2026-08-24",
@@ -378,19 +391,6 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-07-26"
-    },
-    {
-      "date": "2026-07-25",
-      "title": "论文价值发现日报 - 2026-07-25",
-      "deep_dive_title": "Confidently Wrong: Exception Chain Collapse in Frontier LLM Rule Evaluation",
-      "deep_dive_url": "http://arxiv.org/abs/2607.23386v1",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-07-25"
     }
   ]
 }
