@@ -1,0 +1,132 @@
+{
+  "id": "provably-adaptive-sampling-with-uniform-and-remasking-discrete-diffusion-models",
+  "title": "Provably adaptive sampling with uniform and remasking discrete diffusion models",
+  "authors": [
+    "Daniil Dmitriev",
+    "Zhihan Huang",
+    "Yuting Wei"
+  ],
+  "source": "arXiv",
+  "published": "2026-08-24",
+  "url": "http://arxiv.org/abs/2608.23554v1",
+  "pdf_url": "https://arxiv.org/pdf/2608.23554v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-08-26",
+  "first_deep_dive_daily": "2026-08-26",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 4.15,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 60.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得继续观察：Provably adaptive sampling with uniform and remasking discrete diffusi…",
+  "one_line_essence": "Provably adaptive sampling with uniform and remasking discrete diffusion models 命中 ai-agent 主线（采样基础）：据摘要，离散扩散模型支持并行更新，效率强依赖于 forward process 与 sampler；uniform forward process 下，标准 τ-leaping 的现有下界与 ambient 维度 d 线性相关——是否 intrinsic？本文给出否定回答，对 fixed 类别提出新下界。'对 uniform forward process 证明 d 无关的下界——打破 τ-leaping 效率与维度线性挂钩的悲观下界'对做离散扩散生成 / token-level 并行采样的团队有趋势参考价值——它把'维度线性'这一常识悲观界替换成'维度无关'，为大规模离散扩散采样提供了理论基础。证据强度中等偏上：理论结论清晰，否定先前下界。证据不足：code/benchmark 不适用（理论）+ 暂无待核验链接；摘要截断导致具体下界形式、对何种 sampler family 适用、与 mask-based remasking 的关系缺失；属采样基础理论，对工程团队短期价值以'理论方向'为主，建议纳入趋势观察。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "Provably adaptive sampling with uniform and remasking discrete diffusion models 命中 ai-agent 主线（采样基础）：据摘要，离散扩散模型支持并行更新，效率强依赖于 forward process 与 sampler；uniform forward process 下，标准 ",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "Provably adaptive sampling with uniform and remasking discrete diffusion models 命中 ai-agent 主线（采",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2608.23554v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2608.23554v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=provably-adaptive-sampling-with-uniform-and-remasking-discrete-diffusion-models",
+  "daily_path": "daily-detail.html?date=2026-08-26",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

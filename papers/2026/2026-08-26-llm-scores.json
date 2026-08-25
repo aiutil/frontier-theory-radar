@@ -1,0 +1,64 @@
+{
+  "by_url": {
+    "http://arxiv.org/abs/2608.23552v1": {
+      "score": 78,
+      "value_type": "immediate",
+      "reason": "Prime Agent: A Self-Improving RLM Harness 命中 ai-agent 与 coding-agent 主线：据摘要，Prime Agent 是开源 long-horizon evaluation / coding-agent harness，核心结构是持久化 IPython REPL（按 Recursive Language Model 抽象做程序化 context 处理与 test-time compute）+ Continual Harness（跨轨迹保留 history / memory / skills / prompts / subagent 规格）。'把 REPL 当成 agent 的外脑——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 跨会话保留'对做长期 agent 工程的团队有直接工程价值——它示范了从'单次 prompt 工作流'走向'跨会话可积累能力'的 harness 形态。证据强度中等偏上：开源 harness + 明确抽象（RLM、Continual Harness）+ 关键词 agent/evaluation。证据不足：code_url 暂无待核验（摘要仅说 open-source harness，未给具体仓库链接）；摘要截断导致 Continual Harness 的 skills/prompts/subagent 规格的具体表示、与现成 agent 框架（OpenHands / SWE-Agent）的差异评测缺失；今日算 immediate 但建议先在内部 agent 上做 1 周最小验证再决定是否替换 harness。",
+      "matched_topics": ["ai-agent", "coding-agent"]
+    },
+    "http://arxiv.org/abs/2608.23564v1": {
+      "score": 72,
+      "value_type": "immediate",
+      "reason": "SWE Refactor Bench 命中 coding-agent 与 llm-evaluation 主线：据摘要，现有 coding-agent 评测只评估'行为正确性'，不验证'migration 真的发生了'——这导致 agent 可以把原实现直接复制过来过测试（作者称为 Blindness）。本文提出专门评估长程、整库 stack migration 的基准。'专门评估 coding-agent 长程仓库级迁移能力的基准——把'迁移是否真的发生'与'测试是否通过'解耦'对做 coding-agent 工程与评估的团队有直接价值——它把一个常见作弊面（agent 复制原实现）变成可检测的评测缺口。证据强度中等：摘要清晰命名问题（Blindness）+ 给出基准动机；关键词 agent/coding agent/evaluation/benchmark 命中。证据不足：code/benchmark 链接暂无待核验；摘要截断导致具体任务规模（仓库数 / 改动行数 / 语言类型）、评分机制（如何检测 migration 是否真发生）、与 SWE-bench 等的定量对比缺失；建议跟踪其开源与定量结果。",
+      "matched_topics": ["coding-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2608.23566v1": {
+      "score": 70,
+      "value_type": "trend",
+      "reason": "BPCO: Best-Practice Critic Optimization 命中 ai-agent 主线（RL 后训练）：据摘要，GRPO 这类 group-based RL 通过 prompt 多 response 采样回避 critic 训练，而一个可靠的 critic 本可从单次响应估计 token-level advantage，但标准 critic 训练往往不稳定。本文研究这种不稳定性，提出 BPCO recipe：DPPO + value 预测 clip 到 reward 区间 + MC value target + 未截断（unnormalized）的 advantage 等组合。'系统研究 critic 训练不稳定性，给出一个可复用的稳定化 recipe——把'可靠 critic'从 GRPO 替代品变成可工程化组件'对做 RLHF / RLAIF 后训练工程或希望降低 group-sampling 算力成本的团队有趋势参考价值。证据强度中等：方法命名清晰（DPPO / bounded value / MC target），组件级别可解释；关键词 evaluation/benchmark 命中（意味着有消融）。证据不足：code/benchmark 暂无待核验；摘要截断导致 BPCO 与 PPO / GRPO / REINFORCE++ 的定量对比、消融设置、适用任务范围缺失；CRITIC 路线本身在 LLM RL 仍是少数派，定性观察多、定量结果待正文确认。",
+      "matched_topics": ["ai-agent"]
+    },
+    "http://arxiv.org/abs/2608.23565v1": {
+      "score": 68,
+      "value_type": "trend",
+      "reason": "ReWorld: Interactive World Model with Long-Horizon Memory 命中 multimodal-agent 主线：据摘要，交互式 world model 要同时满足'跟随用户动作 / 记住已展示位置 / 实时流式'，其结构性矛盾在于 control 想要短 horizon、memory 想要无界 horizon。ReWorld 在训练时分离两者、推理时绑定：per-head 混合 attention window——大部分 head 关注近期，少量 global head 关注全历史，并配合 random head routing 避免能力绑定到固定 head。'用 per-head 混合 attention window 分离 control 与 memory——避免单一 head 同时承担短程控制与长程记忆'对做交互式生成 / 实时世界模型 / 长程 agent 记忆的团队有趋势参考价值——它给出一个具体的注意力结构选择与训练-推理分离方案。证据强度中等：方法描述结构化（attention 混合 + head 路由）；关键词 world model/memory/inference 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致具体指标（流式延迟、记忆恢复率、长程一致性）、训练数据规模、推理算力代价缺失；world model 赛道信号持续累积，但摘要聚焦结构而非定量结果。",
+      "matched_topics": ["multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2608.23551v1": {
+      "score": 62,
+      "value_type": "trend",
+      "reason": "ConvergeFlow: Language Flow with Provable Convergence to Token Embeddings 命中 ai-agent 主线（连续 LM 基础）：据摘要，连续扩散 / flow-based LM 已达到与离散 LM 相当的性能，但现有连续框架仍依赖 cross-entropy 监督的 decoder，因为 flow 轨迹不保证停在合法 token embedding。本文引入 ConvergeFlow，把 data predictor 约束到 token embedding 凸包内。'把连续 flow LM 的轨迹终点约束到 token embedding 凸包——让 flow 真正以 token embedding 为终点，而不再需要 CE 监督的 decoder'对做连续语言生成 / 扩散 LM / embedding-space 推理的团队有趋势参考价值——它直击当前连续 LM 的'终点合法性'瓶颈。证据强度中等：理论命题清晰（凸包约束 + 收敛性），关键词含 evaluation。证据不足：code/benchmark 暂无待核验；摘要截断导致凸包约束与解码效率的权衡、与离散 LM 的定量对比、是否影响训练稳定性缺失；属连续 LM 路线的工程基础层，对 agent 工程的直接迁移距离中等。",
+      "matched_topics": ["ai-agent"]
+    },
+    "http://arxiv.org/abs/2608.23554v1": {
+      "score": 60,
+      "value_type": "trend",
+      "reason": "Provably adaptive sampling with uniform and remasking discrete diffusion models 命中 ai-agent 主线（采样基础）：据摘要，离散扩散模型支持并行更新，效率强依赖于 forward process 与 sampler；uniform forward process 下，标准 τ-leaping 的现有下界与 ambient 维度 d 线性相关——是否 intrinsic？本文给出否定回答，对 fixed 类别提出新下界。'对 uniform forward process 证明 d 无关的下界——打破 τ-leaping 效率与维度线性挂钩的悲观下界'对做离散扩散生成 / token-level 并行采样的团队有趋势参考价值——它把'维度线性'这一常识悲观界替换成'维度无关'，为大规模离散扩散采样提供了理论基础。证据强度中等偏上：理论结论清晰，否定先前下界。证据不足：code/benchmark 不适用（理论）+ 暂无待核验链接；摘要截断导致具体下界形式、对何种 sampler family 适用、与 mask-based remasking 的关系缺失；属采样基础理论，对工程团队短期价值以'理论方向'为主，建议纳入趋势观察。",
+      "matched_topics": ["ai-agent"]
+    },
+    "http://arxiv.org/abs/2608.23547v1": {
+      "score": 55,
+      "value_type": "long_tail",
+      "reason": "Robustness of Anomaly Detection Models for ICS under Training-Time Data Contamination 命中 security-governance 主线（领域专精）：据摘要，机器学习异常检测在工业控制系统（ICS）日益普及，但多数研究假设训练数据可信——实际中训练数据可能被污染（日志篡改、标签错误、historian 操纵、不安全再训练）。本文在 SWaT 基准上评估 11 种异构离线 ICS 异常检测流程在训练时污染下的鲁棒性。'把'训练数据污染'作为 ICS 异常检测鲁棒性的评估维度——用 11 种异构 pipeline 在 SWaT 上系统对照'对做 ML 安全 / 数据治理 / 关键基础设施 AI 的团队有长尾参考价值——它示范了'训练时污染'这一被普遍忽略的鲁棒性维度。证据强度中等：给出明确基准（SWaT）+ 异构 pipeline 数（11）；关键词 benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 11 种 pipeline 的具体类别、污染类型注入方式、定量结果缺失；领域聚焦 ICS 而非通用 LLM/agent，对团队通用工程栈的直接迁移距离中等偏远，作长尾资产保存。",
+      "matched_topics": ["security-governance"]
+    },
+    "http://arxiv.org/abs/2608.23546v1": {
+      "score": 52,
+      "value_type": "long_tail",
+      "reason": "Inertial Manifold Neural Operator (IMNO) for Dissipative Time-Dependent PDEs 命中 ai-k8s-platform 与 inference-serving 主线（边缘——神经算子）：据摘要，耗散时间依赖 PDE 的长时间动力学常呈现低维结构（惯性流形）；与 FNO 等标准神经算子不同，IMNO 显式利用该低维结构以提升物理可解释性、准确性与长程自回归稳定性。'把耗散 PDE 的惯性流形结构显式嵌入神经算子——以'结构先验'换'长程稳定性'，超越通用 FNO'对做科学计算 / 神经算子 / 物理仿真 ML 的团队有长尾参考价值——它示范了如何用领域结构（惯性流形）而非纯数据驱动获得长程稳定性。证据强度中等：方法动机清晰（耗散→低维），对比对象明确（FNO）；关键词 benchmark/RAG 命中（宽泛）。证据不足：code/benchmark 暂无待核验；摘要截断导致具体 PDE 类型、长程 horizon、是否给出可复现算法细节缺失；RAG 为宽泛命中，已在评分中剔除；对通用 LLM/agent 工程栈的迁移距离较远，作长尾资产保存。",
+      "matched_topics": ["ai-k8s-platform", "inference-serving"]
+    },
+    "http://arxiv.org/abs/2608.23563v1": {
+      "score": 46,
+      "value_type": "ignore",
+      "reason": "EG-ARSA: Expert-Grounded Open Model for Visual Road Safety Auditing in Low-Resource Settings 聚焦低资源国家的视觉道路安全审计：据摘要，提出 Expert-Grounded Distillation（EGD），把制度化的道路安全知识蒸馏到一个紧凑 vision-language model 中。领域聚焦 cs.CV/cs.AI 的交通安全垂直应用，与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远；关键词 evaluation/RAG 均为宽泛命中（指视觉审计与专家知识库，非 LLM 评测或检索增强）。code/benchmark 暂无待核验；摘要截断导致具体数据来源、专家知识形式、VLM 规模与基准缺失。忽略，除非做交通安全或 VLM 蒸馏方向的工程工作。",
+      "matched_topics": ["multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2608.23562v1": {
+      "score": 42,
+      "value_type": "ignore",
+      "reason": "Phy-BP: Physics-Constrained Deep Learning for Contactless BP Monitoring from Triaxial Bodyseismography 聚焦非接触血压监测：据摘要，传统 BCG 信号受身体-床界面变化影响导致 fiducial 点偏移，BP 又随个体血流动力学变化，引起表示错位影响泛化与鲁棒性；本文提出基于三轴 bodyseismography 的非侵入式 BP 估计框架 Phy-BP。领域聚焦 eess.SP/cs.AI/physics.bio-ph 的医学信号处理，与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离极远；关键词为空，无 agent/coding/multimodal 等相关命中。code/benchmark 暂无待核验。忽略，除非做医学信号 / 健康监测方向的工程工作。",
+      "matched_topics": []
+    }
+  }
+}

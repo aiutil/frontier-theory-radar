@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-08-25
+## 最新研究 · 2026-08-26
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 92 | 128 | 115 | 1275 |
+| 10 | 94 | 132 | 117 | 1277 |
 
-**今日深挖：** [Natural-Language Workflows Are Not Software Yet: Artifact-Driven Compilation for Reliable Agent Execution](daily/2026/2026-08-25.md) · 即时价值 · 轻量试点
+**今日深挖：** [Prime Agent: A Self-Improving RLM Harness](daily/2026/2026-08-26.md) · 即时价值 · 轻量试点
 
-**核心判断：** Artic 把自然语言工作流转成 artifact 形式，强迫把隐式数据依赖外化为可被求解的输入——这是当前 agent 工作流易碎（长程/分支下 context 压力失效）的关键工程缺口，可直接对接到 LangGraph/DSPy/Temporal 这类编排器的'workflow-as-input'思路。AI with Authority 论证机器验证是规模化调度自主机器工作的前提——'不可腐化裁判'作为一项基础设施命题，足以催生一整个工程方向：verification-first agent runtimes、evaluator harness 与 runtime rollback。Asymmetric Capacity Allocation 则用 self-refinement 三阶段容量异构的实验探索，支撑'mixed-size pipeline 是 LLM 工程的成本金矿'这一更普遍趋势。三者共同折射：agent 价值密度正在从模型能力转向'基础设施（编译、验证、容量编排）'。
+**核心判断：** Prime Agent 把 REPL 当成 agent 的'外脑'——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 规格跨会话保留；这标志着 agent 从'单次 prompt 工作流'走向'跨会话可积累能力的 harness'。SWE Refactor Bench 直击当前 coding-agent 评测的 Blindness：现有基准只验证'行为正确性'，不验证'migration 是否真的发生'——agent 可以直接复制原实现来通过测试。两个趋势信号也值得持续观察：BPCO 系统研究 critic 训练不稳定性并给出可复用 recipe（让'可靠 critic'从 GRPO 替代品变成可工程化组件）；ReWorld 用 per-head 混合 attention window 分离 control 与 memory（直击交互式世界模型'短程控制 + 长程记忆'的结构性矛盾）。
 
-**建议动作：** 完成三件事：(1) Artic 落地：选一条高频长程工作流，把自然语言步骤描述 schema-化为 typed intermediate representation，跑样本验证对'隐式数据依赖漏判'的修复比例。(2) Verification-first 盘点：写出团队当前 agent runtime 已有/可补的 verifier 锚点清单（spec check / output schema validation / tool-call replay audit / deterministic replay 各一项）。(3) Asymmetric capacity 实验：固定生成侧强模型，在 critique 与 revision 阶段试 30%/10% 成本模型替代，绘制 cost-quality Pareto 曲线。
+**建议动作：** 完成两件事：(1) 跟踪 Prime Agent 开源仓库——评估其 REPL 抽象（程序化 context 处理）与 Continual Harness（跨会话 memory/skills/subagent 规格）是否能与团队现有 agent harness 兼容，可在内部 agent 上做最小集成 PoC（1-2 天）；(2) 跟踪 SWE Refactor Bench 开源情况——评估其评分机制（如何检测 agent 是否真做迁移），并在团队内部 coding-agent 评测中加入'迁移真实性检测'维度（即便不直接复用其基准，原则可立刻应用）。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,20 +39,20 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-08-26](daily/2026/2026-08-26.md) | Prime Agent: A Self-Improving RLM Harness | 即时价值 | 轻量试点 |
 | [2026-08-25](daily/2026/2026-08-25.md) | Natural-Language Workflows Are Not Software Yet: Artifact-Driven Compilation for Reliable Agent Execution | 即时价值 | 轻量试点 |
 | [2026-08-24](daily/2026/2026-08-24.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-23](daily/2026/2026-08-23.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-21](daily/2026/2026-08-21.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-20](daily/2026/2026-08-20.md) | Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search | 暂时忽略 | 暂时忽略 |
 | [2026-08-19](daily/2026/2026-08-19.md) | Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI | 长尾价值 | 持续观察 |
-| [2026-08-18](daily/2026/2026-08-18.md) | ComponentBench: Diagnosing Component-Level Failures in Computer-Use Agents | 暂时忽略 | 暂时忽略 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
 | [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 534 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 433 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 435 |
 | [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 534 |
 
 ## 为什么做这个项目

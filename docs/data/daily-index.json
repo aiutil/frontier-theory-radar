@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-25T04:33:22.107197",
+  "updated_at": "2026-08-26T04:34:48.465050",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-26",
+      "title": "论文价值发现日报 - 2026-08-26",
+      "deep_dive_title": "Prime Agent: A Self-Improving RLM Harness",
+      "deep_dive_url": "http://arxiv.org/abs/2608.23552v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成两件事：(1) 跟踪 Prime Agent 开源仓库——评估其 REPL 抽象（程序化 context 处理）与 Continual Harness（跨会话 memory/skills/subagent 规格）是否能与团队现有 agent harness 兼容，可在内部 agent 上做最小集成 PoC（1-2 天）；(2) 跟踪 SWE Refactor Bench 开源情况——评估其评分机制（如何检测 agent 是否真做迁移），并在团队内部 coding-agent 评测中加入'迁移真实性检测'维度（即便不直接复用其基准，原则可立刻应用）。",
+      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；Prime Agent 摘要截断导致 Continual Harness 的 skills/prompts/subagent 规格具体表示、与现成 agent 框架的差异评测缺失；SWE Refactor Bench 摘要截断导致具体任务规模（仓库数 / 改动行数 / 语言类型）、评分机制、与 SWE-bench 的定量对比缺失；BPCO 摘要截断导致与 PPO/GRPO/REINFORCE++ 的定量对比缺失；ReWorld 摘要截断导致流式延迟、记忆恢复率、长程一致性缺失；ConvergeFlow 摘要截断导致凸包约束与解码效率权衡缺失；Provably adaptive sampling 摘要截断导致下界形式与适用 sampler family 缺失；EG-ARSA 与 Phy-BP 领域垂直，与团队通用 agent 工程栈迁移距离较远。",
+      "one_line_judgement": "Prime Agent 把 REPL 当成 agent 的'外脑'——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 规格跨会话保留；这标志着 agent 从'单次 prompt 工作流'走向'跨会话可积累能力的 harness'。SWE Refactor Bench 直击当前 coding-agent 评测的 Blindness：现有基准只验证'行为正确性'，不验证'migration 是否真的发生'——agent 可以直接复制原实现来通过测试。两个趋势信号也值得持续观察：BPCO 系统研究 critic 训练不稳定性并给出可复用 recipe（让'可靠 critic'从 GRPO 替代品变成可工程化组件）；ReWorld 用 per-head 混合 attention window 分离 control 与 memory（直击交互式世界模型'短程控制 + 长程记忆'的结构性矛盾）。",
+      "path": "daily-detail.html?date=2026-08-26"
+    },
     {
       "date": "2026-08-25",
       "title": "论文价值发现日报 - 2026-08-25",
@@ -378,19 +391,6 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-07-27"
-    },
-    {
-      "date": "2026-07-26",
-      "title": "论文价值发现日报 - 2026-07-26",
-      "deep_dive_title": "MulRobBench: A Decision-Level Benchmark for Safe and Security-Policy-Compliant Multimodal UAV Agents",
-      "deep_dive_url": "http://arxiv.org/abs/2607.23870v1",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-07-26"
     }
   ]
 }
