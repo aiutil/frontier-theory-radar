@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-08-26
+## 最新研究 · 2026-08-27
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 94 | 132 | 117 | 1277 |
+| 10 | 97 | 135 | 120 | 1278 |
 
-**今日深挖：** [Prime Agent: A Self-Improving RLM Harness](daily/2026/2026-08-26.md) · 即时价值 · 轻量试点
+**今日深挖：** [Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses](daily/2026/2026-08-27.md) · 即时价值 · 轻量试点
 
-**核心判断：** Prime Agent 把 REPL 当成 agent 的'外脑'——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 规格跨会话保留；这标志着 agent 从'单次 prompt 工作流'走向'跨会话可积累能力的 harness'。SWE Refactor Bench 直击当前 coding-agent 评测的 Blindness：现有基准只验证'行为正确性'，不验证'migration 是否真的发生'——agent 可以直接复制原实现来通过测试。两个趋势信号也值得持续观察：BPCO 系统研究 critic 训练不稳定性并给出可复用 recipe（让'可靠 critic'从 GRPO 替代品变成可工程化组件）；ReWorld 用 per-head 混合 attention window 分离 control 与 memory（直击交互式世界模型'短程控制 + 长程记忆'的结构性矛盾）。
+**核心判断：** Recuris 把 long-horizon agent 的 memory 拆成 Working Memory（管任务进度）+ Experiential Memory（管跨轨迹技能库），并把执行变成结构化失败证据——与昨日 Prime Agent 的 REPL + Continual Harness 同方向（跨会话可积累能力），但聚焦 memory 结构分离；Prompt Structure 用 424 个安全敏感 Python 任务 × GPT-4o/LLaMA 3.1-8B × 5 种 prompt 变体系统证伪'prompt 结构 = 更安全'的直觉——把'prompt 工程万能'变成可定量评估的盲区；FID Hides 用具体反例（ImageNet 上视觉不可识别但仅匹配参考 Inception mean/cov 的图像获 FID 24.7 vs 真实图像 FID 58.6）证明 FID 标量本身不是 calibrated test。三个趋势信号也值得关注：SPO++ 修复异步 agentic RL 的 trajectory-vs-token-weighted 中心化偏差；BrowserForge 用并行浏览器沙箱规模化生成 web agent 训练数据；LAION-BVD 把视频多模态预训练数据推到 10M 小时量级。
 
-**建议动作：** 完成两件事：(1) 跟踪 Prime Agent 开源仓库——评估其 REPL 抽象（程序化 context 处理）与 Continual Harness（跨会话 memory/skills/subagent 规格）是否能与团队现有 agent harness 兼容，可在内部 agent 上做最小集成 PoC（1-2 天）；(2) 跟踪 SWE Refactor Bench 开源情况——评估其评分机制（如何检测 agent 是否真做迁移），并在团队内部 coding-agent 评测中加入'迁移真实性检测'维度（即便不直接复用其基准，原则可立刻应用）。
+**建议动作：** 完成三件事：(1) 跟踪 Recuris 开源——评估其 Working/Experiential Memory 抽象是否可与团队 long-horizon agent harness 兼容，可在内部 agent 上做 memory 抽象对比（不依赖完整开源，memory 分层思想可借鉴，1 周内可做概念验证）；(2) 把'prompt 变体鲁棒性'纳入团队 coding-agent 评测设计——基于 Prompt Structure 的'424 任务 × 多 prompt 变体'实证原则，可立刻在团队内部安全敏感代码生成任务上加'prompt 变体对照'维度（30 分钟可设计、1-2 天可实施）；(3) 把'FID 偏差检测'纳入团队生成模型选型流程——不再把 FID 数值当作唯一排序依据，加入 FID Hides 的偏差检测思路（30 分钟可制定规则、1 周内可在选型中应用）。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-08-27](daily/2026/2026-08-27.md) | Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses | 即时价值 | 轻量试点 |
 | [2026-08-26](daily/2026/2026-08-26.md) | Prime Agent: A Self-Improving RLM Harness | 即时价值 | 轻量试点 |
 | [2026-08-25](daily/2026/2026-08-25.md) | Natural-Language Workflows Are Not Software Yet: Artifact-Driven Compilation for Reliable Agent Execution | 即时价值 | 轻量试点 |
 | [2026-08-24](daily/2026/2026-08-24.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-23](daily/2026/2026-08-23.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-21](daily/2026/2026-08-21.md) | AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement | 即时价值 | 轻量试点 |
 | [2026-08-20](daily/2026/2026-08-20.md) | Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search | 暂时忽略 | 暂时忽略 |
-| [2026-08-19](daily/2026/2026-08-19.md) | Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI | 长尾价值 | 持续观察 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 534 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 435 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 534 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 536 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 437 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 536 |
 
 ## 为什么做这个项目
 

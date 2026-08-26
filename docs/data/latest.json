@@ -1,110 +1,123 @@
 {
-  "updated_at": "2026-08-26T04:34:48.459352",
+  "updated_at": "2026-08-27T04:34:14.290260",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-08-26",
-    "title": "论文价值发现日报 - 2026-08-26",
-    "deep_dive_title": "Prime Agent: A Self-Improving RLM Harness",
-    "deep_dive_url": "http://arxiv.org/abs/2608.23552v1",
+    "date": "2026-08-27",
+    "title": "论文价值发现日报 - 2026-08-27",
+    "deep_dive_title": "Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses",
+    "deep_dive_url": "http://arxiv.org/abs/2608.24876v1",
     "decision": "轻量试点",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "完成两件事：(1) 跟踪 Prime Agent 开源仓库——评估其 REPL 抽象（程序化 context 处理）与 Continual Harness（跨会话 memory/skills/subagent 规格）是否能与团队现有 agent harness 兼容，可在内部 agent 上做最小集成 PoC（1-2 天）；(2) 跟踪 SWE Refactor Bench 开源情况——评估其评分机制（如何检测 agent 是否真做迁移），并在团队内部 coding-agent 评测中加入'迁移真实性检测'维度（即便不直接复用其基准，原则可立刻应用）。",
-    "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；Prime Agent 摘要截断导致 Continual Harness 的 skills/prompts/subagent 规格具体表示、与现成 agent 框架的差异评测缺失；SWE Refactor Bench 摘要截断导致具体任务规模（仓库数 / 改动行数 / 语言类型）、评分机制、与 SWE-bench 的定量对比缺失；BPCO 摘要截断导致与 PPO/GRPO/REINFORCE++ 的定量对比缺失；ReWorld 摘要截断导致流式延迟、记忆恢复率、长程一致性缺失；ConvergeFlow 摘要截断导致凸包约束与解码效率权衡缺失；Provably adaptive sampling 摘要截断导致下界形式与适用 sampler family 缺失；EG-ARSA 与 Phy-BP 领域垂直，与团队通用 agent 工程栈迁移距离较远。",
-    "one_line_judgement": "Prime Agent 把 REPL 当成 agent 的'外脑'——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 规格跨会话保留；这标志着 agent 从'单次 prompt 工作流'走向'跨会话可积累能力的 harness'。SWE Refactor Bench 直击当前 coding-agent 评测的 Blindness：现有基准只验证'行为正确性'，不验证'migration 是否真的发生'——agent 可以直接复制原实现来通过测试。两个趋势信号也值得持续观察：BPCO 系统研究 critic 训练不稳定性并给出可复用 recipe（让'可靠 critic'从 GRPO 替代品变成可工程化组件）；ReWorld 用 per-head 混合 attention window 分离 control 与 memory（直击交互式世界模型'短程控制 + 长程记忆'的结构性矛盾）。",
-    "path": "daily-detail.html?date=2026-08-26"
+    "daily_action": "完成三件事：(1) 跟踪 Recuris 开源——评估其 Working/Experiential Memory 抽象是否可与团队 long-horizon agent harness 兼容，可在内部 agent 上做 memory 抽象对比（不依赖完整开源，memory 分层思想可借鉴，1 周内可做概念验证）；(2) 把'prompt 变体鲁棒性'纳入团队 coding-agent 评测设计——基于 Prompt Structure 的'424 任务 × 多 prompt 变体'实证原则，可立刻在团队内部安全敏感代码生成任务上加'prompt 变体对照'维度（30 分钟可设计、1-2 天可实施）；(3) 把'FID 偏差检测'纳入团队生成模型选型流程——不再把 FID 数值当作唯一排序依据，加入 FID Hides 的偏差检测思路（30 分钟可制定规则、1 周内可在选型中应用）。",
+    "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；Recuris 摘要截断导致 Experiential Memory 存储/检索机制、Working Memory 状态表示、与 Prime Agent REPL 的差异评测缺失；Prompt Structure 摘要截断导致 5 种 prompt 变体具体差异、定量结果（各弱点类型前后比例）、所用弱点分类法缺失；FID Hides 摘要截断导致偏差检测/排名/诊断的具体算法、与 KID/其他指标的关系缺失；SPO++ 摘要截断导致与 GRPO/PPO 的定量对比、适用任务类型、稳定性结果缺失；BrowserForge 摘要截断导致具体沙箱架构、轨迹规模、与已有数据集的定量对比缺失；LAION-BVD 摘要截断导致许可协议、内容过滤策略、与已有视频数据集的定量对比缺失；Bellman Calibration、FedV-KGQA、Cross-Problem VRP 摘要均截断导致各自方法细节与定量结果缺失。",
+    "one_line_judgement": "Recuris 把 long-horizon agent 的 memory 拆成 Working Memory（管任务进度）+ Experiential Memory（管跨轨迹技能库），并把执行变成结构化失败证据——与昨日 Prime Agent 的 REPL + Continual Harness 同方向（跨会话可积累能力），但聚焦 memory 结构分离；Prompt Structure 用 424 个安全敏感 Python 任务 × GPT-4o/LLaMA 3.1-8B × 5 种 prompt 变体系统证伪'prompt 结构 = 更安全'的直觉——把'prompt 工程万能'变成可定量评估的盲区；FID Hides 用具体反例（ImageNet 上视觉不可识别但仅匹配参考 Inception mean/cov 的图像获 FID 24.7 vs 真实图像 FID 58.6）证明 FID 标量本身不是 calibrated test。三个趋势信号也值得关注：SPO++ 修复异步 agentic RL 的 trajectory-vs-token-weighted 中心化偏差；BrowserForge 用并行浏览器沙箱规模化生成 web agent 训练数据；LAION-BVD 把视频多模态预训练数据推到 10M 小时量级。",
+    "path": "daily-detail.html?date=2026-08-27"
   },
   "top_paper": {
-    "title": "Prime Agent: A Self-Improving RLM Harness",
+    "title": "Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses",
     "authors": [
-      "Seth Karten",
-      "Alex L. Zhang",
-      "Kevin Thomas",
-      "Sebastian Müller",
-      "Elie Bakouch"
+      "Zhaochen Yu",
+      "Yingcheng Wu",
+      "Zhenfei Yin",
+      "Kaiyuan Chen",
+      "Zhe Zhao"
     ],
-    "published": "2026-08-24",
-    "updated": "2026-08-24",
+    "published": "2026-08-25",
+    "updated": "2026-08-25",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2608.23552v1",
-    "pdf_url": "https://arxiv.org/pdf/2608.23552v1",
+    "url": "http://arxiv.org/abs/2608.24876v1",
+    "pdf_url": "https://arxiv.org/pdf/2608.24876v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Language models are sequential processors, but long-horizon agency requires external information and computation beyond model weights and active context. Prime Agent is an open-source harness for long-horizon evaluation and coding-agent workflows. A persistent IPython REPL follows the Recursive Language Model abstraction for programmatic context processing and test-time compute, while Continual Harness preserves histories, memories, skills, prompts, and subagent specifications across trajectorie",
+    "abstract": "Recursive self-improvement (RSI) remains hard in long-horizon tasks, where growing histories obscure the task state and misalign skill invocation. We introduce Recuris, a recursive Experiential-Working Memory architecture for long-horizon agent harnesses, in which Working Memory tracks task progress and guides skill selection from Experiential Memory, grounding skill use in current needs rather than the full history. This coupling also turns execution into structured evidence that localizes fail",
     "categories": [
       "cs.AI",
-      "cs.CL",
-      "cs.SE"
+      "cs.CL"
     ],
     "keywords": [
       "agent",
-      "evaluation"
+      "memory",
+      "benchmark"
     ],
-    "score": 78.0,
+    "score": 76.0,
     "decision": "轻量试点",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2608.23552v1"
+        "url": "http://arxiv.org/abs/2608.24876v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2608.23552v1"
+        "url": "https://arxiv.org/pdf/2608.24876v1"
       }
     ],
-    "llm_reason": "Prime Agent: A Self-Improving RLM Harness 命中 ai-agent 与 coding-agent 主线：据摘要，Prime Agent 是开源 long-horizon evaluation / coding-agent harness，核心结构是持久化 IPython REPL（按 Recursive Language Model 抽象做程序化 context 处理与 test-time compute）+ Continual Harness（跨轨迹保留 history / memory / skills / prompts / subagent 规格）。'把 REPL 当成 agent 的外脑——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 跨会话保留'对做长期 agent 工程的团队有直接工程价值——它示范了从'单次 prompt 工作流'走向'跨会话可积累能力'的 harness 形态。证据强度中等偏上：开源 harness + 明确抽象（RLM、Continual Harness）+ 关键词 agent/evaluation。证据不足：code_url 暂无待核验（摘要仅说 open-source harness，未给具体仓库链接）；摘要截断导致 Continual Harness 的 skills/prompts/subagent 规格的具体表示、与现成 agent 框架（OpenHands / SWE-Agent）的差异评测缺失；今日算 immediate 但建议先在内部 agent 上做 1 周最小验证再决定是否替换 harness。",
-    "id": "prime-agent-a-self-improving-rlm-harness",
+    "llm_reason": "Recuris: Recursive Experiential-Working Memory for long-horizon agent harness 命中 ai-agent 主线（长程 agent 内存）：据摘要，Recursive Self-Improvement 在长程任务上难，因为增长历史掩盖任务状态、技能调用错位。Recuris 用 Working Memory 跟踪任务进度并从 Experiential Memory 选技能——把执行变成可定位失败的结构化证据。'Working Memory 管当前任务 + Experiential Memory 管跨轨迹技能库 + 执行即结构化证据'与昨日 Prime Agent 的'REPL 当外脑 + Continual Harness 跨会话保留 skills/memory/prompts/subagent'同方向，但更聚焦 memory 结构分离——可作为团队 long-horizon agent 的 memory 抽象候选。证据强度中等：方法命名清晰（Experiential/Working Memory 结构化分工）+ 关键词 agent/memory/benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 Experiential Memory 的存储/检索机制、Working Memory 的状态表示、与 Prime Agent REPL 的差异评测缺失；建议跟踪其开源与定量结果，1 周内可在内部 long-horizon agent 上做 memory 抽象对比。",
+    "id": "recursive-experiential-working-memory-evolution-for-long-horizon-agent-harnesses",
     "value_type": "immediate",
     "matched_topics": [
       "ai-agent",
-      "coding-agent"
+      "context-engineering"
     ],
     "score_breakdown": {
       "novelty": 4.8,
-      "problem_importance": 6.45,
-      "relevance": 7.4,
-      "evidence_strength": 4.95,
-      "engineering_testability": 4.05,
-      "trend_signal": 4.6,
+      "problem_importance": 5.8,
+      "relevance": 6.2,
+      "evidence_strength": 4.5,
+      "engineering_testability": 3.5,
+      "trend_signal": 4.05,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 6.2,
-      "actionability": 5.0,
+      "asset_convertibility": 4.8,
+      "actionability": 3.8,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 4.0,
-      "low_relevance_penalty": 0.8,
+      "weak_evidence_penalty": 5.0,
+      "low_relevance_penalty": 2.2,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "brief_cn": "AI Agent：Language models are sequential processors, but long-horizon agency requires ex…",
-    "one_line_judgement": "今天值得试：Prime Agent: A Self-Improving RLM Harness 命中 ai-agent 与 coding-agent 主…",
-    "first_seen_date": "2026-08-26",
-    "first_deep_dive_daily": "2026-08-26",
+    "brief_cn": "AI Agent：Recursive self-improvement (RSI) remains hard in long-horizon tasks, where gro…",
+    "one_line_judgement": "今天值得试：Recuris: Recursive Experiential-Working Memory for long-horizon agent …",
+    "first_seen_date": "2026-08-27",
+    "first_deep_dive_daily": "2026-08-27",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "Prime Agent: A Self-Improving RLM Harness 命中 ai-agent 与 coding-agent 主线：据摘要，Prime Agent 是开源 long",
+    "long_tail_summary": "Recuris: Recursive Experiential-Working Memory for long-horizon agent harness 命中 ai-agent 主线（长程 ",
     "related_trends": [
       "agentic-world-modeling",
-      "coding-agent"
+      "context-engineering"
     ],
-    "detail_path": "paper-detail.html?id=prime-agent-a-self-improving-rlm-harness"
+    "detail_path": "paper-detail.html?id=recursive-experiential-working-memory-evolution-for-long-horizon-agent-harnesses"
   },
-  "paper_count": 1620,
+  "paper_count": 1630,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 117,
+  "long_tail_count": 120,
   "value_distribution": {
-    "immediate": 94,
-    "trend": 132,
-    "long_tail": 117,
-    "ignore": 1277
+    "immediate": 97,
+    "trend": 135,
+    "long_tail": 120,
+    "ignore": 1278
   },
   "recent_dailies": [
+    {
+      "date": "2026-08-27",
+      "title": "论文价值发现日报 - 2026-08-27",
+      "deep_dive_title": "Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses",
+      "deep_dive_url": "http://arxiv.org/abs/2608.24876v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：(1) 跟踪 Recuris 开源——评估其 Working/Experiential Memory 抽象是否可与团队 long-horizon agent harness 兼容，可在内部 agent 上做 memory 抽象对比（不依赖完整开源，memory 分层思想可借鉴，1 周内可做概念验证）；(2) 把'prompt 变体鲁棒性'纳入团队 coding-agent 评测设计——基于 Prompt Structure 的'424 任务 × 多 prompt 变体'实证原则，可立刻在团队内部安全敏感代码生成任务上加'prompt 变体对照'维度（30 分钟可设计、1-2 天可实施）；(3) 把'FID 偏差检测'纳入团队生成模型选型流程——不再把 FID 数值当作唯一排序依据，加入 FID Hides 的偏差检测思路（30 分钟可制定规则、1 周内可在选型中应用）。",
+      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；Recuris 摘要截断导致 Experiential Memory 存储/检索机制、Working Memory 状态表示、与 Prime Agent REPL 的差异评测缺失；Prompt Structure 摘要截断导致 5 种 prompt 变体具体差异、定量结果（各弱点类型前后比例）、所用弱点分类法缺失；FID Hides 摘要截断导致偏差检测/排名/诊断的具体算法、与 KID/其他指标的关系缺失；SPO++ 摘要截断导致与 GRPO/PPO 的定量对比、适用任务类型、稳定性结果缺失；BrowserForge 摘要截断导致具体沙箱架构、轨迹规模、与已有数据集的定量对比缺失；LAION-BVD 摘要截断导致许可协议、内容过滤策略、与已有视频数据集的定量对比缺失；Bellman Calibration、FedV-KGQA、Cross-Problem VRP 摘要均截断导致各自方法细节与定量结果缺失。",
+      "one_line_judgement": "Recuris 把 long-horizon agent 的 memory 拆成 Working Memory（管任务进度）+ Experiential Memory（管跨轨迹技能库），并把执行变成结构化失败证据——与昨日 Prime Agent 的 REPL + Continual Harness 同方向（跨会话可积累能力），但聚焦 memory 结构分离；Prompt Structure 用 424 个安全敏感 Python 任务 × GPT-4o/LLaMA 3.1-8B × 5 种 prompt 变体系统证伪'prompt 结构 = 更安全'的直觉——把'prompt 工程万能'变成可定量评估的盲区；FID Hides 用具体反例（ImageNet 上视觉不可识别但仅匹配参考 Inception mean/cov 的图像获 FID 24.7 vs 真实图像 FID 58.6）证明 FID 标量本身不是 calibrated test。三个趋势信号也值得关注：SPO++ 修复异步 agentic RL 的 trajectory-vs-token-weighted 中心化偏差；BrowserForge 用并行浏览器沙箱规模化生成 web agent 训练数据；LAION-BVD 把视频多模态预训练数据推到 10M 小时量级。",
+      "path": "daily-detail.html?date=2026-08-27"
+    },
     {
       "date": "2026-08-26",
       "title": "论文价值发现日报 - 2026-08-26",
@@ -182,149 +195,131 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-08-20"
-    },
-    {
-      "date": "2026-08-19",
-      "title": "论文价值发现日报 - 2026-08-19",
-      "deep_dive_title": "Accelerated Genetic Programming Hyper-Heuristics for Simulation-Based Scheduling via Agentic AI",
-      "deep_dive_url": "http://arxiv.org/abs/2608.19487v1",
-      "decision": "持续观察",
-      "value_type": "long_tail",
-      "value_type_label": "长尾价值",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-08-19"
     }
   ],
   "top_papers": [
     {
-      "title": "Prime Agent: A Self-Improving RLM Harness",
+      "title": "Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses",
       "authors": [
-        "Seth Karten",
-        "Alex L. Zhang",
-        "Kevin Thomas",
-        "Sebastian Müller",
-        "Elie Bakouch"
+        "Zhaochen Yu",
+        "Yingcheng Wu",
+        "Zhenfei Yin",
+        "Kaiyuan Chen",
+        "Zhe Zhao"
       ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23552v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23552v1",
+      "url": "http://arxiv.org/abs/2608.24876v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24876v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Language models are sequential processors, but long-horizon agency requires external information and computation beyond model weights and active context. Prime Agent is an open-source harness for long-horizon evaluation and coding-agent workflows. A persistent IPython REPL follows the Recursive Language Model abstraction for programmatic context processing and test-time compute, while Continual Harness preserves histories, memories, skills, prompts, and subagent specifications across trajectorie",
+      "abstract": "Recursive self-improvement (RSI) remains hard in long-horizon tasks, where growing histories obscure the task state and misalign skill invocation. We introduce Recuris, a recursive Experiential-Working Memory architecture for long-horizon agent harnesses, in which Working Memory tracks task progress and guides skill selection from Experiential Memory, grounding skill use in current needs rather than the full history. This coupling also turns execution into structured evidence that localizes fail",
       "categories": [
         "cs.AI",
-        "cs.CL",
-        "cs.SE"
+        "cs.CL"
       ],
       "keywords": [
         "agent",
-        "evaluation"
+        "memory",
+        "benchmark"
       ],
-      "score": 78.0,
+      "score": 76.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23552v1"
+          "url": "http://arxiv.org/abs/2608.24876v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23552v1"
+          "url": "https://arxiv.org/pdf/2608.24876v1"
         }
       ],
-      "llm_reason": "Prime Agent: A Self-Improving RLM Harness 命中 ai-agent 与 coding-agent 主线：据摘要，Prime Agent 是开源 long-horizon evaluation / coding-agent harness，核心结构是持久化 IPython REPL（按 Recursive Language Model 抽象做程序化 context 处理与 test-time compute）+ Continual Harness（跨轨迹保留 history / memory / skills / prompts / subagent 规格）。'把 REPL 当成 agent 的外脑——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 跨会话保留'对做长期 agent 工程的团队有直接工程价值——它示范了从'单次 prompt 工作流'走向'跨会话可积累能力'的 harness 形态。证据强度中等偏上：开源 harness + 明确抽象（RLM、Continual Harness）+ 关键词 agent/evaluation。证据不足：code_url 暂无待核验（摘要仅说 open-source harness，未给具体仓库链接）；摘要截断导致 Continual Harness 的 skills/prompts/subagent 规格的具体表示、与现成 agent 框架（OpenHands / SWE-Agent）的差异评测缺失；今日算 immediate 但建议先在内部 agent 上做 1 周最小验证再决定是否替换 harness。",
-      "id": "prime-agent-a-self-improving-rlm-harness",
+      "llm_reason": "Recuris: Recursive Experiential-Working Memory for long-horizon agent harness 命中 ai-agent 主线（长程 agent 内存）：据摘要，Recursive Self-Improvement 在长程任务上难，因为增长历史掩盖任务状态、技能调用错位。Recuris 用 Working Memory 跟踪任务进度并从 Experiential Memory 选技能——把执行变成可定位失败的结构化证据。'Working Memory 管当前任务 + Experiential Memory 管跨轨迹技能库 + 执行即结构化证据'与昨日 Prime Agent 的'REPL 当外脑 + Continual Harness 跨会话保留 skills/memory/prompts/subagent'同方向，但更聚焦 memory 结构分离——可作为团队 long-horizon agent 的 memory 抽象候选。证据强度中等：方法命名清晰（Experiential/Working Memory 结构化分工）+ 关键词 agent/memory/benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 Experiential Memory 的存储/检索机制、Working Memory 的状态表示、与 Prime Agent REPL 的差异评测缺失；建议跟踪其开源与定量结果，1 周内可在内部 long-horizon agent 上做 memory 抽象对比。",
+      "id": "recursive-experiential-working-memory-evolution-for-long-horizon-agent-harnesses",
       "value_type": "immediate",
       "matched_topics": [
         "ai-agent",
-        "coding-agent"
+        "context-engineering"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.05,
-        "trend_signal": 4.6,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 5.0,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 0.8,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "AI Agent：Language models are sequential processors, but long-horizon agency requires ex…",
-      "one_line_judgement": "今天值得试：Prime Agent: A Self-Improving RLM Harness 命中 ai-agent 与 coding-agent 主…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
+      "brief_cn": "AI Agent：Recursive self-improvement (RSI) remains hard in long-horizon tasks, where gro…",
+      "one_line_judgement": "今天值得试：Recuris: Recursive Experiential-Working Memory for long-horizon agent …",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "Prime Agent: A Self-Improving RLM Harness 命中 ai-agent 与 coding-agent 主线：据摘要，Prime Agent 是开源 long",
+      "long_tail_summary": "Recuris: Recursive Experiential-Working Memory for long-horizon agent harness 命中 ai-agent 主线（长程 ",
       "related_trends": [
         "agentic-world-modeling",
-        "coding-agent"
+        "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=prime-agent-a-self-improving-rlm-harness"
+      "detail_path": "paper-detail.html?id=recursive-experiential-working-memory-evolution-for-long-horizon-agent-harnesses"
     },
     {
-      "title": "SWE Refactor Bench: Can Coding Agents Complete a Long-Horizon, Whole-Repository Stack Migration?",
+      "title": "Prompt Structure Redistributes, Not Reduces: An Empirical Analysis of Security-Weaknesses in LLM-Generated Python Code",
       "authors": [
-        "Deyao Hong",
-        "Yizhe Chi",
-        "Wenyi Li",
-        "Xiaoqiu Wang",
-        "Mingju Gao"
+        "Maitreyee Das Urmi",
+        "Jessica Pourleyli",
+        "Fabio Santos",
+        "Glaucia Melo"
       ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23564v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23564v1",
+      "url": "http://arxiv.org/abs/2608.24857v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24857v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Modern software systems accumulate technical debt over decades of development, which makes migration expensive and largely manual. As coding agents become increasingly capable at bug fixing, can they autonomously perform such migrations? Existing benchmarks cannot answer this question because they evaluate only behavioural correctness, not whether the migration actually occurred. This leads an easy hack: agents copy the original implementation to make tests pass. We call this Blindness. To addre",
+      "abstract": "Large Language Models (LLMs) increasingly generate code from natural-language prompts, making prompt engineering a key mechanism for shaping the security of generated software. Structured and security-oriented prompts are widely used to encourage safer code, yet their effects extend beyond whether detected weaknesses are simply present or absent. Using 424 security-sensitive Python tasks, we generate solutions with GPT-4o and LLaMA 3.1-8B under five prompt variants that progressively add structu",
       "categories": [
-        "cs.CL",
-        "cs.AI",
+        "cs.CR",
         "cs.SE"
       ],
       "keywords": [
-        "agent",
-        "agentic",
-        "coding agent",
-        "evaluation",
-        "benchmark"
+        "RAG"
       ],
-      "score": 72.0,
+      "score": 74.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23564v1"
+          "url": "http://arxiv.org/abs/2608.24857v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23564v1"
+          "url": "https://arxiv.org/pdf/2608.24857v1"
         }
       ],
-      "llm_reason": "SWE Refactor Bench 命中 coding-agent 与 llm-evaluation 主线：据摘要，现有 coding-agent 评测只评估'行为正确性'，不验证'migration 真的发生了'——这导致 agent 可以把原实现直接复制过来过测试（作者称为 Blindness）。本文提出专门评估长程、整库 stack migration 的基准。'专门评估 coding-agent 长程仓库级迁移能力的基准——把'迁移是否真的发生'与'测试是否通过'解耦'对做 coding-agent 工程与评估的团队有直接价值——它把一个常见作弊面（agent 复制原实现）变成可检测的评测缺口。证据强度中等：摘要清晰命名问题（Blindness）+ 给出基准动机；关键词 agent/coding agent/evaluation/benchmark 命中。证据不足：code/benchmark 链接暂无待核验；摘要截断导致具体任务规模（仓库数 / 改动行数 / 语言类型）、评分机制（如何检测 migration 是否真发生）、与 SWE-bench 等的定量对比缺失；建议跟踪其开源与定量结果。",
-      "id": "swe-refactor-bench-can-coding-agents-complete-a-long-horizon-whole-repository-stack-migration",
+      "llm_reason": "Prompt Structure Redistributes, Not Reduces: LLM-Generated Python Code Security 命中 security-governance 与 coding-agent 主线：据摘要，已有共识'结构化/安全导向 prompt 让生成代码更安全'，但本文用 424 个安全敏感 Python 任务在 GPT-4o 与 LLaMA 3.1-8B 上对 5 种 prompt 变体做实证，结果表明 prompt 结构'重分布而非减少'了安全弱点——某些弱点减少、另一些反而上升。'用 424 任务 × 2 模型 × 5 prompt 变体系统证伪 prompt 结构 = 更安全的直觉'对做 coding-agent 评测/红队的团队有直接价值——它把'prompt 工程万能'的常见误解变成可定量评估的盲区，并示范了系统对照实验设计。证据强度中等偏上：任务数大（424）+ 多模型对照（GPT-4o vs LLaMA 3.1-8B）+ 多种 prompt 变体；关键词 RAG 命中（宽泛）。证据不足：code/benchmark 暂无待核验；摘要截断导致 5 种 prompt 变体的具体差异、定量结果（如各弱点类型的前后比例）、所用弱点分类法缺失；建议跟踪其开源数据与定量细节，可立刻在团队内部 coding-agent 评测中加'prompt 变体鲁棒性'维度。",
+      "id": "prompt-structure-redistributes-not-reduces-an-empirical-analysis-of-security-weaknesses-in-llm-generated-python-code",
       "value_type": "immediate",
       "matched_topics": [
+        "security-governance",
         "coding-agent",
         "llm-evaluation"
       ],
@@ -333,11 +328,11 @@
         "problem_importance": 6.45,
         "relevance": 7.4,
         "evidence_strength": 4.95,
-        "engineering_testability": 4.05,
-        "trend_signal": 6.0,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 5.0,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 0.8,
@@ -345,60 +340,288 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "Coding Agent：Modern software systems accumulate technical debt over decades of development,…",
-      "one_line_judgement": "今天值得试：SWE Refactor Bench 命中 coding-agent 与 llm-evaluation 主线：据摘要，现有 coding-a…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
+      "brief_cn": "安全与治理：Large Language Models (LLMs) increasingly generate code from natural-language …",
+      "one_line_judgement": "今天值得试：Prompt Structure Redistributes, Not Reduces: LLM-Generated Python Code…",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "SWE Refactor Bench 命中 coding-agent 与 llm-evaluation 主线：据摘要，现有 coding-agent 评测只评估'行为正确性'，不验证'migr",
+      "long_tail_summary": "Prompt Structure Redistributes, Not Reduces: LLM-Generated Python Code Security 命中 security-gove",
       "related_trends": [
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=swe-refactor-bench-can-coding-agents-complete-a-long-horizon-whole-repository-stack-migration"
+      "detail_path": "paper-detail.html?id=prompt-structure-redistributes-not-reduces-an-empirical-analysis-of-security-weaknesses-in-llm-generated-python-code"
     },
     {
-      "title": "How to Train a Critic Stably and Efficiently",
+      "title": "What FID Hides: Detecting, Ranking, and Diagnosing Deviations in Generative Evaluation",
       "authors": [
-        "Penghui Qi",
-        "Xiangxin Zhou",
-        "Wee Sun Lee"
+        "Hao Chen"
       ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23566v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23566v1",
+      "url": "http://arxiv.org/abs/2608.24881v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24881v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Group-based reinforcement learning methods such as GRPO for large language models avoid training a critic by sampling multiple responses for each prompt. A reliable critic could instead estimate token-level advantages from one response, but standard critic-based training recipes are often unstable. We study this instability and develop \\textbf{Best-Practice Critic Optimization (BPCO)}, a recipe that combines DPPO, value predictions bounded to the reward range, Monte Carlo value targets, unnormal",
+      "abstract": "Generative models are commonly ranked by Fréchet Inception Distance (FID) and Kernel Inception Distance (KID), yet FID's first-two-moment summary can miss distributional differences, and a reported scalar gap alone is not a calibrated test against sampling variation. FID's moment restriction has concrete consequences: on ImageNet, visually unrecognizable images optimized only to match the reference Inception mean and covariance obtain FID $24.7$ versus $58.6$ for held-out real images (lower is b",
       "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CL"
+        "stat.ML",
+        "cs.LG"
       ],
-      "keywords": [],
-      "score": 70.0,
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 72.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23566v1"
+          "url": "http://arxiv.org/abs/2608.24881v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23566v1"
+          "url": "https://arxiv.org/pdf/2608.24881v1"
         }
       ],
-      "llm_reason": "BPCO: Best-Practice Critic Optimization 命中 ai-agent 主线（RL 后训练）：据摘要，GRPO 这类 group-based RL 通过 prompt 多 response 采样回避 critic 训练，而一个可靠的 critic 本可从单次响应估计 token-level advantage，但标准 critic 训练往往不稳定。本文研究这种不稳定性，提出 BPCO recipe：DPPO + value 预测 clip 到 reward 区间 + MC value target + 未截断（unnormalized）的 advantage 等组合。'系统研究 critic 训练不稳定性，给出一个可复用的稳定化 recipe——把'可靠 critic'从 GRPO 替代品变成可工程化组件'对做 RLHF / RLAIF 后训练工程或希望降低 group-sampling 算力成本的团队有趋势参考价值。证据强度中等：方法命名清晰（DPPO / bounded value / MC target），组件级别可解释；关键词 evaluation/benchmark 命中（意味着有消融）。证据不足：code/benchmark 暂无待核验；摘要截断导致 BPCO 与 PPO / GRPO / REINFORCE++ 的定量对比、消融设置、适用任务范围缺失；CRITIC 路线本身在 LLM RL 仍是少数派，定性观察多、定量结果待正文确认。",
-      "id": "how-to-train-a-critic-stably-and-efficiently",
+      "llm_reason": "What FID Hides: Detecting, Ranking, Diagnosing Deviations in Generative Evaluation 命中 llm-evaluation 主线（生成模型评估方法论）：据摘要，FID/KID 是常用生成模型排名指标，但 FID 仅取 Inception 特征的一二阶矩，会漏掉分布差异；且报出的标量差距本身不是对照采样波动的 calibrated test。本文给出具体反例：在 ImageNet 上，只优化匹配参考 Inception mean/cov 的视觉不可识别图像，FID 24.7 vs 真实 held-out 图像 FID 58.6（越低越好）。'用可构造反例证明 FID 标量不可信 + 提出检测/排名/诊断偏差的方案'对所有做生成模型评估/选型的团队有直接价值——它把'FID 数值小 = 生成好'的常见误用变成可量化检验。证据强度中等偏上：具体数值反例（24.7 vs 58.6）+ ImageNet 基准；关键词 evaluation 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致偏差检测/排名/诊断的具体算法、与 KID/其他指标的关系缺失；建议跟踪其开源检测工具，可立刻在团队内部生成模型评测中加'FID 偏差检测'维度。",
+      "id": "what-fid-hides-detecting-ranking-and-diagnosing-deviations-in-generative-evaluation",
+      "value_type": "immediate",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Generative models are commonly ranked by Fréchet Inception Distance (FID) and …",
+      "one_line_judgement": "今天值得试：What FID Hides: Detecting, Ranking, Diagnosing Deviations in Generativ…",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "What FID Hides: Detecting, Ranking, Diagnosing Deviations in Generative Evaluation 命中 llm-evalua",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=what-fid-hides-detecting-ranking-and-diagnosing-deviations-in-generative-evaluation"
+    },
+    {
+      "title": "SPO++: Stream-Aligned Policy Optimization for Asynchronous Agentic RL",
+      "authors": [
+        "Kai Ruan",
+        "Jinghao Lin",
+        "Qianshan Wei",
+        "Ziqi Zhou",
+        "Zihe Huang"
+      ],
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.24870v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24870v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Group-relative reinforcement learning waits for sibling rollouts of the same prompt, which is costly for long and variable tool-use trajectories. Single-stream Policy Optimization (SPO) removes this dependency with a persistent prompt-level value estimate, but its recipe whitens one advantage per trajectory before optimizing a token-mean actor loss. We show that trajectory centering generally does not center the token-weighted quantity consumed by the actor, and fix the mismatch by standardizing",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic"
+      ],
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.24870v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.24870v1"
+        }
+      ],
+      "llm_reason": "SPO++: Stream-Aligned Policy Optimization for Asynchronous Agentic RL 命中 ai-agent 主线（agentic RL 后训练）：据摘要，group-relative RL 需等同一 prompt 的兄弟 rollouts，对长/可变 tool-use 轨迹代价高；SPO 用持久 prompt-level value 估计去掉这一依赖，但其 recipe 在白化 advantage 时按 trajectory 中心化——本文证明这与 actor 实际消费的 token-weighted 量不一致，并通过 token-weighted 标准化修复。'把 SPO 的 trajectory-level 中心化替换为 token-weighted 标准化——修复异步 agentic RL 的一个具体偏差'对做 agentic RL 后训练（tool-use / 长程 agent）的团队有趋势参考价值——它给出一个具体的修正点。证据强度中等：方法描述结构化（指明不一致 + 给出修复）；关键词 agent/agentic 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致与 GRPO/PPO 的定量对比、适用任务类型、稳定性结果缺失；与昨日 BPCO 同样属 RL 后训练组件层，趋势信号累积。",
+      "id": "spo-stream-aligned-policy-optimization-for-asynchronous-agentic-rl",
       "value_type": "trend",
       "matched_topics": [
         "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Group-relative reinforcement learning waits for sibling rollouts of the same p…",
+      "one_line_judgement": "值得继续观察：SPO++: Stream-Aligned Policy Optimization for Asynchronous Agentic RL …",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "SPO++: Stream-Aligned Policy Optimization for Asynchronous Agentic RL 命中 ai-agent 主线（agentic RL ",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=spo-stream-aligned-policy-optimization-for-asynchronous-agentic-rl"
+    },
+    {
+      "title": "BrowserForge: Scaling Web Episode via Parallel Browser Sandboxes",
+      "authors": [
+        "Fei Tang",
+        "Huawen Shen",
+        "Zhiqiong Lu",
+        "Zhengxi Lu",
+        "Pengyuan Lyu"
+      ],
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.24848v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24848v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Web agents that act from rendered pixels avoid the fragility and heavy token cost of reading a page's HTML or accessibility tree, but training them depends on large amounts of high-quality interaction trajectories, and how to produce such data at scale remains an open problem. Public datasets typically contain only a few thousand trajectories drawn from a fixed and narrow set of websites, and even recent automated synthesis pipelines stay bound to predefined site lists or tutorial sources, so th",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "RAG",
+        "multimodal"
+      ],
+      "score": 65.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.24848v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.24848v1"
+        }
+      ],
+      "llm_reason": "BrowserForge: Scaling Web Episode via Parallel Browser Sandboxes 命中 multimodal-agent 与 ai-agent 主线（web agent 数据规模化）：据摘要，web agent 直接从渲染像素决策以避免 HTML/可访问性树脆弱与 token 成本高，但其训练依赖大量高质量交互轨迹，公开数据集通常只有几千条轨迹；本文提出用并行浏览器沙箱规模化生成 web episode。'用并行浏览器沙箱规模化生成 web agent 训练轨迹——把数据规模从千级推到更大'对做 web agent/浏览器 agent 工程或想绕过 HTML/可访问性树 token 成本的团队有趋势参考价值——它直击当前 web agent 数据稀缺瓶颈。证据强度中等：方案描述清晰（并行沙箱）+ 关键词 agent/RAG/multimodal 命中；摘要截断导致具体沙箱架构、轨迹规模、与已有数据集的定量对比缺失；属 web agent 数据基础设施层，与近期 web agent 趋势一脉相承。",
+      "id": "browserforge-scaling-web-episode-via-parallel-browser-sandboxes",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Multimodal Agent：Web agents that act from rendered pixels avoid the fragility and heavy token c…",
+      "one_line_judgement": "值得继续观察：BrowserForge: Scaling Web Episode via Parallel Browser Sandboxes 命中 mu…",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "BrowserForge: Scaling Web Episode via Parallel Browser Sandboxes 命中 multimodal-agent 与 ai-agent ",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=browserforge-scaling-web-episode-via-parallel-browser-sandboxes"
+    },
+    {
+      "title": "LAION-BVD: A 10-Million-Hour Open Video Dataset for Multimodal Pre-training",
+      "authors": [
+        "Andreas Hochlehnert",
+        "Marianna Nezhurina",
+        "Mehdi Cherti",
+        "Andrej Radonjic",
+        "Thaddäus Wiedemer"
+      ],
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.24845v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24845v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We present LAION-BVD, a large-scale open video dataset for multimodal learning, which contains 1.3B platform-specific video URLs collected from CommonCrawl. From these, we download 80M videos with a total duration of 10 million hours. The dataset is designed for multimodal pre-training across the video, audio, and image modalities. Using content-aware scene detection, we extract clips for which we synthetically generate video and audio captions. Models trained on these data achieve competitive p",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark",
+        "multimodal"
+      ],
+      "score": 60.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.24845v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.24845v1"
+        }
+      ],
+      "llm_reason": "LAION-BVD: 10-Million-Hour Open Video Dataset for Multimodal Pre-training 命中 multimodal-agent 与 llm-evaluation 主线（数据基础设施）：据摘要，从 CommonCrawl 收集 1.3B 平台特定视频 URL，下载 80M 视频，总时长 1000 万小时，专为视频/音频/图像跨模态预训练设计；用 content-aware 场景检测切分片段并合成 video/audio caption。'10M 小时开放视频数据集——把多模态预训练的数据规模推到 1000 万小时量级'对做视频多模态预训练/视频理解/视频 agent 的团队有趋势参考价值——它解决了多模态预训练的数据瓶颈。证据强度中等：数据集规模明确（80M 视频 / 10M 小时）+ 内容感知切分；关键词 benchmark/multimodal 命中。证据不足：code 暂无待核验；摘要截断导致具体许可协议、内容过滤策略、与已有视频数据集的定量对比、合成 caption 质量评估缺失；属数据基础设施层，方向价值大于短期工程价值。",
+      "id": "laion-bvd-a-10-million-hour-open-video-dataset-for-multimodal-pre-training",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
@@ -408,7 +631,7 @@
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -417,136 +640,58 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "AI Agent：Group-based reinforcement learning methods such as GRPO for large language mod…",
-      "one_line_judgement": "值得继续观察：BPCO: Best-Practice Critic Optimization 命中 ai-agent 主线（RL 后训练）：据摘要，GRP…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
+      "brief_cn": "Multimodal Agent：We present LAION-BVD, a large-scale open video dataset for multimodal learning…",
+      "one_line_judgement": "值得继续观察：LAION-BVD: 10-Million-Hour Open Video Dataset for Multimodal Pre-train…",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "BPCO: Best-Practice Critic Optimization 命中 ai-agent 主线（RL 后训练）：据摘要，GRPO 这类 group-based RL 通过 pro",
+      "long_tail_summary": "LAION-BVD: 10-Million-Hour Open Video Dataset for Multimodal Pre-training 命中 multimodal-agent 与 ",
       "related_trends": [
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=how-to-train-a-critic-stably-and-efficiently"
+      "detail_path": "paper-detail.html?id=laion-bvd-a-10-million-hour-open-video-dataset-for-multimodal-pre-training"
     },
     {
-      "title": "ReWorld: An Interactive World Model with Long-Horizon Memory",
+      "title": "Bellman Calibration for Marginalized Importance Weighting in Offline Reinforcement Learning",
       "authors": [
-        "Zhifei Chen",
-        "Luozhou Wang",
-        "Guibao Shen",
-        "Dongyu Yan",
-        "Shuai Yang"
+        "Lars van der Laan",
+        "Nathan Kallus"
       ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23565v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23565v1",
+      "url": "http://arxiv.org/abs/2608.24858v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24858v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "An interactive world model must follow the user's actions, remember the places it has shown, and stream in real time. The tension is structural: control wants a short horizon, memory wants an unbounded one. ReWorld separates the two during training and bounds them at inference. Mixed per-head attention windows confine most heads to the recent past while a small set of global heads attends over the entire history, and random head routing keeps either capability from binding to particular heads; r",
+      "abstract": "Marginalized importance weighting evaluates a target policy by reweighting offline state-action samples with its discounted occupancy ratio, characterized by an adjoint Bellman equation. Existing minimax, primal-dual, and fitted fixed-point estimators can leave residual occupancy-balance violations because of function-class approximation, regularization, or incomplete optimization. These violations are difficult to diagnose and reduce because the objectives generally lack a direct supervised val",
       "categories": [
-        "cs.AI"
-      ],
-      "keywords": [
-        "world model",
-        "memory",
-        "inference"
-      ],
-      "score": 68.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23565v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23565v1"
-        }
-      ],
-      "llm_reason": "ReWorld: Interactive World Model with Long-Horizon Memory 命中 multimodal-agent 主线：据摘要，交互式 world model 要同时满足'跟随用户动作 / 记住已展示位置 / 实时流式'，其结构性矛盾在于 control 想要短 horizon、memory 想要无界 horizon。ReWorld 在训练时分离两者、推理时绑定：per-head 混合 attention window——大部分 head 关注近期，少量 global head 关注全历史，并配合 random head routing 避免能力绑定到固定 head。'用 per-head 混合 attention window 分离 control 与 memory——避免单一 head 同时承担短程控制与长程记忆'对做交互式生成 / 实时世界模型 / 长程 agent 记忆的团队有趋势参考价值——它给出一个具体的注意力结构选择与训练-推理分离方案。证据强度中等：方法描述结构化（attention 混合 + head 路由）；关键词 world model/memory/inference 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致具体指标（流式延迟、记忆恢复率、长程一致性）、训练数据规模、推理算力代价缺失；world model 赛道信号持续累积，但摘要聚焦结构而非定量结果。",
-      "id": "reworld-an-interactive-world-model-with-long-horizon-memory",
-      "value_type": "trend",
-      "matched_topics": [
-        "multimodal-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.6,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "Multimodal Agent：An interactive world model must follow the user's actions, remember the places…",
-      "one_line_judgement": "值得继续观察：ReWorld: Interactive World Model with Long-Horizon Memory 命中 multimoda…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "ReWorld: Interactive World Model with Long-Horizon Memory 命中 multimodal-agent 主线：据摘要，交互式 world m",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=reworld-an-interactive-world-model-with-long-horizon-memory"
-    },
-    {
-      "title": "ConvergeFlow: Language Flow with Provable Convergence to Token Embeddings",
-      "authors": [
-        "Na Li",
-        "Yuchen Jiao",
-        "Changxiao Cai",
-        "Gen Li"
-      ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23551v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23551v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Recent advances in continuous diffusion and flow-based language models (LMs) have achieved performance competitive with discrete LMs. However, existing continuous frameworks still rely on decoders supervised with cross entropy (CE) because the flow trajectories are not guaranteed to terminate at valid token embeddings. Motivated by this limitation, we introduce \\textbf{ConvergeFlow}, an embedding-space flow-based LM, which constrains the data predictor to the convex hull of token embeddings and ",
-      "categories": [
-        "cs.CL",
-        "cs.AI",
         "cs.LG",
         "stat.ML"
       ],
-      "keywords": [],
-      "score": 62.0,
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 58.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23551v1"
+          "url": "http://arxiv.org/abs/2608.24858v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23551v1"
+          "url": "https://arxiv.org/pdf/2608.24858v1"
         }
       ],
-      "llm_reason": "ConvergeFlow: Language Flow with Provable Convergence to Token Embeddings 命中 ai-agent 主线（连续 LM 基础）：据摘要，连续扩散 / flow-based LM 已达到与离散 LM 相当的性能，但现有连续框架仍依赖 cross-entropy 监督的 decoder，因为 flow 轨迹不保证停在合法 token embedding。本文引入 ConvergeFlow，把 data predictor 约束到 token embedding 凸包内。'把连续 flow LM 的轨迹终点约束到 token embedding 凸包——让 flow 真正以 token embedding 为终点，而不再需要 CE 监督的 decoder'对做连续语言生成 / 扩散 LM / embedding-space 推理的团队有趋势参考价值——它直击当前连续 LM 的'终点合法性'瓶颈。证据强度中等：理论命题清晰（凸包约束 + 收敛性），关键词含 evaluation。证据不足：code/benchmark 暂无待核验；摘要截断导致凸包约束与解码效率的权衡、与离散 LM 的定量对比、是否影响训练稳定性缺失；属连续 LM 路线的工程基础层，对 agent 工程的直接迁移距离中等。",
-      "id": "convergeflow-language-flow-with-provable-convergence-to-token-embeddings",
-      "value_type": "trend",
+      "llm_reason": "Bellman Calibration for Marginalized Importance Weighting in Offline RL 命中 ai-agent 主线（offline RL 基础）：据摘要，marginalized importance weighting 用 discounted occupancy ratio 重加权离线样本，由 adjoint Bellman 方程刻画；现有 minimax/primal-dual/fitted fixed-point 估计器因函数类逼近/正则/优化不全可能残留 occupancy-balance 违例，且难以诊断。'系统研究 marginalized importance weighting 的 occupancy-balance 违例诊断与校准'对做 offline RL / RLHF 数据集重加权或决策理论的团队有长尾参考价值——它把'残差违例'变成可诊断/可减少的对象。证据强度中等：方法动机清晰（occupancy-balance 残差难诊断）；关键词 evaluation 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致具体校准算法、与已有估计器的定量对比、适用任务范围缺失；对通用 LLM/agent 工程栈迁移距离中等，作长尾资产保存。",
+      "id": "bellman-calibration-for-marginalized-importance-weighting-in-offline-reinforcement-learning",
+      "value_type": "long_tail",
       "matched_topics": [
         "ai-agent"
       ],
@@ -555,10 +700,10 @@
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.4,
+        "asset_convertibility": 4.0,
         "actionability": 3.8,
         "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
@@ -566,63 +711,206 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Recent advances in continuous diffusion and flow-based language models (LMs) h…",
-      "one_line_judgement": "值得继续观察：ConvergeFlow: Language Flow with Provable Convergence to Token Embeddi…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "ConvergeFlow: Language Flow with Provable Convergence to Token Embeddings 命中 ai-agent 主线（连续 LM 基",
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：Marginalized importance weighting evaluates a target policy by reweighting off…",
+      "one_line_judgement": "值得先保存：Bellman Calibration for Marginalized Importance Weighting in Offline R…",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "Bellman Calibration for Marginalized Importance Weighting in Offline RL 命中 ai-agent 主线（offline R",
       "related_trends": [
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=convergeflow-language-flow-with-provable-convergence-to-token-embeddings"
+      "detail_path": "paper-detail.html?id=bellman-calibration-for-marginalized-importance-weighting-in-offline-reinforcement-learning"
     },
     {
-      "title": "Provably adaptive sampling with uniform and remasking discrete diffusion models",
+      "title": "FedV-KGQA: Multi-Hop Question Answering over Vertically Partitioned Knowledge Graphs",
       "authors": [
-        "Daniil Dmitriev",
-        "Zhihan Huang",
-        "Yuting Wei"
+        "Md Saikat Islam Khan Bappy",
+        "Oshani Seneviratne"
       ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23554v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23554v1",
+      "url": "http://arxiv.org/abs/2608.24846v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24846v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Discrete diffusion models offer a promising alternative to autoregressive generation by enabling parallel updates, but their sampling efficiency can depend strongly on the choice of the forward process and the sampler. For the uniform forward process, existing lower bounds for the standard $τ$-leaping sampler scale linearly with the ambient dimension $d$, raising the question of whether this dependence is intrinsic to the forward process. We answer this question in the negative. We consider a fi",
+      "abstract": "Real-world data for knowledge graph question answering is often distributed across different organizations due to governance and data sovereignty constraints. While centralized systems exist, they cannot answer multi-hop questions when the required facts are split across vertically partitioned silos. In this paper, we propose FedV-KGQA, a framework for multi-hop reasoning over knowledge graphs in which organizations share entities but own disjoint sets of relations. Our approach combines local g",
       "categories": [
-        "cs.LG",
-        "cs.IT",
-        "math.ST",
-        "stat.ML"
+        "cs.AI"
       ],
-      "keywords": [],
-      "score": 60.0,
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 55.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23554v1"
+          "url": "http://arxiv.org/abs/2608.24846v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23554v1"
+          "url": "https://arxiv.org/pdf/2608.24846v1"
         }
       ],
-      "llm_reason": "Provably adaptive sampling with uniform and remasking discrete diffusion models 命中 ai-agent 主线（采样基础）：据摘要，离散扩散模型支持并行更新，效率强依赖于 forward process 与 sampler；uniform forward process 下，标准 τ-leaping 的现有下界与 ambient 维度 d 线性相关——是否 intrinsic？本文给出否定回答，对 fixed 类别提出新下界。'对 uniform forward process 证明 d 无关的下界——打破 τ-leaping 效率与维度线性挂钩的悲观下界'对做离散扩散生成 / token-level 并行采样的团队有趋势参考价值——它把'维度线性'这一常识悲观界替换成'维度无关'，为大规模离散扩散采样提供了理论基础。证据强度中等偏上：理论结论清晰，否定先前下界。证据不足：code/benchmark 不适用（理论）+ 暂无待核验链接；摘要截断导致具体下界形式、对何种 sampler family 适用、与 mask-based remasking 的关系缺失；属采样基础理论，对工程团队短期价值以'理论方向'为主，建议纳入趋势观察。",
-      "id": "provably-adaptive-sampling-with-uniform-and-remasking-discrete-diffusion-models",
-      "value_type": "trend",
+      "llm_reason": "FedV-KGQA: Multi-Hop QA over Vertically Partitioned Knowledge Graphs 命中 rag-knowledge 主线（分布式 KGQA）：据摘要，知识图谱问答数据常跨组织分布，中心化系统无法处理垂直分区事实；FedV-KGQA 把组织本地图谱与共享实体结合，支持跨组织 multi-hop 推理。'用联邦/本地图谱 + 共享实体处理垂直分区 KG 的多跳问答——把'跨组织 KGQA'做成可工程框架'对做企业级 KGQA / 跨组织知识协作 / 联邦 RAG 的团队有长尾参考价值——它直击数据主权约束下的 KGQA 缺口。证据强度中等：场景动机清晰（governance + 数据主权）；关键词 benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致具体联邦协议、多跳路径拼接算法、与中心化基线的定量对比缺失；属 KGQA 垂直方向，对通用 agent 工程栈迁移距离中等，作长尾资产保存。",
+      "id": "fedv-kgqa-multi-hop-question-answering-over-vertically-partitioned-knowledge-graphs",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "RAG / 知识系统：Real-world data for knowledge graph question answering is often distributed ac…",
+      "one_line_judgement": "值得先保存：FedV-KGQA: Multi-Hop QA over Vertically Partitioned Knowledge Graphs 命…",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "FedV-KGQA: Multi-Hop QA over Vertically Partitioned Knowledge Graphs 命中 rag-knowledge 主线（分布式 KGQ",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=fedv-kgqa-multi-hop-question-answering-over-vertically-partitioned-knowledge-graphs"
+    },
+    {
+      "title": "Improving Cross-Problem Vehicle Routing with Locally Augmented Preferences and Representation Disentanglement",
+      "authors": [
+        "Arthur Corrêa",
+        "Paulo Nascimento",
+        "Samuel Moniz"
+      ],
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.24859v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24859v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Multi-task vehicle routing problem (VRP) solvers seek to handle multiple VRP variants within a single unified model, avoiding the need to train a separate model for every variant. In spite of recent progress, current approaches remain limited on two fronts. On the training side, reinforcement learning suffers from reward-scale disparities and shrinking advantage signals as policies improve, whereas preference optimization stagnates once sampled tours become near-identical and thus fundamentally ",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.24859v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.24859v1"
+        }
+      ],
+      "llm_reason": "Cross-Problem Vehicle Routing with Augmented Preferences and Representation Disentanglement 命中 ai-agent 主线（OR/多任务 RL）：据摘要，多任务 VRP 求解器把多个 VRP 变体统一到单模型，但 RL 训练受奖励尺度差异/advantage 信号衰减限制，preference optimization 在采样 tour 趋同时停滞；本文用局部增强偏好 + 表示解耦。'用局部增强偏好 + 表示解耦缓解多任务 VRP 的奖励尺度/advantage 衰减与 preference 停滞'对做组合优化/物流路径/多任务 RL 的团队有长尾参考价值——它示范了'偏好+表示解耦'的多任务 RL 训练解法。证据强度中等：方法动机清晰（多任务 RL 两类瓶颈）；关键词 RAG 命中（宽泛错配）。证据不足：code/benchmark 暂无待核验；摘要截断导致具体偏好增强方式、表示解耦实现、与 SOTA 多任务 VRP 的定量对比缺失；领域聚焦 VRP，对通用 LLM/agent 工程栈直接迁移距离中等偏远，作长尾资产保存。",
+      "id": "improving-cross-problem-vehicle-routing-with-locally-augmented-preferences-and-representation-disentanglement",
+      "value_type": "long_tail",
       "matched_topics": [
         "ai-agent"
       ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：Multi-task vehicle routing problem (VRP) solvers seek to handle multiple VRP v…",
+      "one_line_judgement": "值得先保存：Cross-Problem Vehicle Routing with Augmented Preferences and Represent…",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "Cross-Problem Vehicle Routing with Augmented Preferences and Representation Disentanglement 命中 a",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=improving-cross-problem-vehicle-routing-with-locally-augmented-preferences-and-representation-disentanglement"
+    },
+    {
+      "title": "Parameterized Complexity of $L_p$-Lipschitz Constants for Input Convex Neural Networks and $L_p$-Norm Maximization over Zonotopes",
+      "authors": [
+        "Aritra Das",
+        "Vincent Froese",
+        "Moritz Grillo",
+        "Debayan Gupta",
+        "Christoph Hertrich"
+      ],
+      "published": "2026-08-25",
+      "updated": "2026-08-25",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.24865v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.24865v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Lipschitz constants are a standard way to quantify the sensitivity of neural networks to small input perturbations, but computing them is difficult even for shallow ReLU networks. We study this problem for two-layer input-convex neural networks (ICNNs), a restricted architecture where nonnegative output weights enforce convexity. Computing the $L_p$-Lipschitz constant for these networks is equivalent to maximizing the dual norm over a zonotope. While $L_1$- and $L_\\infty$-norm maximization on zo",
+      "categories": [
+        "cs.CC",
+        "cs.DM",
+        "cs.LG",
+        "cs.NE"
+      ],
+      "keywords": [],
+      "score": 44.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.24865v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.24865v1"
+        }
+      ],
+      "llm_reason": "Parameterized Complexity of Lp-Lipschitz Constants for Input Convex Neural Networks 聚焦参数化复杂度理论：据摘要，研究两层 input-convex neural networks（ICNN）的 Lp-Lipschitz 常数计算等价于 zonotope 上的对偶范数最大化；摘要截断导致结果细节缺失。领域聚焦 cs.CC/cs.DM/cs.LG 的计算复杂性理论，与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远；关键词为空。code/benchmark 暂无待核验。忽略，除非做神经网络验证/Lipschitz 鲁棒性/参数化复杂度方向的理论工作。",
+      "id": "parameterized-complexity-of-l-p-lipschitz-constants-for-input-convex-neural-networks-and-l-p-norm-maximization-over-zonotopes",
+      "value_type": "ignore",
+      "matched_topics": [],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
@@ -639,355 +927,64 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Discrete diffusion models offer a promising alternative to autoregressive gene…",
-      "one_line_judgement": "值得继续观察：Provably adaptive sampling with uniform and remasking discrete diffusi…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "Provably adaptive sampling with uniform and remasking discrete diffusion models 命中 ai-agent 主线（采",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=provably-adaptive-sampling-with-uniform-and-remasking-discrete-diffusion-models"
-    },
-    {
-      "title": "Robustness of Anomaly Detection Models for Industrial Control Systems under Training-Time Data Contamination",
-      "authors": [
-        "Mustafa Umut Ozbek",
-        "Taiwo Ojo",
-        "Pooria Madani",
-        "Khalil El-Khatib",
-        "Li Yang"
-      ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23547v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23547v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Machine-learning-based anomaly detection is increasingly used in industrial control systems (ICS), yet most studies assume that detector training data is trustworthy. In practice, training data may be corrupted through compromised logs, labeling errors, manipulated historian records, or unsafe retraining processes. This paper evaluates the robustness of offline ICS anomaly-detection pipelines on the Secure Water Treatment (SWaT) benchmark under training-time contamination. We assess 11 heterogen",
-      "categories": [
-        "cs.CR",
-        "cs.LG"
-      ],
-      "keywords": [
-        "benchmark"
-      ],
-      "score": 55.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23547v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23547v1"
-        }
-      ],
-      "llm_reason": "Robustness of Anomaly Detection Models for ICS under Training-Time Data Contamination 命中 security-governance 主线（领域专精）：据摘要，机器学习异常检测在工业控制系统（ICS）日益普及，但多数研究假设训练数据可信——实际中训练数据可能被污染（日志篡改、标签错误、historian 操纵、不安全再训练）。本文在 SWaT 基准上评估 11 种异构离线 ICS 异常检测流程在训练时污染下的鲁棒性。'把'训练数据污染'作为 ICS 异常检测鲁棒性的评估维度——用 11 种异构 pipeline 在 SWaT 上系统对照'对做 ML 安全 / 数据治理 / 关键基础设施 AI 的团队有长尾参考价值——它示范了'训练时污染'这一被普遍忽略的鲁棒性维度。证据强度中等：给出明确基准（SWaT）+ 异构 pipeline 数（11）；关键词 benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 11 种 pipeline 的具体类别、污染类型注入方式、定量结果缺失；领域聚焦 ICS 而非通用 LLM/agent，对团队通用工程栈的直接迁移距离中等偏远，作长尾资产保存。",
-      "id": "robustness-of-anomaly-detection-models-for-industrial-control-systems-under-training-time-data-contamination",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.6,
-        "trend_signal": 5.45,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：Machine-learning-based anomaly detection is increasingly used in industrial co…",
-      "one_line_judgement": "值得先保存：Robustness of Anomaly Detection Models for ICS under Training-Time Dat…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "Robustness of Anomaly Detection Models for ICS under Training-Time Data Contamination 命中 securit",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=robustness-of-anomaly-detection-models-for-industrial-control-systems-under-training-time-data-contamination"
-    },
-    {
-      "title": "Inertial Manifold Neural Operator for Dissipative Time-Dependent Partial Differential Equations",
-      "authors": [
-        "Xiaoyang Xie",
-        "Clarence W. Rowley"
-      ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23546v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23546v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "In this paper, we introduce the Inertial Manifold Neural Operator (IMNO) for solving dissipative time-dependent partial differential equations (PDEs). The long-time dynamics of such systems often exhibit an effective low-dimensional structure due to dissipation. Unlike standard neural operator architectures such as the Fourier Neural Operator (FNO), IMNO explicitly leverages the low-dimensional structure to achieve better physical interpretability, accuracy, and stability in long-horizon autoreg",
-      "categories": [
-        "math.NA",
-        "cs.LG",
-        "math.DS"
-      ],
-      "keywords": [
-        "benchmark",
-        "RAG"
-      ],
-      "score": 52.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23546v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23546v1"
-        }
-      ],
-      "llm_reason": "Inertial Manifold Neural Operator (IMNO) for Dissipative Time-Dependent PDEs 命中 ai-k8s-platform 与 inference-serving 主线（边缘——神经算子）：据摘要，耗散时间依赖 PDE 的长时间动力学常呈现低维结构（惯性流形）；与 FNO 等标准神经算子不同，IMNO 显式利用该低维结构以提升物理可解释性、准确性与长程自回归稳定性。'把耗散 PDE 的惯性流形结构显式嵌入神经算子——以'结构先验'换'长程稳定性'，超越通用 FNO'对做科学计算 / 神经算子 / 物理仿真 ML 的团队有长尾参考价值——它示范了如何用领域结构（惯性流形）而非纯数据驱动获得长程稳定性。证据强度中等：方法动机清晰（耗散→低维），对比对象明确（FNO）；关键词 benchmark/RAG 命中（宽泛）。证据不足：code/benchmark 暂无待核验；摘要截断导致具体 PDE 类型、长程 horizon、是否给出可复现算法细节缺失；RAG 为宽泛命中，已在评分中剔除；对通用 LLM/agent 工程栈的迁移距离较远，作长尾资产保存。",
-      "id": "inertial-manifold-neural-operator-for-dissipative-time-dependent-partial-differential-equations",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-k8s-platform",
-        "inference-serving"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "AI 平台工程：In this paper, we introduce the Inertial Manifold Neural Operator (IMNO) for s…",
-      "one_line_judgement": "值得先保存：Inertial Manifold Neural Operator (IMNO) for Dissipative Time-Dependen…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "Inertial Manifold Neural Operator (IMNO) for Dissipative Time-Dependent PDEs 命中 ai-k8s-platform ",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=inertial-manifold-neural-operator-for-dissipative-time-dependent-partial-differential-equations"
-    },
-    {
-      "title": "EG-ARSA: An Expert-Grounded Open Model for Visual Road Safety Auditing in Low-Resource Settings",
-      "authors": [
-        "Md Thamed Bin Zaman Chowdhury",
-        "Moazzem Hossain"
-      ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23563v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23563v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Road traffic injuries remain a major challenge in low- and middle-income countries, where proactive road safety auditing is limited by incomplete crash records, shortages of qualified auditors, and the high cost of large-scale field inspections. To address this problem, we propose Expert-Grounded Distillation (EGD), a novel artificial intelligence framework that transfers institutional road safety expertise into a compact vision-language model for scalable visual road safety auditing. The key in",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "keywords": [
-        "evaluation",
-        "RAG"
-      ],
-      "score": 46.0,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23563v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23563v1"
-        }
-      ],
-      "llm_reason": "EG-ARSA: Expert-Grounded Open Model for Visual Road Safety Auditing in Low-Resource Settings 聚焦低资源国家的视觉道路安全审计：据摘要，提出 Expert-Grounded Distillation（EGD），把制度化的道路安全知识蒸馏到一个紧凑 vision-language model 中。领域聚焦 cs.CV/cs.AI 的交通安全垂直应用，与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离较远；关键词 evaluation/RAG 均为宽泛命中（指视觉审计与专家知识库，非 LLM 评测或检索增强）。code/benchmark 暂无待核验；摘要截断导致具体数据来源、专家知识形式、VLM 规模与基准缺失。忽略，除非做交通安全或 VLM 蒸馏方向的工程工作。",
-      "id": "eg-arsa-an-expert-grounded-open-model-for-visual-road-safety-auditing-in-low-resource-settings",
-      "value_type": "ignore",
-      "matched_topics": [
-        "multimodal-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
       "trend_status": "noise",
-      "brief_cn": "Multimodal Agent：Road traffic injuries remain a major challenge in low- and middle-income count…",
-      "one_line_judgement": "当前可忽略：EG-ARSA: Expert-Grounded Open Model for Visual Road Safety Auditing in…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
+      "brief_cn": "前沿论文：Lipschitz constants are a standard way to quantify the sensitivity of neural n…",
+      "one_line_judgement": "当前可忽略：Parameterized Complexity of Lp-Lipschitz Constants for Input Convex Ne…",
+      "first_seen_date": "2026-08-27",
+      "first_deep_dive_daily": "2026-08-27",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "EG-ARSA: Expert-Grounded Open Model for Visual Road Safety Auditing in Low-Resource Settings 聚焦低",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=eg-arsa-an-expert-grounded-open-model-for-visual-road-safety-auditing-in-low-resource-settings"
-    },
-    {
-      "title": "Physics-Constrained Deep Learning Model for Contactless Blood Pressure Monitoring from Triaxial Bodyseismography",
-      "authors": [
-        "Yuanyuan Zhang",
-        "Yida Zhang",
-        "Jiahui Li",
-        "Yuyan Wu",
-        "Fei Dou"
-      ],
-      "published": "2026-08-24",
-      "updated": "2026-08-24",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.23562v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.23562v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Ballistocardiography (BCG) is promising for unobtrusive long-term blood pressure (BP) monitoring in laboratory settings, but traditional BCG signals are vulnerable to the variations in body-bed interaction with shifted fiducial points in temporal or amplitude axis, and BP varies with personal hemodynamic changes, causing misaligned representations that affect model generalizability and robustness. In this work, we propose a non-invasive BP estimation framework, Phy-BP, based on triaxial bodyseis",
-      "categories": [
-        "eess.SP",
-        "cs.AI",
-        "physics.bio-ph"
-      ],
-      "keywords": [],
-      "score": 42.0,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.23562v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.23562v1"
-        }
-      ],
-      "llm_reason": "Phy-BP: Physics-Constrained Deep Learning for Contactless BP Monitoring from Triaxial Bodyseismography 聚焦非接触血压监测：据摘要，传统 BCG 信号受身体-床界面变化影响导致 fiducial 点偏移，BP 又随个体血流动力学变化，引起表示错位影响泛化与鲁棒性；本文提出基于三轴 bodyseismography 的非侵入式 BP 估计框架 Phy-BP。领域聚焦 eess.SP/cs.AI/physics.bio-ph 的医学信号处理，与团队以 Agent/LLM/RAG/推理工程为核心的技术栈直接迁移距离极远；关键词为空，无 agent/coding/multimodal 等相关命中。code/benchmark 暂无待核验。忽略，除非做医学信号 / 健康监测方向的工程工作。",
-      "id": "physics-constrained-deep-learning-model-for-contactless-blood-pressure-monitoring-from-triaxial-bodyseismography",
-      "value_type": "ignore",
-      "matched_topics": [],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 5.4,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "前沿论文：Ballistocardiography (BCG) is promising for unobtrusive long-term blood pressu…",
-      "one_line_judgement": "当前可忽略：Phy-BP: Physics-Constrained Deep Learning for Contactless BP Monitorin…",
-      "first_seen_date": "2026-08-26",
-      "first_deep_dive_daily": "2026-08-26",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "Phy-BP: Physics-Constrained Deep Learning for Contactless BP Monitoring from Triaxial Bodyseismo",
+      "long_tail_summary": "Parameterized Complexity of Lp-Lipschitz Constants for Input Convex Neural Networks 聚焦参数化复杂度理论：据",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=physics-constrained-deep-learning-model-for-contactless-blood-pressure-monitoring-from-triaxial-bodyseismography"
+      "detail_path": "paper-detail.html?id=parameterized-complexity-of-l-p-lipschitz-constants-for-input-convex-neural-networks-and-l-p-norm-maximization-over-zonotopes"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "robustness-of-anomaly-detection-models-for-industrial-control-systems-under-training-time-data-contamination",
-      "title": "Robustness of Anomaly Detection Models for Industrial Control Systems under Training-Time Data Contamination",
-      "direction": "安全与治理",
+      "id": "bellman-calibration-for-marginalized-importance-weighting-in-offline-reinforcement-learning",
+      "title": "Bellman Calibration for Marginalized Importance Weighting in Offline Reinforcement Learning",
+      "direction": "AI Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "Robustness of Anomaly Detection Models for ICS under Training-Time Data Contamination 命中 securit",
+      "why_save": "Bellman Calibration for Marginalized Importance Weighting in Offline RL 命中 ai-agent 主线（offline R",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-16",
-      "detail_path": "paper-detail.html?id=robustness-of-anomaly-detection-models-for-industrial-control-systems-under-training-time-data-contamination"
+      "revisit_date": "2026-09-17",
+      "detail_path": "paper-detail.html?id=bellman-calibration-for-marginalized-importance-weighting-in-offline-reinforcement-learning"
     },
     {
-      "id": "inertial-manifold-neural-operator-for-dissipative-time-dependent-partial-differential-equations",
-      "title": "Inertial Manifold Neural Operator for Dissipative Time-Dependent Partial Differential Equations",
-      "direction": "AI 平台工程 / 推理与服务",
+      "id": "fedv-kgqa-multi-hop-question-answering-over-vertically-partitioned-knowledge-graphs",
+      "title": "FedV-KGQA: Multi-Hop Question Answering over Vertically Partitioned Knowledge Graphs",
+      "direction": "RAG / 知识系统",
       "long_tail_type": "工程抽象",
-      "why_save": "Inertial Manifold Neural Operator (IMNO) for Dissipative Time-Dependent PDEs 命中 ai-k8s-platform ",
+      "why_save": "FedV-KGQA: Multi-Hop QA over Vertically Partitioned Knowledge Graphs 命中 rag-knowledge 主线（分布式 KGQ",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-16",
-      "detail_path": "paper-detail.html?id=inertial-manifold-neural-operator-for-dissipative-time-dependent-partial-differential-equations"
+      "revisit_date": "2026-09-17",
+      "detail_path": "paper-detail.html?id=fedv-kgqa-multi-hop-question-answering-over-vertically-partitioned-knowledge-graphs"
     },
     {
-      "id": "turbobias-2-0-streaming-context-biasing-for-production-efficient-asr-systems",
-      "title": "TurboBias 2.0: Streaming Context-Biasing for Production-Efficient ASR Systems",
-      "direction": "推理与服务",
-      "long_tail_type": "可迁移方法",
-      "why_save": "TurboBias 2.0: Streaming Context-Biasing for Production-Efficient ASR 命中 inference-serving 主线（具体",
+      "id": "improving-cross-problem-vehicle-routing-with-locally-augmented-preferences-and-representation-disentanglement",
+      "title": "Improving Cross-Problem Vehicle Routing with Locally Augmented Preferences and Representation Disentanglement",
+      "direction": "AI Agent",
+      "long_tail_type": "工程抽象",
+      "why_save": "Cross-Problem Vehicle Routing with Augmented Preferences and Representation Disentanglement 命中 a",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-15",
-      "detail_path": "paper-detail.html?id=turbobias-2-0-streaming-context-biasing-for-production-efficient-asr-systems"
+      "revisit_date": "2026-09-17",
+      "detail_path": "paper-detail.html?id=improving-cross-problem-vehicle-routing-with-locally-augmented-preferences-and-representation-disentanglement"
     }
   ],
   "common_research_path": [
