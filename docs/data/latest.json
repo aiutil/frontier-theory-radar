@@ -1,114 +1,122 @@
 {
-  "updated_at": "2026-08-28T04:32:00.894194",
+  "updated_at": "2026-08-29T04:32:20.744356",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-08-28",
-    "title": "论文价值发现日报 - 2026-08-28",
-    "deep_dive_title": "PlanSightRAG: A Visual-First Multimodal RAG for Automating Question Answering and Compliance Checking for Civil Standard Plans",
-    "deep_dive_url": "http://arxiv.org/abs/2608.26091v1",
-    "decision": "暂时忽略",
-    "value_type": "ignore",
-    "value_type_label": "暂时忽略",
-    "daily_action": "完成摘要精读与最小实验设计",
-    "max_uncertainty": "缺少多源工程证据",
-    "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-    "path": "daily-detail.html?date=2026-08-28"
+    "date": "2026-08-29",
+    "title": "论文价值发现日报 - 2026-08-29",
+    "deep_dive_title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+    "deep_dive_url": "http://arxiv.org/abs/2608.27454v1",
+    "decision": "轻量试点",
+    "value_type": "immediate",
+    "value_type_label": "即时价值",
+    "daily_action": "完成三件事：(1) 跟踪 WikiSkill 开源——评估其持久知识结构是否可与团队 long-horizon agent 的 memory 抽象兼容，可在内部 agent 上做 'skill library + wiki knowledge' 概念验证（不依赖完整开源，知识结构化思想可借鉴，1 周内可做概念验证）；(2) 把 CritICL 的'失败模式判别器'思路纳入推理时成本治理设计——评估在内部任务上'小模型 ICL 桥接大模型'是否能省下重复采样/外验证成本（30 分钟可设计实验、1-2 天可实施）；(3) 把 PES 的 persona/execution trust domain 分离原则纳入企业 agent 合规架构评估清单（30 分钟可梳理要点，1 周内可在内部架构评审中应用）。",
+    "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；WikiSkill 摘要截断导致持久知识结构的存储/检索机制、跨任务复用实证数据缺失；CritICL 摘要截断导致具体 ICL/检索机制、与 self-consistency / verifier-based 推理时方法的定量对比、适用模型家族缺失；PES 摘要截断导致 contract bridge 的具体协议、persona 漂移边界、execution 审计的可证伪保证缺失；TTPO 摘要截断导致目标函数、与多数投票/Verifier-based TTT 的定量对比、数学推理外的适用任务缺失；SWE-Prime 摘要截断导致'高质量'具体过滤/打分准则、与全量 SFT 的定量对比、SWE-bench Verified 关联缺失；RedEvoAgent 摘要截断导致 skill evolution 具体机制、与固定攻击/检索基线的定量对比、目标模型/任务范围缺失；MCR-Bench、Tacet、MAELLE 摘要均截断导致各自方法细节与定量对比缺失；Transduced LM 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
+    "one_line_judgement": "WikiSkill 把分散在 trajectory/optimization history 里的洞察结构化沉淀为 wiki-style 持久知识，与昨日（8-27）Recuris 的 Working + Experiential 双层 memory 同方向——但更聚焦'skill 知识结构化'而非'memory 分层'；CritICL 利用小模型结构化失败模式做 ICL 桥接大模型，把弱模型从'答案提供者'变成'失败模式判别器'，可在不增加采样/外验证成本下提升推理质量；Persona-Execution Separation 把 persona 与 execution 显式分到不同 trust domain、用 governed contract bridge 桥接，直击企业 agent '可演化 vs 可审计'的核心冲突。三篇 immediate 共同把 AI 工程从'演示层'推向'经验沉淀 + 成本受限推理 + 合规治理'的运营层。三个趋势信号：TTPO 把 RL/OPSD 的 ground truth 依赖换成'利用多数/少数 rollout 不对称性'的推理时训练、SWE-Prime 把 SWE agent 训练从'采大量轨迹'转向'精选高质量轨迹'、RedEvoAgent 把红队 agent 攻击技能从'固定/检索'改为'经验驱动 skill evolution'。",
+    "path": "daily-detail.html?date=2026-08-29"
   },
   "top_paper": {
-    "title": "PlanSightRAG: A Visual-First Multimodal RAG for Automating Question Answering and Compliance Checking for Civil Standard Plans",
+    "title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
     "authors": [
-      "Nabaraj Subedi",
-      "Shuvo Dip Datta",
-      "Ahmed Abdelaty",
-      "Shivanand Venkanna Sheshappanavar"
+      "Liyan Tang",
+      "Cyrus Rashtchian",
+      "Chun-Sung Ferng",
+      "Andrew Tomkins",
+      "Da-Cheng Juan"
     ],
-    "published": "2026-08-26",
-    "updated": "2026-08-26",
+    "published": "2026-08-27",
+    "updated": "2026-08-27",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2608.26091v1",
-    "pdf_url": "https://arxiv.org/pdf/2608.26091v1",
+    "url": "http://arxiv.org/abs/2608.27454v1",
+    "pdf_url": "https://arxiv.org/pdf/2608.27454v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Civil infrastructure compliance checking has long relied on engineers manually reading legacy 2D plans; however, OCR-based automation strips away the geometry and layout essential for interpreting these plans. We present a Visual-First Multimodal Retrieval-Augmented Generation (RAG) framework called PlanSightRAG. It indexes and reasons directly over plan imagery, integrates a ColNomic-3B multi-vector retrieval, an agentic Planner-Retriever-Auditor-Synthesizer, and MaxSim heatmaps as an evidence ",
+    "abstract": "Agent skills package specialized knowledge and workflows into reusable resources that extend AI agent capabilities. Recent work automatically discovers such skills from agent experience, which enables agents to progressively adapt through interaction. However, the insights that guide skill development typically remain scattered across optimization histories, limiting their systematic reuse across iterations. We introduce WikiSkill, a framework that co-evolves agent skills with a persistent knowl",
     "categories": [
-      "cs.IR",
-      "cs.CL",
-      "cs.CV"
+      "cs.AI",
+      "cs.CL"
     ],
     "keywords": [
       "agent",
-      "agentic",
-      "benchmark",
-      "RAG",
-      "multimodal"
+      "benchmark"
     ],
-    "score": 48.4,
-    "decision": "暂时忽略",
+    "score": 74.0,
+    "decision": "轻量试点",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2608.26091v1"
+        "url": "http://arxiv.org/abs/2608.27454v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2608.26091v1"
+        "url": "https://arxiv.org/pdf/2608.27454v1"
       }
     ],
-    "id": "plansightrag-a-visual-first-multimodal-rag-for-automating-question-answering-and-compliance-checking-for-civil-standard-plans",
-    "value_type": "ignore",
+    "llm_reason": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution 命中 ai-agent 与 context-engineering 主线（agent 长期技能沉淀）：据摘要，agent skills 把专门知识与 workflow 打包成可复用资源以扩展能力，已有工作可从经验自动发现 skill，但驱动 skill 开发的洞察散落在优化历史中、跨迭代难复用；WikiSkill 把 agent skills 与一个持久知识结构共进化——把执行经验系统沉淀为可检索/可演化的'wiki-style'知识库。'把分散在 trajectory/optimization history 里的洞察结构化沉淀为可被未来 skill 检索复用的 wiki'对做 long-horizon agent harness / 持续学习 / agent 运营化的团队有直接价值——它解决了'agent 学到过什么、为什么、能否在新场景复用'的核心痛点。证据强度中等：方法抽象清晰（persistent knowledge + skill co-evolution）+ 关键词 agent/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致持久知识结构的存储/检索机制、与 WikiSkill 同框架下的检索协议、跨任务复用的实证数据缺失；建议跟踪其开源与定量结果。",
+    "id": "wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution",
+    "value_type": "immediate",
     "matched_topics": [
       "ai-agent",
-      "rag-knowledge",
-      "multimodal-agent",
-      "ai-k8s-platform",
-      "security-governance"
+      "context-engineering"
     ],
     "score_breakdown": {
-      "novelty": 5.4,
-      "problem_importance": 7.75,
-      "relevance": 9.8,
+      "novelty": 4.8,
+      "problem_importance": 5.8,
+      "relevance": 6.2,
       "evidence_strength": 4.5,
-      "engineering_testability": 4.05,
-      "trend_signal": 4.05,
+      "engineering_testability": 5.15,
+      "trend_signal": 3.5,
       "long_tail_potential": 3.5,
       "asset_convertibility": 6.2,
-      "actionability": 3.8,
+      "actionability": 5.0,
       "noise_risk": 1.2,
       "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 0,
+      "low_relevance_penalty": 2.2,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
-    "trend_status": "noise",
-    "brief_cn": "AI Agent：Civil infrastructure compliance checking has long relied on engineers manually…",
-    "one_line_judgement": "当前可忽略：AI Agent：Civil infrastructure compliance checking has long relied on e…",
-    "first_seen_date": "2026-08-28",
-    "first_deep_dive_daily": "2026-08-28",
-    "value_type_label": "暂时忽略",
-    "trend_stage_label": "噪声",
+    "trend_status": "emerging",
+    "brief_cn": "AI Agent：Agent skills package specialized knowledge and workflows into reusable resourc…",
+    "one_line_judgement": "今天值得试：WikiSkill: Compiling Agent Experience into Persistent Knowledge for Sk…",
+    "first_seen_date": "2026-08-29",
+    "first_deep_dive_daily": "2026-08-29",
+    "value_type_label": "即时价值",
+    "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "AI Agent：Civil infrastructure compliance checking has long relied on engineers manually…",
+    "long_tail_summary": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution 命中 ai-agent ",
     "related_trends": [
       "agentic-world-modeling",
       "context-engineering"
     ],
-    "detail_path": "paper-detail.html?id=plansightrag-a-visual-first-multimodal-rag-for-automating-question-answering-and-compliance-checking-for-civil-standard-plans"
+    "detail_path": "paper-detail.html?id=wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution"
   },
-  "paper_count": 1640,
+  "paper_count": 1650,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 120,
+  "long_tail_count": 123,
   "value_distribution": {
-    "immediate": 97,
-    "trend": 135,
-    "long_tail": 120,
-    "ignore": 1288
+    "immediate": 100,
+    "trend": 138,
+    "long_tail": 123,
+    "ignore": 1289
   },
   "recent_dailies": [
+    {
+      "date": "2026-08-29",
+      "title": "论文价值发现日报 - 2026-08-29",
+      "deep_dive_title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+      "deep_dive_url": "http://arxiv.org/abs/2608.27454v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成三件事：(1) 跟踪 WikiSkill 开源——评估其持久知识结构是否可与团队 long-horizon agent 的 memory 抽象兼容，可在内部 agent 上做 'skill library + wiki knowledge' 概念验证（不依赖完整开源，知识结构化思想可借鉴，1 周内可做概念验证）；(2) 把 CritICL 的'失败模式判别器'思路纳入推理时成本治理设计——评估在内部任务上'小模型 ICL 桥接大模型'是否能省下重复采样/外验证成本（30 分钟可设计实验、1-2 天可实施）；(3) 把 PES 的 persona/execution trust domain 分离原则纳入企业 agent 合规架构评估清单（30 分钟可梳理要点，1 周内可在内部架构评审中应用）。",
+      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；WikiSkill 摘要截断导致持久知识结构的存储/检索机制、跨任务复用实证数据缺失；CritICL 摘要截断导致具体 ICL/检索机制、与 self-consistency / verifier-based 推理时方法的定量对比、适用模型家族缺失；PES 摘要截断导致 contract bridge 的具体协议、persona 漂移边界、execution 审计的可证伪保证缺失；TTPO 摘要截断导致目标函数、与多数投票/Verifier-based TTT 的定量对比、数学推理外的适用任务缺失；SWE-Prime 摘要截断导致'高质量'具体过滤/打分准则、与全量 SFT 的定量对比、SWE-bench Verified 关联缺失；RedEvoAgent 摘要截断导致 skill evolution 具体机制、与固定攻击/检索基线的定量对比、目标模型/任务范围缺失；MCR-Bench、Tacet、MAELLE 摘要均截断导致各自方法细节与定量对比缺失；Transduced LM 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
+      "one_line_judgement": "WikiSkill 把分散在 trajectory/optimization history 里的洞察结构化沉淀为 wiki-style 持久知识，与昨日（8-27）Recuris 的 Working + Experiential 双层 memory 同方向——但更聚焦'skill 知识结构化'而非'memory 分层'；CritICL 利用小模型结构化失败模式做 ICL 桥接大模型，把弱模型从'答案提供者'变成'失败模式判别器'，可在不增加采样/外验证成本下提升推理质量；Persona-Execution Separation 把 persona 与 execution 显式分到不同 trust domain、用 governed contract bridge 桥接，直击企业 agent '可演化 vs 可审计'的核心冲突。三篇 immediate 共同把 AI 工程从'演示层'推向'经验沉淀 + 成本受限推理 + 合规治理'的运营层。三个趋势信号：TTPO 把 RL/OPSD 的 ground truth 依赖换成'利用多数/少数 rollout 不对称性'的推理时训练、SWE-Prime 把 SWE agent 训练从'采大量轨迹'转向'精选高质量轨迹'、RedEvoAgent 把红队 agent 攻击技能从'固定/检索'改为'经验驱动 skill evolution'。",
+      "path": "daily-detail.html?date=2026-08-29"
+    },
     {
       "date": "2026-08-28",
       "title": "论文价值发现日报 - 2026-08-28",
@@ -186,393 +194,62 @@
       "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
       "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
       "path": "daily-detail.html?date=2026-08-23"
-    },
-    {
-      "date": "2026-08-21",
-      "title": "论文价值发现日报 - 2026-08-21",
-      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
-      "path": "daily-detail.html?date=2026-08-21"
     }
   ],
   "top_papers": [
     {
-      "title": "PlanSightRAG: A Visual-First Multimodal RAG for Automating Question Answering and Compliance Checking for Civil Standard Plans",
+      "title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
       "authors": [
-        "Nabaraj Subedi",
-        "Shuvo Dip Datta",
-        "Ahmed Abdelaty",
-        "Shivanand Venkanna Sheshappanavar"
+        "Liyan Tang",
+        "Cyrus Rashtchian",
+        "Chun-Sung Ferng",
+        "Andrew Tomkins",
+        "Da-Cheng Juan"
       ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26091v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26091v1",
+      "url": "http://arxiv.org/abs/2608.27454v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27454v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Civil infrastructure compliance checking has long relied on engineers manually reading legacy 2D plans; however, OCR-based automation strips away the geometry and layout essential for interpreting these plans. We present a Visual-First Multimodal Retrieval-Augmented Generation (RAG) framework called PlanSightRAG. It indexes and reasons directly over plan imagery, integrates a ColNomic-3B multi-vector retrieval, an agentic Planner-Retriever-Auditor-Synthesizer, and MaxSim heatmaps as an evidence ",
-      "categories": [
-        "cs.IR",
-        "cs.CL",
-        "cs.CV"
-      ],
-      "keywords": [
-        "agent",
-        "agentic",
-        "benchmark",
-        "RAG",
-        "multimodal"
-      ],
-      "score": 48.4,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26091v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26091v1"
-        }
-      ],
-      "id": "plansightrag-a-visual-first-multimodal-rag-for-automating-question-answering-and-compliance-checking-for-civil-standard-plans",
-      "value_type": "ignore",
-      "matched_topics": [
-        "ai-agent",
-        "rag-knowledge",
-        "multimodal-agent",
-        "ai-k8s-platform",
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 7.75,
-        "relevance": 9.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "AI Agent：Civil infrastructure compliance checking has long relied on engineers manually…",
-      "one_line_judgement": "当前可忽略：AI Agent：Civil infrastructure compliance checking has long relied on e…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "AI Agent：Civil infrastructure compliance checking has long relied on engineers manually…",
-      "related_trends": [
-        "agentic-world-modeling",
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=plansightrag-a-visual-first-multimodal-rag-for-automating-question-answering-and-compliance-checking-for-civil-standard-plans"
-    },
-    {
-      "title": "TraceML: An Empirical Analysis of Human-Agent Planning in Machine Learning Development",
-      "authors": [
-        "Jiarui Yan",
-        "Weiwei Sun",
-        "Sijie Li",
-        "Wenhan Li",
-        "Yiming Yang"
-      ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26086v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26086v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Large language models write correct code for isolated problems but remain far weaker at autonomous machine-learning development, where an agent must revise data pipelines, models, and validation over hours of feedback, and on most competitions still finishes below strong human competitors. Outcome-based benchmarks record this gap but not its cause, because they grade the final submission and discard the development process behind it. We introduce TraceML, which pairs human and agent work on the ",
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent",
-        "benchmark",
-        "planning"
-      ],
-      "score": 44.6,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26086v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26086v1"
-        }
-      ],
-      "id": "traceml-an-empirical-analysis-of-human-agent-planning-in-machine-learning-development",
-      "value_type": "ignore",
-      "matched_topics": [
-        "ai-agent",
-        "llm-evaluation",
-        "data-engineering"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 5.85,
-        "engineering_testability": 4.05,
-        "trend_signal": 5.45,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "AI Agent：Large language models write correct code for isolated problems but remain far …",
-      "one_line_judgement": "当前可忽略：AI Agent：Large language models write correct code for isolated problem…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "AI Agent：Large language models write correct code for isolated problems but remain far …",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=traceml-an-empirical-analysis-of-human-agent-planning-in-machine-learning-development"
-    },
-    {
-      "title": "Planetary Prediction Engine: Autonomous Geospatial Prediction via Intelligent Data Selection and Foundation Model Embeddings",
-      "authors": [
-        "Evelyn Ma",
-        "Rama Kumar Pasumarthi",
-        "Kishwar Shafin",
-        "Mandar Sharma",
-        "Mimi Sun"
-      ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26088v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26088v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Addressing critical global challenges, from food security and disaster risk to disease outbreaks and socio-economic vulnerability, demands high-fidelity geospatial modeling. However, building predictive planetary models remains bottlenecked by a fragmented data ecosystem, requiring manual data retrieval, multimodal data curation and fusion along with iterative model selection. We present the Planetary Prediction Engine (PPE), an autonomous AI system that executes this end-to-end workflow directl",
+      "abstract": "Agent skills package specialized knowledge and workflows into reusable resources that extend AI agent capabilities. Recent work automatically discovers such skills from agent experience, which enables agents to progressively adapt through interaction. However, the insights that guide skill development typically remain scattered across optimization histories, limiting their systematic reuse across iterations. We introduce WikiSkill, a framework that co-evolves agent skills with a persistent knowl",
       "categories": [
         "cs.AI",
-        "cs.LG"
-      ],
-      "keywords": [
-        "RAG",
-        "multimodal"
-      ],
-      "score": 44.5,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26088v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26088v1"
-        }
-      ],
-      "id": "planetary-prediction-engine-autonomous-geospatial-prediction-via-intelligent-data-selection-and-foundation-model-embeddings",
-      "value_type": "ignore",
-      "matched_topics": [
-        "rag-knowledge",
-        "multimodal-agent",
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.6,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：Addressing critical global challenges, from food security and disaster risk to…",
-      "one_line_judgement": "当前可忽略：RAG / 知识系统：Addressing critical global challenges, from food security a…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "RAG / 知识系统：Addressing critical global challenges, from food security and disaster risk to…",
-      "related_trends": [
-        "context-engineering",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=planetary-prediction-engine-autonomous-geospatial-prediction-via-intelligent-data-selection-and-foundation-model-embeddings"
-    },
-    {
-      "title": "Agentic Autoresearch for Cell-Edge Power Control: Radically Redefining the Researcher's Role",
-      "authors": [
-        "Ahmad Khan",
-        "Akram Bin Sediq",
-        "Sara Azadegi Naeini",
-        "Raviraj S. Adve"
-      ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26093v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26093v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Designing machine learning algorithms for wireless resource management is labour-intensive: the architecture, the loss function and the training recipe are all specified by hand. We demonstrate that this design layer can be surrendered to an autonomous agent in its entirety. We adopt the autoresearch protocol, in which an AI coding agent edits a training script, runs a fixed-budget experiment, and retains or discards the change according to a single immutable metric. We grant the agent authority",
-      "categories": [
-        "cs.LG",
-        "cs.IT",
-        "eess.SY"
-      ],
-      "keywords": [
-        "agent",
-        "agentic",
-        "coding agent",
-        "inference"
-      ],
-      "score": 42.0,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26093v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26093v1"
-        }
-      ],
-      "id": "agentic-autoresearch-for-cell-edge-power-control-radically-redefining-the-researcher-s-role",
-      "value_type": "ignore",
-      "matched_topics": [
-        "ai-agent",
-        "coding-agent",
-        "rag-knowledge"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.95,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.6,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "AI Agent：Designing machine learning algorithms for wireless resource management is labo…",
-      "one_line_judgement": "当前可忽略：AI Agent：Designing machine learning algorithms for wireless resource m…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "AI Agent：Designing machine learning algorithms for wireless resource management is labo…",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent",
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=agentic-autoresearch-for-cell-edge-power-control-radically-redefining-the-researcher-s-role"
-    },
-    {
-      "title": "SwarmWorld: Stigmergic technological evolution in societies of language-model agents",
-      "authors": [
-        "Subhadeep Pal",
-        "Fiona Y. Wang",
-        "Markus J. Buehler"
-      ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26081v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26081v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Collective intelligence can emerge when individuals coordinate through a shared environment, allowing local actions to accumulate into durable social organization. Language-model agents offer a new substrate for this process, yet most multi-agent systems rely on direct conversation, predefined roles, or centralized workflows. It remains unclear whether decentralized agents can build functional technologies and outperform independent search. Here, initially homogeneous LLM agents in SwarmWorld se",
-      "categories": [
-        "cs.AI",
-        "cond-mat.mtrl-sci",
         "cs.CL"
       ],
       "keywords": [
-        "agent"
+        "agent",
+        "benchmark"
       ],
-      "score": 41.3,
-      "decision": "暂时忽略",
+      "score": 74.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26081v1"
+          "url": "http://arxiv.org/abs/2608.27454v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26081v1"
+          "url": "https://arxiv.org/pdf/2608.27454v1"
         }
       ],
-      "id": "swarmworld-stigmergic-technological-evolution-in-societies-of-language-model-agents",
-      "value_type": "ignore",
+      "llm_reason": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution 命中 ai-agent 与 context-engineering 主线（agent 长期技能沉淀）：据摘要，agent skills 把专门知识与 workflow 打包成可复用资源以扩展能力，已有工作可从经验自动发现 skill，但驱动 skill 开发的洞察散落在优化历史中、跨迭代难复用；WikiSkill 把 agent skills 与一个持久知识结构共进化——把执行经验系统沉淀为可检索/可演化的'wiki-style'知识库。'把分散在 trajectory/optimization history 里的洞察结构化沉淀为可被未来 skill 检索复用的 wiki'对做 long-horizon agent harness / 持续学习 / agent 运营化的团队有直接价值——它解决了'agent 学到过什么、为什么、能否在新场景复用'的核心痛点。证据强度中等：方法抽象清晰（persistent knowledge + skill co-evolution）+ 关键词 agent/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致持久知识结构的存储/检索机制、与 WikiSkill 同框架下的检索协议、跨任务复用的实证数据缺失；建议跟踪其开源与定量结果。",
+      "id": "wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution",
+      "value_type": "immediate",
       "matched_topics": [
         "ai-agent",
-        "rag-knowledge"
+        "context-engineering"
       ],
       "score_breakdown": {
-        "novelty": 5.4,
+        "novelty": 4.8,
         "problem_importance": 5.8,
         "relevance": 6.2,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.6,
+        "engineering_testability": 5.15,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 6.2,
@@ -583,223 +260,219 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "AI Agent：Collective intelligence can emerge when individuals coordinate through a share…",
-      "one_line_judgement": "当前可忽略：AI Agent：Collective intelligence can emerge when individuals coordinat…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Agent skills package specialized knowledge and workflows into reusable resourc…",
+      "one_line_judgement": "今天值得试：WikiSkill: Compiling Agent Experience into Persistent Knowledge for Sk…",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "AI Agent：Collective intelligence can emerge when individuals coordinate through a share…",
+      "long_tail_summary": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution 命中 ai-agent ",
       "related_trends": [
         "agentic-world-modeling",
         "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=swarmworld-stigmergic-technological-evolution-in-societies-of-language-model-agents"
+      "detail_path": "paper-detail.html?id=wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution"
     },
     {
-      "title": "A Visual Dependence-Aware Framework for Multimodal Unsupervised Continual Post-Training",
+      "title": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
       "authors": [
-        "Kaichen Li",
-        "Zhilin Zhu",
-        "Jianhao Huang",
-        "Zhengqin Lai",
-        "Baochen Xiong"
+        "Yufan Wu",
+        "Yinghui He",
+        "Zhengyi Hu",
+        "Lang Wei",
+        "Ruichen Li"
       ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26095v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26095v1",
+      "url": "http://arxiv.org/abs/2608.27455v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27455v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "In this paper, we explore a novel task of Multimodal Unsupervised Continual Post-Training (MU-CPT), enabling deployed MLLMs to continually evolve from streaming unlabeled data. Existing unsupervised post-training methods for MLLMs typically optimize target tokens uniformly, overlooking their heterogeneous visual dependence (VD). However, we reveal that token-level VD is crucial for MU-CPT. Specifically, its structural distortion serves as an indicator of cross-modal catastrophic forgetting, and ",
+      "abstract": "Recent advances in inference-time scaling have significantly improved the reasoning performance of large language models (LLMs). However, these methods typically rely on repeated generation or external verification. To address this limitation, we introduce CritICL, a novel inference-time framework that improves reasoning while maintaining high efficiency. Our key insight is that LLM failure modes exhibit structured patterns across model scales within the same family. Instead of treating failures",
       "categories": [
-        "cs.CV",
-        "cs.AI"
+        "cs.CL"
       ],
       "keywords": [
         "RAG",
-        "multimodal"
+        "inference"
       ],
-      "score": 39.5,
-      "decision": "暂时忽略",
+      "score": 73.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26095v1"
+          "url": "http://arxiv.org/abs/2608.27455v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26095v1"
+          "url": "https://arxiv.org/pdf/2608.27455v1"
         }
       ],
-      "id": "a-visual-dependence-aware-framework-for-multimodal-unsupervised-continual-post-training",
-      "value_type": "ignore",
+      "llm_reason": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes 命中 llm-evaluation 与 inference-serving 主线（小→大模型失败模式推理时桥接）：据摘要，inference-time scaling（重复采样/外部验证）改善 LLM 推理但代价高，本文提出 CritICL 框架保持高效率；关键洞察是 LLM failure modes 在同家族不同规模模型间呈结构化模式。'不用重复采样也不用外部验证器，直接从小模型的结构化失败模式 ICL 桥接到大模型'对做推理时扩展 / 弱→强对齐 / 成本受限部署的团队有直接价值——它把弱模型转化为'失败模式判别器'而非'答案提供者'。证据强度中等：核心洞察清晰（跨规模失败模式结构化）+ 关键词 inference 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 CritICL 的具体提示/检索机制、与 self-consistency / verifier-based 推理时方法的定量对比、适用模型家族缺失；建议跟踪其开源与评测。",
+      "id": "criticl-inference-time-weak-to-strong-generalization-from-small-language-model-failure-modes",
+      "value_type": "immediate",
       "matched_topics": [
-        "multimodal-agent",
-        "data-engineering"
+        "llm-evaluation",
+        "inference-serving"
       ],
       "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "Multimodal Agent：In this paper, we explore a novel task of Multimodal Unsupervised Continual Po…",
-      "one_line_judgement": "当前可忽略：Multimodal Agent：In this paper, we explore a novel task of Multimodal …",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "Multimodal Agent：In this paper, we explore a novel task of Multimodal Unsupervised Continual Po…",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=a-visual-dependence-aware-framework-for-multimodal-unsupervised-continual-post-training"
-    },
-    {
-      "title": "MyoMechanix: Biomechanically-Grounded Compositional Skilled Activity Understanding and Coaching",
-      "authors": [
-        "Hao Yin",
-        "Paritosh Parmar",
-        "Lijun Gu",
-        "Lin Xu",
-        "Tianxiao Guo"
-      ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26094v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26094v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Existing action quality assessment (AQA) datasets and methods rely primarily on visual inputs such as RGB and pose, overlooking physiological dynamics such as muscle mechanics and often modeling actions as monolithic patterns. These limitations hinder fine-grained, biomechanically grounded feedback. We introduce MyoMechanix, a multimodal ecosystem for weight-loaded actions that aligns motion with muscle activity. Expert-annotated, it contains 7,500+ samples of 20 actions from 38 subjects, with s",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.ET",
-        "cs.HC",
-        "cs.LG"
-      ],
-      "keywords": [
-        "benchmark",
-        "multimodal"
-      ],
-      "score": 35.2,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26094v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26094v1"
-        }
-      ],
-      "id": "myomechanix-biomechanically-grounded-compositional-skilled-activity-understanding-and-coaching",
-      "value_type": "ignore",
-      "matched_topics": [
-        "multimodal-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
+        "novelty": 6.0,
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.5,
         "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
+        "trend_signal": 4.05,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "Multimodal Agent：Existing action quality assessment (AQA) datasets and methods rely primarily o…",
-      "one_line_judgement": "当前可忽略：Multimodal Agent：Existing action quality assessment (AQA) datasets and…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Recent advances in inference-time scaling have significantly improved the reas…",
+      "one_line_judgement": "今天值得试：CritICL: Inference-Time Weak-to-Strong Generalization from Small Langu…",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "Multimodal Agent：Existing action quality assessment (AQA) datasets and methods rely primarily o…",
+      "long_tail_summary": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes 命中",
       "related_trends": [
-        "agentic-world-modeling"
+        "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=myomechanix-biomechanically-grounded-compositional-skilled-activity-understanding-and-coaching"
+      "detail_path": "paper-detail.html?id=criticl-inference-time-weak-to-strong-generalization-from-small-language-model-failure-modes"
     },
     {
-      "title": "ICON Decomposition: Multivariate Concept-Level Explanations of Deep Representations for Model Auditing",
+      "title": "Persona-Execution Separation: An Architecture Pattern for Evolving LLM Agents under Execution Audit",
       "authors": [
-        "Roshan Prakash Rane",
-        "Marco Simnacher",
-        "Manuel Pfeuffer",
-        "Marc-Andre Schulz",
-        "Nys Tjade Siegel"
+        "Yisen Xi"
       ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26083v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26083v1",
+      "url": "http://arxiv.org/abs/2608.27427v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27427v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Deep neural networks often exploit spurious associations in their training data, a failure known as shortcut learning. Concept-based explainability methods screen for shortcuts by testing whether concepts such as a patient's sex or scanner settings can be decoded from a network layer. Because each concept is evaluated in isolation, these methods can mistake correlations between concepts as evidence that the model uses them. We introduce ICON decomposition, which instead quantifies how much of a ",
+      "abstract": "Large language model (LLM) agents in governed organizations must let the persona (instructions, tone, self-presentation) evolve freely, while keeping execution (stateful, audited work) traceable. A single trust domain does not satisfy both cheaply. We present Persona-Execution Separation (PES): persona and execution reside in different trust domains, connected by a governed contract bridge. The persona is singly-homed and may drift; execution is faceless and audited. Status summaries may return;",
       "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CV",
-        "stat.ML"
+        "cs.SE",
+        "cs.AI"
       ],
-      "keywords": [],
-      "score": 34.1,
-      "decision": "暂时忽略",
+      "keywords": [
+        "agent"
+      ],
+      "score": 72.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26083v1"
+          "url": "http://arxiv.org/abs/2608.27427v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26083v1"
+          "url": "https://arxiv.org/pdf/2608.27427v1"
         }
       ],
-      "id": "icon-decomposition-multivariate-concept-level-explanations-of-deep-representations-for-model-auditing",
-      "value_type": "ignore",
+      "llm_reason": "Persona-Execution Separation (PES): An Architecture Pattern for Evolving LLM Agents under Execution Audit 命中 security-governance 与 ai-agent 主线（agent 治理与审计架构模式）：据摘要，受治理组织中的 LLM agent 必须让 persona（指令、语气、自我呈现）自由演化，同时保持 execution（有状态、可审计的工作）可追溯；单一 trust domain 不能同时廉价满足两者。PES 把 persona 与 execution 放在不同 trust domain，由 governed contract bridge 连接——persona singly-homed 可漂移，execution faceless 受审计。'把 persona 与 execution 显式分到不同 trust domain、用 governed bridge 桥接——这是企业 agent 治理的架构抽象'对做企业级 agent 部署、合规审计、模型热替换、人机协作的团队有直接价值——它直击'agent 可演化 vs 工作可审计'的真实冲突。证据强度中等偏上：架构模式描述清晰（trust domain 分离 + contract bridge）+ 关键词 agent 命中。证据不足：code/benchmark/Papers with Code 暂无待核验；摘要截断导致 contract bridge 的具体协议、persona 漂移边界、execution 审计的可证伪保证缺失；建议跟踪其开源与参考实现。",
+      "id": "persona-execution-separation-an-architecture-pattern-for-evolving-llm-agents-under-execution-audit",
+      "value_type": "immediate",
       "matched_topics": [
-        "security-governance"
+        "security-governance",
+        "ai-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "安全与治理：Large language model (LLM) agents in governed organizations must let the perso…",
+      "one_line_judgement": "今天值得试：Persona-Execution Separation (PES): An Architecture Pattern for Evolvi…",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "Persona-Execution Separation (PES): An Architecture Pattern for Evolving LLM Agents under Execut",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=persona-execution-separation-an-architecture-pattern-for-evolving-llm-agents-under-execution-audit"
+    },
+    {
+      "title": "TTPO: Test-Time Policy Optimization",
+      "authors": [
+        "Aozhe Wang",
+        "Zhengxi Lu",
+        "Jianze Wang",
+        "Shangke Lv",
+        "Ying Liu"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.27448v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27448v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Recent prominent post-training methods, such as Reinforcement Learning (RL) and On-Policy Self-Distillation (OPSD), have driven rapid progress in mathematical reasoning for large language models, yet their reliance on ground-truth labels precludes test-time training (TTT). Replacing ground truth with majority-vote pseudo-labels is a natural alternative, yet it is fragile: an incorrect vote corrupts the teacher and misleads every token. We observe that this failure mode is asymmetric: rollouts th",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 67.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.27448v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.27448v1"
+        }
+      ],
+      "llm_reason": "TTPO: Test-Time Policy Optimization 命中 ai-agent 与 llm-evaluation 主线（推理时训练替代 ground truth）：据摘要，RL 与 On-Policy Self-Distillation（OPSD）等后训练方法驱动数学推理进步但依赖 ground truth 标签，无法做 test-time training（TTT）；用 majority-vote 伪标签是自然替代但脆弱——一票错污染整个 teacher token。本文观察到失败模式不对称（rollouts 多数 vs 少数行为），提出 TTPO。'把 RL/OPSD 的 ground truth 依赖换成'利用多数/少数 rollout 不对称性'的 test-time 训练——在无标签场景做推理时优化'对做 agentic RL / 自演化 / 推理时学习的团队有趋势参考价值——它示范了 TTT 在 LLM 后训练上的具体路径。证据强度中等：观察到非对称失败模式 + 关键词 benchmark/RAG 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 TTPO 的具体目标函数、与多数投票/Verifier-based TTT 的定量对比、数学推理外的适用任务缺失；属 RL 后训练组件层（与昨日 SPO++、BPCO 一脉相承），趋势信号累积。",
+      "id": "ttpo-test-time-policy-optimization",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
@@ -808,68 +481,449 @@
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "安全与治理：Deep neural networks often exploit spurious associations in their training dat…",
-      "one_line_judgement": "当前可忽略：安全与治理：Deep neural networks often exploit spurious associations in thei…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "安全与治理：Deep neural networks often exploit spurious associations in their training dat…",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=icon-decomposition-multivariate-concept-level-explanations-of-deep-representations-for-model-auditing"
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Recent prominent post-training methods, such as Reinforcement Learning (RL) an…",
+      "one_line_judgement": "值得继续观察：TTPO: Test-Time Policy Optimization 命中 ai-agent 与 llm-evaluation 主线（推理…",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "TTPO: Test-Time Policy Optimization 命中 ai-agent 与 llm-evaluation 主线（推理时训练替代 ground truth）：据摘要，RL",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=ttpo-test-time-policy-optimization"
     },
     {
-      "title": "Finding and using interpretable latents in a neutrino foundation model with sparse autoencoders",
+      "title": "SWE-Prime: Fewer Trajectories, Better Performance",
       "authors": [
-        "Raphaël Bonnet-Guerrini",
-        "Johann Ioannou-Nikolaides",
-        "Inar Timiryasov",
-        "Vincenzo Piuri"
+        "Dewu Zheng",
+        "Ruizhe Ye",
+        "Yanlin Wang",
+        "Yang Ye",
+        "Hongyu Zhang"
       ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26090v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26090v1",
+      "url": "http://arxiv.org/abs/2608.27449v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27449v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "We present a first application of sparse-autoencoder-based mechanistic interpretability to particle physics. Studying a neutrino foundation model pretrained on IceCube data and fine-tuned for direction reconstruction, we identify a validated atlas of physical concepts in the model representation, using a strict validation protocol consisting of held-out tests, matched nuisance controls, and replication across independent dictionary trainings. Causal interventions show that the direction head bar",
+      "abstract": "To improve large language models' ability to resolve real-world software issues, prior work has focused on constructing large-scale agent trajectory datasets and performing supervised fine-tuning (SFT) on successful trajectories. However, task success does not guarantee high-quality supervision: successful trajectories may still contain ineffective, redundant, or risky steps. Directly using such trajectories for SFT can introduce noisy supervision and encourage models to imitate undesirable prob",
       "categories": [
-        "astro-ph.HE",
+        "cs.SE",
         "cs.AI",
-        "cs.LG",
-        "hep-ex"
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "RAG"
+      ],
+      "score": 65.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.27449v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.27449v1"
+        }
+      ],
+      "llm_reason": "SWE-Prime: Fewer Trajectories, Better Performance 命中 coding-agent 主线（SWE agent 训练数据质量）：据摘要，先前工作构建大规模 agent trajectory 数据集并对成功轨迹做 SFT，但任务成功 ≠ 高质量监督——成功轨迹可能含无效、冗余或风险步骤；直接 SFT 会引入噪声监督并鼓励模型模仿不良问题解决行为。'把 SWE agent 训练从'采大量轨迹'转向'精选高质量轨迹'——SFT 数据治理'对做 coding-agent / SWE-bench 类训练的团队有趋势参考价值——它直击当前 SWE agent 数据'量大但脏'的瓶颈。证据强度中等：问题诊断清晰（任务成功 ≠ 监督质量）+ 关键词 agent/RAG 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致'高质量'的具体过滤/打分准则、与全量 SFT 的定量对比、SWE-bench Verified/SFT 数据集开源情况缺失；属 SWE agent 训练数据工程一脉相承（与 Prime Agent、SWEBench 高分轨迹等近期趋势同方向），趋势信号累积。",
+      "id": "swe-prime-fewer-trajectories-better-performance",
+      "value_type": "trend",
+      "matched_topics": [
+        "coding-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Coding Agent：To improve large language models' ability to resolve real-world software issue…",
+      "one_line_judgement": "值得继续观察：SWE-Prime: Fewer Trajectories, Better Performance 命中 coding-agent 主线（S…",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "SWE-Prime: Fewer Trajectories, Better Performance 命中 coding-agent 主线（SWE agent 训练数据质量）：据摘要，先前工作构",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=swe-prime-fewer-trajectories-better-performance"
+    },
+    {
+      "title": "RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill Evolution",
+      "authors": [
+        "Junjie Zhang",
+        "Hui Liu",
+        "Kecheng Chen",
+        "Xianbo Mo",
+        "Changsheng Chen"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.27439v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27439v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM-based agents are increasingly deployed in product-level execution harnesses, where jailbreaks can trigger harmful tool use and persistent state changes, creating greater risks than unsafe text generation alone. Existing automatic red-teaming methods often rely on fixed attacks, while recent agentic attackers coordinate multiple jailbreak tools and show stronger potential through trajectory-based retrieval. However, such retrieval can reuse misleading experiences due to retrieval bias and unc",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "tool use"
+      ],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.27439v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.27439v1"
+        }
+      ],
+      "llm_reason": "RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill Evolution 命中 security-governance 与 ai-agent 主线（agent 红队经验沉淀）：据摘要，LLM agent 在产品级执行环境部署，jailbreak 可触发有害工具使用与持久状态变化，风险远超不安全文本；现有自动红队方法依赖固定攻击、近期 agentic attacker 协调多种 jailbreak 工具并通过 trajectory 检索显示更强潜力，但检索会因检索偏差复用误导经验、未对齐当前任务。'用经验驱动的 skill evolution 改造红队 agent——让攻击技能从执行中累积而非仅检索'对做 agent 安全评估、红队自动化、产品级 agent 防护的团队有趋势参考价值——它示范了'攻击侧与防御侧都向经验沉淀迁移'。证据强度中等：方案描述清晰（experience-driven）+ 关键词 agent/agentic/benchmark/tool use 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 skill evolution 的具体机制、与固定攻击/检索基线的定量对比、目标模型/任务范围缺失；属 agent 安全工程层，方向价值大于短期工程价值。",
+      "id": "redevoagent-automatic-red-teaming-agent-with-experience-driven-skill-evolution",
+      "value_type": "trend",
+      "matched_topics": [
+        "security-governance",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "安全与治理：LLM-based agents are increasingly deployed in product-level execution harnesse…",
+      "one_line_judgement": "值得继续观察：RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill …",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill Evolution 命中 security-gove",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=redevoagent-automatic-red-teaming-agent-with-experience-driven-skill-evolution"
+    },
+    {
+      "title": "From Static to Dynamic: Benchmarking Real-World Code Review with MCR-Bench",
+      "authors": [
+        "Dewu Zheng",
+        "Yanlin Wang",
+        "Xiwen Wang",
+        "Kefeng Duan",
+        "Hongyu Zhang"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.27442v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27442v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "In real-world software development, code review typically involves iterative interactions between developers and reviewers to improve software quality, making the process costly and time-consuming. Although recent work explores large language models (LLMs) for automated code review, most approaches oversimplify code review into a single-round, static decision task, which fails to capture the multi-round interactive nature and the complex problem-solving processes inherent in realistic review sce",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "memory",
+        "benchmark"
+      ],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.27442v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.27442v1"
+        }
+      ],
+      "llm_reason": "MCR-Bench: From Static to Dynamic Benchmarking Real-World Code Review 命中 coding-agent 与 llm-evaluation 主线（代码 review 多轮评测）：据摘要，真实代码 review 是开发者与审查者多轮迭代，单轮静态决策任务过度简化、丢失多轮交互本质与复杂问题求解过程。本文发布 MCR-Bench 做动态代码 review 评测。'把代码 review 从'单轮静态决策'改为'多轮动态评测'——填补 coding-agent 在真实工程评审场景下的基准空白'对做 coding-agent 评测 / SWE harness 设计的团队有长尾参考价值——它把'单轮 PR 评审'的常见误用变成可定量评估的盲区。证据强度中等：评测问题定义清晰（多轮迭代）+ 关键词 memory/benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 MCR-Bench 的任务规模、对话轮数上限、评判标准、与已有 PR 评审基准的关系缺失；属 coding-agent 评测基础设施，作长尾资产保存。",
+      "id": "from-static-to-dynamic-benchmarking-real-world-code-review-with-mcr-bench",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Coding Agent：In real-world software development, code review typically involves iterative i…",
+      "one_line_judgement": "值得先保存：MCR-Bench: From Static to Dynamic Benchmarking Real-World Code Review …",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "MCR-Bench: From Static to Dynamic Benchmarking Real-World Code Review 命中 coding-agent 与 llm-eval",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=from-static-to-dynamic-benchmarking-real-world-code-review-with-mcr-bench"
+    },
+    {
+      "title": "Tacet: A Language and Type System for Automatic Statistical Validity Accounting",
+      "authors": [
+        "Chiké Abuah"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.27451v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27451v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Empirical comparisons between systems are a standard form of evidence in computer science research, but few are checked for statistical validity: most are never framed as statistical tests at all. Existing multiple-comparison procedures could control the resulting error, but need inputs (what an analysis examined, and how its observations are arranged) that are not recoverable from a list of p-values. We introduce Tacet, a language in which an analysis declares what it generated, states what it ",
+      "categories": [
+        "cs.PL",
+        "cs.SE"
       ],
       "keywords": [],
-      "score": 29.9,
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.27451v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.27451v1"
+        }
+      ],
+      "llm_reason": "Tacet: A Language and Type System for Automatic Statistical Validity Accounting 命中 llm-evaluation 与 security-governance 主线（统计有效性自动核算）：据摘要，实证系统对比是 CS 研究的标准证据形式，但少有做统计有效性检查——多数从未被框定为统计检验；多重比较程序可控制误差但需要输入（分析检查什么、观测如何排列）而纯 p-value 列表不可恢复。本文提出 Tacet 语言，让分析声明它生成了什么、陈述它检查了什么。'用语言/类型系统强制声明'分析生成了什么、检查了什么'——把统计有效性检查从外部审稿要求变成程序可执行的不变量'对做研究方法论 / 评测治理 / 自动验证的团队有长尾参考价值——它示范了'可重复性 + 统计有效性'的程序化合规。证据强度中等：方法动机清晰（统计有效性检查不可恢复）+ 关键词空白。证据不足：code/benchmark 暂无待核验；摘要截断导致 Tacet 的类型规则、与 Bonferroni/FDR 等过程的整合方式、对 LLM 评测基准的应用案例缺失；属方法论层，作长尾资产保存。",
+      "id": "tacet-a-language-and-type-system-for-automatic-statistical-validity-accounting",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Empirical comparisons between systems are a standard form of evidence in compu…",
+      "one_line_judgement": "值得先保存：Tacet: A Language and Type System for Automatic Statistical Validity A…",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "Tacet: A Language and Type System for Automatic Statistical Validity Accounting 命中 llm-evaluatio",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=tacet-a-language-and-type-system-for-automatic-statistical-validity-accounting"
+    },
+    {
+      "title": "Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation",
+      "authors": [
+        "Nguyen Xuan-Vu",
+        "Octavian Susanu",
+        "Daniel Armstrong",
+        "Philippe Schwaller"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.27429v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27429v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Chemical reactions are fundamentally transformations in electron space, yet most machine learning approaches model them either through \\textit{de novo} generation of product molecules or through heuristic graph edits that operate directly on molecular topology. We introduce MAELLE (\\textbf{M}ech\\textbf{A}nistic \\textbf{E}dit f\\textbf{L}ow-matching on e\\textbf{L}ectron r\\textbf{E}arrangements), which instead models reactions as discrete flow matching over electron occupation vectors. Concretely, ",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.27429v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.27429v1"
+        }
+      ],
+      "llm_reason": "MAELLE: Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation 命中 ai-agent 主线（化学反应机制预测）：据摘要，化学反应本质是电子空间变换，但多数 ML 方法要么做产物分子的 de novo 生成、要么通过启发式图编辑直接操作分子拓扑。本文提出 MAELLE，把反应建模为电子占据向量上的离散 flow matching。'把化学反应预测从'产物分子生成 / 启发式图编辑'迁移到'电子占据向量上的离散 flow matching'——更接近机制可解释性的物理抽象'对做 AI for Science、分子设计、催化机理预测的团队有长尾参考价值——它示范了'机制可解释 + 生成建模'的物理一致路径。证据强度中等：建模框架清晰（electron occupation flow matching）+ 关键词 benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致与 de novo / 图编辑基线的定量对比、训练数据规模、产物多样性评估缺失；属 AI4Science 垂直方向，对通用 LLM/agent 工程栈直接迁移距离较远，作长尾资产保存。",
+      "id": "mechanistic-reaction-prediction-via-discrete-flow-matching-on-graph-structured-electron-occupation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：Chemical reactions are fundamentally transformations in electron space, yet mo…",
+      "one_line_judgement": "值得先保存：MAELLE: Mechanistic Reaction Prediction via Discrete Flow Matching on …",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "MAELLE: Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron ",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=mechanistic-reaction-prediction-via-discrete-flow-matching-on-graph-structured-electron-occupation"
+    },
+    {
+      "title": "Stochastic Estimation of Transduced Language Models",
+      "authors": [
+        "Vésteinn Snæbjarnarson",
+        "Samuel Kiegeland",
+        "Manuel de Prada Corral",
+        "Ryan Cotterell",
+        "Tim Vieira"
+      ],
+      "published": "2026-08-27",
+      "updated": "2026-08-27",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.27428v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.27428v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Transduced language models (TLMs) compose a pretrained \\emph{source} language model with a functional finite-state transducer to induce a language model over \\emph{target} strings. Computing the probability of a target prefix under a TLM amounts to summing the source-model probabilities of all source strings that the transducer maps to target strings beginning with that prefix. This set can be exponentially large or infinite. Prior work uses a computational shortcut based on source prefix probab",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [],
+      "score": 44.0,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26090v1"
+          "url": "http://arxiv.org/abs/2608.27428v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26090v1"
+          "url": "https://arxiv.org/pdf/2608.27428v1"
         }
       ],
-      "id": "finding-and-using-interpretable-latents-in-a-neutrino-foundation-model-with-sparse-autoencoders",
+      "llm_reason": "Stochastic Estimation of Transduced Language Models 聚焦 cs.CL 理论（transduced language model 概率估计）：据摘要，TLM 把预训练 source LM 与有限态 transducer 组合以诱导 target 字符串 LM；计算 target 前缀概率等价于对 transducer 映射到该前缀的所有 source 字符串概率求和，集合可指数大或无限；先前工作用 source 前缀概率的计算捷径，本文提出随机估计方法。领域聚焦 transduced LM 概率估计的理论细节，与团队以 Agent/LLM 工程栈/RAG/推理/评测为核心的技术栈直接迁移距离较远；关键词为空。code/benchmark/Papers with Code/OpenReview 链接暂无待核验。忽略，除非做 FSM 增强 LM/约束解码/形式语言与统计 LM 结合方向的理论工作。",
+      "id": "stochastic-estimation-of-transduced-language-models",
       "value_type": "ignore",
       "matched_topics": [],
       "score_breakdown": {
-        "novelty": 6.0,
+        "novelty": 4.8,
         "problem_importance": 4.5,
         "relevance": 3.8,
-        "evidence_strength": 4.95,
+        "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
@@ -882,137 +936,63 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "noise",
-      "brief_cn": "前沿论文：We present a first application of sparse-autoencoder-based mechanistic interpr…",
-      "one_line_judgement": "当前可忽略：前沿论文：We present a first application of sparse-autoencoder-based mechan…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
+      "brief_cn": "前沿论文：Transduced language models (TLMs) compose a pretrained \\emph{source} language …",
+      "one_line_judgement": "当前可忽略：Stochastic Estimation of Transduced Language Models 聚焦 cs.CL 理论（transd…",
+      "first_seen_date": "2026-08-29",
+      "first_deep_dive_daily": "2026-08-29",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "前沿论文：We present a first application of sparse-autoencoder-based mechanistic interpr…",
+      "long_tail_summary": "Stochastic Estimation of Transduced Language Models 聚焦 cs.CL 理论（transduced language model 概率估计）：",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=finding-and-using-interpretable-latents-in-a-neutrino-foundation-model-with-sparse-autoencoders"
-    },
-    {
-      "title": "VBVR-Pro: A Scalable and Verifiable Suite for Native Visual Reasoning",
-      "authors": [
-        "Junxiang Xu",
-        "Ruisi Wang",
-        "Fanyi Pu",
-        "Maijunxian Wang",
-        "Ran Ji"
-      ],
-      "published": "2026-08-26",
-      "updated": "2026-08-26",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.26105v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.26105v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Native visual reasoning treats visual generation as the medium of reasoning itself: visual states (i.e. images and videos) are not merely inputs to be understood or outputs to be rendered, but first-class substrates for problem solving beyond language. Yet progress remains bottlenecked by the lack of scalable training tasks, reliable feedback, and controlled comparisons across generative substrates. In this work, we introduce VBVR-Pro, a closed-loop testbed that makes native visual reasoning thr",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.LG",
-        "cs.MM",
-        "cs.RO"
-      ],
-      "keywords": [
-        "evaluation",
-        "benchmark"
-      ],
-      "score": 29.3,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.26105v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.26105v1"
-        }
-      ],
-      "id": "vbvr-pro-a-scalable-and-verifiable-suite-for-native-visual-reasoning",
-      "value_type": "ignore",
-      "matched_topics": [],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "前沿论文：Native visual reasoning treats visual generation as the medium of reasoning it…",
-      "one_line_judgement": "当前可忽略：前沿论文：Native visual reasoning treats visual generation as the medium of…",
-      "first_seen_date": "2026-08-28",
-      "first_deep_dive_daily": "2026-08-28",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "前沿论文：Native visual reasoning treats visual generation as the medium of reasoning it…",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=vbvr-pro-a-scalable-and-verifiable-suite-for-native-visual-reasoning"
+      "detail_path": "paper-detail.html?id=stochastic-estimation-of-transduced-language-models"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "bellman-calibration-for-marginalized-importance-weighting-in-offline-reinforcement-learning",
-      "title": "Bellman Calibration for Marginalized Importance Weighting in Offline Reinforcement Learning",
-      "direction": "AI Agent",
+      "id": "from-static-to-dynamic-benchmarking-real-world-code-review-with-mcr-bench",
+      "title": "From Static to Dynamic: Benchmarking Real-World Code Review with MCR-Bench",
+      "direction": "Coding Agent / LLM 评测",
       "long_tail_type": "工程抽象",
-      "why_save": "Bellman Calibration for Marginalized Importance Weighting in Offline RL 命中 ai-agent 主线（offline R",
+      "why_save": "MCR-Bench: From Static to Dynamic Benchmarking Real-World Code Review 命中 coding-agent 与 llm-eval",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-17",
-      "detail_path": "paper-detail.html?id=bellman-calibration-for-marginalized-importance-weighting-in-offline-reinforcement-learning"
+      "revisit_date": "2026-09-19",
+      "detail_path": "paper-detail.html?id=from-static-to-dynamic-benchmarking-real-world-code-review-with-mcr-bench"
     },
     {
-      "id": "fedv-kgqa-multi-hop-question-answering-over-vertically-partitioned-knowledge-graphs",
-      "title": "FedV-KGQA: Multi-Hop Question Answering over Vertically Partitioned Knowledge Graphs",
-      "direction": "RAG / 知识系统",
+      "id": "tacet-a-language-and-type-system-for-automatic-statistical-validity-accounting",
+      "title": "Tacet: A Language and Type System for Automatic Statistical Validity Accounting",
+      "direction": "LLM 评测 / 安全与治理",
       "long_tail_type": "工程抽象",
-      "why_save": "FedV-KGQA: Multi-Hop QA over Vertically Partitioned Knowledge Graphs 命中 rag-knowledge 主线（分布式 KGQ",
+      "why_save": "Tacet: A Language and Type System for Automatic Statistical Validity Accounting 命中 llm-evaluatio",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-17",
-      "detail_path": "paper-detail.html?id=fedv-kgqa-multi-hop-question-answering-over-vertically-partitioned-knowledge-graphs"
+      "revisit_date": "2026-09-19",
+      "detail_path": "paper-detail.html?id=tacet-a-language-and-type-system-for-automatic-statistical-validity-accounting"
     },
     {
-      "id": "improving-cross-problem-vehicle-routing-with-locally-augmented-preferences-and-representation-disentanglement",
-      "title": "Improving Cross-Problem Vehicle Routing with Locally Augmented Preferences and Representation Disentanglement",
+      "id": "mechanistic-reaction-prediction-via-discrete-flow-matching-on-graph-structured-electron-occupation",
+      "title": "Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation",
       "direction": "AI Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "Cross-Problem Vehicle Routing with Augmented Preferences and Representation Disentanglement 命中 a",
+      "why_save": "MAELLE: Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron ",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-17",
-      "detail_path": "paper-detail.html?id=improving-cross-problem-vehicle-routing-with-locally-augmented-preferences-and-representation-disentanglement"
+      "revisit_date": "2026-09-19",
+      "detail_path": "paper-detail.html?id=mechanistic-reaction-prediction-via-discrete-flow-matching-on-graph-structured-electron-occupation"
     }
   ],
   "common_research_path": [
