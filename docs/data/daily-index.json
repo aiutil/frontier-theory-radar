@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-29T04:34:07.701012",
+  "updated_at": "2026-08-30T04:31:42.183449",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-08-30",
+      "title": "论文价值发现日报 - 2026-08-30",
+      "deep_dive_title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+      "deep_dive_url": "http://arxiv.org/abs/2608.27454v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "2026-08-30 回看 | 完成三件事：(1) 跟踪 WikiSkill 开源——评估其持久知识结构是否可与团队 long-horizon agent 的 memory 抽象兼容，可在内部 agent 上做 'skill library + wiki knowledge' 概念验证（不依赖完整开源，知识结构化思想可借鉴，1 周内可做概念验证）；(2) 把 CritICL 的'失败模式判别器'思路纳入推理时成本治理设计——评估在内部任务上'小模型 ICL 桥接大模型'是否能省下重复采样/外验证成本（30 分钟可设计实验、1-2 天可实施）；(3) 把 PES 的 persona/execution trust domain 分离原则纳入企业 agent 合规架构评估清单（30 分钟可梳理要点，1 周内可在内部架构评审中应用）。",
+      "max_uncertainty": "2026-08-30 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；WikiSkill 摘要截断导致持久知识结构的存储/检索机制、跨任务复用实证数据缺失；CritICL 摘要截断导致具体 ICL/检索机制、与 self-consistency / verifier-based 推理时方法的定量对比、适用模型家族缺失；PES 摘要截断导致 contract bridge 的具体协议、persona 漂移边界、execution 审计的可证伪保证缺失；TTPO 摘要截断导致目标函数、与多数投票/Verifier-based TTT 的定量对比、数学推理外的适用任务缺失；SWE-Prime 摘要截断导致'高质量'具体过滤/打分准则、与全量 SFT 的定量对比、SWE-bench Verified 关联缺失；RedEvoAgent 摘要截断导致 skill evolution 具体机制、与固定攻击/检索基线的定量对比、目标模型/任务范围缺失；MCR-Bench、Tacet、MAELLE 摘要均截断导致各自方法细节与定量对比缺失；Transduced LM 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
+      "one_line_judgement": "WikiSkill 把分散在 trajectory/optimization history 里的洞察结构化沉淀为 wiki-style 持久知识，与昨日（8-27）Recuris 的 Working + Experiential 双层 memory 同方向——但更聚焦'skill 知识结构化'而非'memory 分层'；CritICL 利用小模型结构化失败模式做 ICL 桥接大模型，把弱模型从'答案提供者'变成'失败模式判别器'，可在不增加采样/外验证成本下提升推理质量；Persona-Execution Separation 把 persona 与 execution 显式分到不同 trust domain、用 governed contract bridge 桥接，直击企业 agent '可演化 vs 可审计'的核心冲突。三篇 immediate 共同把 AI 工程从'演示层'推向'经验沉淀 + 成本受限推理 + 合规治理'的运营层。三个趋势信号：TTPO 把 RL/OPSD 的 ground truth 依赖换成'利用多数/少数 rollout 不对称性'的推理时训练、SWE-Prime 把 SWE agent 训练从'采大量轨迹'转向'精选高质量轨迹'、RedEvoAgent 把红队 agent 攻击技能从'固定/检索'改为'经验驱动 skill evolution'。",
+      "path": "daily-detail.html?date=2026-08-30"
+    },
     {
       "date": "2026-08-29",
       "title": "论文价值发现日报 - 2026-08-29",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。DenseOn 的 6.65 亿对比对的重建细节与可复现性、Mental World Modeling 的具体形式化与实验设定、APEX-Accounting 私有评测集的指标与模型表现均需正文确认。",
       "one_line_judgement": "它提供了一套端到端完全开源的检索模型训练配方（数据精选 + 难负样本挖掘 + translate-train 多语言迁移），直击当前 SOTA 检索模型越来越依赖闭源训练数据所造成的'可复现性鸿沟'——这是 RAG/检索基础设施走向可控、可定制的关键瓶颈。",
       "path": "daily-detail.html?date=2026-07-31"
-    },
-    {
-      "date": "2026-07-30",
-      "title": "论文价值发现日报 - 2026-07-30",
-      "deep_dive_title": "Desktop-Delta Bench: Do Computer-Use Models Understand Desktop GUI Transitions?",
-      "deep_dive_url": "http://arxiv.org/abs/2607.26041v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：把 Desktop-Delta Bench 的转移理解评测维度映射到团队 CUA 评测流程；把 CARE 的置信度自适应路由原则引入 MoE-LoRA 推理配置评审；把 Pass the Baton 的 prefix failure 模式记入推理模型蒸馏风险清单。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Desktop-Delta Bench 的基准覆盖范围、CARE 的具体阈值机制、Pass the Baton 的接力策略细节、CHARM 的零样本迁移数据集、Reinformed Dreamer 的额外信息类型均需正文确认。",
-      "one_line_judgement": "它填补了计算机使用代理（CUA）评测的最大空白——现有基准只测任务成功率或单帧定位，无法判断模型是否理解'一个动作产生了什么因果转移'；而异步的推理/远程输入/渲染/截图捕获让'重建任务相关转移'成为 CUA 拒绝陈旧观测、验证进度、从失败恢复的核心能力。CUA 是当前最热的 Agent 方向之一，这个基准对任何构建桌面/浏览器自动化代理的团队有直接评测价值。",
-      "path": "daily-detail.html?date=2026-07-30"
     }
   ]
 }
