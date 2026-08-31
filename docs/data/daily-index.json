@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-08-30T04:31:42.183449",
+  "updated_at": "2026-09-01T04:33:31.287269",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-01",
+      "title": "论文价值发现日报 - 2026-09-01",
+      "deep_dive_title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
+      "deep_dive_url": "http://arxiv.org/abs/2608.28572v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "2026-09-01 回看 | 完成四件事：(1) 跟踪 PULSAR 开源与定量结果，并在团队内部视觉文档检索 pipeline 上做最小验证（不依赖完整开源，冻结 backbone + 两阶段池化思路可作为对比基线，1 周内可设计验证实验）；(2) 把 Logos 的 cross-process bus 思路纳入 agent harness 韧性设计清单（30 分钟可梳理现有架构的故障边界、识别单进程 plugin 的故障域传播风险点，1 周内可在内部架构评审中应用）；(3) 把 Quest 综述的四轴（temporal estimation / update geometry / horizon-schedule / state representation）作为评估/选型/自研优化器的结构化视角，并在团队当前 optimizer 上做四轴定位；(4) 评估 Aero Hand Open 对团队具身/操作学习研究计划的潜在价值，建立仿真平台候选清单。",
+      "max_uncertainty": "2026-09-01 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。PULSAR 摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；Logos 摘要截断导致 cross-process bus 的具体协议、inverse 跨进程追踪、与现有进程间通信（gRPC / message bus / capability system）的定量对比、故障域隔离的实证数据缺失；Quest 综述摘要截断导致四轴下具体优化器的对比表、与 SOTA 优化器（Muon / Shampoo / Lion / SOAP 等）的覆盖关系、对分片+低精度的存活约束细节缺失；Aero Hand Open 摘要截断导致具体仿真平台、benchmark、USD/MuJoCo/Isaac 兼容性、学习 task suite、与 direct-drive 手的定量对比缺失；Size-Weight Frontier 摘要截断导致 frontier 的具体构造、对 LLM 评测数据合成的适用性、与传统 CI/贝叶斯合成数据方法的定量对比缺失；Formal Limitation 摘要截断导致上界对应的具体信息度量、与 BERT/Transformer 隐藏态的实证校准、是否依赖特定相关性假设缺失；QGPINNs 摘要截断导致与经典数值方法（FEM / spectral method）的定量对比、训练稳定性、量子图具体出处缺失；KRR Power-Law Anisotropy 摘要截断导致 κ regime 内是否存在相位转捩、与深度学习理论的桥接、实证校准缺失；QUEST Asylum Law 摘要截断导致主题 schema 设计、人评/自动评对比、是否公布 benchmark 缺失；Dikin Walks d² Mixing 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
+      "one_line_judgement": "PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system，用冻结 ColPali-style backbone 直接索引 page images + pooled two-stage late-interaction index（page summaries 初检 + page-level scoring 精排），把视觉文档检索从'OCR + 图说'改为'视觉直接索引 + 两阶段 late-interaction'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本。Logos 把 agent harness 从'单进程共享一个 context'改为'cross-process bus'——所有 component 共处一个物理故障域的问题被解耦，让故障悬挂与进程死亡不再传播到全组件，直击单进程 plugin 的核心故障传播问题，并为 agent 治理提供更可审计的故障边界。一个趋势信号：[Quest: Survey of Optimizers](http://arxiv.org/abs/2608.28557v1) 把 NN 优化从'Adam 变体盘点'重构为四轴设计空间（temporal estimation / update geometry / horizon-schedule / state representation），强调分片+低精度生存能力，为评估/选型/自研优化器提供比'新旧 Adam 变体'更结构化的视角；[Aero Hand Open](http://arxiv.org/abs/2608.28578v1) 把 tendon-driven 灵巧手作为可直接学习的仿真资产开放，示范了'硬件经济性 + 仿真可学性'的搭配。",
+      "path": "daily-detail.html?date=2026-09-01"
+    },
     {
       "date": "2026-08-30",
       "title": "论文价值发现日报 - 2026-08-30",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Change2Task 的任务验证准确率与跨仓库泛化、ReToken 的增益幅度与不同干扰物规模下的鲁棒性、OSReward 的基准规模与平台覆盖与 judge 一致性均需正文确认。",
       "one_line_judgement": "它直击 coding agent 规模化的核心瓶颈——持续供给可执行的训练/评测任务。通过从仓库历史的已合并 PR 反向构造任务环境（规范 + 开发工具 + 可靠验证），在不依赖人工标注的前提下持续扩展 coding agent 的任务供给，同时命中 coding-agent、evaluation、benchmark 三条主线。",
       "path": "daily-detail.html?date=2026-08-01"
-    },
-    {
-      "date": "2026-07-31",
-      "title": "论文价值发现日报 - 2026-07-31",
-      "deep_dive_title": "DenseOn with the LateOn: Fully Open Dense and Late-Interaction Models for Multilingual, Long-Context, and Code Search",
-      "deep_dive_url": "http://arxiv.org/abs/2607.27178v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：从团队 RAG 栈识别最依赖闭源 embedding 的环节并评估 DenseOn 配方的替代可行性、把 Mental World Modeling 的心理状态维度纳入社交感知 agent 的架构设计审查、把 APEX-Accounting 的多世界评测设计借鉴到团队 agent benchmark 的构造方法。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。DenseOn 的 6.65 亿对比对的重建细节与可复现性、Mental World Modeling 的具体形式化与实验设定、APEX-Accounting 私有评测集的指标与模型表现均需正文确认。",
-      "one_line_judgement": "它提供了一套端到端完全开源的检索模型训练配方（数据精选 + 难负样本挖掘 + translate-train 多语言迁移），直击当前 SOTA 检索模型越来越依赖闭源训练数据所造成的'可复现性鸿沟'——这是 RAG/检索基础设施走向可控、可定制的关键瓶颈。",
-      "path": "daily-detail.html?date=2026-07-31"
     }
   ]
 }

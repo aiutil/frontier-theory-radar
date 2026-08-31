@@ -1,0 +1,134 @@
+{
+  "id": "pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag",
+  "title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
+  "authors": [
+    "Benjamin Constable",
+    "Anup Roy",
+    "Vishal Sharma",
+    "Rishabh Upadhyay",
+    "Robin Mills"
+  ],
+  "source": "arXiv",
+  "published": "2026-08-28",
+  "url": "http://arxiv.org/abs/2608.28572v1",
+  "pdf_url": "https://arxiv.org/pdf/2608.28572v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-09-01",
+  "first_deep_dive_daily": "2026-09-01",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 4.6,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 76.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Ret…",
+  "one_line_essence": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG 命中 rag-knowledge 与 context-engineering 主线（视觉 RAG 在企业视觉文档上的生产部署）：据摘要，机构投资者在交易临近的小时级节奏下搜索视觉密集的 pitch decks / board packs / diligence materials；OCR + 图表语言化在这种规模下刷新昂贵且会丢失图表细节。PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system：用冻结的 ColPali-style backbone 直接索引 page images，再叠 pooled two-stage late-interaction index——紧凑 page summaries 支持初检，详细 page-level scoring 支持精排。'把视觉文档检索从'OCR + 图说'改为'冻结 ColPali 直接索引页面 + 两阶段 late-interaction pooled'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本'对做企业 RAG / 视觉检索 / 文档智能的团队有直接价值——它示范了视觉文档检索的生产化路径（page summary 初检 + late-interaction 精排），并明确标注生产部署（Mubadala）。证据强度中上：摘要明确披露部署方（Mubadala）、架构选型（ColPali-style 冻结 backbone + pooled two-stage late-interaction）、应用节奏（小时级）+ 关键词 RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；建议跟踪其论文开源、benchmark 与定量结果。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG 命中 rag-knowledge 与 context-engineering 主线（视觉 RAG 在企业视觉文档上的生产部署）：据摘要，",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visu",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2608.28572v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2608.28572v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag",
+  "daily_path": "daily-detail.html?date=2026-09-01",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "by_url": {
+    "http://arxiv.org/abs/2608.28572v1": {
+      "score": 76,
+      "value_type": "immediate",
+      "reason": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG 命中 rag-knowledge 与 context-engineering 主线（视觉 RAG 在企业视觉文档上的生产部署）：据摘要，机构投资者在交易临近的小时级节奏下搜索视觉密集的 pitch decks / board packs / diligence materials；OCR + 图表语言化在这种规模下刷新昂贵且会丢失图表细节。PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system：用冻结的 ColPali-style backbone 直接索引 page images，再叠 pooled two-stage late-interaction index——紧凑 page summaries 支持初检，详细 page-level scoring 支持精排。'把视觉文档检索从'OCR + 图说'改为'冻结 ColPali 直接索引页面 + 两阶段 late-interaction pooled'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本'对做企业 RAG / 视觉检索 / 文档智能的团队有直接价值——它示范了视觉文档检索的生产化路径（page summary 初检 + late-interaction 精排），并明确标注生产部署（Mubadala）。证据强度中上：摘要明确披露部署方（Mubadala）、架构选型（ColPali-style 冻结 backbone + pooled two-stage late-interaction）、应用节奏（小时级）+ 关键词 RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；建议跟踪其论文开源、benchmark 与定量结果。",
+      "matched_topics": [
+        "rag-knowledge",
+        "context-engineering"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28553v1": {
+      "score": 74,
+      "value_type": "immediate",
+      "reason": "2026-09-01 回看 | Logos: An Agent Harness on a Cross-Process Bus 命中 ai-agent 与 security-governance 主线（agent 韧性 / 跨进程故障隔离）：据摘要，现代 agent systems 在运行时动态组装 capabilities，spatiotemporal-composability calculus 把 capability 形式化为携带 inverse 的 component、agent 装配为 plugins；当前 plugin 形式由单一进程承载同一 context——所有 component 共处一个物理故障域，一个故障悬挂所有 component、进程死亡中断所有 session。本文提出 Logos，以 cross-process bus 代替单进程 plugin 形式。'把 agent harness 从'单进程共享一个 context'改为'cross-process bus'——把故障域从 component 解耦，让故障悬挂与进程死亡不再传播到全组件'对做企业 agent harness、agent 容错、跨进程调用的团队有直接价值——它直击单进程 plugin 的核心故障传播问题，并为 agent 治理提供更可审计的故障边界。证据强度中等：问题诊断清晰（单进程 = 物理故障域合一）+ 关键词 agent/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 cross-process bus 的具体协议、inverse 跨进程追踪、与现有进程间通信（gRPC / message bus / capability system）的定量对比、故障域隔离的实证数据缺失；建议跟踪其开源与参考实现。",
+      "matched_topics": [
+        "ai-agent",
+        "security-governance"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28557v1": {
+      "score": 70,
+      "value_type": "trend",
+      "reason": "2026-09-01 回看 | Quest: Survey of Optimizers（综述，全名 Survey of Optimizers）命中 llm-evaluation / training-optimization 主线（2025-2026 NN 优化器设计空间重构）：据摘要，NN 优化从 2025-2026 起不再能简单描述为一系列 Adam 变体；设计空间已从坐标扩展到矩阵与层、从固定训练 horizon 扩展为时间上的策略、从数学 update rule 扩展为必须能在分片与低精度计算下存活的状态表示。本文沿四个相互独立的轴归类近期优化器与训练优化方法：temporal estimation、update geometry、horizo[ns] / schedule、state representation。'把 NN 优化从'Adam 变体盘点'重构为四轴设计空间（temporal estimation / update geometry / horizon-schedule / state representation）'对做 LLM 训练、agent 后训练、训练基础设施的团队有趋势参考价值——它为评估/选型/自研优化器提供了比'新旧 Adam 变体'更结构化的视角，并强调分片+低精度生存能力。证据强度中等：方法框架清晰（四轴独立分类）+ 关键词 memory 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致四轴下具体优化器的对比表、与 SOTA 优化器（Muon / Shampoo / Lion / SOAP 等）的覆盖关系、对分片+低精度的存活约束细节缺失；属综述类（survey），提供 mapping 但需跟踪其具体推荐矩阵。",
+      "matched_topics": [
+        "llm-evaluation"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28578v1": {
+      "score": 64,
+      "value_type": "trend",
+      "reason": "2026-09-01 回看 | Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation Learning 命中 multimodal-agent / embodied AI 主线（仿真灵巧手与肌腱驱动学习）：据摘要，tendon-driven hand 是拟人化的，把执行器从关节外移让该级别手更便宜；二种效应带来该节省：力通过 cable 路由，无需电机塞进所驱动关节；一个电机可通过一根 cable 驱动多关节，所需电机更少。然而这种欠驱动 transmission 比 direct-drive 手更难学——其欠驱动 transmission 既降低硬件成本又增加学习难度。本文提出 Aero Hand Open，是 simulation-ready 灵巧手面向学习。'把 tendon-driven 灵巧手作为可直接学习的仿真资产开放——用欠驱动换取硬件成本、用仿真换学习可行性'对做具身 AI / 操作学习 / 灵巧手研究的团队有趋势参考价值——它示范了'硬件经济性 + 仿真可学性'的搭配，并降低具身研究的进入门槛。证据强度中等：方向明确（仿真 ready）+ 关键词未命中但 embodied 类目命中（cs.RO）。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体仿真平台、benchmark、USD/MuJoCo/Isaac 兼容性、学习 task suite、与 direct-drive 手的定量对比缺失；属 embodied AI 资产层，方向价值 > 短期工程价值。",
+      "matched_topics": [
+        "multimodal-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28576v1": {
+      "score": 60,
+      "value_type": "long_tail",
+      "reason": "2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmented Inference 命中 llm-evaluation 与 inference-serving 主线（合成数据增强推断的尺寸-权重前沿）：据摘要，当真实数据稀缺时合成数据可改善统计推断，但把合成样本当真实数据用会引入偏差。本文开发一个跨相关任务群体的合成增强推断通用框架，以合成观测数与其权重表征合成增强；核心是 size-weight frontier，对每个权重指定最大合成样本数。'用 size-weight frontier 把'用多少合成数据 + 给多大权重'变成显式可控调节——把合成数据从'凭感觉设比例'变为有理论边界的工程问题'对做小数据推断、合成数据治理、评测数据工程的团队有长尾参考价值——它示范了'合成数据不是越多越好'的理论约束。证据强度中等：方法动机清晰（size-weight frontier）+ 关键词 RAG/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 frontier 的具体构造、对 LLM 评测数据合成的适用性、与传统 CI/贝叶斯合成数据方法的定量对比缺失；属跨任务群体推断理论层，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
+      "matched_topics": [
+        "llm-evaluation",
+        "inference-serving"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28560v1": {
+      "score": 58,
+      "value_type": "long_tail",
+      "reason": "2026-09-01 回看 | A Formal Limitation on Learning Human Language From Textual Corpora 命中 llm-evaluation 与 security-governance 主线（从文本语料学习人类语言的形式上限）：据摘要，听者能否仅从话语形式恢复说者意图？本文信息论地证明，对任何 featurizer（包括当代 LLM 的隐藏态）都给出一个 decoder 能恢复说者意图的概率的上界。'用信息论严格上界证明'仅从文本语料学不到人类语言的全部'——为 LLM 能力评估与对齐评估提供一种形式化的'不可能'基准'对做 LLM 评估、alignment 边界、可解释性的团队有长尾参考价值——它示范了'不可学/不可恢复'的形式化方法，可作为评估上限的引理。证据强度中等偏上：方法路径清晰（信息论上界）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致上界对应的具体信息度量、与 BERT/Transformer 隐藏态的实证校准、是否依赖特定相关性假设缺失；属理论结果，作长尾资产保存。",
+      "matched_topics": [
+        "llm-evaluation",
+        "security-governance"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28589v1": {
+      "score": 55,
+      "value_type": "long_tail",
+      "reason": "2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs 命中 ai-k8s-platform / AI4Science 长尾候选（量子图上的 PINN）：据摘要，本文提出 QGPINNs（PyTorch 实现）框架，用神经网络近似量子图上每条边上的解、用统一图 loss 强加方程与初始/边界/顶点传输条件。'把 PINN 推广到'量子图 + 非局部微分方程 + 顶点传输条件'——为带边界/分支的物理仿真提供新的可微分解法'对做 AI for Science、物理仿真、可微 PDE 求解器的团队有长尾参考价值——它拓展了 PINN 适用域并示范了'图结构 + 物理约束'的统一 loss 构造。证据强度中等：框架结构清晰（PyTorch 实现、统一 graph loss）+ 关键词 benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致与经典数值方法（FEM / spectral method）的定量对比、训练稳定性、量子图具体出处缺失；属 AI4Science 垂直方向，对通用 LLM/agent 工程栈直接迁移距离较远，作长尾资产保存。",
+      "matched_topics": [
+        "ai-k8s-platform"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28564v1": {
+      "score": 52,
+      "value_type": "long_tail",
+      "reason": "2026-09-01 回看 | Learning between the peaks: sharp asymptotics for kernel ridge regression under power-law anisotropy 命中 inference-serving / 学习理论长尾候选（KRR 幂律各向异性的渐近学习曲线）：据摘要，本文研究各向异性高斯数据下核岭回归，其中输入协方差按幂律 α≥0 衰减；推导多项式核在多项式高维 regime n=Θ(d^κ) 下核谱与泛化误差的渐近精确表达。'给出幂律各向异性下 KRR 谱与泛化误差的渐近精确表达——把'各向异性 vs 各向同性'的学习曲线差异变成可计算的尖锐表达式'对做学习理论、模型选择、神经网络的理论解释（NTK 视角）的团队有长尾参考价值——它提供了带各向异性的精确渐近。证据强度中等：理论结果清晰（尖锐渐近）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 κ regime 内是否存在相位转捩、与深度学习理论的桥接、实证校准缺失；属学习理论层，作长尾资产保存。",
+      "matched_topics": [
+        "inference-serving"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28555v1": {
+      "score": 50,
+      "value_type": "long_tail",
+      "reason": "2026-09-01 回看 | QUEST: A Query and Extraction System for Topics in Asylum Law Application Decisions 命中 rag-knowledge / 垂直领域长尾候选（庇护法决策的查询与抽取系统）：据摘要，庇护申请法律决策是长、复杂、异构文档；上诉时关键问题是原始决定的决定因素是否包含原始申请中信息的可信度。本文提出 QUEST 系统提取并识别相关主题。'把'什么是决定因素'这种抽象法律问题用主题抽取+查询系统变成可工程化的 QA pipeline'对做法律 AI / 垂直领域 RAG / 高敏感度文档检索的团队有长尾参考价值——它示范了'领域敏感的语义标注 + 可审计 QA'在严苛合规场景下的路径。证据强度中等：系统描述清晰（Query and Extraction System）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致主题 schema 设计、人评/自动评对比、是否公布 benchmark 缺失；属垂直领域 RAG 工程，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
+      "matched_topics": [
+        "rag-knowledge"
+      ]
+    },
+    "http://arxiv.org/abs/2608.28566v1": {
+      "score": 45,
+      "value_type": "ignore",
+      "reason": "2026-09-01 回看 | On two proofs of d² mixing of weighted Dikin walks 聚焦 cs.DS / 数学概率混合时间结果（加权 Dikin 行走 d² 混合的两种证明）：据摘要，本文研究加权 Dikin 行走对多面体上/截断半定锥上指数分布采样的混合时间；给出强自协调 / ν̄-对称 / 混合迹正则性下的总变差混合上界，并把框架应用于 Lee-Sidford、Lewis-wei[gh]t 等 setting。领域聚焦混合时间数学结果，与团队以 Agent / LLM 工程栈 / RAG / 推理 / 评测为核心的技术栈直接迁移距离较远；关键词未命中。code/benchmark/Papers with Code/OpenReview 链接暂无待核验。忽略，除非做约束凸采样/MCMC-as-optimizer/LP+LLM pipeline 的方向工作。",
+      "matched_topics": []
+    }
+  }
+}

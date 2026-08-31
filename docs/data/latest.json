@@ -1,109 +1,119 @@
 {
-  "updated_at": "2026-08-30T04:31:42.177920",
+  "updated_at": "2026-09-01T04:33:31.281678",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-08-30",
-    "title": "论文价值发现日报 - 2026-08-30",
-    "deep_dive_title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
-    "deep_dive_url": "http://arxiv.org/abs/2608.27454v1",
+    "date": "2026-09-01",
+    "title": "论文价值发现日报 - 2026-09-01",
+    "deep_dive_title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
+    "deep_dive_url": "http://arxiv.org/abs/2608.28572v1",
     "decision": "轻量试点",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "2026-08-30 回看 | 完成三件事：(1) 跟踪 WikiSkill 开源——评估其持久知识结构是否可与团队 long-horizon agent 的 memory 抽象兼容，可在内部 agent 上做 'skill library + wiki knowledge' 概念验证（不依赖完整开源，知识结构化思想可借鉴，1 周内可做概念验证）；(2) 把 CritICL 的'失败模式判别器'思路纳入推理时成本治理设计——评估在内部任务上'小模型 ICL 桥接大模型'是否能省下重复采样/外验证成本（30 分钟可设计实验、1-2 天可实施）；(3) 把 PES 的 persona/execution trust domain 分离原则纳入企业 agent 合规架构评估清单（30 分钟可梳理要点，1 周内可在内部架构评审中应用）。",
-    "max_uncertainty": "2026-08-30 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；WikiSkill 摘要截断导致持久知识结构的存储/检索机制、跨任务复用实证数据缺失；CritICL 摘要截断导致具体 ICL/检索机制、与 self-consistency / verifier-based 推理时方法的定量对比、适用模型家族缺失；PES 摘要截断导致 contract bridge 的具体协议、persona 漂移边界、execution 审计的可证伪保证缺失；TTPO 摘要截断导致目标函数、与多数投票/Verifier-based TTT 的定量对比、数学推理外的适用任务缺失；SWE-Prime 摘要截断导致'高质量'具体过滤/打分准则、与全量 SFT 的定量对比、SWE-bench Verified 关联缺失；RedEvoAgent 摘要截断导致 skill evolution 具体机制、与固定攻击/检索基线的定量对比、目标模型/任务范围缺失；MCR-Bench、Tacet、MAELLE 摘要均截断导致各自方法细节与定量对比缺失；Transduced LM 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
-    "one_line_judgement": "WikiSkill 把分散在 trajectory/optimization history 里的洞察结构化沉淀为 wiki-style 持久知识，与昨日（8-27）Recuris 的 Working + Experiential 双层 memory 同方向——但更聚焦'skill 知识结构化'而非'memory 分层'；CritICL 利用小模型结构化失败模式做 ICL 桥接大模型，把弱模型从'答案提供者'变成'失败模式判别器'，可在不增加采样/外验证成本下提升推理质量；Persona-Execution Separation 把 persona 与 execution 显式分到不同 trust domain、用 governed contract bridge 桥接，直击企业 agent '可演化 vs 可审计'的核心冲突。三篇 immediate 共同把 AI 工程从'演示层'推向'经验沉淀 + 成本受限推理 + 合规治理'的运营层。三个趋势信号：TTPO 把 RL/OPSD 的 ground truth 依赖换成'利用多数/少数 rollout 不对称性'的推理时训练、SWE-Prime 把 SWE agent 训练从'采大量轨迹'转向'精选高质量轨迹'、RedEvoAgent 把红队 agent 攻击技能从'固定/检索'改为'经验驱动 skill evolution'。",
-    "path": "daily-detail.html?date=2026-08-30"
+    "daily_action": "2026-09-01 回看 | 完成四件事：(1) 跟踪 PULSAR 开源与定量结果，并在团队内部视觉文档检索 pipeline 上做最小验证（不依赖完整开源，冻结 backbone + 两阶段池化思路可作为对比基线，1 周内可设计验证实验）；(2) 把 Logos 的 cross-process bus 思路纳入 agent harness 韧性设计清单（30 分钟可梳理现有架构的故障边界、识别单进程 plugin 的故障域传播风险点，1 周内可在内部架构评审中应用）；(3) 把 Quest 综述的四轴（temporal estimation / update geometry / horizon-schedule / state representation）作为评估/选型/自研优化器的结构化视角，并在团队当前 optimizer 上做四轴定位；(4) 评估 Aero Hand Open 对团队具身/操作学习研究计划的潜在价值，建立仿真平台候选清单。",
+    "max_uncertainty": "2026-09-01 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。PULSAR 摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；Logos 摘要截断导致 cross-process bus 的具体协议、inverse 跨进程追踪、与现有进程间通信（gRPC / message bus / capability system）的定量对比、故障域隔离的实证数据缺失；Quest 综述摘要截断导致四轴下具体优化器的对比表、与 SOTA 优化器（Muon / Shampoo / Lion / SOAP 等）的覆盖关系、对分片+低精度的存活约束细节缺失；Aero Hand Open 摘要截断导致具体仿真平台、benchmark、USD/MuJoCo/Isaac 兼容性、学习 task suite、与 direct-drive 手的定量对比缺失；Size-Weight Frontier 摘要截断导致 frontier 的具体构造、对 LLM 评测数据合成的适用性、与传统 CI/贝叶斯合成数据方法的定量对比缺失；Formal Limitation 摘要截断导致上界对应的具体信息度量、与 BERT/Transformer 隐藏态的实证校准、是否依赖特定相关性假设缺失；QGPINNs 摘要截断导致与经典数值方法（FEM / spectral method）的定量对比、训练稳定性、量子图具体出处缺失；KRR Power-Law Anisotropy 摘要截断导致 κ regime 内是否存在相位转捩、与深度学习理论的桥接、实证校准缺失；QUEST Asylum Law 摘要截断导致主题 schema 设计、人评/自动评对比、是否公布 benchmark 缺失；Dikin Walks d² Mixing 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
+    "one_line_judgement": "PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system，用冻结 ColPali-style backbone 直接索引 page images + pooled two-stage late-interaction index（page summaries 初检 + page-level scoring 精排），把视觉文档检索从'OCR + 图说'改为'视觉直接索引 + 两阶段 late-interaction'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本。Logos 把 agent harness 从'单进程共享一个 context'改为'cross-process bus'——所有 component 共处一个物理故障域的问题被解耦，让故障悬挂与进程死亡不再传播到全组件，直击单进程 plugin 的核心故障传播问题，并为 agent 治理提供更可审计的故障边界。一个趋势信号：[Quest: Survey of Optimizers](http://arxiv.org/abs/2608.28557v1) 把 NN 优化从'Adam 变体盘点'重构为四轴设计空间（temporal estimation / update geometry / horizon-schedule / state representation），强调分片+低精度生存能力，为评估/选型/自研优化器提供比'新旧 Adam 变体'更结构化的视角；[Aero Hand Open](http://arxiv.org/abs/2608.28578v1) 把 tendon-driven 灵巧手作为可直接学习的仿真资产开放，示范了'硬件经济性 + 仿真可学性'的搭配。",
+    "path": "daily-detail.html?date=2026-09-01"
   },
   "top_paper": {
-    "title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+    "title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
     "authors": [
-      "Liyan Tang",
-      "Cyrus Rashtchian",
-      "Chun-Sung Ferng",
-      "Andrew Tomkins",
-      "Da-Cheng Juan"
+      "Benjamin Constable",
+      "Anup Roy",
+      "Vishal Sharma",
+      "Rishabh Upadhyay",
+      "Robin Mills"
     ],
-    "published": "2026-08-27",
-    "updated": "2026-08-27",
+    "published": "2026-08-28",
+    "updated": "2026-08-28",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2608.27454v1",
-    "pdf_url": "https://arxiv.org/pdf/2608.27454v1",
+    "url": "http://arxiv.org/abs/2608.28572v1",
+    "pdf_url": "https://arxiv.org/pdf/2608.28572v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Agent skills package specialized knowledge and workflows into reusable resources that extend AI agent capabilities. Recent work automatically discovers such skills from agent experience, which enables agents to progressively adapt through interaction. However, the insights that guide skill development typically remain scattered across optimization histories, limiting their systematic reuse across iterations. We introduce WikiSkill, a framework that co-evolves agent skills with a persistent knowl",
+    "abstract": "Institutional investors search visually dense pitch decks, board packs, and diligence materials that change hourly near deal closing. OCR followed by figure verbalisation is costly to refresh at this scale and can lose chart detail. We present PULSAR, a production vision-first retrieval system deployed at Mubadala Investment Company. PULSAR indexes page images with a frozen ColPali-style backbone and uses a pooled two-stage late-interaction index: compact page summaries support initial retrieval",
     "categories": [
-      "cs.AI",
-      "cs.CL"
+      "cs.IR"
     ],
     "keywords": [
-      "agent",
-      "benchmark"
+      "RAG"
     ],
-    "score": 74.0,
+    "score": 76.0,
     "decision": "轻量试点",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2608.27454v1"
+        "url": "http://arxiv.org/abs/2608.28572v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2608.27454v1"
+        "url": "https://arxiv.org/pdf/2608.28572v1"
       }
     ],
-    "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution 命中 ai-agent 与 context-engineering 主线（agent 长期技能沉淀）：据摘要，agent skills 把专门知识与 workflow 打包成可复用资源以扩展能力，已有工作可从经验自动发现 skill，但驱动 skill 开发的洞察散落在优化历史中、跨迭代难复用；WikiSkill 把 agent skills 与一个持久知识结构共进化——把执行经验系统沉淀为可检索/可演化的'wiki-style'知识库。'把分散在 trajectory/optimization history 里的洞察结构化沉淀为可被未来 skill 检索复用的 wiki'对做 long-horizon agent harness / 持续学习 / agent 运营化的团队有直接价值——它解决了'agent 学到过什么、为什么、能否在新场景复用'的核心痛点。证据强度中等：方法抽象清晰（persistent knowledge + skill co-evolution）+ 关键词 agent/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致持久知识结构的存储/检索机制、与 WikiSkill 同框架下的检索协议、跨任务复用的实证数据缺失；建议跟踪其开源与定量结果。",
-    "id": "wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution",
+    "llm_reason": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG 命中 rag-knowledge 与 context-engineering 主线（视觉 RAG 在企业视觉文档上的生产部署）：据摘要，机构投资者在交易临近的小时级节奏下搜索视觉密集的 pitch decks / board packs / diligence materials；OCR + 图表语言化在这种规模下刷新昂贵且会丢失图表细节。PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system：用冻结的 ColPali-style backbone 直接索引 page images，再叠 pooled two-stage late-interaction index——紧凑 page summaries 支持初检，详细 page-level scoring 支持精排。'把视觉文档检索从'OCR + 图说'改为'冻结 ColPali 直接索引页面 + 两阶段 late-interaction pooled'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本'对做企业 RAG / 视觉检索 / 文档智能的团队有直接价值——它示范了视觉文档检索的生产化路径（page summary 初检 + late-interaction 精排），并明确标注生产部署（Mubadala）。证据强度中上：摘要明确披露部署方（Mubadala）、架构选型（ColPali-style 冻结 backbone + pooled two-stage late-interaction）、应用节奏（小时级）+ 关键词 RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；建议跟踪其论文开源、benchmark 与定量结果。",
+    "id": "pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag",
     "value_type": "immediate",
     "matched_topics": [
-      "ai-agent",
+      "rag-knowledge",
       "context-engineering"
     ],
     "score_breakdown": {
-      "novelty": 4.8,
-      "problem_importance": 5.8,
-      "relevance": 6.2,
+      "novelty": 5.4,
+      "problem_importance": 5.15,
+      "relevance": 5.0,
       "evidence_strength": 4.5,
-      "engineering_testability": 5.15,
+      "engineering_testability": 4.6,
       "trend_signal": 3.5,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 6.2,
+      "asset_convertibility": 4.8,
       "actionability": 5.0,
       "noise_risk": 1.2,
       "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 2.2,
+      "low_relevance_penalty": 3.6,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "brief_cn": "AI Agent：Agent skills package specialized knowledge and workflows into reusable resourc…",
-    "one_line_judgement": "今天值得试：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | WikiSkill: Compiling Ag…",
-    "first_seen_date": "2026-08-30",
-    "first_deep_dive_daily": "2026-08-30",
+    "brief_cn": "RAG / 知识系统：Institutional investors search visually dense pitch decks, board packs, and di…",
+    "one_line_judgement": "今天值得试：2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Ret…",
+    "first_seen_date": "2026-09-01",
+    "first_deep_dive_daily": "2026-09-01",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | WikiSkill: Compiling Agent Experience into Persis",
+    "long_tail_summary": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visu",
     "related_trends": [
-      "agentic-world-modeling",
       "context-engineering"
     ],
-    "detail_path": "paper-detail.html?id=wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution"
+    "detail_path": "paper-detail.html?id=pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag"
   },
-  "paper_count": 1650,
+  "paper_count": 1660,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 123,
+  "long_tail_count": 128,
   "value_distribution": {
-    "immediate": 100,
-    "trend": 138,
-    "long_tail": 123,
-    "ignore": 1289
+    "immediate": 102,
+    "trend": 140,
+    "long_tail": 128,
+    "ignore": 1290
   },
   "recent_dailies": [
+    {
+      "date": "2026-09-01",
+      "title": "论文价值发现日报 - 2026-09-01",
+      "deep_dive_title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
+      "deep_dive_url": "http://arxiv.org/abs/2608.28572v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "2026-09-01 回看 | 完成四件事：(1) 跟踪 PULSAR 开源与定量结果，并在团队内部视觉文档检索 pipeline 上做最小验证（不依赖完整开源，冻结 backbone + 两阶段池化思路可作为对比基线，1 周内可设计验证实验）；(2) 把 Logos 的 cross-process bus 思路纳入 agent harness 韧性设计清单（30 分钟可梳理现有架构的故障边界、识别单进程 plugin 的故障域传播风险点，1 周内可在内部架构评审中应用）；(3) 把 Quest 综述的四轴（temporal estimation / update geometry / horizon-schedule / state representation）作为评估/选型/自研优化器的结构化视角，并在团队当前 optimizer 上做四轴定位；(4) 评估 Aero Hand Open 对团队具身/操作学习研究计划的潜在价值，建立仿真平台候选清单。",
+      "max_uncertainty": "2026-09-01 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。PULSAR 摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；Logos 摘要截断导致 cross-process bus 的具体协议、inverse 跨进程追踪、与现有进程间通信（gRPC / message bus / capability system）的定量对比、故障域隔离的实证数据缺失；Quest 综述摘要截断导致四轴下具体优化器的对比表、与 SOTA 优化器（Muon / Shampoo / Lion / SOAP 等）的覆盖关系、对分片+低精度的存活约束细节缺失；Aero Hand Open 摘要截断导致具体仿真平台、benchmark、USD/MuJoCo/Isaac 兼容性、学习 task suite、与 direct-drive 手的定量对比缺失；Size-Weight Frontier 摘要截断导致 frontier 的具体构造、对 LLM 评测数据合成的适用性、与传统 CI/贝叶斯合成数据方法的定量对比缺失；Formal Limitation 摘要截断导致上界对应的具体信息度量、与 BERT/Transformer 隐藏态的实证校准、是否依赖特定相关性假设缺失；QGPINNs 摘要截断导致与经典数值方法（FEM / spectral method）的定量对比、训练稳定性、量子图具体出处缺失；KRR Power-Law Anisotropy 摘要截断导致 κ regime 内是否存在相位转捩、与深度学习理论的桥接、实证校准缺失；QUEST Asylum Law 摘要截断导致主题 schema 设计、人评/自动评对比、是否公布 benchmark 缺失；Dikin Walks d² Mixing 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
+      "one_line_judgement": "PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system，用冻结 ColPali-style backbone 直接索引 page images + pooled two-stage late-interaction index（page summaries 初检 + page-level scoring 精排），把视觉文档检索从'OCR + 图说'改为'视觉直接索引 + 两阶段 late-interaction'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本。Logos 把 agent harness 从'单进程共享一个 context'改为'cross-process bus'——所有 component 共处一个物理故障域的问题被解耦，让故障悬挂与进程死亡不再传播到全组件，直击单进程 plugin 的核心故障传播问题，并为 agent 治理提供更可审计的故障边界。一个趋势信号：[Quest: Survey of Optimizers](http://arxiv.org/abs/2608.28557v1) 把 NN 优化从'Adam 变体盘点'重构为四轴设计空间（temporal estimation / update geometry / horizon-schedule / state representation），强调分片+低精度生存能力，为评估/选型/自研优化器提供比'新旧 Adam 变体'更结构化的视角；[Aero Hand Open](http://arxiv.org/abs/2608.28578v1) 把 tendon-driven 灵巧手作为可直接学习的仿真资产开放，示范了'硬件经济性 + 仿真可学性'的搭配。",
+      "path": "daily-detail.html?date=2026-09-01"
+    },
     {
       "date": "2026-08-30",
       "title": "论文价值发现日报 - 2026-08-30",
@@ -181,155 +191,285 @@
       "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；今日 10 篇中 4 篇摘要存在截断（AI with Authority、TurboBias、Asymmetric Capacity Allocation、PerturbRx 等），影响具体方法/实验设置的判断；Artic 的 artifact 具体表示形式（数据结构？schema？typed IR？）、AI with Authority 验证栈端到端形式（spec 形式化？equi-check？）、Asymmetric Capacity 的具体实验规模、Truthful Calibration 的证明与对 LLM evaluator 的具体意涵均需正文确认；今日未出现昨日的 AI4AI-Bench（该结论不跨日）；RAG 关键词在 Primal Acceleration 与 Across-Design Pricing 上为误标签，已在评分中剔除。",
       "one_line_judgement": "Artic 把自然语言工作流转成 artifact 形式，强迫把隐式数据依赖外化为可被求解的输入——这是当前 agent 工作流易碎（长程/分支下 context 压力失效）的关键工程缺口，可直接对接到 LangGraph/DSPy/Temporal 这类编排器的'workflow-as-input'思路。AI with Authority 论证机器验证是规模化调度自主机器工作的前提——'不可腐化裁判'作为一项基础设施命题，足以催生一整个工程方向：verification-first agent runtimes、evaluator harness 与 runtime rollback。Asymmetric Capacity Allocation 则用 self-refinement 三阶段容量异构的实验探索，支撑'mixed-size pipeline 是 LLM 工程的成本金矿'这一更普遍趋势。三者共同折射：agent 价值密度正在从模型能力转向'基础设施（编译、验证、容量编排）'。",
       "path": "daily-detail.html?date=2026-08-25"
-    },
-    {
-      "date": "2026-08-24",
-      "title": "论文价值发现日报 - 2026-08-24",
-      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
-      "path": "daily-detail.html?date=2026-08-24"
     }
   ],
   "top_papers": [
     {
-      "title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
+      "title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
       "authors": [
-        "Liyan Tang",
-        "Cyrus Rashtchian",
-        "Chun-Sung Ferng",
-        "Andrew Tomkins",
-        "Da-Cheng Juan"
+        "Benjamin Constable",
+        "Anup Roy",
+        "Vishal Sharma",
+        "Rishabh Upadhyay",
+        "Robin Mills"
       ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27454v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27454v1",
+      "url": "http://arxiv.org/abs/2608.28572v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28572v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Agent skills package specialized knowledge and workflows into reusable resources that extend AI agent capabilities. Recent work automatically discovers such skills from agent experience, which enables agents to progressively adapt through interaction. However, the insights that guide skill development typically remain scattered across optimization histories, limiting their systematic reuse across iterations. We introduce WikiSkill, a framework that co-evolves agent skills with a persistent knowl",
+      "abstract": "Institutional investors search visually dense pitch decks, board packs, and diligence materials that change hourly near deal closing. OCR followed by figure verbalisation is costly to refresh at this scale and can lose chart detail. We present PULSAR, a production vision-first retrieval system deployed at Mubadala Investment Company. PULSAR indexes page images with a frozen ColPali-style backbone and uses a pooled two-stage late-interaction index: compact page summaries support initial retrieval",
+      "categories": [
+        "cs.IR"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 76.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.28572v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.28572v1"
+        }
+      ],
+      "llm_reason": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG 命中 rag-knowledge 与 context-engineering 主线（视觉 RAG 在企业视觉文档上的生产部署）：据摘要，机构投资者在交易临近的小时级节奏下搜索视觉密集的 pitch decks / board packs / diligence materials；OCR + 图表语言化在这种规模下刷新昂贵且会丢失图表细节。PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system：用冻结的 ColPali-style backbone 直接索引 page images，再叠 pooled two-stage late-interaction index——紧凑 page summaries 支持初检，详细 page-level scoring 支持精排。'把视觉文档检索从'OCR + 图说'改为'冻结 ColPali 直接索引页面 + 两阶段 late-interaction pooled'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本'对做企业 RAG / 视觉检索 / 文档智能的团队有直接价值——它示范了视觉文档检索的生产化路径（page summary 初检 + late-interaction 精排），并明确标注生产部署（Mubadala）。证据强度中上：摘要明确披露部署方（Mubadala）、架构选型（ColPali-style 冻结 backbone + pooled two-stage late-interaction）、应用节奏（小时级）+ 关键词 RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；建议跟踪其论文开源、benchmark 与定量结果。",
+      "id": "pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag",
+      "value_type": "immediate",
+      "matched_topics": [
+        "rag-knowledge",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "RAG / 知识系统：Institutional investors search visually dense pitch decks, board packs, and di…",
+      "one_line_judgement": "今天值得试：2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Ret…",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visu",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag"
+    },
+    {
+      "title": "Logos: An Agent Harness on a Cross-Process Bus",
+      "authors": [
+        "Hanzhang Jia",
+        "Liheng Zeng",
+        "Hao Cheng",
+        "Yi Gao",
+        "Bo Ma"
+      ],
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.28553v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28553v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Modern agent systems assemble capabilities at runtime, and this dynamic composition has recently received a complete formal treat ment in the spatiotemporal-composability calculus, in which a capability is a component carrying a tracked inverse, and agents are assembled as plugins. This plugin form is carried by a single process sharing one context, a carrier that places all components in one physical failure domain, a fault suspends every component at once, and process death interrupts every se",
       "categories": [
         "cs.AI",
-        "cs.CL"
+        "cs.MA"
       ],
       "keywords": [
         "agent",
-        "benchmark"
+        "inference"
       ],
       "score": 74.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27454v1"
+          "url": "http://arxiv.org/abs/2608.28553v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27454v1"
+          "url": "https://arxiv.org/pdf/2608.28553v1"
         }
       ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution 命中 ai-agent 与 context-engineering 主线（agent 长期技能沉淀）：据摘要，agent skills 把专门知识与 workflow 打包成可复用资源以扩展能力，已有工作可从经验自动发现 skill，但驱动 skill 开发的洞察散落在优化历史中、跨迭代难复用；WikiSkill 把 agent skills 与一个持久知识结构共进化——把执行经验系统沉淀为可检索/可演化的'wiki-style'知识库。'把分散在 trajectory/optimization history 里的洞察结构化沉淀为可被未来 skill 检索复用的 wiki'对做 long-horizon agent harness / 持续学习 / agent 运营化的团队有直接价值——它解决了'agent 学到过什么、为什么、能否在新场景复用'的核心痛点。证据强度中等：方法抽象清晰（persistent knowledge + skill co-evolution）+ 关键词 agent/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致持久知识结构的存储/检索机制、与 WikiSkill 同框架下的检索协议、跨任务复用的实证数据缺失；建议跟踪其开源与定量结果。",
-      "id": "wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution",
+      "llm_reason": "2026-09-01 回看 | Logos: An Agent Harness on a Cross-Process Bus 命中 ai-agent 与 security-governance 主线（agent 韧性 / 跨进程故障隔离）：据摘要，现代 agent systems 在运行时动态组装 capabilities，spatiotemporal-composability calculus 把 capability 形式化为携带 inverse 的 component、agent 装配为 plugins；当前 plugin 形式由单一进程承载同一 context——所有 component 共处一个物理故障域，一个故障悬挂所有 component、进程死亡中断所有 session。本文提出 Logos，以 cross-process bus 代替单进程 plugin 形式。'把 agent harness 从'单进程共享一个 context'改为'cross-process bus'——把故障域从 component 解耦，让故障悬挂与进程死亡不再传播到全组件'对做企业 agent harness、agent 容错、跨进程调用的团队有直接价值——它直击单进程 plugin 的核心故障传播问题，并为 agent 治理提供更可审计的故障边界。证据强度中等：问题诊断清晰（单进程 = 物理故障域合一）+ 关键词 agent/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 cross-process bus 的具体协议、inverse 跨进程追踪、与现有进程间通信（gRPC / message bus / capability system）的定量对比、故障域隔离的实证数据缺失；建议跟踪其开源与参考实现。",
+      "id": "logos-an-agent-harness-on-a-cross-process-bus",
       "value_type": "immediate",
       "matched_topics": [
         "ai-agent",
-        "context-engineering"
+        "security-governance"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 5.15,
+        "engineering_testability": 4.05,
         "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.8,
         "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
+        "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "AI Agent：Agent skills package specialized knowledge and workflows into reusable resourc…",
-      "one_line_judgement": "今天值得试：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | WikiSkill: Compiling Ag…",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
+      "brief_cn": "AI Agent：Modern agent systems assemble capabilities at runtime, and this dynamic compos…",
+      "one_line_judgement": "今天值得试：2026-09-01 回看 | Logos: An Agent Harness on a Cross-Process Bus 命中 ai-a…",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | WikiSkill: Compiling Agent Experience into Persis",
+      "long_tail_summary": "2026-09-01 回看 | Logos: An Agent Harness on a Cross-Process Bus 命中 ai-agent 与 security-governance",
       "related_trends": [
-        "agentic-world-modeling",
-        "context-engineering"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=wikiskill-compiling-agent-experience-into-persistent-knowledge-for-skill-evolution"
+      "detail_path": "paper-detail.html?id=logos-an-agent-harness-on-a-cross-process-bus"
     },
     {
-      "title": "CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes",
+      "title": "Blog: Survey of Optimizers",
       "authors": [
-        "Yufan Wu",
-        "Yinghui He",
-        "Zhengyi Hu",
-        "Lang Wei",
-        "Ruichen Li"
+        "Ruoran Xu"
       ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27455v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27455v1",
+      "url": "http://arxiv.org/abs/2608.28557v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28557v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Recent advances in inference-time scaling have significantly improved the reasoning performance of large language models (LLMs). However, these methods typically rely on repeated generation or external verification. To address this limitation, we introduce CritICL, a novel inference-time framework that improves reasoning while maintaining high efficiency. Our key insight is that LLM failure modes exhibit structured patterns across model scales within the same family. Instead of treating failures",
+      "abstract": "Neural-network optimization in 2025-2026 is no longer well described as a succession of new Adam variants. The design space has expanded from coordinates to matrices and layers, from fixed training horizons to policies over time, and from mathematical update rules to state representations that must survive sharding and low-precision computation. This survey organizes recent optimizers and training optimization methods along four largely independent axes: temporal estimation, update geometry, hor",
       "categories": [
-        "cs.CL"
+        "cs.LG",
+        "cs.AI"
       ],
       "keywords": [
-        "RAG",
-        "inference"
+        "memory"
       ],
-      "score": 73.0,
+      "score": 70.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27455v1"
+          "url": "http://arxiv.org/abs/2608.28557v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27455v1"
+          "url": "https://arxiv.org/pdf/2608.28557v1"
         }
       ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | CritICL: Inference-Time Weak-to-Strong Generalization from Small Language Model Failure Modes 命中 llm-evaluation 与 inference-serving 主线（小→大模型失败模式推理时桥接）：据摘要，inference-time scaling（重复采样/外部验证）改善 LLM 推理但代价高，本文提出 CritICL 框架保持高效率；关键洞察是 LLM failure modes 在同家族不同规模模型间呈结构化模式。'不用重复采样也不用外部验证器，直接从小模型的结构化失败模式 ICL 桥接到大模型'对做推理时扩展 / 弱→强对齐 / 成本受限部署的团队有直接价值——它把弱模型转化为'失败模式判别器'而非'答案提供者'。证据强度中等：核心洞察清晰（跨规模失败模式结构化）+ 关键词 inference 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 CritICL 的具体提示/检索机制、与 self-consistency / verifier-based 推理时方法的定量对比、适用模型家族缺失；建议跟踪其开源与评测。",
-      "id": "criticl-inference-time-weak-to-strong-generalization-from-small-language-model-failure-modes",
-      "value_type": "immediate",
+      "llm_reason": "2026-09-01 回看 | Quest: Survey of Optimizers（综述，全名 Survey of Optimizers）命中 llm-evaluation / training-optimization 主线（2025-2026 NN 优化器设计空间重构）：据摘要，NN 优化从 2025-2026 起不再能简单描述为一系列 Adam 变体；设计空间已从坐标扩展到矩阵与层、从固定训练 horizon 扩展为时间上的策略、从数学 update rule 扩展为必须能在分片与低精度计算下存活的状态表示。本文沿四个相互独立的轴归类近期优化器与训练优化方法：temporal estimation、update geometry、horizo[ns] / schedule、state representation。'把 NN 优化从'Adam 变体盘点'重构为四轴设计空间（temporal estimation / update geometry / horizon-schedule / state representation）'对做 LLM 训练、agent 后训练、训练基础设施的团队有趋势参考价值——它为评估/选型/自研优化器提供了比'新旧 Adam 变体'更结构化的视角，并强调分片+低精度生存能力。证据强度中等：方法框架清晰（四轴独立分类）+ 关键词 memory 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致四轴下具体优化器的对比表、与 SOTA 优化器（Muon / Shampoo / Lion / SOAP 等）的覆盖关系、对分片+低精度的存活约束细节缺失；属综述类（survey），提供 mapping 但需跟踪其具体推荐矩阵。",
+      "id": "blog-survey-of-optimizers",
+      "value_type": "trend",
       "matched_topics": [
-        "llm-evaluation",
-        "inference-serving"
+        "llm-evaluation"
       ],
       "score_breakdown": {
-        "novelty": 6.0,
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 5.35,
+        "asset_convertibility": 4.0,
+        "actionability": 3.2,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Neural-network optimization in 2025-2026 is no longer well described as a succ…",
+      "one_line_judgement": "值得继续观察：2026-09-01 回看 | Quest: Survey of Optimizers（综述，全名 Survey of Optimizers…",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "2026-09-01 回看 | Quest: Survey of Optimizers（综述，全名 Survey of Optimizers）命中 llm-evaluation / train",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=blog-survey-of-optimizers"
+    },
+    {
+      "title": "Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation Learning",
+      "authors": [
+        "Nan Wang",
+        "Mohit Yadav",
+        "Jonathan Wulff",
+        "Aidan Rosenbaum",
+        "Kezhou Chen"
+      ],
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.28578v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28578v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Tendon-driven hands are anthropomorphic, and moving the actuators off the joints is what makes a hand of this capability affordable to build. Two effects produce that saving. Routing force through a cable removes the requirement that a motor fit inside the joint it drives, so smaller and cheaper motors suffice, and one motor can drive several joints through a single cable, so fewer motors are needed. They are also harder to learn on than a direct-drive hand. The underactuated transmission that p",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 64.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.28578v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.28578v1"
+        }
+      ],
+      "llm_reason": "2026-09-01 回看 | Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation Learning 命中 multimodal-agent / embodied AI 主线（仿真灵巧手与肌腱驱动学习）：据摘要，tendon-driven hand 是拟人化的，把执行器从关节外移让该级别手更便宜；二种效应带来该节省：力通过 cable 路由，无需电机塞进所驱动关节；一个电机可通过一根 cable 驱动多关节，所需电机更少。然而这种欠驱动 transmission 比 direct-drive 手更难学——其欠驱动 transmission 既降低硬件成本又增加学习难度。本文提出 Aero Hand Open，是 simulation-ready 灵巧手面向学习。'把 tendon-driven 灵巧手作为可直接学习的仿真资产开放——用欠驱动换取硬件成本、用仿真换学习可行性'对做具身 AI / 操作学习 / 灵巧手研究的团队有趋势参考价值——它示范了'硬件经济性 + 仿真可学性'的搭配，并降低具身研究的进入门槛。证据强度中等：方向明确（仿真 ready）+ 关键词未命中但 embodied 类目命中（cs.RO）。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体仿真平台、benchmark、USD/MuJoCo/Isaac 兼容性、学习 task suite、与 direct-drive 手的定量对比缺失；属 embodied AI 资产层，方向价值 > 短期工程价值。",
+      "id": "aero-hand-open-a-simulation-ready-tendon-driven-hand-for-dexterous-manipulation-learning",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 4.05,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 6.2,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -338,439 +478,130 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Recent advances in inference-time scaling have significantly improved the reas…",
-      "one_line_judgement": "今天值得试：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | CritICL: Inference-Time…",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | CritICL: Inference-Time Weak-to-Strong Generaliza",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=criticl-inference-time-weak-to-strong-generalization-from-small-language-model-failure-modes"
-    },
-    {
-      "title": "Persona-Execution Separation: An Architecture Pattern for Evolving LLM Agents under Execution Audit",
-      "authors": [
-        "Yisen Xi"
-      ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27427v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27427v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Large language model (LLM) agents in governed organizations must let the persona (instructions, tone, self-presentation) evolve freely, while keeping execution (stateful, audited work) traceable. A single trust domain does not satisfy both cheaply. We present Persona-Execution Separation (PES): persona and execution reside in different trust domains, connected by a governed contract bridge. The persona is singly-homed and may drift; execution is faceless and audited. Status summaries may return;",
-      "categories": [
-        "cs.SE",
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent"
-      ],
-      "score": 72.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27427v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27427v1"
-        }
-      ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Persona-Execution Separation (PES): An Architecture Pattern for Evolving LLM Agents under Execution Audit 命中 security-governance 与 ai-agent 主线（agent 治理与审计架构模式）：据摘要，受治理组织中的 LLM agent 必须让 persona（指令、语气、自我呈现）自由演化，同时保持 execution（有状态、可审计的工作）可追溯；单一 trust domain 不能同时廉价满足两者。PES 把 persona 与 execution 放在不同 trust domain，由 governed contract bridge 连接——persona singly-homed 可漂移，execution faceless 受审计。'把 persona 与 execution 显式分到不同 trust domain、用 governed bridge 桥接——这是企业 agent 治理的架构抽象'对做企业级 agent 部署、合规审计、模型热替换、人机协作的团队有直接价值——它直击'agent 可演化 vs 工作可审计'的真实冲突。证据强度中等偏上：架构模式描述清晰（trust domain 分离 + contract bridge）+ 关键词 agent 命中。证据不足：code/benchmark/Papers with Code 暂无待核验；摘要截断导致 contract bridge 的具体协议、persona 漂移边界、execution 审计的可证伪保证缺失；建议跟踪其开源与参考实现。",
-      "id": "persona-execution-separation-an-architecture-pattern-for-evolving-llm-agents-under-execution-audit",
-      "value_type": "immediate",
-      "matched_topics": [
-        "security-governance",
-        "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "安全与治理：Large language model (LLM) agents in governed organizations must let the perso…",
-      "one_line_judgement": "今天值得试：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Persona-Execution Separ…",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Persona-Execution Separation (PES): An Architectu",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=persona-execution-separation-an-architecture-pattern-for-evolving-llm-agents-under-execution-audit"
-    },
-    {
-      "title": "TTPO: Test-Time Policy Optimization",
-      "authors": [
-        "Aozhe Wang",
-        "Zhengxi Lu",
-        "Jianze Wang",
-        "Shangke Lv",
-        "Ying Liu"
-      ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27448v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27448v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Recent prominent post-training methods, such as Reinforcement Learning (RL) and On-Policy Self-Distillation (OPSD), have driven rapid progress in mathematical reasoning for large language models, yet their reliance on ground-truth labels precludes test-time training (TTT). Replacing ground truth with majority-vote pseudo-labels is a natural alternative, yet it is fragile: an incorrect vote corrupts the teacher and misleads every token. We observe that this failure mode is asymmetric: rollouts th",
-      "categories": [
-        "cs.CL"
-      ],
-      "keywords": [
-        "benchmark",
-        "RAG"
-      ],
-      "score": 67.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27448v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27448v1"
-        }
-      ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | TTPO: Test-Time Policy Optimization 命中 ai-agent 与 llm-evaluation 主线（推理时训练替代 ground truth）：据摘要，RL 与 On-Policy Self-Distillation（OPSD）等后训练方法驱动数学推理进步但依赖 ground truth 标签，无法做 test-time training（TTT）；用 majority-vote 伪标签是自然替代但脆弱——一票错污染整个 teacher token。本文观察到失败模式不对称（rollouts 多数 vs 少数行为），提出 TTPO。'把 RL/OPSD 的 ground truth 依赖换成'利用多数/少数 rollout 不对称性'的 test-time 训练——在无标签场景做推理时优化'对做 agentic RL / 自演化 / 推理时学习的团队有趋势参考价值——它示范了 TTT 在 LLM 后训练上的具体路径。证据强度中等：观察到非对称失败模式 + 关键词 benchmark/RAG 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 TTPO 的具体目标函数、与多数投票/Verifier-based TTT 的定量对比、数学推理外的适用任务缺失；属 RL 后训练组件层（与昨日 SPO++、BPCO 一脉相承），趋势信号累积。",
-      "id": "ttpo-test-time-policy-optimization",
-      "value_type": "trend",
-      "matched_topics": [
-        "ai-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Recent prominent post-training methods, such as Reinforcement Learning (RL) an…",
-      "one_line_judgement": "值得继续观察：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | TTPO: Test-Time Policy …",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
+      "brief_cn": "Multimodal Agent：Tendon-driven hands are anthropomorphic, and moving the actuators off the join…",
+      "one_line_judgement": "值得继续观察：2026-09-01 回看 | Aero Hand Open: A Simulation-Ready Tendon-Driven Hand …",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | TTPO: Test-Time Policy Optimization 命中 ai-agent 与",
+      "long_tail_summary": "2026-09-01 回看 | Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation",
       "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=ttpo-test-time-policy-optimization"
+      "detail_path": "paper-detail.html?id=aero-hand-open-a-simulation-ready-tendon-driven-hand-for-dexterous-manipulation-learning"
     },
     {
-      "title": "SWE-Prime: Fewer Trajectories, Better Performance",
+      "title": "Learning a Size-Weight Frontier for Synthetic-Augmented Inference",
       "authors": [
-        "Dewu Zheng",
-        "Ruizhe Ye",
-        "Yanlin Wang",
-        "Yang Ye",
-        "Hongyu Zhang"
+        "Chengpiao Huang",
+        "Kaizheng Wang"
       ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27449v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27449v1",
+      "url": "http://arxiv.org/abs/2608.28576v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28576v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "To improve large language models' ability to resolve real-world software issues, prior work has focused on constructing large-scale agent trajectory datasets and performing supervised fine-tuning (SFT) on successful trajectories. However, task success does not guarantee high-quality supervision: successful trajectories may still contain ineffective, redundant, or risky steps. Directly using such trajectories for SFT can introduce noisy supervision and encourage models to imitate undesirable prob",
+      "abstract": "Synthetic data can improve statistical inference when real data are scarce, but naively treating synthetic samples as real data can introduce bias and lead to unreliable inference. We develop a general framework for synthetic-augmented inference across a population of related tasks. It characterizes synthetic augmentation by the number of synthetic observations and their weight. Central to our framework is a size-weight frontier that specifies, for each weight, the largest synthetic sample size ",
       "categories": [
-        "cs.SE",
+        "stat.ME",
         "cs.AI",
-        "cs.CL"
+        "cs.LG",
+        "stat.ML"
       ],
       "keywords": [
-        "agent",
-        "RAG"
+        "RAG",
+        "inference"
       ],
-      "score": 65.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27449v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27449v1"
-        }
-      ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | SWE-Prime: Fewer Trajectories, Better Performance 命中 coding-agent 主线（SWE agent 训练数据质量）：据摘要，先前工作构建大规模 agent trajectory 数据集并对成功轨迹做 SFT，但任务成功 ≠ 高质量监督——成功轨迹可能含无效、冗余或风险步骤；直接 SFT 会引入噪声监督并鼓励模型模仿不良问题解决行为。'把 SWE agent 训练从'采大量轨迹'转向'精选高质量轨迹'——SFT 数据治理'对做 coding-agent / SWE-bench 类训练的团队有趋势参考价值——它直击当前 SWE agent 数据'量大但脏'的瓶颈。证据强度中等：问题诊断清晰（任务成功 ≠ 监督质量）+ 关键词 agent/RAG 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致'高质量'的具体过滤/打分准则、与全量 SFT 的定量对比、SWE-bench Verified/SFT 数据集开源情况缺失；属 SWE agent 训练数据工程一脉相承（与 Prime Agent、SWEBench 高分轨迹等近期趋势同方向），趋势信号累积。",
-      "id": "swe-prime-fewer-trajectories-better-performance",
-      "value_type": "trend",
-      "matched_topics": [
-        "coding-agent",
-        "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "Coding Agent：To improve large language models' ability to resolve real-world software issue…",
-      "one_line_judgement": "值得继续观察：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | SWE-Prime: Fewer Trajec…",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | SWE-Prime: Fewer Trajectories, Better Performance",
-      "related_trends": [
-        "coding-agent",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=swe-prime-fewer-trajectories-better-performance"
-    },
-    {
-      "title": "RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill Evolution",
-      "authors": [
-        "Junjie Zhang",
-        "Hui Liu",
-        "Kecheng Chen",
-        "Xianbo Mo",
-        "Changsheng Chen"
-      ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27439v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27439v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "LLM-based agents are increasingly deployed in product-level execution harnesses, where jailbreaks can trigger harmful tool use and persistent state changes, creating greater risks than unsafe text generation alone. Existing automatic red-teaming methods often rely on fixed attacks, while recent agentic attackers coordinate multiple jailbreak tools and show stronger potential through trajectory-based retrieval. However, such retrieval can reuse misleading experiences due to retrieval bias and unc",
-      "categories": [
-        "cs.CR",
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent",
-        "agentic",
-        "benchmark",
-        "tool use"
-      ],
-      "score": 62.0,
+      "score": 60.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27439v1"
+          "url": "http://arxiv.org/abs/2608.28576v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27439v1"
+          "url": "https://arxiv.org/pdf/2608.28576v1"
         }
       ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | RedEvoAgent: Automatic Red-Teaming Agent with Experience-Driven Skill Evolution 命中 security-governance 与 ai-agent 主线（agent 红队经验沉淀）：据摘要，LLM agent 在产品级执行环境部署，jailbreak 可触发有害工具使用与持久状态变化，风险远超不安全文本；现有自动红队方法依赖固定攻击、近期 agentic attacker 协调多种 jailbreak 工具并通过 trajectory 检索显示更强潜力，但检索会因检索偏差复用误导经验、未对齐当前任务。'用经验驱动的 skill evolution 改造红队 agent——让攻击技能从执行中累积而非仅检索'对做 agent 安全评估、红队自动化、产品级 agent 防护的团队有趋势参考价值——它示范了'攻击侧与防御侧都向经验沉淀迁移'。证据强度中等：方案描述清晰（experience-driven）+ 关键词 agent/agentic/benchmark/tool use 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 skill evolution 的具体机制、与固定攻击/检索基线的定量对比、目标模型/任务范围缺失；属 agent 安全工程层，方向价值大于短期工程价值。",
-      "id": "redevoagent-automatic-red-teaming-agent-with-experience-driven-skill-evolution",
-      "value_type": "trend",
+      "llm_reason": "2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmented Inference 命中 llm-evaluation 与 inference-serving 主线（合成数据增强推断的尺寸-权重前沿）：据摘要，当真实数据稀缺时合成数据可改善统计推断，但把合成样本当真实数据用会引入偏差。本文开发一个跨相关任务群体的合成增强推断通用框架，以合成观测数与其权重表征合成增强；核心是 size-weight frontier，对每个权重指定最大合成样本数。'用 size-weight frontier 把'用多少合成数据 + 给多大权重'变成显式可控调节——把合成数据从'凭感觉设比例'变为有理论边界的工程问题'对做小数据推断、合成数据治理、评测数据工程的团队有长尾参考价值——它示范了'合成数据不是越多越好'的理论约束。证据强度中等：方法动机清晰（size-weight frontier）+ 关键词 RAG/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 frontier 的具体构造、对 LLM 评测数据合成的适用性、与传统 CI/贝叶斯合成数据方法的定量对比缺失；属跨任务群体推断理论层，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
+      "id": "learning-a-size-weight-frontier-for-synthetic-augmented-inference",
+      "value_type": "long_tail",
       "matched_topics": [
-        "security-governance",
-        "ai-agent"
+        "llm-evaluation",
+        "inference-serving"
       ],
       "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
         "evidence_strength": 4.5,
         "engineering_testability": 4.05,
-        "trend_signal": 4.05,
+        "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
+        "asset_convertibility": 6.2,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
+        "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "安全与治理：LLM-based agents are increasingly deployed in product-level execution harnesse…",
-      "one_line_judgement": "值得继续观察：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | RedEvoAgent: Automatic …",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | RedEvoAgent: Automatic Red-Teaming Agent with Exp",
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Synthetic data can improve statistical inference when real data are scarce, bu…",
+      "one_line_judgement": "值得先保存：2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmente…",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmented Inference 命中 llm-evaluat",
       "related_trends": [
-        "agentic-world-modeling"
+        "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=redevoagent-automatic-red-teaming-agent-with-experience-driven-skill-evolution"
+      "detail_path": "paper-detail.html?id=learning-a-size-weight-frontier-for-synthetic-augmented-inference"
     },
     {
-      "title": "From Static to Dynamic: Benchmarking Real-World Code Review with MCR-Bench",
+      "title": "A Formal Limitation on Learning Human Language From Textual Corpora",
       "authors": [
-        "Dewu Zheng",
-        "Yanlin Wang",
-        "Xiwen Wang",
-        "Kefeng Duan",
-        "Hongyu Zhang"
+        "Emily Cheng",
+        "Ryan Cotterell"
       ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27442v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27442v1",
+      "url": "http://arxiv.org/abs/2608.28560v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28560v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "In real-world software development, code review typically involves iterative interactions between developers and reviewers to improve software quality, making the process costly and time-consuming. Although recent work explores large language models (LLMs) for automated code review, most approaches oversimplify code review into a single-round, static decision task, which fails to capture the multi-round interactive nature and the complex problem-solving processes inherent in realistic review sce",
+      "abstract": "Can a listener recover what a speaker means from the form of an utterance alone? We answer this question information-theoretically, and for a listener given by any featurizer of text, including the hidden states of contemporary large language models. Modeling language use as a joint distribution over meanings, contexts, and utterances, we derive upper bounds on the probability that a decoder recovers a speaker's intended meaning from a representation of the utterance. The bounds are governed by ",
       "categories": [
-        "cs.SE",
-        "cs.AI",
         "cs.CL"
       ],
-      "keywords": [
-        "memory",
-        "benchmark"
-      ],
+      "keywords": [],
       "score": 58.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27442v1"
+          "url": "http://arxiv.org/abs/2608.28560v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27442v1"
+          "url": "https://arxiv.org/pdf/2608.28560v1"
         }
       ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | MCR-Bench: From Static to Dynamic Benchmarking Real-World Code Review 命中 coding-agent 与 llm-evaluation 主线（代码 review 多轮评测）：据摘要，真实代码 review 是开发者与审查者多轮迭代，单轮静态决策任务过度简化、丢失多轮交互本质与复杂问题求解过程。本文发布 MCR-Bench 做动态代码 review 评测。'把代码 review 从'单轮静态决策'改为'多轮动态评测'——填补 coding-agent 在真实工程评审场景下的基准空白'对做 coding-agent 评测 / SWE harness 设计的团队有长尾参考价值——它把'单轮 PR 评审'的常见误用变成可定量评估的盲区。证据强度中等：评测问题定义清晰（多轮迭代）+ 关键词 memory/benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致 MCR-Bench 的任务规模、对话轮数上限、评判标准、与已有 PR 评审基准的关系缺失；属 coding-agent 评测基础设施，作长尾资产保存。",
-      "id": "from-static-to-dynamic-benchmarking-real-world-code-review-with-mcr-bench",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "coding-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.95,
-        "engineering_testability": 3.5,
-        "trend_signal": 5.45,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "Coding Agent：In real-world software development, code review typically involves iterative i…",
-      "one_line_judgement": "值得先保存：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | MCR-Bench: From Static …",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | MCR-Bench: From Static to Dynamic Benchmarking Re",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=from-static-to-dynamic-benchmarking-real-world-code-review-with-mcr-bench"
-    },
-    {
-      "title": "Tacet: A Language and Type System for Automatic Statistical Validity Accounting",
-      "authors": [
-        "Chiké Abuah"
-      ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27451v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27451v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Empirical comparisons between systems are a standard form of evidence in computer science research, but few are checked for statistical validity: most are never framed as statistical tests at all. Existing multiple-comparison procedures could control the resulting error, but need inputs (what an analysis examined, and how its observations are arranged) that are not recoverable from a list of p-values. We introduce Tacet, a language in which an analysis declares what it generated, states what it ",
-      "categories": [
-        "cs.PL",
-        "cs.SE"
-      ],
-      "keywords": [],
-      "score": 55.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27451v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27451v1"
-        }
-      ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Tacet: A Language and Type System for Automatic Statistical Validity Accounting 命中 llm-evaluation 与 security-governance 主线（统计有效性自动核算）：据摘要，实证系统对比是 CS 研究的标准证据形式，但少有做统计有效性检查——多数从未被框定为统计检验；多重比较程序可控制误差但需要输入（分析检查什么、观测如何排列）而纯 p-value 列表不可恢复。本文提出 Tacet 语言，让分析声明它生成了什么、陈述它检查了什么。'用语言/类型系统强制声明'分析生成了什么、检查了什么'——把统计有效性检查从外部审稿要求变成程序可执行的不变量'对做研究方法论 / 评测治理 / 自动验证的团队有长尾参考价值——它示范了'可重复性 + 统计有效性'的程序化合规。证据强度中等：方法动机清晰（统计有效性检查不可恢复）+ 关键词空白。证据不足：code/benchmark 暂无待核验；摘要截断导致 Tacet 的类型规则、与 Bonferroni/FDR 等过程的整合方式、对 LLM 评测基准的应用案例缺失；属方法论层，作长尾资产保存。",
-      "id": "tacet-a-language-and-type-system-for-automatic-statistical-validity-accounting",
+      "llm_reason": "2026-09-01 回看 | A Formal Limitation on Learning Human Language From Textual Corpora 命中 llm-evaluation 与 security-governance 主线（从文本语料学习人类语言的形式上限）：据摘要，听者能否仅从话语形式恢复说者意图？本文信息论地证明，对任何 featurizer（包括当代 LLM 的隐藏态）都给出一个 decoder 能恢复说者意图的概率的上界。'用信息论严格上界证明'仅从文本语料学不到人类语言的全部'——为 LLM 能力评估与对齐评估提供一种形式化的'不可能'基准'对做 LLM 评估、alignment 边界、可解释性的团队有长尾参考价值——它示范了'不可学/不可恢复'的形式化方法，可作为评估上限的引理。证据强度中等偏上：方法路径清晰（信息论上界）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致上界对应的具体信息度量、与 BERT/Transformer 隐藏态的实证校准、是否依赖特定相关性假设缺失；属理论结果，作长尾资产保存。",
+      "id": "a-formal-limitation-on-learning-human-language-from-textual-corpora",
       "value_type": "long_tail",
       "matched_topics": [
         "llm-evaluation",
@@ -778,79 +609,147 @@
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.05,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
+        "asset_convertibility": 4.0,
         "actionability": 5.0,
-        "noise_risk": 1.2,
+        "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 5.0,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：Empirical comparisons between systems are a standard form of evidence in compu…",
-      "one_line_judgement": "值得先保存：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Tacet: A Language and T…",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
+      "brief_cn": "LLM 评测：Can a listener recover what a speaker means from the form of an utterance alon…",
+      "one_line_judgement": "值得先保存：2026-09-01 回看 | A Formal Limitation on Learning Human Language From Te…",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Tacet: A Language and Type System for Automatic S",
+      "long_tail_summary": "2026-09-01 回看 | A Formal Limitation on Learning Human Language From Textual Corpora 命中 llm-evalu",
       "related_trends": [
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=tacet-a-language-and-type-system-for-automatic-statistical-validity-accounting"
+      "detail_path": "paper-detail.html?id=a-formal-limitation-on-learning-human-language-from-textual-corpora"
     },
     {
-      "title": "Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation",
+      "title": "QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs",
       "authors": [
-        "Nguyen Xuan-Vu",
-        "Octavian Susanu",
-        "Daniel Armstrong",
-        "Philippe Schwaller"
+        "Vaibhav Mehandiratta",
+        "Saket Ramchandra"
       ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27429v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27429v1",
+      "url": "http://arxiv.org/abs/2608.28589v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28589v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Chemical reactions are fundamentally transformations in electron space, yet most machine learning approaches model them either through \\textit{de novo} generation of product molecules or through heuristic graph edits that operate directly on molecular topology. We introduce MAELLE (\\textbf{M}ech\\textbf{A}nistic \\textbf{E}dit f\\textbf{L}ow-matching on e\\textbf{L}ectron r\\textbf{E}arrangements), which instead models reactions as discrete flow matching over electron occupation vectors. Concretely, ",
+      "abstract": "We propose QGPINNs, a physics-informed neural network framework developed in PyTorch for the numerical solution of nonlocal differential equations on quantum graphs. The framework is designed as a general computational implementation in which the solution on each edge of the graph is approximated by a neural network, while a unified graph-based loss function enforces the governing equations together with initial, boundary, and vertex transmission conditions. In particular, the formulation incorp",
       "categories": [
-        "cs.AI"
+        "cs.LG",
+        "math.NA"
       ],
       "keywords": [
         "benchmark"
       ],
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.28589v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.28589v1"
+        }
+      ],
+      "llm_reason": "2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs 命中 ai-k8s-platform / AI4Science 长尾候选（量子图上的 PINN）：据摘要，本文提出 QGPINNs（PyTorch 实现）框架，用神经网络近似量子图上每条边上的解、用统一图 loss 强加方程与初始/边界/顶点传输条件。'把 PINN 推广到'量子图 + 非局部微分方程 + 顶点传输条件'——为带边界/分支的物理仿真提供新的可微分解法'对做 AI for Science、物理仿真、可微 PDE 求解器的团队有长尾参考价值——它拓展了 PINN 适用域并示范了'图结构 + 物理约束'的统一 loss 构造。证据强度中等：框架结构清晰（PyTorch 实现、统一 graph loss）+ 关键词 benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致与经典数值方法（FEM / spectral method）的定量对比、训练稳定性、量子图具体出处缺失；属 AI4Science 垂直方向，对通用 LLM/agent 工程栈直接迁移距离较远，作长尾资产保存。",
+      "id": "qgpinns-a-physics-informed-neural-network-framework-for-nonlocal-differential-equations-on-quantum-graphs",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-k8s-platform"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.4,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI 平台工程：We propose QGPINNs, a physics-informed neural network framework developed in P…",
+      "one_line_judgement": "值得先保存：2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework f…",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential E",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=qgpinns-a-physics-informed-neural-network-framework-for-nonlocal-differential-equations-on-quantum-graphs"
+    },
+    {
+      "title": "Learning between the peaks: sharp asymptotics for kernel ridge regression under power-law anisotropy",
+      "authors": [
+        "Lorenzo Rizzi",
+        "Arie Wortsman Zurich",
+        "Bruno Loureiro"
+      ],
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.28564v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28564v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We study kernel ridge regression under anisotropic Gaussian data, where the input covariance decays as a power law with exponent $α\\geq 0$ for polynomial inner-product kernels. We derive asymptotically sharp expressions for the kernel spectrum and the generalization error in the polynomial high-dimensional regime $n=Θ(d^κ)$, revealing how anisotropy reshapes the learning curves. For weak anisotropy ($0<α<1$), the problem remains effectively high-dimensional and retains some features of the isotr",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "keywords": [],
       "score": 52.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27429v1"
+          "url": "http://arxiv.org/abs/2608.28564v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27429v1"
+          "url": "https://arxiv.org/pdf/2608.28564v1"
         }
       ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | MAELLE: Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation 命中 ai-agent 主线（化学反应机制预测）：据摘要，化学反应本质是电子空间变换，但多数 ML 方法要么做产物分子的 de novo 生成、要么通过启发式图编辑直接操作分子拓扑。本文提出 MAELLE，把反应建模为电子占据向量上的离散 flow matching。'把化学反应预测从'产物分子生成 / 启发式图编辑'迁移到'电子占据向量上的离散 flow matching'——更接近机制可解释性的物理抽象'对做 AI for Science、分子设计、催化机理预测的团队有长尾参考价值——它示范了'机制可解释 + 生成建模'的物理一致路径。证据强度中等：建模框架清晰（electron occupation flow matching）+ 关键词 benchmark 命中。证据不足：code/benchmark 暂无待核验；摘要截断导致与 de novo / 图编辑基线的定量对比、训练数据规模、产物多样性评估缺失；属 AI4Science 垂直方向，对通用 LLM/agent 工程栈直接迁移距离较远，作长尾资产保存。",
-      "id": "mechanistic-reaction-prediction-via-discrete-flow-matching-on-graph-structured-electron-occupation",
+      "llm_reason": "2026-09-01 回看 | Learning between the peaks: sharp asymptotics for kernel ridge regression under power-law anisotropy 命中 inference-serving / 学习理论长尾候选（KRR 幂律各向异性的渐近学习曲线）：据摘要，本文研究各向异性高斯数据下核岭回归，其中输入协方差按幂律 α≥0 衰减；推导多项式核在多项式高维 regime n=Θ(d^κ) 下核谱与泛化误差的渐近精确表达。'给出幂律各向异性下 KRR 谱与泛化误差的渐近精确表达——把'各向异性 vs 各向同性'的学习曲线差异变成可计算的尖锐表达式'对做学习理论、模型选择、神经网络的理论解释（NTK 视角）的团队有长尾参考价值——它提供了带各向异性的精确渐近。证据强度中等：理论结果清晰（尖锐渐近）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 κ regime 内是否存在相位转捩、与深度学习理论的桥接、实证校准缺失；属学习理论层，作长尾资产保存。",
+      "id": "learning-between-the-peaks-sharp-asymptotics-for-kernel-ridge-regression-under-power-law-anisotropy",
       "value_type": "long_tail",
       "matched_topics": [
-        "ai-agent"
+        "inference-serving"
       ],
       "score_breakdown": {
-        "novelty": 4.8,
+        "novelty": 5.4,
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 4.5,
@@ -866,133 +765,206 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "brief_cn": "AI Agent：Chemical reactions are fundamentally transformations in electron space, yet mo…",
-      "one_line_judgement": "值得先保存：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | MAELLE: Mechanistic Rea…",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
+      "brief_cn": "推理与服务：We study kernel ridge regression under anisotropic Gaussian data, where the in…",
+      "one_line_judgement": "值得先保存：2026-09-01 回看 | Learning between the peaks: sharp asymptotics for kern…",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | MAELLE: Mechanistic Reaction Prediction via Discr",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=mechanistic-reaction-prediction-via-discrete-flow-matching-on-graph-structured-electron-occupation"
+      "long_tail_summary": "2026-09-01 回看 | Learning between the peaks: sharp asymptotics for kernel ridge regression under ",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=learning-between-the-peaks-sharp-asymptotics-for-kernel-ridge-regression-under-power-law-anisotropy"
     },
     {
-      "title": "Stochastic Estimation of Transduced Language Models",
+      "title": "QUEST: A Query and Extraction System for Topics in Asylum Law Application Decisions",
       "authors": [
-        "Vésteinn Snæbjarnarson",
-        "Samuel Kiegeland",
-        "Manuel de Prada Corral",
-        "Ryan Cotterell",
-        "Tim Vieira"
+        "Maria Vlachou",
+        "Anna Murphy Høgenhaug",
+        "Mohammad N. S. Jahromi",
+        "Galadrielle Humblot-Renaux",
+        "Thomas Gammeltoft-Hansen"
       ],
-      "published": "2026-08-27",
-      "updated": "2026-08-27",
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.27428v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.27428v1",
+      "url": "http://arxiv.org/abs/2608.28555v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28555v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Transduced language models (TLMs) compose a pretrained \\emph{source} language model with a functional finite-state transducer to induce a language model over \\emph{target} strings. Computing the probability of a target prefix under a TLM amounts to summing the source-model probabilities of all source strings that the transducer maps to target strings beginning with that prefix. This set can be exponentially large or infinite. Prior work uses a computational shortcut based on source prefix probab",
+      "abstract": "Legal decisions on asylum applications consist of long, complex, and heterogeneous documents, covering narrative applicant interviews, original decisions, and additional supporting materials. If an application is rejected, a critical question in processing an appeal is whether the credibility of the information in the original application was a factor that determined the original decision. In this paper, we present the QUEST system (Query and Extraction System for Topics) to extract and identify",
       "categories": [
-        "cs.CL"
+        "cs.IR"
       ],
-      "keywords": [],
-      "score": 44.0,
-      "decision": "暂时忽略",
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 50.0,
+      "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.27428v1"
+          "url": "http://arxiv.org/abs/2608.28555v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.27428v1"
+          "url": "https://arxiv.org/pdf/2608.28555v1"
         }
       ],
-      "llm_reason": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Stochastic Estimation of Transduced Language Models 聚焦 cs.CL 理论（transduced language model 概率估计）：据摘要，TLM 把预训练 source LM 与有限态 transducer 组合以诱导 target 字符串 LM；计算 target 前缀概率等价于对 transducer 映射到该前缀的所有 source 字符串概率求和，集合可指数大或无限；先前工作用 source 前缀概率的计算捷径，本文提出随机估计方法。领域聚焦 transduced LM 概率估计的理论细节，与团队以 Agent/LLM 工程栈/RAG/推理/评测为核心的技术栈直接迁移距离较远；关键词为空。code/benchmark/Papers with Code/OpenReview 链接暂无待核验。忽略，除非做 FSM 增强 LM/约束解码/形式语言与统计 LM 结合方向的理论工作。",
-      "id": "stochastic-estimation-of-transduced-language-models",
-      "value_type": "ignore",
-      "matched_topics": [],
+      "llm_reason": "2026-09-01 回看 | QUEST: A Query and Extraction System for Topics in Asylum Law Application Decisions 命中 rag-knowledge / 垂直领域长尾候选（庇护法决策的查询与抽取系统）：据摘要，庇护申请法律决策是长、复杂、异构文档；上诉时关键问题是原始决定的决定因素是否包含原始申请中信息的可信度。本文提出 QUEST 系统提取并识别相关主题。'把'什么是决定因素'这种抽象法律问题用主题抽取+查询系统变成可工程化的 QA pipeline'对做法律 AI / 垂直领域 RAG / 高敏感度文档检索的团队有长尾参考价值——它示范了'领域敏感的语义标注 + 可审计 QA'在严苛合规场景下的路径。证据强度中等：系统描述清晰（Query and Extraction System）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致主题 schema 设计、人评/自动评对比、是否公布 benchmark 缺失；属垂直领域 RAG 工程，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
+      "id": "quest-a-query-and-extraction-system-for-topics-in-asylum-law-application-decisions",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "rag-knowledge"
+      ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
+        "engineering_testability": 4.05,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.0,
+        "actionability": 5.0,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "RAG / 知识系统：Legal decisions on asylum applications consist of long, complex, and heterogen…",
+      "one_line_judgement": "值得先保存：2026-09-01 回看 | QUEST: A Query and Extraction System for Topics in Asy…",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-01 回看 | QUEST: A Query and Extraction System for Topics in Asylum Law Application Decisi",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=quest-a-query-and-extraction-system-for-topics-in-asylum-law-application-decisions"
+    },
+    {
+      "title": "On two proofs of $d^2$ mixing of weighted Dikin walks",
+      "authors": [
+        "Yuansi Chen",
+        "Yunbum Kook"
+      ],
+      "published": "2026-08-28",
+      "updated": "2026-08-28",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.28566v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.28566v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We study the mixing time of weighted Dikin walks for sampling from exponential distributions on polytopes and truncated positive-semidefinite (PSD) cones. Our first result gives a general total-variation mixing bound under strong self-concordance, $\\barν$-symmetry, and mixed-trace regularity on the local metric. The key idea is to control the Metropolis--Hastings acceptance probability on a high-probability region rather than at every point. Applying this framework to the Lee--Sidford, Lewis-wei",
+      "categories": [
+        "cs.DS",
+        "cs.LG",
+        "math.OC",
+        "math.PR",
+        "stat.CO"
+      ],
+      "keywords": [],
+      "score": 45.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.28566v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.28566v1"
+        }
+      ],
+      "llm_reason": "2026-09-01 回看 | On two proofs of d² mixing of weighted Dikin walks 聚焦 cs.DS / 数学概率混合时间结果（加权 Dikin 行走 d² 混合的两种证明）：据摘要，本文研究加权 Dikin 行走对多面体上/截断半定锥上指数分布采样的混合时间；给出强自协调 / ν̄-对称 / 混合迹正则性下的总变差混合上界，并把框架应用于 Lee-Sidford、Lewis-wei[gh]t 等 setting。领域聚焦混合时间数学结果，与团队以 Agent / LLM 工程栈 / RAG / 推理 / 评测为核心的技术栈直接迁移距离较远；关键词未命中。code/benchmark/Papers with Code/OpenReview 链接暂无待核验。忽略，除非做约束凸采样/MCMC-as-optimizer/LP+LLM pipeline 的方向工作。",
+      "id": "on-two-proofs-of-d-2-mixing-of-weighted-dikin-walks",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.4,
         "actionability": 3.8,
         "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 4.0,
+        "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "noise",
-      "brief_cn": "前沿论文：Transduced language models (TLMs) compose a pretrained \\emph{source} language …",
-      "one_line_judgement": "当前可忽略：2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Stochastic Estimation o…",
-      "first_seen_date": "2026-08-30",
-      "first_deep_dive_daily": "2026-08-30",
+      "brief_cn": "前沿论文：We study the mixing time of weighted Dikin walks for sampling from exponential…",
+      "one_line_judgement": "当前可忽略：2026-09-01 回看 | On two proofs of d² mixing of weighted Dikin walks 聚焦 …",
+      "first_seen_date": "2026-09-01",
+      "first_deep_dive_daily": "2026-09-01",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Stochastic Estimation of Transduced Language Mode",
+      "long_tail_summary": "2026-09-01 回看 | On two proofs of d² mixing of weighted Dikin walks 聚焦 cs.DS / 数学概率混合时间结果（加权 Diki",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=stochastic-estimation-of-transduced-language-models"
+      "detail_path": "paper-detail.html?id=on-two-proofs-of-d-2-mixing-of-weighted-dikin-walks"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "from-static-to-dynamic-benchmarking-real-world-code-review-with-mcr-bench",
-      "title": "From Static to Dynamic: Benchmarking Real-World Code Review with MCR-Bench",
-      "direction": "Coding Agent / LLM 评测",
+      "id": "learning-a-size-weight-frontier-for-synthetic-augmented-inference",
+      "title": "Learning a Size-Weight Frontier for Synthetic-Augmented Inference",
+      "direction": "LLM 评测 / 推理与服务",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | MCR-Bench: From Static to Dynamic Benchmarking Re",
+      "why_save": "2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmented Inference 命中 llm-evaluat",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-20",
-      "detail_path": "paper-detail.html?id=from-static-to-dynamic-benchmarking-real-world-code-review-with-mcr-bench"
+      "revisit_date": "2026-09-22",
+      "detail_path": "paper-detail.html?id=learning-a-size-weight-frontier-for-synthetic-augmented-inference"
     },
     {
-      "id": "tacet-a-language-and-type-system-for-automatic-statistical-validity-accounting",
-      "title": "Tacet: A Language and Type System for Automatic Statistical Validity Accounting",
+      "id": "a-formal-limitation-on-learning-human-language-from-textual-corpora",
+      "title": "A Formal Limitation on Learning Human Language From Textual Corpora",
       "direction": "LLM 评测 / 安全与治理",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | Tacet: A Language and Type System for Automatic S",
+      "why_save": "2026-09-01 回看 | A Formal Limitation on Learning Human Language From Textual Corpora 命中 llm-evalu",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-20",
-      "detail_path": "paper-detail.html?id=tacet-a-language-and-type-system-for-automatic-statistical-validity-accounting"
+      "revisit_date": "2026-09-22",
+      "detail_path": "paper-detail.html?id=a-formal-limitation-on-learning-human-language-from-textual-corpora"
     },
     {
-      "id": "mechanistic-reaction-prediction-via-discrete-flow-matching-on-graph-structured-electron-occupation",
-      "title": "Mechanistic Reaction Prediction via Discrete Flow Matching on Graph-Structured Electron Occupation",
-      "direction": "AI Agent",
+      "id": "qgpinns-a-physics-informed-neural-network-framework-for-nonlocal-differential-equations-on-quantum-graphs",
+      "title": "QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs",
+      "direction": "AI 平台工程",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-08-30 回看（同组 arXiv ID 再次出现，未观察到新链接/外部证据） | MAELLE: Mechanistic Reaction Prediction via Discr",
+      "why_save": "2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential E",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-20",
-      "detail_path": "paper-detail.html?id=mechanistic-reaction-prediction-via-discrete-flow-matching-on-graph-structured-electron-occupation"
+      "revisit_date": "2026-09-22",
+      "detail_path": "paper-detail.html?id=qgpinns-a-physics-informed-neural-network-framework-for-nonlocal-differential-equations-on-quantum-graphs"
     }
   ],
   "common_research_path": [
