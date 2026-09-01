@@ -1,96 +1,96 @@
 {
-  "updated_at": "2026-09-01T04:33:31.281678",
+  "updated_at": "2026-09-02T04:31:24.627183",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-09-01",
-    "title": "论文价值发现日报 - 2026-09-01",
-    "deep_dive_title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
-    "deep_dive_url": "http://arxiv.org/abs/2608.28572v1",
-    "decision": "轻量试点",
-    "value_type": "immediate",
-    "value_type_label": "即时价值",
-    "daily_action": "2026-09-01 回看 | 完成四件事：(1) 跟踪 PULSAR 开源与定量结果，并在团队内部视觉文档检索 pipeline 上做最小验证（不依赖完整开源，冻结 backbone + 两阶段池化思路可作为对比基线，1 周内可设计验证实验）；(2) 把 Logos 的 cross-process bus 思路纳入 agent harness 韧性设计清单（30 分钟可梳理现有架构的故障边界、识别单进程 plugin 的故障域传播风险点，1 周内可在内部架构评审中应用）；(3) 把 Quest 综述的四轴（temporal estimation / update geometry / horizon-schedule / state representation）作为评估/选型/自研优化器的结构化视角，并在团队当前 optimizer 上做四轴定位；(4) 评估 Aero Hand Open 对团队具身/操作学习研究计划的潜在价值，建立仿真平台候选清单。",
-    "max_uncertainty": "2026-09-01 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。PULSAR 摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；Logos 摘要截断导致 cross-process bus 的具体协议、inverse 跨进程追踪、与现有进程间通信（gRPC / message bus / capability system）的定量对比、故障域隔离的实证数据缺失；Quest 综述摘要截断导致四轴下具体优化器的对比表、与 SOTA 优化器（Muon / Shampoo / Lion / SOAP 等）的覆盖关系、对分片+低精度的存活约束细节缺失；Aero Hand Open 摘要截断导致具体仿真平台、benchmark、USD/MuJoCo/Isaac 兼容性、学习 task suite、与 direct-drive 手的定量对比缺失；Size-Weight Frontier 摘要截断导致 frontier 的具体构造、对 LLM 评测数据合成的适用性、与传统 CI/贝叶斯合成数据方法的定量对比缺失；Formal Limitation 摘要截断导致上界对应的具体信息度量、与 BERT/Transformer 隐藏态的实证校准、是否依赖特定相关性假设缺失；QGPINNs 摘要截断导致与经典数值方法（FEM / spectral method）的定量对比、训练稳定性、量子图具体出处缺失；KRR Power-Law Anisotropy 摘要截断导致 κ regime 内是否存在相位转捩、与深度学习理论的桥接、实证校准缺失；QUEST Asylum Law 摘要截断导致主题 schema 设计、人评/自动评对比、是否公布 benchmark 缺失；Dikin Walks d² Mixing 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
-    "one_line_judgement": "PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system，用冻结 ColPali-style backbone 直接索引 page images + pooled two-stage late-interaction index（page summaries 初检 + page-level scoring 精排），把视觉文档检索从'OCR + 图说'改为'视觉直接索引 + 两阶段 late-interaction'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本。Logos 把 agent harness 从'单进程共享一个 context'改为'cross-process bus'——所有 component 共处一个物理故障域的问题被解耦，让故障悬挂与进程死亡不再传播到全组件，直击单进程 plugin 的核心故障传播问题，并为 agent 治理提供更可审计的故障边界。一个趋势信号：[Quest: Survey of Optimizers](http://arxiv.org/abs/2608.28557v1) 把 NN 优化从'Adam 变体盘点'重构为四轴设计空间（temporal estimation / update geometry / horizon-schedule / state representation），强调分片+低精度生存能力，为评估/选型/自研优化器提供比'新旧 Adam 变体'更结构化的视角；[Aero Hand Open](http://arxiv.org/abs/2608.28578v1) 把 tendon-driven 灵巧手作为可直接学习的仿真资产开放，示范了'硬件经济性 + 仿真可学性'的搭配。",
-    "path": "daily-detail.html?date=2026-09-01"
+    "date": "2026-09-02",
+    "title": "论文价值发现日报 - 2026-09-02",
+    "deep_dive_title": "Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation",
+    "deep_dive_url": "http://arxiv.org/abs/2608.31139v1",
+    "decision": "暂时忽略",
+    "value_type": "ignore",
+    "value_type_label": "暂时忽略",
+    "daily_action": "完成摘要精读与最小实验设计",
+    "max_uncertainty": "缺少多源工程证据",
+    "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+    "path": "daily-detail.html?date=2026-09-02"
   },
   "top_paper": {
-    "title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
+    "title": "Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation",
     "authors": [
-      "Benjamin Constable",
-      "Anup Roy",
-      "Vishal Sharma",
-      "Rishabh Upadhyay",
-      "Robin Mills"
+      "Riya Ahuja",
+      "Tim Kacprowski",
+      "Roya Shiasi Sardoabi"
     ],
-    "published": "2026-08-28",
-    "updated": "2026-08-28",
+    "published": "2026-08-31",
+    "updated": "2026-08-31",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2608.28572v1",
-    "pdf_url": "https://arxiv.org/pdf/2608.28572v1",
+    "url": "http://arxiv.org/abs/2608.31139v1",
+    "pdf_url": "https://arxiv.org/pdf/2608.31139v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Institutional investors search visually dense pitch decks, board packs, and diligence materials that change hourly near deal closing. OCR followed by figure verbalisation is costly to refresh at this scale and can lose chart detail. We present PULSAR, a production vision-first retrieval system deployed at Mubadala Investment Company. PULSAR indexes page images with a frozen ColPali-style backbone and uses a pooled two-stage late-interaction index: compact page summaries support initial retrieval",
+    "abstract": "BioMedRAG introduced retrieval-augmented generation with a learned chunk scorer for biomedical information extraction. However, it relies on fixed-size chunking which can fragment semantic evidence. We propose a configurable semantic chunking framework that addresses this limitation by combining entity-preserving windows, trigger-centered chunking, proposition-first extraction, tiered trigger prioritization, and hierarchical relation resolution. The framework integrates with BioMedRAG by replaci",
     "categories": [
+      "cs.CL",
       "cs.IR"
     ],
     "keywords": [
+      "evaluation",
+      "benchmark",
       "RAG"
     ],
-    "score": 76.0,
-    "decision": "轻量试点",
+    "score": 39.5,
+    "decision": "暂时忽略",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2608.28572v1"
+        "url": "http://arxiv.org/abs/2608.31139v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2608.28572v1"
+        "url": "https://arxiv.org/pdf/2608.31139v1"
       }
     ],
-    "llm_reason": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG 命中 rag-knowledge 与 context-engineering 主线（视觉 RAG 在企业视觉文档上的生产部署）：据摘要，机构投资者在交易临近的小时级节奏下搜索视觉密集的 pitch decks / board packs / diligence materials；OCR + 图表语言化在这种规模下刷新昂贵且会丢失图表细节。PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system：用冻结的 ColPali-style backbone 直接索引 page images，再叠 pooled two-stage late-interaction index——紧凑 page summaries 支持初检，详细 page-level scoring 支持精排。'把视觉文档检索从'OCR + 图说'改为'冻结 ColPali 直接索引页面 + 两阶段 late-interaction pooled'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本'对做企业 RAG / 视觉检索 / 文档智能的团队有直接价值——它示范了视觉文档检索的生产化路径（page summary 初检 + late-interaction 精排），并明确标注生产部署（Mubadala）。证据强度中上：摘要明确披露部署方（Mubadala）、架构选型（ColPali-style 冻结 backbone + pooled two-stage late-interaction）、应用节奏（小时级）+ 关键词 RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；建议跟踪其论文开源、benchmark 与定量结果。",
-    "id": "pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag",
-    "value_type": "immediate",
+    "id": "configurable-semantic-chunking-for-biomedical-information-extraction-in-retrieval-augmented-generation",
+    "value_type": "ignore",
     "matched_topics": [
       "rag-knowledge",
-      "context-engineering"
+      "inference-serving"
     ],
     "score_breakdown": {
       "novelty": 5.4,
-      "problem_importance": 5.15,
-      "relevance": 5.0,
+      "problem_importance": 5.8,
+      "relevance": 6.2,
       "evidence_strength": 4.5,
-      "engineering_testability": 4.6,
+      "engineering_testability": 4.05,
       "trend_signal": 3.5,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 4.8,
-      "actionability": 5.0,
+      "asset_convertibility": 6.2,
+      "actionability": 3.8,
       "noise_risk": 1.2,
       "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 3.6,
+      "low_relevance_penalty": 2.2,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
-    "trend_status": "emerging",
-    "brief_cn": "RAG / 知识系统：Institutional investors search visually dense pitch decks, board packs, and di…",
-    "one_line_judgement": "今天值得试：2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Ret…",
-    "first_seen_date": "2026-09-01",
-    "first_deep_dive_daily": "2026-09-01",
-    "value_type_label": "即时价值",
-    "trend_stage_label": "萌芽",
+    "trend_status": "noise",
+    "brief_cn": "RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a learned chunk score…",
+    "one_line_judgement": "当前可忽略：RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a …",
+    "first_seen_date": "2026-09-02",
+    "first_deep_dive_daily": "2026-09-02",
+    "value_type_label": "暂时忽略",
+    "trend_stage_label": "噪声",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visu",
+    "long_tail_summary": "RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a learned chunk score…",
     "related_trends": [
       "context-engineering"
     ],
-    "detail_path": "paper-detail.html?id=pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag"
+    "detail_path": "paper-detail.html?id=configurable-semantic-chunking-for-biomedical-information-extraction-in-retrieval-augmented-generation"
   },
-  "paper_count": 1660,
+  "paper_count": 1670,
   "daily_count": 30,
   "trend_count": 3,
   "long_tail_count": 128,
@@ -98,9 +98,22 @@
     "immediate": 102,
     "trend": 140,
     "long_tail": 128,
-    "ignore": 1290
+    "ignore": 1300
   },
   "recent_dailies": [
+    {
+      "date": "2026-09-02",
+      "title": "论文价值发现日报 - 2026-09-02",
+      "deep_dive_title": "Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation",
+      "deep_dive_url": "http://arxiv.org/abs/2608.31139v1",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-09-02"
+    },
     {
       "date": "2026-09-01",
       "title": "论文价值发现日报 - 2026-09-01",
@@ -178,153 +191,210 @@
       "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；Prime Agent 摘要截断导致 Continual Harness 的 skills/prompts/subagent 规格具体表示、与现成 agent 框架的差异评测缺失；SWE Refactor Bench 摘要截断导致具体任务规模（仓库数 / 改动行数 / 语言类型）、评分机制、与 SWE-bench 的定量对比缺失；BPCO 摘要截断导致与 PPO/GRPO/REINFORCE++ 的定量对比缺失；ReWorld 摘要截断导致流式延迟、记忆恢复率、长程一致性缺失；ConvergeFlow 摘要截断导致凸包约束与解码效率权衡缺失；Provably adaptive sampling 摘要截断导致下界形式与适用 sampler family 缺失；EG-ARSA 与 Phy-BP 领域垂直，与团队通用 agent 工程栈迁移距离较远。",
       "one_line_judgement": "Prime Agent 把 REPL 当成 agent 的'外脑'——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 规格跨会话保留；这标志着 agent 从'单次 prompt 工作流'走向'跨会话可积累能力的 harness'。SWE Refactor Bench 直击当前 coding-agent 评测的 Blindness：现有基准只验证'行为正确性'，不验证'migration 是否真的发生'——agent 可以直接复制原实现来通过测试。两个趋势信号也值得持续观察：BPCO 系统研究 critic 训练不稳定性并给出可复用 recipe（让'可靠 critic'从 GRPO 替代品变成可工程化组件）；ReWorld 用 per-head 混合 attention window 分离 control 与 memory（直击交互式世界模型'短程控制 + 长程记忆'的结构性矛盾）。",
       "path": "daily-detail.html?date=2026-08-26"
-    },
-    {
-      "date": "2026-08-25",
-      "title": "论文价值发现日报 - 2026-08-25",
-      "deep_dive_title": "Natural-Language Workflows Are Not Software Yet: Artifact-Driven Compilation for Reliable Agent Execution",
-      "deep_dive_url": "http://arxiv.org/abs/2608.21341v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：(1) Artic 落地：选一条高频长程工作流，把自然语言步骤描述 schema-化为 typed intermediate representation，跑样本验证对'隐式数据依赖漏判'的修复比例。(2) Verification-first 盘点：写出团队当前 agent runtime 已有/可补的 verifier 锚点清单（spec check / output schema validation / tool-call replay audit / deterministic replay 各一项）。(3) Asymmetric capacity 实验：固定生成侧强模型，在 critique 与 revision 阶段试 30%/10% 成本模型替代，绘制 cost-quality Pareto 曲线。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；今日 10 篇中 4 篇摘要存在截断（AI with Authority、TurboBias、Asymmetric Capacity Allocation、PerturbRx 等），影响具体方法/实验设置的判断；Artic 的 artifact 具体表示形式（数据结构？schema？typed IR？）、AI with Authority 验证栈端到端形式（spec 形式化？equi-check？）、Asymmetric Capacity 的具体实验规模、Truthful Calibration 的证明与对 LLM evaluator 的具体意涵均需正文确认；今日未出现昨日的 AI4AI-Bench（该结论不跨日）；RAG 关键词在 Primal Acceleration 与 Across-Design Pricing 上为误标签，已在评分中剔除。",
-      "one_line_judgement": "Artic 把自然语言工作流转成 artifact 形式，强迫把隐式数据依赖外化为可被求解的输入——这是当前 agent 工作流易碎（长程/分支下 context 压力失效）的关键工程缺口，可直接对接到 LangGraph/DSPy/Temporal 这类编排器的'workflow-as-input'思路。AI with Authority 论证机器验证是规模化调度自主机器工作的前提——'不可腐化裁判'作为一项基础设施命题，足以催生一整个工程方向：verification-first agent runtimes、evaluator harness 与 runtime rollback。Asymmetric Capacity Allocation 则用 self-refinement 三阶段容量异构的实验探索，支撑'mixed-size pipeline 是 LLM 工程的成本金矿'这一更普遍趋势。三者共同折射：agent 价值密度正在从模型能力转向'基础设施（编译、验证、容量编排）'。",
-      "path": "daily-detail.html?date=2026-08-25"
     }
   ],
   "top_papers": [
     {
-      "title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
+      "title": "Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation",
       "authors": [
-        "Benjamin Constable",
-        "Anup Roy",
-        "Vishal Sharma",
-        "Rishabh Upadhyay",
-        "Robin Mills"
+        "Riya Ahuja",
+        "Tim Kacprowski",
+        "Roya Shiasi Sardoabi"
       ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28572v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28572v1",
+      "url": "http://arxiv.org/abs/2608.31139v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31139v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Institutional investors search visually dense pitch decks, board packs, and diligence materials that change hourly near deal closing. OCR followed by figure verbalisation is costly to refresh at this scale and can lose chart detail. We present PULSAR, a production vision-first retrieval system deployed at Mubadala Investment Company. PULSAR indexes page images with a frozen ColPali-style backbone and uses a pooled two-stage late-interaction index: compact page summaries support initial retrieval",
+      "abstract": "BioMedRAG introduced retrieval-augmented generation with a learned chunk scorer for biomedical information extraction. However, it relies on fixed-size chunking which can fragment semantic evidence. We propose a configurable semantic chunking framework that addresses this limitation by combining entity-preserving windows, trigger-centered chunking, proposition-first extraction, tiered trigger prioritization, and hierarchical relation resolution. The framework integrates with BioMedRAG by replaci",
       "categories": [
+        "cs.CL",
         "cs.IR"
       ],
       "keywords": [
+        "evaluation",
+        "benchmark",
         "RAG"
       ],
-      "score": 76.0,
-      "decision": "轻量试点",
+      "score": 39.5,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28572v1"
+          "url": "http://arxiv.org/abs/2608.31139v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28572v1"
+          "url": "https://arxiv.org/pdf/2608.31139v1"
         }
       ],
-      "llm_reason": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG 命中 rag-knowledge 与 context-engineering 主线（视觉 RAG 在企业视觉文档上的生产部署）：据摘要，机构投资者在交易临近的小时级节奏下搜索视觉密集的 pitch decks / board packs / diligence materials；OCR + 图表语言化在这种规模下刷新昂贵且会丢失图表细节。PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system：用冻结的 ColPali-style backbone 直接索引 page images，再叠 pooled two-stage late-interaction index——紧凑 page summaries 支持初检，详细 page-level scoring 支持精排。'把视觉文档检索从'OCR + 图说'改为'冻结 ColPali 直接索引页面 + 两阶段 late-interaction pooled'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本'对做企业 RAG / 视觉检索 / 文档智能的团队有直接价值——它示范了视觉文档检索的生产化路径（page summary 初检 + late-interaction 精排），并明确标注生产部署（Mubadala）。证据强度中上：摘要明确披露部署方（Mubadala）、架构选型（ColPali-style 冻结 backbone + pooled two-stage late-interaction）、应用节奏（小时级）+ 关键词 RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；建议跟踪其论文开源、benchmark 与定量结果。",
-      "id": "pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag",
-      "value_type": "immediate",
+      "id": "configurable-semantic-chunking-for-biomedical-information-extraction-in-retrieval-augmented-generation",
+      "value_type": "ignore",
       "matched_topics": [
         "rag-knowledge",
-        "context-engineering"
+        "inference-serving"
       ],
       "score_breakdown": {
         "novelty": 5.4,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.6,
+        "engineering_testability": 4.05,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "RAG / 知识系统：Institutional investors search visually dense pitch decks, board packs, and di…",
-      "one_line_judgement": "今天值得试：2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Ret…",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
+      "trend_status": "noise",
+      "brief_cn": "RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a learned chunk score…",
+      "one_line_judgement": "当前可忽略：RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a …",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-09-01 回看 | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visu",
+      "long_tail_summary": "RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a learned chunk score…",
       "related_trends": [
         "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=pulsar-pooled-unified-late-interaction-search-and-retrieval-for-enterprise-visual-document-rag"
+      "detail_path": "paper-detail.html?id=configurable-semantic-chunking-for-biomedical-information-extraction-in-retrieval-augmented-generation"
     },
     {
-      "title": "Logos: An Agent Harness on a Cross-Process Bus",
+      "title": "DIASENTINEL: An Auditable Multi-Agent System for Guideline-Grounded Diabetes Risk Screening",
       "authors": [
-        "Hanzhang Jia",
-        "Liheng Zeng",
-        "Hao Cheng",
-        "Yi Gao",
-        "Bo Ma"
+        "Yung Wei Shueh",
+        "Zhi-Jie Chen",
+        "Chia-Hsuan Hsu",
+        "Hsin-Ling Hsu",
+        "Donghua Zhang"
       ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28553v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28553v1",
+      "url": "http://arxiv.org/abs/2608.31128v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31128v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Modern agent systems assemble capabilities at runtime, and this dynamic composition has recently received a complete formal treat ment in the spatiotemporal-composability calculus, in which a capability is a component carrying a tracked inverse, and agents are assembled as plugins. This plugin form is carried by a single process sharing one context, a carrier that places all components in one physical failure domain, a fault suspends every component at once, and process death interrupts every se",
+      "abstract": "Large language models (LLMs) offer promising clinical decision support but remain vulnerable to hallucinated facts, unsupported recommendations, and citation errors. We present DIASENTINEL, a fully on-premise multi-agent system for one-year type 2 diabetes mellitus (T2DM) risk screening and guideline-grounded report generation from electronic health records (EHRs). The system integrates calibrated risk prediction, deterministic clinical signal extraction, Reciprocal Rank Fusion over American Dia",
       "categories": [
-        "cs.AI",
-        "cs.MA"
+        "cs.CL"
       ],
       "keywords": [
-        "agent",
-        "inference"
+        "agent"
       ],
-      "score": 74.0,
-      "decision": "轻量试点",
+      "score": 38.4,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28553v1"
+          "url": "http://arxiv.org/abs/2608.31128v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28553v1"
+          "url": "https://arxiv.org/pdf/2608.31128v1"
         }
       ],
-      "llm_reason": "2026-09-01 回看 | Logos: An Agent Harness on a Cross-Process Bus 命中 ai-agent 与 security-governance 主线（agent 韧性 / 跨进程故障隔离）：据摘要，现代 agent systems 在运行时动态组装 capabilities，spatiotemporal-composability calculus 把 capability 形式化为携带 inverse 的 component、agent 装配为 plugins；当前 plugin 形式由单一进程承载同一 context——所有 component 共处一个物理故障域，一个故障悬挂所有 component、进程死亡中断所有 session。本文提出 Logos，以 cross-process bus 代替单进程 plugin 形式。'把 agent harness 从'单进程共享一个 context'改为'cross-process bus'——把故障域从 component 解耦，让故障悬挂与进程死亡不再传播到全组件'对做企业 agent harness、agent 容错、跨进程调用的团队有直接价值——它直击单进程 plugin 的核心故障传播问题，并为 agent 治理提供更可审计的故障边界。证据强度中等：问题诊断清晰（单进程 = 物理故障域合一）+ 关键词 agent/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 cross-process bus 的具体协议、inverse 跨进程追踪、与现有进程间通信（gRPC / message bus / capability system）的定量对比、故障域隔离的实证数据缺失；建议跟踪其开源与参考实现。",
-      "id": "logos-an-agent-harness-on-a-cross-process-bus",
-      "value_type": "immediate",
+      "id": "diasentinel-an-auditable-multi-agent-system-for-guideline-grounded-diabetes-risk-screening",
+      "value_type": "ignore",
       "matched_topics": [
         "ai-agent",
         "security-governance"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
         "evidence_strength": 4.5,
         "engineering_testability": 4.05,
         "trend_signal": 3.5,
-        "long_tail_potential": 4.15,
+        "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "AI Agent：Large language models (LLMs) offer promising clinical decision support but rem…",
+      "one_line_judgement": "当前可忽略：AI Agent：Large language models (LLMs) offer promising clinical decisio…",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "AI Agent：Large language models (LLMs) offer promising clinical decision support but rem…",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=diasentinel-an-auditable-multi-agent-system-for-guideline-grounded-diabetes-risk-screening"
+    },
+    {
+      "title": "OntoAligner-Ensemble: Voting-Based Fusion across Heterogeneous Ontology Alignment Techniques",
+      "authors": [
+        "Hamed Babaei Giglou",
+        "Sören Auer",
+        "Peio Popov",
+        "Mahsa Sanaei",
+        "Jennifer D'Souza"
+      ],
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.31137v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31137v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Ontology alignment (OA) has evolved through several methodological paradigms, ranging from lexical and structural aligners to knowledge graph embedding (KGE) models and, more recently, Large Language Model (LLM)-based approaches. Although modern OA frameworks provide unified ecosystems for deploying these heterogeneous aligners, mechanisms for systematically reconciling their complementary and sometimes conflicting predictions remain relatively underexplored. We present OntoAligner-Ensemble, a m",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 37.2,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.31137v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.31137v1"
+        }
+      ],
+      "id": "ontoaligner-ensemble-voting-based-fusion-across-heterogeneous-ontology-alignment-techniques",
+      "value_type": "ignore",
+      "matched_topics": [
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
         "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -332,217 +402,67 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Modern agent systems assemble capabilities at runtime, and this dynamic compos…",
-      "one_line_judgement": "今天值得试：2026-09-01 回看 | Logos: An Agent Harness on a Cross-Process Bus 命中 ai-a…",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
+      "trend_status": "noise",
+      "brief_cn": "RAG / 知识系统：Ontology alignment (OA) has evolved through several methodological paradigms, …",
+      "one_line_judgement": "当前可忽略：RAG / 知识系统：Ontology alignment (OA) has evolved through several methodo…",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-09-01 回看 | Logos: An Agent Harness on a Cross-Process Bus 命中 ai-agent 与 security-governance",
+      "long_tail_summary": "RAG / 知识系统：Ontology alignment (OA) has evolved through several methodological paradigms, …",
       "related_trends": [
-        "agentic-world-modeling"
+        "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=logos-an-agent-harness-on-a-cross-process-bus"
+      "detail_path": "paper-detail.html?id=ontoaligner-ensemble-voting-based-fusion-across-heterogeneous-ontology-alignment-techniques"
     },
     {
-      "title": "Blog: Survey of Optimizers",
+      "title": "Auditing Anonymous AI Models: A Four-Stage Protocol for Black-Box Identity Verification",
       "authors": [
-        "Ruoran Xu"
+        "Yisen Xi"
       ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28557v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28557v1",
+      "url": "http://arxiv.org/abs/2608.31142v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31142v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Neural-network optimization in 2025-2026 is no longer well described as a succession of new Adam variants. The design space has expanded from coordinates to matrices and layers, from fixed training horizons to policies over time, and from mathematical update rules to state representations that must survive sharding and low-precision computation. This survey organizes recent optimizers and training optimization methods along four largely independent axes: temporal estimation, update geometry, hor",
+      "abstract": "The 2025--2026 AI market has seen a wave of stealth releases: frontier models launched anonymously on developer platforms under codenames. For their users, identity determines data-handling terms, supply-chain risk, and capability expectations. No validated methodology exists for black-box identity verification of anonymous models: practitioner checklists lack accuracy evidence, and self-identification is untrustworthy by design. We propose a four-stage forensic audit protocol for API-served mod",
       "categories": [
-        "cs.LG",
-        "cs.AI"
+        "cs.SE",
+        "cs.AI",
+        "cs.CR"
       ],
       "keywords": [
-        "memory"
-      ],
-      "score": 70.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28557v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28557v1"
-        }
-      ],
-      "llm_reason": "2026-09-01 回看 | Quest: Survey of Optimizers（综述，全名 Survey of Optimizers）命中 llm-evaluation / training-optimization 主线（2025-2026 NN 优化器设计空间重构）：据摘要，NN 优化从 2025-2026 起不再能简单描述为一系列 Adam 变体；设计空间已从坐标扩展到矩阵与层、从固定训练 horizon 扩展为时间上的策略、从数学 update rule 扩展为必须能在分片与低精度计算下存活的状态表示。本文沿四个相互独立的轴归类近期优化器与训练优化方法：temporal estimation、update geometry、horizo[ns] / schedule、state representation。'把 NN 优化从'Adam 变体盘点'重构为四轴设计空间（temporal estimation / update geometry / horizon-schedule / state representation）'对做 LLM 训练、agent 后训练、训练基础设施的团队有趋势参考价值——它为评估/选型/自研优化器提供了比'新旧 Adam 变体'更结构化的视角，并强调分片+低精度生存能力。证据强度中等：方法框架清晰（四轴独立分类）+ 关键词 memory 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致四轴下具体优化器的对比表、与 SOTA 优化器（Muon / Shampoo / Lion / SOAP 等）的覆盖关系、对分片+低精度的存活约束细节缺失；属综述类（survey），提供 mapping 但需跟踪其具体推荐矩阵。",
-      "id": "blog-survey-of-optimizers",
-      "value_type": "trend",
-      "matched_topics": [
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 5.35,
-        "asset_convertibility": 4.0,
-        "actionability": 3.2,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Neural-network optimization in 2025-2026 is no longer well described as a succ…",
-      "one_line_judgement": "值得继续观察：2026-09-01 回看 | Quest: Survey of Optimizers（综述，全名 Survey of Optimizers…",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-09-01 回看 | Quest: Survey of Optimizers（综述，全名 Survey of Optimizers）命中 llm-evaluation / train",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=blog-survey-of-optimizers"
-    },
-    {
-      "title": "Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation Learning",
-      "authors": [
-        "Nan Wang",
-        "Mohit Yadav",
-        "Jonathan Wulff",
-        "Aidan Rosenbaum",
-        "Kezhou Chen"
-      ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28578v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28578v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Tendon-driven hands are anthropomorphic, and moving the actuators off the joints is what makes a hand of this capability affordable to build. Two effects produce that saving. Routing force through a cable removes the requirement that a motor fit inside the joint it drives, so smaller and cheaper motors suffice, and one motor can drive several joints through a single cable, so fewer motors are needed. They are also harder to learn on than a direct-drive hand. The underactuated transmission that p",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 64.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28578v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28578v1"
-        }
-      ],
-      "llm_reason": "2026-09-01 回看 | Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation Learning 命中 multimodal-agent / embodied AI 主线（仿真灵巧手与肌腱驱动学习）：据摘要，tendon-driven hand 是拟人化的，把执行器从关节外移让该级别手更便宜；二种效应带来该节省：力通过 cable 路由，无需电机塞进所驱动关节；一个电机可通过一根 cable 驱动多关节，所需电机更少。然而这种欠驱动 transmission 比 direct-drive 手更难学——其欠驱动 transmission 既降低硬件成本又增加学习难度。本文提出 Aero Hand Open，是 simulation-ready 灵巧手面向学习。'把 tendon-driven 灵巧手作为可直接学习的仿真资产开放——用欠驱动换取硬件成本、用仿真换学习可行性'对做具身 AI / 操作学习 / 灵巧手研究的团队有趋势参考价值——它示范了'硬件经济性 + 仿真可学性'的搭配，并降低具身研究的进入门槛。证据强度中等：方向明确（仿真 ready）+ 关键词未命中但 embodied 类目命中（cs.RO）。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体仿真平台、benchmark、USD/MuJoCo/Isaac 兼容性、学习 task suite、与 direct-drive 手的定量对比缺失；属 embodied AI 资产层，方向价值 > 短期工程价值。",
-      "id": "aero-hand-open-a-simulation-ready-tendon-driven-hand-for-dexterous-manipulation-learning",
-      "value_type": "trend",
-      "matched_topics": [
-        "multimodal-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "Multimodal Agent：Tendon-driven hands are anthropomorphic, and moving the actuators off the join…",
-      "one_line_judgement": "值得继续观察：2026-09-01 回看 | Aero Hand Open: A Simulation-Ready Tendon-Driven Hand …",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-09-01 回看 | Aero Hand Open: A Simulation-Ready Tendon-Driven Hand for Dexterous Manipulation",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=aero-hand-open-a-simulation-ready-tendon-driven-hand-for-dexterous-manipulation-learning"
-    },
-    {
-      "title": "Learning a Size-Weight Frontier for Synthetic-Augmented Inference",
-      "authors": [
-        "Chengpiao Huang",
-        "Kaizheng Wang"
-      ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28576v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28576v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Synthetic data can improve statistical inference when real data are scarce, but naively treating synthetic samples as real data can introduce bias and lead to unreliable inference. We develop a general framework for synthetic-augmented inference across a population of related tasks. It characterizes synthetic augmentation by the number of synthetic observations and their weight. Central to our framework is a size-weight frontier that specifies, for each weight, the largest synthetic sample size ",
-      "categories": [
-        "stat.ME",
-        "cs.AI",
-        "cs.LG",
-        "stat.ML"
-      ],
-      "keywords": [
-        "RAG",
         "inference"
       ],
-      "score": 60.0,
-      "decision": "持续观察",
+      "score": 35.7,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28576v1"
+          "url": "http://arxiv.org/abs/2608.31142v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28576v1"
+          "url": "https://arxiv.org/pdf/2608.31142v1"
         }
       ],
-      "llm_reason": "2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmented Inference 命中 llm-evaluation 与 inference-serving 主线（合成数据增强推断的尺寸-权重前沿）：据摘要，当真实数据稀缺时合成数据可改善统计推断，但把合成样本当真实数据用会引入偏差。本文开发一个跨相关任务群体的合成增强推断通用框架，以合成观测数与其权重表征合成增强；核心是 size-weight frontier，对每个权重指定最大合成样本数。'用 size-weight frontier 把'用多少合成数据 + 给多大权重'变成显式可控调节——把合成数据从'凭感觉设比例'变为有理论边界的工程问题'对做小数据推断、合成数据治理、评测数据工程的团队有长尾参考价值——它示范了'合成数据不是越多越好'的理论约束。证据强度中等：方法动机清晰（size-weight frontier）+ 关键词 RAG/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 frontier 的具体构造、对 LLM 评测数据合成的适用性、与传统 CI/贝叶斯合成数据方法的定量对比缺失；属跨任务群体推断理论层，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
-      "id": "learning-a-size-weight-frontier-for-synthetic-augmented-inference",
-      "value_type": "long_tail",
+      "id": "auditing-anonymous-ai-models-a-four-stage-protocol-for-black-box-identity-verification",
+      "value_type": "ignore",
       "matched_topics": [
-        "llm-evaluation",
-        "inference-serving"
+        "security-governance"
       ],
       "score_breakdown": {
         "novelty": 5.4,
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 6.2,
@@ -553,353 +473,278 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：Synthetic data can improve statistical inference when real data are scarce, bu…",
-      "one_line_judgement": "值得先保存：2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmente…",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmented Inference 命中 llm-evaluat",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=learning-a-size-weight-frontier-for-synthetic-augmented-inference"
+      "trend_status": "noise",
+      "brief_cn": "安全与治理：The 2025--2026 AI market has seen a wave of stealth releases: frontier models …",
+      "one_line_judgement": "当前可忽略：安全与治理：The 2025--2026 AI market has seen a wave of stealth releases: fr…",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "安全与治理：The 2025--2026 AI market has seen a wave of stealth releases: frontier models …",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=auditing-anonymous-ai-models-a-four-stage-protocol-for-black-box-identity-verification"
     },
     {
-      "title": "A Formal Limitation on Learning Human Language From Textual Corpora",
+      "title": "Context-Aware Interleaved Batching for WhisperX",
       "authors": [
-        "Emily Cheng",
-        "Ryan Cotterell"
+        "Carlos Bain",
+        "Max Bain"
       ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28560v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28560v1",
+      "url": "http://arxiv.org/abs/2608.31170v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31170v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Can a listener recover what a speaker means from the form of an utterance alone? We answer this question information-theoretically, and for a listener given by any featurizer of text, including the hidden states of contemporary large language models. Modeling language use as a joint distribution over meanings, contexts, and utterances, we derive upper bounds on the probability that a decoder recovers a speaker's intended meaning from a representation of the utterance. The bounds are governed by ",
+      "abstract": "While WhisperX accelerates speech transcription via intra-audio batching, it isolates audio segments, losing the historical context needed for coherent punctuation and terminology transcription. Conversely, standard Whisper retains context sequentially but suffers from slow inference and hallucination loops. To achieve the best of both worlds, we propose Context-Aware Interleaved Batching. By using VAD-derived segment boundaries, our algorithm stabilizes Whisper's text conditioning, allowing us ",
       "categories": [
         "cs.CL"
       ],
-      "keywords": [],
-      "score": 58.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28560v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28560v1"
-        }
-      ],
-      "llm_reason": "2026-09-01 回看 | A Formal Limitation on Learning Human Language From Textual Corpora 命中 llm-evaluation 与 security-governance 主线（从文本语料学习人类语言的形式上限）：据摘要，听者能否仅从话语形式恢复说者意图？本文信息论地证明，对任何 featurizer（包括当代 LLM 的隐藏态）都给出一个 decoder 能恢复说者意图的概率的上界。'用信息论严格上界证明'仅从文本语料学不到人类语言的全部'——为 LLM 能力评估与对齐评估提供一种形式化的'不可能'基准'对做 LLM 评估、alignment 边界、可解释性的团队有长尾参考价值——它示范了'不可学/不可恢复'的形式化方法，可作为评估上限的引理。证据强度中等偏上：方法路径清晰（信息论上界）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致上界对应的具体信息度量、与 BERT/Transformer 隐藏态的实证校准、是否依赖特定相关性假设缺失；属理论结果，作长尾资产保存。",
-      "id": "a-formal-limitation-on-learning-human-language-from-textual-corpora",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "llm-evaluation",
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 5.0,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：Can a listener recover what a speaker means from the form of an utterance alon…",
-      "one_line_judgement": "值得先保存：2026-09-01 回看 | A Formal Limitation on Learning Human Language From Te…",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-09-01 回看 | A Formal Limitation on Learning Human Language From Textual Corpora 命中 llm-evalu",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=a-formal-limitation-on-learning-human-language-from-textual-corpora"
-    },
-    {
-      "title": "QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs",
-      "authors": [
-        "Vaibhav Mehandiratta",
-        "Saket Ramchandra"
-      ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28589v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28589v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "We propose QGPINNs, a physics-informed neural network framework developed in PyTorch for the numerical solution of nonlocal differential equations on quantum graphs. The framework is designed as a general computational implementation in which the solution on each edge of the graph is approximated by a neural network, while a unified graph-based loss function enforces the governing equations together with initial, boundary, and vertex transmission conditions. In particular, the formulation incorp",
-      "categories": [
-        "cs.LG",
-        "math.NA"
-      ],
       "keywords": [
-        "benchmark"
+        "benchmark",
+        "inference"
       ],
-      "score": 55.0,
-      "decision": "持续观察",
+      "score": 34.5,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28589v1"
+          "url": "http://arxiv.org/abs/2608.31170v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28589v1"
+          "url": "https://arxiv.org/pdf/2608.31170v1"
         }
       ],
-      "llm_reason": "2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs 命中 ai-k8s-platform / AI4Science 长尾候选（量子图上的 PINN）：据摘要，本文提出 QGPINNs（PyTorch 实现）框架，用神经网络近似量子图上每条边上的解、用统一图 loss 强加方程与初始/边界/顶点传输条件。'把 PINN 推广到'量子图 + 非局部微分方程 + 顶点传输条件'——为带边界/分支的物理仿真提供新的可微分解法'对做 AI for Science、物理仿真、可微 PDE 求解器的团队有长尾参考价值——它拓展了 PINN 适用域并示范了'图结构 + 物理约束'的统一 loss 构造。证据强度中等：框架结构清晰（PyTorch 实现、统一 graph loss）+ 关键词 benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致与经典数值方法（FEM / spectral method）的定量对比、训练稳定性、量子图具体出处缺失；属 AI4Science 垂直方向，对通用 LLM/agent 工程栈直接迁移距离较远，作长尾资产保存。",
-      "id": "qgpinns-a-physics-informed-neural-network-framework-for-nonlocal-differential-equations-on-quantum-graphs",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-k8s-platform"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 5.4,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "AI 平台工程：We propose QGPINNs, a physics-informed neural network framework developed in P…",
-      "one_line_judgement": "值得先保存：2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework f…",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential E",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=qgpinns-a-physics-informed-neural-network-framework-for-nonlocal-differential-equations-on-quantum-graphs"
-    },
-    {
-      "title": "Learning between the peaks: sharp asymptotics for kernel ridge regression under power-law anisotropy",
-      "authors": [
-        "Lorenzo Rizzi",
-        "Arie Wortsman Zurich",
-        "Bruno Loureiro"
-      ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28564v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28564v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "We study kernel ridge regression under anisotropic Gaussian data, where the input covariance decays as a power law with exponent $α\\geq 0$ for polynomial inner-product kernels. We derive asymptotically sharp expressions for the kernel spectrum and the generalization error in the polynomial high-dimensional regime $n=Θ(d^κ)$, revealing how anisotropy reshapes the learning curves. For weak anisotropy ($0<α<1$), the problem remains effectively high-dimensional and retains some features of the isotr",
-      "categories": [
-        "stat.ML",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 52.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28564v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28564v1"
-        }
-      ],
-      "llm_reason": "2026-09-01 回看 | Learning between the peaks: sharp asymptotics for kernel ridge regression under power-law anisotropy 命中 inference-serving / 学习理论长尾候选（KRR 幂律各向异性的渐近学习曲线）：据摘要，本文研究各向异性高斯数据下核岭回归，其中输入协方差按幂律 α≥0 衰减；推导多项式核在多项式高维 regime n=Θ(d^κ) 下核谱与泛化误差的渐近精确表达。'给出幂律各向异性下 KRR 谱与泛化误差的渐近精确表达——把'各向异性 vs 各向同性'的学习曲线差异变成可计算的尖锐表达式'对做学习理论、模型选择、神经网络的理论解释（NTK 视角）的团队有长尾参考价值——它提供了带各向异性的精确渐近。证据强度中等：理论结果清晰（尖锐渐近）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 κ regime 内是否存在相位转捩、与深度学习理论的桥接、实证校准缺失；属学习理论层，作长尾资产保存。",
-      "id": "learning-between-the-peaks-sharp-asymptotics-for-kernel-ridge-regression-under-power-law-anisotropy",
-      "value_type": "long_tail",
+      "id": "context-aware-interleaved-batching-for-whisperx",
+      "value_type": "ignore",
       "matched_topics": [
         "inference-serving"
       ],
       "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "推理与服务：We study kernel ridge regression under anisotropic Gaussian data, where the in…",
-      "one_line_judgement": "值得先保存：2026-09-01 回看 | Learning between the peaks: sharp asymptotics for kern…",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-09-01 回看 | Learning between the peaks: sharp asymptotics for kernel ridge regression under ",
+      "trend_status": "noise",
+      "brief_cn": "推理与服务：While WhisperX accelerates speech transcription via intra-audio batching, it i…",
+      "one_line_judgement": "当前可忽略：推理与服务：While WhisperX accelerates speech transcription via intra-audio …",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "推理与服务：While WhisperX accelerates speech transcription via intra-audio batching, it i…",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=learning-between-the-peaks-sharp-asymptotics-for-kernel-ridge-regression-under-power-law-anisotropy"
+      "detail_path": "paper-detail.html?id=context-aware-interleaved-batching-for-whisperx"
     },
     {
-      "title": "QUEST: A Query and Extraction System for Topics in Asylum Law Application Decisions",
+      "title": "SUN: Persistent Programs For Language-Grounded Control-to-Learning-to-Real Policies",
       "authors": [
-        "Maria Vlachou",
-        "Anna Murphy Høgenhaug",
-        "Mohammad N. S. Jahromi",
-        "Galadrielle Humblot-Renaux",
-        "Thomas Gammeltoft-Hansen"
+        "Weiqi Wang",
+        "Zhi Li",
+        "Yudong Lei",
+        "David Martinez",
+        "Xiaofeng Gao"
       ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28555v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28555v1",
+      "url": "http://arxiv.org/abs/2608.31167v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31167v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Legal decisions on asylum applications consist of long, complex, and heterogeneous documents, covering narrative applicant interviews, original decisions, and additional supporting materials. If an application is rejected, a critical question in processing an appeal is whether the credibility of the information in the original application was a factor that determined the original decision. In this paper, we present the QUEST system (Query and Extraction System for Topics) to extract and identify",
+      "abstract": "Bridging model-based control and learned policies in long-horizon manipulation has harbored a silent disagreement: control executes specified objectives, learning amortizes that behavior into a reactive policy, yet existing protocols discard task semantics, leaving rewards hand-crafted and behavior drifting from what control verified.We introduce Semantically UNified (SUN) Programs, typed executables where geometric and contact relations are defined once and compiled into aligned Model Predictiv",
       "categories": [
-        "cs.IR"
+        "cs.RO",
+        "cs.AI"
       ],
       "keywords": [
-        "evaluation"
+        "planning"
       ],
-      "score": 50.0,
-      "decision": "持续观察",
+      "score": 33.9,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28555v1"
+          "url": "http://arxiv.org/abs/2608.31167v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28555v1"
+          "url": "https://arxiv.org/pdf/2608.31167v1"
         }
       ],
-      "llm_reason": "2026-09-01 回看 | QUEST: A Query and Extraction System for Topics in Asylum Law Application Decisions 命中 rag-knowledge / 垂直领域长尾候选（庇护法决策的查询与抽取系统）：据摘要，庇护申请法律决策是长、复杂、异构文档；上诉时关键问题是原始决定的决定因素是否包含原始申请中信息的可信度。本文提出 QUEST 系统提取并识别相关主题。'把'什么是决定因素'这种抽象法律问题用主题抽取+查询系统变成可工程化的 QA pipeline'对做法律 AI / 垂直领域 RAG / 高敏感度文档检索的团队有长尾参考价值——它示范了'领域敏感的语义标注 + 可审计 QA'在严苛合规场景下的路径。证据强度中等：系统描述清晰（Query and Extraction System）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致主题 schema 设计、人评/自动评对比、是否公布 benchmark 缺失；属垂直领域 RAG 工程，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
-      "id": "quest-a-query-and-extraction-system-for-topics-in-asylum-law-application-decisions",
-      "value_type": "long_tail",
+      "id": "sun-persistent-programs-for-language-grounded-control-to-learning-to-real-policies",
+      "value_type": "ignore",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "LLM 评测：Bridging model-based control and learned policies in long-horizon manipulation…",
+      "one_line_judgement": "当前可忽略：LLM 评测：Bridging model-based control and learned policies in long-horiz…",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "LLM 评测：Bridging model-based control and learned policies in long-horizon manipulation…",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=sun-persistent-programs-for-language-grounded-control-to-learning-to-real-policies"
+    },
+    {
+      "title": "Constant Individual Regret in General Games",
+      "authors": [
+        "Mingyang Liu",
+        "Gabriele Farina",
+        "Asuman Ozdaglar"
+      ],
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.31166v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31166v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Uncoupled no-regret dynamics provide a decentralized route to equilibrium, but prior guarantees for individual regret retain a polylogarithmic dependence on the horizon. We remove this dependence for every finite $N$-player normal-form game under full-information feedback. We introduce \\emph{ECHO-OFTRL}: optimistic follow-the-regularized-leader (OFTRL) equipped with an EMA cascade for high-order optimism (ECHO), where EMA denotes exponential moving average. The algorithm is deterministic and ful",
+      "categories": [
+        "cs.LG",
+        "cs.GT"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 33.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.31166v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.31166v1"
+        }
+      ],
+      "id": "constant-individual-regret-in-general-games",
+      "value_type": "ignore",
       "matched_topics": [
         "rag-knowledge"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 5.0,
-        "noise_risk": 2.4,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "RAG / 知识系统：Legal decisions on asylum applications consist of long, complex, and heterogen…",
-      "one_line_judgement": "值得先保存：2026-09-01 回看 | QUEST: A Query and Extraction System for Topics in Asy…",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-09-01 回看 | QUEST: A Query and Extraction System for Topics in Asylum Law Application Decisi",
+      "trend_status": "noise",
+      "brief_cn": "RAG / 知识系统：Uncoupled no-regret dynamics provide a decentralized route to equilibrium, but…",
+      "one_line_judgement": "当前可忽略：RAG / 知识系统：Uncoupled no-regret dynamics provide a decentralized route …",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "RAG / 知识系统：Uncoupled no-regret dynamics provide a decentralized route to equilibrium, but…",
       "related_trends": [
         "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=quest-a-query-and-extraction-system-for-topics-in-asylum-law-application-decisions"
+      "detail_path": "paper-detail.html?id=constant-individual-regret-in-general-games"
     },
     {
-      "title": "On two proofs of $d^2$ mixing of weighted Dikin walks",
+      "title": "Sharp Approximation Rates for Neural Networks with Affine Latent Parameterizations",
       "authors": [
-        "Yuansi Chen",
-        "Yunbum Kook"
+        "Shijun Zhang"
       ],
-      "published": "2026-08-28",
-      "updated": "2026-08-28",
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.28566v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.28566v1",
+      "url": "http://arxiv.org/abs/2608.31157v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31157v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "We study the mixing time of weighted Dikin walks for sampling from exponential distributions on polytopes and truncated positive-semidefinite (PSD) cones. Our first result gives a general total-variation mixing bound under strong self-concordance, $\\barν$-symmetry, and mixed-trace regularity on the local metric. The key idea is to control the Metropolis--Hastings acceptance probability on a high-probability region rather than at every point. Applying this framework to the Lee--Sidford, Lewis-wei",
+      "abstract": "Many parameter-efficient methods generate the parameters of a large neural network from a low-dimensional latent representation. Given an architecture $Φ$ with $P_Φ$ parameter slots, we write $\\boldsymbolθ_f=\\mathcal{G}(\\boldsymbolξ_f)$, where $\\mathcal{G}\\colon\\mathbb{R}^M\\to\\mathbb{R}^{P_Φ}$ is a parameter generator and $\\boldsymbolξ_f\\in\\mathbb{R}^M$ is a latent representation of the target function $f$. The architecture $Φ$ and the generator $\\mathcal{G}$ are shared across the entire target ",
       "categories": [
-        "cs.DS",
         "cs.LG",
-        "math.OC",
-        "math.PR",
-        "stat.CO"
+        "stat.ML"
       ],
       "keywords": [],
-      "score": 45.0,
+      "score": 28.5,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.28566v1"
+          "url": "http://arxiv.org/abs/2608.31157v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.28566v1"
+          "url": "https://arxiv.org/pdf/2608.31157v1"
         }
       ],
-      "llm_reason": "2026-09-01 回看 | On two proofs of d² mixing of weighted Dikin walks 聚焦 cs.DS / 数学概率混合时间结果（加权 Dikin 行走 d² 混合的两种证明）：据摘要，本文研究加权 Dikin 行走对多面体上/截断半定锥上指数分布采样的混合时间；给出强自协调 / ν̄-对称 / 混合迹正则性下的总变差混合上界，并把框架应用于 Lee-Sidford、Lewis-wei[gh]t 等 setting。领域聚焦混合时间数学结果，与团队以 Agent / LLM 工程栈 / RAG / 推理 / 评测为核心的技术栈直接迁移距离较远；关键词未命中。code/benchmark/Papers with Code/OpenReview 链接暂无待核验。忽略，除非做约束凸采样/MCMC-as-optimizer/LP+LLM pipeline 的方向工作。",
-      "id": "on-two-proofs-of-d-2-mixing-of-weighted-dikin-walks",
+      "id": "sharp-approximation-rates-for-neural-networks-with-affine-latent-parameterizations",
       "value_type": "ignore",
       "matched_topics": [],
       "score_breakdown": {
-        "novelty": 5.4,
+        "novelty": 4.8,
         "problem_importance": 4.5,
         "relevance": 3.8,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.05,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.4,
+        "asset_convertibility": 4.0,
         "actionability": 3.8,
         "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
@@ -908,16 +753,151 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "noise",
-      "brief_cn": "前沿论文：We study the mixing time of weighted Dikin walks for sampling from exponential…",
-      "one_line_judgement": "当前可忽略：2026-09-01 回看 | On two proofs of d² mixing of weighted Dikin walks 聚焦 …",
-      "first_seen_date": "2026-09-01",
-      "first_deep_dive_daily": "2026-09-01",
+      "brief_cn": "前沿论文：Many parameter-efficient methods generate the parameters of a large neural net…",
+      "one_line_judgement": "当前可忽略：前沿论文：Many parameter-efficient methods generate the parameters of a lar…",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-09-01 回看 | On two proofs of d² mixing of weighted Dikin walks 聚焦 cs.DS / 数学概率混合时间结果（加权 Diki",
+      "long_tail_summary": "前沿论文：Many parameter-efficient methods generate the parameters of a large neural net…",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=on-two-proofs-of-d-2-mixing-of-weighted-dikin-walks"
+      "detail_path": "paper-detail.html?id=sharp-approximation-rates-for-neural-networks-with-affine-latent-parameterizations"
+    },
+    {
+      "title": "Implementing neural network mixed-effects models in Template Model Builder (TMB)",
+      "authors": [
+        "Nan Zheng",
+        "Hoi Yiu Cheung",
+        "Vibhu Sharma",
+        "James T. Thorson",
+        "Noel G. Cadigan"
+      ],
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.31133v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31133v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Neural network mixed-effects models (NMMs) have gained traction by combining the strong representation and predictive power of artificial neural networks with the capacity of mixed-effects modeling to capture complex correlation structures. However, existing estimation approaches rely heavily on manual derivations of objective functions and gradients, which inherently forces simplifying approximations and severely constrains the complexity and accuracy of NMMs. In this work, we introduce a gener",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 28.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.31133v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.31133v1"
+        }
+      ],
+      "id": "implementing-neural-network-mixed-effects-models-in-template-model-builder-tmb",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：Neural network mixed-effects models (NMMs) have gained traction by combining t…",
+      "one_line_judgement": "当前可忽略：前沿论文：Neural network mixed-effects models (NMMs) have gained traction b…",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Neural network mixed-effects models (NMMs) have gained traction by combining t…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=implementing-neural-network-mixed-effects-models-in-template-model-builder-tmb"
+    },
+    {
+      "title": "On the Complexity of the Compatibility Problem for Succinctly Encoded Conditional Distributions",
+      "authors": [
+        "Guy Emerson"
+      ],
+      "published": "2026-08-31",
+      "updated": "2026-08-31",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2608.31120v1",
+      "pdf_url": "https://arxiv.org/pdf/2608.31120v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The motivation for this paper is the investigation of the trade-offs implicit in probabilistic models used in machine learning. Models are often used to make predictions in the form of conditional probabilities. However, a pair of conditional distributions p(x|y) and p(y|x) may not be compatible with any joint distribution p(x,y). Given two such conditionals, determining if there exists a compatible joint is known as the compatibility problem. For discrete random variables, when the conditionals",
+      "categories": [
+        "cs.LG",
+        "cs.CC",
+        "math.PR"
+      ],
+      "keywords": [],
+      "score": 28.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2608.31120v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2608.31120v1"
+        }
+      ],
+      "id": "on-the-complexity-of-the-compatibility-problem-for-succinctly-encoded-conditional-distributions",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：The motivation for this paper is the investigation of the trade-offs implicit …",
+      "one_line_judgement": "当前可忽略：前沿论文：The motivation for this paper is the investigation of the trade-o…",
+      "first_seen_date": "2026-09-02",
+      "first_deep_dive_daily": "2026-09-02",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：The motivation for this paper is the investigation of the trade-offs implicit …",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=on-the-complexity-of-the-compatibility-problem-for-succinctly-encoded-conditional-distributions"
     }
   ],
   "long_tail_highlights": [
