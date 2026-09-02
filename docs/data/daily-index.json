@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-09-02T04:31:24.632504",
+  "updated_at": "2026-09-03T04:33:19.146132",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-03",
+      "title": "论文价值发现日报 - 2026-09-03",
+      "deep_dive_title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+      "deep_dive_url": "http://arxiv.org/abs/2609.01587v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "2026-09-03 回看 | 完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配（30 分钟可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，1 周内可实施）；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
+      "max_uncertainty": "2026-09-03 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。",
+      "one_line_judgement": "据摘要，The Structure of Quantization Damage in LLMs（[2609.01587](http://arxiv.org/abs/2609.01587v1)）把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'，直接回答'额外精度 bit 应花在哪里'——证据级别提到因果干预层，能立刻用于 serving 栈精度预算分配。Verbal Reinforcement Learning（[2609.01597](http://arxiv.org/abs/2609.01597v1)）给出 VRL 的 first unified account——按 lifecycle 时机 × 改动对象统一组织，提供了把现有 LLM feedback 技巧按 lifecycle 排序的统一视角，便于评估与教学。PTA-IRT（[2609.01603](http://arxiv.org/abs/2609.01603v1)）把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'，直击 SWE agent 评估贵的行业瓶颈——它既利用解题轨迹又控制成本。三篇 immediate 共同指向'为既有做法提供结构化底层原理'。趋势层：CordisBench（[2609.01600](http://arxiv.org/abs/2609.01600v1)）把'动态 agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime——与昨日 Logos（2608.28553）的 cross-process bus 故障隔离形成'agent harness 治理与生命周期'趋势簇；Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）用 8 类扰动 taxonomy + paired clean/corrupt + token 级标注把 LLM-as-a-Judge 从'score 输出'推到'mechanism 理解'；Adaptive Critical Token（[2609.01601](http://arxiv.org/abs/2609.01601v1)）把仓库级代码生成 RAG 从'task-level support'推到'critical-token aware retrieval'；Facet-0（[2609.01596](http://arxiv.org/abs/2609.01596v1)）围绕 joint action-wrench proposal 统一多模态表征与 RL 后训练——与昨日 Aero Hand Open 的仿真资产化互补。",
+      "path": "daily-detail.html?date=2026-09-03"
+    },
     {
       "date": "2026-09-02",
       "title": "论文价值发现日报 - 2026-09-02",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Change2Task 的任务验证准确率与跨仓库泛化、ReToken 的增益幅度与不同干扰物规模下的鲁棒性、OSReward 的基准规模与平台覆盖与 judge 一致性均需正文确认。另：本窗口论文集合与 2026-08-01、2026-08-02 窗口相同（arXiv API 按相关性返回的最新结果在周末更新窗口未变化），非数据抓取异常。",
       "one_line_judgement": "它直击 coding agent 规模化的核心瓶颈——持续供给可执行的训练/评测任务。通过从仓库历史的已合并 PR 反向构造任务环境（规范 + 开发工具 + 可靠验证），在不依赖人工标注的前提下持续扩展 coding agent 的任务供给，同时命中 coding-agent、evaluation、benchmark 三条主线。",
       "path": "daily-detail.html?date=2026-08-03"
-    },
-    {
-      "date": "2026-08-02",
-      "title": "论文价值发现日报 - 2026-08-02",
-      "deep_dive_title": "Change2Task: From Repository Changes to Executable Coding Agent Tasks and Environments",
-      "deep_dive_url": "http://arxiv.org/abs/2607.28591v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：从团队一个活跃仓库试做 1-2 个 Change2Task 式 PR→任务样例评估可行性、把 ReToken 的 KV cache 稀疏化思路纳入长上下文 VLM 服务的显存/延迟优化审查、把 OSReward 的 CUA 轨迹验证方法论纳入 computer-use agent 评测设计。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；当前评分与分析基于 arXiv 摘要自述（多篇摘要截断），论文正文的实验规模、基线对比、消融研究与统计显著性尚待核验。Change2Task 的任务验证准确率与跨仓库泛化、ReToken 的增益幅度与不同干扰物规模下的鲁棒性、OSReward 的基准规模与平台覆盖与 judge 一致性均需正文确认。另：本窗口论文集合与 2026-08-01 窗口相同（arXiv API 按相关性返回的最新结果在周末更新窗口未变化），非数据抓取异常。",
-      "one_line_judgement": "它直击 coding agent 规模化的核心瓶颈——持续供给可执行的训练/评测任务。通过从仓库历史的已合并 PR 反向构造任务环境（规范 + 开发工具 + 可靠验证），在不依赖人工标注的前提下持续扩展 coding agent 的任务供给，同时命中 coding-agent、evaluation、benchmark 三条主线。",
-      "path": "daily-detail.html?date=2026-08-02"
     }
   ]
 }

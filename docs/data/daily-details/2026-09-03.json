@@ -1,0 +1,264 @@
+{
+  "date": "2026-09-03",
+  "title": "论文价值发现日报 - 2026-09-03",
+  "deep_dive_id": "the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+  "deep_dive_title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "decision": "轻量试点",
+  "daily_action": "2026-09-03 回看 | 完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配（30 分钟可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，1 周内可实施）；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
+  "score": 74.0,
+  "trend_stage": "emerging",
+  "one_line_judgement": "今天值得试：2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the …",
+  "max_uncertainty": "2026-09-03 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。",
+  "conclusion_lines": [
+    "今天最值得看的是《The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally》。",
+    "它属于即时价值，因为同时具备较高的相关性与研究资产价值。",
+    "今天建议动作：2026-09-03 回看 | 完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配（30 分钟可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，1 周内可实施）；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。。",
+    "最大不确定性：2026-09-03 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。。"
+  ],
+  "candidate_papers": [
+    {
+      "id": "the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+      "title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+      "detail_path": "paper-detail.html?id=the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+      "direction": "未分类",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "score": 74.0,
+      "decision": "轻量试点",
+      "has_code": false,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    },
+    {
+      "id": "the-rise-of-verbal-reinforcement-learning",
+      "title": "The Rise of Verbal Reinforcement Learning",
+      "detail_path": "paper-detail.html?id=the-rise-of-verbal-reinforcement-learning",
+      "direction": "未分类",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "score": 73.0,
+      "decision": "轻量试点",
+      "has_code": false,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    },
+    {
+      "id": "efficient-swe-agent-benchmarking-via-trajectory-aware-evaluation",
+      "title": "Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation",
+      "detail_path": "paper-detail.html?id=efficient-swe-agent-benchmarking-via-trajectory-aware-evaluation",
+      "direction": "未分类",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "score": 72.0,
+      "decision": "轻量试点",
+      "has_code": false,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    },
+    {
+      "id": "cordisbench-can-language-models-reason-about-component-lifecycles-in-dynamic-agent-harnesses",
+      "title": "CordisBench: Can Language Models Reason About Component Lifecycles in Dynamic Agent Harnesses?",
+      "detail_path": "paper-detail.html?id=cordisbench-can-language-models-reason-about-component-lifecycles-in-dynamic-agent-harnesses",
+      "direction": "未分类",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 71.0,
+      "decision": "轻量试点",
+      "has_code": false,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    },
+    {
+      "id": "beyond-scores-understanding-llm-as-a-judge-mechanisms-in-summarization-evaluation",
+      "title": "Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation",
+      "detail_path": "paper-detail.html?id=beyond-scores-understanding-llm-as-a-judge-mechanisms-in-summarization-evaluation",
+      "direction": "未分类",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 69.0,
+      "decision": "轻量试点",
+      "has_code": false,
+      "has_benchmark": false,
+      "worth_deep_dive": false
+    }
+  ],
+  "deep_dive": {
+    "id": "the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+    "title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+    "authors": [
+      "Jundong Hu",
+      "Shekar Ramachandran"
+    ],
+    "source": "arXiv",
+    "published": "2026-09-01",
+    "url": "http://arxiv.org/abs/2609.01587v1",
+    "pdf_url": "https://arxiv.org/pdf/2609.01587v1",
+    "code_url": "",
+    "benchmark_url": "",
+    "paperswithcode_url": "",
+    "openreview_url": "",
+    "first_seen_date": "2026-09-03",
+    "first_deep_dive_daily": "2026-09-03",
+    "value_type": "immediate",
+    "value_type_label": "即时价值",
+    "value_scores": {
+      "novelty": 4.8,
+      "relevance": 5.0,
+      "evidence": 4.5,
+      "engineering_testability": 3.5,
+      "trend_signal": 3.5,
+      "long_tail_potential": 3.5,
+      "actionability": 3.8,
+      "noise_risk": 1.2
+    },
+    "score": 74.0,
+    "decision": "轻量试点",
+    "one_line_judgement": "今天值得试：2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the …",
+    "one_line_essence": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally 命中 inference-serving 主线（PTQ 损伤结构 + 精度预算分配的因果干预研究）：据摘要，post-training quantization（PTQ）被广泛用于降低 LLM serving 成本，但精度损失分布不均且常逐模型调优；本文研究量化损伤在哪里发生、额外精度预算如何分配。以 causal mixed-precision intervention 作 ground truth（逐层升到 8-bit 测精度恢复），跨 9 个开源模型、4 个架构家族测试 3 种直觉假设（量化损伤是否在某层/某 family 集中）。'把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'——证据级别提到因果干预层'对做 LLM 推理优化、量化工程、推理基础设施的团队有直接价值：直接给出'额外精度 bit 应花在哪里'的结构化结论，能立刻用于 serving 栈的精度预算分配。证据强度偏上：方法严谨（causal intervention 作 ground truth + 9 模型 4 家族 + 多假设检验）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；建议跟踪具体结论与开源实现。",
+    "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+    "new_claim_or_method": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally 命中 inference-serving 主线（PTQ 损伤结构 + 精度预算分配的因果干预研究）：据摘要，post-training quantiza",
+    "research_position": "source_paper",
+    "engineering_testability": {
+      "has_code": false,
+      "has_benchmark": false,
+      "can_reproduce": false,
+      "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+      "engineering_scenarios": [
+        "AI Agent",
+        "Context Engineering",
+        "评测治理"
+      ]
+    },
+    "trend_relation": {
+      "status": "emerging",
+      "related_trends": [],
+      "evidence": [
+        "论文主题匹配固定研究方向"
+      ],
+      "uncertainties": [
+        "是否会出现更多开源实现与生产案例"
+      ]
+    },
+    "long_tail": {
+      "why_save": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent G",
+      "future_trigger": [
+        "待更多证据"
+      ],
+      "possible_use_cases": [
+        "Prompt 设计",
+        "Skill 草案",
+        "评测方法",
+        "架构模式"
+      ],
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist",
+        "模板"
+      ],
+      "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+      "revisit_date": ""
+    },
+    "insights": {
+      "system_design": [
+        "先判断价值类型，再决定系统性投入。"
+      ],
+      "agent_engineering": [
+        "为 Agent 建立论文价值路由器。"
+      ],
+      "dev_process": [
+        "论文输出应沉淀为可执行资产。"
+      ],
+      "evaluation": [
+        "同时看方法与证据质量。"
+      ],
+      "platform_engineering": [
+        "长尾资产库可降低重复检索成本。"
+      ],
+      "personal_learning": [
+        "优先读能转化为未来复利的论文。"
+      ]
+    },
+    "actions": {
+      "immediate_actions": [
+        "今天读摘要与方法",
+        "今天试最小实验",
+        "一周内沉淀为 Skill / Checklist"
+      ],
+      "trend_actions": [],
+      "long_tail_actions": [],
+      "ignore_reason": ""
+    },
+    "references": [
+      {
+        "label": "arXiv",
+        "url": "http://arxiv.org/abs/2609.01587v1"
+      },
+      {
+        "label": "PDF",
+        "url": "https://arxiv.org/pdf/2609.01587v1"
+      }
+    ],
+    "detail_path": "paper-detail.html?id=the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+    "daily_path": "daily-detail.html?date=2026-09-03",
+    "trend_paths": [],
+    "long_tail_path": "long-tail.html",
+    "mermaid": {
+      "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+      "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+      "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+    }
+  },
+  "long_tail_saved": [],
+  "ignore_reasons": [
+    "暂无明确忽略样本，但忽略标准仍需保留。"
+  ],
+  "insights": {
+    "system_design": [
+      "先做价值路由，再决定是否深入工程推导。"
+    ],
+    "agent_engineering": [
+      "让 Agent 先判断“今天值不值得试”。"
+    ],
+    "dev_process": [
+      "论文筛选应产出 Prompt / Skill / Checklist。"
+    ],
+    "evaluation": [
+      "把“是否值得投入”也纳入评测流程。"
+    ],
+    "platform_engineering": [
+      "长尾库是低成本知识保留层。"
+    ],
+    "personal_learning": [
+      "优先读可沉淀资产的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "30 分钟学习",
+      "2 小时实践",
+      "1 周研究"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2609.01587v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2609.01587v1"
+    }
+  ],
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  },
+  "raw_markdown_html": "<h2>论文价值发现日报 - 2026-09-03</h2>\n<p>> 从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。</p>\n<p>> ⚠️ <strong>注意：这是初始化样例，后续运行会替换为真实数据。</strong></p>\n<h3>1. 标题区</h3>\n<ul>\n<li><strong>今日最值得关注论文：</strong> <a href=\"http://arxiv.org/abs/2609.01587v1\" target=\"_blank\" rel=\"noopener noreferrer\">The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally</a></li>\n<li><strong>价值类型：</strong> 即时价值</li>\n<li><strong>今日建议动作：</strong> 2026-09-03 回看 | 完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配（30 分钟可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，1 周内可实施）；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。</li>\n<li><strong>分数：</strong> 74.0</li>\n<li><strong>趋势阶段：</strong> 萌芽</li>\n</ul>\n<h3>2. 先说结论</h3>\n<p>2026-09-03 回看 | - <strong>今天最值得看什么：</strong> 三篇 immediate 分别从'LLM 推理侧的 PTQ 损伤结构'、'agent 反馈侧的 Verbal RL 统一框架'、'SWE agent 评测侧的轨迹感知 IRT'三个角度命中当前 AI 工程的真实痛点；一个共同主题是'为既有做法提供结构化、可审计的底层原理'。</p>\n<ul>\n<li><strong>为什么值得看：</strong> 据摘要，The Structure of Quantization Damage in LLMs（<a href=\"http://arxiv.org/abs/2609.01587v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01587</a>）把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'，直接回答'额外精度 bit 应花在哪里'——证据级别提到因果干预层，能立刻用于 serving 栈精度预算分配。Verbal Reinforcement Learning（<a href=\"http://arxiv.org/abs/2609.01597v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01597</a>）给出 VRL 的 first unified account——按 lifecycle 时机 × 改动对象统一组织，提供了把现有 LLM feedback 技巧按 lifecycle 排序的统一视角，便于评估与教学。PTA-IRT（<a href=\"http://arxiv.org/abs/2609.01603v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01603</a>）把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'，直击 SWE agent 评估贵的行业瓶颈——它既利用解题轨迹又控制成本。三篇 immediate 共同指向'为既有做法提供结构化底层原理'。趋势层：CordisBench（<a href=\"http://arxiv.org/abs/2609.01600v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01600</a>）把'动态 agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime——与昨日 Logos（2608.28553）的 cross-process bus 故障隔离形成'agent harness 治理与生命周期'趋势簇；Beyond Scores（<a href=\"http://arxiv.org/abs/2609.01604v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01604</a>）用 8 类扰动 taxonomy + paired clean/corrupt + token 级标注把 LLM-as-a-Judge 从'score 输出'推到'mechanism 理解'；Adaptive Critical Token（<a href=\"http://arxiv.org/abs/2609.01601v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01601</a>）把仓库级代码生成 RAG 从'task-level support'推到'critical-token aware retrieval'；Facet-0（<a href=\"http://arxiv.org/abs/2609.01596v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01596</a>）围绕 joint action-wrench proposal 统一多模态表征与 RL 后训练——与昨日 Aero Hand Open 的仿真资产化互补。</li>\n<li><strong>它属于什么价值类型：</strong> Quantization Damage（<a href=\"http://arxiv.org/abs/2609.01587v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01587</a>）、Verbal RL（<a href=\"http://arxiv.org/abs/2609.01597v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01597</a>）、PTA-IRT（<a href=\"http://arxiv.org/abs/2609.01603v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01603</a>）属即时价值（直击 LLM 推理精度预算 / agent 反馈统一框架 / SWE agent 评测成本三个工程层痛点）；CordisBench（<a href=\"http://arxiv.org/abs/2609.01600v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01600</a>）、Beyond Scores（<a href=\"http://arxiv.org/abs/2609.01604v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01604</a>）、Adaptive Critical Token（<a href=\"http://arxiv.org/abs/2609.01601v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01601</a>）、Facet-0（<a href=\"http://arxiv.org/abs/2609.01596v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01596</a>）属趋势价值（agent lifecycle 评测 + judge 机制理解 + 仓库代码检索 + 接触丰富精确操作）；Mechanism Design（<a href=\"http://arxiv.org/abs/2609.01595v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01595</a>）、Proactive Thought Partners（<a href=\"http://arxiv.org/abs/2609.01588v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01588</a>）、StudentSim（<a href=\"http://arxiv.org/abs/2609.01591v1\" target=\"_blank\" rel=\"noopener noreferrer\">2609.01591</a>）属长尾价值（机制设计+AI / HCI 设计空间 / 教育 AI 模拟器 proxy）。</li>\n<li><strong>今天该做什么：</strong> (1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。</li>\n<li><strong>最大不确定性：</strong> 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark 的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义均缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。</li>\n</ul>\n<h3>3. 今日候选论文表</h3>\n<div class=\"table-wrapper\"><table><tbody>\n<tr><td>论文标题</td><td>方向</td><td>价值类型</td><td>分数</td><td>判断</td><td>是否有代码</td><td>是否有 Benchmark</td><td>是否值得深挖</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2609.01587v1\" target=\"_blank\" rel=\"noopener noreferrer\">The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally</a></td><td>inference-serving</td><td>即时价值</td><td>74.0</td><td>轻量试点</td><td>否</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2609.01597v1\" target=\"_blank\" rel=\"noopener noreferrer\">The Rise of Verbal Reinforcement Learning</a></td><td>ai-agent</td><td>即时价值</td><td>73.0</td><td>轻量试点</td><td>否</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2609.01603v1\" target=\"_blank\" rel=\"noopener noreferrer\">Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation</a></td><td>coding-agent / llm-evaluation</td><td>即时价值</td><td>72.0</td><td>轻量试点</td><td>否</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2609.01600v1\" target=\"_blank\" rel=\"noopener noreferrer\">CordisBench: Can Language Models Reason About Component Lifecycles in Dynamic Agent Harnesses?</a></td><td>ai-agent / llm-evaluation</td><td>趋势价值</td><td>71.0</td><td>轻量试点</td><td>否</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2609.01604v1\" target=\"_blank\" rel=\"noopener noreferrer\">Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation</a></td><td>llm-evaluation</td><td>趋势价值</td><td>69.0</td><td>轻量试点</td><td>否</td><td>否</td><td>否</td></tr>\n</tbody></table></div>\n<h3>4. 今日深挖论文</h3>\n<p>2026-09-03 回看 | - <strong>一句话本质：</strong> 今日三篇 immediate 共同指向'为既有做法提供结构化、可审计的底层原理'——Quantization Damage 用 causal mixed-precision intervention 把'PTQ 逐模型调优'改成'结构化损伤假设检验'，Verbal RL 用 lifecycle 时机 × 改动对象两轴把'LLM feedback 技巧'改成'unified account'，PTA-IRT 用 Privileged Trajectory-Aware IRT 把'SWE agent 评测的 subset 选择'改成'轨迹+结果联合建模'；趋势层（CordisBench / Beyond Scores / Adaptive Critical Token / Facet-0）则确认研究焦点同时向'agent harness 治理与生命周期 + judge 机制理解 + 仓库代码检索 + 接触丰富精确操作'四条边界推进。</p>\n<ul>\n<li><strong>底层问题：</strong> AI 工程既有做法普遍缺少结构化底层原理：(1) LLM 推理侧的 PTQ 优化——业内普遍做法是'逐模型调优'，但精度损失分布不均，少有结构性结论（Quantization Damage 命中）；(2) Agent 反馈侧的 verbal feedback——现有 LLM feedback 技巧零散，按'RLAIF / Constitutional AI / Debate / Self-Refine'等并列罗列，但缺少统一视角（Verbal RL 命中）；(3) SWE agent 评测侧——SWE agent 评估贵是行业级瓶颈，现有高效评测只利用结果信息，丢掉了过程（agent 怎么解题）（PTA-IRT 命中）。今日三篇 immediate 同时命中这三种'既有做法缺少结构化底层原理'的缺口。</li>\n<li><strong>新命题 / 新方法 / 新证据：</strong> 据摘要，Quantization Damage 用 causal mixed-precision intervention 作 ground truth（逐层升到 8-bit 测精度恢复），跨 9 个开源模型、4 个架构家族测试 3 种直觉假设（量化损伤是否在某层/某 family 集中），给出'额外精度 bit 应花在哪里'的结构化结论。Verbal RL 把 verbal feedback 范式首次统一叙述，以单一轴组织——when 口头反馈在 agent lifecycle 生效与 what 它修改——形成三大支柱。PTA-IRT 用 Privileged Trajectory-Aware Item Response Theory 同时利用历史结果与 agent 解题轨迹来估计 full-benchmark 性能。趋势层：CordisBench 把'dynamic agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime（管理组件依赖与 cleanup），要求模型识别受影响组件、预测状态影响；Beyond Scores 用 8 类扰动 taxonomy（覆盖 NLG 质量的 Readability 与 Adequacy 两维）配合可控错误强度与 token 级标注的 paired clean/corrupt summary 生成 pipeline；Adaptive Critical Token 把仓库级代码生成的 RAG 检索从 task-level 推到 critical-token；Facet-0 围绕 joint action-wrench proposal 统一多模态表征学习与 RL 后训练，用 causal wrench history 与 vision-language semantics 和 kinematic state 对齐 + flow matching。</li>\n<li><strong>研究位置：</strong> Quantization Damage 处于因果干预+结构化假设检验期（9 模型 4 家族），具体结论与边界需正文确认。Verbal RL 处于框架/范式类期（first unified account），三支柱的具体内容与覆盖方法集合需正文确认。PTA-IRT 处于方法提出期（IRT + trajectory-aware），输入特征、IRT 模型选择、subset 大小、与静态 subset selection 的定量对比需正文确认。CordisBench 处于评测发布期（1,200 题 + Cordis runtime），runtime 依赖模型、清理语义、SOTA 模型得分需正文确认。Beyond Scores 处于机制性扰动研究期（8 类扰动 + paired 生成），扰动细节、token 级错误强度参数化、模型族覆盖需正文确认。Adaptive Critical Token 处于方向提出期（critical-token aware），识别方式、与现有方法的对比、benchmark 选型需正文确认。Facet-0 处于具身模型发布期（joint action-wrench proposal + flow matching），具体模型规模、benchmark、与 visuotactile / wrench-aware 方法的对比需正文确认。Mechanism Design 处于机制设计+AI 理论结果期（revelation principle + nested cyclical monotonicity），构造、tractability、算法实现、与 RLHF / Debate 的桥接需正文确认。Proactive Thought Partners 处于 HCI 设计空间期（设计空间 + 系统实例），具体系统实现、用户研究规模、设计空间的轴定义需正文确认。StudentSim 处于方法动机清晰期（两个流派都缺），具体训练目标、模拟器架构、与真人校准、benchmark 需正文确认。</li>\n<li><strong>工程可验证性：</strong> Quantization Damage 的'causal mixed-precision intervention + 9 模型 4 家族'方法可立刻借鉴思路——团队可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，识别哪些层是 mixed-precision 的真正收益点（30 分钟可设计实验、1 周内可实施）。Verbal RL 的 lifecycle 时机 × 改动对象两轴可立刻作为评估/分类现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）。PTA-IRT 的 trajectory-aware IRT 思路可立刻在团队 SWE agent benchmark 上做概念验证（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）。CordisBench 的 1,200 题 + Cordis runtime 可作为 agent harness 生命周期推理的评估候选（跟踪开源）。Beyond Scores 的 8 类扰动 taxonomy + paired clean/corrupt + token 级标注可作为 LLM-as-a-Judge 校准的工程方法（30 分钟可对团队 auto-judge 设计 1-2 类扰动作 sanity check）。Adaptive Critical Token 的 critical-token 识别可作为仓库级代码生成 RAG 检索层改造方向。Facet-0 的 joint action-wrench proposal 与多模态+ flow 思路可作为具身 AI 模型参考。Mechanism Design 的'能力未知+偏好未知'机制设计理论可作为长尾资产。Proactive Thought Partners 的设计空间可作为写作 AI 设计参考。StudentSim 的训练 LLM 学生模拟器可作为 agent 评测 proxy 来源参考。</li>\n<li><strong>趋势关联：</strong> 今日趋势层（agent harness 治理与生命周期 + judge 机制理解 + 仓库代码检索 + 接触丰富精确操作）值得纳入趋势雷达继续观察。Quantization Damage 与 inference-serving 主线持续共振；Verbal RL 与 ai-agent 反馈机制主线持续共振；PTA-IRT 与 coding-agent 评测主线持续共振；CordisBench 与 agent harness 治理与生命周期趋势簇（与昨日 Logos）共振；Beyond Scores 与 llm-evaluation 机制层趋势共振；Adaptive Critical Token 与 coding-agent 检索层趋势共振；Facet-0 与具身 AI / 接触丰富操作趋势共振；Mechanism Design 与 agent 对齐理论长尾趋势共振；Proactive Thought Partners 与 HCI + AI agent 设计研究长尾趋势共振；StudentSim 与教育 AI / agent 评测 proxy 长尾趋势共振。</li>\n<li><strong>长尾价值：</strong> Mechanism Design 提供'能力未知+偏好未知'下的可实施策略刻画（revelation principle + nested cyclical monotonicity），与 RLHF / Constitutional AI / Debate 类启发式方案形成对照。Proactive Thought Partners 提供'主动 vs 被动'写作工具拆解为设计空间的路径。StudentSim 提供 student simulator 作为 RLHF / agent 评测中'难以替代真人'的 proxy 来源。三者共同为'agent 治理+对齐理论 + HCI 设计空间 + 教育 AI proxy'提供长尾资产。</li>\n<li><strong>启发：</strong> 先做价值路由，再决定是否投入深读与工程搜索；今日最值得跟踪的工程信号集中在'serving 精度预算的因果干预 + agent feedback 的统一框架 + SWE agent 评测的轨迹感知 IRT'三处；趋势观察集中在'agent harness 治理与生命周期 + judge 机制理解 + 仓库代码检索 + 接触丰富精确操作'四线。</li>\n<li><strong>行动建议：</strong> 今日完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。</li>\n</ul>\n<h3>5. 今日长尾保存</h3>\n<h4><a href=\"http://arxiv.org/abs/2609.01595v1\" target=\"_blank\" rel=\"noopener noreferrer\">Mechanism Design for Alignment and Control</a></h4>\n<ul>\n<li><strong>为什么现在不火也值得保存：</strong> 2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent 与 security-governance 长尾候选（AI agent 对齐+控制的机制设计理论）：据摘要，本文构建框架用于与 AI agent 做机制设计，其 alignment（偏好）与 capabilities（可行行动与信息）未知；希望这些 agent 代行其责，因此机制必须同时激励 honesty 与 obedience。一侧模仿结构（capabilities 可隐藏不可伪造）产生 revelation principle、可实施策略的 nested cyclical monotonicity 刻画以及可诱发高阶 beliefs 的条件。'把'如何让 AI agent 既诚实又服从'形式化为机制设计问题——一侧 imitation structure + revelation principle + nested cyclical monotonicity'对做 agent 治理、对齐理论、博弈论+AI 的团队有长尾参考价值：它给出'能力未知+偏好未知'下的可实施策略刻画，与 RLHF / Constitutional AI / Debate 类启发式方案形成对照。证据强度中等：理论框架清晰（revelation principle + nested cyclical monotonicity）+ 关键词 agent 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；属机制设计+AI 理论，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。</li>\n<li><strong>未来触发条件：</strong> 出现开源实现 / 被高质量论文引用 / 进入 benchmark。</li>\n<li><strong>可能应用场景：</strong> Prompt 设计、Agent workflow、评测治理、系统设计。</li>\n<li><strong>可沉淀资产：</strong> Prompt / Skill / Checklist / 架构模式 / 评测方法。</li>\n<li><strong>建议复盘时间：</strong> 2026-09-24</li>\n</ul>\n<h4><a href=\"http://arxiv.org/abs/2609.01588v1\" target=\"_blank\" rel=\"noopener noreferrer\">Designing Proactive Thought Partners for Writing</a></h4>\n<ul>\n<li><strong>为什么现在不火也值得保存：</strong> 2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai-agent 与 HCI 长尾候选（写作主动思维伙伴的设计空间研究）：据摘要，写作涉及多样化认知活动（构思到修改），写作者需求因人因时而异；主动 AI 承诺在恰当时机提供恰当支持，但现有主动工具多聚焦通用文本协助（如自动补全）。本文研究 proactive thought partners 的设计空间：AI agent 在写作过程中主动提供可定制的高阶认知支持。'把主动写作协助从'通用自动补全'推到'proactive thought partners 设计空间'——按 lifecycle 主动提供高阶认知支持'对做写作 AI / 个人助理 / 教育型 agent 的团队有长尾参考价值：提供了把'主动 vs 被动'写作工具拆解为设计空间的路径。证据强度中等：方法路径清晰（设计空间研究 + 系统实现）+ 关键词 agent/planning 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；属 HCI + AI agent 设计研究层，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。</li>\n<li><strong>未来触发条件：</strong> 出现开源实现 / 被高质量论文引用 / 进入 benchmark。</li>\n<li><strong>可能应用场景：</strong> Prompt 设计、Agent workflow、评测治理、系统设计。</li>\n<li><strong>可沉淀资产：</strong> Prompt / Skill / Checklist / 架构模式 / 评测方法。</li>\n<li><strong>建议复盘时间：</strong> 2026-09-24</li>\n</ul>\n<h4><a href=\"http://arxiv.org/abs/2609.01591v1\" target=\"_blank\" rel=\"noopener noreferrer\">StudentSim: Training LLM-based Student Simulators</a></h4>\n<ul>\n<li><strong>为什么现在不火也值得保存：</strong> 2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 llm-evaluation 长尾候选（训练 LLM 学生模拟器供 AI tutor 适配）：据摘要，AI tutor 在适配每个学生优缺点/偏好引导时最有用，但'哪种引导对学生有效'的证据稀疏、慢且从真人采集贵；学生模拟器可作 proxy 信号，但现有方法受限——state-tracking 模型拟合行为但难处理解释/纠正；LLM role-play 流畅跟随引导但不总能匹配真实学生能力。'把学生模拟从'state-tracking 拟合'或'LLM role-play'推到'training LLM-based student simulators'——融合行为拟合与语言流畅'对做教育 AI / tutoring agent / agent 评测 proxy 的团队有长尾参考价值：student simulator 是 RLHF / agent 评测中'难以替代真人'的常见 proxy 来源，融合方案值得跟踪。证据强度中等：方法动机清晰（两个流派都缺）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失；属教育 AI 垂直层，作长尾资产保存。</li>\n<li><strong>未来触发条件：</strong> 出现开源实现 / 被高质量论文引用 / 进入 benchmark。</li>\n<li><strong>可能应用场景：</strong> Prompt 设计、Agent workflow、评测治理、系统设计。</li>\n<li><strong>可沉淀资产：</strong> Prompt / Skill / Checklist / 架构模式 / 评测方法。</li>\n<li><strong>建议复盘时间：</strong> 2026-09-24</li>\n</ul>\n<h3>6. 今日忽略理由</h3>\n<ul>\n<li><a href=\"http://arxiv.org/abs/2609.01591v1\" target=\"_blank\" rel=\"noopener noreferrer\">StudentSim: Training LLM-based Student Simulators</a>：新意弱 / 证据弱 / 当前相关性有限。</li>\n</ul>\n<h3>7. 启发</h3>\n<p>2026-09-03 回看 | ### PTQ 损伤结构化与精度预算的因果干预启发</p>\n<p>Quantization Damage 把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'——证据级别提到因果干预层。对做 LLM 推理优化、量化工程、推理基础设施的团队，应评估：(1) 在团队 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，识别哪些层是 mixed-precision 的真正收益点；(2) 'causal mixed-precision intervention'方法是否可直接借鉴到团队的精度预算分配流程；(3) '结构化损伤假设检验'是否可作为推理优化的方法论范式。</p>\n<h4>Verbal RL 统一框架的反馈机制启发</h4>\n<p>Verbal RL 把 verbal feedback 范式首次统一叙述，按 lifecycle 时机 × 改动对象两轴形成三大支柱。对做 agent 设计、RLHF 替代/补充、教育型 agent、human-in-the-loop 的团队，应立刻：(1) 把团队当前 agent 的 verbal feedback 用例按 lifecycle 时机分类（前期 / 中期 / 后期）；(2) 按改动对象分类（指令 / 奖励 / 状态 / 工具调用 / 推理过程等）；(3) 把两轴定位作为评估/补全 agent feedback 技巧的结构化视角。</p>\n<h4>SWE agent 评测成本压缩的轨迹感知 IRT 启发</h4>\n<p>PTA-IRT 把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'，直击 SWE agent 评估贵的行业瓶颈。对做 SWE agent / coding agent / agent 评测治理的团队，应评估：(1) 现有评估是否仅利用结果信息、识别轨迹信息的潜在价值；(2) trajectory-aware IRT 思路是否可立刻在团队 SWE agent benchmark 上做概念验证；(3) trajectory-aware 评测是否会改变 subset 选择策略。</p>\n<h4>Agent harness 治理与生命周期趋势簇的启发</h4>\n<p>CordisBench 把'dynamic agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime，与昨日 Logos（2608.28553）的 cross-process bus 故障隔离形成'agent harness 治理与生命周期'趋势簇——一个从'故障传播'推进到'LM 能否预测生命周期影响'。对做 agent harness、agent 治理、自演化 agent 平台的团队，应评估：(1) CordisBench 的 1,200 题是否覆盖团队 agent harness 的关键 lifecycle 场景；(2) Cordis runtime 的依赖模型与清理语义是否与团队架构对齐；(3) 与 Logos 联合应用：先识别故障域（Logos），再评估 LM 是否能预测 lifecycle 影响（CordisBench）。</p>\n<h4>LLM-as-a-Judge 机制理解与扰动分析的启发</h4>\n<p>Beyond Scores 用 8 类扰动 taxonomy + paired clean/corrupt + token 级标注把 LLM-as-a-Judge 从'score 输出'推到'mechanism 理解'。对做评测治理、训练 reward modeling、auto-judge 的团队，应评估：(1) 团队 auto-judge 是否做过扰动 sanity check；(2) 8 类扰动 taxonomy 是否可直接借鉴到团队的 judge 校准流程；(3) token 级错误强度参数化是否可作为 judge 鲁棒性的硬指标。</p>\n<h4>仓库级代码生成 critical-token 检索的启发</h4>\n<p>Adaptive Critical Token 把仓库级代码生成 RAG 从'task-level support'推到'critical-token aware retrieval'。对做 coding agent / 仓库级代码补全 / 内部代码助手的团队，应评估：(1) 内部代码库常超 context window，critical-token 检索是降低噪声 context 的直接路径；(2) critical-token 识别方式（静态分析 / 神经显著性 / 执行 trace）的可行性；(3) 与现有 RAG 检索层的组合策略。</p>\n<h4>接触丰富精确操作的 joint action-wrench proposal 启发</h4>\n<p>Facet-0 围绕 joint action-wrench proposal 统一多模态表征学习与 RL 后训练，用 causal wrench history 与 vision-language semantics 和 kinematic state 对齐 + flow matching。对做具身 AI / 灵巧操作 / 机器人 foundation model 的团队，应评估：(1) joint action-wrench proposal 与现有 visuotactile / wrench-aware 方法的对比；(2) 与昨日 Aero Hand Open（2608.28578）的仿真资产化互补——Aero Hand Open 解决'硬件经济性 + 仿真可学性'，Facet-0 解决'亚毫米精度的接触推理'；(3) 模型规模与 benchmark 选型。</p>\n<h4>对未来 6-12 个月技术趋势的启发</h4>\n<p>今日信号确认：AI 工程研究焦点正在从'具体技巧'扩展到'为既有做法提供结构化底层原理'——PTQ → causal mixed-precision intervention、LLM feedback → unified VRL、SWE agent 评测 → trajectory-aware IRT。前两日（8-29 / 8-30）趋势信号集中在'agent 经验沉淀 + 推理时成本治理 + 企业 agent 合规架构'，昨日（9-01）扩展到'视觉文档检索生产化 + agent 故障隔离 + 优化器四轴重构 + 仿真资产化'，今日（9-03）扩展到'agent harness 治理与生命周期（CordisBench）+ judge 机制理解（Beyond Scores）+ 仓库代码检索（Adaptive Critical Token）+ 接触丰富精确操作（Facet-0）'——意味着 AI 工程正在向'运营化（经验/推理/合规）+ 基础设施（检索生产化/故障隔离/优化器重构/仿真资产化）+ 原理化（causal intervention / unified framework / trajectory-aware IRT）'三个层面同时演进。</p>\n<h4>长尾资产的启发</h4>\n<p>Mechanism Design 提供'能力未知+偏好未知'下的可实施策略刻画（revelation principle + nested cyclical monotonicity），与 RLHF / Constitutional AI / Debate 类启发式方案形成对照，对做 agent 治理、对齐理论、博弈论+AI 的团队有长尾参考价值。Proactive Thought Partners 提供'主动 vs 被动'写作工具拆解为设计空间的路径，对做写作 AI / 个人助理 / 教育型 agent 的团队有长尾参考价值。StudentSim 提供 student simulator 作为 RLHF / agent 评测中'难以替代真人'的 proxy 来源，对做教育 AI / tutoring agent / agent 评测 proxy 的团队有长尾参考价值——融合 state-tracking 行为拟合与 LLM role-play 流畅。三者共同为'agent 治理+对齐理论 + HCI 设计空间 + 教育 AI proxy'提供长尾资产。</p>\n<h3>8. 行动建议</h3>\n<ul>\n<li><strong>30 分钟学习任务：</strong> 读摘要、方法、实验设定，记下 3 个可验证假设。</li>\n<li><strong>2 小时实践任务：</strong> 做最小实验、Prompt 试验或评测脚本草图。</li>\n<li><strong>1 周研究任务：</strong> 沉淀为 Prompt / Skill / Checklist / 模板，并跟踪复现结果。</li>\n</ul>\n<h3>9. 引用与延伸阅读</h3>\n<ul>\n<li><strong>arXiv：</strong> <a href=\"http://arxiv.org/abs/2609.01587v1\" target=\"_blank\" rel=\"noopener noreferrer\">arXiv</a></li>\n<li><strong>PDF：</strong> <a href=\"https://arxiv.org/pdf/2609.01587v1\" target=\"_blank\" rel=\"noopener noreferrer\">PDF</a></li>\n<li><strong>OpenReview：</strong> 暂无</li>\n<li><strong>Code：</strong> 暂无</li>\n<li><strong>Benchmark：</strong> 暂无</li>\n<li><strong>Papers with Code：</strong> 暂无</li>\n</ul>\n<h3>10. 最终结论</h3>\n<ul>\n<li><strong>结论：</strong> 轻量试点</li>\n<li><strong>价值类型：</strong> 即时价值</li>\n<li><strong>原因：</strong> 2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally 命中 inference-serving 主线（PTQ 损伤结构 + 精度预算分配的因果干预研究）：据摘要，post-training quantization（PTQ）被广泛用于降低 LLM serving 成本，但精度损失分布不均且常逐模型调优；本文研究量化损伤在哪里发生、额外精度预算如何分配。以 causal mixed-precision intervention 作 ground truth（逐层升到 8-bit 测精度恢复），跨 9 个开源模型、4 个架构家族测试 3 种直觉假设（量化损伤是否在某层/某 family 集中）。'把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'——证据级别提到因果干预层'对做 LLM 推理优化、量化工程、推理基础设施的团队有直接价值：直接给出'额外精度 bit 应花在哪里'的结构化结论，能立刻用于 serving 栈的精度预算分配。证据强度偏上：方法严谨（causal intervention 作 ground truth + 9 模型 4 家族 + 多假设检验）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；建议跟踪具体结论与开源实现。</li>\n<li><strong>最大不确定性：</strong> 2026-09-03 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。</li>\n<li><strong>下一步动作：</strong> 2026-09-03 回看 | 7 天内跟踪 Quantization Damage 的具体结论与开源——若开源，在 LLM serving 精度预算分配上做 per-layer 8-bit 升精度对比；评估 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴对团队 agent feedback 评估的统一视角价值，并完成当前 agent feedback 用例的两轴定位；评估 PTA-IRT 的'trajectory-aware IRT'对团队 SWE agent benchmark 成本压缩的可借鉴性；持续跟踪 Quantization Damage / Verbal RL / PTA-IRT 三个 immediate 的开源与定量结果；14 天后评估 CordisBench / Beyond Scores / Adaptive Critical Token / Facet-0 四个 trend 的开源与定量结果，并把 CordisBench 与昨日 Logos 共同形成'agent harness 治理与生命周期'趋势簇；评估 Beyond Scores 的 8 类扰动 taxonomy 对团队 LLM-as-a-Judge 校准的可借鉴性；评估 Adaptive Critical Token 对团队仓库级代码生成 RAG 检索层改造的可借鉴性；评估 Facet-0 对团队具身研究计划的入门价值；为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号；持续跟踪 10 篇论文的多源证据。</li>\n</ul>\n<p>> 生成时间：2026-09-03T04:32:56.242579</p>\n<p>> 数据来源：arXiv API + 固定源配置</p>\n<p>> 状态：Hermes 推理增强</p>"
+}

@@ -1,106 +1,114 @@
 {
-  "updated_at": "2026-09-02T04:31:24.627183",
+  "updated_at": "2026-09-03T04:33:19.140408",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-09-02",
-    "title": "论文价值发现日报 - 2026-09-02",
-    "deep_dive_title": "Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation",
-    "deep_dive_url": "http://arxiv.org/abs/2608.31139v1",
-    "decision": "暂时忽略",
-    "value_type": "ignore",
-    "value_type_label": "暂时忽略",
-    "daily_action": "完成摘要精读与最小实验设计",
-    "max_uncertainty": "缺少多源工程证据",
-    "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-    "path": "daily-detail.html?date=2026-09-02"
+    "date": "2026-09-03",
+    "title": "论文价值发现日报 - 2026-09-03",
+    "deep_dive_title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+    "deep_dive_url": "http://arxiv.org/abs/2609.01587v1",
+    "decision": "轻量试点",
+    "value_type": "immediate",
+    "value_type_label": "即时价值",
+    "daily_action": "2026-09-03 回看 | 完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配（30 分钟可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，1 周内可实施）；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
+    "max_uncertainty": "2026-09-03 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。",
+    "one_line_judgement": "据摘要，The Structure of Quantization Damage in LLMs（[2609.01587](http://arxiv.org/abs/2609.01587v1)）把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'，直接回答'额外精度 bit 应花在哪里'——证据级别提到因果干预层，能立刻用于 serving 栈精度预算分配。Verbal Reinforcement Learning（[2609.01597](http://arxiv.org/abs/2609.01597v1)）给出 VRL 的 first unified account——按 lifecycle 时机 × 改动对象统一组织，提供了把现有 LLM feedback 技巧按 lifecycle 排序的统一视角，便于评估与教学。PTA-IRT（[2609.01603](http://arxiv.org/abs/2609.01603v1)）把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'，直击 SWE agent 评估贵的行业瓶颈——它既利用解题轨迹又控制成本。三篇 immediate 共同指向'为既有做法提供结构化底层原理'。趋势层：CordisBench（[2609.01600](http://arxiv.org/abs/2609.01600v1)）把'动态 agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime——与昨日 Logos（2608.28553）的 cross-process bus 故障隔离形成'agent harness 治理与生命周期'趋势簇；Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）用 8 类扰动 taxonomy + paired clean/corrupt + token 级标注把 LLM-as-a-Judge 从'score 输出'推到'mechanism 理解'；Adaptive Critical Token（[2609.01601](http://arxiv.org/abs/2609.01601v1)）把仓库级代码生成 RAG 从'task-level support'推到'critical-token aware retrieval'；Facet-0（[2609.01596](http://arxiv.org/abs/2609.01596v1)）围绕 joint action-wrench proposal 统一多模态表征与 RL 后训练——与昨日 Aero Hand Open 的仿真资产化互补。",
+    "path": "daily-detail.html?date=2026-09-03"
   },
   "top_paper": {
-    "title": "Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation",
+    "title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
     "authors": [
-      "Riya Ahuja",
-      "Tim Kacprowski",
-      "Roya Shiasi Sardoabi"
+      "Jundong Hu",
+      "Shekar Ramachandran"
     ],
-    "published": "2026-08-31",
-    "updated": "2026-08-31",
+    "published": "2026-09-01",
+    "updated": "2026-09-01",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2608.31139v1",
-    "pdf_url": "https://arxiv.org/pdf/2608.31139v1",
+    "url": "http://arxiv.org/abs/2609.01587v1",
+    "pdf_url": "https://arxiv.org/pdf/2609.01587v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "BioMedRAG introduced retrieval-augmented generation with a learned chunk scorer for biomedical information extraction. However, it relies on fixed-size chunking which can fragment semantic evidence. We propose a configurable semantic chunking framework that addresses this limitation by combining entity-preserving windows, trigger-centered chunking, proposition-first extraction, tiered trigger prioritization, and hierarchical relation resolution. The framework integrates with BioMedRAG by replaci",
+    "abstract": "Post-training quantization (PTQ) is widely used to reduce the cost of serving large language models (LLMs), but its accuracy cost is uneven and is often tuned per model. We study where quantization damage occurs and how to allocate a small additional precision budget. Using causal mixed-precision intervention as ground truth (raise each layer to 8-bit in turn and measure the accuracy it recovers) across 9 open-weight models in 4 architecture families, we test 3 intuitive hypotheses: that quantiz",
     "categories": [
-      "cs.CL",
-      "cs.IR"
+      "cs.LG",
+      "cs.CL"
     ],
     "keywords": [
-      "evaluation",
-      "benchmark",
-      "RAG"
+      "evaluation"
     ],
-    "score": 39.5,
-    "decision": "暂时忽略",
+    "score": 74.0,
+    "decision": "轻量试点",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2608.31139v1"
+        "url": "http://arxiv.org/abs/2609.01587v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2608.31139v1"
+        "url": "https://arxiv.org/pdf/2609.01587v1"
       }
     ],
-    "id": "configurable-semantic-chunking-for-biomedical-information-extraction-in-retrieval-augmented-generation",
-    "value_type": "ignore",
+    "id": "the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+    "value_type": "immediate",
     "matched_topics": [
-      "rag-knowledge",
       "inference-serving"
     ],
     "score_breakdown": {
-      "novelty": 5.4,
-      "problem_importance": 5.8,
-      "relevance": 6.2,
+      "novelty": 4.8,
+      "problem_importance": 5.15,
+      "relevance": 5.0,
       "evidence_strength": 4.5,
-      "engineering_testability": 4.05,
+      "engineering_testability": 3.5,
       "trend_signal": 3.5,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 6.2,
+      "asset_convertibility": 4.8,
       "actionability": 3.8,
       "noise_risk": 1.2,
       "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 2.2,
+      "low_relevance_penalty": 3.6,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
-    "trend_status": "noise",
-    "brief_cn": "RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a learned chunk score…",
-    "one_line_judgement": "当前可忽略：RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a …",
-    "first_seen_date": "2026-09-02",
-    "first_deep_dive_daily": "2026-09-02",
-    "value_type_label": "暂时忽略",
-    "trend_stage_label": "噪声",
+    "trend_status": "emerging",
+    "llm_reason": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally 命中 inference-serving 主线（PTQ 损伤结构 + 精度预算分配的因果干预研究）：据摘要，post-training quantization（PTQ）被广泛用于降低 LLM serving 成本，但精度损失分布不均且常逐模型调优；本文研究量化损伤在哪里发生、额外精度预算如何分配。以 causal mixed-precision intervention 作 ground truth（逐层升到 8-bit 测精度恢复），跨 9 个开源模型、4 个架构家族测试 3 种直觉假设（量化损伤是否在某层/某 family 集中）。'把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'——证据级别提到因果干预层'对做 LLM 推理优化、量化工程、推理基础设施的团队有直接价值：直接给出'额外精度 bit 应花在哪里'的结构化结论，能立刻用于 serving 栈的精度预算分配。证据强度偏上：方法严谨（causal intervention 作 ground truth + 9 模型 4 家族 + 多假设检验）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；建议跟踪具体结论与开源实现。",
+    "brief_cn": "推理与服务：Post-training quantization (PTQ) is widely used to reduce the cost of serving …",
+    "one_line_judgement": "今天值得试：2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the …",
+    "first_seen_date": "2026-09-03",
+    "first_deep_dive_daily": "2026-09-03",
+    "value_type_label": "即时价值",
+    "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a learned chunk score…",
-    "related_trends": [
-      "context-engineering"
-    ],
-    "detail_path": "paper-detail.html?id=configurable-semantic-chunking-for-biomedical-information-extraction-in-retrieval-augmented-generation"
+    "long_tail_summary": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent G",
+    "related_trends": [],
+    "detail_path": "paper-detail.html?id=the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally"
   },
-  "paper_count": 1670,
+  "paper_count": 1680,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 128,
+  "long_tail_count": 131,
   "value_distribution": {
-    "immediate": 102,
-    "trend": 140,
-    "long_tail": 128,
+    "immediate": 105,
+    "trend": 144,
+    "long_tail": 131,
     "ignore": 1300
   },
   "recent_dailies": [
+    {
+      "date": "2026-09-03",
+      "title": "论文价值发现日报 - 2026-09-03",
+      "deep_dive_title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+      "deep_dive_url": "http://arxiv.org/abs/2609.01587v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "2026-09-03 回看 | 完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配（30 分钟可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，1 周内可实施）；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
+      "max_uncertainty": "2026-09-03 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。",
+      "one_line_judgement": "据摘要，The Structure of Quantization Damage in LLMs（[2609.01587](http://arxiv.org/abs/2609.01587v1)）把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'，直接回答'额外精度 bit 应花在哪里'——证据级别提到因果干预层，能立刻用于 serving 栈精度预算分配。Verbal Reinforcement Learning（[2609.01597](http://arxiv.org/abs/2609.01597v1)）给出 VRL 的 first unified account——按 lifecycle 时机 × 改动对象统一组织，提供了把现有 LLM feedback 技巧按 lifecycle 排序的统一视角，便于评估与教学。PTA-IRT（[2609.01603](http://arxiv.org/abs/2609.01603v1)）把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'，直击 SWE agent 评估贵的行业瓶颈——它既利用解题轨迹又控制成本。三篇 immediate 共同指向'为既有做法提供结构化底层原理'。趋势层：CordisBench（[2609.01600](http://arxiv.org/abs/2609.01600v1)）把'动态 agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime——与昨日 Logos（2608.28553）的 cross-process bus 故障隔离形成'agent harness 治理与生命周期'趋势簇；Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）用 8 类扰动 taxonomy + paired clean/corrupt + token 级标注把 LLM-as-a-Judge 从'score 输出'推到'mechanism 理解'；Adaptive Critical Token（[2609.01601](http://arxiv.org/abs/2609.01601v1)）把仓库级代码生成 RAG 从'task-level support'推到'critical-token aware retrieval'；Facet-0（[2609.01596](http://arxiv.org/abs/2609.01596v1)）围绕 joint action-wrench proposal 统一多模态表征与 RL 后训练——与昨日 Aero Hand Open 的仿真资产化互补。",
+      "path": "daily-detail.html?date=2026-09-03"
+    },
     {
       "date": "2026-09-02",
       "title": "论文价值发现日报 - 2026-09-02",
@@ -178,284 +186,122 @@
       "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；Recuris 摘要截断导致 Experiential Memory 存储/检索机制、Working Memory 状态表示、与 Prime Agent REPL 的差异评测缺失；Prompt Structure 摘要截断导致 5 种 prompt 变体具体差异、定量结果（各弱点类型前后比例）、所用弱点分类法缺失；FID Hides 摘要截断导致偏差检测/排名/诊断的具体算法、与 KID/其他指标的关系缺失；SPO++ 摘要截断导致与 GRPO/PPO 的定量对比、适用任务类型、稳定性结果缺失；BrowserForge 摘要截断导致具体沙箱架构、轨迹规模、与已有数据集的定量对比缺失；LAION-BVD 摘要截断导致许可协议、内容过滤策略、与已有视频数据集的定量对比缺失；Bellman Calibration、FedV-KGQA、Cross-Problem VRP 摘要均截断导致各自方法细节与定量结果缺失。",
       "one_line_judgement": "Recuris 把 long-horizon agent 的 memory 拆成 Working Memory（管任务进度）+ Experiential Memory（管跨轨迹技能库），并把执行变成结构化失败证据——与昨日 Prime Agent 的 REPL + Continual Harness 同方向（跨会话可积累能力），但聚焦 memory 结构分离；Prompt Structure 用 424 个安全敏感 Python 任务 × GPT-4o/LLaMA 3.1-8B × 5 种 prompt 变体系统证伪'prompt 结构 = 更安全'的直觉——把'prompt 工程万能'变成可定量评估的盲区；FID Hides 用具体反例（ImageNet 上视觉不可识别但仅匹配参考 Inception mean/cov 的图像获 FID 24.7 vs 真实图像 FID 58.6）证明 FID 标量本身不是 calibrated test。三个趋势信号也值得关注：SPO++ 修复异步 agentic RL 的 trajectory-vs-token-weighted 中心化偏差；BrowserForge 用并行浏览器沙箱规模化生成 web agent 训练数据；LAION-BVD 把视频多模态预训练数据推到 10M 小时量级。",
       "path": "daily-detail.html?date=2026-08-27"
-    },
-    {
-      "date": "2026-08-26",
-      "title": "论文价值发现日报 - 2026-08-26",
-      "deep_dive_title": "Prime Agent: A Self-Improving RLM Harness",
-      "deep_dive_url": "http://arxiv.org/abs/2608.23552v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成两件事：(1) 跟踪 Prime Agent 开源仓库——评估其 REPL 抽象（程序化 context 处理）与 Continual Harness（跨会话 memory/skills/subagent 规格）是否能与团队现有 agent harness 兼容，可在内部 agent 上做最小集成 PoC（1-2 天）；(2) 跟踪 SWE Refactor Bench 开源情况——评估其评分机制（如何检测 agent 是否真做迁移），并在团队内部 coding-agent 评测中加入'迁移真实性检测'维度（即便不直接复用其基准，原则可立刻应用）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；Prime Agent 摘要截断导致 Continual Harness 的 skills/prompts/subagent 规格具体表示、与现成 agent 框架的差异评测缺失；SWE Refactor Bench 摘要截断导致具体任务规模（仓库数 / 改动行数 / 语言类型）、评分机制、与 SWE-bench 的定量对比缺失；BPCO 摘要截断导致与 PPO/GRPO/REINFORCE++ 的定量对比缺失；ReWorld 摘要截断导致流式延迟、记忆恢复率、长程一致性缺失；ConvergeFlow 摘要截断导致凸包约束与解码效率权衡缺失；Provably adaptive sampling 摘要截断导致下界形式与适用 sampler family 缺失；EG-ARSA 与 Phy-BP 领域垂直，与团队通用 agent 工程栈迁移距离较远。",
-      "one_line_judgement": "Prime Agent 把 REPL 当成 agent 的'外脑'——以可执行代码而非线性 prompt 处理 context，并把 history/memory/skills/subagent 规格跨会话保留；这标志着 agent 从'单次 prompt 工作流'走向'跨会话可积累能力的 harness'。SWE Refactor Bench 直击当前 coding-agent 评测的 Blindness：现有基准只验证'行为正确性'，不验证'migration 是否真的发生'——agent 可以直接复制原实现来通过测试。两个趋势信号也值得持续观察：BPCO 系统研究 critic 训练不稳定性并给出可复用 recipe（让'可靠 critic'从 GRPO 替代品变成可工程化组件）；ReWorld 用 per-head 混合 attention window 分离 control 与 memory（直击交互式世界模型'短程控制 + 长程记忆'的结构性矛盾）。",
-      "path": "daily-detail.html?date=2026-08-26"
     }
   ],
   "top_papers": [
     {
-      "title": "Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation",
+      "title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
       "authors": [
-        "Riya Ahuja",
-        "Tim Kacprowski",
-        "Roya Shiasi Sardoabi"
+        "Jundong Hu",
+        "Shekar Ramachandran"
       ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31139v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31139v1",
+      "url": "http://arxiv.org/abs/2609.01587v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01587v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "BioMedRAG introduced retrieval-augmented generation with a learned chunk scorer for biomedical information extraction. However, it relies on fixed-size chunking which can fragment semantic evidence. We propose a configurable semantic chunking framework that addresses this limitation by combining entity-preserving windows, trigger-centered chunking, proposition-first extraction, tiered trigger prioritization, and hierarchical relation resolution. The framework integrates with BioMedRAG by replaci",
+      "abstract": "Post-training quantization (PTQ) is widely used to reduce the cost of serving large language models (LLMs), but its accuracy cost is uneven and is often tuned per model. We study where quantization damage occurs and how to allocate a small additional precision budget. Using causal mixed-precision intervention as ground truth (raise each layer to 8-bit in turn and measure the accuracy it recovers) across 9 open-weight models in 4 architecture families, we test 3 intuitive hypotheses: that quantiz",
       "categories": [
-        "cs.CL",
-        "cs.IR"
+        "cs.LG",
+        "cs.CL"
       ],
       "keywords": [
-        "evaluation",
-        "benchmark",
-        "RAG"
+        "evaluation"
       ],
-      "score": 39.5,
-      "decision": "暂时忽略",
+      "score": 74.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31139v1"
+          "url": "http://arxiv.org/abs/2609.01587v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31139v1"
+          "url": "https://arxiv.org/pdf/2609.01587v1"
         }
       ],
-      "id": "configurable-semantic-chunking-for-biomedical-information-extraction-in-retrieval-augmented-generation",
-      "value_type": "ignore",
+      "id": "the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+      "value_type": "immediate",
       "matched_topics": [
-        "rag-knowledge",
         "inference-serving"
       ],
       "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
+        "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a learned chunk score…",
-      "one_line_judgement": "当前可忽略：RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a …",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
+      "trend_status": "emerging",
+      "llm_reason": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally 命中 inference-serving 主线（PTQ 损伤结构 + 精度预算分配的因果干预研究）：据摘要，post-training quantization（PTQ）被广泛用于降低 LLM serving 成本，但精度损失分布不均且常逐模型调优；本文研究量化损伤在哪里发生、额外精度预算如何分配。以 causal mixed-precision intervention 作 ground truth（逐层升到 8-bit 测精度恢复），跨 9 个开源模型、4 个架构家族测试 3 种直觉假设（量化损伤是否在某层/某 family 集中）。'把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'——证据级别提到因果干预层'对做 LLM 推理优化、量化工程、推理基础设施的团队有直接价值：直接给出'额外精度 bit 应花在哪里'的结构化结论，能立刻用于 serving 栈的精度预算分配。证据强度偏上：方法严谨（causal intervention 作 ground truth + 9 模型 4 家族 + 多假设检验）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；建议跟踪具体结论与开源实现。",
+      "brief_cn": "推理与服务：Post-training quantization (PTQ) is widely used to reduce the cost of serving …",
+      "one_line_judgement": "今天值得试：2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the …",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "RAG / 知识系统：BioMedRAG introduced retrieval-augmented generation with a learned chunk score…",
-      "related_trends": [
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=configurable-semantic-chunking-for-biomedical-information-extraction-in-retrieval-augmented-generation"
+      "long_tail_summary": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent G",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally"
     },
     {
-      "title": "DIASENTINEL: An Auditable Multi-Agent System for Guideline-Grounded Diabetes Risk Screening",
+      "title": "The Rise of Verbal Reinforcement Learning",
       "authors": [
-        "Yung Wei Shueh",
-        "Zhi-Jie Chen",
-        "Chia-Hsuan Hsu",
-        "Hsin-Ling Hsu",
-        "Donghua Zhang"
+        "Kshitij Tayal",
+        "Arun Sharma",
+        "Genta Indra Winata",
+        "Anirban Das",
+        "Sambit Sahu"
       ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31128v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31128v1",
+      "url": "http://arxiv.org/abs/2609.01597v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01597v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Large language models (LLMs) offer promising clinical decision support but remain vulnerable to hallucinated facts, unsupported recommendations, and citation errors. We present DIASENTINEL, a fully on-premise multi-agent system for one-year type 2 diabetes mellitus (T2DM) risk screening and guideline-grounded report generation from electronic health records (EHRs). The system integrates calibrated risk prediction, deterministic clinical signal extraction, Reciprocal Rank Fusion over American Dia",
+      "abstract": "Natural language is emerging as a primary feedback channel for improving language agents, capable of conveying intent, preferences, and causal structure in forms interpretable by both humans and modern language models. We call this paradigm Verbal Reinforcement Learning (VRL) and offer the first unified account of it. We organize the field around a single axis, \\textit{when} verbal feedback takes effect in an agent's lifecycle and \\textit{what} it modifies, yielding three pillars: (1) \\textbf{La",
       "categories": [
-        "cs.CL"
+        "cs.CL",
+        "cs.AI"
       ],
       "keywords": [
         "agent"
       ],
-      "score": 38.4,
-      "decision": "暂时忽略",
+      "score": 73.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31128v1"
+          "url": "http://arxiv.org/abs/2609.01597v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31128v1"
+          "url": "https://arxiv.org/pdf/2609.01597v1"
         }
       ],
-      "id": "diasentinel-an-auditable-multi-agent-system-for-guideline-grounded-diabetes-risk-screening",
-      "value_type": "ignore",
+      "id": "the-rise-of-verbal-reinforcement-learning",
+      "value_type": "immediate",
       "matched_topics": [
-        "ai-agent",
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "AI Agent：Large language models (LLMs) offer promising clinical decision support but rem…",
-      "one_line_judgement": "当前可忽略：AI Agent：Large language models (LLMs) offer promising clinical decisio…",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "AI Agent：Large language models (LLMs) offer promising clinical decision support but rem…",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=diasentinel-an-auditable-multi-agent-system-for-guideline-grounded-diabetes-risk-screening"
-    },
-    {
-      "title": "OntoAligner-Ensemble: Voting-Based Fusion across Heterogeneous Ontology Alignment Techniques",
-      "authors": [
-        "Hamed Babaei Giglou",
-        "Sören Auer",
-        "Peio Popov",
-        "Mahsa Sanaei",
-        "Jennifer D'Souza"
-      ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31137v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31137v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Ontology alignment (OA) has evolved through several methodological paradigms, ranging from lexical and structural aligners to knowledge graph embedding (KGE) models and, more recently, Large Language Model (LLM)-based approaches. Although modern OA frameworks provide unified ecosystems for deploying these heterogeneous aligners, mechanisms for systematically reconciling their complementary and sometimes conflicting predictions remain relatively underexplored. We present OntoAligner-Ensemble, a m",
-      "categories": [
-        "cs.AI"
-      ],
-      "keywords": [
-        "benchmark"
-      ],
-      "score": 37.2,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31137v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31137v1"
-        }
-      ],
-      "id": "ontoaligner-ensemble-voting-based-fusion-across-heterogeneous-ontology-alignment-techniques",
-      "value_type": "ignore",
-      "matched_topics": [
-        "rag-knowledge"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.6,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：Ontology alignment (OA) has evolved through several methodological paradigms, …",
-      "one_line_judgement": "当前可忽略：RAG / 知识系统：Ontology alignment (OA) has evolved through several methodo…",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "RAG / 知识系统：Ontology alignment (OA) has evolved through several methodological paradigms, …",
-      "related_trends": [
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=ontoaligner-ensemble-voting-based-fusion-across-heterogeneous-ontology-alignment-techniques"
-    },
-    {
-      "title": "Auditing Anonymous AI Models: A Four-Stage Protocol for Black-Box Identity Verification",
-      "authors": [
-        "Yisen Xi"
-      ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31142v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31142v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "The 2025--2026 AI market has seen a wave of stealth releases: frontier models launched anonymously on developer platforms under codenames. For their users, identity determines data-handling terms, supply-chain risk, and capability expectations. No validated methodology exists for black-box identity verification of anonymous models: practitioner checklists lack accuracy evidence, and self-identification is untrustworthy by design. We propose a four-stage forensic audit protocol for API-served mod",
-      "categories": [
-        "cs.SE",
-        "cs.AI",
-        "cs.CR"
-      ],
-      "keywords": [
-        "inference"
-      ],
-      "score": 35.7,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31142v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31142v1"
-        }
-      ],
-      "id": "auditing-anonymous-ai-models-a-four-stage-protocol-for-black-box-identity-verification",
-      "value_type": "ignore",
-      "matched_topics": [
-        "security-governance"
+        "ai-agent"
       ],
       "score_breakdown": {
         "novelty": 5.4,
@@ -465,7 +311,7 @@
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -473,128 +319,214 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "安全与治理：The 2025--2026 AI market has seen a wave of stealth releases: frontier models …",
-      "one_line_judgement": "当前可忽略：安全与治理：The 2025--2026 AI market has seen a wave of stealth releases: fr…",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
+      "trend_status": "emerging",
+      "llm_reason": "2026-09-03 回看 | The Rise of Verbal Reinforcement Learning 命中 ai-agent 主线（把'用自然语言作反馈'做成 VRL 的 first unified account）：据摘要，自然语言正成为改进语言 agent 的主反馈通道，可传达意图、偏好、因果结构——人类与现代 LM 都能解读。本文称该范式为 Verbal Reinforcement Learning（VRL），并给出第一个统一叙述；以单一轴组织——when 口头反馈在 agent lifecycle 生效与 what 它修改——形成三大支柱。'把'verbal feedback'从'零散技巧'推到'first unified account of VRL'——按 lifecycle 时机 × 改动对象统一组织'对做 agent 设计、RLHF 替代/补充、教育型 agent、human-in-the-loop 的团队有直接价值：VRL 提供了把现有 LLM feedback 技巧按 lifecycle 排序的统一视角，便于评估与教学。证据强度中等偏上：方法框架清晰（first unified account + 三支柱）+ 关键词 agent 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；属框架/范式类，价值密度高于纯综述但低于实证。",
+      "brief_cn": "AI Agent：Natural language is emerging as a primary feedback channel for improving langu…",
+      "one_line_judgement": "今天值得试：2026-09-03 回看 | The Rise of Verbal Reinforcement Learning 命中 ai-agent …",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "安全与治理：The 2025--2026 AI market has seen a wave of stealth releases: frontier models …",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=auditing-anonymous-ai-models-a-four-stage-protocol-for-black-box-identity-verification"
+      "long_tail_summary": "2026-09-03 回看 | The Rise of Verbal Reinforcement Learning 命中 ai-agent 主线（把'用自然语言作反馈'做成 VRL 的 fir",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=the-rise-of-verbal-reinforcement-learning"
     },
     {
-      "title": "Context-Aware Interleaved Batching for WhisperX",
+      "title": "Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation",
       "authors": [
-        "Carlos Bain",
-        "Max Bain"
+        "Kefeng Duan",
+        "Dewu Zheng",
+        "Yanlin Wang",
+        "Xiwen Wang",
+        "Ensheng Shi"
       ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31170v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31170v1",
+      "url": "http://arxiv.org/abs/2609.01603v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01603v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "While WhisperX accelerates speech transcription via intra-audio batching, it isolates audio segments, losing the historical context needed for coherent punctuation and terminology transcription. Conversely, standard Whisper retains context sequentially but suffers from slow inference and hallucination loops. To achieve the best of both worlds, we propose Context-Aware Interleaved Batching. By using VAD-derived segment boundaries, our algorithm stabilizes Whisper's text conditioning, allowing us ",
+      "abstract": "Evaluating software engineering agents on realistic benchmarks is costly, since each task may require multi-step code exploration, modification, and test execution. Existing efficient evaluation methods select representative subsets to estimate full-benchmark performance, but are largely result-only: they fit historical pass/fail response matrices or static task semantics, discarding how agents solve problems. We propose PTA-IRT, a Privileged Trajectory-Aware Item Response Theory framework that ",
       "categories": [
+        "cs.SE",
+        "cs.AI",
         "cs.CL"
       ],
       "keywords": [
-        "benchmark",
-        "inference"
+        "agent",
+        "evaluation",
+        "benchmark"
       ],
-      "score": 34.5,
-      "decision": "暂时忽略",
+      "score": 72.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31170v1"
+          "url": "http://arxiv.org/abs/2609.01603v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31170v1"
+          "url": "https://arxiv.org/pdf/2609.01603v1"
         }
       ],
-      "id": "context-aware-interleaved-batching-for-whisperx",
-      "value_type": "ignore",
+      "id": "efficient-swe-agent-benchmarking-via-trajectory-aware-evaluation",
+      "value_type": "immediate",
       "matched_topics": [
-        "inference-serving"
+        "coding-agent",
+        "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.05,
+        "trend_signal": 6.0,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
+        "asset_convertibility": 7.0,
         "actionability": 5.0,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "推理与服务：While WhisperX accelerates speech transcription via intra-audio batching, it i…",
-      "one_line_judgement": "当前可忽略：推理与服务：While WhisperX accelerates speech transcription via intra-audio …",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
+      "trend_status": "emerging",
+      "llm_reason": "2026-09-03 回看 | Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation (PTA-IRT) 命中 coding-agent 与 llm-evaluation 主线（SWE agent 评测的成本与真实性缺口）：据摘要，SWE agent 评测贵——单任务需多步代码探索、修改、测试执行；现有高效评测只做 result-only（拟合历史 pass/fail 响应矩阵或静态任务语义），丢掉了 agent 怎么解题的过程信息。本文提出 PTA-IRT：Privileged Trajectory-Aware Item Response Theory——用 IRT 模型同时利用历史结果与 agent 的解题轨迹信息来估计 full-benchmark 性能。'把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'——让 agent 解题轨迹成为 IRT 拟合特征'对做 SWE agent / coding agent / agent 评测治理的团队有直接价值：SWE agent 评估贵是行业级瓶颈，PTA-IRT 给出了既利用过程又控制成本的方向。证据强度中等：摘要明确披露方法定位（PTA-IRT、trajectory-aware、IRT）+ 关键词 agent/evaluation/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 PTA-IRT 的具体输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；建议跟踪开源与定量对比。",
+      "brief_cn": "Coding Agent：Evaluating software engineering agents on realistic benchmarks is costly, sinc…",
+      "one_line_judgement": "今天值得试：2026-09-03 回看 | Efficient SWE Agent Benchmarking via Trajectory-Aware …",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "推理与服务：While WhisperX accelerates speech transcription via intra-audio batching, it i…",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=context-aware-interleaved-batching-for-whisperx"
+      "long_tail_summary": "2026-09-03 回看 | Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation (PTA-IRT) 命中 co",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=efficient-swe-agent-benchmarking-via-trajectory-aware-evaluation"
     },
     {
-      "title": "SUN: Persistent Programs For Language-Grounded Control-to-Learning-to-Real Policies",
+      "title": "CordisBench: Can Language Models Reason About Component Lifecycles in Dynamic Agent Harnesses?",
       "authors": [
-        "Weiqi Wang",
-        "Zhi Li",
-        "Yudong Lei",
-        "David Martinez",
-        "Xiaofeng Gao"
+        "Damien Sileo",
+        "Dimitri Kachler"
       ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31167v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31167v1",
+      "url": "http://arxiv.org/abs/2609.01600v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01600v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Bridging model-based control and learned policies in long-horizon manipulation has harbored a silent disagreement: control executes specified objectives, learning amortizes that behavior into a reactive policy, yet existing protocols discard task semantics, leaving rewards hand-crafted and behavior drifting from what control verified.We introduce Semantically UNified (SUN) Programs, typed executables where geometric and contact relations are defined once and compiled into aligned Model Predictiv",
+      "abstract": "Dynamic agent harnesses let language models change the software that shapes their own execution. This flexibility brings a new reasoning burden: a local plugin change can propagate through dependencies and cleanup. We introduce CordisBench, a 1,200-question benchmark of this lifecycle reasoning. It combines a controlled formal setting with programs executed against Cordis, a runtime that manages component dependencies and cleanup, and asks models to identify affected components, predict state af",
       "categories": [
-        "cs.RO",
+        "cs.CL",
         "cs.AI"
       ],
       "keywords": [
-        "planning"
+        "agent",
+        "benchmark",
+        "inference"
       ],
-      "score": 33.9,
-      "decision": "暂时忽略",
+      "score": 71.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31167v1"
+          "url": "http://arxiv.org/abs/2609.01600v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31167v1"
+          "url": "https://arxiv.org/pdf/2609.01600v1"
         }
       ],
-      "id": "sun-persistent-programs-for-language-grounded-control-to-learning-to-real-policies",
-      "value_type": "ignore",
+      "id": "cordisbench-can-language-models-reason-about-component-lifecycles-in-dynamic-agent-harnesses",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "2026-09-03 回看 | CordisBench: Can Language Models Reason About Component Lifecycles in Dynamic Agent Harnesses? 命中 ai-agent 与 llm-evaluation 主线（动态 agent harness 的组件生命周期推理 benchmark）：据摘要，Dynamic agent harness 让 LM 改变执行它们的软件，这种灵活性带来新的推理负担——本地 plugin 修改会通过依赖与 cleanup 传播。本文引入 CordisBench（1,200 题）基准测试这种 lifecycle reasoning，结合 controlled formal setting 与 Cordis runtime（管理组件依赖与 cleanup），要求模型识别受影响组件、预测状态影响。'把'动态 agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime——形式化 setting + runtime 执行 + 状态预测'对做 agent harness、agent 治理、自演化 agent 平台的团队有趋势参考价值：CordisBench 直接对应昨天 Logos（2608.28553）切入的'cross-process bus 故障隔离'层，把关注点从'故障传播'推进到'LM 是否能预测生命周期影响'。证据强度中等偏上：benchmark 规模明确（1,200 题）+ 关键词 agent/benchmark/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；属评测信号，与近两日 CordisBench / Agentic World Modeling / Logos 共同构成'agent harness 治理与生命周期'趋势簇。",
+      "brief_cn": "AI Agent：Dynamic agent harnesses let language models change the software that shapes th…",
+      "one_line_judgement": "值得继续观察：2026-09-03 回看 | CordisBench: Can Language Models Reason About Componen…",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "2026-09-03 回看 | CordisBench: Can Language Models Reason About Component Lifecycles in Dynamic Ag",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=cordisbench-can-language-models-reason-about-component-lifecycles-in-dynamic-agent-harnesses"
+    },
+    {
+      "title": "Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation",
+      "authors": [
+        "Himil Vasava",
+        "Ming Jiang"
+      ],
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.01604v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01604v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM-based evaluators of natural language generation (NLG) quality are widely deployed as scoring tools and as automated training signals, yet the internal procedure by which they assign a rating remains poorly understood. We investigate this procedure mechanistically through an eight-attack perturbation taxonomy across the Readability and Adequacy dimensions of NLG quality, a generation pipeline that produces paired clean and corrupt summaries with controlled error intensity and explicit token-l",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 69.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.01604v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.01604v1"
+        }
+      ],
+      "id": "beyond-scores-understanding-llm-as-a-judge-mechanisms-in-summarization-evaluation",
+      "value_type": "trend",
       "matched_topics": [
         "llm-evaluation"
       ],
@@ -603,9 +535,163 @@
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "2026-09-03 回看 | Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation 命中 llm-evaluation 主线（把 LLM-as-a-Judge 从'score 输出'推进到'mechanism 理解'）：据摘要，LLM 评测器已广泛用作评分工具与训练信号，但内部评级机制仍 poorly understood；本文用 8 类扰动 taxonomy（覆盖 NLG 质量的 Readability 与 Adequacy 两维）配合可控错误强度与 token 级标注的 paired clean/corrupt summary 生成 pipeline，对 LLM-as-a-Judge 做机制性研究。'把 LLM-as-a-Judge 从'它给多少分'推到'它为什么给这个分'——8 类扰动 taxonomy + paired clean/corrupt + token 级标注'对做评测治理、训练 reward modeling、auto-judge 的团队有趋势参考价值：当前 LLM-as-a-Judge 多用作黑盒分数信号，机制性扰动分析能直接服务于 reward hacking 与 judge 校准。证据强度中等：方法路径清晰（8 类扰动 + paired 生成 + token 级标注）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；属评测机制层，价值密度高于纯 judge 分数研究。",
+      "brief_cn": "LLM 评测：LLM-based evaluators of natural language generation (NLG) quality are widely d…",
+      "one_line_judgement": "值得继续观察：2026-09-03 回看 | Beyond Scores: Understanding LLM-as-a-Judge Mechanisms…",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "2026-09-03 回看 | Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluati",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=beyond-scores-understanding-llm-as-a-judge-mechanisms-in-summarization-evaluation"
+    },
+    {
+      "title": "Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation",
+      "authors": [
+        "Kefeng Duan",
+        "Dewu Zheng",
+        "Yanlin Wang",
+        "Terry Yue Zhuo",
+        "Mingwei Liu"
+      ],
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.01601v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01601v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The repository-level code generation task requires synthesizing code that satisfies task requirements while remaining consistent with the target repository context. Since real-world repositories often exceed the input length limits of LLMs, existing approaches commonly adopt retrieval-augmented generation (RAG) to provide repository-specific context. Despite improving repository-context retrieval, existing methods typically provide context as task-level support, without explicitly identifying th",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.01601v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.01601v1"
+        }
+      ],
+      "id": "adaptive-critical-token-aware-retrieval-for-repository-level-code-generation",
+      "value_type": "trend",
+      "matched_topics": [
+        "coding-agent",
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "2026-09-03 回看 | Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation 命中 coding-agent 与 rag-knowledge 主线（仓库级代码生成：把 RAG 检索从 task-level 推到 critical-token）：据摘要，仓库级代码生成要满足任务需求并与目标仓库上下文一致；真实仓库常超过 LLM 输入长度限制，现有方法多采用 RAG 提供仓库特定上下文。尽管改善了仓库上下文检索，现有方法通常把上下文作为 task-level support，没有显式识别哪些 token 是 critical。'把仓库级代码生成的 RAG 从'task-level support'推到'critical-token aware retrieval'——让检索围着代码关键 token 走'对做 coding agent / 仓库级代码补全 / 内部代码助手团队的团队有趋势参考价值：内部代码库常超 context window，critical-token 检索是降低噪声 context 的直接路径。证据强度中等：方向明确（critical-token aware）+ 关键词 benchmark/RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；属 coding agent 检索层。",
+      "brief_cn": "Coding Agent：The repository-level code generation task requires synthesizing code that sati…",
+      "one_line_judgement": "值得继续观察：2026-09-03 回看 | Adaptive Critical Token-Aware Retrieval for Repository…",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "2026-09-03 回看 | Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation 命中 ",
+      "related_trends": [
+        "coding-agent",
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=adaptive-critical-token-aware-retrieval-for-repository-level-code-generation"
+    },
+    {
+      "title": "Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation",
+      "authors": [
+        "Haoyuan Deng",
+        "Haichao Liu",
+        "Wenkai Guo",
+        "Yuan Ling",
+        "Zaijia Yang"
+      ],
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.01596v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01596v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Real-world robotic assembly at sub-millimeter tolerances demands spatial precision, compliant interaction, and robustness to contact failures. We present Facet-0, a robotic foundation model that predicts and values the contact consequences of its actions. Facet-0 unifies multimodal representation learning and reinforcement learning (RL) post-training around a joint action-wrench proposal: a causal wrench history is aligned with vision-language semantics and kinematic state, and flow matching gen",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "keywords": [
+        "multimodal"
+      ],
+      "score": 64.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.01596v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.01596v1"
+        }
+      ],
+      "id": "facet-0-a-robotic-foundation-model-for-contact-rich-precise-manipulation",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
         "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
@@ -614,68 +700,147 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "LLM 评测：Bridging model-based control and learned policies in long-horizon manipulation…",
-      "one_line_judgement": "当前可忽略：LLM 评测：Bridging model-based control and learned policies in long-horiz…",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "LLM 评测：Bridging model-based control and learned policies in long-horizon manipulation…",
+      "trend_status": "emerging",
+      "llm_reason": "2026-09-03 回看 | Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation 命中 multimodal-agent 主线（接触丰富精确操作的机器人 foundation model）：据摘要，亚毫米级精度机器人装配要求空间精度、compliant interaction、对接触失败的鲁棒性；本文提出 Facet-0——预测并估价其动作的接触后果。Facet-0 围绕 joint action-wrench proposal 统一多模态表征学习与 RL 后训练：把 causal wrench history 与 vision-language semantics 和 kinematic state 对齐，用 flow matching 生成。'把接触丰富精确操作从'感知+控制分离'推到'joint action-wrench proposal'——causal wrench history + 视觉语言 + 运动学统一表征 + flow matching'对做具身 AI / 灵巧操作 / 机器人 foundation model 的团队有趋势参考价值：与昨日 Aero Hand Open（2608.28578）的仿真资产化互补——Aero Hand Open 解决'硬件经济性 + 仿真可学性'，Facet-0 解决'亚毫米精度的接触推理'。证据强度中等：方法路径明确（joint action-wrench proposal + flow matching）+ 关键词 multimodal 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；属具身 AI 模型层。",
+      "brief_cn": "Multimodal Agent：Real-world robotic assembly at sub-millimeter tolerances demands spatial preci…",
+      "one_line_judgement": "值得继续观察：2026-09-03 回看 | Facet-0: A Robotic Foundation Model for Contact-Rich P…",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "2026-09-03 回看 | Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation 命中 mul",
       "related_trends": [
-        "coding-agent"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=sun-persistent-programs-for-language-grounded-control-to-learning-to-real-policies"
+      "detail_path": "paper-detail.html?id=facet-0-a-robotic-foundation-model-for-contact-rich-precise-manipulation"
     },
     {
-      "title": "Constant Individual Regret in General Games",
+      "title": "Mechanism Design for Alignment and Control",
       "authors": [
-        "Mingyang Liu",
-        "Gabriele Farina",
-        "Asuman Ozdaglar"
+        "Dirk Bergemann",
+        "Andrew Koh",
+        "Stephen Morris"
       ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31166v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31166v1",
+      "url": "http://arxiv.org/abs/2609.01595v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01595v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Uncoupled no-regret dynamics provide a decentralized route to equilibrium, but prior guarantees for individual regret retain a polylogarithmic dependence on the horizon. We remove this dependence for every finite $N$-player normal-form game under full-information feedback. We introduce \\emph{ECHO-OFTRL}: optimistic follow-the-regularized-leader (OFTRL) equipped with an EMA cascade for high-order optimism (ECHO), where EMA denotes exponential moving average. The algorithm is deterministic and ful",
+      "abstract": "We develop a framework for mechanism design with AI agents whose alignment (preferences) and capabilities (feasible actions and information) are unknown. We want such agents to act on our behalf so mechanisms must incentivize both honesty and obedience. A one-sided imitation structure---capabilities can be concealed but not counterfeited---yields a revelation principle, a characterization of implementable policies via nested cyclical monotonicity, and conditions under which eliciting higher-orde",
       "categories": [
-        "cs.LG",
+        "econ.TH",
+        "cs.AI",
         "cs.GT"
       ],
       "keywords": [
-        "RAG"
+        "agent"
       ],
-      "score": 33.5,
-      "decision": "暂时忽略",
+      "score": 60.0,
+      "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31166v1"
+          "url": "http://arxiv.org/abs/2609.01595v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31166v1"
+          "url": "https://arxiv.org/pdf/2609.01595v1"
         }
       ],
-      "id": "constant-individual-regret-in-general-games",
-      "value_type": "ignore",
+      "id": "mechanism-design-for-alignment-and-control",
+      "value_type": "long_tail",
       "matched_topics": [
-        "rag-knowledge"
+        "ai-agent",
+        "security-governance"
       ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "llm_reason": "2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent 与 security-governance 长尾候选（AI agent 对齐+控制的机制设计理论）：据摘要，本文构建框架用于与 AI agent 做机制设计，其 alignment（偏好）与 capabilities（可行行动与信息）未知；希望这些 agent 代行其责，因此机制必须同时激励 honesty 与 obedience。一侧模仿结构（capabilities 可隐藏不可伪造）产生 revelation principle、可实施策略的 nested cyclical monotonicity 刻画以及可诱发高阶 beliefs 的条件。'把'如何让 AI agent 既诚实又服从'形式化为机制设计问题——一侧 imitation structure + revelation principle + nested cyclical monotonicity'对做 agent 治理、对齐理论、博弈论+AI 的团队有长尾参考价值：它给出'能力未知+偏好未知'下的可实施策略刻画，与 RLHF / Constitutional AI / Debate 类启发式方案形成对照。证据强度中等：理论框架清晰（revelation principle + nested cyclical monotonicity）+ 关键词 agent 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；属机制设计+AI 理论，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
+      "brief_cn": "AI Agent：We develop a framework for mechanism design with AI agents whose alignment (pr…",
+      "one_line_judgement": "值得先保存：2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent…",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent 与 security-governance 长尾候",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=mechanism-design-for-alignment-and-control"
+    },
+    {
+      "title": "Designing Proactive Thought Partners for Writing",
+      "authors": [
+        "Chao Zhang",
+        "Abe Davis",
+        "Chih-Wei Chen",
+        "Chin-Chia Hsu"
+      ],
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.01588v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01588v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Writing involves diverse cognitive activities, from ideation to revision, and writers' needs vary across individuals and moments. Proactive AI promises to provide the right support at the right time, yet existing proactive tools largely focus on generic textual assistance, such as autocomplete. This paper studies the design space of proactive thought partners: AI agents that proactively offer customizable, higher-level cognitive support during writing. We instantiated this concept in a technolog",
+      "categories": [
+        "cs.HC",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "planning"
+      ],
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.01588v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.01588v1"
+        }
+      ],
+      "id": "designing-proactive-thought-partners-for-writing",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
@@ -686,56 +851,62 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：Uncoupled no-regret dynamics provide a decentralized route to equilibrium, but…",
-      "one_line_judgement": "当前可忽略：RAG / 知识系统：Uncoupled no-regret dynamics provide a decentralized route …",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "RAG / 知识系统：Uncoupled no-regret dynamics provide a decentralized route to equilibrium, but…",
+      "trend_status": "long_tail_watch",
+      "llm_reason": "2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai-agent 与 HCI 长尾候选（写作主动思维伙伴的设计空间研究）：据摘要，写作涉及多样化认知活动（构思到修改），写作者需求因人因时而异；主动 AI 承诺在恰当时机提供恰当支持，但现有主动工具多聚焦通用文本协助（如自动补全）。本文研究 proactive thought partners 的设计空间：AI agent 在写作过程中主动提供可定制的高阶认知支持。'把主动写作协助从'通用自动补全'推到'proactive thought partners 设计空间'——按 lifecycle 主动提供高阶认知支持'对做写作 AI / 个人助理 / 教育型 agent 的团队有长尾参考价值：提供了把'主动 vs 被动'写作工具拆解为设计空间的路径。证据强度中等：方法路径清晰（设计空间研究 + 系统实现）+ 关键词 agent/planning 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；属 HCI + AI agent 设计研究层，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
+      "brief_cn": "AI Agent：Writing involves diverse cognitive activities, from ideation to revision, and …",
+      "one_line_judgement": "值得先保存：2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai…",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai-agent 与 HCI 长尾候选（写作主动思维伙伴",
       "related_trends": [
-        "context-engineering"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=constant-individual-regret-in-general-games"
+      "detail_path": "paper-detail.html?id=designing-proactive-thought-partners-for-writing"
     },
     {
-      "title": "Sharp Approximation Rates for Neural Networks with Affine Latent Parameterizations",
+      "title": "StudentSim: Training LLM-based Student Simulators",
       "authors": [
-        "Shijun Zhang"
+        "Ke Yang",
+        "Chenglong Wang",
+        "Michel Galley",
+        "Chandan Singh",
+        "Jeevana Priya Inala"
       ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
+      "published": "2026-09-01",
+      "updated": "2026-09-01",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31157v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31157v1",
+      "url": "http://arxiv.org/abs/2609.01591v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.01591v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Many parameter-efficient methods generate the parameters of a large neural network from a low-dimensional latent representation. Given an architecture $Φ$ with $P_Φ$ parameter slots, we write $\\boldsymbolθ_f=\\mathcal{G}(\\boldsymbolξ_f)$, where $\\mathcal{G}\\colon\\mathbb{R}^M\\to\\mathbb{R}^{P_Φ}$ is a parameter generator and $\\boldsymbolξ_f\\in\\mathbb{R}^M$ is a latent representation of the target function $f$. The architecture $Φ$ and the generator $\\mathcal{G}$ are shared across the entire target ",
+      "abstract": "AI tutors are most useful when they adapt to each student's strengths, weaknesses, and preferred guidance, but evidence about which guidance works for which student is sparse, slow, and costly to collect from real learners. Student simulators can provide this signal as a proxy, yet existing approaches are limited: state-tracking models fit student behavior but struggle to process explanations or corrections, while LLM role-play follows guidance fluently but does not reliably match the competence",
       "categories": [
-        "cs.LG",
-        "stat.ML"
+        "cs.CL"
       ],
       "keywords": [],
-      "score": 28.5,
+      "score": 48.0,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31157v1"
+          "url": "http://arxiv.org/abs/2609.01591v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31157v1"
+          "url": "https://arxiv.org/pdf/2609.01591v1"
         }
       ],
-      "id": "sharp-approximation-rates-for-neural-networks-with-affine-latent-parameterizations",
-      "value_type": "ignore",
-      "matched_topics": [],
+      "id": "studentsim-training-llm-based-student-simulators",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
@@ -752,199 +923,67 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "前沿论文：Many parameter-efficient methods generate the parameters of a large neural net…",
-      "one_line_judgement": "当前可忽略：前沿论文：Many parameter-efficient methods generate the parameters of a lar…",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "前沿论文：Many parameter-efficient methods generate the parameters of a large neural net…",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=sharp-approximation-rates-for-neural-networks-with-affine-latent-parameterizations"
-    },
-    {
-      "title": "Implementing neural network mixed-effects models in Template Model Builder (TMB)",
-      "authors": [
-        "Nan Zheng",
-        "Hoi Yiu Cheung",
-        "Vibhu Sharma",
-        "James T. Thorson",
-        "Noel G. Cadigan"
+      "trend_status": "long_tail_watch",
+      "llm_reason": "2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 llm-evaluation 长尾候选（训练 LLM 学生模拟器供 AI tutor 适配）：据摘要，AI tutor 在适配每个学生优缺点/偏好引导时最有用，但'哪种引导对学生有效'的证据稀疏、慢且从真人采集贵；学生模拟器可作 proxy 信号，但现有方法受限——state-tracking 模型拟合行为但难处理解释/纠正；LLM role-play 流畅跟随引导但不总能匹配真实学生能力。'把学生模拟从'state-tracking 拟合'或'LLM role-play'推到'training LLM-based student simulators'——融合行为拟合与语言流畅'对做教育 AI / tutoring agent / agent 评测 proxy 的团队有长尾参考价值：student simulator 是 RLHF / agent 评测中'难以替代真人'的常见 proxy 来源，融合方案值得跟踪。证据强度中等：方法动机清晰（两个流派都缺）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失；属教育 AI 垂直层，作长尾资产保存。",
+      "brief_cn": "LLM 评测：AI tutors are most useful when they adapt to each student's strengths, weaknes…",
+      "one_line_judgement": "值得先保存：2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 l…",
+      "first_seen_date": "2026-09-03",
+      "first_deep_dive_daily": "2026-09-03",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 llm-evaluation 长尾候选（训练 LLM ",
+      "related_trends": [
+        "coding-agent"
       ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31133v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31133v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Neural network mixed-effects models (NMMs) have gained traction by combining the strong representation and predictive power of artificial neural networks with the capacity of mixed-effects modeling to capture complex correlation structures. However, existing estimation approaches rely heavily on manual derivations of objective functions and gradients, which inherently forces simplifying approximations and severely constrains the complexity and accuracy of NMMs. In this work, we introduce a gener",
-      "categories": [
-        "stat.ML",
-        "cs.LG"
-      ],
-      "keywords": [
-        "RAG"
-      ],
-      "score": 28.5,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31133v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31133v1"
-        }
-      ],
-      "id": "implementing-neural-network-mixed-effects-models-in-template-model-builder-tmb",
-      "value_type": "ignore",
-      "matched_topics": [],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "前沿论文：Neural network mixed-effects models (NMMs) have gained traction by combining t…",
-      "one_line_judgement": "当前可忽略：前沿论文：Neural network mixed-effects models (NMMs) have gained traction b…",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "前沿论文：Neural network mixed-effects models (NMMs) have gained traction by combining t…",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=implementing-neural-network-mixed-effects-models-in-template-model-builder-tmb"
-    },
-    {
-      "title": "On the Complexity of the Compatibility Problem for Succinctly Encoded Conditional Distributions",
-      "authors": [
-        "Guy Emerson"
-      ],
-      "published": "2026-08-31",
-      "updated": "2026-08-31",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2608.31120v1",
-      "pdf_url": "https://arxiv.org/pdf/2608.31120v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "The motivation for this paper is the investigation of the trade-offs implicit in probabilistic models used in machine learning. Models are often used to make predictions in the form of conditional probabilities. However, a pair of conditional distributions p(x|y) and p(y|x) may not be compatible with any joint distribution p(x,y). Given two such conditionals, determining if there exists a compatible joint is known as the compatibility problem. For discrete random variables, when the conditionals",
-      "categories": [
-        "cs.LG",
-        "cs.CC",
-        "math.PR"
-      ],
-      "keywords": [],
-      "score": 28.5,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2608.31120v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2608.31120v1"
-        }
-      ],
-      "id": "on-the-complexity-of-the-compatibility-problem-for-succinctly-encoded-conditional-distributions",
-      "value_type": "ignore",
-      "matched_topics": [],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "前沿论文：The motivation for this paper is the investigation of the trade-offs implicit …",
-      "one_line_judgement": "当前可忽略：前沿论文：The motivation for this paper is the investigation of the trade-o…",
-      "first_seen_date": "2026-09-02",
-      "first_deep_dive_daily": "2026-09-02",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "前沿论文：The motivation for this paper is the investigation of the trade-offs implicit …",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=on-the-complexity-of-the-compatibility-problem-for-succinctly-encoded-conditional-distributions"
+      "detail_path": "paper-detail.html?id=studentsim-training-llm-based-student-simulators"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "learning-a-size-weight-frontier-for-synthetic-augmented-inference",
-      "title": "Learning a Size-Weight Frontier for Synthetic-Augmented Inference",
-      "direction": "LLM 评测 / 推理与服务",
+      "id": "mechanism-design-for-alignment-and-control",
+      "title": "Mechanism Design for Alignment and Control",
+      "direction": "AI Agent / 安全与治理",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-01 回看 | Learning a Size-Weight Frontier for Synthetic-Augmented Inference 命中 llm-evaluat",
+      "why_save": "2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent 与 security-governance 长尾候",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-22",
-      "detail_path": "paper-detail.html?id=learning-a-size-weight-frontier-for-synthetic-augmented-inference"
+      "revisit_date": "2026-09-24",
+      "detail_path": "paper-detail.html?id=mechanism-design-for-alignment-and-control"
     },
     {
-      "id": "a-formal-limitation-on-learning-human-language-from-textual-corpora",
-      "title": "A Formal Limitation on Learning Human Language From Textual Corpora",
-      "direction": "LLM 评测 / 安全与治理",
+      "id": "designing-proactive-thought-partners-for-writing",
+      "title": "Designing Proactive Thought Partners for Writing",
+      "direction": "AI Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-01 回看 | A Formal Limitation on Learning Human Language From Textual Corpora 命中 llm-evalu",
+      "why_save": "2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai-agent 与 HCI 长尾候选（写作主动思维伙伴",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-22",
-      "detail_path": "paper-detail.html?id=a-formal-limitation-on-learning-human-language-from-textual-corpora"
+      "revisit_date": "2026-09-24",
+      "detail_path": "paper-detail.html?id=designing-proactive-thought-partners-for-writing"
     },
     {
-      "id": "qgpinns-a-physics-informed-neural-network-framework-for-nonlocal-differential-equations-on-quantum-graphs",
-      "title": "QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential Equations on Quantum Graphs",
-      "direction": "AI 平台工程",
+      "id": "studentsim-training-llm-based-student-simulators",
+      "title": "StudentSim: Training LLM-based Student Simulators",
+      "direction": "LLM 评测",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-01 回看 | QGPINNs: A Physics-Informed Neural Network Framework for Nonlocal Differential E",
+      "why_save": "2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 llm-evaluation 长尾候选（训练 LLM ",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-22",
-      "detail_path": "paper-detail.html?id=qgpinns-a-physics-informed-neural-network-framework-for-nonlocal-differential-equations-on-quantum-graphs"
+      "revisit_date": "2026-09-24",
+      "detail_path": "paper-detail.html?id=studentsim-training-llm-based-student-simulators"
     }
   ],
   "common_research_path": [
