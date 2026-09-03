@@ -1,101 +1,122 @@
 {
-  "updated_at": "2026-09-03T04:33:19.140408",
+  "updated_at": "2026-09-04T04:32:15.640303",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-09-03",
-    "title": "论文价值发现日报 - 2026-09-03",
-    "deep_dive_title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
-    "deep_dive_url": "http://arxiv.org/abs/2609.01587v1",
-    "decision": "轻量试点",
+    "date": "2026-09-04",
+    "title": "论文价值发现日报 - 2026-09-04",
+    "deep_dive_title": "Post-Training Language Models for Gold-Medal Performance in Coding Competitions",
+    "deep_dive_url": "http://arxiv.org/abs/2609.02849v1",
+    "decision": "重点学习",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "2026-09-03 回看 | 完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配（30 分钟可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，1 周内可实施）；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
-    "max_uncertainty": "2026-09-03 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。",
-    "one_line_judgement": "据摘要，The Structure of Quantization Damage in LLMs（[2609.01587](http://arxiv.org/abs/2609.01587v1)）把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'，直接回答'额外精度 bit 应花在哪里'——证据级别提到因果干预层，能立刻用于 serving 栈精度预算分配。Verbal Reinforcement Learning（[2609.01597](http://arxiv.org/abs/2609.01597v1)）给出 VRL 的 first unified account——按 lifecycle 时机 × 改动对象统一组织，提供了把现有 LLM feedback 技巧按 lifecycle 排序的统一视角，便于评估与教学。PTA-IRT（[2609.01603](http://arxiv.org/abs/2609.01603v1)）把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'，直击 SWE agent 评估贵的行业瓶颈——它既利用解题轨迹又控制成本。三篇 immediate 共同指向'为既有做法提供结构化底层原理'。趋势层：CordisBench（[2609.01600](http://arxiv.org/abs/2609.01600v1)）把'动态 agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime——与昨日 Logos（2608.28553）的 cross-process bus 故障隔离形成'agent harness 治理与生命周期'趋势簇；Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）用 8 类扰动 taxonomy + paired clean/corrupt + token 级标注把 LLM-as-a-Judge 从'score 输出'推到'mechanism 理解'；Adaptive Critical Token（[2609.01601](http://arxiv.org/abs/2609.01601v1)）把仓库级代码生成 RAG 从'task-level support'推到'critical-token aware retrieval'；Facet-0（[2609.01596](http://arxiv.org/abs/2609.01596v1)）围绕 joint action-wrench proposal 统一多模态表征与 RL 后训练——与昨日 Aero Hand Open 的仿真资产化互补。",
-    "path": "daily-detail.html?date=2026-09-03"
+    "daily_action": "2026-09-04 回看 | 完成五件事：(1) 跟踪 Linguistic Illegibility 的具体 security 论证与 jailbreak 案例——评估其'unified diagnostic framework'对团队 LLM 安全评审的可借鉴性（30 分钟可对团队现有 LLM 安全评审流程检查'是否把外部语言当作内部解释'）；(2) 跟踪 Nemotron Gold-Medal Coding 的开源与 22K problems 数据工程——评估其'22K curated problems + synthetic reasoning traces'对团队 coding agent 训练数据 curation 流程的可借鉴性（30 分钟可梳理团队 coding agent 训练数据的 curation 过滤规则）；(3) 把 Discriminative World Models 纳入 web agent 训练目标观察线——评估其'discriminative objective'对团队 web agent / GUI agent 世界模型的可借鉴性；(4) 把 UE5M3 FP4 纳入低精度预训练稳定性观察线——评估其'UE5M3 block scales'对团队 FP4 预训练栈的可借鉴性；(5) 为 Speech BCI / TRACE / GRADSOLVE / GD Lower Bounds 四个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
+    "max_uncertainty": "2026-09-04 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Linguistic Illegibility 摘要截断导致具体 security 案例（jailbreak / prompt injection / interpretability-based 攻击）、'implications for LLM security'的具体论点、防御建议、与 mechanistic interpretability 已有工作（Anthropic 特征字典 / sparse autoencoder / circuit analysis）的对比缺失；Nemotron Gold-Medal Coding 摘要截断导致具体 benchmark（除 IOI/ICPC 外是否覆盖 Codeforces / AtCoder）、22K problems 的 curation 过滤规则、synthetic traces 合成方法（self-distillation / rejection sampling / RLAIF）、与 DeepSeek-Coder / Qwen-Coder / Claude / GPT 系列在 IOI/ICPC 上的对比、'gold-medal' 的具体指标定义缺失；Discriminative World Models 摘要截断导致具体判别性训练信号（contrastive / preference / PRM 端到端）、HTML/AXTree 之外的 state 表征、与 SeeAct / AWM / WebDreamer 等方法的对比、benchmark 选型均缺失；UE5M3 FP4 摘要截断导致具体 scaling schedule、periodic tensor scaling 频率、selective stochastic 的具体形式、与 NVIDIA Transformer Engine recipe 的定量对比、预训练稳定性曲线、是否覆盖主流模型族（Llama / Qwen / DeepSeek / Nemotron）均缺失；User Feedback Unique Signal 摘要截断导致具体 methodology、systematic bias 的具体形态、与现有 RLHF / RLAIF / Constitutional AI 的桥接、feedback 信号的有效性度量均缺失；Graph Machine 摘要截断导致 referral mechanism 的具体可微实现、edges 更新规则、计算开销、长上下文性能、训练稳定性、'替换 75% dense 层'的实证对比均缺失；Speech BCI 摘要截断导致具体度量形式、跨数据集校准方法、是否给出 baseline、是否覆盖语言学/神经维度均缺失；TRACE 摘要截断导致四层的具体接口、causal chain 形式化、与 ROS / ROS2 集成、事件后调查工作流均缺失；GRADSOLVE 摘要截断导致具体实现（CUDA kernel 设计 / ensemble parallelization / memory trade-off）、与 torchdiffeq / diffrax / JAX-based ODE solver 的对比、benchmark 选型均缺失；Improved GD Lower Bounds 摘要截断导致具体证明技术、anytime vs non-anytime 的精确含义、O(n^{-\\l...) 的完整上界、与 Nesterov 上界的 gap closure 程度均缺失。",
+    "one_line_judgement": "据摘要，The Implications of Linguistic Illegibility for LLM Security（[2609.02852](http://arxiv.org/abs/2609.02852v1)）提出 'linguistic illegibility' 概念——LLM 的外部化语言输出与 mechanistic-extracted 语言特征可能是理解内部计算的不可靠 lens，论证其对 LLM security 的影响；直接连接到 jailbreak / prompt injection / interpretability 鲁棒性等安全场景，与昨日 Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）的 LLM-as-a-Judge 机制扰动分析形成'评测机制可读性 + 模型内部可读性'双线索。Post-Training Language Models for Gold-Medal Performance in Coding Competitions（[2609.02849](http://arxiv.org/abs/2609.02849v1)）呈现 end-to-end specialization pipeline——22K curated problems + synthetic reasoning traces + SFT/RL 组合，训练 Nemotron-3-Nano-CC（30B-A3B，SFT+RL）与 Nemotron-3-Ultra-CC（550B-A55B，仅 SFT），目标 IOI/ICPC gold-medal。两篇 immediate 共同指向'为既有抽象问题提供结构化诊断术语 + 把 LLM 极限能力工程化'。趋势层：Discriminative World Models for Web Agents（[2609.02885](http://arxiv.org/abs/2609.02885v1)）把 web agent 世界模型从'supervised next-state prediction'推到'discriminative objective'——训练目标与下游 ranker 对齐；UE5M3 FP4 Block Scaling（[2609.02846](http://arxiv.org/abs/2609.02846v1)）把 FP4 预训练稳定性从'current-tensor scaling + RHT + BF16'（NVIDIA Transformer Engine）推到'UE5M3 block scales + periodic tensor scaling'；User Feedback Provides a Unique Signal（[2609.02859](http://arxiv.org/abs/2609.02859v1)）挑战'user feedback 噪声大'共识，证明评测范式 systematic bias 掩盖了真实价值；Graph Machine（[2609.02881](http://arxiv.org/abs/2609.02881v1)）用 edges-based sparse dynamic routing 替换 Qwen 75% dense attention。",
+    "path": "daily-detail.html?date=2026-09-04"
   },
   "top_paper": {
-    "title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+    "title": "Post-Training Language Models for Gold-Medal Performance in Coding Competitions",
     "authors": [
-      "Jundong Hu",
-      "Shekar Ramachandran"
+      "Aleksander Ficek",
+      "Sean Narenthiran",
+      "Mehrzad Samadi",
+      "Somshubra Majumdar",
+      "Boris Ginsburg"
     ],
-    "published": "2026-09-01",
-    "updated": "2026-09-01",
+    "published": "2026-09-02",
+    "updated": "2026-09-02",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2609.01587v1",
-    "pdf_url": "https://arxiv.org/pdf/2609.01587v1",
+    "url": "http://arxiv.org/abs/2609.02849v1",
+    "pdf_url": "https://arxiv.org/pdf/2609.02849v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Post-training quantization (PTQ) is widely used to reduce the cost of serving large language models (LLMs), but its accuracy cost is uneven and is often tuned per model. We study where quantization damage occurs and how to allocate a small additional precision budget. Using causal mixed-precision intervention as ground truth (raise each layer to 8-bit in turn and measure the accuracy it recovers) across 9 open-weight models in 4 architecture families, we test 3 intuitive hypotheses: that quantiz",
+    "abstract": "Competitive programming has become a key test of large language model reasoning, with international competitions such as IOI and ICPC representing its most challenging settings. We present an end-to-end specialization pipeline combining large-scale problem curation, synthetic reasoning traces, supervised fine-tuning (SFT), and reinforcement learning (RL). Using 22,000 curated problems, we train Nemotron-3-Nano-CC (30B-A3B) with SFT and RL and Nemotron-3-Ultra-CC (550B-A55B) with SFT alone. We fu",
     "categories": [
       "cs.LG",
-      "cs.CL"
+      "cs.AI",
+      "cs.CL",
+      "cs.MA",
+      "cs.SE"
     ],
-    "keywords": [
-      "evaluation"
-    ],
-    "score": 74.0,
-    "decision": "轻量试点",
+    "keywords": [],
+    "score": 80.0,
+    "decision": "重点学习",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2609.01587v1"
+        "url": "http://arxiv.org/abs/2609.02849v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2609.01587v1"
+        "url": "https://arxiv.org/pdf/2609.02849v1"
       }
     ],
-    "id": "the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+    "llm_reason": "2026-09-04 回看 | Post-Training Language Models for Gold-Medal Performance in Coding Competitions 命中 coding-agent 与 ai-agent 主线（编程竞赛金奖级 post-training 端到端流水线）。据摘要，competitive programming 成为 LLM 推理的关键测试，国际竞赛（IOI、ICPC）是最具挑战性的场景。本文呈现 end-to-end specialization pipeline——大规模问题 curation、synthetic reasoning traces、SFT、RL 组合。用 22,000 curated problems 训练 Nemotron-3-Nano-CC（30B-A3B，SFT+RL）与 Nemotron-3-Ultra-CC（550B-A55B，仅 SFT）。'把 LLM 编程竞赛能力从'demo 级别'推到'gold-medal 端到端 post-training pipeline'——22K curated problems + synthetic reasoning traces + SFT+RL 组合 + IOI/ICPC 验证'对做 coding agent / LLM 推理优化、agent 工程、长上下文问题求解的团队有直接价值：(1) 22K problems + synthetic traces 的数据工程细节（curation 过滤、trace 合成质量）是工程层高价值资产；(2) SFT+RL 与 SFT-only 的对比为训练策略选择提供实证；(3) IOI/ICPC gold-medal 验证是当前最强 coding 推理证据之一。证据强度中等偏上：方法路径具体（端到端 pipeline + 模型规模 + 训练组合 + 验证场景）+ 关键词 agent/coding/program synthesis/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体 benchmark（除 IOI/ICPC 外是否覆盖 Codeforces / AtCoder）、22K problems 的 curation 过滤规则、synthetic traces 合成方法（self-distillation / rejection sampling / RLAIF）、与 DeepSeek-Coder / Qwen-Coder / Claude / GPT 系列在 IOI/ICPC 上的对比、'gold-medal' 的具体指标定义均缺失；属 coding agent 训练流水线层，建议跟踪其开源与定量结果。",
+    "id": "post-training-language-models-for-gold-medal-performance-in-coding-competitions",
     "value_type": "immediate",
     "matched_topics": [
-      "inference-serving"
+      "coding-agent",
+      "ai-agent"
     ],
     "score_breakdown": {
       "novelty": 4.8,
-      "problem_importance": 5.15,
-      "relevance": 5.0,
+      "problem_importance": 4.5,
+      "relevance": 3.8,
       "evidence_strength": 4.5,
-      "engineering_testability": 3.5,
-      "trend_signal": 3.5,
+      "engineering_testability": 4.05,
+      "trend_signal": 4.05,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 4.8,
+      "asset_convertibility": 4.0,
       "actionability": 3.8,
-      "noise_risk": 1.2,
+      "noise_risk": 2.4,
       "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 3.6,
+      "low_relevance_penalty": 5.0,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "llm_reason": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally 命中 inference-serving 主线（PTQ 损伤结构 + 精度预算分配的因果干预研究）：据摘要，post-training quantization（PTQ）被广泛用于降低 LLM serving 成本，但精度损失分布不均且常逐模型调优；本文研究量化损伤在哪里发生、额外精度预算如何分配。以 causal mixed-precision intervention 作 ground truth（逐层升到 8-bit 测精度恢复），跨 9 个开源模型、4 个架构家族测试 3 种直觉假设（量化损伤是否在某层/某 family 集中）。'把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'——证据级别提到因果干预层'对做 LLM 推理优化、量化工程、推理基础设施的团队有直接价值：直接给出'额外精度 bit 应花在哪里'的结构化结论，能立刻用于 serving 栈的精度预算分配。证据强度偏上：方法严谨（causal intervention 作 ground truth + 9 模型 4 家族 + 多假设检验）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；建议跟踪具体结论与开源实现。",
-    "brief_cn": "推理与服务：Post-training quantization (PTQ) is widely used to reduce the cost of serving …",
-    "one_line_judgement": "今天值得试：2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the …",
-    "first_seen_date": "2026-09-03",
-    "first_deep_dive_daily": "2026-09-03",
+    "brief_cn": "Coding Agent：Competitive programming has become a key test of large language model reasonin…",
+    "one_line_judgement": "今天值得试：2026-09-04 回看 | Post-Training Language Models for Gold-Medal Performan…",
+    "first_seen_date": "2026-09-04",
+    "first_deep_dive_daily": "2026-09-04",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent G",
-    "related_trends": [],
-    "detail_path": "paper-detail.html?id=the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally"
+    "long_tail_summary": "2026-09-04 回看 | Post-Training Language Models for Gold-Medal Performance in Coding Competitions ",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "detail_path": "paper-detail.html?id=post-training-language-models-for-gold-medal-performance-in-coding-competitions"
   },
-  "paper_count": 1680,
+  "paper_count": 1690,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 131,
+  "long_tail_count": 135,
   "value_distribution": {
-    "immediate": 105,
-    "trend": 144,
-    "long_tail": 131,
+    "immediate": 107,
+    "trend": 148,
+    "long_tail": 135,
     "ignore": 1300
   },
   "recent_dailies": [
+    {
+      "date": "2026-09-04",
+      "title": "论文价值发现日报 - 2026-09-04",
+      "deep_dive_title": "Post-Training Language Models for Gold-Medal Performance in Coding Competitions",
+      "deep_dive_url": "http://arxiv.org/abs/2609.02849v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "2026-09-04 回看 | 完成五件事：(1) 跟踪 Linguistic Illegibility 的具体 security 论证与 jailbreak 案例——评估其'unified diagnostic framework'对团队 LLM 安全评审的可借鉴性（30 分钟可对团队现有 LLM 安全评审流程检查'是否把外部语言当作内部解释'）；(2) 跟踪 Nemotron Gold-Medal Coding 的开源与 22K problems 数据工程——评估其'22K curated problems + synthetic reasoning traces'对团队 coding agent 训练数据 curation 流程的可借鉴性（30 分钟可梳理团队 coding agent 训练数据的 curation 过滤规则）；(3) 把 Discriminative World Models 纳入 web agent 训练目标观察线——评估其'discriminative objective'对团队 web agent / GUI agent 世界模型的可借鉴性；(4) 把 UE5M3 FP4 纳入低精度预训练稳定性观察线——评估其'UE5M3 block scales'对团队 FP4 预训练栈的可借鉴性；(5) 为 Speech BCI / TRACE / GRADSOLVE / GD Lower Bounds 四个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
+      "max_uncertainty": "2026-09-04 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Linguistic Illegibility 摘要截断导致具体 security 案例（jailbreak / prompt injection / interpretability-based 攻击）、'implications for LLM security'的具体论点、防御建议、与 mechanistic interpretability 已有工作（Anthropic 特征字典 / sparse autoencoder / circuit analysis）的对比缺失；Nemotron Gold-Medal Coding 摘要截断导致具体 benchmark（除 IOI/ICPC 外是否覆盖 Codeforces / AtCoder）、22K problems 的 curation 过滤规则、synthetic traces 合成方法（self-distillation / rejection sampling / RLAIF）、与 DeepSeek-Coder / Qwen-Coder / Claude / GPT 系列在 IOI/ICPC 上的对比、'gold-medal' 的具体指标定义缺失；Discriminative World Models 摘要截断导致具体判别性训练信号（contrastive / preference / PRM 端到端）、HTML/AXTree 之外的 state 表征、与 SeeAct / AWM / WebDreamer 等方法的对比、benchmark 选型均缺失；UE5M3 FP4 摘要截断导致具体 scaling schedule、periodic tensor scaling 频率、selective stochastic 的具体形式、与 NVIDIA Transformer Engine recipe 的定量对比、预训练稳定性曲线、是否覆盖主流模型族（Llama / Qwen / DeepSeek / Nemotron）均缺失；User Feedback Unique Signal 摘要截断导致具体 methodology、systematic bias 的具体形态、与现有 RLHF / RLAIF / Constitutional AI 的桥接、feedback 信号的有效性度量均缺失；Graph Machine 摘要截断导致 referral mechanism 的具体可微实现、edges 更新规则、计算开销、长上下文性能、训练稳定性、'替换 75% dense 层'的实证对比均缺失；Speech BCI 摘要截断导致具体度量形式、跨数据集校准方法、是否给出 baseline、是否覆盖语言学/神经维度均缺失；TRACE 摘要截断导致四层的具体接口、causal chain 形式化、与 ROS / ROS2 集成、事件后调查工作流均缺失；GRADSOLVE 摘要截断导致具体实现（CUDA kernel 设计 / ensemble parallelization / memory trade-off）、与 torchdiffeq / diffrax / JAX-based ODE solver 的对比、benchmark 选型均缺失；Improved GD Lower Bounds 摘要截断导致具体证明技术、anytime vs non-anytime 的精确含义、O(n^{-\\l...) 的完整上界、与 Nesterov 上界的 gap closure 程度均缺失。",
+      "one_line_judgement": "据摘要，The Implications of Linguistic Illegibility for LLM Security（[2609.02852](http://arxiv.org/abs/2609.02852v1)）提出 'linguistic illegibility' 概念——LLM 的外部化语言输出与 mechanistic-extracted 语言特征可能是理解内部计算的不可靠 lens，论证其对 LLM security 的影响；直接连接到 jailbreak / prompt injection / interpretability 鲁棒性等安全场景，与昨日 Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）的 LLM-as-a-Judge 机制扰动分析形成'评测机制可读性 + 模型内部可读性'双线索。Post-Training Language Models for Gold-Medal Performance in Coding Competitions（[2609.02849](http://arxiv.org/abs/2609.02849v1)）呈现 end-to-end specialization pipeline——22K curated problems + synthetic reasoning traces + SFT/RL 组合，训练 Nemotron-3-Nano-CC（30B-A3B，SFT+RL）与 Nemotron-3-Ultra-CC（550B-A55B，仅 SFT），目标 IOI/ICPC gold-medal。两篇 immediate 共同指向'为既有抽象问题提供结构化诊断术语 + 把 LLM 极限能力工程化'。趋势层：Discriminative World Models for Web Agents（[2609.02885](http://arxiv.org/abs/2609.02885v1)）把 web agent 世界模型从'supervised next-state prediction'推到'discriminative objective'——训练目标与下游 ranker 对齐；UE5M3 FP4 Block Scaling（[2609.02846](http://arxiv.org/abs/2609.02846v1)）把 FP4 预训练稳定性从'current-tensor scaling + RHT + BF16'（NVIDIA Transformer Engine）推到'UE5M3 block scales + periodic tensor scaling'；User Feedback Provides a Unique Signal（[2609.02859](http://arxiv.org/abs/2609.02859v1)）挑战'user feedback 噪声大'共识，证明评测范式 systematic bias 掩盖了真实价值；Graph Machine（[2609.02881](http://arxiv.org/abs/2609.02881v1)）用 edges-based sparse dynamic routing 替换 Qwen 75% dense attention。",
+      "path": "daily-detail.html?date=2026-09-04"
+    },
     {
       "date": "2026-09-03",
       "title": "论文价值发现日报 - 2026-09-03",
@@ -173,62 +194,126 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-08-28"
-    },
-    {
-      "date": "2026-08-27",
-      "title": "论文价值发现日报 - 2026-08-27",
-      "deep_dive_title": "Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses",
-      "deep_dive_url": "http://arxiv.org/abs/2608.24876v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：(1) 跟踪 Recuris 开源——评估其 Working/Experiential Memory 抽象是否可与团队 long-horizon agent harness 兼容，可在内部 agent 上做 memory 抽象对比（不依赖完整开源，memory 分层思想可借鉴，1 周内可做概念验证）；(2) 把'prompt 变体鲁棒性'纳入团队 coding-agent 评测设计——基于 Prompt Structure 的'424 任务 × 多 prompt 变体'实证原则，可立刻在团队内部安全敏感代码生成任务上加'prompt 变体对照'维度（30 分钟可设计、1-2 天可实施）；(3) 把'FID 偏差检测'纳入团队生成模型选型流程——不再把 FID 数值当作唯一排序依据，加入 FID Hides 的偏差检测思路（30 分钟可制定规则、1 周内可在选型中应用）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；Recuris 摘要截断导致 Experiential Memory 存储/检索机制、Working Memory 状态表示、与 Prime Agent REPL 的差异评测缺失；Prompt Structure 摘要截断导致 5 种 prompt 变体具体差异、定量结果（各弱点类型前后比例）、所用弱点分类法缺失；FID Hides 摘要截断导致偏差检测/排名/诊断的具体算法、与 KID/其他指标的关系缺失；SPO++ 摘要截断导致与 GRPO/PPO 的定量对比、适用任务类型、稳定性结果缺失；BrowserForge 摘要截断导致具体沙箱架构、轨迹规模、与已有数据集的定量对比缺失；LAION-BVD 摘要截断导致许可协议、内容过滤策略、与已有视频数据集的定量对比缺失；Bellman Calibration、FedV-KGQA、Cross-Problem VRP 摘要均截断导致各自方法细节与定量结果缺失。",
-      "one_line_judgement": "Recuris 把 long-horizon agent 的 memory 拆成 Working Memory（管任务进度）+ Experiential Memory（管跨轨迹技能库），并把执行变成结构化失败证据——与昨日 Prime Agent 的 REPL + Continual Harness 同方向（跨会话可积累能力），但聚焦 memory 结构分离；Prompt Structure 用 424 个安全敏感 Python 任务 × GPT-4o/LLaMA 3.1-8B × 5 种 prompt 变体系统证伪'prompt 结构 = 更安全'的直觉——把'prompt 工程万能'变成可定量评估的盲区；FID Hides 用具体反例（ImageNet 上视觉不可识别但仅匹配参考 Inception mean/cov 的图像获 FID 24.7 vs 真实图像 FID 58.6）证明 FID 标量本身不是 calibrated test。三个趋势信号也值得关注：SPO++ 修复异步 agentic RL 的 trajectory-vs-token-weighted 中心化偏差；BrowserForge 用并行浏览器沙箱规模化生成 web agent 训练数据；LAION-BVD 把视频多模态预训练数据推到 10M 小时量级。",
-      "path": "daily-detail.html?date=2026-08-27"
     }
   ],
   "top_papers": [
     {
-      "title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
+      "title": "Post-Training Language Models for Gold-Medal Performance in Coding Competitions",
       "authors": [
-        "Jundong Hu",
-        "Shekar Ramachandran"
+        "Aleksander Ficek",
+        "Sean Narenthiran",
+        "Mehrzad Samadi",
+        "Somshubra Majumdar",
+        "Boris Ginsburg"
       ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01587v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01587v1",
+      "url": "http://arxiv.org/abs/2609.02849v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02849v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Post-training quantization (PTQ) is widely used to reduce the cost of serving large language models (LLMs), but its accuracy cost is uneven and is often tuned per model. We study where quantization damage occurs and how to allocate a small additional precision budget. Using causal mixed-precision intervention as ground truth (raise each layer to 8-bit in turn and measure the accuracy it recovers) across 9 open-weight models in 4 architecture families, we test 3 intuitive hypotheses: that quantiz",
+      "abstract": "Competitive programming has become a key test of large language model reasoning, with international competitions such as IOI and ICPC representing its most challenging settings. We present an end-to-end specialization pipeline combining large-scale problem curation, synthetic reasoning traces, supervised fine-tuning (SFT), and reinforcement learning (RL). Using 22,000 curated problems, we train Nemotron-3-Nano-CC (30B-A3B) with SFT and RL and Nemotron-3-Ultra-CC (550B-A55B) with SFT alone. We fu",
       "categories": [
         "cs.LG",
-        "cs.CL"
+        "cs.AI",
+        "cs.CL",
+        "cs.MA",
+        "cs.SE"
       ],
-      "keywords": [
-        "evaluation"
+      "keywords": [],
+      "score": 80.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.02849v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.02849v1"
+        }
       ],
-      "score": 74.0,
+      "llm_reason": "2026-09-04 回看 | Post-Training Language Models for Gold-Medal Performance in Coding Competitions 命中 coding-agent 与 ai-agent 主线（编程竞赛金奖级 post-training 端到端流水线）。据摘要，competitive programming 成为 LLM 推理的关键测试，国际竞赛（IOI、ICPC）是最具挑战性的场景。本文呈现 end-to-end specialization pipeline——大规模问题 curation、synthetic reasoning traces、SFT、RL 组合。用 22,000 curated problems 训练 Nemotron-3-Nano-CC（30B-A3B，SFT+RL）与 Nemotron-3-Ultra-CC（550B-A55B，仅 SFT）。'把 LLM 编程竞赛能力从'demo 级别'推到'gold-medal 端到端 post-training pipeline'——22K curated problems + synthetic reasoning traces + SFT+RL 组合 + IOI/ICPC 验证'对做 coding agent / LLM 推理优化、agent 工程、长上下文问题求解的团队有直接价值：(1) 22K problems + synthetic traces 的数据工程细节（curation 过滤、trace 合成质量）是工程层高价值资产；(2) SFT+RL 与 SFT-only 的对比为训练策略选择提供实证；(3) IOI/ICPC gold-medal 验证是当前最强 coding 推理证据之一。证据强度中等偏上：方法路径具体（端到端 pipeline + 模型规模 + 训练组合 + 验证场景）+ 关键词 agent/coding/program synthesis/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体 benchmark（除 IOI/ICPC 外是否覆盖 Codeforces / AtCoder）、22K problems 的 curation 过滤规则、synthetic traces 合成方法（self-distillation / rejection sampling / RLAIF）、与 DeepSeek-Coder / Qwen-Coder / Claude / GPT 系列在 IOI/ICPC 上的对比、'gold-medal' 的具体指标定义均缺失；属 coding agent 训练流水线层，建议跟踪其开源与定量结果。",
+      "id": "post-training-language-models-for-gold-medal-performance-in-coding-competitions",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Coding Agent：Competitive programming has become a key test of large language model reasonin…",
+      "one_line_judgement": "今天值得试：2026-09-04 回看 | Post-Training Language Models for Gold-Medal Performan…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "2026-09-04 回看 | Post-Training Language Models for Gold-Medal Performance in Coding Competitions ",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=post-training-language-models-for-gold-medal-performance-in-coding-competitions"
+    },
+    {
+      "title": "The Implications of Linguistic Illegibility for LLM Security",
+      "authors": [
+        "James Mickens"
+      ],
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.02852v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02852v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLMs are trained to generate natural language. However, various strands of evidence indicate that an LLM's externalized linguistic outputs and mechanistically-extracted linguistic features can be an unreliable lens for understanding internal model computation. We introduce the term ``linguistic illegibility'' to broadly refer to scenarios in which an LLM's externalized or mechanistically-probed language artifacts fail to represent how the model actually thinks. We argue that the specter of lingu",
+      "categories": [
+        "cs.LG",
+        "cs.CR"
+      ],
+      "keywords": [],
+      "score": 78.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01587v1"
+          "url": "http://arxiv.org/abs/2609.02852v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01587v1"
+          "url": "https://arxiv.org/pdf/2609.02852v1"
         }
       ],
-      "id": "the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally",
+      "llm_reason": "2026-09-04 回看 | The Implications of Linguistic Illegibility for LLM Security 命中 security-governance 与 llm-evaluation 主线（LLM linguistic illegibility 概念化与对安全的影响）。据摘要，LLM 被训练生成自然语言，但多种证据表明 LLM 的外部语言输出与 mechanistic-extracted 语言特征可能是理解内部计算的不可靠 lens。本文引入术语 'linguistic illegibility'——泛指 LLM 外部化或 mechanistically-probed 语言 artifacts 失败地代表模型实际思考的场景；论证 linguistic illegibility 的幽灵对 LLM security 的影响 [摘要截断]。'把 LLM 解释性挑战从'个别机制解释研究'推到'linguistic illegibility 概念化 + 对 security 的系统影响'——建立统一诊断术语'对做 LLM 安全、对齐、解释性、jailbreak 防御、mechanistic interpretability 的团队有直接价值：(1) 提供统一术语描述'外部化语言 ≠ 内部计算'的家族问题；(2) 直接连接到 jailbreak / prompt injection / interpretability 鲁棒性等安全场景；(3) 与昨日 Beyond Scores（2609.01604）的 LLM-as-a-Judge 机制扰动分析形成'评测机制可读性 + 模型内部可读性'的双线索。证据强度偏上：概念框架清晰（linguistic illegibility 正式定义）+ 关键词 security/governance/interpretability 关联明确。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体 security 案例（jailbreak / prompt injection / interpretability-based 攻击）、'implications for LLM security'的具体论点、防御建议、与 mechanistic interpretability 已有工作（Anthropic 特征字典 / sparse autoencoder / circuit analysis）的对比均缺失；属 LLM 安全+解释性层，建议跟踪其具体 security 论证。",
+      "id": "the-implications-of-linguistic-illegibility-for-llm-security",
       "value_type": "immediate",
       "matched_topics": [
-        "inference-serving"
+        "security-governance",
+        "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 4.8,
@@ -247,121 +332,116 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "llm_reason": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally 命中 inference-serving 主线（PTQ 损伤结构 + 精度预算分配的因果干预研究）：据摘要，post-training quantization（PTQ）被广泛用于降低 LLM serving 成本，但精度损失分布不均且常逐模型调优；本文研究量化损伤在哪里发生、额外精度预算如何分配。以 causal mixed-precision intervention 作 ground truth（逐层升到 8-bit 测精度恢复），跨 9 个开源模型、4 个架构家族测试 3 种直觉假设（量化损伤是否在某层/某 family 集中）。'把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'——证据级别提到因果干预层'对做 LLM 推理优化、量化工程、推理基础设施的团队有直接价值：直接给出'额外精度 bit 应花在哪里'的结构化结论，能立刻用于 serving 栈的精度预算分配。证据强度偏上：方法严谨（causal intervention 作 ground truth + 9 模型 4 家族 + 多假设检验）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；建议跟踪具体结论与开源实现。",
-      "brief_cn": "推理与服务：Post-training quantization (PTQ) is widely used to reduce the cost of serving …",
-      "one_line_judgement": "今天值得试：2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the …",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
+      "brief_cn": "安全与治理：LLMs are trained to generate natural language. However, various strands of evi…",
+      "one_line_judgement": "今天值得试：2026-09-04 回看 | The Implications of Linguistic Illegibility for LLM Se…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-09-03 回看 | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent G",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=the-structure-of-quantization-damage-in-llms-why-the-next-bit-should-be-spent-globally"
+      "long_tail_summary": "2026-09-04 回看 | The Implications of Linguistic Illegibility for LLM Security 命中 security-governa",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=the-implications-of-linguistic-illegibility-for-llm-security"
     },
     {
-      "title": "The Rise of Verbal Reinforcement Learning",
+      "title": "UE5M3 FP4 Block Scaling for Stable Language Model Pretraining",
       "authors": [
-        "Kshitij Tayal",
-        "Arun Sharma",
-        "Genta Indra Winata",
-        "Anirban Das",
-        "Sambit Sahu"
+        "Robert Hu",
+        "Carlo Luschi",
+        "Paul Balanca"
       ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01597v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01597v1",
+      "url": "http://arxiv.org/abs/2609.02846v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02846v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Natural language is emerging as a primary feedback channel for improving language agents, capable of conveying intent, preferences, and causal structure in forms interpretable by both humans and modern language models. We call this paradigm Verbal Reinforcement Learning (VRL) and offer the first unified account of it. We organize the field around a single axis, \\textit{when} verbal feedback takes effect in an agent's lifecycle and \\textit{what} it modifies, yielding three pillars: (1) \\textbf{La",
+      "abstract": "Stable 4-bit floating-point (FP4) pretraining is difficult because the E2M1 payload represents only a narrow range of magnitudes. NVIDIA's Transformer Engine \\nv{} recipe addresses this with current-tensor scaling, a randomized Hadamard transform (RHT), and bfloat16 (BF16) final layers, adding work outside the FP4 matrix multiplications. We instead pair E2M1 payloads with unsigned E5M3 (\\ue{}) block scales. Their wider range permits periodic tensor scaling, while our recipe applies selective sto",
       "categories": [
-        "cs.CL",
-        "cs.AI"
+        "cs.LG"
       ],
       "keywords": [
-        "agent"
+        "inference"
       ],
       "score": 73.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01597v1"
+          "url": "http://arxiv.org/abs/2609.02846v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01597v1"
+          "url": "https://arxiv.org/pdf/2609.02846v1"
         }
       ],
-      "id": "the-rise-of-verbal-reinforcement-learning",
-      "value_type": "immediate",
+      "llm_reason": "2026-09-04 回看 | UE5M3 FP4 Block Scaling for Stable Language Model Pretraining 命中 inference-serving 主线（FP4 预训练稳定性的 UE5M3 block scaling 方案）。据摘要，stable FP4 预训练困难——E2M1 payload 仅表示窄幅度范围；NVIDIA Transformer Engine v{} recipe 用 current-tensor scaling + 随机 Hadamard 变换 (RHT) + BF16 final layers，在 FP4 matmul 之外加工作。本文改为把 E2M1 payload 与 unsigned E5M3 (UE5M3) block scales 配对——更宽范围允许 periodic tensor scaling；recipe 应用 selective sto... [摘要截断]。'把 FP4 预训练稳定性从'current-tensor scaling + RHT + BF16'（NVIDIA Transformer Engine）推到'UE5M3 block scales + periodic tensor scaling + selective stochastic'——以更窄的 FP4 外开销实现稳定预训练'对做 LLM 推理/训练、量化预训练、低精度 GPU 计算、Transformer Engine 团队的团队有趋势参考价值：FP4 是 2026 LLM infra 关键议题（Hopper / Blackwell / FP4 ASIC 路线），'block scaling 替代 current scaling'是具体改进方向。证据强度中等：方法定位清晰（替代 NVIDIA recipe）+ 关键词 inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体 scaling schedule、periodic tensor scaling 频率、selective stochastic 的具体形式、与 NVIDIA Transformer Engine recipe 的定量对比、预训练稳定性曲线、是否覆盖主流模型族（Llama / Qwen / DeepSeek / Nemotron）均缺失；属低精度预训练 infra 层。",
+      "id": "ue5m3-fp4-block-scaling-for-stable-language-model-pretraining",
+      "value_type": "trend",
       "matched_topics": [
-        "ai-agent"
+        "inference-serving"
       ],
       "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
-        "trend_signal": 3.5,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
+        "asset_convertibility": 4.0,
         "actionability": 3.8,
-        "noise_risk": 1.2,
+        "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "llm_reason": "2026-09-03 回看 | The Rise of Verbal Reinforcement Learning 命中 ai-agent 主线（把'用自然语言作反馈'做成 VRL 的 first unified account）：据摘要，自然语言正成为改进语言 agent 的主反馈通道，可传达意图、偏好、因果结构——人类与现代 LM 都能解读。本文称该范式为 Verbal Reinforcement Learning（VRL），并给出第一个统一叙述；以单一轴组织——when 口头反馈在 agent lifecycle 生效与 what 它修改——形成三大支柱。'把'verbal feedback'从'零散技巧'推到'first unified account of VRL'——按 lifecycle 时机 × 改动对象统一组织'对做 agent 设计、RLHF 替代/补充、教育型 agent、human-in-the-loop 的团队有直接价值：VRL 提供了把现有 LLM feedback 技巧按 lifecycle 排序的统一视角，便于评估与教学。证据强度中等偏上：方法框架清晰（first unified account + 三支柱）+ 关键词 agent 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；属框架/范式类，价值密度高于纯综述但低于实证。",
-      "brief_cn": "AI Agent：Natural language is emerging as a primary feedback channel for improving langu…",
-      "one_line_judgement": "今天值得试：2026-09-03 回看 | The Rise of Verbal Reinforcement Learning 命中 ai-agent …",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
-      "value_type_label": "即时价值",
+      "brief_cn": "推理与服务：Stable 4-bit floating-point (FP4) pretraining is difficult because the E2M1 pa…",
+      "one_line_judgement": "值得继续观察：2026-09-04 回看 | UE5M3 FP4 Block Scaling for Stable Language Model Pret…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
+      "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-09-03 回看 | The Rise of Verbal Reinforcement Learning 命中 ai-agent 主线（把'用自然语言作反馈'做成 VRL 的 fir",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=the-rise-of-verbal-reinforcement-learning"
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "2026-09-04 回看 | UE5M3 FP4 Block Scaling for Stable Language Model Pretraining 命中 inference-servi",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=ue5m3-fp4-block-scaling-for-stable-language-model-pretraining"
     },
     {
-      "title": "Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation",
+      "title": "Discriminative World Models for Web Agents",
       "authors": [
-        "Kefeng Duan",
-        "Dewu Zheng",
-        "Yanlin Wang",
-        "Xiwen Wang",
-        "Ensheng Shi"
+        "Kelvin Li",
+        "Dhruv Pendharkar",
+        "Anish Pahilajani",
+        "Chuyi Shang",
+        "Leon Oks"
       ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01603v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01603v1",
+      "url": "http://arxiv.org/abs/2609.02885v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02885v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Evaluating software engineering agents on realistic benchmarks is costly, since each task may require multi-step code exploration, modification, and test execution. Existing efficient evaluation methods select representative subsets to estimate full-benchmark performance, but are largely result-only: they fit historical pass/fail response matrices or static task semantics, discarding how agents solve problems. We propose PTA-IRT, a Privileged Trajectory-Aware Item Response Theory framework that ",
+      "abstract": "Recent web agents use world models for test-time action selection by sampling candidate actions, predicting the resulting web states, and ranking them with a ranker model or a Process Reward Model (PRM). These world models are typically trained via supervised next-state prediction to generate fixed representations like HTML or AXTree snapshots. However, this objective is misaligned with the downstream ranker, which relies on predicted states being discriminative across candidates to accurately s",
       "categories": [
-        "cs.SE",
         "cs.AI",
-        "cs.CL"
+        "cs.LG"
       ],
       "keywords": [
         "agent",
-        "evaluation",
+        "world model",
         "benchmark"
       ],
       "score": 72.0,
@@ -369,103 +449,29 @@
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01603v1"
+          "url": "http://arxiv.org/abs/2609.02885v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01603v1"
+          "url": "https://arxiv.org/pdf/2609.02885v1"
         }
       ],
-      "id": "efficient-swe-agent-benchmarking-via-trajectory-aware-evaluation",
-      "value_type": "immediate",
-      "matched_topics": [
-        "coding-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 5.4,
-        "engineering_testability": 4.05,
-        "trend_signal": 6.0,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 7.0,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "llm_reason": "2026-09-03 回看 | Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation (PTA-IRT) 命中 coding-agent 与 llm-evaluation 主线（SWE agent 评测的成本与真实性缺口）：据摘要，SWE agent 评测贵——单任务需多步代码探索、修改、测试执行；现有高效评测只做 result-only（拟合历史 pass/fail 响应矩阵或静态任务语义），丢掉了 agent 怎么解题的过程信息。本文提出 PTA-IRT：Privileged Trajectory-Aware Item Response Theory——用 IRT 模型同时利用历史结果与 agent 的解题轨迹信息来估计 full-benchmark 性能。'把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'——让 agent 解题轨迹成为 IRT 拟合特征'对做 SWE agent / coding agent / agent 评测治理的团队有直接价值：SWE agent 评估贵是行业级瓶颈，PTA-IRT 给出了既利用过程又控制成本的方向。证据强度中等：摘要明确披露方法定位（PTA-IRT、trajectory-aware、IRT）+ 关键词 agent/evaluation/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 PTA-IRT 的具体输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；建议跟踪开源与定量对比。",
-      "brief_cn": "Coding Agent：Evaluating software engineering agents on realistic benchmarks is costly, sinc…",
-      "one_line_judgement": "今天值得试：2026-09-03 回看 | Efficient SWE Agent Benchmarking via Trajectory-Aware …",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "2026-09-03 回看 | Efficient SWE Agent Benchmarking via Trajectory-Aware Evaluation (PTA-IRT) 命中 co",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=efficient-swe-agent-benchmarking-via-trajectory-aware-evaluation"
-    },
-    {
-      "title": "CordisBench: Can Language Models Reason About Component Lifecycles in Dynamic Agent Harnesses?",
-      "authors": [
-        "Damien Sileo",
-        "Dimitri Kachler"
-      ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01600v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01600v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Dynamic agent harnesses let language models change the software that shapes their own execution. This flexibility brings a new reasoning burden: a local plugin change can propagate through dependencies and cleanup. We introduce CordisBench, a 1,200-question benchmark of this lifecycle reasoning. It combines a controlled formal setting with programs executed against Cordis, a runtime that manages component dependencies and cleanup, and asks models to identify affected components, predict state af",
-      "categories": [
-        "cs.CL",
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent",
-        "benchmark",
-        "inference"
-      ],
-      "score": 71.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01600v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01600v1"
-        }
-      ],
-      "id": "cordisbench-can-language-models-reason-about-component-lifecycles-in-dynamic-agent-harnesses",
+      "llm_reason": "2026-09-04 回看 | Discriminative World Models for Web Agents 命中 ai-agent 与 multimodal-agent 主线（web agent 世界模型的目标函数与判别性重定义）。据摘要，web agent 用 world models 做 test-time action selection——采样候选动作、预测结果 web state、用 ranker 或 Process Reward Model (PRM) 排序；现有 world model 用监督 next-state prediction 生成 HTML/AXTree 等固定表示，目标是'生成固定表示'，与下游 ranker 的'判别性'目标错位（ranker 需要 state 在不同候选间可分辨）。'把 web agent 世界模型从'supervised next-state prediction'推到'discriminative objective'——让训练目标与下游 ranker 对齐'对做 web agent / GUI agent / 决策时世界模型团队的团队有趋势参考价值：web agent 的 PRM 路径已存在（参考 2025 WebArena / Mind2Web / SeeAct 路线），但训练目标与判别性错位是行业级静默税。证据强度中等：问题诊断清晰（objective misalignment）+ 关键词 agent/world model/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体判别性训练信号（contrastive / preference / PRM 端到端）、HTML/AXTree 之外的 state 表征、与 SeeAct / AWM / WebDreamer 等方法的对比、benchmark 选型均缺失；属 agent 决策时世界模型层。",
+      "id": "discriminative-world-models-for-web-agents",
       "value_type": "trend",
       "matched_topics": [
         "ai-agent",
-        "llm-evaluation"
+        "multimodal-agent"
       ],
       "score_breakdown": {
-        "novelty": 5.4,
+        "novelty": 4.8,
         "problem_importance": 5.8,
         "relevance": 6.2,
-        "evidence_strength": 4.95,
+        "evidence_strength": 4.5,
         "engineering_testability": 3.5,
-        "trend_signal": 5.45,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -474,441 +480,203 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "llm_reason": "2026-09-03 回看 | CordisBench: Can Language Models Reason About Component Lifecycles in Dynamic Agent Harnesses? 命中 ai-agent 与 llm-evaluation 主线（动态 agent harness 的组件生命周期推理 benchmark）：据摘要，Dynamic agent harness 让 LM 改变执行它们的软件，这种灵活性带来新的推理负担——本地 plugin 修改会通过依赖与 cleanup 传播。本文引入 CordisBench（1,200 题）基准测试这种 lifecycle reasoning，结合 controlled formal setting 与 Cordis runtime（管理组件依赖与 cleanup），要求模型识别受影响组件、预测状态影响。'把'动态 agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime——形式化 setting + runtime 执行 + 状态预测'对做 agent harness、agent 治理、自演化 agent 平台的团队有趋势参考价值：CordisBench 直接对应昨天 Logos（2608.28553）切入的'cross-process bus 故障隔离'层，把关注点从'故障传播'推进到'LM 是否能预测生命周期影响'。证据强度中等偏上：benchmark 规模明确（1,200 题）+ 关键词 agent/benchmark/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；属评测信号，与近两日 CordisBench / Agentic World Modeling / Logos 共同构成'agent harness 治理与生命周期'趋势簇。",
-      "brief_cn": "AI Agent：Dynamic agent harnesses let language models change the software that shapes th…",
-      "one_line_judgement": "值得继续观察：2026-09-03 回看 | CordisBench: Can Language Models Reason About Componen…",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
+      "brief_cn": "AI Agent：Recent web agents use world models for test-time action selection by sampling …",
+      "one_line_judgement": "值得继续观察：2026-09-04 回看 | Discriminative World Models for Web Agents 命中 ai-agent…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-09-03 回看 | CordisBench: Can Language Models Reason About Component Lifecycles in Dynamic Ag",
+      "long_tail_summary": "2026-09-04 回看 | Discriminative World Models for Web Agents 命中 ai-agent 与 multimodal-agent 主线（web",
       "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=cordisbench-can-language-models-reason-about-component-lifecycles-in-dynamic-agent-harnesses"
+      "detail_path": "paper-detail.html?id=discriminative-world-models-for-web-agents"
     },
     {
-      "title": "Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation",
+      "title": "User Feedback Provides a Unique Signal that LLMs Can not Detect",
       "authors": [
-        "Himil Vasava",
-        "Ming Jiang"
+        "Shachar Don-Yehiya",
+        "Leshem Choshen",
+        "Omri Abend"
       ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01604v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01604v1",
+      "url": "http://arxiv.org/abs/2609.02859v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02859v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "LLM-based evaluators of natural language generation (NLG) quality are widely deployed as scoring tools and as automated training signals, yet the internal procedure by which they assign a rating remains poorly understood. We investigate this procedure mechanistically through an eight-attack perturbation taxonomy across the Readability and Adequacy dimensions of NLG quality, a generation pipeline that produces paired clean and corrupt summaries with controlled error intensity and explicit token-l",
+      "abstract": "Harnessing naturally occurring feedback from user interactions offers a promising learning signal for Large Language Models (LLMs). However, recent studies suggest this feedback is inherently noisy and difficult to leverage effectively. We challenge this conception by demonstrating that user feedback is a highly actionable signal for improvement, and that its perceived ineffectiveness stems from a systematic bias in current evaluation paradigms. To isolate the usefulness of feedback, we construc",
       "categories": [
-        "cs.CL",
-        "cs.LG"
-      ],
-      "keywords": [
-        "evaluation"
-      ],
-      "score": 69.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01604v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01604v1"
-        }
-      ],
-      "id": "beyond-scores-understanding-llm-as-a-judge-mechanisms-in-summarization-evaluation",
-      "value_type": "trend",
-      "matched_topics": [
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.6,
-        "trend_signal": 4.05,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "llm_reason": "2026-09-03 回看 | Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluation 命中 llm-evaluation 主线（把 LLM-as-a-Judge 从'score 输出'推进到'mechanism 理解'）：据摘要，LLM 评测器已广泛用作评分工具与训练信号，但内部评级机制仍 poorly understood；本文用 8 类扰动 taxonomy（覆盖 NLG 质量的 Readability 与 Adequacy 两维）配合可控错误强度与 token 级标注的 paired clean/corrupt summary 生成 pipeline，对 LLM-as-a-Judge 做机制性研究。'把 LLM-as-a-Judge 从'它给多少分'推到'它为什么给这个分'——8 类扰动 taxonomy + paired clean/corrupt + token 级标注'对做评测治理、训练 reward modeling、auto-judge 的团队有趋势参考价值：当前 LLM-as-a-Judge 多用作黑盒分数信号，机制性扰动分析能直接服务于 reward hacking 与 judge 校准。证据强度中等：方法路径清晰（8 类扰动 + paired 生成 + token 级标注）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；属评测机制层，价值密度高于纯 judge 分数研究。",
-      "brief_cn": "LLM 评测：LLM-based evaluators of natural language generation (NLG) quality are widely d…",
-      "one_line_judgement": "值得继续观察：2026-09-03 回看 | Beyond Scores: Understanding LLM-as-a-Judge Mechanisms…",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-09-03 回看 | Beyond Scores: Understanding LLM-as-a-Judge Mechanisms in Summarization Evaluati",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=beyond-scores-understanding-llm-as-a-judge-mechanisms-in-summarization-evaluation"
-    },
-    {
-      "title": "Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation",
-      "authors": [
-        "Kefeng Duan",
-        "Dewu Zheng",
-        "Yanlin Wang",
-        "Terry Yue Zhuo",
-        "Mingwei Liu"
-      ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01601v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01601v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "The repository-level code generation task requires synthesizing code that satisfies task requirements while remaining consistent with the target repository context. Since real-world repositories often exceed the input length limits of LLMs, existing approaches commonly adopt retrieval-augmented generation (RAG) to provide repository-specific context. Despite improving repository-context retrieval, existing methods typically provide context as task-level support, without explicitly identifying th",
-      "categories": [
-        "cs.SE",
-        "cs.AI",
         "cs.CL"
       ],
       "keywords": [
-        "benchmark",
+        "evaluation",
         "RAG"
       ],
-      "score": 66.0,
+      "score": 67.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01601v1"
+          "url": "http://arxiv.org/abs/2609.02859v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01601v1"
+          "url": "https://arxiv.org/pdf/2609.02859v1"
         }
       ],
-      "id": "adaptive-critical-token-aware-retrieval-for-repository-level-code-generation",
+      "llm_reason": "2026-09-04 回看 | User Feedback Provides a Unique Signal that LLMs Can not Detect 命中 llm-evaluation 与 ai-agent 主线（用户反馈作为 LLM 不可检测的独特学习信号）。据摘要，利用用户交互中自然发生的反馈是 LLM 有前途的学习信号；近期研究认为这种反馈内在噪声大、难以有效利用。本文挑战此观念——证明用户反馈是 highly actionable 的改进信号，其 perceived ineffectiveness 源于当前评测范式的 systematic bias。为分离 feedback 的有用性，本文构造 [detailed methodology mentioned in truncated abstract]。'把用户反馈学习从'噪声大、难以利用'推到'系统性评测偏差掩盖了真实价值'——feedback 是 LLM 无法自己检测的独特信号'对做 LLM 评测、agent learning from feedback、RLHF / RLAIF、用户交互优化的团队有趋势参考价值：直接挑战现有 'user feedback 噪声大' 的共识，若论据成立，则 RLHF / RLAIF 之外的 user-in-the-loop learning 路径值得重新评估。证据强度中等偏上：反共识立场清晰（挑战现有 paradigm）+ 关键词 evaluation/RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体 methodology、systematic bias 的具体形态、与现有 RLHF / RLAIF / Constitutional AI 的桥接、feedback 信号的有效性度量均缺失；属评测范式层。",
+      "id": "user-feedback-provides-a-unique-signal-that-llms-can-not-detect",
       "value_type": "trend",
       "matched_topics": [
-        "coding-agent",
-        "rag-knowledge"
+        "llm-evaluation",
+        "ai-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 5.8,
         "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
         "actionability": 5.0,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
+        "weak_evidence_penalty": 4.0,
         "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "llm_reason": "2026-09-03 回看 | Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation 命中 coding-agent 与 rag-knowledge 主线（仓库级代码生成：把 RAG 检索从 task-level 推到 critical-token）：据摘要，仓库级代码生成要满足任务需求并与目标仓库上下文一致；真实仓库常超过 LLM 输入长度限制，现有方法多采用 RAG 提供仓库特定上下文。尽管改善了仓库上下文检索，现有方法通常把上下文作为 task-level support，没有显式识别哪些 token 是 critical。'把仓库级代码生成的 RAG 从'task-level support'推到'critical-token aware retrieval'——让检索围着代码关键 token 走'对做 coding agent / 仓库级代码补全 / 内部代码助手团队的团队有趋势参考价值：内部代码库常超 context window，critical-token 检索是降低噪声 context 的直接路径。证据强度中等：方向明确（critical-token aware）+ 关键词 benchmark/RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；属 coding agent 检索层。",
-      "brief_cn": "Coding Agent：The repository-level code generation task requires synthesizing code that sati…",
-      "one_line_judgement": "值得继续观察：2026-09-03 回看 | Adaptive Critical Token-Aware Retrieval for Repository…",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
+      "brief_cn": "LLM 评测：Harnessing naturally occurring feedback from user interactions offers a promis…",
+      "one_line_judgement": "值得继续观察：2026-09-04 回看 | User Feedback Provides a Unique Signal that LLMs Can n…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-09-03 回看 | Adaptive Critical Token-Aware Retrieval for Repository-Level Code Generation 命中 ",
+      "long_tail_summary": "2026-09-04 回看 | User Feedback Provides a Unique Signal that LLMs Can not Detect 命中 llm-evaluatio",
       "related_trends": [
         "coding-agent",
-        "context-engineering"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=adaptive-critical-token-aware-retrieval-for-repository-level-code-generation"
+      "detail_path": "paper-detail.html?id=user-feedback-provides-a-unique-signal-that-llms-can-not-detect"
     },
     {
-      "title": "Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation",
+      "title": "Graph Machine: Towards Better Pretraining via Edges",
       "authors": [
-        "Haoyuan Deng",
-        "Haichao Liu",
-        "Wenkai Guo",
-        "Yuan Ling",
-        "Zaijia Yang"
+        "Lintai Hou"
       ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01596v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01596v1",
+      "url": "http://arxiv.org/abs/2609.02881v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02881v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Real-world robotic assembly at sub-millimeter tolerances demands spatial precision, compliant interaction, and robustness to contact failures. We present Facet-0, a robotic foundation model that predicts and values the contact consequences of its actions. Facet-0 unifies multimodal representation learning and reinforcement learning (RL) post-training around a joint action-wrench proposal: a causal wrench history is aligned with vision-language semantics and kinematic state, and flow matching gen",
+      "abstract": "We introduce the Graph Machine (GM), an architecture that maintains an $O(n)$-sized state and accesses it through sparse, dynamic routing. Unlike methods with fixed-size states or sparse but static routing, GM preserves $O(n)$ complexity in its sparse layers without restricting the potentially accessible state size to $O(1)$. Instead, GM uses edges - pointer-like objects updated differentiably by a referral mechanism resembling pointer chasing. We replace 75% of the dense Transformer layers in Q",
       "categories": [
-        "cs.RO",
         "cs.LG"
       ],
-      "keywords": [
-        "multimodal"
-      ],
+      "keywords": [],
       "score": 64.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01596v1"
+          "url": "http://arxiv.org/abs/2609.02881v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01596v1"
+          "url": "https://arxiv.org/pdf/2609.02881v1"
         }
       ],
-      "id": "facet-0-a-robotic-foundation-model-for-contact-rich-precise-manipulation",
+      "llm_reason": "2026-09-04 回看 | Graph Machine: Towards Better Pretraining via Edges 命中 inference-serving 与 ai-agent 主线（用 edges 替代 dense attention 的稀疏动态路由架构）。据摘要，本文提出 Graph Machine（GM）——保持 O(n) 大小状态、通过 sparse dynamic routing 访问；与固定大小状态或 sparse 但静态路由的方法不同，GM 在 sparse 层保留 O(n) 复杂度而不把可访问状态限制为 O(1)。GM 用 edges（pointer-like 对象，通过类 pointer chasing 的 referral 机制可微更新），替换 Qwen 中 75% 的 dense Transformer 层。'把 Transformer dense attention 从'固定大小状态 / 静态稀疏路由'推到'edges-based sparse dynamic routing'——保留 O(n) 状态 + 可微 pointer chasing'对做 LLM 推理优化、长上下文建模、稀疏架构研究的团队有趋势参考价值：与 Mamba / RWKV / S4 / Hyena / Jamba / MoE 等稀疏/线性架构路线互补，'edges-based sparse routing'是另一条路径。证据强度中等：方法路径清晰（O(n) 状态 + edges + referral mechanism）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 referral mechanism 的具体可微实现、edges 更新规则、计算开销、长上下文性能、训练稳定性、'替换 75% dense 层'的实证对比均缺失；属稀疏架构研究层。",
+      "id": "graph-machine-towards-better-pretraining-via-edges",
       "value_type": "trend",
       "matched_topics": [
-        "multimodal-agent"
+        "inference-serving"
       ],
       "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 4.8,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
         "actionability": 3.8,
-        "noise_risk": 1.2,
+        "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "llm_reason": "2026-09-03 回看 | Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation 命中 multimodal-agent 主线（接触丰富精确操作的机器人 foundation model）：据摘要，亚毫米级精度机器人装配要求空间精度、compliant interaction、对接触失败的鲁棒性；本文提出 Facet-0——预测并估价其动作的接触后果。Facet-0 围绕 joint action-wrench proposal 统一多模态表征学习与 RL 后训练：把 causal wrench history 与 vision-language semantics 和 kinematic state 对齐，用 flow matching 生成。'把接触丰富精确操作从'感知+控制分离'推到'joint action-wrench proposal'——causal wrench history + 视觉语言 + 运动学统一表征 + flow matching'对做具身 AI / 灵巧操作 / 机器人 foundation model 的团队有趋势参考价值：与昨日 Aero Hand Open（2608.28578）的仿真资产化互补——Aero Hand Open 解决'硬件经济性 + 仿真可学性'，Facet-0 解决'亚毫米精度的接触推理'。证据强度中等：方法路径明确（joint action-wrench proposal + flow matching）+ 关键词 multimodal 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；属具身 AI 模型层。",
-      "brief_cn": "Multimodal Agent：Real-world robotic assembly at sub-millimeter tolerances demands spatial preci…",
-      "one_line_judgement": "值得继续观察：2026-09-03 回看 | Facet-0: A Robotic Foundation Model for Contact-Rich P…",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
+      "brief_cn": "推理与服务：We introduce the Graph Machine (GM), an architecture that maintains an $O(n)$-…",
+      "one_line_judgement": "值得继续观察：2026-09-04 回看 | Graph Machine: Towards Better Pretraining via Edges 命中…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "2026-09-03 回看 | Facet-0: A Robotic Foundation Model for Contact-Rich Precise Manipulation 命中 mul",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=facet-0-a-robotic-foundation-model-for-contact-rich-precise-manipulation"
+      "long_tail_summary": "2026-09-04 回看 | Graph Machine: Towards Better Pretraining via Edges 命中 inference-serving 与 ai-ag",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=graph-machine-towards-better-pretraining-via-edges"
     },
     {
-      "title": "Mechanism Design for Alignment and Control",
+      "title": "Improved Gradient Descent Lower Bounds Beyond Nesterov",
       "authors": [
-        "Dirk Bergemann",
-        "Andrew Koh",
-        "Stephen Morris"
+        "Yuhan Ye",
+        "Kaizhao Liu"
       ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01595v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01595v1",
+      "url": "http://arxiv.org/abs/2609.02855v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02855v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "We develop a framework for mechanism design with AI agents whose alignment (preferences) and capabilities (feasible actions and information) are unknown. We want such agents to act on our behalf so mechanisms must incentivize both honesty and obedience. A one-sided imitation structure---capabilities can be concealed but not counterfeited---yields a revelation principle, a characterization of implementable policies via nested cyclical monotonicity, and conditions under which eliciting higher-orde",
+      "abstract": "We study how far gradient descent (GD) can be accelerated by predetermined stepsizes in smooth convex optimization. Going beyond the classical $Ω(n^{-2})$ first-order oracle lower bound of Nemirovsky and Yudin, we prove an $Ω(n^{-1.6342})$ non-anytime lower bound and an $Ω(n^{-1.2408})$ anytime lower bound. These improve the recent $Ω(n^{-1.932})$ non-anytime lower bound of Ma and Chen and the $Ω(n^{-4/3})$ anytime lower bound of Tsai et al., respectively. Together with the non-anytime $O(n^{-\\l",
       "categories": [
-        "econ.TH",
-        "cs.AI",
-        "cs.GT"
-      ],
-      "keywords": [
-        "agent"
-      ],
-      "score": 60.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01595v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01595v1"
-        }
-      ],
-      "id": "mechanism-design-for-alignment-and-control",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-agent",
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "llm_reason": "2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent 与 security-governance 长尾候选（AI agent 对齐+控制的机制设计理论）：据摘要，本文构建框架用于与 AI agent 做机制设计，其 alignment（偏好）与 capabilities（可行行动与信息）未知；希望这些 agent 代行其责，因此机制必须同时激励 honesty 与 obedience。一侧模仿结构（capabilities 可隐藏不可伪造）产生 revelation principle、可实施策略的 nested cyclical monotonicity 刻画以及可诱发高阶 beliefs 的条件。'把'如何让 AI agent 既诚实又服从'形式化为机制设计问题——一侧 imitation structure + revelation principle + nested cyclical monotonicity'对做 agent 治理、对齐理论、博弈论+AI 的团队有长尾参考价值：它给出'能力未知+偏好未知'下的可实施策略刻画，与 RLHF / Constitutional AI / Debate 类启发式方案形成对照。证据强度中等：理论框架清晰（revelation principle + nested cyclical monotonicity）+ 关键词 agent 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；属机制设计+AI 理论，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
-      "brief_cn": "AI Agent：We develop a framework for mechanism design with AI agents whose alignment (pr…",
-      "one_line_judgement": "值得先保存：2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent…",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent 与 security-governance 长尾候",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=mechanism-design-for-alignment-and-control"
-    },
-    {
-      "title": "Designing Proactive Thought Partners for Writing",
-      "authors": [
-        "Chao Zhang",
-        "Abe Davis",
-        "Chih-Wei Chen",
-        "Chin-Chia Hsu"
-      ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01588v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01588v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Writing involves diverse cognitive activities, from ideation to revision, and writers' needs vary across individuals and moments. Proactive AI promises to provide the right support at the right time, yet existing proactive tools largely focus on generic textual assistance, such as autocomplete. This paper studies the design space of proactive thought partners: AI agents that proactively offer customizable, higher-level cognitive support during writing. We instantiated this concept in a technolog",
-      "categories": [
-        "cs.HC",
-        "cs.AI",
-        "cs.CL"
-      ],
-      "keywords": [
-        "agent",
-        "planning"
-      ],
-      "score": 52.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01588v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01588v1"
-        }
-      ],
-      "id": "designing-proactive-thought-partners-for-writing",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "llm_reason": "2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai-agent 与 HCI 长尾候选（写作主动思维伙伴的设计空间研究）：据摘要，写作涉及多样化认知活动（构思到修改），写作者需求因人因时而异；主动 AI 承诺在恰当时机提供恰当支持，但现有主动工具多聚焦通用文本协助（如自动补全）。本文研究 proactive thought partners 的设计空间：AI agent 在写作过程中主动提供可定制的高阶认知支持。'把主动写作协助从'通用自动补全'推到'proactive thought partners 设计空间'——按 lifecycle 主动提供高阶认知支持'对做写作 AI / 个人助理 / 教育型 agent 的团队有长尾参考价值：提供了把'主动 vs 被动'写作工具拆解为设计空间的路径。证据强度中等：方法路径清晰（设计空间研究 + 系统实现）+ 关键词 agent/planning 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；属 HCI + AI agent 设计研究层，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
-      "brief_cn": "AI Agent：Writing involves diverse cognitive activities, from ideation to revision, and …",
-      "one_line_judgement": "值得先保存：2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai…",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai-agent 与 HCI 长尾候选（写作主动思维伙伴",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=designing-proactive-thought-partners-for-writing"
-    },
-    {
-      "title": "StudentSim: Training LLM-based Student Simulators",
-      "authors": [
-        "Ke Yang",
-        "Chenglong Wang",
-        "Michel Galley",
-        "Chandan Singh",
-        "Jeevana Priya Inala"
-      ],
-      "published": "2026-09-01",
-      "updated": "2026-09-01",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.01591v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.01591v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "AI tutors are most useful when they adapt to each student's strengths, weaknesses, and preferred guidance, but evidence about which guidance works for which student is sparse, slow, and costly to collect from real learners. Student simulators can provide this signal as a proxy, yet existing approaches are limited: state-tracking models fit student behavior but struggle to process explanations or corrections, while LLM role-play follows guidance fluently but does not reliably match the competence",
-      "categories": [
-        "cs.CL"
+        "math.OC",
+        "cs.LG",
+        "stat.ML"
       ],
       "keywords": [],
-      "score": 48.0,
-      "decision": "暂时忽略",
+      "score": 56.0,
+      "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.01591v1"
+          "url": "http://arxiv.org/abs/2609.02855v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.01591v1"
+          "url": "https://arxiv.org/pdf/2609.02855v1"
         }
       ],
-      "id": "studentsim-training-llm-based-student-simulators",
+      "llm_reason": "2026-09-04 回看 | Improved Gradient Descent Lower Bounds Beyond Nesterov 命中 inference-serving 长尾候选（光滑凸优化的梯度下降加速下界）。据摘要，本文研究光滑凸优化中预定步长能让 GD 加速多远。超越经典 Nemirovsky-Yudin 的 Ω(n^{-2}) first-order oracle 下界，证明 Ω(n^{-1.6342}) non-anytime 下界与 Ω(n^{-1.2408}) anytime 下界，分别改进近期 Ma-Chen 的 Ω(n^{-1.932}) non-anytime 与 Tsai et al. 的 Ω(n^{-4/3}) anytime 下界。配合 non-anytime O(n^{-\\l...) [摘要截断]。'把光滑凸优化的 GD 加速下界从'Nemirovsky-Yudin Ω(n^{-2})'推到'Ω(n^{-1.6342}) non-anytime + Ω(n^{-1.2408}) anytime'——逐步逼近 Nesterov 上界'对做优化理论、加速方法下界、ML 优化器理论分析的团队有长尾参考价值：是 smooth convex optimization lower bound 的具体推进，对 LLM 训练优化理论有间接意义。证据强度中等：理论结果清晰（下界数字 + 改进 vs prior work）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体证明技术、anytime vs non-anytime 的精确含义、O(n^{-\\l...) 的完整上界、与 Nesterov 上界的 gap closure 程度均缺失；属优化理论层，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
+      "id": "improved-gradient-descent-lower-bounds-beyond-nesterov",
       "value_type": "long_tail",
       "matched_topics": [
-        "llm-evaluation"
+        "inference-serving"
       ],
       "score_breakdown": {
-        "novelty": 4.8,
+        "novelty": 5.4,
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 4.5,
@@ -924,66 +692,276 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "llm_reason": "2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 llm-evaluation 长尾候选（训练 LLM 学生模拟器供 AI tutor 适配）：据摘要，AI tutor 在适配每个学生优缺点/偏好引导时最有用，但'哪种引导对学生有效'的证据稀疏、慢且从真人采集贵；学生模拟器可作 proxy 信号，但现有方法受限——state-tracking 模型拟合行为但难处理解释/纠正；LLM role-play 流畅跟随引导但不总能匹配真实学生能力。'把学生模拟从'state-tracking 拟合'或'LLM role-play'推到'training LLM-based student simulators'——融合行为拟合与语言流畅'对做教育 AI / tutoring agent / agent 评测 proxy 的团队有长尾参考价值：student simulator 是 RLHF / agent 评测中'难以替代真人'的常见 proxy 来源，融合方案值得跟踪。证据强度中等：方法动机清晰（两个流派都缺）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失；属教育 AI 垂直层，作长尾资产保存。",
-      "brief_cn": "LLM 评测：AI tutors are most useful when they adapt to each student's strengths, weaknes…",
-      "one_line_judgement": "值得先保存：2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 l…",
-      "first_seen_date": "2026-09-03",
-      "first_deep_dive_daily": "2026-09-03",
+      "brief_cn": "推理与服务：We study how far gradient descent (GD) can be accelerated by predetermined ste…",
+      "one_line_judgement": "值得先保存：2026-09-04 回看 | Improved Gradient Descent Lower Bounds Beyond Nesterov…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 llm-evaluation 长尾候选（训练 LLM ",
-      "related_trends": [
-        "coding-agent"
+      "long_tail_summary": "2026-09-04 回看 | Improved Gradient Descent Lower Bounds Beyond Nesterov 命中 inference-serving 长尾候选",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=improved-gradient-descent-lower-bounds-beyond-nesterov"
+    },
+    {
+      "title": "Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framework",
+      "authors": [
+        "Cagri Temel"
       ],
-      "detail_path": "paper-detail.html?id=studentsim-training-llm-based-student-simulators"
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.02861v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02861v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Autonomous robots powered by deep learning face a fundamental auditability challenge: when incidents occur, investigators cannot reconstruct why the system made specific decisions. This paper presents TRACE (Transparent Reasoning Architecture for Credible Execution), a decision framework that ensures every autonomous action can be traced back to sensor evidence through documented causal chains. The framework organizes decision-making into four auditable layers: Semantic Perception for evidence-g",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "keywords": [
+        "evaluation",
+        "planning"
+      ],
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.02861v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.02861v1"
+        }
+      ],
+      "llm_reason": "2026-09-04 回看 | Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framework 命中 multimodal-agent 与 security-governance 长尾候选（自主机器人的可追溯决策框架 TRACE）。据摘要，自主机器人面临 auditability 挑战——事件发生后调查者无法重建决策原因。本文提出 TRACE（Transparent Reasoning Architecture for Credible Execution）——通过 documented causal chains 保证每个自主动作可追溯至传感器证据；框架组织为四个 auditable layers：Semantic Perception for evidence-grounded state understanding、Decision Reasoning for policy execution with audit trails、Causal Chain Documentation for traceable decision lineage、Evidence Verification for sensor-to-decision integrity checks。'把自主机器人决策从'黑盒深度学习'推到'TRACE 四层可审计框架'——每层都做 documented causal chains + sensor evidence 追溯'对做机器人治理、自主系统合规、agent 审计、AI governance 的团队有长尾参考价值：与今日 Linguistic Illegibility（2609.02852）的 LLM 内部不可读性诊断互补——一边是'LLM 内部不可读'，另一边是'机器人决策需 sensor-to-decision 可追溯'，共同指向 agent/robot audit trail 标准化的需求。证据强度中等：框架结构清晰（四层 auditable layers）+ 关键词 evaluation/planning 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致四层的具体接口、causal chain 形式化、与 ROS / ROS2 集成、事件后调查工作流均缺失；属机器人治理+审计层。",
+      "id": "towards-trustworthy-autonomous-robots-an-explainable-ai-based-decision-framework",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Autonomous robots powered by deep learning face a fundamental auditability cha…",
+      "one_line_judgement": "值得先保存：2026-09-04 回看 | Towards Trustworthy Autonomous Robots: An Explainable …",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-04 回看 | Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framewor",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=towards-trustworthy-autonomous-robots-an-explainable-ai-based-decision-framework"
+    },
+    {
+      "title": "GRADSOLVE: fast exact gradients for ODE ensembles on GPUs",
+      "authors": [
+        "Alessio Spurio Mancini"
+      ],
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.02876v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02876v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Ordinary differential equations (ODEs) underlie models in science and engineering, and many applications need derivatives of their solutions with respect to parameters. Ensembles of independent trajectories suit graphics processing units (GPUs), but current GPU software forces a trade-off: the fastest ensemble solvers cannot be differentiated in reverse mode at the speed they solve, and the solvers built for differentiation solve more slowly. No single tool has yet offered a reverse-mode gradien",
+      "categories": [
+        "cs.MS",
+        "cs.DC",
+        "cs.LG",
+        "math.NA"
+      ],
+      "keywords": [],
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.02876v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.02876v1"
+        }
+      ],
+      "llm_reason": "2026-09-04 回看 | GRADSOLVE: fast exact gradients for ODE ensembles on GPUs 命中 inference-serving 长尾候选（GPU ODE ensemble 的快速反向模式梯度求解器）。据摘要，ODE 是科学与工程模型基础，许多应用需参数对解的导数；独立轨迹 ensembles 适配 GPU，但当前 GPU 软件强制 trade-off——最快的 ensemble solver 无法以解算速度做 reverse-mode differentiable，专门为可微设计的 solver 求解更慢；目前无单一工具能提供 ensemble setting 下的 reverse-mode gradients。'把 GPU ODE ensemble 求解从'速度 vs 可微 trade-off'推到'fast exact reverse-mode gradients on GPU'——单工具同时提供速度与可微性'对做科学计算 ML / differentiable simulation / 神经 ODE / 物理信息 ML 的团队有长尾参考价值：是 differentiable simulation 工具链的具体性能提升。证据强度中等：问题定位清晰（速度 vs 可微 trade-off）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体实现（CUDA kernel 设计 / ensemble parallelization / memory trade-off）、与 torchdiffeq / diffrax / JAX-based ODE solver 的对比、benchmark 选型均缺失；属科学计算 ML 垂直领域，作长尾资产保存。",
+      "id": "gradsolve-fast-exact-gradients-for-ode-ensembles-on-gpus",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "推理与服务：Ordinary differential equations (ODEs) underlie models in science and engineer…",
+      "one_line_judgement": "值得先保存：2026-09-04 回看 | GRADSOLVE: fast exact gradients for ODE ensembles on G…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-04 回看 | GRADSOLVE: fast exact gradients for ODE ensembles on GPUs 命中 inference-serving 长",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=gradsolve-fast-exact-gradients-for-ode-ensembles-on-gpus"
+    },
+    {
+      "title": "A Common Measure of Communication for Speech Brain-Computer Interfaces",
+      "authors": [
+        "Dulhan Jayalath",
+        "Benjamin Ballyk",
+        "Oiwi Parker Jones"
+      ],
+      "published": "2026-09-02",
+      "updated": "2026-09-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.02887v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.02887v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Speech brain-computer interfaces (speech BCIs) translate neural activity into language, offering a path towards restoring speech for people with paralysis and, more broadly, enabling new forms of natural human-computer interaction. Despite this promise, the field lacks a common measure of progress because systems use different datasets, recording methods, types of speech, and vocabularies, so their reported scores are rarely comparable. Underlying this measurement problem are two unresolved ques",
+      "categories": [
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "keywords": [],
+      "score": 48.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.02887v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.02887v1"
+        }
+      ],
+      "llm_reason": "2026-09-04 回看 | A Common Measure of Communication for Speech Brain-Computer Interfaces 命中 multimodal-agent 长尾候选（speech BCI 评测度量统一框架）。据摘要，speech BCI 把神经活动翻译为语言，但缺乏统一度量——不同数据集、记录方式、语音类型与词汇表导致分数不可比。两条未决问题：(1) 单数据集评分是否反映跨数据集排名；(2) 标准化是否仍允许跨数据集比较。本文目标是提出 common measure of communication 解决可比性问题。'把 speech BCI 评测从'数据集内分数'推到'common measure of communication'——以统一度量解决跨数据集可比性'对做 BCI / 神经解码 / 多数据集评测治理的团队有长尾参考价值：与团队 LLM 评测的 cross-benchmark 标准化问题同构——多数据集可比性是评测治理的经典痛点。证据强度中等：问题定位明确（两条未决问题）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体度量形式、跨数据集校准方法、是否给出 baseline、是否覆盖语言学/神经维度均缺失；属 BCI 垂直领域，对通用 LLM 工程栈直接迁移距离较远，作长尾资产保存。",
+      "id": "a-common-measure-of-communication-for-speech-brain-computer-interfaces",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 5.0,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Speech brain-computer interfaces (speech BCIs) translate neural activity into …",
+      "one_line_judgement": "值得先保存：2026-09-04 回看 | A Common Measure of Communication for Speech Brain-Com…",
+      "first_seen_date": "2026-09-04",
+      "first_deep_dive_daily": "2026-09-04",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "2026-09-04 回看 | A Common Measure of Communication for Speech Brain-Computer Interfaces 命中 multim",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=a-common-measure-of-communication-for-speech-brain-computer-interfaces"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "mechanism-design-for-alignment-and-control",
-      "title": "Mechanism Design for Alignment and Control",
-      "direction": "AI Agent / 安全与治理",
+      "id": "improved-gradient-descent-lower-bounds-beyond-nesterov",
+      "title": "Improved Gradient Descent Lower Bounds Beyond Nesterov",
+      "direction": "推理与服务",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-03 回看 | Mechanism Design for Alignment and Control 命中 ai-agent 与 security-governance 长尾候",
+      "why_save": "2026-09-04 回看 | Improved Gradient Descent Lower Bounds Beyond Nesterov 命中 inference-serving 长尾候选",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-24",
-      "detail_path": "paper-detail.html?id=mechanism-design-for-alignment-and-control"
+      "revisit_date": "2026-09-25",
+      "detail_path": "paper-detail.html?id=improved-gradient-descent-lower-bounds-beyond-nesterov"
     },
     {
-      "id": "designing-proactive-thought-partners-for-writing",
-      "title": "Designing Proactive Thought Partners for Writing",
-      "direction": "AI Agent",
+      "id": "towards-trustworthy-autonomous-robots-an-explainable-ai-based-decision-framework",
+      "title": "Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framework",
+      "direction": "Multimodal Agent / 安全与治理",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-03 回看 | Designing Proactive Thought Partners for Writing 命中 ai-agent 与 HCI 长尾候选（写作主动思维伙伴",
+      "why_save": "2026-09-04 回看 | Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framewor",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-24",
-      "detail_path": "paper-detail.html?id=designing-proactive-thought-partners-for-writing"
+      "revisit_date": "2026-09-25",
+      "detail_path": "paper-detail.html?id=towards-trustworthy-autonomous-robots-an-explainable-ai-based-decision-framework"
     },
     {
-      "id": "studentsim-training-llm-based-student-simulators",
-      "title": "StudentSim: Training LLM-based Student Simulators",
-      "direction": "LLM 评测",
+      "id": "gradsolve-fast-exact-gradients-for-ode-ensembles-on-gpus",
+      "title": "GRADSOLVE: fast exact gradients for ODE ensembles on GPUs",
+      "direction": "推理与服务",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-03 回看 | StudentSim: Training LLM-based Student Simulators 命中 llm-evaluation 长尾候选（训练 LLM ",
+      "why_save": "2026-09-04 回看 | GRADSOLVE: fast exact gradients for ODE ensembles on GPUs 命中 inference-serving 长",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-24",
-      "detail_path": "paper-detail.html?id=studentsim-training-llm-based-student-simulators"
+      "revisit_date": "2026-09-25",
+      "detail_path": "paper-detail.html?id=gradsolve-fast-exact-gradients-for-ode-ensembles-on-gpus"
     }
   ],
   "common_research_path": [

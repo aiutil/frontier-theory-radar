@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-09-03
+## Latest research run · 2026-09-04
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 105 | 144 | 131 | 1300 |
+| 10 | 107 | 148 | 135 | 1300 |
 
-**Deep dive:** [The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally](daily/2026/2026-09-03.md) · Immediate · 轻量试点
+**Deep dive:** [Post-Training Language Models for Gold-Medal Performance in Coding Competitions](daily/2026/2026-09-04.md) · Immediate · 重点学习
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,20 +35,20 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-09-04](daily/2026/2026-09-04.md) | Post-Training Language Models for Gold-Medal Performance in Coding Competitions | Immediate | 重点学习 |
 | [2026-09-03](daily/2026/2026-09-03.md) | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally | Immediate | 轻量试点 |
 | [2026-09-02](daily/2026/2026-09-02.md) | Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation | Ignore | 暂时忽略 |
 | [2026-09-01](daily/2026/2026-09-01.md) | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG | Immediate | 轻量试点 |
 | [2026-08-30](daily/2026/2026-08-30.md) | WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution | Immediate | 轻量试点 |
 | [2026-08-29](daily/2026/2026-08-29.md) | WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution | Immediate | 轻量试点 |
 | [2026-08-28](daily/2026/2026-08-28.md) | PlanSightRAG: A Visual-First Multimodal RAG for Automating Question Answering and Compliance Checking for Civil Standard Plans | Ignore | 暂时忽略 |
-| [2026-08-27](daily/2026/2026-08-27.md) | Recursive Experiential-Working Memory Evolution for Long-Horizon Agent Harnesses | Immediate | 轻量试点 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
 | [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 547 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 453 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 456 |
 | [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 547 |
 
 ## Why this repository exists
