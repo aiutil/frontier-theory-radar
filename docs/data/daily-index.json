@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-09-04T04:32:15.646056",
+  "updated_at": "2026-09-06T04:35:06.026885",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-06",
+      "title": "论文价值发现日报 - 2026-09-06",
+      "deep_dive_title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+      "deep_dive_url": "http://arxiv.org/abs/2609.04198v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "2026-09-06 回看 | 完成五件事：(1) 跟踪 Clean Engineering Unstable Measurement 的完整预注册报告与可能的修复方案——评估其'same-window repeat rankings Spearman 0.400 vs 必达阈值'对团队现有 LLM-as-a-Judge / leaderboard / 训练 reward 信号的可借鉴性（30 分钟可对团队近 30 天的 judge 调用做重复性测试）；(2) 跟踪 Knowledge Acquisition During Pre-training 的完整 controlled 实验数据与开源——评估其'auxiliary views 在 token budget 固定条件下改善 learning'对团队 pre-training 数据工程的边界（1-2 周可在小子集做 repetition vs paraphrase vs translation 三组对比）；(3) 跟踪 Compile by Training 的开源与定量对比——评估其'compact interpreter + adapter'对团队重复文本函数从远程 LLM 切换到本地神经函数的可行性（30 分钟可识别候选函数、1 周内可做 PoC）；(4) 把 ESPO / Legibility is Not Interpretability / Last Translation Benchmark / Seeing Before Synthesizing 纳入趋势观察线（与 judge 三件套趋势簇共振），跟踪开源与定量结果；(5) 为 EditVid / Robust PAC Learning CSGs / Causal Probabilistic Explanation 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
+      "max_uncertainty": "2026-09-06 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Clean Engineering Unstable Measurement 摘要截断导致两个预注册活动的具体阈值、Spearman 0.400 与必达阈值的具体差距、模型名/版本差异、跨供应商差异、修复建议均缺失；Knowledge Acquisition During Pre-training 摘要截断导致 auxiliary views 的具体形式（paraphrase / translation / 摘要 / 问答 / 知识图谱化）、'在较小 batch size 有帮助'的具体边界、与现有数据 curriculum（Anneal / midtraining / anneal-phase）的对比、token budget 在长上下文与多模态扩展性均缺失；Compile by Training 摘要截断导致 compact interpreter 的具体架构、teacher 模型的样本生成方法、adapter 的容量、运行延迟与 teacher 的对比、与现有 distillation（DistilWhisper / distilled BERT / task-specific LoRA）的对比、'本地'运行所需最小硬件均缺失；ESPO 摘要截断导致三阶段的具体算法（Diagnose 的聚类方法、Propose 的多样性来源、Stabilize 的 selection 机制）、与 GEPA / OPRO / PromptAgent 等 evolutionary prompt optimizer 的定量对比、benchmark 选型均缺失；Legibility is Not Interpretability 摘要截断导致具体的对比方法（哪些 reasoning tasks、judge 模型族覆盖、actual importance 的 ground truth 如何获得）、与已有 faithfulness 研究的对比、step-level supervision 失败案例均缺失；Last Translation Benchmark 摘要截断导致'last'的具体定义（语言对 / 难度维度 / 失败模式分类）、新自动指标的设计原则、人机协作评测协议、与已有 MT benchmark（WMT / FLORES / BLiMP）的对比均缺失；Seeing Before Synthesizing 摘要截断导致 VLM 如何识别 transition events、SBS 的具体自适应机制、与 ActivityNet / YouCook / Charades 等 dense video captioning benchmark 的对比均缺失；EditVid 摘要截断导致三组件的具体实现、correspondence-based post-attention 的细节、与现有视频编辑框架（如 Tune-A-Video / TokenFlow / Rerender-A-Video）的对比、benchmark 选型均缺失；Robust PAC Learning CSGs 摘要截断导致 NE selection 的具体方法、L¹ confidence sets 的构造、computational tractability、与 standard PSRO / CFR 等 multi-agent 方法的对比均缺失；Causal Probabilistic Explanation 摘要截断导致框架的具体计算复杂度、与 SHAP / causal SHAP / AC 的定量对比、与因果发现（PC algorithm / GES / NOTEARS）的集成均缺失。",
+      "one_line_judgement": "据摘要，Clean Engineering, Unstable Measurement（[2609.04198](http://arxiv.org/abs/2609.04198v1)）用两个预注册活动审计 LLM-as-a-Judge 作为 measurement instrument 的核心假设——52,988 audited request attempts 中 same-window repeat rankings 仅达 Spearman 0.400（必达阈值之上），挑战 leaderboard / 训练 reward 信号的稳态假设；与 Beyond Scores（[2609.01604]）的 judge 机制扰动分析、Legibility is Not Interpretability（[2609.04194]）的 judge legibility 假设共同形成'judge 三件套'趋势簇——judge 机制可读性 / judge 测量可靠性 / judge legibility = interpretability。Knowledge Acquisition During Pre-training?（[2609.04180](http://arxiv.org/abs/2609.04180v1)）用 controlled experiments 隔离 repetition 与 auxiliary views 的因果效果，确认 repetition 是 acquisition 必要条件、paraphrasing 只在较小 batch size 有帮助，并在 token budget 固定条件下证明把 tokens 从 repetition 分配到 auxiliary views 改善 learning；直接回答'pre-training 数据 budget 应如何分配'。Compile by Training（[2609.04199](http://arxiv.org/abs/2609.04199v1)）把重复文本函数从'每次调远程 LLM'推到'compile by training → 本地 adapter + compact interpreter'——把 NL 规范变成可复用的本地神经函数，避免 vendor lock-in 与每请求成本，与 Quantization Damage（[2609.01587]）的精度预算、Knowledge Acquisition（[2609.04180]）的数据 budget 形成'预算三角'。趋势层：ESPO（[2609.04197](http://arxiv.org/abs/2609.04197v1)）把 evolutionary prompt optimization 从'append 规则 + 3× 长度不增精度'推到'Error-Structured Prompt Optimization (Diagnose → Diversify → Stabilize)'；Legibility is Not Interpretability（[2609.04194]）把 CoT reasoning 的'legibility = interpretability'假设从'默认成立'推到'judged importance vs actual importance 系统性对比'；Last Translation Benchmark（[2609.04173](http://arxiv.org/abs/2609.04173v1)）把机器翻译评测从'饱和 benchmark + 不可靠自动指标'推到'last benchmark——同时解决饱和、不可靠自动指标、人工评测不可扩展'。Seeing Before Synthesizing（[2609.04183](http://arxiv.org/abs/2609.04183v1)）把 dense video captioning 从'LLM 合成的无 grounding transition caption'推到'SBS: VLM-Guided Transition Event Discovery'。",
+      "path": "daily-detail.html?date=2026-09-06"
+    },
     {
       "date": "2026-09-04",
       "title": "论文价值发现日报 - 2026-09-04",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（AURORA-LM 与 GradCuit 的摘要均截断）。UEmbed 的稀疏-稠密联合训练是否互相干扰、多模态检索质量提升幅度与现有稠密基座对比，ACEM 的成本系数实证标定方法与模型可校准性，AURORA-LM 的连续表示 token 级保真保证与离散 token 质量差距，GradCuit 的潜变量插入位置选择策略与推理计算开销均需正文确认。另：#3（电力系统教育）、#4（稀疏优化理论）的关键词命中（RAG/agent/agentic）为误命中，已在评分中剔除。",
       "one_line_judgement": "它把 Learned Sparse Retrieval（LSR）从 encoder-only 双向架构扩展到 decoder-only 统一模型，单一 backbone 同时产出稀疏（词法级）与稠密（语义级）表示并支持多模态，不必依赖额外跨模态辅助模块。这直接命中检索/嵌入这条 RAG 与搜索的基础设施主线，是可迁移到团队检索/RAG 技术栈的工程范式。",
       "path": "daily-detail.html?date=2026-08-05"
-    },
-    {
-      "date": "2026-08-04",
-      "title": "论文价值发现日报 - 2026-08-04",
-      "deep_dive_title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
-      "deep_dive_url": "http://arxiv.org/abs/2607.29678v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：从团队编码 agent 真实调用日志统计增量/全量调用比例以评估 TokTier 潜在收益、把 STAIR 的分层修复轨迹抽象纳入 coding agent 记忆层设计、把 ExtractBench 的多维评分 rubric 迁移到企业抽取 agent 评测。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（多篇摘要截断）。TokTier 的分词正确性保证、跨分词器/服务集成开销与实测延迟收益，STAIR 的计划复用命中率、修复成功率提升与跨仓库泛化，ExtractBench 的文档/模式覆盖范围、评分一致性与公开可用性均需正文确认。另：#3 摘要中的 multimodal 指概率分布而非多模态模型、#8 的 RAG 为误命中（领域知识结构化而非 RAG 系统），已在评分中剔除。",
-      "one_line_judgement": "它直击 agentic LLM serving 一个被忽视却可量化的真实成本——编码 agent 每次工具调用后重提交长转录，前端仍对全文重新分词，导致即使 KV cache 命中也省不掉分词开销。据摘要，在两个 agent 生态的 153,951 次调用上测量，中位调用只追加约 1.4K 字符、仅 1.0-3.6% 的调用重建会话，'精确有状态分词'只重分词受追加影响的尾部后缀即可复用前缀 token 边界，同时命中 coding-agent 与 inference-serving。",
-      "path": "daily-detail.html?date=2026-08-04"
     }
   ]
 }

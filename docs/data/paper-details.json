@@ -1,6 +1,1344 @@
 {
-  "updated_at": "2026-09-04T04:32:19.359634",
+  "updated_at": "2026-09-06T04:35:07.198141",
   "papers": {
+    "clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints": {
+      "id": "clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
+      "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+      "authors": [
+        "Haoyaun Zhu",
+        "Jie Zhang"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04198v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04198v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 81.0,
+      "decision": "重点学习",
+      "one_line_judgement": "今天值得试：2026-09-06 回看 | Clean Engineering, Unstable Measurement: A Preregister…",
+      "one_line_essence": "2026-09-06 回看 | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints 命中 llm-evaluation 与 security-governance 主线（LLM 评判器作为测量仪器的可靠性失败——预注册审计）：据摘要，language-model judges 现在把训练数据、生成打分与 leaderboard 联合在一起——judge 成为 measurement instrument；其依赖一个鲜被言明的假设：同一请求发到同模型名，明天读到的还是同样东西。本文用两个预注册活动审计该假设，所有阈值提前固定；都没有通过验证自身仪器。52,988 audited request attempts 中，same-window repeat rankings 与必达 0 [阈值] 仅达 Spearman 0.400。'把 LLM 评测器的'reliability assumption'从'鲜被言明'推到'预注册审计 + 52,988 attempts + Spearman 0.400 vs 必达阈值'——LLM-as-a-Judge 作为 measurement instrument 的假设不可靠'对做 LLM 评测治理、auto-judge、leaderboard、训练 reward modeling 的团队有直接价值：(1) 直接挑战评测器作为 measurement instrument 的核心假设；(2) 与 Beyond Scores（2609.01604）的机制扰动分析形成'judge 机制可读性 + judge 测量可靠性'双线索——一份研究 judge 为什么给分，一份研究 judge 自己的打分稳不稳。证据强度偏上：方法严谨（预注册 + 52,988 audits + Spearman 数字）+ 关键词 evaluation 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致两个预注册活动的具体阈值、Spearman 0.400 与必达阈值的具体差距、模型名/版本差异、跨供应商差异、修复建议均缺失；建议跟踪完整报告与可能的修复方案。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints 命中 llm-evaluation 与 security-governance ",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of ",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04198v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04198v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views": {
+      "id": "knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views",
+      "title": "Knowledge Acquisition During Pre-training? Large Language Models Learn Better With Auxiliary Views",
+      "authors": [
+        "Joseph Lee",
+        "Yidi Huang",
+        "Dokyoon Kim",
+        "Shu Yang",
+        "Li Shen"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04180v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04180v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 78.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：2026-09-06 回看 | Knowledge Acquisition During Pre-training? Large Langu…",
+      "one_line_essence": "2026-09-06 回看 | Knowledge Acquisition During Pre-training? Large Language Models Learn Better With Auxiliary Views 命中 llm-evaluation / context-engineering 主线（pre-training 知识获取：auxiliary views 的因果性作用）：据摘要，gaps remain 在理解 LLM 如何在 pre-training 获取知识；本文假设 auxiliary views（知识的 reformulations）是因果有助于学习的；设计 controlled experiments 隔离该效果。第一，确认 repetition 是 acquisition 必要条件，并澄清 paraphrasing 只在较小 batch size 有帮助；第二，在 token budget 固定条件下，把 tokens 从 document repetition 分配到 auxiliary views 改善 learning [摘要截断]。'把 pre-training 知识获取从'只有 repetition'推到'auxiliary views（reformulations）是因果有助于学习的'——controlled experiments 隔离 repetition 与 paraphrase 效果'对做 LLM 预训练、数据工程、pretraining corpus 治理的团队有直接价值：(1) 直接回答'pre-training 数据应如何分配 budget'——文档重复 vs 知识 reformulations 的边界；(2) 与 Quantization Damage（2609.01587）路径互补——一边是精度预算，一边是数据 budget；(3) 提供 controlled 实验设计的方法学参考。证据强度偏上：方法严谨（controlled experiments + 因果假设检验）+ 关键词未命中但 llm-evaluation / context-engineering 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 auxiliary views 的具体形式（paraphrase / translation / 摘要 / 问答 / 知识图谱化）、'在较小 batch size 有帮助'的具体边界、与现有数据 curriculum（Anneal / midtraining / anneal-phase）的对比、token budget 在长上下文与多模态扩展性均缺失；建议跟踪完整 controlled 实验数据与开源。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | Knowledge Acquisition During Pre-training? Large Language Models Learn Better With Auxiliary Views 命中 llm-evaluation / context-engineering 主线（pre-training 知识获取：auxi",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | Knowledge Acquisition During Pre-training? Large Language Models Learn Better Wi",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04180v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04180v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "compile-by-training-turning-natural-language-specifications-into-local-neural-functions": {
+      "id": "compile-by-training-turning-natural-language-specifications-into-local-neural-functions",
+      "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+      "authors": [
+        "Yuntian Deng",
+        "Pengyu Nie",
+        "Stuart Shieber"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04199v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04199v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 76.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：2026-09-06 回看 | Compile by Training: Turning Natural-Language Specific…",
+      "one_line_essence": "2026-09-06 回看 | Compile by Training: Turning Natural-Language Specifications into Local Neural Functions 命中 coding-agent / context-engineering / inference-serving 主线（用自然语言规范编译出本地神经函数，避免每请求调用大模型）：据摘要，许多重复文本函数易描述难实现，调用大型远程模型会带来重复成本、延迟与提供商依赖。本文提出 compile by training——在编译时让 teacher 模型生成任务样本训练一个小 adapter for compact interpreter，得到的函数无需 teacher 即可运行 [摘要截断]。'把重复文本函数从'每次调远程 LLM'推到'compile by training → 本地 adapter + compact interpreter'——把 NL 规范变成可复用的本地神经函数'对做 coding agent / 内部工具团队 / inference 成本优化的团队有直接价值：(1) 提供把 NL 规范编译成本地可执行函数的工程路径，避免 vendor lock-in 与每请求成本；(2) 与 PTQ / Quantization Damage（2609.01587）路径互补——一边是精度预算，一边是延迟+成本预算。证据强度中等：方法定位清晰（compile by training + adapter + compact interpreter）+ 关键词未命中但 coding-agent / context-engineering / inference-serving 关键词组命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 compact interpreter 的具体架构、teacher 模型的样本生成方法、adapter 的容量、运行延迟与 teacher 的对比、与现有 distillation（DistilWhisper / distilled BERT / task-specific LoRA）的对比、'本地'运行所需最小硬件均缺失；建议跟踪开源与定量对比。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | Compile by Training: Turning Natural-Language Specifications into Local Neural Functions 命中 coding-agent / context-engineering / inference-serving 主线（用自然语言规范编译出本地神经",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | Compile by Training: Turning Natural-Language Specifications into Local Neural F",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04199v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04199v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=compile-by-training-turning-natural-language-specifications-into-local-neural-functions",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "espo-error-structured-prompt-optimization-via-diagnose-diversify-and-stabilize": {
+      "id": "espo-error-structured-prompt-optimization-via-diagnose-diversify-and-stabilize",
+      "title": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
+      "authors": [
+        "Lihao Liu",
+        "Peng Tang",
+        "Kunwar Yashraj Singh",
+        "Shabnam Ghadar"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04197v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04197v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 74.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：2026-09-06 回看 | ESPO: Error-Structured Prompt Optimization via Diagnos…",
+      "one_line_essence": "2026-09-06 回看 | ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize 命中 context-engineering / llm-evaluation 主线（prompt 优化从 evolutionary append 到 error-structured 三阶段）：据摘要，evolutionary prompt optimizers（如 GEPA）出现 prompt bloat——每轮迭代 append 规则与 caveat，prompt 长达 3× 但精度不增；作者追因到三个缺陷——错误观察不完整、搜索多样性受限、selection 不可靠。本文提出 ESPO，把 prompt optimization 分解为三阶段：Diagnose 用一轮把训练错误聚类为结构化模式；Propose genera[tes diversified...] [摘要截断]。'把 evolutionary prompt optimization 从'append 规则 + 3× 长度不增精度'推到'Error-Structured Prompt Optimization (Diagnose → Diversify → Stabilize)'——以错误结构为锚而非长度'对做 prompt 优化、agent prompt 工程、context engineering、prompt eval 的团队有趋势参考价值：(1) 直击 evolutionary prompt bloat 的行业级问题；(2) 与 Verbal RL（2609.01597）的统一框架互补——一边按 lifecycle × 改动对象两轴，一边按 error structure × diversity × stabilization 三阶段。证据强度中等：方法路径清晰（三阶段 + 错误结构）+ 关键词 benchmark/RAG/inference 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致三阶段的具体算法（Diagnose 的聚类方法、Propose 的多样性来源、Stabilize 的 selection 机制）、与 GEPA / OPRO / PromptAgent 等 evolutionary prompt optimizer 的定量对比、benchmark 选型均缺失；属 prompt 优化方向层。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize 命中 context-engineering / llm-evaluation 主线（prompt 优化从 evolutionary append 到 error-",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "context-engineering",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabiliz",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04197v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04197v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=espo-error-structured-prompt-optimization-via-diagnose-diversify-and-stabilize",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning": {
+      "id": "legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning",
+      "title": "Legibility is Not Interpretability: Comparing Judged and Actual Importance in Chain-Of-Thought Reasoning",
+      "authors": [
+        "Kevin Du",
+        "Alexander Hoyle",
+        "Laura Ruis",
+        "Acyr Locatelli"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04194v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04194v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 71.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：2026-09-06 回看 | Legibility is Not Interpretability: Comparing Judged a…",
+      "one_line_essence": "2026-09-06 回看 | Legibility is Not Interpretability: Comparing Judged and Actual Importance in Chain-Of-Thought Reasoning 命中 llm-evaluation / security-governance 主线（CoT 可读性 vs 实际重要性——judge 评判与实际推理功能的差异）：据摘要，reasoning traces 看似给 CoT 模型提供可读窗口，看其如何得到答案；越来越多研究用 LLM judges 诊断错误、评估 faithfulness、提供 step-level supervision（process reward models / generative critics）；这些实践依赖 reasoning step 的文本携带其功能角色信息。但文本是否真的编码了哪些步骤重要？'把 CoT reasoning 的'legibility = interpretability'假设从'默认成立'推到'judged importance vs actual importance 系统性对比'——judge 的诊断是否真的反映了推理的功能结构'对做 CoT 推理、process reward model、step-level supervision、agent reasoning trace 的团队有趋势参考价值：(1) 直接挑战 process reward model / generative critic 等 step-level supervision 的核心假设；(2) 与 Beyond Scores（2609.01604）的 judge 机制扰动分析、Clean Engineering Unstable Measurement（2609.04198）的 judge 可靠性失败形成'judge 三件套'趋势簇——judge 机制可读性 / judge 测量可靠性 / judge legibility = interpretability 假设。证据强度中等：方法定位清晰（judged vs actual importance）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致具体的对比方法（哪些 reasoning tasks、judge 模型族覆盖、actual importance 的 ground truth 如何获得）、与已有 faithfulness 研究的对比、step-level supervision 失败案例均缺失；属 CoT 推理机制层。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | Legibility is Not Interpretability: Comparing Judged and Actual Importance in Chain-Of-Thought Reasoning 命中 llm-evaluation / security-governance 主线（CoT 可读性 vs 实际重要性",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | Legibility is Not Interpretability: Comparing Judged and Actual Importance in Ch",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04194v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04194v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "last-translation-benchmark": {
+      "id": "last-translation-benchmark",
+      "title": "Last Translation Benchmark",
+      "authors": [
+        "Vilém Zouhar",
+        "Niyati Bafna",
+        "Mukund Choudhary",
+        "Maike Züfle",
+        "Sara Rajaee"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04173v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04173v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.0,
+        "long_tail_potential": 4.15,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 67.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：2026-09-06 回看 | Last Translation Benchmark 命中 llm-evaluation / context…",
+      "one_line_essence": "2026-09-06 回看 | Last Translation Benchmark 命中 llm-evaluation / context-engineering 主线（饱和 MT benchmark + 不可靠自动指标的双重挑战 + 'last' 翻译评测）：据摘要，scientific progress 需要测试 SOTA 模型极限的 benchmark 与告知失败案例的评测方法；随着模型变强，标准机器翻译 benchmark 接近饱和；自动翻译指标不可靠、易 reward-hacking、提供无 actionable 评估。即使 gold 人工评测也有问题——常缺 reproducibility / objectivity / scalability [摘要截断]。'把机器翻译评测从'饱和 benchmark + 不可靠自动指标'推到'Last Translation Benchmark——同时解决饱和、不可靠自动指标、人工评测不可扩展'——评测治理的'极限挑战'设计'对做 MT / multilingual LLM / 评测治理 / benchmark 设计的团队有趋势参考价值：(1) 直接呼应'benchmark 饱和'与'自动指标不可靠'两大行业级问题；(2) 与 Beyond Scores（2609.01604）的 judge 机制扰动、Clean Engineering Unstable Measurement（2609.04198）的 judge 可靠性失败共同形成'评测治理三件套'趋势簇。证据强度中等：方法定位清晰（last benchmark + 多维度评测）+ 关键词 evaluation/benchmark 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 'last' 的具体定义（语言对 / 难度维度 / 失败模式分类）、新自动指标的设计原则、人机协作评测协议、与已有 MT benchmark（WMT / FLORES / BLiMP）的对比均缺失；属 MT 评测治理方向层。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | Last Translation Benchmark 命中 llm-evaluation / context-engineering 主线（饱和 MT benchmark + 不可靠自动指标的双重挑战 + 'last' 翻译评测）：据摘要，scientific progress 需要测试 SOTA 模型极限的 benchmar",
+      "research_position": "benchmark",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | Last Translation Benchmark 命中 llm-evaluation / context-engineering 主线（饱和 MT benc",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04173v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04173v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=last-translation-benchmark",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "seeing-before-synthesizing-vlm-guided-transition-event-discovery-for-weakly-supervised-dense-video-captioning": {
+      "id": "seeing-before-synthesizing-vlm-guided-transition-event-discovery-for-weakly-supervised-dense-video-captioning",
+      "title": "Seeing Before Synthesizing: VLM-Guided Transition Event Discovery for Weakly-Supervised Dense Video Captioning",
+      "authors": [
+        "Ye-Chan Kim",
+        "Seunghee Choi",
+        "SeungJu Cha",
+        "Si-Woo Kim",
+        "Hwiseon Kim"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04183v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04183v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 64.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得继续观察：2026-09-06 回看 | Seeing Before Synthesizing: VLM-Guided Transition Even…",
+      "one_line_essence": "2026-09-06 回看 | Seeing Before Synthesizing: VLM-Guided Transition Event Discovery for Weakly-Supervised Dense Video Captioning 命中 multimodal-agent / rag-knowledge 主线（VLM 引导的转换事件发现用于弱监督密集视频描述）：据摘要，Weakly-Supervised Dense Video Captioning 旨在定位并描述未剪辑视频中的多事件，给定按序的事件级 caption 集合。近期工作用 LLM 合成辅助 transition captions 提供额外 vision-language alignment，但这些 caption 缺乏视觉 grounding，并被刚性分配到每段 inter-event gap（固定位置+时长）。本文提出 SBS（Seeing Before Synthesizing），自适应提[供 grounded transitions...] [摘要截断]。'把 dense video captioning 从'LLM 合成的无 grounding transition caption'推到'SBS: VLM-Guided Transition Event Discovery'——让 VLM 先看再合成'对做视频理解、视频描述、多模态 grounding、agent 多模态感知的团队有趋势参考价值：(1) 直击 LLM-synthesized caption 缺乏视觉 grounding 的关键问题；(2) 与 Facet-0（2609.01596）的 joint action-wrench proposal 共属多模态 grounding 趋势线。证据强度中等：方法定位清晰（VLM-Guided + 见即合）+ 关键词 RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 VLM 如何识别 transition events、SBS 的具体自适应机制、与 ActivityNet / YouCook / Charades 等 dense video captioning benchmark 的对比均缺失；属多模态 grounding 层。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | Seeing Before Synthesizing: VLM-Guided Transition Event Discovery for Weakly-Supervised Dense Video Captioning 命中 multimodal-agent / rag-knowledge 主线（VLM 引导的转换事件发现用",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | Seeing Before Synthesizing: VLM-Guided Transition Event Discovery for Weakly-Sup",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04183v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04183v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=seeing-before-synthesizing-vlm-guided-transition-event-discovery-for-weakly-supervised-dense-video-captioning",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing": {
+      "id": "one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing",
+      "title": "One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing",
+      "authors": [
+        "Adheesh Sunil Juvekar",
+        "Onkar Kishor Susladkar",
+        "Kiet A. Nguyen",
+        "Muntasir Wahed",
+        "Nabeel Bashir"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04190v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04190v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 62.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：2026-09-06 回看 | One Editor, Many Edits: A Unified Training-Free Framew…",
+      "one_line_essence": "2026-09-06 回看 | One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing (EditVid) 命中 multimodal-agent 长尾候选（统一训练自由的视频编辑框架）：据摘要，视频编辑涵盖多种 paradigm，但在单一统一框架内实现 instruction-guided + subject-guided 仍是挑战。本文提出 EditVid——training-free 框架，结合 sparse causal memory（局部一致性）、correspondence-based post-attention token injection（长程身份保留）、soft latent blending（编辑局部性）。'把视频编辑从'多框架'推到'EditVid: training-free 统一框架（sparse causal memory + post-attention token injection + soft latent blending）'——同时支持 instruction-guided 与 reference-guided 编辑'对做视频生成、视频编辑、多模态内容平台的团队有长尾参考价值：与昨日 EditVid-style 路线一致，training-free + 三组件整合是工程实用路径。证据强度中等：方法路径清晰（三组件 + training-free）+ 关键词 memory 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致三组件的具体实现、correspondence-based post-attention 的细节、与现有视频编辑框架（如 Tune-A-Video / TokenFlow / Rerender-A-Video）的对比、benchmark 选型均缺失；属多模态生成垂直层，作长尾资产保存。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing (EditVid) 命中 multimodal-agent 长尾候选（统一训练自由的视频编辑框架）：据摘要，视频编辑涵盖多种 paradigm，但在单一统一框架",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Edit",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-09-27"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04190v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04190v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "robust-pac-learning-of-concurrent-stochastic-games": {
+      "id": "robust-pac-learning-of-concurrent-stochastic-games",
+      "title": "Robust PAC Learning of Concurrent Stochastic Games",
+      "authors": [
+        "Angel Y. He",
+        "David Parker"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04189v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04189v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 58.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：2026-09-06 回看 | Robust PAC Learning of Concurrent Stochastic Games 命中 …",
+      "one_line_essence": "2026-09-06 回看 | Robust PAC Learning of Concurrent Stochastic Games 命中 inference-serving / security-governance 长尾候选（general-sum 并发随机博弈的 PAC 学习框架）：据摘要，本文提出 general-sum concurrent stochastic games (CSGs) 的第一个 PAC 学习框架，处理 transition uncertainty 与 NE 存在性挑战。算法维护数据驱动的 transition kernels L¹ confidence sets，求解 robust CSG 计算 social-welfare optimal ε-NE，用 robust MDP-based exploration 驱动 joint state-action coverage；引入 Nas[h equilibrium selection...] [摘要截断]。'把 multi-agent RL 从'独立学习'推到'Robust PAC Learning of CSGs + data-driven L¹ confidence sets + robust MDP exploration + NE selection'——首个 general-sum CSGs PAC 学习框架'对做 multi-agent learning / game theory + ML / robust RL 的团队有长尾参考价值：是 multi-agent RL 理论的具体推进，与 Mechanism Design（2609.01595）的'能力未知+偏好未知'机制设计形成'博弈论+AI'长尾簇。证据强度中等：理论框架清晰（PAC + L¹ + robust MDP）+ 关键词 benchmark/RAG 命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致 NE selection 的具体方法、L¹ confidence sets 的构造、computational tractability、与 standard PSRO / CFR 等 multi-agent 方法的对比均缺失；属 multi-agent RL 理论层，作长尾资产保存。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | Robust PAC Learning of Concurrent Stochastic Games 命中 inference-serving / security-governance 长尾候选（general-sum 并发随机博弈的 PAC 学习框架）：据摘要，本文提出 general-sum concurrent sto",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | Robust PAC Learning of Concurrent Stochastic Games 命中 inference-serving / securi",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-09-27"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04189v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04189v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=robust-pac-learning-of-concurrent-stochastic-games",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "a-computationally-feasible-framework-for-causal-probabilistic-explanation": {
+      "id": "a-computationally-feasible-framework-for-causal-probabilistic-explanation",
+      "title": "A Computationally Feasible Framework for Causal Probabilistic Explanation",
+      "authors": [
+        "Rafal Urbaniak",
+        "Sam Witty",
+        "Daniel Waxman",
+        "Andy Zane",
+        "Poorva Garg"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-03",
+      "url": "http://arxiv.org/abs/2609.04177v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04177v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-06",
+      "first_deep_dive_daily": "2026-09-06",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 56.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：2026-09-06 回看 | A Computationally Feasible Framework for Causal Probab…",
+      "one_line_essence": "2026-09-06 回看 | A Computationally Feasible Framework for Causal Probabilistic Explanation 命中 ai-agent / llm-evaluation 长尾候选（实际因果性的可计算框架）：据摘要，解释特定结果为何发生、哪些输入应受责备/credit，是哲学、科学、政策分析的核心。现有工具分两派：actual causality (AC) 给有原则的判定，但只适合 toy 模型（需枚举反事实场景）；可扩展的 attribution 方法（SHAP / causal SHAP）至少部分忽略生成数据的因果结构，可能给出错误归因 [摘要截断]。'把实际因果性从'AC 枚举（toy）+ SHAP（忽略因果结构）'推到'Computationally Feasible Framework for Causal Probabilistic Explanation'——既能扩展又能保留因果结构'对做 XAI / 解释性 / 归因 / agent 决策审计的团队有长尾参考价值：是实际因果性+可扩展归因的具体推进，与 Linguistic Illegibility（2609.02852）共同指向'模型决策的可解释+可审计'长尾簇。证据强度中等：方法动机清晰（两派各缺）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致框架的具体计算复杂度、与 SHAP / causal SHAP / AC 的定量对比、与因果发现（PC algorithm / GES / NOTEARS）的集成均缺失；属因果性+XAI 理论层，作长尾资产保存。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "2026-09-06 回看 | A Computationally Feasible Framework for Causal Probabilistic Explanation 命中 ai-agent / llm-evaluation 长尾候选（实际因果性的可计算框架）：据摘要，解释特定结果为何发生、哪些输入应受责备/credit，是哲学、科学、政策分析的",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "2026-09-06 回看 | A Computationally Feasible Framework for Causal Probabilistic Explanation 命中 ai-",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-09-27"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04177v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04177v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=a-computationally-feasible-framework-for-causal-probabilistic-explanation",
+      "daily_path": "daily-detail.html?date=2026-09-06",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
     "post-training-language-models-for-gold-medal-performance-in-coding-competitions": {
       "id": "post-training-language-models-for-gold-medal-performance-in-coding-competitions",
       "title": "Post-Training Language Models for Gold-Medal Performance in Coding Competitions",

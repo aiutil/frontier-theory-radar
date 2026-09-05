@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-04
+## 最新研究 · 2026-09-06
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 107 | 148 | 135 | 1300 |
+| 10 | 110 | 152 | 138 | 1300 |
 
-**今日深挖：** [Post-Training Language Models for Gold-Medal Performance in Coding Competitions](daily/2026/2026-09-04.md) · 即时价值 · 重点学习
+**今日深挖：** [Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints](daily/2026/2026-09-06.md) · 即时价值 · 重点学习
 
-**核心判断：** 据摘要，The Implications of Linguistic Illegibility for LLM Security（[2609.02852](http://arxiv.org/abs/2609.02852v1)）提出 'linguistic illegibility' 概念——LLM 的外部化语言输出与 mechanistic-extracted 语言特征可能是理解内部计算的不可靠 lens，论证其对 LLM security 的影响；直接连接到 jailbreak / prompt injection / interpretability 鲁棒性等安全场景，与昨日 Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）的 LLM-as-a-Judge 机制扰动分析形成'评测机制可读性 + 模型内部可读性'双线索。Post-Training Language Models for Gold-Medal Performance in Coding Competitions（[2609.02849](http://arxiv.org/abs/2609.02849v1)）呈现 end-to-end specialization pipeline——22K curated problems + synthetic reasoning traces + SFT/RL 组合，训练 Nemotron-3-Nano-CC（30B-A3B，SFT+RL）与 Nemotron-3-Ultra-CC（550B-A55B，仅 SFT），目标 IOI/ICPC gold-medal。两篇 immediate 共同指向'为既有抽象问题提供结构化诊断术语 + 把 LLM 极限能力工程化'。趋势层：Discriminative World Models for Web Agents（[2609.02885](http://arxiv.org/abs/2609.02885v1)）把 web agent 世界模型从'supervised next-state prediction'推到'discriminative objective'——训练目标与下游 ranker 对齐；UE5M3 FP4 Block Scaling（[2609.02846](http://arxiv.org/abs/2609.02846v1)）把 FP4 预训练稳定性从'current-tensor scaling + RHT + BF16'（NVIDIA Transformer Engine）推到'UE5M3 block scales + periodic tensor scaling'；User Feedback Provides a Unique Signal（[2609.02859](http://arxiv.org/abs/2609.02859v1)）挑战'user feedback 噪声大'共识，证明评测范式 systematic bias 掩盖了真实价值；Graph Machine（[2609.02881](http://arxiv.org/abs/2609.02881v1)）用 edges-based sparse dynamic routing 替换 Qwen 75% dense attention。
+**核心判断：** 据摘要，Clean Engineering, Unstable Measurement（[2609.04198](http://arxiv.org/abs/2609.04198v1)）用两个预注册活动审计 LLM-as-a-Judge 作为 measurement instrument 的核心假设——52,988 audited request attempts 中 same-window repeat rankings 仅达 Spearman 0.400（必达阈值之上），挑战 leaderboard / 训练 reward 信号的稳态假设；与 Beyond Scores（[2609.01604]）的 judge 机制扰动分析、Legibility is Not Interpretability（[2609.04194]）的 judge legibility 假设共同形成'judge 三件套'趋势簇——judge 机制可读性 / judge 测量可靠性 / judge legibility = interpretability。Knowledge Acquisition During Pre-training?（[2609.04180](http://arxiv.org/abs/2609.04180v1)）用 controlled experiments 隔离 repetition 与 auxiliary views 的因果效果，确认 repetition 是 acquisition 必要条件、paraphrasing 只在较小 batch size 有帮助，并在 token budget 固定条件下证明把 tokens 从 repetition 分配到 auxiliary views 改善 learning；直接回答'pre-training 数据 budget 应如何分配'。Compile by Training（[2609.04199](http://arxiv.org/abs/2609.04199v1)）把重复文本函数从'每次调远程 LLM'推到'compile by training → 本地 adapter + compact interpreter'——把 NL 规范变成可复用的本地神经函数，避免 vendor lock-in 与每请求成本，与 Quantization Damage（[2609.01587]）的精度预算、Knowledge Acquisition（[2609.04180]）的数据 budget 形成'预算三角'。趋势层：ESPO（[2609.04197](http://arxiv.org/abs/2609.04197v1)）把 evolutionary prompt optimization 从'append 规则 + 3× 长度不增精度'推到'Error-Structured Prompt Optimization (Diagnose → Diversify → Stabilize)'；Legibility is Not Interpretability（[2609.04194]）把 CoT reasoning 的'legibility = interpretability'假设从'默认成立'推到'judged importance vs actual importance 系统性对比'；Last Translation Benchmark（[2609.04173](http://arxiv.org/abs/2609.04173v1)）把机器翻译评测从'饱和 benchmark + 不可靠自动指标'推到'last benchmark——同时解决饱和、不可靠自动指标、人工评测不可扩展'。Seeing Before Synthesizing（[2609.04183](http://arxiv.org/abs/2609.04183v1)）把 dense video captioning 从'LLM 合成的无 grounding transition caption'推到'SBS: VLM-Guided Transition Event Discovery'。
 
-**建议动作：** 2026-09-04 回看 | 完成五件事：(1) 跟踪 Linguistic Illegibility 的具体 security 论证与 jailbreak 案例——评估其'unified diagnostic framework'对团队 LLM 安全评审的可借鉴性（30 分钟可对团队现有 LLM 安全评审流程检查'是否把外部语言当作内部解释'）；(2) 跟踪 Nemotron Gold-Medal Coding 的开源与 22K problems 数据工程——评估其'22K curated problems + synthetic reasoning traces'对团队 coding agent 训练数据 curation 流程的可借鉴性（30 分钟可梳理团队 coding agent 训练数据的 curation 过滤规则）；(3) 把 Discriminative World Models 纳入 web agent 训练目标观察线——评估其'discriminative objective'对团队 web agent / GUI agent 世界模型的可借鉴性；(4) 把 UE5M3 FP4 纳入低精度预训练稳定性观察线——评估其'UE5M3 block scales'对团队 FP4 预训练栈的可借鉴性；(5) 为 Speech BCI / TRACE / GRADSOLVE / GD Lower Bounds 四个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。
+**建议动作：** 2026-09-06 回看 | 完成五件事：(1) 跟踪 Clean Engineering Unstable Measurement 的完整预注册报告与可能的修复方案——评估其'same-window repeat rankings Spearman 0.400 vs 必达阈值'对团队现有 LLM-as-a-Judge / leaderboard / 训练 reward 信号的可借鉴性（30 分钟可对团队近 30 天的 judge 调用做重复性测试）；(2) 跟踪 Knowledge Acquisition During Pre-training 的完整 controlled 实验数据与开源——评估其'auxiliary views 在 token budget 固定条件下改善 learning'对团队 pre-training 数据工程的边界（1-2 周可在小子集做 repetition vs paraphrase vs translation 三组对比）；(3) 跟踪 Compile by Training 的开源与定量对比——评估其'compact interpreter + adapter'对团队重复文本函数从远程 LLM 切换到本地神经函数的可行性（30 分钟可识别候选函数、1 周内可做 PoC）；(4) 把 ESPO / Legibility is Not Interpretability / Last Translation Benchmark / Seeing Before Synthesizing 纳入趋势观察线（与 judge 三件套趋势簇共振），跟踪开源与定量结果；(5) 为 EditVid / Robust PAC Learning CSGs / Causal Probabilistic Explanation 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-06](daily/2026/2026-09-06.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | 即时价值 | 重点学习 |
 | [2026-09-04](daily/2026/2026-09-04.md) | Post-Training Language Models for Gold-Medal Performance in Coding Competitions | 即时价值 | 重点学习 |
 | [2026-09-03](daily/2026/2026-09-03.md) | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally | 即时价值 | 轻量试点 |
 | [2026-09-02](daily/2026/2026-09-02.md) | Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation | 暂时忽略 | 暂时忽略 |
 | [2026-09-01](daily/2026/2026-09-01.md) | PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG | 即时价值 | 轻量试点 |
 | [2026-08-30](daily/2026/2026-08-30.md) | WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution | 即时价值 | 轻量试点 |
 | [2026-08-29](daily/2026/2026-08-29.md) | WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution | 即时价值 | 轻量试点 |
-| [2026-08-28](daily/2026/2026-08-28.md) | PlanSightRAG: A Visual-First Multimodal RAG for Automating Question Answering and Compliance Checking for Civil Standard Plans | 暂时忽略 | 暂时忽略 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 547 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 456 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 547 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 552 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 463 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 552 |
 
 ## 为什么做这个项目
 
