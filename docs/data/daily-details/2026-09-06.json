@@ -7,9 +7,9 @@
   "value_type_label": "即时价值",
   "decision": "重点学习",
   "daily_action": "2026-09-06 回看 | 完成五件事：(1) 跟踪 Clean Engineering Unstable Measurement 的完整预注册报告与可能的修复方案——评估其'same-window repeat rankings Spearman 0.400 vs 必达阈值'对团队现有 LLM-as-a-Judge / leaderboard / 训练 reward 信号的可借鉴性（30 分钟可对团队近 30 天的 judge 调用做重复性测试）；(2) 跟踪 Knowledge Acquisition During Pre-training 的完整 controlled 实验数据与开源——评估其'auxiliary views 在 token budget 固定条件下改善 learning'对团队 pre-training 数据工程的边界（1-2 周可在小子集做 repetition vs paraphrase vs translation 三组对比）；(3) 跟踪 Compile by Training 的开源与定量对比——评估其'compact interpreter + adapter'对团队重复文本函数从远程 LLM 切换到本地神经函数的可行性（30 分钟可识别候选函数、1 周内可做 PoC）；(4) 把 ESPO / Legibility is Not Interpretability / Last Translation Benchmark / Seeing Before Synthesizing 纳入趋势观察线（与 judge 三件套趋势簇共振），跟踪开源与定量结果；(5) 为 EditVid / Robust PAC Learning CSGs / Causal Probabilistic Explanation 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
-  "score": 37.3,
-  "trend_stage": "noise",
-  "one_line_judgement": "当前可忽略：LLM 评测：Language-model judges now gate training data, score generations…",
+  "score": 81.0,
+  "trend_stage": "emerging",
+  "one_line_judgement": "今天值得试：据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 sa…",
   "max_uncertainty": "2026-09-06 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Clean Engineering Unstable Measurement 摘要截断导致两个预注册活动的具体阈值、Spearman 0.400 与必达阈值的具体差距、模型名/版本差异、跨供应商差异、修复建议均缺失；Knowledge Acquisition During Pre-training 摘要截断导致 auxiliary views 的具体形式（paraphrase / translation / 摘要 / 问答 / 知识图谱化）、'在较小 batch size 有帮助'的具体边界、与现有数据 curriculum（Anneal / midtraining / anneal-phase）的对比、token budget 在长上下文与多模态扩展性均缺失；Compile by Training 摘要截断导致 compact interpreter 的具体架构、teacher 模型的样本生成方法、adapter 的容量、运行延迟与 teacher 的对比、与现有 distillation（DistilWhisper / distilled BERT / task-specific LoRA）的对比、'本地'运行所需最小硬件均缺失；ESPO 摘要截断导致三阶段的具体算法（Diagnose 的聚类方法、Propose 的多样性来源、Stabilize 的 selection 机制）、与 GEPA / OPRO / PromptAgent 等 evolutionary prompt optimizer 的定量对比、benchmark 选型均缺失；Legibility is Not Interpretability 摘要截断导致具体的对比方法（哪些 reasoning tasks、judge 模型族覆盖、actual importance 的 ground truth 如何获得）、与已有 faithfulness 研究的对比、step-level supervision 失败案例均缺失；Last Translation Benchmark 摘要截断导致'last'的具体定义（语言对 / 难度维度 / 失败模式分类）、新自动指标的设计原则、人机协作评测协议、与已有 MT benchmark（WMT / FLORES / BLiMP）的对比均缺失；Seeing Before Synthesizing 摘要截断导致 VLM 如何识别 transition events、SBS 的具体自适应机制、与 ActivityNet / YouCook / Charades 等 dense video captioning benchmark 的对比均缺失；EditVid 摘要截断导致三组件的具体实现、correspondence-based post-attention 的细节、与现有视频编辑框架（如 Tune-A-Video / TokenFlow / Rerender-A-Video）的对比、benchmark 选型均缺失；Robust PAC Learning CSGs 摘要截断导致 NE selection 的具体方法、L¹ confidence sets 的构造、computational tractability、与 standard PSRO / CFR 等 multi-agent 方法的对比均缺失；Causal Probabilistic Explanation 摘要截断导致框架的具体计算复杂度、与 SHAP / causal SHAP / AC 的定量对比、与因果发现（PC algorithm / GES / NOTEARS）的集成均缺失。",
   "conclusion_lines": [
     "今天最值得看的是《Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints》。",
@@ -19,69 +19,69 @@
   ],
   "candidate_papers": [
     {
-      "id": "last-translation-benchmark",
-      "title": "Last Translation Benchmark",
-      "detail_path": "paper-detail.html?id=last-translation-benchmark",
+      "id": "clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
+      "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+      "detail_path": "paper-detail.html?id=clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
       "direction": "未分类",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "score": 40.0,
-      "decision": "暂时忽略",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "score": 81.0,
+      "decision": "重点学习",
       "has_code": false,
       "has_benchmark": false,
-      "worth_deep_dive": false
+      "worth_deep_dive": true
+    },
+    {
+      "id": "knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views",
+      "title": "Knowledge Acquisition During Pre-training? Large Language Models Learn Better With Auxiliary Views",
+      "detail_path": "paper-detail.html?id=knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views",
+      "direction": "未分类",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 75.0,
+      "decision": "轻量试点",
+      "has_code": false,
+      "has_benchmark": false,
+      "worth_deep_dive": true
     },
     {
       "id": "espo-error-structured-prompt-optimization-via-diagnose-diversify-and-stabilize",
       "title": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
       "detail_path": "paper-detail.html?id=espo-error-structured-prompt-optimization-via-diagnose-diversify-and-stabilize",
       "direction": "未分类",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "score": 38.0,
-      "decision": "暂时忽略",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 74.0,
+      "decision": "轻量试点",
       "has_code": false,
       "has_benchmark": false,
-      "worth_deep_dive": false
+      "worth_deep_dive": true
     },
     {
-      "id": "clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
-      "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
-      "detail_path": "paper-detail.html?id=clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
+      "id": "legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning",
+      "title": "Legibility is Not Interpretability: Comparing Judged and Actual Importance in Chain-Of-Thought Reasoning",
+      "detail_path": "paper-detail.html?id=legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning",
       "direction": "未分类",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "score": 37.3,
-      "decision": "暂时忽略",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 73.5,
+      "decision": "轻量试点",
       "has_code": false,
       "has_benchmark": false,
-      "worth_deep_dive": false
+      "worth_deep_dive": true
     },
     {
-      "id": "robust-pac-learning-of-concurrent-stochastic-games",
-      "title": "Robust PAC Learning of Concurrent Stochastic Games",
-      "detail_path": "paper-detail.html?id=robust-pac-learning-of-concurrent-stochastic-games",
+      "id": "compile-by-training-turning-natural-language-specifications-into-local-neural-functions",
+      "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+      "detail_path": "paper-detail.html?id=compile-by-training-turning-natural-language-specifications-into-local-neural-functions",
       "direction": "未分类",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "score": 36.4,
-      "decision": "暂时忽略",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 72.5,
+      "decision": "轻量试点",
       "has_code": false,
       "has_benchmark": false,
-      "worth_deep_dive": false
-    },
-    {
-      "id": "one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing",
-      "title": "One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing",
-      "detail_path": "paper-detail.html?id=one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing",
-      "direction": "未分类",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "score": 36.1,
-      "decision": "暂时忽略",
-      "has_code": false,
-      "has_benchmark": false,
-      "worth_deep_dive": false
+      "worth_deep_dive": true
     }
   ],
   "deep_dive": {
@@ -101,8 +101,8 @@
     "openreview_url": "",
     "first_seen_date": "2026-09-07",
     "first_deep_dive_daily": "2026-09-07",
-    "value_type": "ignore",
-    "value_type_label": "暂时忽略",
+    "value_type": "immediate",
+    "value_type_label": "即时价值",
     "value_scores": {
       "novelty": 4.8,
       "relevance": 6.2,
@@ -113,12 +113,12 @@
       "actionability": 3.8,
       "noise_risk": 1.2
     },
-    "score": 37.3,
-    "decision": "暂时忽略",
-    "one_line_judgement": "当前可忽略：LLM 评测：Language-model judges now gate training data, score generations…",
-    "one_line_essence": "LLM 评测：Language-model judges now gate training data, score generations, and drive lea…",
+    "score": 81.0,
+    "decision": "重点学习",
+    "one_line_judgement": "今天值得试：据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 sa…",
+    "one_line_essence": "据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 same-window repeat rankings 的 Spearman 0.400，未达作者预设必达阈值，挑战 LLM-as-a-Judge 的稳态假设；与 leaderboard、训练 reward 信号、judge legibility 直接相关。即时可验证性最高。代码/benchmark：暂无，需打开 PDF 核验实验协议与原始数据是否公开。",
     "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-    "new_claim_or_method": "LLM 评测：Language-model judges now gate training data, score generations, and drive lea…",
+    "new_claim_or_method": "据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 same-window repeat rankings 的 Spearman 0.400，未达作者预设必达阈值，挑战 LLM-as-a-Judge 的稳态假设；与 leaderboard、训练 reward 信号、judge",
     "research_position": "source_paper",
     "engineering_testability": {
       "has_code": false,
@@ -132,7 +132,7 @@
       ]
     },
     "trend_relation": {
-      "status": "noise",
+      "status": "emerging",
       "related_trends": [
         "coding-agent"
       ],
@@ -144,7 +144,7 @@
       ]
     },
     "long_tail": {
-      "why_save": "LLM 评测：Language-model judges now gate training data, score generations, and drive lea…",
+      "why_save": "据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 same-window repeat rankings ",
       "future_trigger": [
         "待更多证据"
       ],
@@ -184,10 +184,14 @@
       ]
     },
     "actions": {
-      "immediate_actions": [],
+      "immediate_actions": [
+        "今天读摘要与方法",
+        "今天试最小实验",
+        "一周内沉淀为 Skill / Checklist"
+      ],
       "trend_actions": [],
       "long_tail_actions": [],
-      "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      "ignore_reason": ""
     },
     "references": [
       {
@@ -213,9 +217,7 @@
   },
   "long_tail_saved": [],
   "ignore_reasons": [
-    "Last Translation Benchmark：新意弱、证据弱或当前相关性有限。",
-    "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize：新意弱、证据弱或当前相关性有限。",
-    "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints：新意弱、证据弱或当前相关性有限。"
+    "暂无明确忽略样本，但忽略标准仍需保留。"
   ],
   "insights": {
     "system_design": [

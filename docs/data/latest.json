@@ -1,116 +1,115 @@
 {
-  "updated_at": "2026-09-07T04:31:09.372507",
+  "updated_at": "2026-09-07T04:32:41.895172",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
     "date": "2026-09-07",
     "title": "论文价值发现日报 - 2026-09-07",
-    "deep_dive_title": "Last Translation Benchmark",
-    "deep_dive_url": "http://arxiv.org/abs/2609.04173v1",
-    "decision": "暂时忽略",
-    "value_type": "ignore",
-    "value_type_label": "暂时忽略",
-    "daily_action": "完成摘要精读与最小实验设计",
-    "max_uncertainty": "缺少多源工程证据",
-    "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+    "deep_dive_title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+    "deep_dive_url": "http://arxiv.org/abs/2609.04198v1",
+    "decision": "重点学习",
+    "value_type": "immediate",
+    "value_type_label": "即时价值",
+    "daily_action": "跟踪 Clean Engineering, Unstable Measurement 的完整预注册报告与可能的修复方案；评估其 Spearman 0.400 vs 必达阈值对团队 LLM-as-a-Judge / leaderboard / 训练 reward 信号的可借鉴性（30 分钟可对近 30 天 judge 调用做重复性测试）。",
+    "max_uncertainty": "是否存在完整可下载 PDF / 数据 / 修复方案（暂无代码与 benchmark 链接），需进一步打开 PDF 核验。",
+    "one_line_judgement": "据摘要（arXiv 2609.04198v1），两个预注册活动、52,988 audited request attempts 测得 same-window repeat rankings 的 Spearman 0.400，未达预设必达阈值；质疑 LLM-as-a-Judge 作为 measurement instrument 的稳态假设，与 leaderboard / 训练 reward / 评测治理直接相关。",
     "path": "daily-detail.html?date=2026-09-07"
   },
   "top_paper": {
-    "title": "Last Translation Benchmark",
+    "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
     "authors": [
-      "Vilém Zouhar",
-      "Niyati Bafna",
-      "Mukund Choudhary",
-      "Maike Züfle",
-      "Sara Rajaee"
+      "Haoyaun Zhu",
+      "Jie Zhang"
     ],
     "published": "2026-09-03",
     "updated": "2026-09-03",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2609.04173v1",
-    "pdf_url": "https://arxiv.org/pdf/2609.04173v1",
+    "url": "http://arxiv.org/abs/2609.04198v1",
+    "pdf_url": "https://arxiv.org/pdf/2609.04198v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "For scientific progress, we need benchmarks that test the limits of state-of-the-art models, and evaluation methods that inform us about failure cases. As models get stronger, standard benchmarks for machine translation are approaching saturation. Further, automatic translation metrics are unreliable, vulnerable to reward-hacking, and provide unactionable assessments. Even gold human evaluation is not problem-free, because it often lacks reproducibility, objectivity, and scalability. Overall, th",
+    "abstract": "Language-model judges now gate training data, score generations, and drive leaderboards. The judge is then a measurement instrument, resting on one rarely stated assumption: the same request, sent to the same model name, reads the same tomorrow. We audited that assumption in two preregistered campaigns with every threshold fixed in advance; neither got past validating its instrument. Across 52,988 audited request attempts, same-window repeat rankings agreed at Spearman 0.400 against a required 0",
     "categories": [
-      "cs.CL"
+      "cs.AI",
+      "cs.LG"
     ],
     "keywords": [
-      "evaluation",
-      "benchmark"
+      "evaluation"
     ],
-    "score": 40.0,
-    "decision": "暂时忽略",
+    "score": 81.0,
+    "decision": "重点学习",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2609.04173v1"
+        "url": "http://arxiv.org/abs/2609.04198v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2609.04173v1"
+        "url": "https://arxiv.org/pdf/2609.04198v1"
       }
     ],
-    "id": "last-translation-benchmark",
-    "value_type": "ignore",
+    "id": "clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
+    "value_type": "immediate",
     "matched_topics": [
-      "llm-evaluation"
+      "llm-evaluation",
+      "security-governance"
     ],
     "score_breakdown": {
       "novelty": 4.8,
-      "problem_importance": 5.15,
-      "relevance": 5.0,
-      "evidence_strength": 5.4,
+      "problem_importance": 5.8,
+      "relevance": 6.2,
+      "evidence_strength": 4.5,
       "engineering_testability": 3.5,
-      "trend_signal": 6.0,
+      "trend_signal": 3.5,
       "long_tail_potential": 4.15,
-      "asset_convertibility": 5.6,
-      "actionability": 5.0,
+      "asset_convertibility": 4.8,
+      "actionability": 3.8,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 4.0,
-      "low_relevance_penalty": 3.6,
+      "weak_evidence_penalty": 5.0,
+      "low_relevance_penalty": 2.2,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
-    "trend_status": "noise",
-    "brief_cn": "LLM 评测：For scientific progress, we need benchmarks that test the limits of state-of-t…",
-    "one_line_judgement": "当前可忽略：LLM 评测：For scientific progress, we need benchmarks that test the limit…",
+    "trend_status": "emerging",
+    "llm_reason": "据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 same-window repeat rankings 的 Spearman 0.400，未达作者预设必达阈值，挑战 LLM-as-a-Judge 的稳态假设；与 leaderboard、训练 reward 信号、judge legibility 直接相关。即时可验证性最高。代码/benchmark：暂无，需打开 PDF 核验实验协议与原始数据是否公开。",
+    "brief_cn": "LLM 评测：Language-model judges now gate training data, score generations, and drive lea…",
+    "one_line_judgement": "今天值得试：据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 sa…",
     "first_seen_date": "2026-09-07",
     "first_deep_dive_daily": "2026-09-07",
-    "value_type_label": "暂时忽略",
-    "trend_stage_label": "噪声",
+    "value_type_label": "即时价值",
+    "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "LLM 评测：For scientific progress, we need benchmarks that test the limits of state-of-t…",
+    "long_tail_summary": "据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 same-window repeat rankings ",
     "related_trends": [
       "coding-agent"
     ],
-    "detail_path": "paper-detail.html?id=last-translation-benchmark"
+    "detail_path": "paper-detail.html?id=clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints"
   },
   "paper_count": 1700,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 135,
+  "long_tail_count": 139,
   "value_distribution": {
-    "immediate": 107,
-    "trend": 148,
-    "long_tail": 135,
-    "ignore": 1310
+    "immediate": 108,
+    "trend": 153,
+    "long_tail": 139,
+    "ignore": 1300
   },
   "recent_dailies": [
     {
       "date": "2026-09-07",
       "title": "论文价值发现日报 - 2026-09-07",
-      "deep_dive_title": "Last Translation Benchmark",
-      "deep_dive_url": "http://arxiv.org/abs/2609.04173v1",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "deep_dive_title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+      "deep_dive_url": "http://arxiv.org/abs/2609.04198v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "跟踪 Clean Engineering, Unstable Measurement 的完整预注册报告与可能的修复方案；评估其 Spearman 0.400 vs 必达阈值对团队 LLM-as-a-Judge / leaderboard / 训练 reward 信号的可借鉴性（30 分钟可对近 30 天 judge 调用做重复性测试）。",
+      "max_uncertainty": "是否存在完整可下载 PDF / 数据 / 修复方案（暂无代码与 benchmark 链接），需进一步打开 PDF 核验。",
+      "one_line_judgement": "据摘要（arXiv 2609.04198v1），两个预注册活动、52,988 audited request attempts 测得 same-window repeat rankings 的 Spearman 0.400，未达预设必达阈值；质疑 LLM-as-a-Judge 作为 measurement instrument 的稳态假设，与 leaderboard / 训练 reward / 评测治理直接相关。",
       "path": "daily-detail.html?date=2026-09-07"
     },
     {
@@ -194,78 +193,151 @@
   ],
   "top_papers": [
     {
-      "title": "Last Translation Benchmark",
+      "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
       "authors": [
-        "Vilém Zouhar",
-        "Niyati Bafna",
-        "Mukund Choudhary",
-        "Maike Züfle",
-        "Sara Rajaee"
+        "Haoyaun Zhu",
+        "Jie Zhang"
       ],
       "published": "2026-09-03",
       "updated": "2026-09-03",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.04173v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.04173v1",
+      "url": "http://arxiv.org/abs/2609.04198v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04198v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "For scientific progress, we need benchmarks that test the limits of state-of-the-art models, and evaluation methods that inform us about failure cases. As models get stronger, standard benchmarks for machine translation are approaching saturation. Further, automatic translation metrics are unreliable, vulnerable to reward-hacking, and provide unactionable assessments. Even gold human evaluation is not problem-free, because it often lacks reproducibility, objectivity, and scalability. Overall, th",
+      "abstract": "Language-model judges now gate training data, score generations, and drive leaderboards. The judge is then a measurement instrument, resting on one rarely stated assumption: the same request, sent to the same model name, reads the same tomorrow. We audited that assumption in two preregistered campaigns with every threshold fixed in advance; neither got past validating its instrument. Across 52,988 audited request attempts, same-window repeat rankings agreed at Spearman 0.400 against a required 0",
       "categories": [
-        "cs.CL"
+        "cs.AI",
+        "cs.LG"
       ],
       "keywords": [
-        "evaluation",
-        "benchmark"
+        "evaluation"
       ],
-      "score": 40.0,
-      "decision": "暂时忽略",
+      "score": 81.0,
+      "decision": "重点学习",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.04173v1"
+          "url": "http://arxiv.org/abs/2609.04198v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.04173v1"
+          "url": "https://arxiv.org/pdf/2609.04198v1"
         }
       ],
-      "id": "last-translation-benchmark",
-      "value_type": "ignore",
+      "id": "clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
+      "value_type": "immediate",
       "matched_topics": [
-        "llm-evaluation"
+        "llm-evaluation",
+        "security-governance"
       ],
       "score_breakdown": {
         "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 same-window repeat rankings 的 Spearman 0.400，未达作者预设必达阈值，挑战 LLM-as-a-Judge 的稳态假设；与 leaderboard、训练 reward 信号、judge legibility 直接相关。即时可验证性最高。代码/benchmark：暂无，需打开 PDF 核验实验协议与原始数据是否公开。",
+      "brief_cn": "LLM 评测：Language-model judges now gate training data, score generations, and drive lea…",
+      "one_line_judgement": "今天值得试：据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 sa…",
+      "first_seen_date": "2026-09-07",
+      "first_deep_dive_daily": "2026-09-07",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "据摘要 (arXiv 2609.04198v1)：两个预注册实验、52,988 audited request attempts 测得 same-window repeat rankings ",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints"
+    },
+    {
+      "title": "Knowledge Acquisition During Pre-training? Large Language Models Learn Better With Auxiliary Views",
+      "authors": [
+        "Joseph Lee",
+        "Yidi Huang",
+        "Dokyoon Kim",
+        "Shu Yang",
+        "Li Shen"
+      ],
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.04180v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04180v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Gaps remain in our understanding of how large language models (LLMs) acquire knowledge during pre-training. We posit that auxiliary views, reformulations of knowledge, are causally helpful for learning. We design controlled experiments to isolate this. First, we confirm that repetition is necessary for acquisition and clarify that paraphrasing helps only at smaller batch sizes. Second, holding the token budget fixed, allocating tokens from document repetition to auxiliary views improves learning",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [],
+      "score": 75.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04180v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04180v1"
+        }
+      ],
+      "id": "knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views",
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering",
+        "data-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
         "problem_importance": 5.15,
         "relevance": 5.0,
-        "evidence_strength": 5.4,
+        "evidence_strength": 4.95,
         "engineering_testability": 3.5,
-        "trend_signal": 6.0,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 5.6,
-        "actionability": 5.0,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 4.0,
         "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "LLM 评测：For scientific progress, we need benchmarks that test the limits of state-of-t…",
-      "one_line_judgement": "当前可忽略：LLM 评测：For scientific progress, we need benchmarks that test the limit…",
+      "trend_status": "emerging",
+      "llm_reason": "据摘要 (arXiv 2609.04180v1)：controlled experiments 隔离 repetition 与 auxiliary views 的因果效应；确认 repetition 是 acquisition 必要条件、paraphrasing 仅在小 batch 有效，并在 token budget 固定时证明把 token 从 repetition 重新分配到 auxiliary views 改善 learning。直接回答 pre-training 数据 budget 的分配问题，趋势层资产。代码/benchmark：暂无。",
+      "brief_cn": "Context Engineering：Gaps remain in our understanding of how large language models (LLMs) acquire k…",
+      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.04180v1)：controlled experiments 隔离 repetition 与 auxili…",
       "first_seen_date": "2026-09-07",
       "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "LLM 评测：For scientific progress, we need benchmarks that test the limits of state-of-t…",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要 (arXiv 2609.04180v1)：controlled experiments 隔离 repetition 与 auxiliary views 的因果效应；确认 repetit",
       "related_trends": [
-        "coding-agent"
+        "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=last-translation-benchmark"
+      "detail_path": "paper-detail.html?id=knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views"
     },
     {
       "title": "ESPO: Error-Structured Prompt Optimization via Diagnose, Diversify, and Stabilize",
@@ -295,8 +367,8 @@
         "RAG",
         "inference"
       ],
-      "score": 38.0,
-      "decision": "暂时忽略",
+      "score": 74.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
@@ -308,10 +380,10 @@
         }
       ],
       "id": "espo-error-structured-prompt-optimization-via-diagnose-diversify-and-stabilize",
-      "value_type": "ignore",
+      "value_type": "trend",
       "matched_topics": [
         "context-engineering",
-        "rag-knowledge"
+        "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 4.8,
@@ -329,145 +401,73 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
+      "trend_status": "emerging",
+      "llm_reason": "据摘要 (arXiv 2609.04197v1)：ESPO 把 evolutionary prompt optimization 从'每轮追加规则 + 3× 长度'推到 Error-Structured Prompt Optimization（Diagnose → Diversify → Stabilize），针对 GEPA prompt bloat 问题。趋势价值明确，与 prompt optimization / context engineering 路线一致。代码/benchmark：暂无，PDF 链接在 arXiv 条目中。",
       "brief_cn": "Context Engineering：Evolutionary prompt optimizers such as GEPA suffer from prompt bloat: each ite…",
-      "one_line_judgement": "当前可忽略：Context Engineering：Evolutionary prompt optimizers such as GEPA suffer…",
+      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.04197v1)：ESPO 把 evolutionary prompt optimization 从'每轮追…",
       "first_seen_date": "2026-09-07",
       "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "Context Engineering：Evolutionary prompt optimizers such as GEPA suffer from prompt bloat: each i",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要 (arXiv 2609.04197v1)：ESPO 把 evolutionary prompt optimization 从'每轮追加规则 + 3× 长度'推到 Error-Struc",
       "related_trends": [
-        "context-engineering"
+        "context-engineering",
+        "coding-agent"
       ],
       "detail_path": "paper-detail.html?id=espo-error-structured-prompt-optimization-via-diagnose-diversify-and-stabilize"
     },
     {
-      "title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
+      "title": "Legibility is Not Interpretability: Comparing Judged and Actual Importance in Chain-Of-Thought Reasoning",
       "authors": [
-        "Haoyaun Zhu",
-        "Jie Zhang"
+        "Kevin Du",
+        "Alexander Hoyle",
+        "Laura Ruis",
+        "Acyr Locatelli"
       ],
       "published": "2026-09-03",
       "updated": "2026-09-03",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.04198v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.04198v1",
+      "url": "http://arxiv.org/abs/2609.04194v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04194v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Language-model judges now gate training data, score generations, and drive leaderboards. The judge is then a measurement instrument, resting on one rarely stated assumption: the same request, sent to the same model name, reads the same tomorrow. We audited that assumption in two preregistered campaigns with every threshold fixed in advance; neither got past validating its instrument. Across 52,988 audited request attempts, same-window repeat rankings agreed at Spearman 0.400 against a required 0",
+      "abstract": "Reasoning traces from chain-of-thought models appear to offer a legible window into how a model arrives at its answer. A growing body of work treats them as such, using LLM judges to diagnose errors, evaluate faithfulness, and provide step-level supervision via process reward models and generative critics. These practices rely on the text of a reasoning step carrying information about its functional role. But does the text actually encode information about which reasoning steps matter? We operat",
       "categories": [
-        "cs.AI",
+        "cs.CL",
         "cs.LG"
       ],
-      "keywords": [
-        "evaluation"
-      ],
-      "score": 37.3,
-      "decision": "暂时忽略",
+      "keywords": [],
+      "score": 73.5,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.04198v1"
+          "url": "http://arxiv.org/abs/2609.04194v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.04198v1"
+          "url": "https://arxiv.org/pdf/2609.04194v1"
         }
       ],
-      "id": "clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints",
-      "value_type": "ignore",
+      "id": "legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning",
+      "value_type": "trend",
       "matched_topics": [
         "llm-evaluation",
-        "security-governance"
+        "ai-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "LLM 评测：Language-model judges now gate training data, score generations, and drive lea…",
-      "one_line_judgement": "当前可忽略：LLM 评测：Language-model judges now gate training data, score generations…",
-      "first_seen_date": "2026-09-07",
-      "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "LLM 评测：Language-model judges now gate training data, score generations, and drive lea…",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=clean-engineering-unstable-measurement-a-preregistered-reliability-failure-of-black-box-llm-observers-on-shared-endpoints"
-    },
-    {
-      "title": "Robust PAC Learning of Concurrent Stochastic Games",
-      "authors": [
-        "Angel Y. He",
-        "David Parker"
-      ],
-      "published": "2026-09-03",
-      "updated": "2026-09-03",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.04189v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.04189v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "We introduce the first Probably Approximately Correct (PAC) learning framework for general-sum concurrent stochastic games (CSGs) with transition uncertainty, while addressing the challenge of Nash equilibrium (NE) existence. Our algorithm maintains data-driven $L^1$ confidence sets over transition kernels and solves a robust CSG to compute a social-welfare optimal $\\varepsilon$-NE, using a robust MDP-based exploration mechanism to drive joint state-action coverage. Crucially, we introduce a Nas",
-      "categories": [
-        "cs.LG",
-        "cs.GT",
-        "cs.LO",
-        "cs.MA"
-      ],
-      "keywords": [
-        "benchmark",
-        "RAG"
-      ],
-      "score": 36.4,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.04189v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.04189v1"
-        }
-      ],
-      "id": "robust-pac-learning-of-concurrent-stochastic-games",
-      "value_type": "ignore",
-      "matched_topics": [
-        "rag-knowledge"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
         "problem_importance": 5.15,
         "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -475,19 +475,171 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：We introduce the first Probably Approximately Correct (PAC) learning framework…",
-      "one_line_judgement": "当前可忽略：RAG / 知识系统：We introduce the first Probably Approximately Correct (PAC)…",
+      "trend_status": "emerging",
+      "llm_reason": "据摘要 (arXiv 2609.04194v1)：把 CoT 的 legibility 与 actual functional importance 系统性对比，质疑 process reward model / generative critic 等做法假设的'reasoning step 文本可作为重要性信号'。与 judge 三件套（legibility / reliability / legibility=interpretability）共振。代码/benchmark：暂无，需打开 PDF 核验消融设置。",
+      "brief_cn": "LLM 评测：Reasoning traces from chain-of-thought models appear to offer a legible window…",
+      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.04194v1)：把 CoT 的 legibility 与 actual functional import…",
       "first_seen_date": "2026-09-07",
       "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "RAG / 知识系统：We introduce the first Probably Approximately Correct (PAC) learning framework…",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要 (arXiv 2609.04194v1)：把 CoT 的 legibility 与 actual functional importance 系统性对比，质疑 process rewa",
       "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning"
+    },
+    {
+      "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
+      "authors": [
+        "Yuntian Deng",
+        "Pengyu Nie",
+        "Stuart Shieber"
+      ],
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.04199v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04199v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Many recurring text functions are easy to describe but difficult to implement with rules, while calling a large remote model for every input introduces repeated cost, latency, and dependency on a provider. We present compile by training, which turns a natural-language specification into a reusable neural function. At compile time, teacher models generate task-specific examples that are used to train a small adapter for a compact interpreter. The resulting function runs without the teachers and c",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 72.5,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04199v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04199v1"
+        }
+      ],
+      "id": "compile-by-training-turning-natural-language-specifications-into-local-neural-functions",
+      "value_type": "trend",
+      "matched_topics": [
+        "coding-agent",
+        "context-engineering",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "据摘要 (arXiv 2609.04199v1)：提出 compile by training，把自然语言规范 → 任务样本 → 小型 adapter + compact interpreter，使重复文本函数可本地推理，绕开远程 LLM 调用成本/延迟/供应商依赖。属于'agent 本地化执行'方向，与 edge-LLM、speculative decoding、distillation 一脉相承；趋势价值清晰。代码与 benchmark 链接：暂无；论文 PDF 在链接中。",
+      "brief_cn": "Coding Agent：Many recurring text functions are easy to describe but difficult to implement …",
+      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.04199v1)：提出 compile by training，把自然语言规范 → 任务样本 → 小型 ad…",
+      "first_seen_date": "2026-09-07",
+      "first_deep_dive_daily": "2026-09-07",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要 (arXiv 2609.04199v1)：提出 compile by training，把自然语言规范 → 任务样本 → 小型 adapter + compact interprete",
+      "related_trends": [
+        "coding-agent",
         "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=robust-pac-learning-of-concurrent-stochastic-games"
+      "detail_path": "paper-detail.html?id=compile-by-training-turning-natural-language-specifications-into-local-neural-functions"
+    },
+    {
+      "title": "Last Translation Benchmark",
+      "authors": [
+        "Vilém Zouhar",
+        "Niyati Bafna",
+        "Mukund Choudhary",
+        "Maike Züfle",
+        "Sara Rajaee"
+      ],
+      "published": "2026-09-03",
+      "updated": "2026-09-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.04173v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04173v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "For scientific progress, we need benchmarks that test the limits of state-of-the-art models, and evaluation methods that inform us about failure cases. As models get stronger, standard benchmarks for machine translation are approaching saturation. Further, automatic translation metrics are unreliable, vulnerable to reward-hacking, and provide unactionable assessments. Even gold human evaluation is not problem-free, because it often lacks reproducibility, objectivity, and scalability. Overall, th",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 70.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.04173v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.04173v1"
+        }
+      ],
+      "id": "last-translation-benchmark",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.0,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "据摘要 (arXiv 2609.04173v1)：把机器翻译评测从'饱和 benchmark + 不可靠自动指标 + 不可扩展人工评测'推到'last benchmark'，同时解决三件事（饱和、reward hacking、不可扩展人工评测）。评测治理趋势价值清晰；与 Last-Eval 类工作同方向。代码/benchmark：暂无。",
+      "brief_cn": "LLM 评测：For scientific progress, we need benchmarks that test the limits of state-of-t…",
+      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.04173v1)：把机器翻译评测从'饱和 benchmark + 不可靠自动指标 + 不可扩展人工评测'推到…",
+      "first_seen_date": "2026-09-07",
+      "first_deep_dive_daily": "2026-09-07",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要 (arXiv 2609.04173v1)：把机器翻译评测从'饱和 benchmark + 不可靠自动指标 + 不可扩展人工评测'推到'last benchmark'，同时解决三件事（饱",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=last-translation-benchmark"
     },
     {
       "title": "One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing",
@@ -516,8 +668,8 @@
       "keywords": [
         "memory"
       ],
-      "score": 36.1,
-      "decision": "暂时忽略",
+      "score": 62.0,
+      "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
@@ -529,9 +681,9 @@
         }
       ],
       "id": "one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing",
-      "value_type": "ignore",
+      "value_type": "long_tail",
       "matched_topics": [
-        "context-engineering"
+        "multimodal-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
@@ -549,17 +701,18 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "Context Engineering：Video editing spans diverse editing paradigms, yet achieving high-quality inst…",
-      "one_line_judgement": "当前可忽略：Context Engineering：Video editing spans diverse editing paradigms, yet…",
+      "trend_status": "long_tail_watch",
+      "llm_reason": "据摘要 (arXiv 2609.04190v1)：EditVid 是 training-free 视频编辑统一框架，结合 sparse causal memory + correspondence-based post-attention token injection + soft latent blending；同时支持 instruction-guided 与 reference-guided。training-free 工程价值高，但视频编辑当下不是雷达核心；保存为长尾。代码/benchmark：暂无。",
+      "brief_cn": "Multimodal Agent：Video editing spans diverse editing paradigms, yet achieving high-quality inst…",
+      "one_line_judgement": "值得先保存：据摘要 (arXiv 2609.04190v1)：EditVid 是 training-free 视频编辑统一框架，结合 sparse ca…",
       "first_seen_date": "2026-09-07",
       "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "Context Engineering：Video editing spans diverse editing paradigms, yet achieving high-quality in",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要 (arXiv 2609.04190v1)：EditVid 是 training-free 视频编辑统一框架，结合 sparse causal memory + corresponden",
       "related_trends": [
-        "context-engineering"
+        "agentic-world-modeling"
       ],
       "detail_path": "paper-detail.html?id=one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing"
     },
@@ -590,8 +743,8 @@
       "keywords": [
         "RAG"
       ],
-      "score": 35.5,
-      "decision": "暂时忽略",
+      "score": 60.5,
+      "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
@@ -603,7 +756,7 @@
         }
       ],
       "id": "seeing-before-synthesizing-vlm-guided-transition-event-discovery-for-weakly-supervised-dense-video-captioning",
-      "value_type": "ignore",
+      "value_type": "long_tail",
       "matched_topics": [
         "multimodal-agent"
       ],
@@ -623,142 +776,74 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
+      "trend_status": "long_tail_watch",
+      "llm_reason": "据摘要 (arXiv 2609.04183v1)：SBS（Seeing Before Synthesizing）针对弱监督 dense video captioning，把 LLM 合成的 transition caption 改为 VLM-guided 自适应过渡事件发现，避免无 grounding 的固定位置 caption。视觉-语言资产价值，长尾保留。代码/benchmark：暂无。",
       "brief_cn": "Multimodal Agent：Weakly-Supervised Dense Video Captioning aims to localize and describe multipl…",
-      "one_line_judgement": "当前可忽略：Multimodal Agent：Weakly-Supervised Dense Video Captioning aims to loca…",
+      "one_line_judgement": "值得先保存：据摘要 (arXiv 2609.04183v1)：SBS（Seeing Before Synthesizing）针对弱监督 dense vi…",
       "first_seen_date": "2026-09-07",
       "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "Multimodal Agent：Weakly-Supervised Dense Video Captioning aims to localize and describe multipl…",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要 (arXiv 2609.04183v1)：SBS（Seeing Before Synthesizing）针对弱监督 dense video captioning，把 LLM 合成的 t",
       "related_trends": [
         "agentic-world-modeling"
       ],
       "detail_path": "paper-detail.html?id=seeing-before-synthesizing-vlm-guided-transition-event-discovery-for-weakly-supervised-dense-video-captioning"
     },
     {
-      "title": "Knowledge Acquisition During Pre-training? Large Language Models Learn Better With Auxiliary Views",
+      "title": "Robust PAC Learning of Concurrent Stochastic Games",
       "authors": [
-        "Joseph Lee",
-        "Yidi Huang",
-        "Dokyoon Kim",
-        "Shu Yang",
-        "Li Shen"
+        "Angel Y. He",
+        "David Parker"
       ],
       "published": "2026-09-03",
       "updated": "2026-09-03",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.04180v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.04180v1",
+      "url": "http://arxiv.org/abs/2609.04189v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.04189v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Gaps remain in our understanding of how large language models (LLMs) acquire knowledge during pre-training. We posit that auxiliary views, reformulations of knowledge, are causally helpful for learning. We design controlled experiments to isolate this. First, we confirm that repetition is necessary for acquisition and clarify that paraphrasing helps only at smaller batch sizes. Second, holding the token budget fixed, allocating tokens from document repetition to auxiliary views improves learning",
+      "abstract": "We introduce the first Probably Approximately Correct (PAC) learning framework for general-sum concurrent stochastic games (CSGs) with transition uncertainty, while addressing the challenge of Nash equilibrium (NE) existence. Our algorithm maintains data-driven $L^1$ confidence sets over transition kernels and solves a robust CSG to compute a social-welfare optimal $\\varepsilon$-NE, using a robust MDP-based exploration mechanism to drive joint state-action coverage. Crucially, we introduce a Nas",
       "categories": [
-        "cs.CL",
-        "cs.AI"
+        "cs.LG",
+        "cs.GT",
+        "cs.LO",
+        "cs.MA"
       ],
-      "keywords": [],
-      "score": 35.3,
-      "decision": "暂时忽略",
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 60.0,
+      "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.04180v1"
+          "url": "http://arxiv.org/abs/2609.04189v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.04180v1"
+          "url": "https://arxiv.org/pdf/2609.04189v1"
         }
       ],
-      "id": "knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views",
-      "value_type": "ignore",
+      "id": "robust-pac-learning-of-concurrent-stochastic-games",
+      "value_type": "long_tail",
       "matched_topics": [
-        "rag-knowledge"
+        "ai-agent"
       ],
       "score_breakdown": {
         "novelty": 5.4,
         "problem_importance": 5.15,
         "relevance": 5.0,
-        "evidence_strength": 4.95,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "RAG / 知识系统：Gaps remain in our understanding of how large language models (LLMs) acquire k…",
-      "one_line_judgement": "当前可忽略：RAG / 知识系统：Gaps remain in our understanding of how large language mode…",
-      "first_seen_date": "2026-09-07",
-      "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "RAG / 知识系统：Gaps remain in our understanding of how large language models (LLMs) acquire k…",
-      "related_trends": [
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=knowledge-acquisition-during-pre-training-large-language-models-learn-better-with-auxiliary-views"
-    },
-    {
-      "title": "Compile by Training: Turning Natural-Language Specifications into Local Neural Functions",
-      "authors": [
-        "Yuntian Deng",
-        "Pengyu Nie",
-        "Stuart Shieber"
-      ],
-      "published": "2026-09-03",
-      "updated": "2026-09-03",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.04199v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.04199v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Many recurring text functions are easy to describe but difficult to implement with rules, while calling a large remote model for every input introduces repeated cost, latency, and dependency on a provider. We present compile by training, which turns a natural-language specification into a reusable neural function. At compile time, teacher models generate task-specific examples that are used to train a small adapter for a compact interpreter. The resulting function runs without the teachers and c",
-      "categories": [
-        "cs.CL",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 33.5,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.04199v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.04199v1"
-        }
-      ],
-      "id": "compile-by-training-turning-natural-language-specifications-into-local-neural-functions",
-      "value_type": "ignore",
-      "matched_topics": [
-        "inference-serving"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
         "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
+        "engineering_testability": 4.05,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
+        "asset_convertibility": 6.2,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -766,88 +851,20 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "推理与服务：Many recurring text functions are easy to describe but difficult to implement …",
-      "one_line_judgement": "当前可忽略：推理与服务：Many recurring text functions are easy to describe but difficult…",
+      "trend_status": "long_tail_watch",
+      "llm_reason": "据摘要 (arXiv 2609.04189v1)：第一个 general-sum concurrent stochastic games (CSGs) 的 PAC 学习框架，处理 transition uncertainty + Nash equilibrium 不存在的情况；通过 robust CSG + robust MDP exploration 驱动 state-action 覆盖。多智能体理论价值，长尾保留。代码/benchmark：暂无。",
+      "brief_cn": "AI Agent：We introduce the first Probably Approximately Correct (PAC) learning framework…",
+      "one_line_judgement": "值得先保存：据摘要 (arXiv 2609.04189v1)：第一个 general-sum concurrent stochastic games (…",
       "first_seen_date": "2026-09-07",
       "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "推理与服务：Many recurring text functions are easy to describe but difficult to implement …",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=compile-by-training-turning-natural-language-specifications-into-local-neural-functions"
-    },
-    {
-      "title": "Legibility is Not Interpretability: Comparing Judged and Actual Importance in Chain-Of-Thought Reasoning",
-      "authors": [
-        "Kevin Du",
-        "Alexander Hoyle",
-        "Laura Ruis",
-        "Acyr Locatelli"
-      ],
-      "published": "2026-09-03",
-      "updated": "2026-09-03",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.04194v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.04194v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Reasoning traces from chain-of-thought models appear to offer a legible window into how a model arrives at its answer. A growing body of work treats them as such, using LLM judges to diagnose errors, evaluate faithfulness, and provide step-level supervision via process reward models and generative critics. These practices rely on the text of a reasoning step carrying information about its functional role. But does the text actually encode information about which reasoning steps matter? We operat",
-      "categories": [
-        "cs.CL",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 33.5,
-      "decision": "暂时忽略",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.04194v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.04194v1"
-        }
-      ],
-      "id": "legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning",
-      "value_type": "ignore",
-      "matched_topics": [
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "LLM 评测：Reasoning traces from chain-of-thought models appear to offer a legible window…",
-      "one_line_judgement": "当前可忽略：LLM 评测：Reasoning traces from chain-of-thought models appear to offer a…",
-      "first_seen_date": "2026-09-07",
-      "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "LLM 评测：Reasoning traces from chain-of-thought models appear to offer a legible window…",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要 (arXiv 2609.04189v1)：第一个 general-sum concurrent stochastic games (CSGs) 的 PAC 学习框架，处理 transi",
       "related_trends": [
-        "coding-agent"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=legibility-is-not-interpretability-comparing-judged-and-actual-importance-in-chain-of-thought-reasoning"
+      "detail_path": "paper-detail.html?id=robust-pac-learning-of-concurrent-stochastic-games"
     },
     {
       "title": "A Computationally Feasible Framework for Causal Probabilistic Explanation",
@@ -873,8 +890,8 @@
         "cs.AI"
       ],
       "keywords": [],
-      "score": 31.2,
-      "decision": "暂时忽略",
+      "score": 58.0,
+      "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
@@ -886,8 +903,11 @@
         }
       ],
       "id": "a-computationally-feasible-framework-for-causal-probabilistic-explanation",
-      "value_type": "ignore",
-      "matched_topics": [],
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "security-governance"
+      ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
@@ -904,64 +924,67 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "noise",
-      "brief_cn": "前沿论文：Explaining why a specific outcome occurred, and which inputs deserve the blame…",
-      "one_line_judgement": "当前可忽略：前沿论文：Explaining why a specific outcome occurred, and which inputs dese…",
+      "trend_status": "long_tail_watch",
+      "llm_reason": "据摘要 (arXiv 2609.04177v1)：在因果可计算性方向提供 scalable 解释框架，结合 actual causality 与 SHAP-style 归因。理论/解释性价值；与 XAI、attribution 工具链相邻，长尾。代码/benchmark：暂无。",
+      "brief_cn": "LLM 评测：Explaining why a specific outcome occurred, and which inputs deserve the blame…",
+      "one_line_judgement": "值得先保存：据摘要 (arXiv 2609.04177v1)：在因果可计算性方向提供 scalable 解释框架，结合 actual causality…",
       "first_seen_date": "2026-09-07",
       "first_deep_dive_daily": "2026-09-07",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "前沿论文：Explaining why a specific outcome occurred, and which inputs deserve the blame…",
-      "related_trends": [],
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要 (arXiv 2609.04177v1)：在因果可计算性方向提供 scalable 解释框架，结合 actual causality 与 SHAP-style 归因。理论/解释性价值；",
+      "related_trends": [
+        "coding-agent"
+      ],
       "detail_path": "paper-detail.html?id=a-computationally-feasible-framework-for-causal-probabilistic-explanation"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "improved-gradient-descent-lower-bounds-beyond-nesterov",
-      "title": "Improved Gradient Descent Lower Bounds Beyond Nesterov",
-      "direction": "推理与服务",
+      "id": "one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing",
+      "title": "One Editor, Many Edits: A Unified Training-Free Framework for Diverse Video Editing",
+      "direction": "Multimodal Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-04 回看 | Improved Gradient Descent Lower Bounds Beyond Nesterov 命中 inference-serving 长尾候选",
+      "why_save": "据摘要 (arXiv 2609.04190v1)：EditVid 是 training-free 视频编辑统一框架，结合 sparse causal memory + corresponden",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-25",
-      "detail_path": "paper-detail.html?id=improved-gradient-descent-lower-bounds-beyond-nesterov"
+      "revisit_date": "2026-09-28",
+      "detail_path": "paper-detail.html?id=one-editor-many-edits-a-unified-training-free-framework-for-diverse-video-editing"
     },
     {
-      "id": "towards-trustworthy-autonomous-robots-an-explainable-ai-based-decision-framework",
-      "title": "Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framework",
-      "direction": "Multimodal Agent / 安全与治理",
+      "id": "seeing-before-synthesizing-vlm-guided-transition-event-discovery-for-weakly-supervised-dense-video-captioning",
+      "title": "Seeing Before Synthesizing: VLM-Guided Transition Event Discovery for Weakly-Supervised Dense Video Captioning",
+      "direction": "Multimodal Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-04 回看 | Towards Trustworthy Autonomous Robots: An Explainable AI-Based Decision Framewor",
+      "why_save": "据摘要 (arXiv 2609.04183v1)：SBS（Seeing Before Synthesizing）针对弱监督 dense video captioning，把 LLM 合成的 t",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-25",
-      "detail_path": "paper-detail.html?id=towards-trustworthy-autonomous-robots-an-explainable-ai-based-decision-framework"
+      "revisit_date": "2026-09-28",
+      "detail_path": "paper-detail.html?id=seeing-before-synthesizing-vlm-guided-transition-event-discovery-for-weakly-supervised-dense-video-captioning"
     },
     {
-      "id": "gradsolve-fast-exact-gradients-for-ode-ensembles-on-gpus",
-      "title": "GRADSOLVE: fast exact gradients for ODE ensembles on GPUs",
-      "direction": "推理与服务",
+      "id": "robust-pac-learning-of-concurrent-stochastic-games",
+      "title": "Robust PAC Learning of Concurrent Stochastic Games",
+      "direction": "AI Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "2026-09-04 回看 | GRADSOLVE: fast exact gradients for ODE ensembles on GPUs 命中 inference-serving 长",
+      "why_save": "据摘要 (arXiv 2609.04189v1)：第一个 general-sum concurrent stochastic games (CSGs) 的 PAC 学习框架，处理 transi",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-09-25",
-      "detail_path": "paper-detail.html?id=gradsolve-fast-exact-gradients-for-ode-ensembles-on-gpus"
+      "revisit_date": "2026-09-28",
+      "detail_path": "paper-detail.html?id=robust-pac-learning-of-concurrent-stochastic-games"
     }
   ],
   "common_research_path": [

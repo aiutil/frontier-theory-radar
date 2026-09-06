@@ -16,8 +16,8 @@
   "openreview_url": "",
   "first_seen_date": "2026-09-07",
   "first_deep_dive_daily": "2026-09-07",
-  "value_type": "ignore",
-  "value_type_label": "暂时忽略",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
   "value_scores": {
     "novelty": 4.8,
     "relevance": 5.0,
@@ -28,12 +28,12 @@
     "actionability": 3.8,
     "noise_risk": 1.2
   },
-  "score": 33.5,
-  "decision": "暂时忽略",
-  "one_line_judgement": "当前可忽略：推理与服务：Many recurring text functions are easy to describe but difficult…",
-  "one_line_essence": "推理与服务：Many recurring text functions are easy to describe but difficult to implement …",
+  "score": 72.5,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.04199v1)：提出 compile by training，把自然语言规范 → 任务样本 → 小型 ad…",
+  "one_line_essence": "据摘要 (arXiv 2609.04199v1)：提出 compile by training，把自然语言规范 → 任务样本 → 小型 adapter + compact interpreter，使重复文本函数可本地推理，绕开远程 LLM 调用成本/延迟/供应商依赖。属于'agent 本地化执行'方向，与 edge-LLM、speculative decoding、distillation 一脉相承；趋势价值清晰。代码与 benchmark 链接：暂无；论文 PDF 在链接中。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "推理与服务：Many recurring text functions are easy to describe but difficult to implement …",
+  "new_claim_or_method": "据摘要 (arXiv 2609.04199v1)：提出 compile by training，把自然语言规范 → 任务样本 → 小型 adapter + compact interpreter，使重复文本函数可本地推理，绕开远程 LLM 调用成本/延迟/供应商依赖。属于'agent 本地化执行'方向，与 edge-LLM、speculative decod",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
@@ -47,8 +47,11 @@
     ]
   },
   "trend_relation": {
-    "status": "noise",
-    "related_trends": [],
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "context-engineering"
+    ],
     "evidence": [
       "论文主题匹配固定研究方向"
     ],
@@ -57,9 +60,9 @@
     ]
   },
   "long_tail": {
-    "why_save": "推理与服务：Many recurring text functions are easy to describe but difficult to implement …",
+    "why_save": "据摘要 (arXiv 2609.04199v1)：提出 compile by training，把自然语言规范 → 任务样本 → 小型 adapter + compact interprete",
     "future_trigger": [
-      "待更多证据"
+      "出现多篇跟进论文、开源项目和工程博客共振"
     ],
     "possible_use_cases": [
       "Prompt 设计",
@@ -98,9 +101,13 @@
   },
   "actions": {
     "immediate_actions": [],
-    "trend_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
     "long_tail_actions": [],
-    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+    "ignore_reason": ""
   },
   "references": [
     {
@@ -114,7 +121,10 @@
   ],
   "detail_path": "paper-detail.html?id=compile-by-training-turning-natural-language-specifications-into-local-neural-functions",
   "daily_path": "daily-detail.html?date=2026-09-07",
-  "trend_paths": [],
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering"
+  ],
   "long_tail_path": "long-tail.html",
   "mermaid": {
     "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",

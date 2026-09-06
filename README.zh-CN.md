@@ -25,13 +25,13 @@
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 107 | 148 | 135 | 1310 |
+| 10 | 108 | 153 | 139 | 1300 |
 
-**今日深挖：** [Last Translation Benchmark](daily/2026/2026-09-07.md) · 暂时忽略 · 暂时忽略
+**今日深挖：** [Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints](daily/2026/2026-09-07.md) · 即时价值 · 重点学习
 
-**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
+**核心判断：** 据摘要（arXiv 2609.04198v1），两个预注册活动、52,988 audited request attempts 测得 same-window repeat rankings 的 Spearman 0.400，未达预设必达阈值；质疑 LLM-as-a-Judge 作为 measurement instrument 的稳态假设，与 leaderboard / 训练 reward / 评测治理直接相关。
 
-**建议动作：** 完成摘要精读与最小实验设计
+**建议动作：** 跟踪 Clean Engineering, Unstable Measurement 的完整预注册报告与可能的修复方案；评估其 Spearman 0.400 vs 必达阈值对团队 LLM-as-a-Judge / leaderboard / 训练 reward 信号的可借鉴性（30 分钟可对近 30 天 judge 调用做重复性测试）。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,7 +39,7 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
-| [2026-09-07](daily/2026/2026-09-07.md) | Last Translation Benchmark | 暂时忽略 | 暂时忽略 |
+| [2026-09-07](daily/2026/2026-09-07.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | 即时价值 | 重点学习 |
 | [2026-09-06](daily/2026/2026-09-06.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | 即时价值 | 重点学习 |
 | [2026-09-04](daily/2026/2026-09-04.md) | Post-Training Language Models for Gold-Medal Performance in Coding Competitions | 即时价值 | 重点学习 |
 | [2026-09-03](daily/2026/2026-09-03.md) | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally | 即时价值 | 轻量试点 |
@@ -51,9 +51,9 @@
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 551 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 459 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 551 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 550 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 462 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 550 |
 
 ## 为什么做这个项目
 
