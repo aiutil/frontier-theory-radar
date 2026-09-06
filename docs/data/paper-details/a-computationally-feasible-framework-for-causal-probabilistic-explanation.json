@@ -16,10 +16,10 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-09-06",
-  "first_deep_dive_daily": "2026-09-06",
-  "value_type": "long_tail",
-  "value_type_label": "长尾价值",
+  "first_seen_date": "2026-09-07",
+  "first_deep_dive_daily": "2026-09-07",
+  "value_type": "ignore",
+  "value_type_label": "暂时忽略",
   "value_scores": {
     "novelty": 4.8,
     "relevance": 3.8,
@@ -30,13 +30,13 @@
     "actionability": 3.8,
     "noise_risk": 2.4
   },
-  "score": 56.0,
-  "decision": "持续观察",
-  "one_line_judgement": "值得先保存：2026-09-06 回看 | A Computationally Feasible Framework for Causal Probab…",
-  "one_line_essence": "2026-09-06 回看 | A Computationally Feasible Framework for Causal Probabilistic Explanation 命中 ai-agent / llm-evaluation 长尾候选（实际因果性的可计算框架）：据摘要，解释特定结果为何发生、哪些输入应受责备/credit，是哲学、科学、政策分析的核心。现有工具分两派：actual causality (AC) 给有原则的判定，但只适合 toy 模型（需枚举反事实场景）；可扩展的 attribution 方法（SHAP / causal SHAP）至少部分忽略生成数据的因果结构，可能给出错误归因 [摘要截断]。'把实际因果性从'AC 枚举（toy）+ SHAP（忽略因果结构）'推到'Computationally Feasible Framework for Causal Probabilistic Explanation'——既能扩展又能保留因果结构'对做 XAI / 解释性 / 归因 / agent 决策审计的团队有长尾参考价值：是实际因果性+可扩展归因的具体推进，与 Linguistic Illegibility（2609.02852）共同指向'模型决策的可解释+可审计'长尾簇。证据强度中等：方法动机清晰（两派各缺）+ 关键词未命中。证据不足：code/benchmark/Papers with Code/OpenReview 链接暂无待核验；摘要截断导致框架的具体计算复杂度、与 SHAP / causal SHAP / AC 的定量对比、与因果发现（PC algorithm / GES / NOTEARS）的集成均缺失；属因果性+XAI 理论层，作长尾资产保存。",
+  "score": 31.2,
+  "decision": "暂时忽略",
+  "one_line_judgement": "当前可忽略：前沿论文：Explaining why a specific outcome occurred, and which inputs dese…",
+  "one_line_essence": "前沿论文：Explaining why a specific outcome occurred, and which inputs deserve the blame…",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "2026-09-06 回看 | A Computationally Feasible Framework for Causal Probabilistic Explanation 命中 ai-agent / llm-evaluation 长尾候选（实际因果性的可计算框架）：据摘要，解释特定结果为何发生、哪些输入应受责备/credit，是哲学、科学、政策分析的",
-  "research_position": "long_tail_insight",
+  "new_claim_or_method": "前沿论文：Explaining why a specific outcome occurred, and which inputs deserve the blame…",
+  "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
     "has_benchmark": false,
@@ -49,11 +49,8 @@
     ]
   },
   "trend_relation": {
-    "status": "long_tail_watch",
-    "related_trends": [
-      "agentic-world-modeling",
-      "coding-agent"
-    ],
+    "status": "noise",
+    "related_trends": [],
     "evidence": [
       "论文主题匹配固定研究方向"
     ],
@@ -62,9 +59,9 @@
     ]
   },
   "long_tail": {
-    "why_save": "2026-09-06 回看 | A Computationally Feasible Framework for Causal Probabilistic Explanation 命中 ai-",
+    "why_save": "前沿论文：Explaining why a specific outcome occurred, and which inputs deserve the blame…",
     "future_trigger": [
-      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+      "待更多证据"
     ],
     "possible_use_cases": [
       "Prompt 设计",
@@ -79,7 +76,7 @@
       "模板"
     ],
     "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
-    "revisit_date": "2026-09-27"
+    "revisit_date": ""
   },
   "insights": {
     "system_design": [
@@ -104,12 +101,8 @@
   "actions": {
     "immediate_actions": [],
     "trend_actions": [],
-    "long_tail_actions": [
-      "加入长尾库",
-      "标注未来触发条件",
-      "先沉淀 Prompt / Skill 草案"
-    ],
-    "ignore_reason": ""
+    "long_tail_actions": [],
+    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
   },
   "references": [
     {
@@ -122,11 +115,8 @@
     }
   ],
   "detail_path": "paper-detail.html?id=a-computationally-feasible-framework-for-causal-probabilistic-explanation",
-  "daily_path": "daily-detail.html?date=2026-09-06",
-  "trend_paths": [
-    "trend-detail.html?id=agentic-world-modeling",
-    "trend-detail.html?id=coding-agent"
-  ],
+  "daily_path": "daily-detail.html?date=2026-09-07",
+  "trend_paths": [],
   "long_tail_path": "long-tail.html",
   "mermaid": {
     "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",

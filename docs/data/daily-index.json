@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-09-06T04:35:06.026885",
+  "updated_at": "2026-09-07T04:31:09.378435",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-07",
+      "title": "论文价值发现日报 - 2026-09-07",
+      "deep_dive_title": "Last Translation Benchmark",
+      "deep_dive_url": "http://arxiv.org/abs/2609.04173v1",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-09-07"
+    },
     {
       "date": "2026-09-06",
       "title": "论文价值发现日报 - 2026-09-06",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（ParVL 摘要截断）。When Attention Goes Blind 的下溢具体触发条件、四种缓解策略的定量对比与受影响 SOTA 模型清单，TurnSight 轮次级监督的具体构造与教师上下文从状态派生的机制，Test-Time Scaling 三类推理 regime 的定量边界与可复现性协议细节，PAST-Bench 的任务序列规模与'改进'度量指标均需正文确认。另：#5（WorldCup Arena）摘要关键词 RAG 为误命中（指服务端网络搜索而非 RAG 系统），已在评分中剔除。",
       "one_line_judgement": "它揭示了一个被忽视的推理正确性缺陷——ALiBi 位置编码的线性偏置缩放在浮点精度下下溢，把大量注意力权重清零，使受影响的注意力头'部分失明'。作者不仅刻画了失效模式，还在基于 ALiBi 的 SOTA 预训练模型中证实其出现，并用 148M 参数从头预训练实验做系统验证。这是对任何使用 ALiBi 系位置编码的 LLM 推理/选型都有即时工程价值的发现，可直接迁移到团队推理质量排查与位置编码选型清单。",
       "path": "daily-detail.html?date=2026-08-06"
-    },
-    {
-      "date": "2026-08-05",
-      "title": "论文价值发现日报 - 2026-08-05",
-      "deep_dive_title": "UEmbed: Unified Sparse and Dense Multimodal Embeddings",
-      "deep_dive_url": "http://arxiv.org/abs/2608.02583v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：把 UEmbed 的 decoder-only 统一嵌入思路纳入团队检索/RAG 嵌入模型选型清单并评估服务路径简化潜力、用 ACEM 的成本维度（token 消耗 + HITL + 验证）对团队一个真实 agent 项目做经济性估算、对 AURORA-LM 的连续潜空间文本生成建立趋势观察卡片。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（AURORA-LM 与 GradCuit 的摘要均截断）。UEmbed 的稀疏-稠密联合训练是否互相干扰、多模态检索质量提升幅度与现有稠密基座对比，ACEM 的成本系数实证标定方法与模型可校准性，AURORA-LM 的连续表示 token 级保真保证与离散 token 质量差距，GradCuit 的潜变量插入位置选择策略与推理计算开销均需正文确认。另：#3（电力系统教育）、#4（稀疏优化理论）的关键词命中（RAG/agent/agentic）为误命中，已在评分中剔除。",
-      "one_line_judgement": "它把 Learned Sparse Retrieval（LSR）从 encoder-only 双向架构扩展到 decoder-only 统一模型，单一 backbone 同时产出稀疏（词法级）与稠密（语义级）表示并支持多模态，不必依赖额外跨模态辅助模块。这直接命中检索/嵌入这条 RAG 与搜索的基础设施主线，是可迁移到团队检索/RAG 技术栈的工程范式。",
-      "path": "daily-detail.html?date=2026-08-05"
     }
   ]
 }
