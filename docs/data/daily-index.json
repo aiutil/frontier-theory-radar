@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-09-07T04:32:41.901311",
+  "updated_at": "2026-09-08T04:32:44.050220",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-08",
+      "title": "论文价值发现日报 - 2026-09-08",
+      "deep_dive_title": "Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models",
+      "deep_dive_url": "http://arxiv.org/abs/2609.05381v1",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-09-08"
+    },
     {
       "date": "2026-09-07",
       "title": "论文价值发现日报 - 2026-09-07",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 Argus、Reasoning Core、OctoLong、OPD-V、SSTQ、Skill Entropy、SFC、Nemotron Greek 共 8 篇摘要截断。Argus 的有界任务边界定义与自演化机制、Reasoning Core 的生成器具体构造与基线定量增益、OctoLong 的 mid-training 协议与长上下文性能提升幅度、Skill Entropy 的数学定义与 cross-skill 任务集、SFC 的具体方法均需正文确认。另：OctoLong 摘要关键词 agent/agentic 为宽泛命中（指 agentic workflows 是长上下文需求来源），SFC 摘要关键词 RAG 为误命中，已在评分中剔除。",
       "one_line_judgement": "Argus 提出一个持久化、自演化的 agentic runtime——Manager/Planner/Engineer/Reviewer 四角色在持久项目状态上执行有界任务，核心设计是把稳定的用户意图与可变的操作目标、约束、验证标准分离。这是任何构建多步 agent 团队可直接参考的架构模式（证据支持时坚持、测量发现失败时转向）。Reasoning Core 则提供 50 个覆盖九大类的程序化推理数据生成器（含语义评分器、难度控制、任务评估器），可直接迁移到团队的推理训练数据合成流水线。",
       "path": "daily-detail.html?date=2026-08-07"
-    },
-    {
-      "date": "2026-08-06",
-      "title": "论文价值发现日报 - 2026-08-06",
-      "deep_dive_title": "When Attention Goes Blind: Numerical Failure in ALiBi Positional Encodings",
-      "deep_dive_url": "http://arxiv.org/abs/2608.03994v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：把 ALiBi 数值下溢检查加入团队 LLM 推理质量回归测试与位置编码选型清单、评估 TurnSight 轮次级 hindsight 自蒸馏对团队 agent 工具调用训练的迁移价值、用 test-time scaling 的三类推理 regime 区分建立团队推理算法选型框架。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述（ParVL 摘要截断）。When Attention Goes Blind 的下溢具体触发条件、四种缓解策略的定量对比与受影响 SOTA 模型清单，TurnSight 轮次级监督的具体构造与教师上下文从状态派生的机制，Test-Time Scaling 三类推理 regime 的定量边界与可复现性协议细节，PAST-Bench 的任务序列规模与'改进'度量指标均需正文确认。另：#5（WorldCup Arena）摘要关键词 RAG 为误命中（指服务端网络搜索而非 RAG 系统），已在评分中剔除。",
-      "one_line_judgement": "它揭示了一个被忽视的推理正确性缺陷——ALiBi 位置编码的线性偏置缩放在浮点精度下下溢，把大量注意力权重清零，使受影响的注意力头'部分失明'。作者不仅刻画了失效模式，还在基于 ALiBi 的 SOTA 预训练模型中证实其出现，并用 148M 参数从头预训练实验做系统验证。这是对任何使用 ALiBi 系位置编码的 LLM 推理/选型都有即时工程价值的发现，可直接迁移到团队推理质量排查与位置编码选型清单。",
-      "path": "daily-detail.html?date=2026-08-06"
     }
   ]
 }
