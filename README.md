@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-09-09
+## Latest research run · 2026-09-10
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 153 | 139 | 1310 |
+| 10 | 108 | 159 | 142 | 1311 |
 
-**Deep dive:** [Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models](daily/2026/2026-09-09.md) · Ignore · 暂时忽略
+**Deep dive:** [Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation](daily/2026/2026-09-10.md) · Trend · 轻量试点
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,21 +35,21 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | Trend | 轻量试点 |
 | [2026-09-09](daily/2026/2026-09-09.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | Ignore | 暂时忽略 |
 | [2026-09-08](daily/2026/2026-09-08.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | Ignore | 暂时忽略 |
 | [2026-09-07](daily/2026/2026-09-07.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | Immediate | 重点学习 |
 | [2026-09-06](daily/2026/2026-09-06.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | Immediate | 重点学习 |
 | [2026-09-04](daily/2026/2026-09-04.md) | Post-Training Language Models for Gold-Medal Performance in Coding Competitions | Immediate | 重点学习 |
 | [2026-09-03](daily/2026/2026-09-03.md) | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally | Immediate | 轻量试点 |
-| [2026-09-02](daily/2026/2026-09-02.md) | Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation | Ignore | 暂时忽略 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 554 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 467 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 554 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 557 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 469 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 557 |
 
 ## Why this repository exists
 

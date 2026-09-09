@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-09
+## 最新研究 · 2026-09-10
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 153 | 139 | 1310 |
+| 10 | 108 | 159 | 142 | 1311 |
 
-**今日深挖：** [Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models](daily/2026/2026-09-09.md) · 暂时忽略 · 暂时忽略
+**今日深挖：** [Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation](daily/2026/2026-09-10.md) · 趋势价值 · 轻量试点
 
-**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
+**核心判断：** 据摘要（arXiv 2609.09156v1），ReCite 用 agentic reasoning 把自动引用推荐从'semantic similarity → misattribution'推进到对真实引用意图的核查——这是现代 RAG 架构消除'虚构论文'之后的下一步痛点，直接对应团队 RAG/引用审计场景。
 
-**建议动作：** 完成摘要精读与最小实验设计
+**建议动作：** 跟踪 ReCite（[2609.09156](http://arxiv.org/abs/2609.09156v1)）完整 PDF / 数据 / 是否开源 prompt 模板；同步把 probe-driven TTRL（[2609.09135](http://arxiv.org/abs/2609.09135v1)）、Procedural Graphs（[2609.09153](http://arxiv.org/abs/2609.09153v1)）、TANGO（[2609.09158](http://arxiv.org/abs/2609.09158v1)）、Length-Extrapolatable Recurrent Models（[2609.09157](http://arxiv.org/abs/2609.09157v1)）、Copying Explains Collective Behavior（[2609.09150](http://arxiv.org/abs/2609.09150v1)）纳入趋势观察。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | 趋势价值 | 轻量试点 |
 | [2026-09-09](daily/2026/2026-09-09.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
 | [2026-09-08](daily/2026/2026-09-08.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
 | [2026-09-07](daily/2026/2026-09-07.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | 即时价值 | 重点学习 |
 | [2026-09-06](daily/2026/2026-09-06.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | 即时价值 | 重点学习 |
 | [2026-09-04](daily/2026/2026-09-04.md) | Post-Training Language Models for Gold-Medal Performance in Coding Competitions | 即时价值 | 重点学习 |
 | [2026-09-03](daily/2026/2026-09-03.md) | The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally | 即时价值 | 轻量试点 |
-| [2026-09-02](daily/2026/2026-09-02.md) | Configurable Semantic Chunking for Biomedical Information Extraction in Retrieval-Augmented Generation | 暂时忽略 | 暂时忽略 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 554 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 467 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 554 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 557 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 469 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 557 |
 
 ## 为什么做这个项目
 
