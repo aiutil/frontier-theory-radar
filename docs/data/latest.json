@@ -1,106 +1,122 @@
 {
-  "updated_at": "2026-09-10T04:31:47.315249",
+  "updated_at": "2026-09-11T04:32:20.495885",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-09-10",
-    "title": "论文价值发现日报 - 2026-09-10",
-    "deep_dive_title": "Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation",
-    "deep_dive_url": "http://arxiv.org/abs/2609.09135v1",
+    "date": "2026-09-11",
+    "title": "论文价值发现日报 - 2026-09-11",
+    "deep_dive_title": "IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier",
+    "deep_dive_url": "http://arxiv.org/abs/2609.10494v1",
     "decision": "轻量试点",
     "value_type": "trend",
     "value_type_label": "趋势价值",
-    "daily_action": "跟踪 ReCite（[2609.09156](http://arxiv.org/abs/2609.09156v1)）完整 PDF / 数据 / 是否开源 prompt 模板；同步把 probe-driven TTRL（[2609.09135](http://arxiv.org/abs/2609.09135v1)）、Procedural Graphs（[2609.09153](http://arxiv.org/abs/2609.09153v1)）、TANGO（[2609.09158](http://arxiv.org/abs/2609.09158v1)）、Length-Extrapolatable Recurrent Models（[2609.09157](http://arxiv.org/abs/2609.09157v1)）、Copying Explains Collective Behavior（[2609.09150](http://arxiv.org/abs/2609.09150v1)）纳入趋势观察。",
-    "max_uncertainty": "ReCite 与 probe-driven TTRL 等论文是否提供可下载 PDF、数据与可复用 prompt / agent loop 代码（暂无代码与 benchmark 链接），需打开 PDF 核验。",
-    "one_line_judgement": "据摘要（arXiv 2609.09156v1），ReCite 用 agentic reasoning 把自动引用推荐从'semantic similarity → misattribution'推进到对真实引用意图的核查——这是现代 RAG 架构消除'虚构论文'之后的下一步痛点，直接对应团队 RAG/引用审计场景。",
-    "path": "daily-detail.html?date=2026-09-10"
+    "daily_action": "跟踪 IBIB（[2609.10494](http://arxiv.org/abs/2609.10494v1)）完整 PDF 与是否开源 protocol；同步把 Show-Harness（[2609.10522](http://arxiv.org/abs/2609.10522v1)）、IdeaAMBIG（[2609.10539](http://arxiv.org/abs/2609.10539v1)）纳入趋势观察；为 RBQE（[2609.10495](http://arxiv.org/abs/2609.10495v1)）、Gap-Entropy 证明（[2609.10529](http://arxiv.org/abs/2609.10529v1)）、Likelihood-Free Inference via NF（[2609.10534](http://arxiv.org/abs/2609.10534v1)）、Language Generation in the Limit（[2609.10525](http://arxiv.org/abs/2609.10525v1)）建立分类观察卡片。",
+    "max_uncertainty": "IBIB、Show-Harness、IdeaAMBIG 等论文是否提供可下载 PDF、数据与可复用 protocol / action unit 模板（暂无代码与 benchmark 链接），需打开 PDF 核验评测协议与代码可用性。",
+    "one_line_judgement": "据摘要（arXiv 2609.10494v1），IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold-blind capability-binding preflight + reliability-inclusive first-pass scoring + 对 18 个被审计基准的差距诊断。这正好命中 aiutil 长期关心的'评测 ≠ 模型标识符'：weights / serving route / precision / output contract / harness 应作为联合变量打分。",
+    "path": "daily-detail.html?date=2026-09-11"
   },
   "top_paper": {
-    "title": "Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation",
+    "title": "IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier",
     "authors": [
-      "Jiacheng Xu",
-      "Feng Chen",
-      "Xiuneng Xu",
-      "Bo An"
+      "Blake Stenstrom",
+      "Charangan Vasantharajan",
+      "Brian Sathianathan"
     ],
-    "published": "2026-09-08",
-    "updated": "2026-09-08",
+    "published": "2026-09-09",
+    "updated": "2026-09-09",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2609.09135v1",
-    "pdf_url": "https://arxiv.org/pdf/2609.09135v1",
+    "url": "http://arxiv.org/abs/2609.10494v1",
+    "pdf_url": "https://arxiv.org/pdf/2609.10494v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Existing methods for test-time reinforcement learning (TTRL) derive rewards from answer-level self-voting on unlabeled test-time tasks with canonical answers, but this breaks down for code generation because programs cannot be compared by surface form and therefore do not directly provide a usable training signal. To make TTRL applicable to code generation, we propose probe-driven TTRL, which constructs output-free probe inputs from the problem statement, executes candidate programs on these pro",
+    "abstract": "Enterprises deploy systems, not checkpoints. Usable capability depends jointly on weights, serving route, precision, output contract, and harness, yet all 18 audited benchmarks score advertised model identifiers. We treat this as measurement error and give a protocol that makes it reportable. It has three parts. A gold-blind capability-binding preflight verifies that a route can execute the evaluation contract before any task reaches it; a reliability-inclusive first-pass scoring rule keeps fail",
     "categories": [
-      "cs.LG",
-      "cs.CL"
+      "cs.CL",
+      "cs.AI",
+      "cs.LG"
     ],
     "keywords": [
+      "evaluation",
       "benchmark"
     ],
-    "score": 75.0,
+    "score": 76.0,
     "decision": "轻量试点",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2609.09135v1"
+        "url": "http://arxiv.org/abs/2609.10494v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2609.09135v1"
+        "url": "https://arxiv.org/pdf/2609.10494v1"
       }
     ],
-    "id": "entropy-regularized-rank-masked-policy-optimization-for-test-time-reinforcement-learning-in-code-generation",
+    "llm_reason": "据摘要（arXiv 2609.10494v1）：IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold-blind capability-binding preflight + reliability-inclusive first-pass scoring + 18 个被审计基准的差距诊断。这正好命中 aiutil 长期关心的'评测 ≠ 模型标识符'：weights / serving route / precision / output contract / harness 应作为联合变量打分。与 aiutil 关心的 routing / eval-governance 路线高度共振。代码/benchmark：暂无（数据来自 18 份公开 benchmark 的审计结果），需打开 PDF 看协议定义是否可作为内部 eval template 复用。",
+    "id": "ibib-a-protocol-for-measuring-enterprise-ai-systems-by-serving-route-not-model-identifier",
     "value_type": "trend",
     "matched_topics": [
-      "coding-agent",
-      "llm-evaluation"
+      "llm-evaluation",
+      "ai-agent",
+      "inference-serving"
     ],
     "score_breakdown": {
-      "novelty": 4.8,
-      "problem_importance": 5.15,
-      "relevance": 5.0,
-      "evidence_strength": 4.5,
-      "engineering_testability": 3.5,
-      "trend_signal": 3.5,
+      "novelty": 5.4,
+      "problem_importance": 6.45,
+      "relevance": 7.4,
+      "evidence_strength": 5.4,
+      "engineering_testability": 4.05,
+      "trend_signal": 6.0,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 4.8,
+      "asset_convertibility": 5.6,
       "actionability": 5.0,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 3.6,
+      "weak_evidence_penalty": 4.0,
+      "low_relevance_penalty": 0.8,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "llm_reason": "据摘要 (arXiv 2609.09135v1)：probe-driven TTRL 用'probe inputs constructed from problem statement'让 answer-level self-voting 在 code generation 上重新可用；熵正则 + rank-masked policy 给出训练信号。直接与 test-time RL / coding-agent / spec-based scoring 同方向共振。代码/benchmark：暂无，需打开 PDF 核验 probe 构造与评估设定。",
-    "brief_cn": "Coding Agent：Existing methods for test-time reinforcement learning (TTRL) derive rewards fr…",
-    "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.09135v1)：probe-driven TTRL 用'probe inputs constructed …",
-    "first_seen_date": "2026-09-10",
-    "first_deep_dive_daily": "2026-09-10",
+    "brief_cn": "LLM 评测：Enterprises deploy systems, not checkpoints. Usable capability depends jointly…",
+    "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.10494v1）：IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold…",
+    "first_seen_date": "2026-09-11",
+    "first_deep_dive_daily": "2026-09-11",
     "value_type_label": "趋势价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-    "long_tail_summary": "据摘要 (arXiv 2609.09135v1)：probe-driven TTRL 用'probe inputs constructed from problem statement'让 a",
+    "long_tail_summary": "据摘要（arXiv 2609.10494v1）：IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold-blind capability-binding ",
     "related_trends": [
-      "coding-agent"
+      "coding-agent",
+      "agentic-world-modeling"
     ],
-    "detail_path": "paper-detail.html?id=entropy-regularized-rank-masked-policy-optimization-for-test-time-reinforcement-learning-in-code-generation"
+    "detail_path": "paper-detail.html?id=ibib-a-protocol-for-measuring-enterprise-ai-systems-by-serving-route-not-model-identifier"
   },
-  "paper_count": 1720,
+  "paper_count": 1730,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 142,
+  "long_tail_count": 146,
   "value_distribution": {
     "immediate": 108,
-    "trend": 159,
-    "long_tail": 142,
-    "ignore": 1311
+    "trend": 162,
+    "long_tail": 146,
+    "ignore": 1314
   },
   "recent_dailies": [
+    {
+      "date": "2026-09-11",
+      "title": "论文价值发现日报 - 2026-09-11",
+      "deep_dive_title": "IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier",
+      "deep_dive_url": "http://arxiv.org/abs/2609.10494v1",
+      "decision": "轻量试点",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "daily_action": "跟踪 IBIB（[2609.10494](http://arxiv.org/abs/2609.10494v1)）完整 PDF 与是否开源 protocol；同步把 Show-Harness（[2609.10522](http://arxiv.org/abs/2609.10522v1)）、IdeaAMBIG（[2609.10539](http://arxiv.org/abs/2609.10539v1)）纳入趋势观察；为 RBQE（[2609.10495](http://arxiv.org/abs/2609.10495v1)）、Gap-Entropy 证明（[2609.10529](http://arxiv.org/abs/2609.10529v1)）、Likelihood-Free Inference via NF（[2609.10534](http://arxiv.org/abs/2609.10534v1)）、Language Generation in the Limit（[2609.10525](http://arxiv.org/abs/2609.10525v1)）建立分类观察卡片。",
+      "max_uncertainty": "IBIB、Show-Harness、IdeaAMBIG 等论文是否提供可下载 PDF、数据与可复用 protocol / action unit 模板（暂无代码与 benchmark 链接），需打开 PDF 核验评测协议与代码可用性。",
+      "one_line_judgement": "据摘要（arXiv 2609.10494v1），IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold-blind capability-binding preflight + reliability-inclusive first-pass scoring + 对 18 个被审计基准的差距诊断。这正好命中 aiutil 长期关心的'评测 ≠ 模型标识符'：weights / serving route / precision / output contract / harness 应作为联合变量打分。",
+      "path": "daily-detail.html?date=2026-09-11"
+    },
     {
       "date": "2026-09-10",
       "title": "论文价值发现日报 - 2026-09-10",
@@ -178,229 +194,142 @@
       "max_uncertainty": "2026-09-04 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Linguistic Illegibility 摘要截断导致具体 security 案例（jailbreak / prompt injection / interpretability-based 攻击）、'implications for LLM security'的具体论点、防御建议、与 mechanistic interpretability 已有工作（Anthropic 特征字典 / sparse autoencoder / circuit analysis）的对比缺失；Nemotron Gold-Medal Coding 摘要截断导致具体 benchmark（除 IOI/ICPC 外是否覆盖 Codeforces / AtCoder）、22K problems 的 curation 过滤规则、synthetic traces 合成方法（self-distillation / rejection sampling / RLAIF）、与 DeepSeek-Coder / Qwen-Coder / Claude / GPT 系列在 IOI/ICPC 上的对比、'gold-medal' 的具体指标定义缺失；Discriminative World Models 摘要截断导致具体判别性训练信号（contrastive / preference / PRM 端到端）、HTML/AXTree 之外的 state 表征、与 SeeAct / AWM / WebDreamer 等方法的对比、benchmark 选型均缺失；UE5M3 FP4 摘要截断导致具体 scaling schedule、periodic tensor scaling 频率、selective stochastic 的具体形式、与 NVIDIA Transformer Engine recipe 的定量对比、预训练稳定性曲线、是否覆盖主流模型族（Llama / Qwen / DeepSeek / Nemotron）均缺失；User Feedback Unique Signal 摘要截断导致具体 methodology、systematic bias 的具体形态、与现有 RLHF / RLAIF / Constitutional AI 的桥接、feedback 信号的有效性度量均缺失；Graph Machine 摘要截断导致 referral mechanism 的具体可微实现、edges 更新规则、计算开销、长上下文性能、训练稳定性、'替换 75% dense 层'的实证对比均缺失；Speech BCI 摘要截断导致具体度量形式、跨数据集校准方法、是否给出 baseline、是否覆盖语言学/神经维度均缺失；TRACE 摘要截断导致四层的具体接口、causal chain 形式化、与 ROS / ROS2 集成、事件后调查工作流均缺失；GRADSOLVE 摘要截断导致具体实现（CUDA kernel 设计 / ensemble parallelization / memory trade-off）、与 torchdiffeq / diffrax / JAX-based ODE solver 的对比、benchmark 选型均缺失；Improved GD Lower Bounds 摘要截断导致具体证明技术、anytime vs non-anytime 的精确含义、O(n^{-\\l...) 的完整上界、与 Nesterov 上界的 gap closure 程度均缺失。",
       "one_line_judgement": "据摘要，The Implications of Linguistic Illegibility for LLM Security（[2609.02852](http://arxiv.org/abs/2609.02852v1)）提出 'linguistic illegibility' 概念——LLM 的外部化语言输出与 mechanistic-extracted 语言特征可能是理解内部计算的不可靠 lens，论证其对 LLM security 的影响；直接连接到 jailbreak / prompt injection / interpretability 鲁棒性等安全场景，与昨日 Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）的 LLM-as-a-Judge 机制扰动分析形成'评测机制可读性 + 模型内部可读性'双线索。Post-Training Language Models for Gold-Medal Performance in Coding Competitions（[2609.02849](http://arxiv.org/abs/2609.02849v1)）呈现 end-to-end specialization pipeline——22K curated problems + synthetic reasoning traces + SFT/RL 组合，训练 Nemotron-3-Nano-CC（30B-A3B，SFT+RL）与 Nemotron-3-Ultra-CC（550B-A55B，仅 SFT），目标 IOI/ICPC gold-medal。两篇 immediate 共同指向'为既有抽象问题提供结构化诊断术语 + 把 LLM 极限能力工程化'。趋势层：Discriminative World Models for Web Agents（[2609.02885](http://arxiv.org/abs/2609.02885v1)）把 web agent 世界模型从'supervised next-state prediction'推到'discriminative objective'——训练目标与下游 ranker 对齐；UE5M3 FP4 Block Scaling（[2609.02846](http://arxiv.org/abs/2609.02846v1)）把 FP4 预训练稳定性从'current-tensor scaling + RHT + BF16'（NVIDIA Transformer Engine）推到'UE5M3 block scales + periodic tensor scaling'；User Feedback Provides a Unique Signal（[2609.02859](http://arxiv.org/abs/2609.02859v1)）挑战'user feedback 噪声大'共识，证明评测范式 systematic bias 掩盖了真实价值；Graph Machine（[2609.02881](http://arxiv.org/abs/2609.02881v1)）用 edges-based sparse dynamic routing 替换 Qwen 75% dense attention。",
       "path": "daily-detail.html?date=2026-09-04"
-    },
-    {
-      "date": "2026-09-03",
-      "title": "论文价值发现日报 - 2026-09-03",
-      "deep_dive_title": "The Structure of Quantization Damage in LLMs: Why the Next Bit Should Be Spent Globally",
-      "deep_dive_url": "http://arxiv.org/abs/2609.01587v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "2026-09-03 回看 | 完成五件事：(1) 跟踪 Quantization Damage 的具体结论与开源——评估其'causal mixed-precision intervention'是否可立刻用于团队 LLM serving 精度预算分配（30 分钟可在自己 serving 栈的 1-2 个开源模型上做 per-layer 8-bit 升精度实验，1 周内可实施）；(2) 把 Verbal RL 的'按 lifecycle 时机 × 改动对象'两轴作为评估现有 agent feedback 技巧的结构化视角（30 分钟可对团队当前 agent 的 verbal feedback 用例做两轴定位）；(3) 跟踪 PTA-IRT 是否开源——若开源，评估其'trajectory-aware IRT'是否能用于团队 SWE agent benchmark 成本压缩（30 分钟可梳理现有评估是否仅利用结果信息、识别轨迹信息的潜在价值）；(4) 把 CordisBench 纳入 agent harness 治理与生命周期趋势观察线（与昨日 Logos 形成簇），并跟踪 Beyond Scores / Adaptive Critical Token / Facet-0 的开源与定量结果；(5) 为 Mechanism Design / Proactive Thought Partners / StudentSim 三个长尾候选建立长尾观察卡片，并标注各自的开源/benchmark 跟踪信号。",
-      "max_uncertainty": "2026-09-03 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。Quantization Damage 摘要截断导致 9 个具体模型、3 种直觉假设的结论（是否某 layer/某 family 集中）、'globally' 结论的具体边界、与 mixed-precision 量化方法（GPTQ / AWQ / SmoothQuant）的对比缺失；Verbal RL 摘要截断导致三支柱的具体内容、覆盖的方法集合、与传统 RL / RLHF 的形式化对比、是否给出实证校准缺失；PTA-IRT 摘要截断导致输入特征（轨迹如何编码）、IRT 模型选择、subset 大小、是否覆盖主流 SWE 基准（HumanEval-X / SWE-bench / RepoBench 等）、与现有静态 subset selection 的定量对比、trajectory 是否需要标注均缺失；CordisBench 摘要截断导致 Cordis runtime 的具体依赖模型、清理语义、1200 题的分布、当前 SOTA 模型得分、与软件工程类 benchmark 的对比缺失；Beyond Scores 摘要截断导致 8 类扰动的具体细节、token 级错误强度如何参数化、模型族覆盖、与已有 judge benchmark（如 PandaLM / JudgeBench）的对比缺失；Adaptive Critical Token 摘要截断导致 critical-token 的识别方式（静态分析 / 神经显著性 / 执行 trace）、与现有 repo-level 代码生成方法（如 RAGAS-style / RepoCoder / RepoHyper）的对比、benchmark 选型均缺失；Facet-0 摘要截断导致具体模型规模、benchmark（接触密集装配任务）、与现有 visuotactile / wrench-aware 方法的对比缺失；Mechanism Design 摘要截断导致 nested cyclical monotonicity 的具体构造、computational tractability、是否给出算法实现、与 RLHF / Debate 等对齐方法的桥接均缺失；Proactive Thought Partners 摘要截断导致具体系统实现、用户研究规模、设计空间的轴定义（hierarchy / 主动时机 / 可定制维度）、与现有 IDE 集成型助手对比缺失；StudentSim 摘要截断导致具体训练目标、模拟器架构、与真人学生数据的校准、benchmark 均缺失。",
-      "one_line_judgement": "据摘要，The Structure of Quantization Damage in LLMs（[2609.01587](http://arxiv.org/abs/2609.01587v1)）把 PTQ 从'逐模型调优'推到'causal mixed-precision intervention as ground truth + 跨 9 模型 4 家族结构化假设检验'，直接回答'额外精度 bit 应花在哪里'——证据级别提到因果干预层，能立刻用于 serving 栈精度预算分配。Verbal Reinforcement Learning（[2609.01597](http://arxiv.org/abs/2609.01597v1)）给出 VRL 的 first unified account——按 lifecycle 时机 × 改动对象统一组织，提供了把现有 LLM feedback 技巧按 lifecycle 排序的统一视角，便于评估与教学。PTA-IRT（[2609.01603](http://arxiv.org/abs/2609.01603v1)）把 SWE agent 评测从'result-only subset selection'推到'Privileged Trajectory-Aware IRT'，直击 SWE agent 评估贵的行业瓶颈——它既利用解题轨迹又控制成本。三篇 immediate 共同指向'为既有做法提供结构化底层原理'。趋势层：CordisBench（[2609.01600](http://arxiv.org/abs/2609.01600v1)）把'动态 agent harness 的 lifecycle reasoning'做成 1,200 题 benchmark + Cordis runtime——与昨日 Logos（2608.28553）的 cross-process bus 故障隔离形成'agent harness 治理与生命周期'趋势簇；Beyond Scores（[2609.01604](http://arxiv.org/abs/2609.01604v1)）用 8 类扰动 taxonomy + paired clean/corrupt + token 级标注把 LLM-as-a-Judge 从'score 输出'推到'mechanism 理解'；Adaptive Critical Token（[2609.01601](http://arxiv.org/abs/2609.01601v1)）把仓库级代码生成 RAG 从'task-level support'推到'critical-token aware retrieval'；Facet-0（[2609.01596](http://arxiv.org/abs/2609.01596v1)）围绕 joint action-wrench proposal 统一多模态表征与 RL 后训练——与昨日 Aero Hand Open 的仿真资产化互补。",
-      "path": "daily-detail.html?date=2026-09-03"
     }
   ],
   "top_papers": [
     {
-      "title": "Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation",
+      "title": "IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier",
       "authors": [
-        "Jiacheng Xu",
-        "Feng Chen",
-        "Xiuneng Xu",
-        "Bo An"
+        "Blake Stenstrom",
+        "Charangan Vasantharajan",
+        "Brian Sathianathan"
       ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09135v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09135v1",
+      "url": "http://arxiv.org/abs/2609.10494v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10494v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Existing methods for test-time reinforcement learning (TTRL) derive rewards from answer-level self-voting on unlabeled test-time tasks with canonical answers, but this breaks down for code generation because programs cannot be compared by surface form and therefore do not directly provide a usable training signal. To make TTRL applicable to code generation, we propose probe-driven TTRL, which constructs output-free probe inputs from the problem statement, executes candidate programs on these pro",
+      "abstract": "Enterprises deploy systems, not checkpoints. Usable capability depends jointly on weights, serving route, precision, output contract, and harness, yet all 18 audited benchmarks score advertised model identifiers. We treat this as measurement error and give a protocol that makes it reportable. It has three parts. A gold-blind capability-binding preflight verifies that a route can execute the evaluation contract before any task reaches it; a reliability-inclusive first-pass scoring rule keeps fail",
       "categories": [
-        "cs.LG",
-        "cs.CL"
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
       ],
       "keywords": [
+        "evaluation",
         "benchmark"
       ],
-      "score": 75.0,
+      "score": 76.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09135v1"
+          "url": "http://arxiv.org/abs/2609.10494v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09135v1"
+          "url": "https://arxiv.org/pdf/2609.10494v1"
         }
       ],
-      "id": "entropy-regularized-rank-masked-policy-optimization-for-test-time-reinforcement-learning-in-code-generation",
+      "llm_reason": "据摘要（arXiv 2609.10494v1）：IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold-blind capability-binding preflight + reliability-inclusive first-pass scoring + 18 个被审计基准的差距诊断。这正好命中 aiutil 长期关心的'评测 ≠ 模型标识符'：weights / serving route / precision / output contract / harness 应作为联合变量打分。与 aiutil 关心的 routing / eval-governance 路线高度共振。代码/benchmark：暂无（数据来自 18 份公开 benchmark 的审计结果），需打开 PDF 看协议定义是否可作为内部 eval template 复用。",
+      "id": "ibib-a-protocol-for-measuring-enterprise-ai-systems-by-serving-route-not-model-identifier",
       "value_type": "trend",
       "matched_topics": [
-        "coding-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "llm_reason": "据摘要 (arXiv 2609.09135v1)：probe-driven TTRL 用'probe inputs constructed from problem statement'让 answer-level self-voting 在 code generation 上重新可用；熵正则 + rank-masked policy 给出训练信号。直接与 test-time RL / coding-agent / spec-based scoring 同方向共振。代码/benchmark：暂无，需打开 PDF 核验 probe 构造与评估设定。",
-      "brief_cn": "Coding Agent：Existing methods for test-time reinforcement learning (TTRL) derive rewards fr…",
-      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.09135v1)：probe-driven TTRL 用'probe inputs constructed …",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要 (arXiv 2609.09135v1)：probe-driven TTRL 用'probe inputs constructed from problem statement'让 a",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=entropy-regularized-rank-masked-policy-optimization-for-test-time-reinforcement-learning-in-code-generation"
-    },
-    {
-      "title": "ReCite: Agentic Reasoning for Faithful Citation",
-      "authors": [
-        "Yuyang Huang",
-        "Bobo Li",
-        "Jiajia Song",
-        "Yuzhe Ding",
-        "Chong Teng"
-      ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09156v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09156v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Accurate citations are the foundation of academic writing, tracing intellectual origins and substantiating core claims. However, manually navigating the growing volume of scientific literature is increasingly difficult, prompting reliance on automatic citation recommendation. While modern retrieval-augmented architectures have largely mitigated the fabrication of non-existent papers, current systems relying on semantic similarity struggle with misattribution, often citing authentic papers that f",
-      "categories": [
-        "cs.CL"
-      ],
-      "keywords": [
-        "agent",
-        "agentic",
-        "planning"
-      ],
-      "score": 74.5,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09156v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09156v1"
-        }
-      ],
-      "id": "recite-agentic-reasoning-for-faithful-citation",
-      "value_type": "trend",
-      "matched_topics": [
-        "rag-knowledge",
-        "ai-agent"
+        "llm-evaluation",
+        "ai-agent",
+        "inference-serving"
       ],
       "score_breakdown": {
         "novelty": 5.4,
         "problem_importance": 6.45,
         "relevance": 7.4,
-        "evidence_strength": 4.5,
+        "evidence_strength": 5.4,
         "engineering_testability": 4.05,
-        "trend_signal": 4.05,
+        "trend_signal": 6.0,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
+        "asset_convertibility": 5.6,
         "actionability": 5.0,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
+        "weak_evidence_penalty": 4.0,
         "low_relevance_penalty": 0.8,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "llm_reason": "据摘要 (arXiv 2609.09156v1)：ReCite 用 agentic reasoning 把自动引用推荐从'semantic similarity → misattribution'推进到对真实引用意图的核查；与现代 RAG 架构消除'虚构论文'之后的下一步痛点（错误归因）直接对应。与 citation graph、knowledge-graph、RAG evidence trace 同方向。代码/benchmark：暂无，需打开 PDF 核验评测协议与是否提供 prompt 模板。",
-      "brief_cn": "RAG / 知识系统：Accurate citations are the foundation of academic writing, tracing intellectua…",
-      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.09156v1)：ReCite 用 agentic reasoning 把自动引用推荐从'semantic …",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
+      "brief_cn": "LLM 评测：Enterprises deploy systems, not checkpoints. Usable capability depends jointly…",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.10494v1）：IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要 (arXiv 2609.09156v1)：ReCite 用 agentic reasoning 把自动引用推荐从'semantic similarity → misattributio",
+      "long_tail_summary": "据摘要（arXiv 2609.10494v1）：IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold-blind capability-binding ",
       "related_trends": [
-        "context-engineering",
+        "coding-agent",
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=recite-agentic-reasoning-for-faithful-citation"
+      "detail_path": "paper-detail.html?id=ibib-a-protocol-for-measuring-enterprise-ai-systems-by-serving-route-not-model-identifier"
     },
     {
-      "title": "Procedural Graphs: Self-Evolving Execution Structures for LLM Agents",
+      "title": "Show-Harness: Just a VLM Agent Can Play Robots",
       "authors": [
-        "Yuxing Lu",
-        "Yicheng Chen",
-        "Shanchan Wu",
-        "Sercan Ö. Arık"
+        "Yanzhe Chen",
+        "Zechen Bai",
+        "Zhijun Cao",
+        "Wenzheng Zeng",
+        "Kevin Qinghong Lin"
       ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09153v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09153v1",
+      "url": "http://arxiv.org/abs/2609.10522v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10522v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Large language models are increasingly deployed as agents that plan over long horizons and act through external tools. Most agents select actions through unconstrained generation over an accumulating history, leaving implicit the procedural knowledge of what to do, in what order, and under which conditions. As trajectories lengthen, agents can lose track of their objectives, invoke tools out of order, and repeat unproductive actions. We introduce the Procedural Graph: just as a knowledge graph o",
+      "abstract": "Foundation vision-language models (VLMs) exhibit broad intelligence about the world, yet translating this intelligence into robot control remains challenging. We present Show-Harness, an Embodied Harness that enables VLMs to \"play\" robots through a compact semantic interface linking intent to action. Show-Harness exposes discrete semantic action units that VLMs can naturally reason over, while embodiment-specific interpreters deterministically ground them into local robot actions, keeping the VL",
       "categories": [
+        "cs.RO",
         "cs.AI",
-        "cs.CL",
-        "cs.MA"
+        "cs.CV",
+        "cs.MM"
       ],
       "keywords": [
         "agent",
-        "memory",
-        "RAG"
+        "agentic"
       ],
-      "score": 73.0,
+      "score": 73.5,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09153v1"
+          "url": "http://arxiv.org/abs/2609.10522v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09153v1"
+          "url": "https://arxiv.org/pdf/2609.10522v1"
         }
       ],
-      "id": "procedural-graphs-self-evolving-execution-structures-for-llm-agents",
+      "llm_reason": "据摘要（arXiv 2609.10522v1）：Show-Harness 用 compact semantic interface 把 VLM 桥接到机器人控制——expose discrete semantic action units，embodiment-specific interpreters 确定性 ground 到 local action。属于 embodied agent / world-model 路线，趋势价值高于即时试验价值。代码/benchmark：暂无，需打开 PDF 看 sim2real 与 action unit 抽象是否给出工程复用点。",
+      "id": "show-harness-just-a-vlm-agent-can-play-robots",
       "value_type": "trend",
       "matched_topics": [
-        "ai-agent",
-        "context-engineering",
-        "rag-knowledge"
+        "multimodal-agent",
+        "ai-agent"
       ],
       "score_breakdown": {
-        "novelty": 4.8,
+        "novelty": 5.4,
         "problem_importance": 5.8,
         "relevance": 6.2,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
@@ -412,75 +341,218 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "llm_reason": "据摘要 (arXiv 2609.09153v1)：Procedural Graph 把'程序性知识'显式化成 self-evolving 执行结构，应对长 horizon Agent 的'目标漂移、工具乱序、重复无效动作'。与 memory / planning / agent workflow 同方向；适合沉淀为 Skill 与 Checklist 模板。代码/benchmark：暂无，需打开 PDF 看是否给出 graph 抽取规则与示例。",
-      "brief_cn": "AI Agent：Large language models are increasingly deployed as agents that plan over long …",
-      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.09153v1)：Procedural Graph 把'程序性知识'显式化成 self-evolving 执…",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
+      "brief_cn": "Multimodal Agent：Foundation vision-language models (VLMs) exhibit broad intelligence about the …",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.10522v1）：Show-Harness 用 compact semantic interface 把 VL…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
       "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要 (arXiv 2609.09153v1)：Procedural Graph 把'程序性知识'显式化成 self-evolving 执行结构，应对长 horizon Agent 的'目标",
+      "long_tail_summary": "据摘要（arXiv 2609.10522v1）：Show-Harness 用 compact semantic interface 把 VLM 桥接到机器人控制——expose discret",
       "related_trends": [
-        "agentic-world-modeling",
-        "context-engineering"
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=procedural-graphs-self-evolving-execution-structures-for-llm-agents"
+      "detail_path": "paper-detail.html?id=show-harness-just-a-vlm-agent-can-play-robots"
     },
     {
-      "title": "TANGO: Humanoid Navigation in Cluttered Environments with a Whole-Body Vision-Language-Action Model",
+      "title": "IdeaAMBIG: Benchmarking Implementation-Critical Gaps in Research-Idea Specifications",
       "authors": [
-        "Anqi Li",
-        "Yuxin Chen",
-        "Zhaobo Li",
-        "Zhuo Cao",
-        "Junli Ren"
+        "Yiling Ma",
+        "Yilun Zhao",
+        "Sihong Wu",
+        "Manasi Patwardhan",
+        "Arman Cohan"
       ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09158v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09158v1",
+      "url": "http://arxiv.org/abs/2609.10539v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10539v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "We study the problem of navigating cluttered indoor environments with a humanoid robot. Unlike conventional methods that model navigation as a 2D path planning problem, humanoid traversal in cluttered environments requires continuous geometry-aware whole-body adaptation, including coordinated arm placement, torso adjustment, and gait modulation for collision-free movement through complex 3D spaces. We introduce TANGO, the first whole-body vision-language navigation framework for language-conditi",
+      "abstract": "A research idea may be novel, coherent, and scientifically plausible, yet its proposed method may remain insufficiently specified for faithful implementation. We study the codification readiness of implementation-facing research-method specifications, defined by whether they provide sufficient methodological information for a competent implementer or coding agent to construct the intended method without unsupported assumptions. We construct evidence-grounded specifications and their supported re",
       "categories": [
-        "cs.RO",
-        "cs.AI"
+        "cs.CL"
       ],
       "keywords": [
-        "planning"
+        "agent",
+        "coding agent",
+        "benchmark"
       ],
-      "score": 71.0,
+      "score": 72.5,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09158v1"
+          "url": "http://arxiv.org/abs/2609.10539v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09158v1"
+          "url": "https://arxiv.org/pdf/2609.10539v1"
         }
       ],
-      "id": "tango-humanoid-navigation-in-cluttered-environments-with-a-whole-body-vision-language-action-model",
+      "llm_reason": "据摘要（arXiv 2609.10539v1）：IdeaAMBIG 直接量化'research idea 描述到实现之间到底缺多少信息'——'codification readiness' 维度对'写作 agent + coding agent' 流水线是核心瓶颈。属于 LLM-eval × coding-agent 交叉方法学资产，与 aiutil 的'程序化知识'路线（2609.09153）共振。代码/benchmark：暂无，需打开 PDF 看 evaluation contract 与 evidence-grounded spec 的构造方法。",
+      "id": "ideaambig-benchmarking-implementation-critical-gaps-in-research-idea-specifications",
       "value_type": "trend",
       "matched_topics": [
-        "multimodal-agent",
-        "ai-agent"
+        "llm-evaluation",
+        "coding-agent"
       ],
       "score_breakdown": {
         "novelty": 5.4,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：A research idea may be novel, coherent, and scientifically plausible, yet its …",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.10539v1）：IdeaAMBIG 直接量化'research idea 描述到实现之间到底缺多少信息'——…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要（arXiv 2609.10539v1）：IdeaAMBIG 直接量化'research idea 描述到实现之间到底缺多少信息'——'codification readiness' 维",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=ideaambig-benchmarking-implementation-critical-gaps-in-research-idea-specifications"
+    },
+    {
+      "title": "A positive resolution of the gap-entropy conjecture",
+      "authors": [
+        "P. M. Aronow",
+        "Nathan Kallus",
+        "Patrick Lopatto"
+      ],
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.10529v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10529v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We prove the gap-entropy conjecture for fixed-confidence best-arm identification with independent unit-variance Gaussian arms, means in $[0,1]$, and a unique optimal arm. For each suboptimal arm $i$, let $Δ_i=μ_*-μ_i$ be its gap from the optimal mean, and write $H=\\sum_{i\\ne *}Δ_i^{-2}$. Let $p_r$ be the fraction of $H$ contributed by arms with $2^{-(r+1)}<Δ_i\\le2^{-r}$, and let $\\mathrm{Ent}(I)=\\sum_{r:p_r>0} p_r\\log(1/p_r)$. Among all algorithms that identify the optimal arm with probability a",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.10529v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.10529v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.10529v1）：证明固定置信 best-arm identification 的 gap-entropy 下界最优——BAI 理论的精确刻画。长尾保留：理论资产，与 aiutil 当前路线相关度有限（实验/RL 选 arm 时偶尔会引用）。代码/benchmark：暂无。",
+      "id": "a-positive-resolution-of-the-gap-entropy-conjecture",
+      "value_type": "long_tail",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "前沿论文：We prove the gap-entropy conjecture for fixed-confidence best-arm identificati…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.10529v1）：证明固定置信 best-arm identification 的 gap-entropy 下…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2609.10529v1）：证明固定置信 best-arm identification 的 gap-entropy 下界最优——BAI 理论的精确刻画。长尾保留：理论资产",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=a-positive-resolution-of-the-gap-entropy-conjecture"
+    },
+    {
+      "title": "Likelihood-free inference with nuisance parameters through normalizing flows",
+      "authors": [
+        "Phil Assheton"
+      ],
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.10534v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10534v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We present a simple decomposition of a neural-network-based normalizing flow that naturally uncovers a pivotal statistic (or something close) in the presence of nuisance parameters, based only on a sample generator from the distribution of interest. We show that the statistic is near-pivotal in the sense of minimum average KL-divergence of its $p$-values versus uniform and we argue that it can be expected to have good power when the dimension of the statistic equals the dimension of the paramete",
+      "categories": [
+        "stat.ME",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "keywords": [
+        "RAG",
+        "inference"
+      ],
+      "score": 60.5,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.10534v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.10534v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.10534v1）：用 normalizing flow 分解自然导出 nuisance-parameter 设置下的近 pivotal statistic，附带 KL-p-value 与 power 论证。理论推断资产——长尾保留。除非团队正做 likelihood-free inference / 仿真推断，否则相关性有限。代码/benchmark：暂无。",
+      "id": "likelihood-free-inference-with-nuisance-parameters-through-normalizing-flows",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "rag-knowledge",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
         "problem_importance": 5.8,
         "relevance": 6.2,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
+        "asset_convertibility": 4.8,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
@@ -488,64 +560,61 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "llm_reason": "据摘要 (arXiv 2609.09158v1)：TANGO 是第一个 whole-body vision-language-action 的人形机器人导航框架，把传统 2D 路径规划推到 coordinated arm placement / torso adjustment / gait modulation 的连续几何适应。与 VLA、embodied agent、world-model navigation 路线共振。代码/benchmark：暂无；需打开 PDF 看 sim2real 设置。",
-      "brief_cn": "Multimodal Agent：We study the problem of navigating cluttered indoor environments with a humano…",
-      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.09158v1)：TANGO 是第一个 whole-body vision-language-action …",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要 (arXiv 2609.09158v1)：TANGO 是第一个 whole-body vision-language-action 的人形机器人导航框架，把传统 2D 路径规划推到 c",
+      "trend_status": "long_tail_watch",
+      "brief_cn": "RAG / 知识系统：We present a simple decomposition of a neural-network-based normalizing flow t…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.10534v1）：用 normalizing flow 分解自然导出 nuisance-parameter 设…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2609.10534v1）：用 normalizing flow 分解自然导出 nuisance-parameter 设置下的近 pivotal statistic，附带 ",
       "related_trends": [
-        "agentic-world-modeling"
+        "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=tango-humanoid-navigation-in-cluttered-environments-with-a-whole-body-vision-language-action-model"
+      "detail_path": "paper-detail.html?id=likelihood-free-inference-with-nuisance-parameters-through-normalizing-flows"
     },
     {
-      "title": "Copying explains the collective behavior of AI agents in the wild",
+      "title": "Characterizing Language Generation in the Limit: Finite Witnesses and a Separation-Width Hierarch",
       "authors": [
-        "Giordano De Marzo",
-        "Nicola Albore",
-        "David Garcia"
+        "Xiaoyu Li",
+        "Andi Han",
+        "Jiaojiao Jiang",
+        "Junbin Gao"
       ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09150v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09150v1",
+      "url": "http://arxiv.org/abs/2609.10525v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10525v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "In June 2026, thousands of AI agents found that a small public wiki would accept edits from inside their sandboxes, and started using it to help one another pass a timed test. Each agent lived for about an hour and remembered nothing afterwards. Nobody asked them to cooperate, and the wiki had not been built for them. The complete record of what they wrote is public, and it is unusually informative, because it preserves not only what each agent wrote but what that agent could see before writing.",
+      "abstract": "Language generation in the limit asks for valid unseen elements from every exhaustive positive presentation of an unknown infinite language. We characterize this task for arbitrary families over a countable universe. Generation is possible exactly when each target can be assigned a finite positive witness so that the targets activated by any finite sample have an infinite common intersection. The necessary direction follows from a universal normalization: a search through unconfirmed histories c",
       "categories": [
-        "cs.MA",
-        "cond-mat.stat-mech",
-        "cs.CL"
+        "cs.FL",
+        "cs.LG"
       ],
-      "keywords": [
-        "agent"
-      ],
-      "score": 70.0,
-      "decision": "轻量试点",
+      "keywords": [],
+      "score": 58.5,
+      "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09150v1"
+          "url": "http://arxiv.org/abs/2609.10525v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09150v1"
+          "url": "https://arxiv.org/pdf/2609.10525v1"
         }
       ],
-      "id": "copying-explains-the-collective-behavior-of-ai-agents-in-the-wild",
-      "value_type": "trend",
+      "llm_reason": "据摘要（arXiv 2609.10525v1）：'Language generation in the limit' 给出一个 finite-witness 充要条件 + separation-width 层级。属于形式语言/学习理论资产，长尾保留——对 in-context learning / distribution shift 的边界讨论有间接价值。代码/benchmark：暂无。",
+      "id": "characterizing-language-generation-in-the-limit-finite-witnesses-and-a-separation-width-hierarch",
+      "value_type": "long_tail",
       "matched_topics": [
-        "ai-agent",
-        "security-governance"
+        "rag-knowledge"
       ],
       "score_breakdown": {
         "novelty": 4.8,
@@ -563,359 +632,143 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "llm_reason": "据摘要 (arXiv 2609.09150v1)：2026 年 6 月公共 wiki 被 sandbox 内 AI agent 自发用作协同完成 timed test 的完整可追溯记录，研究其集体行为（'copying'机制）。与 emergent cooperation / sandbox safety / agent observability 直接相关，是少有的'真实部署集体行为'实证。代码/benchmark：暂无，数据来自论文本身公开的 wiki 记录。",
-      "brief_cn": "AI Agent：In June 2026, thousands of AI agents found that a small public wiki would acce…",
-      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.09150v1)：2026 年 6 月公共 wiki 被 sandbox 内 AI agent 自发用作协同…",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要 (arXiv 2609.09150v1)：2026 年 6 月公共 wiki 被 sandbox 内 AI agent 自发用作协同完成 timed test 的完整可追溯记录，研究其",
+      "trend_status": "long_tail_watch",
+      "brief_cn": "RAG / 知识系统：Language generation in the limit asks for valid unseen elements from every exh…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.10525v1）：'Language generation in the limit' 给出一个 finite…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2609.10525v1）：'Language generation in the limit' 给出一个 finite-witness 充要条件 + separation",
       "related_trends": [
-        "agentic-world-modeling"
+        "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=copying-explains-the-collective-behavior-of-ai-agents-in-the-wild"
+      "detail_path": "paper-detail.html?id=characterizing-language-generation-in-the-limit-finite-witnesses-and-a-separation-width-hierarch"
     },
     {
-      "title": "Learning Length-Extrapolatable Recurrent Models",
+      "title": "Cross-Model Agreement as a Deployment-Time Reliability Signal for Automatic Polyp Segmentation",
       "authors": [
-        "Hanwen Jiang"
+        "Siddharth Gupta",
+        "Jitin Singla"
       ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09157v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09157v1",
+      "url": "http://arxiv.org/abs/2609.10495v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10495v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Recurrent models provide a natural path to long-context modeling, yet models trained with backpropagation through time (BPTT) often fail beyond their training horizon. Classical analyses emphasize gradients that vanish or explode along temporal paths. However, dense per-token losses can still train a shared recurrent rule despite severe decay, showing that decay alone does not determine whether learning fails. We instead study state credit: the signal through which future losses reach earlier re",
-      "categories": [
-        "cs.LG",
-        "cs.CL"
-      ],
-      "keywords": [],
-      "score": 69.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09157v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09157v1"
-        }
-      ],
-      "id": "learning-length-extrapolatable-recurrent-models",
-      "value_type": "trend",
-      "matched_topics": [
-        "context-engineering"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 5.0,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "llm_reason": "据摘要 (arXiv 2609.09157v1)：用 'state credit' 而非梯度消失/爆炸解释 RNN 长上下文外推失败的根源，区分了'decay'与'state credit'两个不同机制，为 length-extrapolatable recurrent model 提供新理论角度。与 long-context、recurrent vs Transformer 系列讨论相关，趋势层价值。代码/benchmark：暂无。",
-      "brief_cn": "Context Engineering：Recurrent models provide a natural path to long-context modeling, yet models t…",
-      "one_line_judgement": "值得继续观察：据摘要 (arXiv 2609.09157v1)：用 'state credit' 而非梯度消失/爆炸解释 RNN 长上下文外推失败的根源，…",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要 (arXiv 2609.09157v1)：用 'state credit' 而非梯度消失/爆炸解释 RNN 长上下文外推失败的根源，区分了'decay'与'state credit'两",
-      "related_trends": [
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=learning-length-extrapolatable-recurrent-models"
-    },
-    {
-      "title": "Studying Image Tokenizers as Visual Languages in Unified Multimodal Models",
-      "authors": [
-        "Siting Li",
-        "Zhengyang Wang",
-        "Simon Shaolei Du",
-        "Xi Chen",
-        "Yang Liu"
-      ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09143v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09143v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Image tokenizers define the ``visual language'' of unified multimodal models, yet are commonly studied through isolated metrics or generation-/understanding-only evaluations. These evaluations do not fully capture how visual tokens behave when modeled jointly with text. We build a controlled pure-autoregressive testbed and track task-specific validation losses during multimodal continual pretraining across text, image, text-to-image (T2I), and image-to-text (I2T) prediction. We examine how these",
+      "abstract": "In real-time colonoscopy, ground-truth annotations are unavailable at inference, so polyp segmentation models can fail silently. We propose Referee-Based Quality Estimation (RBQE), a reference-free framework measuring agreement between a primary segmentation model and an independently trained referee on the same image. RBQE is evaluated on a standardized 1,223-image external benchmark drawn from four public datasets, using four referee configurations chosen to separate two design axes: referee i",
       "categories": [
         "cs.CV",
-        "cs.CL"
+        "cs.LG"
       ],
       "keywords": [
         "evaluation",
-        "multimodal"
-      ],
-      "score": 68.5,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09143v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09143v1"
-        }
-      ],
-      "id": "studying-image-tokenizers-as-visual-languages-in-unified-multimodal-models",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "multimodal-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 5.4,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 4.0,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "llm_reason": "据摘要 (arXiv 2609.09143v1)：在 controlled pure-autoregressive testbed 中跟踪 text/image/T2I/I2T 各自的 validation loss，研究 image tokenizer 跨任务行为。属于视觉 tokenization 评测方法资产，长尾保留价值高于即时试验价值。代码/benchmark：暂无。",
-      "brief_cn": "Multimodal Agent：Image tokenizers define the ``visual language'' of unified multimodal models, …",
-      "one_line_judgement": "值得先保存：据摘要 (arXiv 2609.09143v1)：在 controlled pure-autoregressive testbed 中跟踪 …",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要 (arXiv 2609.09143v1)：在 controlled pure-autoregressive testbed 中跟踪 text/image/T2I/I2T 各自的 val",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=studying-image-tokenizers-as-visual-languages-in-unified-multimodal-models"
-    },
-    {
-      "title": "Silver Rate Is (Almost) Optimal for Gradient Descent Acceleration",
-      "authors": [
-        "Yuhan Ye",
-        "Kaizhao Liu"
-      ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09152v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09152v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "We study how far gradient descent (GD) can be accelerated by predetermined nonnegative stepsizes in smooth convex optimization. Writing $p_{\\mathrm{sil}}=\\log_2(1+\\sqrt{2})$, we prove an $Ω\\left(n^{-p_{\\mathrm{sil}}-O(\\sqrt{\\log\\log n/\\log n})}\\right)$ non-anytime lower bound. In the anytime setting, every infinite nonnegative schedule has infinitely many horizons with error $Ω\\left(n^{-\\frac{2p_{\\mathrm{sil}}}{1+p_{\\mathrm{sil}}}-O(\\sqrt{\\log\\log n/\\log n})}\\right)$. Together with the silver-sc",
-      "categories": [
-        "math.OC",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 56.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09152v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09152v1"
-        }
-      ],
-      "id": "silver-rate-is-almost-optimal-for-gradient-descent-acceleration",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "inference-serving"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "llm_reason": "据摘要 (arXiv 2609.09152v1)：在 smooth convex optimization 下证明 GD 的 silver-rate 步长几乎最优，给出 non-anytime / anytime 两类下界。优化理论资产，与 acceleration、momentum 选步长相关；长尾保留——除非团队正做优化器选型，否则相关性有限。代码/benchmark：暂无。",
-      "brief_cn": "推理与服务：We study how far gradient descent (GD) can be accelerated by predetermined non…",
-      "one_line_judgement": "值得先保存：据摘要 (arXiv 2609.09152v1)：在 smooth convex optimization 下证明 GD 的 silver-…",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要 (arXiv 2609.09152v1)：在 smooth convex optimization 下证明 GD 的 silver-rate 步长几乎最优，给出 non-anytime",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=silver-rate-is-almost-optimal-for-gradient-descent-acceleration"
-    },
-    {
-      "title": "NOAH: Learning the Full Patient Journey. A Longitudinal Multimodal Time-Aware Model for Representation and Forecasting",
-      "authors": [
-        "Tobias Susetzky",
-        "Raphael Rehms",
-        "Dmitrii Seletkov",
-        "Özgün Turgut",
-        "Michelle Espranita Liman"
-      ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09140v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09140v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "The digitization of healthcare has generated vast, longitudinal, and multimodal patient records over a lifetime, yet fully exploiting these data to represent and predict patient state trajectories remains a critical challenge. Current AI models often struggle to capture the complex, irregular temporal dynamics and inherent stochasticity of real-world multimodal patient data. Existing AI approaches for modeling longitudinal patient records are predominantly discriminative, limited to a few modali",
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "keywords": [
-        "multimodal"
+        "benchmark",
+        "inference"
       ],
       "score": 55.5,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09140v1"
+          "url": "http://arxiv.org/abs/2609.10495v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09140v1"
+          "url": "https://arxiv.org/pdf/2609.10495v1"
         }
       ],
-      "id": "noah-learning-the-full-patient-journey-a-longitudinal-multimodal-time-aware-model-for-representation-and-forecasting",
+      "llm_reason": "据摘要（arXiv 2609.10495v1）：RBQE 用 cross-model agreement 作为部署时无 ground-truth 的可靠性信号——4 referee 配置、1223 外部 benchmark。方法学资产（'用 reference-free agreement 估计模型可靠性'）有迁移价值，但领域是医学影像分割。代码/benchmark：暂无，长尾保留其方法学价值。",
+      "id": "cross-model-agreement-as-a-deployment-time-reliability-signal-for-automatic-polyp-segmentation",
       "value_type": "long_tail",
       "matched_topics": [
-        "multimodal-agent"
+        "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 5.45,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
+        "asset_convertibility": 7.0,
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 0,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "llm_reason": "据摘要 (arXiv 2609.09140v1)：NOAH 用 longitudinal multimodal + time-aware 表示做病人轨迹预测，针对现有医疗 AI 在 irregular temporal / stochastic 多模态数据上的限制。领域模型，长尾保留——除非团队做医疗 AI，否则相关性中等。代码/benchmark：暂无。",
-      "brief_cn": "Multimodal Agent：The digitization of healthcare has generated vast, longitudinal, and multimoda…",
-      "one_line_judgement": "值得先保存：据摘要 (arXiv 2609.09140v1)：NOAH 用 longitudinal multimodal + time-aware 表…",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
+      "brief_cn": "LLM 评测：In real-time colonoscopy, ground-truth annotations are unavailable at inferenc…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.10495v1）：RBQE 用 cross-model agreement 作为部署时无 ground-tru…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要 (arXiv 2609.09140v1)：NOAH 用 longitudinal multimodal + time-aware 表示做病人轨迹预测，针对现有医疗 AI 在 irreg",
+      "long_tail_summary": "据摘要（arXiv 2609.10495v1）：RBQE 用 cross-model agreement 作为部署时无 ground-truth 的可靠性信号——4 referee 配置、12",
       "related_trends": [
-        "agentic-world-modeling"
+        "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=noah-learning-the-full-patient-journey-a-longitudinal-multimodal-time-aware-model-for-representation-and-forecasting"
+      "detail_path": "paper-detail.html?id=cross-model-agreement-as-a-deployment-time-reliability-signal-for-automatic-polyp-segmentation"
     },
     {
-      "title": "A Data-Driven Framework for Identifying and Prioritizing RPA Opportunities in Healthcare Processes",
+      "title": "Optimal Low-Rank Quantum State Tomography with Bounded-Sample Joint Measurements",
       "authors": [
-        "Maria Alejandra Gomez",
-        "Juan Manuel Castillo"
+        "Ashwin Nayak",
+        "Xingyu Zhou"
       ],
-      "published": "2026-09-08",
-      "updated": "2026-09-08",
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.09137v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.09137v1",
+      "url": "http://arxiv.org/abs/2609.10514v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10514v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Robotic Process Automation (RPA) is widely used to reduce administrative burden in United States hospitals, yet an estimated 30-50% of RPA initiatives underperform because processes are selected informally, without a repeatable method to catalogue candidates, prioritize them, match each to an automation tier -- a Python bot, an open-source orchestrator such as n8n, or an enterprise platform such as UiPath -- and forecast financial return before committing resources. We propose a four-module, dat",
+      "abstract": "We determine the optimal sample complexity of low-rank quantum state tomography when each measurement may act jointly on at most $t$ samples. For sufficiently small $\\varepsilon$, estimating an unknown state on $\\mathbb{C}^d$ of rank at most $r$ to trace norm error $\\varepsilon$ with constant success probability requires, and is achievable with, $$ Θ\\left( \\frac{dr}{\\varepsilon^2} \\max\\left\\{1,\\frac r{\\sqrt t}\\right\\} \\right)$$ samples. The lower bound allows the protocol to choose each joint me",
       "categories": [
-        "cs.AI",
-        "cs.CL"
+        "quant-ph",
+        "cs.DS",
+        "cs.IT",
+        "cs.LG"
       ],
       "keywords": [],
-      "score": 48.0,
+      "score": 47.0,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.09137v1"
+          "url": "http://arxiv.org/abs/2609.10514v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.09137v1"
+          "url": "https://arxiv.org/pdf/2609.10514v1"
         }
       ],
-      "id": "a-data-driven-framework-for-identifying-and-prioritizing-rpa-opportunities-in-healthcare-processes",
+      "llm_reason": "据摘要（arXiv 2609.10514v1）：低秩量子态层析在有界样本联合测量下的最优样本复杂度下界/上界。量子信息理论，与 aiutil 关注方向偏离较大；新意/相关性较弱。代码/benchmark：暂无。",
+      "id": "optimal-low-rank-quantum-state-tomography-with-bounded-sample-joint-measurements",
       "value_type": "ignore",
-      "matched_topics": [
-        "ai-k8s-platform"
-      ],
+      "matched_topics": [],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.4,
+        "asset_convertibility": 4.0,
         "actionability": 3.8,
         "noise_risk": 2.4,
         "weak_evidence_penalty": 5.0,
@@ -924,64 +777,202 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "noise",
-      "llm_reason": "据摘要 (arXiv 2609.09137v1)：针对美国医院 RPA 场景的四模块数据驱动框架（候选识别→优先级→自动化等级匹配→财务回报预测），强调'非正式选择是 30-50% 失败的主因'。与 aiutil 关心的'AI Agent / Context Engineering / LLM 评测'主题偏离较远；新意/证据较弱。代码/benchmark：暂无。",
-      "brief_cn": "AI 平台工程：Robotic Process Automation (RPA) is widely used to reduce administrative burde…",
-      "one_line_judgement": "当前可忽略：据摘要 (arXiv 2609.09137v1)：针对美国医院 RPA 场景的四模块数据驱动框架（候选识别→优先级→自动化等级匹配→财务回报…",
-      "first_seen_date": "2026-09-10",
-      "first_deep_dive_daily": "2026-09-10",
+      "brief_cn": "前沿论文：We determine the optimal sample complexity of low-rank quantum state tomograph…",
+      "one_line_judgement": "当前可忽略：据摘要（arXiv 2609.10514v1）：低秩量子态层析在有界样本联合测量下的最优样本复杂度下界/上界。量子信息理论，与 aiutil…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "据摘要 (arXiv 2609.09137v1)：针对美国医院 RPA 场景的四模块数据驱动框架（候选识别→优先级→自动化等级匹配→财务回报预测），强调'非正式选择是 30-50% 失败的主因",
+      "long_tail_summary": "据摘要（arXiv 2609.10514v1）：低秩量子态层析在有界样本联合测量下的最优样本复杂度下界/上界。量子信息理论，与 aiutil 关注方向偏离较大；新意/相关性较弱。代码/benc",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=a-data-driven-framework-for-identifying-and-prioritizing-rpa-opportunities-in-healthcare-processes"
+      "detail_path": "paper-detail.html?id=optimal-low-rank-quantum-state-tomography-with-bounded-sample-joint-measurements"
+    },
+    {
+      "title": "Quantum Feature Engineering for Credit Default Prediction: When and Why IQP Circuits Help Linear Classifiers",
+      "authors": [
+        "Menachem Finkelstein",
+        "Diana Legziel Levy",
+        "Zohar Yakhini",
+        "Sarel Cohen"
+      ],
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.10505v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10505v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Credit default prediction is a tabular classification problem in which modest gains in F1 translate directly into reduced financial exposure. We ask whether Instantaneous Quantum Polynomial-time (IQP) circuits can produce features that improve a classifier over both its raw classical baseline and Kernel PCA - the strongest unsupervised classical non-linear alternative - at an equal feature budget. The dataset provides 23 financial attributes per client; for an n-qubit circuit we select n of them",
+      "categories": [
+        "cs.LG",
+        "quant-ph"
+      ],
+      "keywords": [],
+      "score": 46.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.10505v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.10505v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.10505v1）：在 23 维信用违约数据上比较 IQP 电路特征 vs Kernel PCA 的线性分类器增益。量子机器学习在小规模金融表格数据上的应用——量子路线 + 金融领域同时偏离 aiutil 核心方向。代码/benchmark：暂无。",
+      "id": "quantum-feature-engineering-for-credit-default-prediction-when-and-why-iqp-circuits-help-linear-classifiers",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：Credit default prediction is a tabular classification problem in which modest …",
+      "one_line_judgement": "当前可忽略：据摘要（arXiv 2609.10505v1）：在 23 维信用违约数据上比较 IQP 电路特征 vs Kernel PCA 的线性分类器增…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "据摘要（arXiv 2609.10505v1）：在 23 维信用违约数据上比较 IQP 电路特征 vs Kernel PCA 的线性分类器增益。量子机器学习在小规模金融表格数据上的应用——量子",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=quantum-feature-engineering-for-credit-default-prediction-when-and-why-iqp-circuits-help-linear-classifiers"
+    },
+    {
+      "title": "Wicked Problem, Parsimonious Solution: Securing Electric Vehicle Charging Station Software",
+      "authors": [
+        "Emma Sheppard",
+        "Zachary Wadhams",
+        "Dalton Arford",
+        "Clemente Izurieta",
+        "Ann Marie Reinhold"
+      ],
+      "published": "2026-09-09",
+      "updated": "2026-09-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.10502v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.10502v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Electric vehicle charging infrastructure presents a suite of novel cyber-physical threats. Among this infrastructure, charging stations are the most vulnerable elements. The software in the charging station supply equipment is particularly vulnerable. Currently, the software is an attack surface that is largely unprotected and poorly characterized. To represent the vulnerabilities in this attack surface, we advocate for applying modern software quality assurance to characterize vulnerabilities i",
+      "categories": [
+        "cs.CR",
+        "cs.SE"
+      ],
+      "keywords": [],
+      "score": 45.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.10502v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.10502v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.10502v1）：电动车充电站软件的攻击面分析与软件质量保证建议——SE/CR 议题，但与 aiutil 关心的'AI Agent / Context Engineering / LLM 评测'主题偏离较远；新意中等。代码/benchmark：暂无。",
+      "id": "wicked-problem-parsimonious-solution-securing-electric-vehicle-charging-station-software",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-k8s-platform"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "AI 平台工程：Electric vehicle charging infrastructure presents a suite of novel cyber-physi…",
+      "one_line_judgement": "当前可忽略：据摘要（arXiv 2609.10502v1）：电动车充电站软件的攻击面分析与软件质量保证建议——SE/CR 议题，但与 aiutil 关心…",
+      "first_seen_date": "2026-09-11",
+      "first_deep_dive_daily": "2026-09-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "据摘要（arXiv 2609.10502v1）：电动车充电站软件的攻击面分析与软件质量保证建议——SE/CR 议题，但与 aiutil 关心的'AI Agent / Context Engin",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=wicked-problem-parsimonious-solution-securing-electric-vehicle-charging-station-software"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "studying-image-tokenizers-as-visual-languages-in-unified-multimodal-models",
-      "title": "Studying Image Tokenizers as Visual Languages in Unified Multimodal Models",
-      "direction": "Multimodal Agent / LLM 评测",
+      "id": "a-positive-resolution-of-the-gap-entropy-conjecture",
+      "title": "A positive resolution of the gap-entropy conjecture",
+      "direction": "未分类",
       "long_tail_type": "工程抽象",
-      "why_save": "据摘要 (arXiv 2609.09143v1)：在 controlled pure-autoregressive testbed 中跟踪 text/image/T2I/I2T 各自的 val",
+      "why_save": "据摘要（arXiv 2609.10529v1）：证明固定置信 best-arm identification 的 gap-entropy 下界最优——BAI 理论的精确刻画。长尾保留：理论资产",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-10-01",
-      "detail_path": "paper-detail.html?id=studying-image-tokenizers-as-visual-languages-in-unified-multimodal-models"
+      "revisit_date": "2026-10-02",
+      "detail_path": "paper-detail.html?id=a-positive-resolution-of-the-gap-entropy-conjecture"
     },
     {
-      "id": "silver-rate-is-almost-optimal-for-gradient-descent-acceleration",
-      "title": "Silver Rate Is (Almost) Optimal for Gradient Descent Acceleration",
-      "direction": "推理与服务",
+      "id": "likelihood-free-inference-with-nuisance-parameters-through-normalizing-flows",
+      "title": "Likelihood-free inference with nuisance parameters through normalizing flows",
+      "direction": "RAG / 知识系统 / 推理与服务",
       "long_tail_type": "工程抽象",
-      "why_save": "据摘要 (arXiv 2609.09152v1)：在 smooth convex optimization 下证明 GD 的 silver-rate 步长几乎最优，给出 non-anytime",
+      "why_save": "据摘要（arXiv 2609.10534v1）：用 normalizing flow 分解自然导出 nuisance-parameter 设置下的近 pivotal statistic，附带 ",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-10-01",
-      "detail_path": "paper-detail.html?id=silver-rate-is-almost-optimal-for-gradient-descent-acceleration"
+      "revisit_date": "2026-10-02",
+      "detail_path": "paper-detail.html?id=likelihood-free-inference-with-nuisance-parameters-through-normalizing-flows"
     },
     {
-      "id": "noah-learning-the-full-patient-journey-a-longitudinal-multimodal-time-aware-model-for-representation-and-forecasting",
-      "title": "NOAH: Learning the Full Patient Journey. A Longitudinal Multimodal Time-Aware Model for Representation and Forecasting",
-      "direction": "Multimodal Agent",
+      "id": "characterizing-language-generation-in-the-limit-finite-witnesses-and-a-separation-width-hierarch",
+      "title": "Characterizing Language Generation in the Limit: Finite Witnesses and a Separation-Width Hierarch",
+      "direction": "RAG / 知识系统",
       "long_tail_type": "工程抽象",
-      "why_save": "据摘要 (arXiv 2609.09140v1)：NOAH 用 longitudinal multimodal + time-aware 表示做病人轨迹预测，针对现有医疗 AI 在 irreg",
+      "why_save": "据摘要（arXiv 2609.10525v1）：'Language generation in the limit' 给出一个 finite-witness 充要条件 + separation",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-10-01",
-      "detail_path": "paper-detail.html?id=noah-learning-the-full-patient-journey-a-longitudinal-multimodal-time-aware-model-for-representation-and-forecasting"
+      "revisit_date": "2026-10-02",
+      "detail_path": "paper-detail.html?id=characterizing-language-generation-in-the-limit-finite-witnesses-and-a-separation-width-hierarch"
     }
   ],
   "common_research_path": [
