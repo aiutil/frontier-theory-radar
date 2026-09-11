@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-11
+## 最新研究 · 2026-09-12
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 162 | 146 | 1314 |
+| 10 | 108 | 165 | 152 | 1315 |
 
-**今日深挖：** [IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier](daily/2026/2026-09-11.md) · 趋势价值 · 轻量试点
+**今日深挖：** [Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data](daily/2026/2026-09-12.md) · 趋势价值 · 轻量试点
 
-**核心判断：** 据摘要（arXiv 2609.10494v1），IBIB 把'企业部署的是系统、不是 checkpoint'做成可报告的测量问题——gold-blind capability-binding preflight + reliability-inclusive first-pass scoring + 对 18 个被审计基准的差距诊断。这正好命中 aiutil 长期关心的'评测 ≠ 模型标识符'：weights / serving route / precision / output contract / harness 应作为联合变量打分。
+**核心判断：** 据摘要（arXiv 2609.11917v1），该工作系统比较 MoE 在不同 repetition rate / domain mix / expert count 下的过拟合行为，给出'MoE 比 dense 更易被重复数据放大'的实证结论——这正好命中 aiutil 长期关心的训练数据治理 × 稀疏架构交叉路线：当 LLM 训练进入 human-written text 耗尽阶段，MoE 这一占主导地位的架构反而把数据重复的危害放大，是训练流水线设计的硬约束。
 
-**建议动作：** 跟踪 IBIB（[2609.10494](http://arxiv.org/abs/2609.10494v1)）完整 PDF 与是否开源 protocol；同步把 Show-Harness（[2609.10522](http://arxiv.org/abs/2609.10522v1)）、IdeaAMBIG（[2609.10539](http://arxiv.org/abs/2609.10539v1)）纳入趋势观察；为 RBQE（[2609.10495](http://arxiv.org/abs/2609.10495v1)）、Gap-Entropy 证明（[2609.10529](http://arxiv.org/abs/2609.10529v1)）、Likelihood-Free Inference via NF（[2609.10534](http://arxiv.org/abs/2609.10534v1)）、Language Generation in the Limit（[2609.10525](http://arxiv.org/abs/2609.10525v1)）建立分类观察卡片。
+**建议动作：** 跟踪 Data Scarcity and Model Sparsity（[2609.11917](http://arxiv.org/abs/2609.11917v1)）完整 PDF 与 ablation 数据是否公开；同步把 General Quantification of Covariate and Concept Shifts（[2609.11918](http://arxiv.org/abs/2609.11918v1)）、Artificial Id（[2609.11911](http://arxiv.org/abs/2609.11911v1)）纳入趋势观察；为 MindTopo / GPU-CFR / Edge VLM Species / Distance Generalization / TART / GMMM 建立长尾卡片；From Protocols to Evidence 因证据弱归入忽略池。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-11](daily/2026/2026-09-11.md) | IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier | 趋势价值 | 轻量试点 |
 | [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | 趋势价值 | 轻量试点 |
 | [2026-09-09](daily/2026/2026-09-09.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
 | [2026-09-08](daily/2026/2026-09-08.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
 | [2026-09-07](daily/2026/2026-09-07.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | 即时价值 | 重点学习 |
 | [2026-09-06](daily/2026/2026-09-06.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | 即时价值 | 重点学习 |
-| [2026-09-04](daily/2026/2026-09-04.md) | Post-Training Language Models for Gold-Medal Performance in Coding Competitions | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 559 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 472 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 559 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 560 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 475 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 560 |
 
 ## 为什么做这个项目
 

@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-09-11
+## Latest research run · 2026-09-12
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 162 | 146 | 1314 |
+| 10 | 108 | 165 | 152 | 1315 |
 
-**Deep dive:** [IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier](daily/2026/2026-09-11.md) · Trend · 轻量试点
+**Deep dive:** [Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data](daily/2026/2026-09-12.md) · Trend · 轻量试点
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,21 +35,21 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | Trend | 轻量试点 |
 | [2026-09-11](daily/2026/2026-09-11.md) | IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier | Trend | 轻量试点 |
 | [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | Trend | 轻量试点 |
 | [2026-09-09](daily/2026/2026-09-09.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | Ignore | 暂时忽略 |
 | [2026-09-08](daily/2026/2026-09-08.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | Ignore | 暂时忽略 |
 | [2026-09-07](daily/2026/2026-09-07.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | Immediate | 重点学习 |
 | [2026-09-06](daily/2026/2026-09-06.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | Immediate | 重点学习 |
-| [2026-09-04](daily/2026/2026-09-04.md) | Post-Training Language Models for Gold-Medal Performance in Coding Competitions | Immediate | 重点学习 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 559 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 472 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 559 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 560 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 475 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 560 |
 
 ## Why this repository exists
 
