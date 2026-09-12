@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-09-12T04:32:40.668148",
+  "updated_at": "2026-09-13T04:32:33.932390",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-13",
+      "title": "论文价值发现日报 - 2026-09-13",
+      "deep_dive_title": "Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data",
+      "deep_dive_url": "http://arxiv.org/abs/2609.11917v1",
+      "decision": "轻量试点",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "daily_action": "跟踪 Data Scarcity and Model Sparsity（[2609.11917](http://arxiv.org/abs/2609.11917v1)）完整 PDF 与 ablation 数据是否公开；同步把 General Quantification of Covariate and Concept Shifts（[2609.11918](http://arxiv.org/abs/2609.11918v1)）、Artificial Id（[2609.11911](http://arxiv.org/abs/2609.11911v1)）纳入趋势观察；为 MindTopo / GPU-CFR / Edge VLM Species / Distance Generalization / TART / GMMM 建立长尾卡片；From Protocols to Evidence 因证据弱归入忽略池。",
+      "max_uncertainty": "Data Scarcity and Model Sparsity 等论文是否提供可下载的 ablation 表格、训练数据与代码（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；MoE 在不同 sparsity 路由策略下的过拟合曲线是否能推广到生产级 MoE 训练仍待多源验证。",
+      "one_line_judgement": "据摘要（arXiv 2609.11917v1），该工作系统比较 MoE 在不同 repetition rate / domain mix / expert count 下的过拟合行为，给出'MoE 比 dense 更易被重复数据放大'的实证结论——这正好命中 aiutil 长期关心的训练数据治理 × 稀疏架构交叉路线：当 LLM 训练进入 human-written text 耗尽阶段，MoE 这一占主导地位的架构反而把数据重复的危害放大，是训练流水线设计的硬约束。",
+      "path": "daily-detail.html?date=2026-09-13"
+    },
     {
       "date": "2026-09-12",
       "title": "论文价值发现日报 - 2026-09-12",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 Determinization、Emotion driving、DCP、Knowing-Saying Gap、NL2SHACL、Coalition、MetaSpace、Negotiate 共 8 篇摘要截断。Coalition 的联盟形成算法与通信定价机制、Knowing-Saying Gap 的探针架构与模型规模、Negotiate 的 9 模型清单与亏损率、DCP 的运行时机制、MetaSpace 的蜕变关系定义均需正文确认。另：Coalition/MetaSpace 的关键词 RAG、Emotion driving 的 agent/inference 均为宽泛命中，已在评分中剔除。",
       "one_line_judgement": "Dynamic Coalition Formation 把'该激活哪些 agent、谁该跟谁通信'从经验问题变成可优化的合作博弈效用问题（任务条件净效用 U(C|x)=V(C|x)-Σc_i + 通信定价），直接关系多 agent 系统的 token/延迟/冗余成本控制。The Knowing-Saying Gap 是一篇反例/警示性工作——探针能近乎完美地检测被破坏上下文，却对最终答案正确性毫无预测力，被强制结构化的置信度坍缩到两个不可区分错误率的值；它直接质疑'用探针做运行时错误检测'和'用结构化置信度做可靠性保证'两类常见做法。When LLM Agents Negotiate 用 9840 次 LLM-to-LLM 谈判对 9 个模型与完美贝叶斯均衡做基准，回答'LLM 能否在私人信息下可靠议价'。三者都是'今天就值得在工程/评估上参考'的工作。",
       "path": "daily-detail.html?date=2026-08-12"
-    },
-    {
-      "date": "2026-08-11",
-      "title": "论文价值发现日报 - 2026-08-11",
-      "deep_dive_title": "CoinRAG: Contextualized Information Nugget KV Cache Reuse for Long-Context RAG",
-      "deep_dive_url": "http://arxiv.org/abs/2608.07458v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 CoinRAG 的 nugget 级 KV cache 复用思路能否接入现有 RAG 流水线（对比 chunk 级 vs 更细粒度的延迟-准确率权衡）；在团队技能库上设计 SkillProx proximal textual gradient descent 的概念验证（手动维护 vs 自动演化技能质量对比）；评估 Blast Radius 的预测式内存管理能否降低现有 coding agent 的 token 成本。为 CreativeInstruct（质量-创造力平衡）、Taxonomy-Driven（风险工具地图）、Interaction（多智能体涌现动力学）维持趋势观察卡片。",
-      "max_uncertainty": "全部 10 篇论文的代码、benchmark、Papers with Code、OpenReview 链接均暂无；评分与分析基于 arXiv 摘要自述，其中 CoinRAG、SkillProx、Blast Radius、CreativeInstruct、Taxonomy-Driven、Strategy-first synthesis、MirrorWorld 共 7 篇摘要截断。CoinRAG 的 nugget 划分机制与定量结果、SkillProx 的 proximal constraint 细节与技能演化成功率、Blast Radius 的 reach 预测准确率与 token 节省幅度、CreativeInstruct 的具体平衡机制、Taxonomy-Driven 的工具清单与分类维度、Interaction 的'异化行为'量化定义均需正文确认。另：MirrorWorld 摘要关键词 benchmark/RAG、Strategy-first 的 agent/agentic/benchmark/planning、DisCoCat 的 evaluation/RAG 均为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "CoinRAG 把 RAG 的 KV cache 复用从 chunk 级降到 information nugget 级，在低 prefill 延迟约束下优化准确率-延迟 Pareto 前沿——回答了'RAG 检索上下文的缓存复用该做到多细'。SkillProx 用 proximal textual gradient descent 让 agent 技能自演化，引入显式 diagnosis-outcome 反馈并把删除作为一等公民机制——把 agent 技能管理从手动维护推向自动优化。Blast Radius 为 agentic coding 提供预测式内存管理层（估算 prompt reach + 可逆逐出 + 反复死内容识别），直接解决 coding agent 的 token 浪费与上下文膨胀。三者都是'今天就值得在工程上试'的工作。",
-      "path": "daily-detail.html?date=2026-08-11"
     }
   ]
 }

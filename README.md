@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-09-12
+## Latest research run · 2026-09-13
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 108 | 165 | 152 | 1315 |
 
-**Deep dive:** [Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data](daily/2026/2026-09-12.md) · Trend · 轻量试点
+**Deep dive:** [Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data](daily/2026/2026-09-13.md) · Trend · 轻量试点
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,13 +35,13 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-09-13](daily/2026/2026-09-13.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | Trend | 轻量试点 |
 | [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | Trend | 轻量试点 |
 | [2026-09-11](daily/2026/2026-09-11.md) | IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier | Trend | 轻量试点 |
 | [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | Trend | 轻量试点 |
 | [2026-09-09](daily/2026/2026-09-09.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | Ignore | 暂时忽略 |
 | [2026-09-08](daily/2026/2026-09-08.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | Ignore | 暂时忽略 |
 | [2026-09-07](daily/2026/2026-09-07.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | Immediate | 重点学习 |
-| [2026-09-06](daily/2026/2026-09-06.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | Immediate | 重点学习 |
 
 ## Directions under active observation
 
