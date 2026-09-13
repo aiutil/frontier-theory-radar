@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-13
+## 最新研究 · 2026-09-14
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 165 | 152 | 1315 |
+| 1 | 108 | 165 | 152 | 1315 |
 
-**今日深挖：** [Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data](daily/2026/2026-09-13.md) · 趋势价值 · 轻量试点
+**今日深挖：** [[占位] 今日论文抓取失败或无新论文](daily/2026/2026-09-14.md) · 暂时忽略 · 暂时忽略
 
-**核心判断：** 据摘要（arXiv 2609.11917v1），该工作系统比较 MoE 在不同 repetition rate / domain mix / expert count 下的过拟合行为，给出'MoE 比 dense 更易被重复数据放大'的实证结论——这正好命中 aiutil 长期关心的训练数据治理 × 稀疏架构交叉路线：当 LLM 训练进入 human-written text 耗尽阶段，MoE 这一占主导地位的架构反而把数据重复的危害放大，是训练流水线设计的硬约束。
+**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
 
-**建议动作：** 跟踪 Data Scarcity and Model Sparsity（[2609.11917](http://arxiv.org/abs/2609.11917v1)）完整 PDF 与 ablation 数据是否公开；同步把 General Quantification of Covariate and Concept Shifts（[2609.11918](http://arxiv.org/abs/2609.11918v1)）、Artificial Id（[2609.11911](http://arxiv.org/abs/2609.11911v1)）纳入趋势观察；为 MindTopo / GPU-CFR / Edge VLM Species / Distance Generalization / TART / GMMM 建立长尾卡片；From Protocols to Evidence 因证据弱归入忽略池。
+**建议动作：** 完成摘要精读与最小实验设计
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,13 +39,13 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-14](daily/2026/2026-09-14.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-13](daily/2026/2026-09-13.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-11](daily/2026/2026-09-11.md) | IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier | 趋势价值 | 轻量试点 |
 | [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | 趋势价值 | 轻量试点 |
 | [2026-09-09](daily/2026/2026-09-09.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
 | [2026-09-08](daily/2026/2026-09-08.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
-| [2026-09-07](daily/2026/2026-09-07.md) | Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 

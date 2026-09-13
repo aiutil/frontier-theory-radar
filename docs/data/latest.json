@@ -1,64 +1,42 @@
 {
-  "updated_at": "2026-09-13T04:32:33.926079",
+  "updated_at": "2026-09-14T04:32:12.256306",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-09-13",
-    "title": "论文价值发现日报 - 2026-09-13",
-    "deep_dive_title": "Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data",
-    "deep_dive_url": "http://arxiv.org/abs/2609.11917v1",
-    "decision": "轻量试点",
-    "value_type": "trend",
-    "value_type_label": "趋势价值",
-    "daily_action": "跟踪 Data Scarcity and Model Sparsity（[2609.11917](http://arxiv.org/abs/2609.11917v1)）完整 PDF 与 ablation 数据是否公开；同步把 General Quantification of Covariate and Concept Shifts（[2609.11918](http://arxiv.org/abs/2609.11918v1)）、Artificial Id（[2609.11911](http://arxiv.org/abs/2609.11911v1)）纳入趋势观察；为 MindTopo / GPU-CFR / Edge VLM Species / Distance Generalization / TART / GMMM 建立长尾卡片；From Protocols to Evidence 因证据弱归入忽略池。",
-    "max_uncertainty": "Data Scarcity and Model Sparsity 等论文是否提供可下载的 ablation 表格、训练数据与代码（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；MoE 在不同 sparsity 路由策略下的过拟合曲线是否能推广到生产级 MoE 训练仍待多源验证。",
-    "one_line_judgement": "据摘要（arXiv 2609.11917v1），该工作系统比较 MoE 在不同 repetition rate / domain mix / expert count 下的过拟合行为，给出'MoE 比 dense 更易被重复数据放大'的实证结论——这正好命中 aiutil 长期关心的训练数据治理 × 稀疏架构交叉路线：当 LLM 训练进入 human-written text 耗尽阶段，MoE 这一占主导地位的架构反而把数据重复的危害放大，是训练流水线设计的硬约束。",
-    "path": "daily-detail.html?date=2026-09-13"
+    "date": "2026-09-14",
+    "title": "论文价值发现日报 - 2026-09-14",
+    "deep_dive_title": "[占位] 今日论文抓取失败或无新论文",
+    "deep_dive_url": "",
+    "decision": "暂时忽略",
+    "value_type": "ignore",
+    "value_type_label": "暂时忽略",
+    "daily_action": "完成摘要精读与最小实验设计",
+    "max_uncertainty": "缺少多源工程证据",
+    "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+    "path": "daily-detail.html?date=2026-09-14"
   },
   "top_paper": {
-    "title": "Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data",
-    "authors": [
-      "Atindra Jha",
-      "Margaret Li",
-      "Jure Leskovec",
-      "Percy Liang",
-      "Luke Zettlemoyer"
-    ],
-    "published": "2026-09-10",
-    "updated": "2026-09-10",
-    "source": "arXiv",
-    "url": "http://arxiv.org/abs/2609.11917v1",
-    "pdf_url": "https://arxiv.org/pdf/2609.11917v1",
+    "title": "[占位] 今日论文抓取失败或无新论文",
+    "authors": [],
+    "published": "2026-09-14",
+    "updated": "2026-09-14",
+    "source": "placeholder",
+    "url": "",
+    "pdf_url": "",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "As the supply of human-written text is exhausted, it has become standard practice to repeat language model training data. Prior work has studied data repetition for densely activated Transformers, but the effects of data repetition remains largely unexplored for recently dominant sparse architectures such as Mixture-of-Experts (MoE), despite their increased compute efficiency. We vary data repetition rates across single- and multi-domain data mixes, and across MoE settings, including expert coun",
-    "categories": [
-      "cs.LG",
-      "cs.CL"
-    ],
+    "abstract": "论文抓取失败或无新论文。请检查网络连接和 API 状态。后续运行会替换为真实数据。",
+    "categories": [],
     "keywords": [],
-    "score": 74.5,
-    "decision": "轻量试点",
-    "links": [
-      {
-        "label": "arXiv",
-        "url": "http://arxiv.org/abs/2609.11917v1"
-      },
-      {
-        "label": "PDF",
-        "url": "https://arxiv.org/pdf/2609.11917v1"
-      }
-    ],
-    "llm_reason": "据摘要（arXiv 2609.11917v1）：Data Scarcity and Model Sparsity 系统比较 MoE 在不同 repetition rate / domain mix / expert count 下的过拟合行为，给出'MoE 比 dense 更易被重复数据放大'的实证。与 aiutil 关心的'训练数据治理 × 稀疏架构'路线相关——重复数据治理是当下 LLM 预训练数据供应的硬约束，MoE 的特异行为对未来训练流水线设计有直接影响。代码/benchmark：暂无（论文来自 Stanford Jure Leskovec / Percy Liang / Luke Zettlemoyer 组），需打开 PDF 核对 ablation 设置与数据是否公开。",
-    "id": "data-scarcity-and-model-sparsity-mixtures-of-experts-overfit-more-to-repeated-data",
-    "value_type": "trend",
-    "matched_topics": [
-      "ai-k8s-platform",
-      "data-engineering"
-    ],
+    "score": 28.5,
+    "decision": "暂时忽略",
+    "links": [],
+    "id": "paper",
+    "value_type": "ignore",
+    "matched_topics": [],
     "score_breakdown": {
       "novelty": 4.8,
       "problem_importance": 4.5,
@@ -75,17 +53,17 @@
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
-    "trend_status": "emerging",
-    "brief_cn": "AI 平台工程：As the supply of human-written text is exhausted, it has become standard pract…",
-    "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.11917v1）：Data Scarcity and Model Sparsity 系统比较 MoE 在不同 …",
-    "first_seen_date": "2026-09-13",
-    "first_deep_dive_daily": "2026-09-13",
-    "value_type_label": "趋势价值",
-    "trend_stage_label": "萌芽",
-    "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-    "long_tail_summary": "据摘要（arXiv 2609.11917v1）：Data Scarcity and Model Sparsity 系统比较 MoE 在不同 repetition rate / domain m",
+    "trend_status": "noise",
+    "brief_cn": "前沿论文：论文抓取失败或无新论文。请检查网络连接和 API 状态。后续运行会替换为真实数据。",
+    "one_line_judgement": "当前可忽略：前沿论文：论文抓取失败或无新论文。请检查网络连接和 API 状态。后续运行会替换为真实数据。",
+    "first_seen_date": "2026-09-14",
+    "first_deep_dive_daily": "2026-09-14",
+    "value_type_label": "暂时忽略",
+    "trend_stage_label": "噪声",
+    "future_trigger": "待更多证据",
+    "long_tail_summary": "前沿论文：论文抓取失败或无新论文。请检查网络连接和 API 状态。后续运行会替换为真实数据。",
     "related_trends": [],
-    "detail_path": "paper-detail.html?id=data-scarcity-and-model-sparsity-mixtures-of-experts-overfit-more-to-repeated-data"
+    "detail_path": "paper-detail.html?id=paper"
   },
   "paper_count": 1740,
   "daily_count": 30,
@@ -98,6 +76,19 @@
     "ignore": 1315
   },
   "recent_dailies": [
+    {
+      "date": "2026-09-14",
+      "title": "论文价值发现日报 - 2026-09-14",
+      "deep_dive_title": "[占位] 今日论文抓取失败或无新论文",
+      "deep_dive_url": "",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-09-14"
+    },
     {
       "date": "2026-09-13",
       "title": "论文价值发现日报 - 2026-09-13",
@@ -175,22 +166,59 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-09-08"
-    },
-    {
-      "date": "2026-09-07",
-      "title": "论文价值发现日报 - 2026-09-07",
-      "deep_dive_title": "Clean Engineering, Unstable Measurement: A Preregistered Reliability Failure of Black-Box LLM Observers on Shared Endpoints",
-      "deep_dive_url": "http://arxiv.org/abs/2609.04198v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "跟踪 Clean Engineering, Unstable Measurement 的完整预注册报告与可能的修复方案；评估其 Spearman 0.400 vs 必达阈值对团队 LLM-as-a-Judge / leaderboard / 训练 reward 信号的可借鉴性（30 分钟可对近 30 天 judge 调用做重复性测试）。",
-      "max_uncertainty": "是否存在完整可下载 PDF / 数据 / 修复方案（暂无代码与 benchmark 链接），需进一步打开 PDF 核验。",
-      "one_line_judgement": "据摘要（arXiv 2609.04198v1），两个预注册活动、52,988 audited request attempts 测得 same-window repeat rankings 的 Spearman 0.400，未达预设必达阈值；质疑 LLM-as-a-Judge 作为 measurement instrument 的稳态假设，与 leaderboard / 训练 reward / 评测治理直接相关。",
-      "path": "daily-detail.html?date=2026-09-07"
     }
   ],
   "top_papers": [
+    {
+      "title": "[占位] 今日论文抓取失败或无新论文",
+      "authors": [],
+      "published": "2026-09-14",
+      "updated": "2026-09-14",
+      "source": "placeholder",
+      "url": "",
+      "pdf_url": "",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "论文抓取失败或无新论文。请检查网络连接和 API 状态。后续运行会替换为真实数据。",
+      "categories": [],
+      "keywords": [],
+      "score": 28.5,
+      "decision": "暂时忽略",
+      "links": [],
+      "id": "paper",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：论文抓取失败或无新论文。请检查网络连接和 API 状态。后续运行会替换为真实数据。",
+      "one_line_judgement": "当前可忽略：前沿论文：论文抓取失败或无新论文。请检查网络连接和 API 状态。后续运行会替换为真实数据。",
+      "first_seen_date": "2026-09-14",
+      "first_deep_dive_daily": "2026-09-14",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：论文抓取失败或无新论文。请检查网络连接和 API 状态。后续运行会替换为真实数据。",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=paper"
+    },
     {
       "title": "Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data",
       "authors": [
@@ -853,75 +881,6 @@
       "long_tail_summary": "据摘要（arXiv 2609.11904v1）：TART 是 module 化的 audio-to-tablature 吉他转写工具，专门解决 slide/bend/percussive 技术",
       "related_trends": [],
       "detail_path": "paper-detail.html?id=tart-a-modular-tool-for-technique-aware-audio-to-tablature-guitar-transcription"
-    },
-    {
-      "title": "From Protocols to Evidence: Bounded Claims for AI in Service of the Common Good",
-      "authors": [
-        "Nitesh V. Chawla",
-        "Paulo Benanti"
-      ],
-      "published": "2026-09-10",
-      "updated": "2026-09-10",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2609.11910v1",
-      "pdf_url": "https://arxiv.org/pdf/2609.11910v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Artificial Intelligence does more than create a governance problem. It can also reveal where institutions have already failed to provide responsiveness, belonging, care, and accountability. Once deployed, AI becomes an intervention in those conditions. It can repair, compound, substitute for, or conceal the failures it encounters. Responsible AI must therefore evaluate both the system and the institutional rupture into which it is introduced. The move from principles to protocols is already unde",
-      "categories": [
-        "cs.LG"
-      ],
-      "keywords": [
-        "evaluation"
-      ],
-      "score": 52.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2609.11910v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2609.11910v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2609.11910v1）：From Protocols to Evidence 主张 AI 应同时评估系统与'制度失效'，主张'bounded claims'作为治理路径。属于 governance / ethics 立场文章，无明确方法、benchmark 或实验。当前证据弱、与 aiutil 路线相关性低，暂忽略——除非出现可复用 protocol 模板，否则不继续投入。",
-      "id": "from-protocols-to-evidence-bounded-claims-for-ai-in-service-of-the-common-good",
-      "value_type": "ignore",
-      "matched_topics": [
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "noise",
-      "brief_cn": "安全与治理：Artificial Intelligence does more than create a governance problem. It can als…",
-      "one_line_judgement": "当前可忽略：据摘要（arXiv 2609.11910v1）：From Protocols to Evidence 主张 AI 应同时评估系统与'制度失效…",
-      "first_seen_date": "2026-09-13",
-      "first_deep_dive_daily": "2026-09-13",
-      "value_type_label": "暂时忽略",
-      "trend_stage_label": "噪声",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "据摘要（arXiv 2609.11910v1）：From Protocols to Evidence 主张 AI 应同时评估系统与'制度失效'，主张'bounded claims'作为治理路径",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=from-protocols-to-evidence-bounded-claims-for-ai-in-service-of-the-common-good"
     }
   ],
   "long_tail_highlights": [
