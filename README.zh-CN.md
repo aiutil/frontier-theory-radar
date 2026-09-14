@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-14
+## 最新研究 · 2026-09-15
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 1 | 108 | 165 | 152 | 1315 |
+| 10 | 108 | 168 | 156 | 1318 |
 
-**今日深挖：** [[占位] 今日论文抓取失败或无新论文](daily/2026/2026-09-14.md) · 暂时忽略 · 暂时忽略
+**今日深挖：** [Embodied-BenchForge: A Closed-Loop Agentic Workflow for Embodied Benchmark Construction](daily/2026/2026-09-15.md) · 趋势价值 · 轻量试点
 
-**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
+**核心判断：** 据摘要（arXiv 2609.13082v1），该工作把 embodied benchmark 构造从'pipeline 中各阶段独立优化'推进到 closed-loop agentic workflow，强调跨阶段 artifact-specific verification——把多步流水线中'局部缺陷沿依赖传播'这一关键失败模式显式化，这正好命中 aiutil 长期关心的 agent eval / 评测治理路线（benchmark 本身如何被可靠构造，就是评测治理问题）。
 
-**建议动作：** 完成摘要精读与最小实验设计
+**建议动作：** 跟踪 Embodied-BenchForge（[2609.13082](http://arxiv.org/abs/2609.13082v1)）完整 PDF 与 artifact-specific verification 协议是否开源；同步把 SAS（[2609.13141](http://arxiv.org/abs/2609.13141v1)）、Heterogeneous Disaggregation for Subquadratic Attention（[2609.13134](http://arxiv.org/abs/2609.13134v1)）纳入趋势观察；为 Type Diversity / Duplex Cue / Calibration Ranking / ASTRIL-MPC 建立长尾卡片；LSTM-XGBoost / Dance-to-Music / Four-Day Workweek 因相关性低归入忽略池。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-15](daily/2026/2026-09-15.md) | Embodied-BenchForge: A Closed-Loop Agentic Workflow for Embodied Benchmark Construction | 趋势价值 | 轻量试点 |
 | [2026-09-14](daily/2026/2026-09-14.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-13](daily/2026/2026-09-13.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-11](daily/2026/2026-09-11.md) | IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier | 趋势价值 | 轻量试点 |
 | [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | 趋势价值 | 轻量试点 |
 | [2026-09-09](daily/2026/2026-09-09.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
-| [2026-09-08](daily/2026/2026-09-08.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 560 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 475 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 560 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 563 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 479 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 563 |
 
 ## 为什么做这个项目
 

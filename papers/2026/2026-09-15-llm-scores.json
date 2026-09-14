@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-15",
+  "generated_at": "2026-09-15T04:30:30",
+  "note": "今日 arXiv 当日新批次（published=2026-09-11 的 10 篇）与昨日 2026-09-13 抓取的 URL 集不同，今日基于 2026-09-15 抓取结果逐条核读摘要后给出 LLM 评分；未引入不存在的事实，链接或证据缺失处明确标注'暂无'。",
+  "by_url": {
+    "http://arxiv.org/abs/2609.13144v1": {
+      "score": 64.5,
+      "value_type": "long_tail",
+      "matched_topics": ["context-engineering", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13144v1）：Type Diversity Enables Transformers to Generalise Compositionally 提出'lexical vs structural 难度差不是 Transformer 固有属性，而是数据集的 type diversity 不均造成'——把组合泛化问题归因到数据构造层面的多样性而非架构限制。属于 Transformer 组合泛化 / in-context learning 的数据治理视角资产，对 context-engineering 路线有间接方法学价值（提示在合成任务设计时要平衡 lexical / structural type diversity）。代码/benchmark：暂无，需打开 PDF 确认 ablation 是否开源。"
+    },
+    "http://arxiv.org/abs/2609.13141v1": {
+      "score": 76.5,
+      "value_type": "trend",
+      "matched_topics": ["inference-serving", "context-engineering"],
+      "reason": "据摘要（arXiv 2609.13141v1）：SAS 把'训练后注意力稀疏化'做成端到端可优化的 context-ranking 问题，避开硬 Top-K 截断阻断梯度的常见做法，避免把 layer-wise dense attention 当蒸馏目标。属于 post-training attention sparsification × end-to-end context ranking 的方法学资产——直接命中 aiutil 长期关注的 inference-serving 与 context-engineering 双主线（稀疏注意力是当下长上下文推理的核心工程瓶颈）。代码/benchmark：暂无，需打开 PDF 确认 selector 是否开源以及是否给出可复现 ablation。"
+    },
+    "http://arxiv.org/abs/2609.13134v1": {
+      "score": 75.0,
+      "value_type": "trend",
+      "matched_topics": ["inference-serving", "ai-k8s-platform"],
+      "reason": "据摘要（arXiv 2609.13134v1）：Rethinking Heterogeneous System Disaggregation for Subquadratic Attention 主张把 disaggregated serving 的调度决策从'dense attention 中心'切换到'subquadratic attention 的 arithmetic intensity / memory footprint 中心'，并在 DRAM、SRAM 介质上给出 throughput 与能效收益的实证。属于 frontier LLM 推理架构演进（subquadratic attention × heterogeneous serving）的方法学资产——与 aiutil 推理服务 × 平台工程路线直接共振。代码/benchmark：暂无，需打开 PDF 看实验配置与是否给出可复现 workload。"
+    },
+    "http://arxiv.org/abs/2609.13125v1": {
+      "score": 52.0,
+      "value_type": "ignore",
+      "matched_topics": ["data-engineering"],
+      "reason": "据摘要（arXiv 2609.13125v1）：Hybrid LSTM-XGBoost for Multi-Horizon Stock Return Prediction 把 LSTM 与 XGBoost 级联用于 14 只美股 / 6 行业的多 horizon 股票收益预测——属于传统 ML × 量化金融应用资产，与 aiutil 当前路线（AI Agent / Coding / 评测 / 长上下文 / 推理）相关性低。代码/benchmark：暂无，无开源链接。"
+    },
+    "http://arxiv.org/abs/2609.13118v1": {
+      "score": 50.5,
+      "value_type": "ignore",
+      "matched_topics": ["multimodal-agent"],
+      "reason": "据摘要（arXiv 2609.13118v1）：CMA-OT 提出 Hierarchical Expert Supervision 用于 dance-to-music 生成，针对稀疏舞蹈信号与密集音乐信息之间的语义鸿沟设计层级专家监管。属于多模态生成（舞蹈→音乐）的专项资产，与 aiutil 当前路线相关性低。代码/benchmark：暂无。"
+    },
+    "http://arxiv.org/abs/2609.13117v1": {
+      "score": 66.0,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13117v1）：Continue, Adapt, or Yield 在 full-duplex 评测中区分 listener intent（backchannel / collaboration / interruption）与 speaker 行为，引入 Duplex Cue 评测 in-turn adaptation——把'边听边调整'这一传统被 binary continue/stop 掩盖的能力维度显式化。属于 full-duplex voice agent 评测方法学资产，对 aiutil 的 agent eval 路线有间接价值。代码/benchmark：暂无，需打开 PDF 看 Duplex Cue 是否公开。"
+    },
+    "http://arxiv.org/abs/2609.13100v1": {
+      "score": 62.5,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13100v1）：A Ranking Approach for Measuring Calibration 用 ranking 视角重做 calibration 测量，作为 Expected Calibration Error (ECE) 的补充 / 替代。属于评测治理 / calibration 量化方法学资产，长尾保留——若团队使用 ECE 评估 LLM 置信度，该方法可作为低依赖替代指标。代码/benchmark：暂无，需打开 PDF 确认 estimator 与 bootstrap 实现是否开源。"
+    },
+    "http://arxiv.org/abs/2609.13089v1": {
+      "score": 48.0,
+      "value_type": "ignore",
+      "matched_topics": [],
+      "reason": "据摘要（arXiv 2609.13089v1）：Beyond Establishing the Four-Day Workweek 是对敏捷软件组织中四天工作制长期存续性的单案例纵向研究，属于软件工程组织管理方向，与 aiutil 关注的 AI Agent / Coding Agent / 评测 / 长上下文 / 推理路线相关性低。代码/benchmark：暂无（社会科学研究本身无开源代码要求）。"
+    },
+    "http://arxiv.org/abs/2609.13083v1": {
+      "score": 60.5,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent", "ai-agent"],
+      "reason": "据摘要（arXiv 2609.13083v1）：ASTRIL-MPC 用语言引导的神经运动学 MPC 框架控制 articulated tracked robots 在城市搜救中自主穿越阶梯 / 杂乱室内环境，把 hybrid-discontinuous 机器人-地形交互做成可学习的 kinematics。属于 embodied / robotic agent 规划方法学资产，长尾保留——对 multimodal-agent 的 planning 抽象有可迁移价值。代码/benchmark：暂无，需打开 PDF 看 learned kinematics 模型权重是否公开。"
+    },
+    "http://arxiv.org/abs/2609.13082v1": {
+      "score": 79.0,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13082v1）：Embodied-BenchForge 提出 closed-loop agentic workflow 构建 embodied benchmark，强调跨阶段 artifact-specific verification——把多步流水线中'局部缺陷沿依赖传播'这一关键失败模式显式化。属于 agentic workflow × benchmark construction 的方法学资产，与 aiutil 长期关心的 agent eval 路线直接共振（benchmark 构造本身就是评测治理问题）。代码/benchmark：暂无，需打开 PDF 看 artifact-specific verification 协议是否开源。"
+    }
+  }
+}
