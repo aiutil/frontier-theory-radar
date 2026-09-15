@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-15
+## 最新研究 · 2026-09-16
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 168 | 156 | 1318 |
+| 10 | 108 | 173 | 161 | 1318 |
 
-**今日深挖：** [Embodied-BenchForge: A Closed-Loop Agentic Workflow for Embodied Benchmark Construction](daily/2026/2026-09-15.md) · 趋势价值 · 轻量试点
+**今日深挖：** [Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection](daily/2026/2026-09-16.md) · 趋势价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv 2609.13082v1），该工作把 embodied benchmark 构造从'pipeline 中各阶段独立优化'推进到 closed-loop agentic workflow，强调跨阶段 artifact-specific verification——把多步流水线中'局部缺陷沿依赖传播'这一关键失败模式显式化，这正好命中 aiutil 长期关心的 agent eval / 评测治理路线（benchmark 本身如何被可靠构造，就是评测治理问题）。
+**核心判断：** 据摘要（arXiv 2609.15989v1），该工作提出 'plan injection' 攻击——通过在 actor 上下文里植入'听起来无害但实际带毒'的推理片段，绕过 CoT monitor 完成对抗动作。这把 agent safety 的攻防战场从'行为输出'拉回到'计划表征'，给 monitor 设计提出新基准：当 CoT 表面无害、内部却带毒指令时，monitor 该如何审计语义无关毒性？属于 ai-agent × security-governance 的方法学资产，与 aiutil 长期关注的 agent eval / 安全治理路线直接共振。
 
-**建议动作：** 跟踪 Embodied-BenchForge（[2609.13082](http://arxiv.org/abs/2609.13082v1)）完整 PDF 与 artifact-specific verification 协议是否开源；同步把 SAS（[2609.13141](http://arxiv.org/abs/2609.13141v1)）、Heterogeneous Disaggregation for Subquadratic Attention（[2609.13134](http://arxiv.org/abs/2609.13134v1)）纳入趋势观察；为 Type Diversity / Duplex Cue / Calibration Ranking / ASTRIL-MPC 建立长尾卡片；LSTM-XGBoost / Dance-to-Music / Four-Day Workweek 因相关性低归入忽略池。
+**建议动作：** 跟踪 Plan Injection（[2609.15989](http://arxiv.org/abs/2609.15989v1)）完整 PDF 与 plan-injection 数据集 / monitor 评测脚本是否开源；同步把 The Router Within（[2609.15982](http://arxiv.org/abs/2609.15982v1)）、Stellar Colosseum（[2609.15983](http://arxiv.org/abs/2609.15983v1)）、Adversarial APR Agents（[2609.15963](http://arxiv.org/abs/2609.15963v1)）纳入趋势观察；为 Bellman Policy Optimization（[2609.15987](http://arxiv.org/abs/2609.15987v1)）建立趋势尾部卡片；为 Causal Writability / Directional Decomposition / Discovery FM / Mind2Dialogue / Verifiable Citations 建立长尾卡片。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-16](daily/2026/2026-09-16.md) | Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection | 趋势价值 | 重点学习 |
 | [2026-09-15](daily/2026/2026-09-15.md) | Embodied-BenchForge: A Closed-Loop Agentic Workflow for Embodied Benchmark Construction | 趋势价值 | 轻量试点 |
 | [2026-09-14](daily/2026/2026-09-14.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-13](daily/2026/2026-09-13.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-11](daily/2026/2026-09-11.md) | IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier | 趋势价值 | 轻量试点 |
 | [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | 趋势价值 | 轻量试点 |
-| [2026-09-09](daily/2026/2026-09-09.md) | Molecular Déjà Vu: Digit-Level Retrieval of Published Values in Frontier Language Models | 暂时忽略 | 暂时忽略 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 563 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 479 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 563 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 565 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 487 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 565 |
 
 ## 为什么做这个项目
 

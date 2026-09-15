@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-16",
+  "generated_at": "2026-09-16T04:31:30",
+  "note": "今日 arXiv 当日新批次（published=2026-09-14 的 10 篇）逐条核读摘要后给出 LLM 评分；未引入不存在的事实，链接或证据缺失处明确标注'暂无'。",
+  "by_url": {
+    "http://arxiv.org/abs/2609.15989v1": {
+      "score": 82.0,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "security-governance", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.15989v1）：Corrupt Plans, Clean Traces 提出 'plan injection' 攻击——通过在 actor 上下文里植入'听起来无害但实际带毒'的推理片段，绕过 CoT monitor 完成对抗动作。这把 agent safety 的攻防战场从'行为'拉回到'计划表征'，给 monitor 设计提出了新基准（如何审计 plan 的'语义无关毒性'）。属于 ai-agent × security-governance 的方法学资产，与 aiutil 长期关注的 agent eval / 安全治理路线直接共振；当日抓取样本里最具讨论张力的安全论文。代码/benchmark：暂无，需打开 PDF 看 plan-injection 数据集与 monitor 评测协议是否开源。"
+    },
+    "http://arxiv.org/abs/2609.15987v1": {
+      "score": 68.5,
+      "value_type": "trend",
+      "matched_topics": ["inference-serving", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.15987v1）：Bellman Policy Optimization (BPO) 把 RLVR 训练中的 PMD 用 Bellman 方程重写成 trajectory-level 目标，避免逐 state 估值——critic-free 又具理论保证。属于 RL 后训练算法 × 推理训练优化的方法学资产，对 RLVR / reasoning 训练有间接价值（少一个 critic，显存与工程门槛更低）。代码/benchmark：暂无，需打开 PDF 看是否给出开源实现与训练曲线 ablation。"
+    },
+    "http://arxiv.org/abs/2609.15983v1": {
+      "score": 76.0,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.15983v1）：Stellar Colosseum 提出 model-agnostic 的 many-agent harness，把 inference 在数学 / 理论 CS 长程研究任务里做策略分配：用 readiness gate 决定何时把一条路线分解。属于 long-horizon research agent × harness design 的方法学资产，与 aiutil 关注的 multi-agent / agent eval 路线直接共振——'何时不该继续分解'是当前 agent harness 普遍欠缺的决策机制。代码/benchmark：暂无，需打开 PDF 看 harness 配置与 readiness gate 协议是否开源。"
+    },
+    "http://arxiv.org/abs/2609.15982v1": {
+      "score": 81.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "context-engineering"],
+      "reason": "据摘要（arXiv 2609.15982v1）：The Router Within 用两个线性映射从 frozen LLM 自身的前向信号里读取 skill-routing 决策，替代'把全部 skill metadata 塞进 prompt'与'外挂检索管线'两条主流路线。属于 frozen-LLM native skill routing 的方法学资产——对 aiutil 长期关注的 agent 工程（如何让大库 skill 在不爆 context 的前提下被稳定挑选）是直接可借鉴的工程抽象。代码/benchmark：暂无，需打开 PDF 看两个线性映射与训练数据是否公开。"
+    },
+    "http://arxiv.org/abs/2609.15980v1": {
+      "score": 63.5,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent"],
+      "reason": "据摘要（arXiv 2609.15980v1）：A Chosen Future Can Still Be Rewritten 在视频生成模型上区分'模型没学会正确运动'与'学会但没用上'——通过低维 edit 把物理正确的 latent 强行接管生成。属于 video world model × causal controllability 的方法学资产，对 multimodal-agent 的'模型内可写性'诊断有可迁移价值（提示模型内部保留了正确表征，只是被采样压制）。代码/benchmark：暂无，需打开 PDF 看 edit 协议与数据集是否开源。"
+    },
+    "http://arxiv.org/abs/2609.15975v1": {
+      "score": 60.5,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.15975v1）：Disentangling Representation Evolution in Transformers 通过方向分解把学习到的加性更新拆成 parallel / perpendicular 分量，发现在 attention / MLP 更新里都有显著的 parallel 分量。属于 Transformer 表示几何 × interpretability 的方法学资产，长尾保留——为团队日后做表征诊断提供'方向分解'工具。代码/benchmark：暂无，需打开 PDF 看分解工具是否开源。"
+    },
+    "http://arxiv.org/abs/2609.15973v1": {
+      "score": 58.0,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.15973v1）：Discovery Foundation Models 提出'从解决问题到参与问题生成'的能力迁移框架，把 Discovery Intelligence 形式化为通用基础模型的下一步。属于 position paper 风格的路线图资产，与 aiutil 关注的 agent / 评测路线有间接方向价值（提示问题生成能力是评测治理的下一步）。代码/benchmark：暂无（位置论文无需代码），需打开 PDF 看给出的形式化定义是否清晰到可工程化。"
+    },
+    "http://arxiv.org/abs/2609.15972v1": {
+      "score": 64.0,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.15972v1）：Mind2Dialogue 通过模拟用户 mental state 来训练 human-aware 语言模型，针对'用户隐性信念 / 目标'这种难以标注的监督信号提出训练思路。属于 human-aware dialogue agent 的方法学资产，长尾保留——对 aiutil 关注的 agent personalization / 教学 / 辅导场景是潜在可迁移路线。代码/benchmark：暂无，需打开 PDF 看 mental-state simulator 与训练数据是否公开。"
+    },
+    "http://arxiv.org/abs/2609.15964v1": {
+      "score": 57.5,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation", "rag-knowledge"],
+      "reason": "据摘要（arXiv 2609.15964v1）：Verifiable by Construction 在临床 QA 中以 claim-level verbatim quote 作为可验证性单元，避免医生为核验引用而打开多份文档。属于 clinical QA × citation grounding 的方法学资产，长尾保留——若团队做 RAG / 引用系统，可借鉴'逐 claim 引用 + 直接可核验'的工程模板。代码/benchmark：暂无，需打开 PDF 看 claim-extraction 与评测协议是否开源。"
+    },
+    "http://arxiv.org/abs/2609.15963v1": {
+      "score": 72.0,
+      "value_type": "trend",
+      "matched_topics": ["coding-agent", "security-governance"],
+      "reason": "据摘要（arXiv 2609.15963v1）：Adversarial Testing of Automated Program Repair Agents for Security Vulnerabilities 系统化构造'看起来无害但诱导 APR agent 生成不安全代码'的对抗 issue，测试当前 LLM-驱动 APR agent 在'功能正确 × 安全正确'双轴上的鲁棒性。属于 coding-agent × security 的方法学资产——与 aiutil 关注的 coding agent / 程序修复路线直接共振，且揭示了真实生产风险面。代码/benchmark：暂无，需打开 PDF 看对抗 issue 构造方法与实验设置是否开源。"
+    }
+  }
+}
