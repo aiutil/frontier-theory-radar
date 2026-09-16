@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-16
+## 最新研究 · 2026-09-17
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 173 | 161 | 1318 |
+| 10 | 108 | 177 | 167 | 1318 |
 
-**今日深挖：** [Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection](daily/2026/2026-09-16.md) · 趋势价值 · 重点学习
+**今日深挖：** [ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search](daily/2026/2026-09-17.md) · 趋势价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv 2609.15989v1），该工作提出 'plan injection' 攻击——通过在 actor 上下文里植入'听起来无害但实际带毒'的推理片段，绕过 CoT monitor 完成对抗动作。这把 agent safety 的攻防战场从'行为输出'拉回到'计划表征'，给 monitor 设计提出新基准：当 CoT 表面无害、内部却带毒指令时，monitor 该如何审计语义无关毒性？属于 ai-agent × security-governance 的方法学资产，与 aiutil 长期关注的 agent eval / 安全治理路线直接共振。
+**核心判断：** 据摘要（arXiv 2609.13356），ZGCM-1 是完全开源的 7B 密集基础模型，主打 math + agentic search，256K 上下文，并把架构与系统协同设计（Architecture & System Co-design）作为训练配方的核心。其核心命题是'紧凑模型无法被动记忆开放网络，但能通过内部思考 + 主动外部工具调用突破参数容量上限'——这是 ai-agent × context-engineering 的直接路线。属于当日最高势能的'agent 工程 + 长上下文 + 开源 7B'趋势资产，与 aiutil 长期关注路线共振。
 
-**建议动作：** 跟踪 Plan Injection（[2609.15989](http://arxiv.org/abs/2609.15989v1)）完整 PDF 与 plan-injection 数据集 / monitor 评测脚本是否开源；同步把 The Router Within（[2609.15982](http://arxiv.org/abs/2609.15982v1)）、Stellar Colosseum（[2609.15983](http://arxiv.org/abs/2609.15983v1)）、Adversarial APR Agents（[2609.15963](http://arxiv.org/abs/2609.15963v1)）纳入趋势观察；为 Bellman Policy Optimization（[2609.15987](http://arxiv.org/abs/2609.15987v1)）建立趋势尾部卡片；为 Causal Writability / Directional Decomposition / Discovery FM / Mind2Dialogue / Verifiable Citations 建立长尾卡片。
+**建议动作：** 跟踪 ZGCM-1（[2609.13356](https://arxiv.org/abs/2609.13356)）完整 PDF 与 7B 权重 / 训练配方 / math / agentic 评测脚本是否开源；同步把 OrchSLM（[2609.13470](https://arxiv.org/abs/2609.13470)）、Root-Cause Attribution as Search（[2609.13463](https://arxiv.org/abs/2609.13463)）、Generalized Agent Iteration（[2609.13406](https://arxiv.org/abs/2609.13406)）纳入趋势观察；为 LabAgent / TimeThink / Vibe Patenting / Self-Adaptive Physical AI / MOBO / Governing at Machine Speed 建立长尾卡片。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-17](daily/2026/2026-09-17.md) | ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search | 趋势价值 | 重点学习 |
 | [2026-09-16](daily/2026/2026-09-16.md) | Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection | 趋势价值 | 重点学习 |
 | [2026-09-15](daily/2026/2026-09-15.md) | Embodied-BenchForge: A Closed-Loop Agentic Workflow for Embodied Benchmark Construction | 趋势价值 | 轻量试点 |
 | [2026-09-14](daily/2026/2026-09-14.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-13](daily/2026/2026-09-13.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-11](daily/2026/2026-09-11.md) | IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier | 趋势价值 | 轻量试点 |
-| [2026-09-10](daily/2026/2026-09-10.md) | Entropy-Regularized Rank-Masked Policy Optimization for Test-Time Reinforcement Learning in Code Generation | 趋势价值 | 轻量试点 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 565 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 487 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 565 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 566 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 494 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 566 |
 
 ## 为什么做这个项目
 

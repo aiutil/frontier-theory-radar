@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-17",
+  "generated_at": "2026-09-17T04:32:30",
+  "note": "今日 arXiv 当日新批次（published=2026-09-16 的 10 篇）逐条核读摘要后给出 LLM 评分；未引入不存在的事实，链接或证据缺失处明确标注'暂无'。路由：trend 优先给同时具备'新方法学资产 + 趋势主线'的论文；long_tail 给具备方法抽象 / 评测启发 / 反证价值的论文；ignore 给当前相关性低或证据弱的论文。",
+  "by_url": {
+    "https://arxiv.org/abs/2609.13356": {
+      "score": 84.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "context-engineering", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13356）：ZGCM-1 是'完全开源的 7B 密集基础模型'，训练目标是 math + agentic search，256K 上下文，且明确把架构与系统协同设计（Architecture & System Co-design）作为训练配方的一部分。卖点不是参数大小，而是'7B + 256K + agentic 工具调用'这种'紧凑模型 + 外部工具协同'的范式——这是 ai-agent × context-engineering 的直接路线（agent 不能背完所有知识，但能在 256K 上下文里调度工具）。属于高势能趋势资产，与 aiutil 长期关注的 agent 工程 / 长上下文路线直接共振。代码/benchmark：暂无，需打开 PDF 看是否放出 7B 权重、训练配方与 math/agentic 评测脚本。"
+    },
+    "https://arxiv.org/abs/2609.13470": {
+      "score": 78.0,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "inference-serving"],
+      "reason": "据摘要（arXiv 2609.13470）：OrchSLM 主张在 agentic pipeline 里用 SLM 取代 LLM，针对'repetitive + narrowly scoped'子任务做专门化——把 SLM orchestration 作为大模型管线的替代方案。是 ai-agent × inference-serving 的直接趋势资产（成本 / 延迟 / 隐私都是真实生产痛点），与 aiutil 关注的 agent 工程路线共振。代码/benchmark：暂无，需打开 PDF 看是否给出 SLM 训练 / orchestration 协议与对比数据。"
+    },
+    "https://arxiv.org/abs/2609.13463": {
+      "score": 76.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13463）：把'长程 agent 失败归因（RCA）'形式化为'持续搜索问题'——通过在执行 trace 里做自动搜索定位 root cause。是 ai-agent × llm-evaluation 的方法学资产（长程 agent 失败是当前生产最大痛点之一），与 aiutil 关注的 agent eval 路线直接共振。代码/benchmark：暂无，需打开 PDF 看搜索算法 / RCA 数据集是否开源。"
+    },
+    "https://arxiv.org/abs/2609.13406": {
+      "score": 73.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13406）：Generalized Agent Iteration 把'递归自我改进（RSI）'形式化为一个统一框架，并显式与经典 RL 里的 generalized policy iteration 对应。是 ai-agent × llm-evaluation 的形式化资产（RSI 长期缺乏统一定义，本文尝试给一个），长尾里偏趋势——若被接收，会成为后续 agent 自我改进论文的引用锚点。代码/benchmark：暂无（位置 / 框架论文无需代码），需打开 PDF 看形式化定义是否可工程化。"
+    },
+    "https://arxiv.org/abs/2609.13437": {
+      "score": 68.0,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "coding-agent"],
+      "reason": "据摘要（arXiv 2609.13437）：LabAgent 把'实验室科研'形式化为'可复现 + 可发现'的科研 hub agent，针对人员流动导致的'方法断档'。属于科研 workflow agent 的方法学资产，长尾保留——若团队做 RAG / 知识管理 / 研究助手，可借鉴'方法可继承性'设计。代码/benchmark：暂无，需打开 PDF 看 hub 协议是否开源。"
+    },
+    "https://arxiv.org/abs/2609.13457": {
+      "score": 64.5,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation", "multimodal-agent"],
+      "reason": "据摘要（arXiv 2609.13457）：TimeThink 在 timeseries MLLM 上加入'显式时序推理'与可解释的中间步骤，针对医疗等高风险场景里'只有隐式推理、没有解释'的痛点。属于 multimodal-agent × llm-evaluation 的方法学资产，长尾保留——为团队日后做时序 + 推理的 agent 提供'显式推理 + 解释模板'。代码/benchmark：暂无，需打开 PDF 看时序推理协议与医疗评测协议是否开源。"
+    },
+    "https://arxiv.org/abs/2609.13422": {
+      "score": 63.0,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13422）：Vibe Patenting 把'LLM judge'用于专利起草评测，发现'judge-guided revision 在 judge 评分上一致提升'——但这本身提示了'judge 评估 + judge 引导'的反馈环偏置。属于 LLM judge × 专业工作评测的方法学资产，长尾保留——为团队日后做评测治理提供'judge-feedback loop 偏置'反证案例。代码/benchmark：暂无，需打开 PDF 看评测协议是否开源。"
+    },
+    "https://arxiv.org/abs/2609.13436": {
+      "score": 60.5,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "multimodal-agent"],
+      "reason": "据摘要（arXiv 2609.13436）：Self-Adaptive Physical AI 探讨 LLM agent 能否自主管理'长程物理任务'——在持续观察 / 决策 / 环境变化里保持有效。属于 physical AI agent 的方法学资产，长尾保留——为团队日后做 embodied / robotics agent 提供'self-adaptive long-horizon'路线。代码/benchmark：暂无，需打开 PDF 看物理 agent 评测协议是否开源。"
+    },
+    "https://arxiv.org/abs/2609.13396": {
+      "score": 58.5,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent"],
+      "reason": "据摘要（arXiv 2609.13396）：Converge Then Diversify 把 MOBO 里的'收敛 + 多样性'两步解耦，先各自优化再合并。属于 MOBO 方法学资产，长尾保留——与 aiutil 关注 agent 主题相关性较低，但'多目标分阶段优化'的思路可迁移到多目标评测治理（精度 / 公平 / 安全）的工程模板。代码/benchmark：暂无，需打开 PDF 看是否开源实现。"
+    },
+    "https://arxiv.org/abs/2609.13466": {
+      "score": 56.5,
+      "value_type": "long_tail",
+      "matched_topics": ["security-governance", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.13466）：Governing at Machine Speed 引入'attestation deficit'概念——企业 AI 治理政策存在，但缺乏'可审计 / 防篡改'的执行证据。引用 Stanford 2026 AI Index Report 与 IBM/Ponemon 2026 实证数据。属于 AI governance × 审计的方法学资产，长尾保留——为团队日后做平台 / 治理 / 审计 agent 提供'attestation + 可验证执行'的框架灵感。代码/benchmark：暂无（位置 / 框架论文），需打开 PDF 看实证数据来源是否完整披露。"
+    }
+  }
+}
