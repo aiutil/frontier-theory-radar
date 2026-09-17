@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-17
+## 最新研究 · 2026-09-18
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 177 | 167 | 1318 |
+| 10 | 108 | 182 | 172 | 1318 |
 
-**今日深挖：** [ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search](daily/2026/2026-09-17.md) · 趋势价值 · 重点学习
+**今日深挖：** [Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments](daily/2026/2026-09-18.md) · 趋势价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv 2609.13356），ZGCM-1 是完全开源的 7B 密集基础模型，主打 math + agentic search，256K 上下文，并把架构与系统协同设计（Architecture & System Co-design）作为训练配方的核心。其核心命题是'紧凑模型无法被动记忆开放网络，但能通过内部思考 + 主动外部工具调用突破参数容量上限'——这是 ai-agent × context-engineering 的直接路线。属于当日最高势能的'agent 工程 + 长上下文 + 开源 7B'趋势资产，与 aiutil 长期关注路线共振。
+**核心判断：** 据摘要（arXiv 2609.19128），这篇把 SwiftSage（fast 提议 + slow 规划的 dual-process 语言 agent）用两个模块化认知扩展增强：AMM（Adaptive Memory Module）做显著性门控的 episodic 存储与触发驱动检索，SRM（Self-Reflection Module）做有界执行时间的验证与修正。直接击中当前 language agent 在长程交互里最痛的两个失败模式——'state 跟踪丢失'与'失败步骤无法回滚'。这是 ai-agent × context-engineering 的直接路线，与昨天 Root-Cause Attribution as Search（[2609.13463](https://arxiv.org/abs/2609.13463)）、Generalized Agent Iteration（[2609.13406](https://arxiv.org/abs/2609.13406)）共同构成'agent 工程 × 记忆/反思/失败归因'趋势主线。
 
-**建议动作：** 跟踪 ZGCM-1（[2609.13356](https://arxiv.org/abs/2609.13356)）完整 PDF 与 7B 权重 / 训练配方 / math / agentic 评测脚本是否开源；同步把 OrchSLM（[2609.13470](https://arxiv.org/abs/2609.13470)）、Root-Cause Attribution as Search（[2609.13463](https://arxiv.org/abs/2609.13463)）、Generalized Agent Iteration（[2609.13406](https://arxiv.org/abs/2609.13406)）纳入趋势观察；为 LabAgent / TimeThink / Vibe Patenting / Self-Adaptive Physical AI / MOBO / Governing at Machine Speed 建立长尾卡片。
+**建议动作：** 跟踪 SwiftSage 扩展（[2609.19128](https://arxiv.org/abs/2609.19128)）完整 PDF 与 AMM 触发协议 / SRM 验证协议是否开源；同步把 ScienceIDE（[2609.19134](https://arxiv.org/abs/2609.19134)）、Affora（[2609.19125](https://arxiv.org/abs/2609.19125)）、tokeniser 轴解耦（[2609.19145](https://arxiv.org/abs/2609.19145)）、ComPO（[2609.19144](https://arxiv.org/abs/2609.19144)）纳入趋势观察；为 OPE 指数硬度（[2609.19135](https://arxiv.org/abs/2609.19135)）、PANORAMA（[2609.19143](https://arxiv.org/abs/2609.19143)）、音频-视觉力感知（[2609.19137](https://arxiv.org/abs/2609.19137)）、Flag Game（[2609.19124](https://arxiv.org/abs/2609.19124)）、log(N)-Questions（[2609.19113](https://arxiv.org/abs/2609.19113)）建立长尾卡片。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-18](daily/2026/2026-09-18.md) | Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments | 趋势价值 | 重点学习 |
 | [2026-09-17](daily/2026/2026-09-17.md) | ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search | 趋势价值 | 重点学习 |
 | [2026-09-16](daily/2026/2026-09-16.md) | Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection | 趋势价值 | 重点学习 |
 | [2026-09-15](daily/2026/2026-09-15.md) | Embodied-BenchForge: A Closed-Loop Agentic Workflow for Embodied Benchmark Construction | 趋势价值 | 轻量试点 |
 | [2026-09-14](daily/2026/2026-09-14.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-13](daily/2026/2026-09-13.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 | [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
-| [2026-09-11](daily/2026/2026-09-11.md) | IBIB: A Protocol for Measuring Enterprise AI Systems by Serving Route, Not Model Identifier | 趋势价值 | 轻量试点 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 566 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 494 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 566 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 567 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 501 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 567 |
 
 ## 为什么做这个项目
 

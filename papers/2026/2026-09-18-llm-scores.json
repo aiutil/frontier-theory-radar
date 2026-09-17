@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-18",
+  "generated_at": "2026-09-18T04:31:30",
+  "note": "今日 arXiv 当日新批次（published=2026-09-16 的 10 篇）逐条核读摘要后给出 LLM 评分；未引入不存在的事实，链接或证据缺失处明确标注'暂无'。路由：trend 优先给同时具备'新方法学资产 + 趋势主线'的论文；long_tail 给具备方法抽象 / 评测启发 / 反证价值的论文；immediate 给高相关性 + 高可验证性 + 高行动性的论文；ignore 给当前相关性低或证据弱的论文。今日样本 agent/agentic 主题集中度高（SwiftSage 扩展、ScienceIDE、Affora、Flag Game、ComPO 等），围绕'语言 agent 在长程交互下的记忆 / 反思 / 失败归因'与'agent 友好界面 / agent 可学习环境'两条主线。",
+  "by_url": {
+    "http://arxiv.org/abs/2609.19128v1": {
+      "score": 82.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "context-engineering"],
+      "reason": "据摘要（arXiv 2609.19128）：把 SwiftSage 这种 dual-process（fast 提议 + slow 规划）语言 agent 用两个模块化认知扩展增强——AMM（Adaptive Memory Module）做'显著性门控的 episodic 存储 + 触发驱动检索'，SRM（Self-Reflection Module）做'有界执行时间的验证 + 修正'。研究位置是 ai-agent × context-engineering 的直接路线（长程 state 跟踪 + 失败回滚），与昨天 OrchSLM / Generalized Agent Iteration / Root-Cause Attribution as Search 共同构成'agent 工程 + 记忆/反思/失败归因'趋势主线。代码/benchmark：暂无，需打开 PDF 看 AMM 触发协议 / SRM 验证协议是否开源。"
+    },
+    "http://arxiv.org/abs/2609.19134v1": {
+      "score": 79.0,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.19134）：ScienceIDE 把'全球科学代码库'形式化为'agent 可学习环境'，由专家定义 scientific intents 作为程序化接口，是'科研 agent 基础设施'方向的方法学资产。属于 ai-agent × llm-evaluation 的趋势资产（agent 评测需要可执行的真实环境，这与昨天 LabAgent 的'科研 hub agent'路线高度共振），与 aiutil 长期关注的 agent 工程 / 评测治理直接相关。代码/benchmark：暂无，需打开 PDF 看 intents 协议 / 评测集是否开源。"
+    },
+    "http://arxiv.org/abs/2609.19125v1": {
+      "score": 77.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.19125）：Affora 是'agent 友好界面'设计系统，主张为机器读者与人类同时设计 UI，同时保留视觉自由。三个对照研究覆盖 component 实现 / 视觉变化 / 交互设计原则。是 ai-agent × llm-evaluation 的方法学资产（computer-use agent 的最大瓶颈之一就是'人设计、机器读'的语义鸿沟），与 aiutil 关注的 agent eval / UI-agent 路线共振。代码/benchmark：暂无，需打开 PDF 看 design system 组件库是否开源。"
+    },
+    "http://arxiv.org/abs/2609.19145v1": {
+      "score": 76.0,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "inference-serving"],
+      "reason": "据摘要（arXiv 2609.19145）：把 BPE / UnigramLM 两个轴（优化目标 × 搜索过程）解耦，构造混合 tokeniser——这是一个'教科书级别'的方法学澄清，对工程侧 tokeniser 选型有直接指导意义（之前比较总混淆两个变量）。是 ai-agent × inference-serving 的方法学资产（tokenisation 决定压缩率 / 推理效率 / 下游能力），与 aiutil 关注的推理服务 / 平台工程间接共振。代码/benchmark：暂无，需打开 PDF 看是否给出开源 tokeniser 训练代码。"
+    },
+    "http://arxiv.org/abs/2609.19144v1": {
+      "score": 71.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.19144）：ComPO 是'zeroth-order'偏好对齐方法，用 comparison oracle 抽取偏好对的方向信息，针对 likelihood displacement 痛点。是 ai-agent × llm-evaluation 的方法学资产（轻量级偏好对齐是 agent 训练的关键环节），与 aiutil 关注的 agent 对齐路线共振。代码/benchmark：暂无，需打开 PDF 看 zeroth-order 算法与对比基线是否开源。"
+    },
+    "http://arxiv.org/abs/2609.19135v1": {
+      "score": 69.0,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation", "ai-agent"],
+      "reason": "据摘要（arXiv 2609.19135）：证明在 history-dependent logging 下 OPE 是指数级困难——即便动作覆盖 / 信念覆盖 / 行为边际结果揭示条件都满足。这是 off-policy evaluation 的负面结果，给 OPE 实践划出硬边界。属于 llm-evaluation 的反证资产，长尾保留——为团队日后做 agent eval / 离线评估提供'哪些条件保证失效'的理论锚点。代码/benchmark：暂无（理论证明），需打开 PDF 看构造的 POMDP 是否可作为最小验证样例。"
+    },
+    "http://arxiv.org/abs/2609.19143v1": {
+      "score": 66.5,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.19143）：PANORAMA 是'panoptic grounded captioning'任务——同时给出全景级 caption 与像素级 mask，针对 VLM 'caption 流畅但 grounding 不准'的痛点。是 multimodal-agent × llm-evaluation 的方法学资产，长尾保留——为团队日后做 vision-language agent 提供'caption-grounding 联合评测'的任务模板。代码/benchmark：暂无，需打开 PDF 看任务协议与 mask selection 算法是否开源。"
+    },
+    "http://arxiv.org/abs/2609.19137v1": {
+      "score": 64.0,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent"],
+      "reason": "据摘要（arXiv 2609.19137）：把'视频生成 + 音频生成'联合用于'零样本力感知 manipulation 与数据生成'，用生成音频的响度塑形期望接触力。是 multimodal-agent（机器人/embodied）的数据生成路线，长尾保留——为团队日后做 robotics agent / 数据增强提供'音频+视觉'的多模态合成思路。代码/benchmark：暂无，需打开 PDF 看数据生成 pipeline 是否开源。"
+    },
+    "http://arxiv.org/abs/2609.19124v1": {
+      "score": 60.0,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.19124）：Flag Game 是'mechanistic swarm interpretability'的玩具模型，研究多个 bounded agent 通过观察私有 crop 如何形成关于隐藏 flag 的集体信念。是 ai-agent × llm-evaluation 的方法学资产，长尾保留——为团队日后讨论'agent 集体信念 / 集体对齐'提供受控实验设置。代码/benchmark：暂无，需打开 PDF 看 toy model 与 agent 配置是否开源。"
+    },
+    "http://arxiv.org/abs/2609.19113v1": {
+      "score": 57.0,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.19113）：在 6 个 frontier 模型上评测两 agent 的 log(N)-Questions 游戏，问者见 N 个 Wikipedia 段落 + 目标，要在 log₂N 个 yes/no 问题里识别。是 ai-agent × llm-evaluation 的评测资产，长尾保留——为团队日后做'信息不对称下 agent 通信效率'的评测提供 protocol 灵感。代码/benchmark：暂无，需打开 PDF 看评测脚本与 408 局 replay 是否公开。"
+    }
+  }
+}
