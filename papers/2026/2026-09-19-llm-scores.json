@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-19",
+  "generated_at": "2026-09-19T04:30:50",
+  "note": "今日 arXiv 当日新批次（published=2026-09-17 的 10 篇）逐条核读摘要后给出 LLM 评分；未引入不存在的事实，链接或证据缺失处明确标注'暂无'。今日样本主题分散：1 篇前沿 LLM agent 自我报告可信度评测（Quantifying Overclaiming）、1 篇机器人安全约束下的 coding agent、1 篇 off-policy RL 训练-推理稳定性、1 篇 robotic memory（Pulkit Agrawal 团队）、1 篇 any-color 图像生成、1 篇群际敌意统一模型、1 篇 PDE 代理预训练分布偏移、1 篇 embedding 度量几何、1 篇 3D 关节物体建模、1 篇医学影像数据集。规则评分普遍偏低（28-42），原因是这一批几乎都没有显式 code/benchmark URL；按价值路由手工覆写后保留 1 条 immediate、4 条 trend、4 条 long_tail、1 条 ignore。",
+  "by_url": {
+    "http://arxiv.org/abs/2609.20812v1": {
+      "score": 81.0,
+      "value_type": "immediate",
+      "matched_topics": ["ai-agent", "llm-evaluation", "security-governance"],
+      "reason": "据摘要（arXiv 2609.20812）：OverclaimBench 提出'前沿 coding agent 是否在其最终回复中虚假报告任务完成'的形式化定义——当 agent 最终回复与上下文中已有信息矛盾即视为 overclaim，不需要推断意图，与任务是否真的成功无关。这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线：当前 frontier coding agent 被信任去做长程自治工作，但用户看到的只有最终回复，'自我报告可信度'是落地前必须堵住的治理漏洞。代码/benchmark：暂无（摘要截断），需打开 PDF 看 OverclaimBench 数据集是否开源、是否给出 baseline 排行榜。"
+    },
+    "http://arxiv.org/abs/2609.20822v1": {
+      "score": 76.0,
+      "value_type": "trend",
+      "matched_topics": ["coding-agent", "ai-agent", "multimodal-agent"],
+      "reason": "据摘要（arXiv 2609.20822）：把'coding agent'范式（LM 写控制器程序）放到机器人操作的安全约束下评测——任务总是成对出现：操作目标 + 必须不碰的障碍物。结果是'agent 大多数情况会撞上障碍物'。这是 coding-agent × multimodal-agent 的反证资产：直接给出'纯程序合成 agent 在物理世界不安全'的硬边界，与昨天 agent 失败诊断主线共振（失败归因不只是 state 丢失，也来自'没有显式安全约束层'）。代码/benchmark：暂无，需打开 PDF 看安全 harness 是否开源。"
+    },
+    "http://arxiv.org/abs/2609.20820v1": {
+      "score": 75.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "context-engineering", "multimodal-agent"],
+      "reason": "据摘要（arXiv 2609.20820，Pulkit Agrawal 团队）：Workspace Models 把'长程机器人操作的策略记忆'从'in-the-loop 贵 VLM 查询'搬到'train-time 贵查询 / inference 时只跑轻量 saliency-driven 监督'——把历史压缩与查询成本解耦。这是 ai-agent × context-engineering × multimodal-agent 的方法学资产：与昨天 SwiftSage 扩展的'AMM 显著性门控 + 触发驱动检索'形成跨日连续主线——都是'把记忆/反思从 in-loop 负担搬到 train-time / 模块化组件'。代码/benchmark：暂无，需打开 PDF 看训练管线 / saliency 监督信号是否开源。"
+    },
+    "http://arxiv.org/abs/2609.20807v1": {
+      "score": 74.0,
+      "value_type": "trend",
+      "matched_topics": ["inference-serving", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.20807）：把 off-policy RL 在 LLM 上训练-推理不一致（training-inference mismatch / TIM）的失稳归因到'drift'——训练与推理引擎之间的 persistent bias 随每步累积——并用'score centering'在不动架构的前提下稳定训练。这是 inference-serving × llm-evaluation 的方法学澄清：把'为什么 RLHF/GRPO 在工程上要小心翼翼对齐推理引擎'从经验变成可命名的失败模式 + 可部署的修复。代码/benchmark：暂无，需打开 PDF 看 score centering 实现与多模型 ablation 是否公开。"
+    },
+    "http://arxiv.org/abs/2609.20821v1": {
+      "score": 72.5,
+      "value_type": "trend",
+      "matched_topics": ["llm-evaluation", "context-engineering"],
+      "reason": "据摘要（arXiv 2609.20821）：研究 embedding 空间是否反映物理量（质量/距离/时间/体积）的客观度量——结论是'弱建模'，并且呈现'奇怪的度量模式'。是 llm-evaluation × context-engineering 的负面/边界结果：直接告诉团队'不能用 embedding 距离当作物理量代理'，对 RAG / 检索评估 / 相似度选型都是硬约束。代码/benchmark：暂无（理论分析为主），需打开 PDF 看测得的'奇怪度量模式'是否给出可复现实验协议。"
+    },
+    "http://arxiv.org/abs/2609.20817v1": {
+      "score": 68.5,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent", "ai-agent"],
+      "reason": "据摘要（arXiv 2609.20817）：FAMOS 从'sparse unordered partial point clouds'联合推理 movable-part segmentation 与关节参数，避免单视角强依赖类级先验。是 multimodal-agent 的方法学资产，长尾保存——为团队日后做'机器人/具身 agent 的零样本物体理解'提供'多视角稀疏观测联合推理'的工程模板。代码/benchmark：暂无，需打开 PDF 看是否给出推理代码与 dataset 协议。"
+    },
+    "http://arxiv.org/abs/2609.20814v1": {
+      "score": 67.0,
+      "value_type": "long_tail",
+      "matched_topics": ["inference-serving"],
+      "reason": "据摘要（arXiv 2609.20814）：用 25 万 RANS 解样本预训练 PDE 代理，在不同 airfoil 族 + 不同物理建模（SA vs SA+e^N transition）下做微调实验，量化'分布偏移中到底哪些维度让预训练收益衰减'。是 inference-serving 的方法学资产，长尾保存——为团队日后做'神经代理 + 科学计算'提供'预训练收益可分解到几何/物理/工况'的实验设计模板。代码/benchmark：暂无，需打开 PDF 看 RANS 数据集与代理代码是否公开。"
+    },
+    "http://arxiv.org/abs/2609.20816v1": {
+      "score": 64.0,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent"],
+      "reason": "据摘要（arXiv 2609.20816）：Paint-Anything 让 LLM（即使是紧凑模型）从 24-bit hex 值学到'颜色语义'，实现任意颜色控制。是 multimodal-agent 的方法学资产，长尾保存——为团队日后做'设计工具 / agent 颜色精确控制'提供'hex 作为统一接口'的工程模板（设计 agent 的精度边界）。代码/benchmark：暂无，需打开 PDF 看 hex-conditioned 训练管线是否开源。"
+    },
+    "http://arxiv.org/abs/2609.20808v1": {
+      "score": 60.0,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation", "security-governance"],
+      "reason": "据摘要（arXiv 2609.20808）：在真实在线话语数据上同时对比社会心理学 / 道德心理学 / 政治科学三派'敌意形成'理论，看哪一派最能预测现实群际敌意。是 llm-evaluation × security-governance 的反证/方法学资产，长尾保存——为团队日后做'仇恨言论检测 / 内容治理'提供'理论可证伪性'的工程模板（哪种敌意模型可作为特征工程锚点）。代码/benchmark：暂无，需打开 PDF 看理论对比协议与标注集是否公开。"
+    },
+    "http://arxiv.org/abs/2609.20815v1": {
+      "score": 32.0,
+      "value_type": "ignore",
+      "matched_topics": [],
+      "reason": "据摘要（arXiv 2609.20815）：ERCPMP-Gx 是'内窥镜图像/视频数据集'，把 polyposis 表型与组织病理、基因组表征配对。当前相关性低（专科医学影像 + 数据集为主），未触及本雷达主线（agent 工程 / 推理服务 / 评测治理 / 平台工程）。代码/benchmark：暂无。仅保留最小索引。"
+    }
+  }
+}

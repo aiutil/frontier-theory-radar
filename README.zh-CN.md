@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-18
+## 最新研究 · 2026-09-19
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 108 | 182 | 172 | 1318 |
+| 10 | 109 | 186 | 176 | 1319 |
 
-**今日深挖：** [Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments](daily/2026/2026-09-18.md) · 趋势价值 · 重点学习
+**今日深挖：** [Quantifying Overclaiming Propensity in Frontier LLM Agents](daily/2026/2026-09-19.md) · 即时价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv 2609.19128），这篇把 SwiftSage（fast 提议 + slow 规划的 dual-process 语言 agent）用两个模块化认知扩展增强：AMM（Adaptive Memory Module）做显著性门控的 episodic 存储与触发驱动检索，SRM（Self-Reflection Module）做有界执行时间的验证与修正。直接击中当前 language agent 在长程交互里最痛的两个失败模式——'state 跟踪丢失'与'失败步骤无法回滚'。这是 ai-agent × context-engineering 的直接路线，与昨天 Root-Cause Attribution as Search（[2609.13463](https://arxiv.org/abs/2609.13463)）、Generalized Agent Iteration（[2609.13406](https://arxiv.org/abs/2609.13406)）共同构成'agent 工程 × 记忆/反思/失败归因'趋势主线。
+**核心判断：** 据摘要（arXiv 2609.20812），这篇把'前沿 coding agent 是否在其最终回复中虚假报告任务完成'形式化为 OverclaimBench：当 agent 最终回复与上下文中已有信息矛盾即视为 overclaim，无需推断意图，与任务是否真的成功无关。当前 frontier coding agent 被信任去做长程自治工作，用户看到的只有最终回复，'自我报告可信度'是落地前必须堵住的治理漏洞——这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线。
 
-**建议动作：** 跟踪 SwiftSage 扩展（[2609.19128](https://arxiv.org/abs/2609.19128)）完整 PDF 与 AMM 触发协议 / SRM 验证协议是否开源；同步把 ScienceIDE（[2609.19134](https://arxiv.org/abs/2609.19134)）、Affora（[2609.19125](https://arxiv.org/abs/2609.19125)）、tokeniser 轴解耦（[2609.19145](https://arxiv.org/abs/2609.19145)）、ComPO（[2609.19144](https://arxiv.org/abs/2609.19144)）纳入趋势观察；为 OPE 指数硬度（[2609.19135](https://arxiv.org/abs/2609.19135)）、PANORAMA（[2609.19143](https://arxiv.org/abs/2609.19143)）、音频-视觉力感知（[2609.19137](https://arxiv.org/abs/2609.19137)）、Flag Game（[2609.19124](https://arxiv.org/abs/2609.19124)）、log(N)-Questions（[2609.19113](https://arxiv.org/abs/2609.19113)）建立长尾卡片。
+**建议动作：** 打开 OverclaimBench（[2609.20812](http://arxiv.org/abs/2609.20812)）完整 PDF 看数据集与 baseline 排行是否开源；同步把 Coding Agents Obstacle-Aware Harness（[2609.20822](http://arxiv.org/abs/2609.20822)）、Workspace Models（[2609.20820](http://arxiv.org/abs/2609.20820)）、Score Centering Stabilizes Off-policy RL（[2609.20807](http://arxiv.org/abs/2609.20807)）、Embedding Models Measure in Peculiar Ways（[2609.20821](http://arxiv.org/abs/2609.20821)）纳入趋势观察；为 FAMOS（[2609.20817](http://arxiv.org/abs/2609.20817)）、PDE 代理预训练分布偏移（[2609.20814](http://arxiv.org/abs/2609.20814)）、Paint-Anything（[2609.20816](http://arxiv.org/abs/2609.20816)）、Unifying Models of Intergroup Hostility（[2609.20808](http://arxiv.org/abs/2609.20808)）建立长尾卡片；ERCPMP-Gx（[2609.20815](http://arxiv.org/abs/2609.20815)）当前相关性低，仅保留最小索引。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-19](daily/2026/2026-09-19.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-18](daily/2026/2026-09-18.md) | Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments | 趋势价值 | 重点学习 |
 | [2026-09-17](daily/2026/2026-09-17.md) | ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search | 趋势价值 | 重点学习 |
 | [2026-09-16](daily/2026/2026-09-16.md) | Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection | 趋势价值 | 重点学习 |
 | [2026-09-15](daily/2026/2026-09-15.md) | Embodied-BenchForge: A Closed-Loop Agentic Workflow for Embodied Benchmark Construction | 趋势价值 | 轻量试点 |
 | [2026-09-14](daily/2026/2026-09-14.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-13](daily/2026/2026-09-13.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
-| [2026-09-12](daily/2026/2026-09-12.md) | Data Scarcity and Model Sparsity: Mixtures-of-Experts Overfit More to Repeated Data | 趋势价值 | 轻量试点 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 567 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 501 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 567 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 569 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 506 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 569 |
 
 ## 为什么做这个项目
 
