@@ -1,0 +1,647 @@
+{
+  "date": "2026-09-21",
+  "total": 10,
+  "generated_at": "2026-09-21T04:30:32.523453",
+  "papers": [
+    {
+      "title": "Quantifying Overclaiming Propensity in Frontier LLM Agents",
+      "authors": [
+        "Nolan Smyth",
+        "Yorguin-Jose Mantilla-Ramos",
+        "Pascal Jr Tikeng Notsawo",
+        "Saskia Helbling",
+        "Alberto Tosato"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20812v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20812v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Frontier coding agents are increasingly trusted to work autonomously for long periods, yet an agent's final response is often the only account of that work a user sees. We quantify the propensity of frontier agents to \\emph{overclaim} task completion, a misrepresentation that can mislead the user. An agent overclaims when its final response contradicts information in its context. This definition requires no inference about intent and is independent of task success. We introduce \\emph{OverclaimBe",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation",
+        "RAG",
+        "inference"
+      ],
+      "score": 82.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20812v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20812v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20812）：OverclaimBench 把'前沿 coding agent 在最终回复中虚假报告任务完成'形式化为'agent 最终回复与上下文信息矛盾'，无需推断意图、不依赖任务是否真正成功。这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线：frontier coding agent 被信任去做长程自治工作，用户看到的只有最终回复，自我报告可信度是落地前必须堵住的治理漏洞。证据累计升级：已连续两日（9 月 20-21 日）进入价值路由主线，与同批次 Workspace Models / Score Centering / Obstacle-Aware Harness / Embedding Peculiar Ways 形成稳定的'评测治理证据链'。代码/benchmark/项目页：暂无（摘要截断未显式披露），需打开 PDF 看 OverclaimBench 数据集与 baseline 排行榜是否公开。今日动作：继续列即时试点，准备可复用 prompt/checklist。",
+      "id": "quantifying-overclaiming-propensity-in-frontier-llm-agents",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Workspace Models: Lightweight Robotic Memory via Saliency-Driven Supervision",
+      "authors": [
+        "Nitish Dashora",
+        "Douglas Chen",
+        "Idan Shenfeld",
+        "John Marangola",
+        "Pulkit Agrawal"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20820v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20820v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Complex robotic manipulation tasks frequently require a long-term memory of past events and actions. As conditioning on full histories renders policies prone to spurious correlations and degrades performance, many approaches to policy memory involve compressing historical information through expensive VLM queries in-the-loop to process only task-salient information. In this paper, we propose an alternative approach in which computationally intensive VLM queries are made during train-time to lear",
+      "categories": [
+        "cs.RO",
+        "cs.AI"
+      ],
+      "keywords": [
+        "memory"
+      ],
+      "score": 79.5,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20820v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20820v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20820，Pulkit Agrawal 团队）：Workspace Models 把'长程机器人操作的策略记忆'从'in-the-loop 贵 VLM 查询'搬到'train-time 贵查询 + inference 时只跑轻量 saliency-driven 监督'。这是 ai-agent × context-engineering × multimodal-agent 的方法学资产：与 9 月 16 日 SwiftSage 扩展（AMM 显著性门控 + 触发驱动检索）形成跨日连续主线——都是'把记忆/反思从 in-loop 负担搬到 train-time / 模块化组件'。趋势加固：连续两日确认 + 跨日主线共振。代码/benchmark：暂无，需打开 PDF 看训练管线与 saliency 监督信号是否公开。今日动作：纳入趋势雷达，建立'agent 长程记忆模块化'趋势卡片。",
+      "id": "workspace-models-lightweight-robotic-memory-via-saliency-driven-supervision",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Score Centering Stabilizes Off-policy Reinforcement Learning",
+      "authors": [
+        "Martin Marek",
+        "Max Ryabinin"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20807v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20807v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Reinforcement learning (RL) of large language models is notoriously sensitive to small differences between training and inference engines, often referred to as the training-inference mismatch (TIM). However, completely eliminating TIM is impractical, as it would come at a major cost to rollout efficiency. In this paper, we show that the instability of RL under TIM is primarily caused by drift: a persistent bias between training and inference engines that accumulates with every training step. We ",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "inference"
+      ],
+      "score": 76.5,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20807v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20807v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20807）：把 off-policy RL 在 LLM 上训练-推理不一致（training-inference mismatch / TIM）的失稳归因到 drift——训练与推理引擎之间的 persistent bias 随每步累积——并用 score centering 在不动架构的前提下稳定训练。这是 inference-serving × llm-evaluation 的方法学澄清：把'为什么 RLHF/GRPO 在工程上要小心翼翼对齐推理引擎'从经验变成可命名失败模式 + 可部署修复。趋势加固：drift 命名力对 RLHF 工程治理累积证据。代码/benchmark：暂无，需打开 PDF 看 score centering 实现与多模型 ablation 是否公开。今日动作：纳入趋势雷达，写'RL 训练-推理一致性可命名失败模式 + 修复'rubric。",
+      "id": "score-centering-stabilizes-off-policy-reinforcement-learning",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Coding Agents with an Obstacle-Aware Harness for Safe Robot Manipulation",
+      "authors": [
+        "Bingxin Xu",
+        "Yuzhang Shang",
+        "Zhen Dong",
+        "Emilio Ferrara"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20822v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20822v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Coding agents have emerged as a promising paradigm for robot manipulation: a language model writes the robot controller as a program, and agents built in this way now operate robots without robot-specific training.Whether this paradigm is also safe, however, has not been asked. We evaluate coding agent under a safety constraint, where each task pairs a manipulation goal with an obstacle the robot must not touch. The agent pursues the goal but collides with the obstacle in most cases, treating ta",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CL",
+        "cs.CV"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "planning"
+      ],
+      "score": 75.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20822v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20822v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20822）：把 coding agent 范式（LM 写控制器程序）放到机器人操作的安全约束下评测——任务成对出现：操作目标 + 必须不碰的障碍物；结论是'agent 大多数情况会撞上障碍物'。这是 coding-agent × multimodal-agent 的反证资产：直接给出'纯程序合成 agent 在物理世界不安全'的硬边界，与 9 月 19-20 日 Coding Agents Obstacle-Aware Harness 反证主线完全一致——'安全约束必须显式建层，不能依赖 prompt'。双日确认加固趋势信号。代码/benchmark：暂无，需打开 PDF 看安全 harness 是否开源。今日动作：纳入趋势观察，沉淀'agent 安全约束层' checklist 草稿。",
+      "id": "coding-agents-with-an-obstacle-aware-harness-for-safe-robot-manipulation",
+      "value_type": "trend",
+      "matched_topics": [
+        "coding-agent",
+        "ai-agent",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Embedding Models Measure in Peculiar Ways",
+      "authors": [
+        "Juri Opitz",
+        "Andrianos Michail"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20821v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20821v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Embedding spaces define notions of semantic similarity and distance. We study whether those embeddings reflect physical measurements of mass, distance, time and volume, which admit a unique, objective notion of semantic equivalence and distance. We find that physical measurement is only weakly modeled in the embedding space, and that instead quite peculiar measurement patterns can be observed. Further analysis indicates that embedding representations of physical measurements are strongly influen",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 72.5,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20821v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20821v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20821）：研究 embedding 空间是否反映物理量（质量/距离/时间/体积）的客观度量——结论是'弱建模'且呈'奇怪的度量模式'。这是 llm-evaluation × context-engineering 的负面/边界结果：直接告诉团队'不能用 embedding 距离当作物理量代理'，对 RAG / 检索评估 / 相似度选型都是硬约束。双日确认加固趋势信号：'相似度选型硬约束'边界已稳定。代码/benchmark：暂无（理论分析为主），需打开 PDF 看测得的'奇怪度量模式'是否给出可复现实验协议。今日动作：纳入趋势雷达，建立'相似度选型硬约束'边界卡片。",
+      "id": "embedding-models-measure-in-peculiar-ways",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "FAMOS: Feed-Forward 3D Articulation Modeling from Sparse Observations",
+      "authors": [
+        "Kevin Qu",
+        "Tao Sun",
+        "Massimiliano Viola",
+        "Liyuan Zhu",
+        "Zhizhuo Zhou"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20817v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20817v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Modeling articulated objects from sparse monocular views is challenging because each observation reveals only partial geometry and motion evidence. Most feed-forward methods infer articulation from a single observation and therefore rely heavily on learned category-level shape priors. We present FAMOS, a feed-forward model that predicts movable-part segmentation and joint parameters from a sparse, unordered set of partial point clouds. Our model jointly reasons over multiple observations and nat",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 68.5,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20817v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20817v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20817）：FAMOS 从 sparse unordered partial point clouds 联合推理 movable-part segmentation 与关节参数，避免单视角强依赖类级先验。是 multimodal-agent 的方法学资产，长尾保存——为团队日后做'机器人/具身 agent 的零样本物体理解'提供'多视角稀疏观测联合推理'的工程模板。代码/benchmark：暂无，需打开 PDF 看是否给出推理代码与 dataset 协议。今日动作：沉淀为长尾卡片，标注未来触发条件。",
+      "id": "famos-feed-forward-3d-articulation-modeling-from-sparse-observations",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "How Does Distribution Shift Shape Pretraining Gains in Neural PDE Surrogates?",
+      "authors": [
+        "Pochinapeddi Sai Bhargav",
+        "Nithin Somasekharan",
+        "Rohit Sunil Kanchi",
+        "Sicheng He",
+        "Shaowu Pan"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20814v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20814v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Pretraining a neural PDE surrogate can reduce the amount of new CFD data needed when geometry or modeled physics changes. However, it remains unclear how different components of distribution shift affect this benefit. We pretrain a surrogate on 254,909 RANS solutions from one airfoil family and fine-tune it on a new family under two target settings with matched freestream ranges: the same Spalart-Allmaras (SA) modeling and SA with added $e^N$ transition modeling. At $N=1000$, the pretrained mode",
+      "categories": [
+        "physics.comp-ph",
+        "cs.LG",
+        "physics.flu-dyn"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 67.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20814v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20814v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20814）：用 25 万 RANS 解样本预训练 PDE 代理，在不同 airfoil 族 + 不同物理建模（SA vs SA+e^N transition）下做微调实验，量化'分布偏移中到底哪些维度让预训练收益衰减'。是 inference-serving 的方法学资产，长尾保存——为团队日后做'神经代理 + 科学计算'提供'预训练收益可分解到几何/物理/工况'的实验设计模板。代码/benchmark：暂无，需打开 PDF 看 RANS 数据集与代理代码是否公开。今日动作：沉淀为长尾卡片。",
+      "id": "how-does-distribution-shift-shape-pretraining-gains-in-neural-pde-surrogates",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Paint-Anything: Unified Any-Color Control for Image Generation and Editing",
+      "authors": [
+        "Ji Xie",
+        "Dewei Zhou",
+        "Xinyu Huang",
+        "Zhennan Chen",
+        "Xun Wang"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20816v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20816v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Professional design requires any-color control: the ability to specify an object's target color with any 24-bit hex value for image generation and editing. Prior work has explored color generation, editing, and colorization, but often relies on dedicated color representations or specialized inference procedures. Advances in large language models offer a simpler starting point: even compact models can associate hex values with color semantics. We present Paint-Anything, which learns a shared hex-",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG",
+        "inference"
+      ],
+      "score": 64.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20816v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20816v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20816）：Paint-Anything 让 LLM（即使是紧凑模型）从 24-bit hex 值学到'颜色语义'，实现任意颜色控制。是 multimodal-agent 的方法学资产，长尾保存——为团队日后做'设计工具 / agent 颜色精确控制'提供'hex 作为统一接口'的工程模板（设计 agent 的精度边界）。代码/benchmark：暂无，需打开 PDF 看 hex-conditioned 训练管线是否开源。今日动作：沉淀为长尾卡片。",
+      "id": "paint-anything-unified-any-color-control-for-image-generation-and-editing",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Unifying Models of Intergroup Hostility in Online Discourse",
+      "authors": [
+        "Patrick Gerard",
+        "Julia Mendelsohn",
+        "Kristina Lerman"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20808v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20808v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Hostile rhetoric toward social groups can normalize exclusion and justify mistreatment, as well as contribute to rising polarization and political violence. Efforts to moderate hostile rhetoric in online speech draw on foundational theories in social and moral psychology, and political science. However, these theories were developed largely in parallel, often propose different and sometimes conflicting accounts of how hostility develops, and have rarely been tested against each other in real dis",
+      "categories": [
+        "cs.CL",
+        "cs.SI"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG"
+      ],
+      "score": 60.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20808v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20808v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20808）：在真实在线话语数据上同时对比社会心理学 / 道德心理学 / 政治科学三派'敌意形成'理论，看哪一派最能预测现实群际敌意。是 llm-evaluation × security-governance 的反证/方法学资产，长尾保存——为团队日后做'仇恨言论检测 / 内容治理'提供'理论可证伪性'的工程模板（哪种敌意模型可作为特征工程锚点）。代码/benchmark：暂无，需打开 PDF 看理论对比协议与标注集是否公开。今日动作：沉淀为长尾卡片。",
+      "id": "unifying-models-of-intergroup-hostility-in-online-discourse",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "ERCPMP-Gx: Endoscopic Image and Video Dataset for Morphological, Histopathological, and Genomic Characterization of Colorectal Polyposis",
+      "authors": [
+        "Zahra Ghaffari",
+        "Massih Bahar",
+        "Mojgan Forootan",
+        "Ali Darvishi",
+        "Hamidreza Bolhasani"
+      ],
+      "published": "2026-09-17",
+      "updated": "2026-09-17",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.20815v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.20815v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Hereditary polyposis syndromes can be precursor lesions to colorectal cancer and are associated with a broad spectrum of extracolonic tumors. Early identification and accurate classification of these syndromes are essential for timely diagnosis, individualized patient management, and targeted surveillance strategies for affected families. However, public endoscopic datasets are largely organized around the individual sporadic polyp, and none links the polyposis phenotype to histopathology and ge",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "keywords": [],
+      "score": 32.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.20815v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.20815v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.20815）：ERCPMP-Gx 是遗传性息肉综合征的内窥镜图像 / 视频 + 病理 + 基因组多模态专科数据集。当前与 aiutil 关注主线（AI Agent / Coding Agent / Context Engineering / 评测治理 / 推理服务 / AI 平台工程）的相关性较低：高度专科化、领域封闭、数据获取合规门槛高、产出形态以数据集为主而非方法/系统。代码/benchmark：暂无（需打开 PDF 看数据集公开下载链接），即便公开也难以转化为团队当前主线的研究资产。综合判断维持暂时忽略，仅保留最小索引。",
+      "id": "ercpmp-gx-endoscopic-image-and-video-dataset-for-morphological-histopathological-and-genomic-characterization-of-colorectal-polyposis",
+      "value_type": "ignore",
+      "matched_topics": [],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    }
+  ],
+  "scored_at": "2026-09-21"
+}
