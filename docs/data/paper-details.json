@@ -1,6 +1,1355 @@
 {
-  "updated_at": "2026-09-21T04:32:29.696478",
+  "updated_at": "2026-09-23T04:32:12.312180",
   "papers": {
+    "harness-zero-harness-distillation-via-agent-as-harness": {
+      "id": "harness-zero-harness-distillation-via-agent-as-harness",
+      "title": "Harness-Zero: Harness Distillation via Agent-as-Harness",
+      "authors": [
+        "Haoran Ye",
+        "Yuxing Lu",
+        "Haonan Dong",
+        "Zhaochen Su",
+        "Guojie Song"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24974v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24974v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 83.0,
+      "decision": "重点学习",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2609.24974）：Harness-Zero 提出'agent harness 蒸馏'——用领域/实例优化过的 ha…",
+      "one_line_essence": "据摘要（arXiv 2609.24974）：Harness-Zero 提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可部署的 harness，从而摆脱'部署时必须带领域 harness'的束缚。这是 ai-agent × context-engineering 的'评测治理 + 工程交付'直接路线：与同批 RRSI（2609.24972）形成'harness 自改进 → harness 蒸馏'的连续主线——前者解决'如何递归提升 harness'，本文解决'如何把提升后的 harness 真正交付到部署'。frontier coding agent 的核心成本之一就是 harness 维护成本，'harness 蒸馏'若工程可行，会让团队可以同时拥有'领域质量'与'部署简洁'。代码/benchmark/项目页：暂无（摘要截断未显式披露），需打开 PDF 看蒸馏数据集 / 训练管线 / 评测协议是否公开。今日动作：即时试点方向，写'agent harness 蒸馏→部署'checklist 草稿；并与 RRSI 形成'今日 harness 双联证据'。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24974）：Harness-Zero 提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可部署的 harness，从而摆脱'部署时必须带领域 harness'的束缚。这是 ai-agent × context-engineering 的'评测治理 + 工程交",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24974）：Harness-Zero 提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24974v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24974v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=harness-zero-harness-distillation-via-agent-as-harness",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "rrsi-regularized-recursive-self-improvement-of-agent-harnesses": {
+      "id": "rrsi-regularized-recursive-self-improvement-of-agent-harnesses",
+      "title": "RRSI: Regularized Recursive Self-Improvement of Agent Harnesses",
+      "authors": [
+        "Peng Xia",
+        "Rujun Han",
+        "Zifeng Wang",
+        "Yanfei Chen",
+        "Yufan Zhang"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24972v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24972v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 5.15,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 79.5,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.24972）：RRSI（Regularized Recursive Self-Improvement）把 ag…",
+      "one_line_essence": "据摘要（arXiv 2609.24972）：RRSI（Regularized Recursive Self-Improvement）把 agent harness 的递归自改进（RSI）从'直接迭代改组件'升级为'带正则化约束的递归改组件'，明确指出朴素 RSI 会过拟合训练任务、在分布外表现不稳。这是 ai-agent × llm-evaluation × context-engineering 的方法学资产：与 9 月 19-21 日的 agent 失败诊断 / 评测治理主线直接共振——'harness 自改进必须显式带正则化约束，不能依赖训练集准确率'。与同批 Harness-Zero 形成'harness 自改进 ↔ harness 蒸馏'的双联证据。代码/benchmark：暂无，需打开 PDF 看正则化形式（KL / entropy / 任务分布约束）/ 多模型 ablation 是否公开。今日动作：纳入趋势雷达，建立'agent harness 递归自改进 + 正则化'趋势卡片。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24972）：RRSI（Regularized Recursive Self-Improvement）把 agent harness 的递归自改进（RSI）从'直接迭代改组件'升级为'带正则化约束的递归改组件'，明确指出朴素 RSI 会过拟合训练任务、在分布外表现不稳。这是 ai-agent × llm-evaluation ×",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24972）：RRSI（Regularized Recursive Self-Improvement）把 agent harness 的递归自改进（RSI）从'直",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24972v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24972v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=rrsi-regularized-recursive-self-improvement-of-agent-harnesses",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "dolphinbench-mapping-the-pareto-frontier-of-agent-memory": {
+      "id": "dolphinbench-mapping-the-pareto-frontier-of-agent-memory",
+      "title": "DolphinBench: Mapping the Pareto Frontier of Agent Memory",
+      "authors": [
+        "Soumil Rathi",
+        "Deshraj Yadav",
+        "Taranjeet Singh"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24971v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24971v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 7.4,
+        "evidence": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 78.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.24971）：DolphinBench 把'agent memory 评测'从传统'问答题 + 显式触发检索'…",
+      "one_line_essence": "据摘要（arXiv 2609.24971）：DolphinBench 把'agent memory 评测'从传统'问答题 + 显式触发检索'的范式推到'agent 行动式 + Pareto frontier（accuracy vs cost/time）'——评测不再只看'能不能查到'，还要看'用多少时间/代价查到'，禁止以不合理 cost/time tradeoff 换高 accuracy。这是 ai-agent × context-engineering × llm-evaluation 的方法学资产：今日 memory 评测治理的硬约束升级。代码/benchmark/项目页：暂无（摘要截断未显式披露），需打开 PDF 看 Pareto 协议 / 评测集是否公开。今日动作：纳入趋势雷达，建立'agent memory 评测 = accuracy × cost/time Pareto frontier'趋势卡片。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24971）：DolphinBench 把'agent memory 评测'从传统'问答题 + 显式触发检索'的范式推到'agent 行动式 + Pareto frontier（accuracy vs cost/time）'——评测不再只看'能不能查到'，还要看'用多少时间/代价查到'，禁止以不合理 cost/time trad",
+      "research_position": "benchmark",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "context-engineering",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24971）：DolphinBench 把'agent memory 评测'从传统'问答题 + 显式触发检索'的范式推到'agent 行动式 + Pareto f",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24971v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24971v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=dolphinbench-mapping-the-pareto-frontier-of-agent-memory",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=context-engineering",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "critical-state-rl-diagnosing-trainable-states-for-multi-turn-tool-use": {
+      "id": "critical-state-rl-diagnosing-trainable-states-for-multi-turn-tool-use",
+      "title": "Critical-State RL: Diagnosing Trainable States for Multi-Turn Tool Use",
+      "authors": [
+        "Zixiang Chen",
+        "Wenting Zhao",
+        "Zhepeng Cen",
+        "Akshara Prabhakar",
+        "Jielin Qiu"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24985v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24985v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 77.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.24985）：Critical-State RL 把 multi-turn tool use 训练失败归因到'…",
+      "one_line_essence": "据摘要（arXiv 2609.24985）：Critical-State RL 把 multi-turn tool use 训练失败归因到'哪一 call 真正值得训'——reward variation 在多轮场景下混入了下游随机性，朴素 reward 排序会把噪声当信号；用 local reward + 候选 call 评估'该 reward 是否真正捕捉了当前 action 的 effect'。这是 ai-agent × llm-evaluation 的方法学澄清：把'multi-turn tool use 训练失败模式'从经验变成可命名、可定位的失败模式 + 可定位的可训练状态。今日动作：纳入趋势雷达，写'multi-turn tool use 训练 → 可训练状态定位'rubric。代码/benchmark：暂无，需打开 PDF 看 critical state 判别协议是否公开。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24985）：Critical-State RL 把 multi-turn tool use 训练失败归因到'哪一 call 真正值得训'——reward variation 在多轮场景下混入了下游随机性，朴素 reward 排序会把噪声当信号；用 local reward + 候选 call 评估'该 reward 是否真正捕",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24985）：Critical-State RL 把 multi-turn tool use 训练失败归因到'哪一 call 真正值得训'——reward var",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24985v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24985v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=critical-state-rl-diagnosing-trainable-states-for-multi-turn-tool-use",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "worldcrafter-consistent-video-world-model-with-implicit-3d-aware-memory": {
+      "id": "worldcrafter-consistent-video-world-model-with-implicit-3d-aware-memory",
+      "title": "WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory",
+      "authors": [
+        "Wangbo Yu",
+        "Kunhao Liu",
+        "Wenbo Hu",
+        "Shenghai Yuan",
+        "Chaoran Feng"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24984v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24984v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 75.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.24984）：WorldCrafter 提出'camera-queryable implicit 3D-awa…",
+      "one_line_essence": "据摘要（arXiv 2609.24984）：WorldCrafter 提出'camera-queryable implicit 3D-aware memory'——把多视角证据按'被请求的视点'压缩进 video generator 的有限 token budget，让 video world model 在长程 + 跨视角下保持一致性。这是 multimodal-agent × ai-agent × context-engineering 的方法学资产：与 4 月份 agentic-world-modeling 趋势锚点形成跨日连续主线——'world model 长程一致性 = 显式记忆 + 视点压缩'。代码/benchmark：暂无，需打开 PDF 看 memory encoder / pose-conditioned decoder 是否公开。今日动作：纳入趋势雷达，建立'video world model 长程一致性'趋势卡片。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24984）：WorldCrafter 提出'camera-queryable implicit 3D-aware memory'——把多视角证据按'被请求的视点'压缩进 video generator 的有限 token budget，让 video world model 在长程 + 跨视角下保持一致性。这是 multimo",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24984）：WorldCrafter 提出'camera-queryable implicit 3D-aware memory'——把多视角证据按'被请求的视点",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24984v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24984v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=worldcrafter-consistent-video-world-model-with-implicit-3d-aware-memory",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "gamehorizon-suite-multi-horizon-data-and-evaluation-in-gameplay": {
+      "id": "gamehorizon-suite-multi-horizon-data-and-evaluation-in-gameplay",
+      "title": "GameHorizon Suite: Multi-Horizon Data and Evaluation in Gameplay",
+      "authors": [
+        "Yiran Wang",
+        "Xingyilang Yin",
+        "Junfu Pu",
+        "Guangzhi Wang",
+        "Kaifeng Li"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.25001v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.25001v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 73.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2606.25001→实际 2609.25001）：GameHorizon Suite 提出统一数据 + 评测套装，针对…",
+      "one_line_essence": "据摘要（arXiv 2606.25001→实际 2609.25001）：GameHorizon Suite 提出统一数据 + 评测套装，针对'multi-horizon 视觉理解 + 指令分解 + 目标规划 + 精确动作控制'做评测——明确指出现有评测要么游戏覆盖窄、要么没有语言指令、要么依赖高方差 online rollouts。这是 llm-evaluation × multimodal-agent 的方法学资产：multi-horizon planning 评测治理的硬约束。代码/benchmark：暂无，需打开 PDF 看 GameHorizon 数据集与 baseline 排行是否公开。今日动作：纳入趋势雷达，建立'agent multi-horizon planning 评测'趋势卡片。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2606.25001→实际 2609.25001）：GameHorizon Suite 提出统一数据 + 评测套装，针对'multi-horizon 视觉理解 + 指令分解 + 目标规划 + 精确动作控制'做评测——明确指出现有评测要么游戏覆盖窄、要么没有语言指令、要么依赖高方差 online rollouts。这是 llm-evalua",
+      "research_position": "benchmark",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2606.25001→实际 2609.25001）：GameHorizon Suite 提出统一数据 + 评测套装，针对'multi-horizon 视觉理解 + 指令分解",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.25001v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.25001v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=gamehorizon-suite-multi-horizon-data-and-evaluation-in-gameplay",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction": {
+      "id": "onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction",
+      "title": "onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction",
+      "authors": [
+        "Lei Yang",
+        "Mengyin Liu",
+        "Jia Wang",
+        "Hangyu Guo",
+        "Liang Zhao"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24983v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24983v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 68.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.24983）：onPanda 是'on-policy alignment data 高效标注'交互工具——核心…",
+      "one_line_essence": "据摘要（arXiv 2609.24983）：onPanda 是'on-policy alignment data 高效标注'交互工具——核心交互是 token-level correction：标注员定位首个不当 token，从模型候选 token 选替换或自由编辑，然后截断后续、重生成；重复此 locate-correct-regenerate 循环。这是 ai-agent × data-engineering 的方法学资产：长尾保存——为团队日后做'内部 on-policy alignment 数据生产'提供'token-level correction + locate-correct-regenerate'的工程模板。代码/benchmark：暂无，需打开 PDF 看标注工具是否开源。今日动作：沉淀为长尾卡片，标注未来触发条件。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24983）：onPanda 是'on-policy alignment data 高效标注'交互工具——核心交互是 token-level correction：标注员定位首个不当 token，从模型候选 token 选替换或自由编辑，然后截断后续、重生成；重复此 locate-correct-regenerate 循环。这是",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24983）：onPanda 是'on-policy alignment data 高效标注'交互工具——核心交互是 token-level correction",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-10-14"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24983v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24983v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "dextacwam-a-visuo-tactile-world-action-model-for-dexterous-manipulation": {
+      "id": "dextacwam-a-visuo-tactile-world-action-model-for-dexterous-manipulation",
+      "title": "DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation",
+      "authors": [
+        "Haoran Yuan",
+        "Zekai Wang",
+        "Boning Shao",
+        "Haoran Lu",
+        "Trevor Darrell"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24976v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24976v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 66.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.24976）：DexTacWAM 提出 visuo-tactile World-Action Model——每…",
+      "one_line_essence": "据摘要（arXiv 2609.24976）：DexTacWAM 提出 visuo-tactile World-Action Model——每根指尖独立编码、用 finger- and pose-aware tactile compressor 聚合、把触觉 latent 注入 video generator；针对'vision-centric WAM 无法直接建模接触动力学'的不足。这是 multimodal-agent × ai-agent 的方法学资产：长尾保存——为团队日后做'具身 agent 触觉信号接入'提供'指尖独立编码 + 触觉压缩 + latent 注入 video generator'的工程模板。代码/benchmark：暂无，需打开 PDF 看触觉 encoder 与 tactile compressor 是否开源。今日动作：沉淀为长尾卡片。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24976）：DexTacWAM 提出 visuo-tactile World-Action Model——每根指尖独立编码、用 finger- and pose-aware tactile compressor 聚合、把触觉 latent 注入 video generator；针对'vision-centric WAM 无法直",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24976）：DexTacWAM 提出 visuo-tactile World-Action Model——每根指尖独立编码、用 finger- and pose",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-10-14"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24976v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24976v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=dextacwam-a-visuo-tactile-world-action-model-for-dexterous-manipulation",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "lora-generating-hypernetworks-for-efficient-on-device-llm-generative-personalization": {
+      "id": "lora-generating-hypernetworks-for-efficient-on-device-llm-generative-personalization",
+      "title": "LoRA-generating hypernetworks for efficient on-device LLM generative personalization",
+      "authors": [
+        "Sean Augenstein",
+        "Li Ding",
+        "Jihwan Lee",
+        "Keith Rush",
+        "Andrey Zhmoginov"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24979v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24979v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 64.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.24979）：LoRA-generating hypernetwork 用于'efficient on-dev…",
+      "one_line_essence": "据摘要（arXiv 2609.24979）：LoRA-generating hypernetwork 用于'efficient on-device LLM generative personalization'——端侧 LLM 受限于算力/模型规模，质量提升任何一点都很珍贵；同时端侧 LLM 与单一用户强耦合，使用模式可预测；本文给出新颖的高效个性化方法。这是 inference-serving 的方法学资产：长尾保存——为团队日后做'端侧 LLM 个性化'提供'hypernetwork 生成 LoRA'的参数化路径。代码/benchmark：暂无，需打开 PDF 看 hypernetwork 架构与端侧部署协议是否公开。今日动作：沉淀为长尾卡片，标注未来触发条件。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24979）：LoRA-generating hypernetwork 用于'efficient on-device LLM generative personalization'——端侧 LLM 受限于算力/模型规模，质量提升任何一点都很珍贵；同时端侧 LLM 与单一用户强耦合，使用模式可预测；本文给出新颖的高效个性化方法。这",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24979）：LoRA-generating hypernetwork 用于'efficient on-device LLM generative persona",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-10-14"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24979v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24979v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=lora-generating-hypernetworks-for-efficient-on-device-llm-generative-personalization",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "rare-event-estimation-via-iterative-unalignment": {
+      "id": "rare-event-estimation-via-iterative-unalignment",
+      "title": "Rare Event Estimation via Iterative Unalignment",
+      "authors": [
+        "Hanming Yang",
+        "Daksh Mittal",
+        "Jing Dong",
+        "Hongseok Namkoong"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-21",
+      "url": "http://arxiv.org/abs/2609.24969v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24969v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 7.4,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 61.5,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.24969）：Rare Event Estimation via Iterative Unalignment …",
+      "one_line_essence": "据摘要（arXiv 2609.24969）：Rare Event Estimation via Iterative Unalignment 研究'agent 自身动作导致罕见事件概率估计'——naive Monte Carlo 在组合爆炸的轨迹空间里无效；提出迭代 unalignment 方法。这是 ai-agent × security-governance 的方法学资产：长尾保存——为团队日后做'agent 安全部署 / 风险量化'提供'罕见事件概率估计'的工程模板（不只看是否能发生，更看发生频率）。代码/benchmark：暂无，需打开 PDF 看迭代 unalignment 算法与实验协议是否公开。今日动作：沉淀为长尾卡片。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.24969）：Rare Event Estimation via Iterative Unalignment 研究'agent 自身动作导致罕见事件概率估计'——naive Monte Carlo 在组合爆炸的轨迹空间里无效；提出迭代 unalignment 方法。这是 ai-agent × security-governanc",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.24969）：Rare Event Estimation via Iterative Unalignment 研究'agent 自身动作导致罕见事件概率估计'——",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-10-14"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24969v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24969v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=rare-event-estimation-via-iterative-unalignment",
+      "daily_path": "daily-detail.html?date=2026-09-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
     "quantifying-overclaiming-propensity-in-frontier-llm-agents": {
       "id": "quantifying-overclaiming-propensity-in-frontier-llm-agents",
       "title": "Quantifying Overclaiming Propensity in Frontier LLM Agents",

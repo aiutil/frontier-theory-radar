@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-09-21T04:32:25.008943",
+  "updated_at": "2026-09-23T04:32:09.113936",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-23",
+      "title": "论文价值发现日报 - 2026-09-23",
+      "deep_dive_title": "Harness-Zero: Harness Distillation via Agent-as-Harness",
+      "deep_dive_url": "http://arxiv.org/abs/2609.24974v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "把 Harness-Zero（[2609.24974](http://arxiv.org/abs/2609.24974)）列为即时试点方向；为 RRSI（[2609.24972](http://arxiv.org/abs/2609.24972)）、DolphinBench（[2609.24971](http://arxiv.org/abs/2609.24971)）、Critical-State RL（[2609.24985](http://arxiv.org/abs/2609.24985)）、WorldCrafter（[2609.24984](http://arxiv.org/abs/2609.24984)）、GameHorizon（[2609.25001](http://arxiv.org/abs/2609.25001)）建立/更新趋势卡片（连续两日加固）；为 onPanda（[2609.24983](http://arxiv.org/abs/2609.24983)）、DexTacWAM（[2609.24976](http://arxiv.org/abs/2609.24976)）、LoRA hypernetwork（[2609.24979](http://arxiv.org/abs/2609.24979)）、Rare Event Estimation（[2609.24969](http://arxiv.org/abs/2609.24969)）保持/新增长尾卡片。",
+      "max_uncertainty": "样本同源已连续四日（9 月 19-22 日 URL 集合完全一致），需观察 arXiv 是否会在 9 月 23-24 日发布真正新批次；Harness-Zero 蒸馏数据集 / 训练管线 / 评测协议是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'蒸馏到统一 harness'是否会牺牲领域质量、RRSI 正则化形式（KL / entropy / 任务分布）是否可迁移、DolphinBench Pareto 协议是否公开、Critical-State RL 判别协议是否公开、WorldCrafter memory encoder 与 pose-conditioned decoder 是否开源、GameHorizon baseline 排行是否公开、DexTacWAM tactile compressor 是否开源、LoRA hypernetwork 端侧部署协议是否公开、Rare Event Estimation 迭代 unalignment 实验协议是否公开、onPanda 标注工具是否开源，仍待多源验证。",
+      "one_line_judgement": "据摘要（arXiv 2609.24974），这篇提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可部署的 harness，摆脱部署时必须带领域 harness 的束缚。这是 ai-agent × context-engineering 的'评测治理 + 工程交付'直接路线：与同批 RRSI（2609.24972）'正则化递归 harness 自改进'形成'今日 harness 双联证据'——前者解决'harness 如何真正交付到部署'，后者解决'harness 递归提升如何不过拟合'。连续四日（9 月 19-22 日）样本同源 + 跨日稳定结论，与同批次 DolphinBench / Critical-State RL / WorldCrafter / GameHorizon 一起形成更稳定的'agent harness 设计 + memory 评测治理 + multi-turn tool use 训练 + world model 长程一致性 + multi-horizon planning 评测'主线。",
+      "path": "daily-detail.html?date=2026-09-23"
+    },
     {
       "date": "2026-09-21",
       "title": "论文价值发现日报 - 2026-09-21",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
       "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
       "path": "daily-detail.html?date=2026-08-21"
-    },
-    {
-      "date": "2026-08-20",
-      "title": "论文价值发现日报 - 2026-08-20",
-      "deep_dive_title": "Projecting BrowseComp-Plus onto ClimbMix: Toward More Realistic Corpora for Agentic Search",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20317v1",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-08-20"
     }
   ]
 }

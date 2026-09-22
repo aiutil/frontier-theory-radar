@@ -1,7 +1,793 @@
 {
-  "updated_at": "2026-09-21T04:32:25.011796",
-  "total": 1790,
+  "updated_at": "2026-09-23T04:32:09.116759",
+  "total": 1800,
   "papers": [
+    {
+      "title": "Harness-Zero: Harness Distillation via Agent-as-Harness",
+      "authors": [
+        "Haoran Ye",
+        "Yuxing Lu",
+        "Haonan Dong",
+        "Zhaochen Su",
+        "Guojie Song"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24974v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24974v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Agent harnesses, the external systems that mediate model-environment interaction, can substantially improve agent performance, but their gains remain tied to the harness at deployment. Because the best harness varies across domains, instances, and models, a general-purpose agent must either settle for a suboptimal shared harness or route among an ever-growing set of specialized ones. We therefore study agent harness distillation: using a domain- or instance-optimized harness as training-time gui",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.NE"
+      ],
+      "keywords": [
+        "agent",
+        "RAG",
+        "tool use"
+      ],
+      "score": 83.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24974v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24974v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24974）：Harness-Zero 提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可部署的 harness，从而摆脱'部署时必须带领域 harness'的束缚。这是 ai-agent × context-engineering 的'评测治理 + 工程交付'直接路线：与同批 RRSI（2609.24972）形成'harness 自改进 → harness 蒸馏'的连续主线——前者解决'如何递归提升 harness'，本文解决'如何把提升后的 harness 真正交付到部署'。frontier coding agent 的核心成本之一就是 harness 维护成本，'harness 蒸馏'若工程可行，会让团队可以同时拥有'领域质量'与'部署简洁'。代码/benchmark/项目页：暂无（摘要截断未显式披露），需打开 PDF 看蒸馏数据集 / 训练管线 / 评测协议是否公开。今日动作：即时试点方向，写'agent harness 蒸馏→部署'checklist 草稿；并与 RRSI 形成'今日 harness 双联证据'。",
+      "id": "harness-zero-harness-distillation-via-agent-as-harness",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Agent harnesses, the external systems that mediate model-environment interacti…",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2609.24974）：Harness-Zero 提出'agent harness 蒸馏'——用领域/实例优化过的 ha…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "据摘要（arXiv 2609.24974）：Harness-Zero 提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可",
+      "related_trends": [
+        "agentic-world-modeling",
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=harness-zero-harness-distillation-via-agent-as-harness"
+    },
+    {
+      "title": "RRSI: Regularized Recursive Self-Improvement of Agent Harnesses",
+      "authors": [
+        "Peng Xia",
+        "Rujun Han",
+        "Zifeng Wang",
+        "Yanfei Chen",
+        "Yufan Zhang"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24972v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24972v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "An LLM agent's capability is largely magnified by its harness, namely the prompts, control flow, tooling, memory, and context management surrounding the frozen backbone model. Recent methods increasingly automate this process by iteratively proposing and selecting component-wise edits of an agent harness, practically establishing a form of recursive self-improvement (RSI) at the agent-system level. However, such recursive evolution may overfit by memorizing the training tasks, showing large in-d",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "memory",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 79.5,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24972v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24972v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24972）：RRSI（Regularized Recursive Self-Improvement）把 agent harness 的递归自改进（RSI）从'直接迭代改组件'升级为'带正则化约束的递归改组件'，明确指出朴素 RSI 会过拟合训练任务、在分布外表现不稳。这是 ai-agent × llm-evaluation × context-engineering 的方法学资产：与 9 月 19-21 日的 agent 失败诊断 / 评测治理主线直接共振——'harness 自改进必须显式带正则化约束，不能依赖训练集准确率'。与同批 Harness-Zero 形成'harness 自改进 ↔ harness 蒸馏'的双联证据。代码/benchmark：暂无，需打开 PDF 看正则化形式（KL / entropy / 任务分布约束）/ 多模型 ablation 是否公开。今日动作：纳入趋势雷达，建立'agent harness 递归自改进 + 正则化'趋势卡片。",
+      "id": "rrsi-regularized-recursive-self-improvement-of-agent-harnesses",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 5.15,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：An LLM agent's capability is largely magnified by its harness, namely the prom…",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.24972）：RRSI（Regularized Recursive Self-Improvement）把 ag…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要（arXiv 2609.24972）：RRSI（Regularized Recursive Self-Improvement）把 agent harness 的递归自改进（RSI）从'直",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent",
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=rrsi-regularized-recursive-self-improvement-of-agent-harnesses"
+    },
+    {
+      "title": "DolphinBench: Mapping the Pareto Frontier of Agent Memory",
+      "authors": [
+        "Soumil Rathi",
+        "Deshraj Yadav",
+        "Taranjeet Singh"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24971v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24971v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Agents today often take real-world actions that depend on long-term memory and context recall over time. However, most current memory benchmarks are built for a conversational question-answer format, where the question itself signals that some fact must be retrieved, and often which one. Moreover, benchmarks rarely require anything beyond accuracy from submissions, allowing memory systems to make unreasonable cost/time tradeoffs to achieve higher scores. We present DolphinBench, a benchmark that",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 78.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24971v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24971v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24971）：DolphinBench 把'agent memory 评测'从传统'问答题 + 显式触发检索'的范式推到'agent 行动式 + Pareto frontier（accuracy vs cost/time）'——评测不再只看'能不能查到'，还要看'用多少时间/代价查到'，禁止以不合理 cost/time tradeoff 换高 accuracy。这是 ai-agent × context-engineering × llm-evaluation 的方法学资产：今日 memory 评测治理的硬约束升级。代码/benchmark/项目页：暂无（摘要截断未显式披露），需打开 PDF 看 Pareto 协议 / 评测集是否公开。今日动作：纳入趋势雷达，建立'agent memory 评测 = accuracy × cost/time Pareto frontier'趋势卡片。",
+      "id": "dolphinbench-mapping-the-pareto-frontier-of-agent-memory",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Agents today often take real-world actions that depend on long-term memory and…",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.24971）：DolphinBench 把'agent memory 评测'从传统'问答题 + 显式触发检索'…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要（arXiv 2609.24971）：DolphinBench 把'agent memory 评测'从传统'问答题 + 显式触发检索'的范式推到'agent 行动式 + Pareto f",
+      "related_trends": [
+        "agentic-world-modeling",
+        "context-engineering",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=dolphinbench-mapping-the-pareto-frontier-of-agent-memory"
+    },
+    {
+      "title": "Critical-State RL: Diagnosing Trainable States for Multi-Turn Tool Use",
+      "authors": [
+        "Zixiang Chen",
+        "Wenting Zhao",
+        "Zhepeng Cen",
+        "Akshara Prabhakar",
+        "Jielin Qiu"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24985v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24985v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Multi-turn tool-use failures can hinge on a single model call, yet reward variation alone does not reveal which call would benefit from training. When rewards depend on later interactions, their variation can reflect downstream randomness rather than differences between the current actions. We introduce Critical-State RL to identify trainable states in multi-turn interactions. Given task-defined candidate calls and local rewards, the method assesses whether each reward captures the action's effe",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "keywords": [
+        "memory",
+        "tool use",
+        "function calling"
+      ],
+      "score": 77.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24985v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24985v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24985）：Critical-State RL 把 multi-turn tool use 训练失败归因到'哪一 call 真正值得训'——reward variation 在多轮场景下混入了下游随机性，朴素 reward 排序会把噪声当信号；用 local reward + 候选 call 评估'该 reward 是否真正捕捉了当前 action 的 effect'。这是 ai-agent × llm-evaluation 的方法学澄清：把'multi-turn tool use 训练失败模式'从经验变成可命名、可定位的失败模式 + 可定位的可训练状态。今日动作：纳入趋势雷达，写'multi-turn tool use 训练 → 可训练状态定位'rubric。代码/benchmark：暂无，需打开 PDF 看 critical state 判别协议是否公开。",
+      "id": "critical-state-rl-diagnosing-trainable-states-for-multi-turn-tool-use",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Multi-turn tool-use failures can hinge on a single model call, yet reward vari…",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.24985）：Critical-State RL 把 multi-turn tool use 训练失败归因到'…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要（arXiv 2609.24985）：Critical-State RL 把 multi-turn tool use 训练失败归因到'哪一 call 真正值得训'——reward var",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=critical-state-rl-diagnosing-trainable-states-for-multi-turn-tool-use"
+    },
+    {
+      "title": "WorldCrafter: Consistent Video World Model with Implicit 3D-aware Memory",
+      "authors": [
+        "Wangbo Yu",
+        "Kunhao Liu",
+        "Wenbo Hu",
+        "Shenghai Yuan",
+        "Chaoran Feng"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24984v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24984v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Video world models enable interactive exploration of dynamic environments, yet struggle to respect prior observations over long horizons and across viewpoints. We present WorldCrafter, a video world model that learns a camera-queryable implicit 3D-aware memory for this purpose. The key insight is to let the requested viewpoint shape how multi-view evidence is compressed into the video generator's limited token budget. Trained jointly with the video generator, a memory encoder and pose-conditione",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.GR"
+      ],
+      "keywords": [
+        "world model",
+        "memory"
+      ],
+      "score": 75.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24984v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24984v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24984）：WorldCrafter 提出'camera-queryable implicit 3D-aware memory'——把多视角证据按'被请求的视点'压缩进 video generator 的有限 token budget，让 video world model 在长程 + 跨视角下保持一致性。这是 multimodal-agent × ai-agent × context-engineering 的方法学资产：与 4 月份 agentic-world-modeling 趋势锚点形成跨日连续主线——'world model 长程一致性 = 显式记忆 + 视点压缩'。代码/benchmark：暂无，需打开 PDF 看 memory encoder / pose-conditioned decoder 是否公开。今日动作：纳入趋势雷达，建立'video world model 长程一致性'趋势卡片。",
+      "id": "worldcrafter-consistent-video-world-model-with-implicit-3d-aware-memory",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Multimodal Agent：Video world models enable interactive exploration of dynamic environments, yet…",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.24984）：WorldCrafter 提出'camera-queryable implicit 3D-awa…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要（arXiv 2609.24984）：WorldCrafter 提出'camera-queryable implicit 3D-aware memory'——把多视角证据按'被请求的视点",
+      "related_trends": [
+        "agentic-world-modeling",
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=worldcrafter-consistent-video-world-model-with-implicit-3d-aware-memory"
+    },
+    {
+      "title": "GameHorizon Suite: Multi-Horizon Data and Evaluation in Gameplay",
+      "authors": [
+        "Yiran Wang",
+        "Xingyilang Yin",
+        "Junfu Pu",
+        "Guangzhi Wang",
+        "Kaifeng Li"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.25001v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.25001v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Modern video games provide a measurable testbed for AI models, combining abilities of visual understanding, instruction decomposition, goal planning, and precise action control over multiple temporal horizons. Existing datasets and benchmarks, however, either cover a narrow range of games, lack language instructions, or rely on high-variance online rollouts. To address these challenges, we introduce GameHorizon, a unified data and evaluation suite that measures gameplay capabilities at different",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "planning"
+      ],
+      "score": 73.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.25001v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.25001v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2606.25001→实际 2609.25001）：GameHorizon Suite 提出统一数据 + 评测套装，针对'multi-horizon 视觉理解 + 指令分解 + 目标规划 + 精确动作控制'做评测——明确指出现有评测要么游戏覆盖窄、要么没有语言指令、要么依赖高方差 online rollouts。这是 llm-evaluation × multimodal-agent 的方法学资产：multi-horizon planning 评测治理的硬约束。代码/benchmark：暂无，需打开 PDF 看 GameHorizon 数据集与 baseline 排行是否公开。今日动作：纳入趋势雷达，建立'agent multi-horizon planning 评测'趋势卡片。",
+      "id": "gamehorizon-suite-multi-horizon-data-and-evaluation-in-gameplay",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Modern video games provide a measurable testbed for AI models, combining abili…",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2606.25001→实际 2609.25001）：GameHorizon Suite 提出统一数据 + 评测套装，针对…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要（arXiv 2606.25001→实际 2609.25001）：GameHorizon Suite 提出统一数据 + 评测套装，针对'multi-horizon 视觉理解 + 指令分解",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=gamehorizon-suite-multi-horizon-data-and-evaluation-in-gameplay"
+    },
+    {
+      "title": "onPanda: Efficient Annotation of On-Policy Alignment Data for LLMs and Agents via Token-Level Correction",
+      "authors": [
+        "Lei Yang",
+        "Mengyin Liu",
+        "Jia Wang",
+        "Hangyu Guo",
+        "Liang Zhao"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24983v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24983v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We present onPanda, an interactive tool for efficiently annotating LLM alignment data and agent trajectories. onPanda adopts token-level correction as its core interaction: while reading a model response, the annotator locates the first inappropriate token and either picks a substitute from the model's candidate tokens or types the correct text via free-form editing. The system then truncates everything after that position and continues generation from the corrected prefix, repeating this locate",
+      "categories": [
+        "cs.CL",
+        "cs.HC",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "benchmark"
+      ],
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24983v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24983v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24983）：onPanda 是'on-policy alignment data 高效标注'交互工具——核心交互是 token-level correction：标注员定位首个不当 token，从模型候选 token 选替换或自由编辑，然后截断后续、重生成；重复此 locate-correct-regenerate 循环。这是 ai-agent × data-engineering 的方法学资产：长尾保存——为团队日后做'内部 on-policy alignment 数据生产'提供'token-level correction + locate-correct-regenerate'的工程模板。代码/benchmark：暂无，需打开 PDF 看标注工具是否开源。今日动作：沉淀为长尾卡片，标注未来触发条件。",
+      "id": "onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "data-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：We present onPanda, an interactive tool for efficiently annotating LLM alignme…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.24983）：onPanda 是'on-policy alignment data 高效标注'交互工具——核心…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2609.24983）：onPanda 是'on-policy alignment data 高效标注'交互工具——核心交互是 token-level correction",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=onpanda-efficient-annotation-of-on-policy-alignment-data-for-llms-and-agents-via-token-level-correction"
+    },
+    {
+      "title": "DexTacWAM: A Visuo-Tactile World-Action Model for Dexterous Manipulation",
+      "authors": [
+        "Haoran Yuan",
+        "Zekai Wang",
+        "Boning Shao",
+        "Haoran Lu",
+        "Trevor Darrell"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24976v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24976v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Dexterous manipulation depends on contact dynamics that are often only partially observable from vision. Recent World-Action Models (WAMs) couple predictive video world modeling with action generation, but remain largely vision-centric and therefore cannot directly model these contact dynamics. We present DexTacWAM, a visuo-tactile WAM that encodes each fingertip independently, aggregates the resulting features through a finger- and pose-aware tactile compressor, and injects the tactile latent i",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV"
+      ],
+      "keywords": [
+        "world model",
+        "RAG",
+        "inference"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24976v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24976v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24976）：DexTacWAM 提出 visuo-tactile World-Action Model——每根指尖独立编码、用 finger- and pose-aware tactile compressor 聚合、把触觉 latent 注入 video generator；针对'vision-centric WAM 无法直接建模接触动力学'的不足。这是 multimodal-agent × ai-agent 的方法学资产：长尾保存——为团队日后做'具身 agent 触觉信号接入'提供'指尖独立编码 + 触觉压缩 + latent 注入 video generator'的工程模板。代码/benchmark：暂无，需打开 PDF 看触觉 encoder 与 tactile compressor 是否开源。今日动作：沉淀为长尾卡片。",
+      "id": "dextacwam-a-visuo-tactile-world-action-model-for-dexterous-manipulation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Dexterous manipulation depends on contact dynamics that are often only partial…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.24976）：DexTacWAM 提出 visuo-tactile World-Action Model——每…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2609.24976）：DexTacWAM 提出 visuo-tactile World-Action Model——每根指尖独立编码、用 finger- and pose",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=dextacwam-a-visuo-tactile-world-action-model-for-dexterous-manipulation"
+    },
+    {
+      "title": "LoRA-generating hypernetworks for efficient on-device LLM generative personalization",
+      "authors": [
+        "Sean Augenstein",
+        "Li Ding",
+        "Jihwan Lee",
+        "Keith Rush",
+        "Andrey Zhmoginov"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24979v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24979v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "On-device large language models (`LLMs'), e.g. running on mobile phones, are ripe for improvement via personalization. The limited compute resources of mobile devices impose limits on model scale and thus model quality, making any realizable quality gains highly impactful. At the same time, their personal nature (i.e., the close coupling to a particular user) means that a given on-device LLM tends to be used in similar, predictable patterns over the course of time. This paper presents a novel me",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 64.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24979v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24979v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24979）：LoRA-generating hypernetwork 用于'efficient on-device LLM generative personalization'——端侧 LLM 受限于算力/模型规模，质量提升任何一点都很珍贵；同时端侧 LLM 与单一用户强耦合，使用模式可预测；本文给出新颖的高效个性化方法。这是 inference-serving 的方法学资产：长尾保存——为团队日后做'端侧 LLM 个性化'提供'hypernetwork 生成 LoRA'的参数化路径。代码/benchmark：暂无，需打开 PDF 看 hypernetwork 架构与端侧部署协议是否公开。今日动作：沉淀为长尾卡片，标注未来触发条件。",
+      "id": "lora-generating-hypernetworks-for-efficient-on-device-llm-generative-personalization",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "推理与服务：On-device large language models (`LLMs'), e.g. running on mobile phones, are r…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.24979）：LoRA-generating hypernetwork 用于'efficient on-dev…",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2609.24979）：LoRA-generating hypernetwork 用于'efficient on-device LLM generative persona",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=lora-generating-hypernetworks-for-efficient-on-device-llm-generative-personalization"
+    },
+    {
+      "title": "Rare Event Estimation via Iterative Unalignment",
+      "authors": [
+        "Hanming Yang",
+        "Daksh Mittal",
+        "Jing Dong",
+        "Hongseok Namkoong"
+      ],
+      "published": "2026-09-21",
+      "updated": "2026-09-21",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2609.24969v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.24969v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "As agents are deployed with increased autonomy, even extremely rare events along their stochastic output trajectories can occur and prove catastrophic. Safe deployment therefore does not depend on whether these events can occur, but on how often they might. We study the problem of estimating the probability of rare events that arise from stochastic variation in the agent's own actions. Estimating this type of risk requires searching over the combinatorially vast space of trajectories. Naive Mont",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "score": 61.5,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.24969v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.24969v1"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2609.24969）：Rare Event Estimation via Iterative Unalignment 研究'agent 自身动作导致罕见事件概率估计'——naive Monte Carlo 在组合爆炸的轨迹空间里无效；提出迭代 unalignment 方法。这是 ai-agent × security-governance 的方法学资产：长尾保存——为团队日后做'agent 安全部署 / 风险量化'提供'罕见事件概率估计'的工程模板（不只看是否能发生，更看发生频率）。代码/benchmark：暂无，需打开 PDF 看迭代 unalignment 算法与实验协议是否公开。今日动作：沉淀为长尾卡片。",
+      "id": "rare-event-estimation-via-iterative-unalignment",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：As agents are deployed with increased autonomy, even extremely rare events alo…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.24969）：Rare Event Estimation via Iterative Unalignment …",
+      "first_seen_date": "2026-09-23",
+      "first_deep_dive_daily": "2026-09-23",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2609.24969）：Rare Event Estimation via Iterative Unalignment 研究'agent 自身动作导致罕见事件概率估计'——",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=rare-event-estimation-via-iterative-unalignment"
+    },
     {
       "title": "Quantifying Overclaiming Propensity in Frontier LLM Agents",
       "authors": [

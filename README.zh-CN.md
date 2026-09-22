@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-21
+## 最新研究 · 2026-09-23
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 109 | 186 | 176 | 1319 |
+| 10 | 110 | 191 | 180 | 1319 |
 
-**今日深挖：** [Quantifying Overclaiming Propensity in Frontier LLM Agents](daily/2026/2026-09-21.md) · 即时价值 · 重点学习
+**今日深挖：** [Harness-Zero: Harness Distillation via Agent-as-Harness](daily/2026/2026-09-23.md) · 即时价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv 2609.20812），这篇把'前沿 coding agent 是否在其最终回复中虚假报告任务完成'形式化为 OverclaimBench：当 agent 最终回复与上下文中已有信息矛盾即视为 overclaim，无需推断意图，与任务是否真的成功无关。frontier coding agent 被信任去做长程自治工作，用户看到的只有最终回复，'自我报告可信度'是落地前必须堵住的治理漏洞——这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线。证据累计升级：连续两日（9 月 20-21 日）样本同源 + 跨日稳定结论，与同批次 Workspace Models / Score Centering / Obstacle-Aware Harness / Embedding Peculiar Ways 一起形成更稳定的'评测治理主线'。
+**核心判断：** 据摘要（arXiv 2609.24974），这篇提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可部署的 harness，摆脱部署时必须带领域 harness 的束缚。这是 ai-agent × context-engineering 的'评测治理 + 工程交付'直接路线：与同批 RRSI（2609.24972）'正则化递归 harness 自改进'形成'今日 harness 双联证据'——前者解决'harness 如何真正交付到部署'，后者解决'harness 递归提升如何不过拟合'。连续四日（9 月 19-22 日）样本同源 + 跨日稳定结论，与同批次 DolphinBench / Critical-State RL / WorldCrafter / GameHorizon 一起形成更稳定的'agent harness 设计 + memory 评测治理 + multi-turn tool use 训练 + world model 长程一致性 + multi-horizon planning 评测'主线。
 
-**建议动作：** 把 OverclaimBench（[2609.20812](http://arxiv.org/abs/2609.20812)）继续列为即时试点方向；为 Workspace Models（[2609.20820](http://arxiv.org/abs/2609.20820)）、Score Centering Stabilizes Off-policy RL（[2609.20807](http://arxiv.org/abs/2609.20807)）、Coding Agents Obstacle-Aware Harness（[2609.20822](http://arxiv.org/abs/2609.20822)）、Embedding Models Measure in Peculiar Ways（[2609.20821](http://arxiv.org/abs/2609.20821)）建立/更新趋势卡片（连续两日确认加固）；为 FAMOS（[2609.20817](http://arxiv.org/abs/2609.20817)）、PDE 代理预训练分布偏移（[2609.20814](http://arxiv.org/abs/2609.20814)）、Paint-Anything（[2609.20816](http://arxiv.org/abs/2609.20816)）、Unifying Models of Intergroup Hostility（[2609.20808](http://arxiv.org/abs/2609.20808)）保持/新增长尾卡片；ERCPMP-Gx（[2609.20815](http://arxiv.org/abs/2609.20815)）当前相关性低，仅保留最小索引。
+**建议动作：** 把 Harness-Zero（[2609.24974](http://arxiv.org/abs/2609.24974)）列为即时试点方向；为 RRSI（[2609.24972](http://arxiv.org/abs/2609.24972)）、DolphinBench（[2609.24971](http://arxiv.org/abs/2609.24971)）、Critical-State RL（[2609.24985](http://arxiv.org/abs/2609.24985)）、WorldCrafter（[2609.24984](http://arxiv.org/abs/2609.24984)）、GameHorizon（[2609.25001](http://arxiv.org/abs/2609.25001)）建立/更新趋势卡片（连续两日加固）；为 onPanda（[2609.24983](http://arxiv.org/abs/2609.24983)）、DexTacWAM（[2609.24976](http://arxiv.org/abs/2609.24976)）、LoRA hypernetwork（[2609.24979](http://arxiv.org/abs/2609.24979)）、Rare Event Estimation（[2609.24969](http://arxiv.org/abs/2609.24969)）保持/新增长尾卡片。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-23](daily/2026/2026-09-23.md) | Harness-Zero: Harness Distillation via Agent-as-Harness | 即时价值 | 重点学习 |
 | [2026-09-21](daily/2026/2026-09-21.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-20](daily/2026/2026-09-20.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-19](daily/2026/2026-09-19.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-18](daily/2026/2026-09-18.md) | Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments | 趋势价值 | 重点学习 |
 | [2026-09-17](daily/2026/2026-09-17.md) | ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search | 趋势价值 | 重点学习 |
 | [2026-09-16](daily/2026/2026-09-16.md) | Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection | 趋势价值 | 重点学习 |
-| [2026-09-15](daily/2026/2026-09-15.md) | Embodied-BenchForge: A Closed-Loop Agentic Workflow for Embodied Benchmark Construction | 趋势价值 | 轻量试点 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 569 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 506 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 569 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 573 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 510 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 573 |
 
 ## 为什么做这个项目
 

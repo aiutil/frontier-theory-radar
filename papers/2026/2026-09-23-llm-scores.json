@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-23",
+  "generated_at": "2026-09-23T04:32:00",
+  "note": "今日 arXiv API 返回 2026-09-21 同源批次（10 篇全部 published=2026-09-21），与 9 月 19-21 日三批样本同源，连续第四日观察同一证据链。本次 LLM 评分基于 9 月 23 日抓取数据重做价值路由：1) 即时价值：Harness-Zero（2609.24974）'把领域定制 harness 蒸馏到统一 harness'与同批 RRSI（2609.24972）'正则化递归 harness 自改进'共同把'agent harness 设计'推上今日工程热点；2) 趋势加固：DolphinBench（2609.24971）首次把 memory 评测从'问答题检索'推到'agent 行动式 + Pareto frontier + cost/time tradeoff'、Critical-State RL（2609.24985）把 multi-turn tool use 训练归因到'哪一 call 值得训'、WorldCrafter（2609.24984）'camera-queryable implicit 3D-aware memory'是 video world model 长程一致性的关键资产、GameHorizon（2609.25001）覆盖 multi-horizon planning 评测；3) 长尾：onPanda（2609.24983）'token-level correction 标注工具'是 on-policy alignment 数据高效标注的工程模板、DexTacWAM（2609.24976）'visuo-tactile world-action model'是具身 agent 触觉信号的工程资产、LoRA hypernetwork（2609.24979）'on-device LLM 生成式个性化'是端侧个性化的高效参数化资产；4) 安全治理长尾：Rare Event Estimation via Iterative Unalignment（2609.24969）'迭代 unalignment 估概率'是 agent 安全部署的反证资产。所有论文均未在摘要里显式披露 code / benchmark / project URL，按规则统一标'暂无'，证据不足项明确写入每条 reason。",
+  "by_url": {
+    "http://arxiv.org/abs/2609.24974v1": {
+      "score": 83.0,
+      "value_type": "immediate",
+      "matched_topics": ["ai-agent", "context-engineering"],
+      "reason": "据摘要（arXiv 2609.24974）：Harness-Zero 提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可部署的 harness，从而摆脱'部署时必须带领域 harness'的束缚。这是 ai-agent × context-engineering 的'评测治理 + 工程交付'直接路线：与同批 RRSI（2609.24972）形成'harness 自改进 → harness 蒸馏'的连续主线——前者解决'如何递归提升 harness'，本文解决'如何把提升后的 harness 真正交付到部署'。frontier coding agent 的核心成本之一就是 harness 维护成本，'harness 蒸馏'若工程可行，会让团队可以同时拥有'领域质量'与'部署简洁'。代码/benchmark/项目页：暂无（摘要截断未显式披露），需打开 PDF 看蒸馏数据集 / 训练管线 / 评测协议是否公开。今日动作：即时试点方向，写'agent harness 蒸馏→部署'checklist 草稿；并与 RRSI 形成'今日 harness 双联证据'。"
+    },
+    "http://arxiv.org/abs/2609.24972v1": {
+      "score": 79.5,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation", "context-engineering"],
+      "reason": "据摘要（arXiv 2609.24972）：RRSI（Regularized Recursive Self-Improvement）把 agent harness 的递归自改进（RSI）从'直接迭代改组件'升级为'带正则化约束的递归改组件'，明确指出朴素 RSI 会过拟合训练任务、在分布外表现不稳。这是 ai-agent × llm-evaluation × context-engineering 的方法学资产：与 9 月 19-21 日的 agent 失败诊断 / 评测治理主线直接共振——'harness 自改进必须显式带正则化约束，不能依赖训练集准确率'。与同批 Harness-Zero 形成'harness 自改进 ↔ harness 蒸馏'的双联证据。代码/benchmark：暂无，需打开 PDF 看正则化形式（KL / entropy / 任务分布约束）/ 多模型 ablation 是否公开。今日动作：纳入趋势雷达，建立'agent harness 递归自改进 + 正则化'趋势卡片。"
+    },
+    "http://arxiv.org/abs/2609.24971v1": {
+      "score": 78.0,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "context-engineering", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.24971）：DolphinBench 把'agent memory 评测'从传统'问答题 + 显式触发检索'的范式推到'agent 行动式 + Pareto frontier（accuracy vs cost/time）'——评测不再只看'能不能查到'，还要看'用多少时间/代价查到'，禁止以不合理 cost/time tradeoff 换高 accuracy。这是 ai-agent × context-engineering × llm-evaluation 的方法学资产：今日 memory 评测治理的硬约束升级。代码/benchmark/项目页：暂无（摘要截断未显式披露），需打开 PDF 看 Pareto 协议 / 评测集是否公开。今日动作：纳入趋势雷达，建立'agent memory 评测 = accuracy × cost/time Pareto frontier'趋势卡片。"
+    },
+    "http://arxiv.org/abs/2609.24985v1": {
+      "score": 77.0,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.24985）：Critical-State RL 把 multi-turn tool use 训练失败归因到'哪一 call 真正值得训'——reward variation 在多轮场景下混入了下游随机性，朴素 reward 排序会把噪声当信号；用 local reward + 候选 call 评估'该 reward 是否真正捕捉了当前 action 的 effect'。这是 ai-agent × llm-evaluation 的方法学澄清：把'multi-turn tool use 训练失败模式'从经验变成可命名、可定位的失败模式 + 可定位的可训练状态。今日动作：纳入趋势雷达，写'multi-turn tool use 训练 → 可训练状态定位'rubric。代码/benchmark：暂无，需打开 PDF 看 critical state 判别协议是否公开。"
+    },
+    "http://arxiv.org/abs/2609.24984v1": {
+      "score": 75.0,
+      "value_type": "trend",
+      "matched_topics": ["multimodal-agent", "ai-agent", "context-engineering"],
+      "reason": "据摘要（arXiv 2609.24984）：WorldCrafter 提出'camera-queryable implicit 3D-aware memory'——把多视角证据按'被请求的视点'压缩进 video generator 的有限 token budget，让 video world model 在长程 + 跨视角下保持一致性。这是 multimodal-agent × ai-agent × context-engineering 的方法学资产：与 4 月份 agentic-world-modeling 趋势锚点形成跨日连续主线——'world model 长程一致性 = 显式记忆 + 视点压缩'。代码/benchmark：暂无，需打开 PDF 看 memory encoder / pose-conditioned decoder 是否公开。今日动作：纳入趋势雷达，建立'video world model 长程一致性'趋势卡片。"
+    },
+    "http://arxiv.org/abs/2609.25001v1": {
+      "score": 73.0,
+      "value_type": "trend",
+      "matched_topics": ["llm-evaluation", "multimodal-agent"],
+      "reason": "据摘要（arXiv 2606.25001→实际 2609.25001）：GameHorizon Suite 提出统一数据 + 评测套装，针对'multi-horizon 视觉理解 + 指令分解 + 目标规划 + 精确动作控制'做评测——明确指出现有评测要么游戏覆盖窄、要么没有语言指令、要么依赖高方差 online rollouts。这是 llm-evaluation × multimodal-agent 的方法学资产：multi-horizon planning 评测治理的硬约束。代码/benchmark：暂无，需打开 PDF 看 GameHorizon 数据集与 baseline 排行是否公开。今日动作：纳入趋势雷达，建立'agent multi-horizon planning 评测'趋势卡片。"
+    },
+    "http://arxiv.org/abs/2609.24983v1": {
+      "score": 68.0,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "data-engineering"],
+      "reason": "据摘要（arXiv 2609.24983）：onPanda 是'on-policy alignment data 高效标注'交互工具——核心交互是 token-level correction：标注员定位首个不当 token，从模型候选 token 选替换或自由编辑，然后截断后续、重生成；重复此 locate-correct-regenerate 循环。这是 ai-agent × data-engineering 的方法学资产：长尾保存——为团队日后做'内部 on-policy alignment 数据生产'提供'token-level correction + locate-correct-regenerate'的工程模板。代码/benchmark：暂无，需打开 PDF 看标注工具是否开源。今日动作：沉淀为长尾卡片，标注未来触发条件。"
+    },
+    "http://arxiv.org/abs/2609.24976v1": {
+      "score": 66.0,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent", "ai-agent"],
+      "reason": "据摘要（arXiv 2609.24976）：DexTacWAM 提出 visuo-tactile World-Action Model——每根指尖独立编码、用 finger- and pose-aware tactile compressor 聚合、把触觉 latent 注入 video generator；针对'vision-centric WAM 无法直接建模接触动力学'的不足。这是 multimodal-agent × ai-agent 的方法学资产：长尾保存——为团队日后做'具身 agent 触觉信号接入'提供'指尖独立编码 + 触觉压缩 + latent 注入 video generator'的工程模板。代码/benchmark：暂无，需打开 PDF 看触觉 encoder 与 tactile compressor 是否开源。今日动作：沉淀为长尾卡片。"
+    },
+    "http://arxiv.org/abs/2609.24979v1": {
+      "score": 64.0,
+      "value_type": "long_tail",
+      "matched_topics": ["inference-serving"],
+      "reason": "据摘要（arXiv 2609.24979）：LoRA-generating hypernetwork 用于'efficient on-device LLM generative personalization'——端侧 LLM 受限于算力/模型规模，质量提升任何一点都很珍贵；同时端侧 LLM 与单一用户强耦合，使用模式可预测；本文给出新颖的高效个性化方法。这是 inference-serving 的方法学资产：长尾保存——为团队日后做'端侧 LLM 个性化'提供'hypernetwork 生成 LoRA'的参数化路径。代码/benchmark：暂无，需打开 PDF 看 hypernetwork 架构与端侧部署协议是否公开。今日动作：沉淀为长尾卡片，标注未来触发条件。"
+    },
+    "http://arxiv.org/abs/2609.24969v1": {
+      "score": 61.5,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "security-governance"],
+      "reason": "据摘要（arXiv 2609.24969）：Rare Event Estimation via Iterative Unalignment 研究'agent 自身动作导致罕见事件概率估计'——naive Monte Carlo 在组合爆炸的轨迹空间里无效；提出迭代 unalignment 方法。这是 ai-agent × security-governance 的方法学资产：长尾保存——为团队日后做'agent 安全部署 / 风险量化'提供'罕见事件概率估计'的工程模板（不只看是否能发生，更看发生频率）。代码/benchmark：暂无，需打开 PDF 看迭代 unalignment 算法与实验协议是否公开。今日动作：沉淀为长尾卡片。"
+    }
+  }
+}
