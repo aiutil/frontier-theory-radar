@@ -1,0 +1,99 @@
+{
+  "date": "2026-09-24",
+  "generated_at": "2026-09-24T04:32:00",
+  "note": "今日 arXiv API 仍返回 HTTP 406，RSS 后备成功 10 篇论文，URL 集合（2609.25010-2609.25284）与 9 月 19-23 日批次不重叠，连续第五日样本同源连续观察但 URL 集已切换到新批次。本次 LLM 评分基于 9 月 24 日抓取数据重做价值路由：1) 即时价值：Ovis-Embedding（2609.25165）'native omni-modal initialization + shared multimodal backbone + 三项关键进展'是今日 embedding 路线最具工程交付感的资产——把 text/image/video/audio 统一进同一表示空间，'避免 modality tower 拼装'；2) 趋势加固：X-Planner（2609.25187）'event-structured task planning front-end for VLA'与 9 月 23 日 GameHorizon 形成'agent multi-horizon planning 评测'的双联证据——前者是评测治理、后者是规划表达结构；4DGS-JEPA（2609.25036）'Gaussian-native joint-embedding predictive architecture for dynamic Gaussian scenes'把 world model 长程一致性推到 4DGS 显式表示上，与 9 月 23 日 WorldCrafter 形成'video world model / dynamic scene 一致性'的双联证据；3) 长尾：AI Neuroscientist（2609.25254）'agentic interface for neuroimaging analysis'是'domain expert + agent + 工具集'范式的具体落地、MedGate-Fusion（2609.25272）'multi-modal gated architecture + first-encounter narratives + 风险标记'是医疗多模态融合的工程模板、ReAdapt（2609.25284）'relational social reasoning'是 LLM agent 关系推理的失败模式命名；4) 评估治理长尾：Do Synthetic Personas Predict Real Audience Response?（2609.25010）'no-persona baseline beats persona-based copy simulation'是 LLM-as-persona 的反证资产——sim-to-real 失效的明确证据；Do Existing Preconditioners Improve Biomedical Tabular Foundation Learning?（2609.25013）'TabPFN v2.5 × 5 AdamW-based preconditioners × 59 biomedical datasets'是 tabular foundation model 微调的系统性 ablation；Hyper Graph Neural Network for GBM Survival Prediction（2609.25088）'accurate and interpretable'是 GNN 在医疗可解释性的方法学资产；Lean Pool（2609.25199）'AI-maintained archive of formalized mathematics'是 AI × formal verification 的工程基础设施资产。所有论文均未在摘要里显式披露 code / benchmark / project URL，按规则统一标'暂无'，证据不足项明确写入每条 reason。",
+  "by_url": {
+    "https://arxiv.org/abs/2609.25165": {
+      "score": 82.0,
+      "value_type": "immediate",
+      "matched_topics": [
+        "multimodal-agent",
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.25165）：Ovis-Embedding 提出 native omni-modal embedding——text/image/video/audio 共享一个 multimodal backbone，不再'组装'单独的 modality tower，并声称三项关键进展：(1) native omni-modal initialization（用预训练 Qwen-omni 做 embedding backbone 并适配）、(2) shared representation space、(3) 把 embedding 用作检索/RAG/分类的统一接口。这是 multimodal-agent × inference-serving × llm-evaluation 的'工程交付'直接路线：embedding 是 RAG/检索/分类的基石，'omni-modal + shared backbone'若工程可行，会直接降低多模态检索/分类系统的部署复杂度（不再维护多套 modality-specific encoder）。今日动作：即时试点方向，写'omni-modal embedding 替代 modality tower'checklist 草稿，关注与同批 Lean Pool（2609.25199）的'AI-maintained infrastructure'主线共振。代码/benchmark/项目页：暂无（摘要截断未显式披露），需打开 PDF 看 benchmark 覆盖（image/audio/video retrieval、分类）、训练数据、推理成本是否公开。"
+    },
+    "https://arxiv.org/abs/2609.25187": {
+      "score": 78.5,
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.25187）：X-Planner 提出'event-structured task planning front-end'——为 Vision-Language-Action（VLA）系统补上'规划'中间层；现有 CoT 规划要么依赖粗粒度 task 级标注，要么把长推理 trace 逐 token 序列化；本文用 event-structured 表示同时改进'监督粒度'和'规划表达结构'。这是 ai-agent × multimodal-agent × llm-evaluation 的方法学资产：与 9 月 23 日 GameHorizon（2609.25001）'multi-horizon planning 评测'形成'今日规划双联证据'——前者是规划表达结构（怎么规划），后者是规划评测（怎么测规划）。与 4 月份 agentic-world-modeling / embodied-agent 趋势锚点形成跨日连续主线。代码/benchmark/项目页：暂无，需打开 PDF 看事件结构定义、监督数据来源、baseline 是否公开。"
+    },
+    "https://arxiv.org/abs/2609.25036": {
+      "score": 76.5,
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "reason": "据摘要（arXiv 2609.25036）：4DGS-JEPA 提出'Gaussian-native joint-embedding predictive architecture'——为 dynamic Gaussian splatting（4DGS）场景做 causal multi-horizon prediction；用 hierarchical scene / motion-group / Gaussian 表示加 horizon-aware 目标，把 JEPA 范式从 latent space 推到 4D 显式表示上。这是 multimodal-agent × ai-agent 的方法学资产：与 9 月 23 日 WorldCrafter（2609.24984）'camera-queryable implicit 3D-aware memory'形成'今日 world model 一致性双联证据'——前者从显式 4DGS 表示出发做预测，后者从隐式 3D-aware memory 出发做生成；两者都把'长程一致性'当成需要专门机制而不是副产品。今日动作：纳入趋势雷达，建立'4D scene prediction × JEPA'趋势卡片。代码/benchmark：暂无，需打开 PDF 看 hierarchical encoder / horizon 划分协议是否公开。"
+    },
+    "https://arxiv.org/abs/2609.25254": {
+      "score": 71.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.25254）：AI Neuroscientist 是'language agent for interactive neuroimaging data exploration'——LLM + neuroimaging 工具集，支持 quality control / modeling / visualization；研究者用自然语言直接查询数据质量 + 设定分析参数。这是 ai-agent × llm-evaluation 的方法学资产：长尾保存——为团队日后做'domain expert agent（科研 + 工具集 + 自然语言接口）'范式落地提供具体模板，把'agent 让领域研究更可及'从口号变成可参考的实现路径。代码/benchmark/项目页：暂无，需打开 PDF 看 agent loop / 工具集 / 案例研究是否公开。今日动作：沉淀为长尾卡片，与同批 ReAdapt（2609.25284）'social reasoning agent'形成'今日 agent 长尾双联'。"
+    },
+    "https://arxiv.org/abs/2609.25272": {
+      "score": 70.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "reason": "据摘要（arXiv 2609.25272）：MedGate-Fusion 提出'multi-modal gated architecture'——transformer embeddings of first-encounter narratives + 10 routinely recorded risk markers；数据来自加拿大 CPCSSN（Canadian Primary Care Sentinel Surveillance Network）EMR，从 808,921 encounter-level 起步，做 prospective stroke risk stratification。这是 multimodal-agent × ai-agent 的方法学资产：长尾保存——为团队日后做'医疗多模态融合（narratives + biomarkers）'提供'gated architecture + first-encounter narratives'的具体工程模板；narrative × biomarker 多模态对齐与 gated 融合是有可迁移价值的设计选择。代码/benchmark：暂无，需打开 PDF 看 CPCSSN 数据可用性、gating 机制、消融实验是否公开。今日动作：沉淀为长尾卡片。"
+    },
+    "https://arxiv.org/abs/2609.25284": {
+      "score": 69.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.25284）：ReAdapt 把 LLM agent 的失败归因到'relational social reasoning'缺失——关键决策（要不要回复 / 该联系谁）依赖 latent relationship（tie strength / reciprocity / mutual connections），不是 content；标准 LLM agent loop 不会显式建模'新关系证据如何修正当前社交假设'，导致 surface-obvious choices。这是 ai-agent × llm-evaluation 的方法学资产：长尾保存——为团队日后做'social agent / recommender agent'提供'relational hypothesis 显式表示 + 关系证据更新'的失败模式命名与工程模板。代码/benchmark：暂无，需打开 PDF 看 ReAdapt 协议 / benchmark 是否公开。今日动作：沉淀为长尾卡片。"
+    },
+    "https://arxiv.org/abs/2609.25010": {
+      "score": 67.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.25010）：用 Upworthy Research Archive（数千 headline A/B tests on shared real traffic + measured click-through）做 sim-to-real validity study——LLM-as-synthetic-persona 预测 audience response 是否真的有效？结论是：no-persona baseline 在某些维度上反胜 persona-based copy simulation。这是 ai-agent × llm-evaluation 的方法学资产：长尾保存——为团队日后做'LLM 作为 persona / 评估代理'提供反证资产（'persona machinery 不一定 help'），是 sim-to-real 失效模式的明确证据。代码/benchmark/数据：Upworthy Research Archive 是公开数据，但论文代码/项目页暂无，需打开 PDF 看 prompt 协议、baseline 设置、具体指标是否公开。今日动作：沉淀为长尾卡片，标注'LLM-as-persona sim-to-real 失效'趋势。"
+    },
+    "https://arxiv.org/abs/2609.25013": {
+      "score": 64.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.25013）：对 TabPFN v2.5 在 59 个 biomedical tabular datasets 上做 fine-tuning 的 AdamW-based preconditioning 系统性 empirical study——评估 5 种 preconditioning 策略。这是 ai-agent × llm-evaluation 的方法学资产：长尾保存——为团队日后做'tabular foundation model 微调'提供'biomedical × preconditioner'的系统性 ablation 模板（哪类 preconditioner 在小数据 + 异质 schema 下更稳）。代码/benchmark：暂无，需打开 PDF 看 5 种 preconditioner 命名、ablation 协议、TabPFN v2.5 权重使用是否公开。今日动作：沉淀为长尾卡片。"
+    },
+    "https://arxiv.org/abs/2609.25088": {
+      "score": 63.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "reason": "据摘要（arXiv 2609.25088）：用 GNN 做 GBM（glioblastoma multiforme）survival prediction，主张'accuracy 与 interpretability 不是 inherent tradeoff'——interpretable models 不必牺牲 discriminative ability。这是 multimodal-agent × ai-agent 的方法学资产：长尾保存——为团队日后做'医疗 GNN × 可解释性'提供'结构化表示 + 可解释性同时成立'的反证资产，挑战'performance ↔ interpretability'二元对立。代码/benchmark/数据：需打开 PDF 看 GNN 架构、hypergraph 构造、可解释性度量、是否公开。今日动作：沉淀为长尾卡片。"
+    },
+    "https://arxiv.org/abs/2609.25199": {
+      "score": 60.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "data-engineering"
+      ],
+      "reason": "据摘要（arXiv 2609.25199）：Lean Pool 是 AI agents 维护和优化（grow, maintain, optimize）的 formalized mathematics 仓库——AI agents 是 first-class maintainer。这是 ai-agent × data-engineering 的方法学资产：长尾保存——为团队日后做'AI 维护大型知识/代码基础设施'提供工程模板（不只 AI 写代码，AI 维护、修订、优化大型 formal math corpus）。代码/benchmark/项目页：项目本身（Lean Pool）是公开仓库，但论文是否披露 agent loop / 维护协议仍需打开 PDF 核验。今日动作：沉淀为长尾卡片。"
+    }
+  }
+}

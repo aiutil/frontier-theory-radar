@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-09-23
+## Latest research run · 2026-09-24
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 110 | 191 | 180 | 1319 |
+| 10 | 111 | 193 | 187 | 1319 |
 
-**Deep dive:** [Harness-Zero: Harness Distillation via Agent-as-Harness](daily/2026/2026-09-23.md) · Immediate · 重点学习
+**Deep dive:** [Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings](daily/2026/2026-09-24.md) · Immediate · 重点学习
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,20 +35,20 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-09-24](daily/2026/2026-09-24.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | Immediate | 重点学习 |
 | [2026-09-23](daily/2026/2026-09-23.md) | Harness-Zero: Harness Distillation via Agent-as-Harness | Immediate | 重点学习 |
 | [2026-09-21](daily/2026/2026-09-21.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | Immediate | 重点学习 |
 | [2026-09-20](daily/2026/2026-09-20.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | Immediate | 重点学习 |
 | [2026-09-19](daily/2026/2026-09-19.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | Immediate | 重点学习 |
 | [2026-09-18](daily/2026/2026-09-18.md) | Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments | Trend | 重点学习 |
 | [2026-09-17](daily/2026/2026-09-17.md) | ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search | Trend | 重点学习 |
-| [2026-09-16](daily/2026/2026-09-16.md) | Corrupt Plans, Clean Traces: Evading Chain-of-Thought Monitoring with Plan Injection | Trend | 重点学习 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
 | [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 573 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 510 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 516 |
 | [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 573 |
 
 ## Why this repository exists
