@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-09-24T04:32:20.873745",
+  "updated_at": "2026-09-25T04:32:26.630283",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-25",
+      "title": "论文价值发现日报 - 2026-09-25",
+      "deep_dive_title": "Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings",
+      "deep_dive_url": "https://arxiv.org/abs/2609.25165",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "把 Ovis-Embedding（[2609.25165](http://arxiv.org/abs/2609.25165)）继续列为即时试点方向（沿用昨日判断）；为 X-Planner（[2609.25187](http://arxiv.org/abs/2609.25187)）、4DGS-JEPA（[2609.25036](http://arxiv.org/abs/2609.25036)）维持趋势卡片（与 9 月 23 日 GameHorizon / WorldCrafter 形成双联证据）；为 AI Neuroscientist（[2609.25254](http://arxiv.org/abs/2609.25254)）、MedGate-Fusion（[2609.25272](http://arxiv.org/abs/2609.25272)）、ReAdapt（[2609.25284](http://arxiv.org/abs/2609.25284)）、Do Synthetic Personas（[2609.25010](http://arxiv.org/abs/2609.25010)）、TabPFN Preconditioner Study（[2609.25013](http://arxiv.org/abs/2609.25013)）、Hyper GNN for GBM（[2609.25088](http://arxiv.org/abs/2609.25088)）、Lean Pool（[2609.25199](http://arxiv.org/abs/2609.25199)）维持长尾卡片。⚠️ 今日特别关注：观察 arXiv 是否恢复 API、是否会出现与昨日不重叠的新批次。",
+      "max_uncertainty": "arXiv API 连续六日返回 HTTP 406，今日 RSS 拉到的 URL 集合（2609.25010-2609.25284）与昨日（2026-09-24）完全相同，意味着'今日样本'并非 9 月 25 日真正 announce 的新论文，需要在下一轮 fetch 时核验；Ovis-Embedding benchmark 覆盖（image/audio/video retrieval、分类）、训练数据、推理成本是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'native omni-modal initialization'用 Qwen-omni 做 backbone 的兼容成本、'shared representation space'是否真的跨模态对齐、X-Planner event-structured 监督数据来源、4DGS-JEPA hierarchical encoder 与 horizon 划分协议、MedGate-Fusion CPCSSN 数据可用性、ReAdapt relational hypothesis 更新协议、TabPFN preconditioner 5 种命名、Hyper GNN 可解释性度量是否公开，仍待多源验证。",
+      "one_line_judgement": "据摘要（arXiv 2609.25165），这篇提出 native omni-modal embedding——text/image/video/audio 共享一个 multimodal backbone，不再'组装'单独的 modality tower，并声称三项关键进展：(1) native omni-modal initialization（用预训练 Qwen-omni 做 embedding backbone 并适配）、(2) shared representation space、(3) 把 embedding 用作检索/RAG/分类的统一接口。这是 multimodal-agent × inference-serving × llm-evaluation 的'工程交付'直接路线：embedding 是 RAG/检索/分类的基石，'omni-modal + shared backbone'若工程可行，会直接降低多模态检索/分类系统的部署复杂度（不再维护多套 modality-specific encoder）。⚠️ 重要观察：今日 RSS 拉取的 URL 集合（2609.25010-2609.25284）与昨日（2026-09-24）完全相同，并非 9 月 25 日新 announce 的论文——这是 arXiv API 连续第六日返回 HTTP 406 后、RSS 在 archive 层面的滞后。价值路由沿用昨日已铺设判断，今日核心动作不是重铺链路，而是观察 arXiv 是否恢复 API、是否会出现与昨日不重叠的新批次。",
+      "path": "daily-detail.html?date=2026-09-25"
+    },
     {
       "date": "2026-09-24",
       "title": "论文价值发现日报 - 2026-09-24",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
       "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
       "path": "daily-detail.html?date=2026-08-24"
-    },
-    {
-      "date": "2026-08-23",
-      "title": "论文价值发现日报 - 2026-08-23",
-      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
-      "path": "daily-detail.html?date=2026-08-23"
     }
   ]
 }

@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-09-24
+## Latest research run · 2026-09-25
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 111 | 193 | 187 | 1319 |
 
-**Deep dive:** [Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings](daily/2026/2026-09-24.md) · Immediate · 重点学习
+**Deep dive:** [Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings](daily/2026/2026-09-25.md) · Immediate · 重点学习
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,13 +35,13 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-09-25](daily/2026/2026-09-25.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | Immediate | 重点学习 |
 | [2026-09-24](daily/2026/2026-09-24.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | Immediate | 重点学习 |
 | [2026-09-23](daily/2026/2026-09-23.md) | Harness-Zero: Harness Distillation via Agent-as-Harness | Immediate | 重点学习 |
 | [2026-09-21](daily/2026/2026-09-21.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | Immediate | 重点学习 |
 | [2026-09-20](daily/2026/2026-09-20.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | Immediate | 重点学习 |
 | [2026-09-19](daily/2026/2026-09-19.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | Immediate | 重点学习 |
 | [2026-09-18](daily/2026/2026-09-18.md) | Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments | Trend | 重点学习 |
-| [2026-09-17](daily/2026/2026-09-17.md) | ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search | Trend | 重点学习 |
 
 ## Directions under active observation
 

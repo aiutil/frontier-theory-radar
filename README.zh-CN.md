@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-24
+## 最新研究 · 2026-09-25
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 111 | 193 | 187 | 1319 |
 
-**今日深挖：** [Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings](daily/2026/2026-09-24.md) · 即时价值 · 重点学习
+**今日深挖：** [Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings](daily/2026/2026-09-25.md) · 即时价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv 2609.25165），这篇提出 native omni-modal embedding——text/image/video/audio 共享一个 multimodal backbone，不再'组装'单独的 modality tower，并声称三项关键进展：(1) native omni-modal initialization（用预训练 Qwen-omni 做 backbone 并适配）、(2) shared representation space、(3) 把 embedding 用作检索/RAG/分类的统一接口。这是 multimodal-agent × inference-serving × llm-evaluation 的'工程交付'直接路线：embedding 是 RAG/检索/分类的基石，'omni-modal + shared backbone'若工程可行，会直接降低多模态检索/分类系统的部署复杂度（不再维护多套 modality-specific encoder）。今日连续第五日样本同源观察但 URL 集合已切换到新批次（2609.25010-2609.25284，与 9 月 19-23 日不重叠），与同批次 X-Planner（2609.25187）、4DGS-JEPA（2609.25036）一起形成更稳定的'omni-modal embedding + event-structured planning + 4D scene prediction'主线。
+**核心判断：** 据摘要（arXiv 2609.25165），这篇提出 native omni-modal embedding——text/image/video/audio 共享一个 multimodal backbone，不再'组装'单独的 modality tower，并声称三项关键进展：(1) native omni-modal initialization（用预训练 Qwen-omni 做 embedding backbone 并适配）、(2) shared representation space、(3) 把 embedding 用作检索/RAG/分类的统一接口。这是 multimodal-agent × inference-serving × llm-evaluation 的'工程交付'直接路线：embedding 是 RAG/检索/分类的基石，'omni-modal + shared backbone'若工程可行，会直接降低多模态检索/分类系统的部署复杂度（不再维护多套 modality-specific encoder）。⚠️ 重要观察：今日 RSS 拉取的 URL 集合（2609.25010-2609.25284）与昨日（2026-09-24）完全相同，并非 9 月 25 日新 announce 的论文——这是 arXiv API 连续第六日返回 HTTP 406 后、RSS 在 archive 层面的滞后。价值路由沿用昨日已铺设判断，今日核心动作不是重铺链路，而是观察 arXiv 是否恢复 API、是否会出现与昨日不重叠的新批次。
 
-**建议动作：** 把 Ovis-Embedding（[2609.25165](http://arxiv.org/abs/2609.25165)）列为即时试点方向；为 X-Planner（[2609.25187](http://arxiv.org/abs/2609.25187)）、4DGS-JEPA（[2609.25036](http://arxiv.org/abs/2609.25036)）建立/更新趋势卡片（与 9 月 23 日 GameHorizon / WorldCrafter 形成双联证据）；为 AI Neuroscientist（[2609.25254](http://arxiv.org/abs/2609.25254)）、MedGate-Fusion（[2609.25272](http://arxiv.org/abs/2609.25272)）、ReAdapt（[2609.25284](http://arxiv.org/abs/2609.25284)）、Do Synthetic Personas（[2609.25010](http://arxiv.org/abs/2609.25010)）、TabPFN Preconditioner Study（[2609.25013](http://arxiv.org/abs/2609.25013)）、Hyper GNN for GBM（[2609.25088](http://arxiv.org/abs/2609.25088)）、Lean Pool（[2609.25199](http://arxiv.org/abs/2609.25199)）保持/新增长尾卡片。
+**建议动作：** 把 Ovis-Embedding（[2609.25165](http://arxiv.org/abs/2609.25165)）继续列为即时试点方向（沿用昨日判断）；为 X-Planner（[2609.25187](http://arxiv.org/abs/2609.25187)）、4DGS-JEPA（[2609.25036](http://arxiv.org/abs/2609.25036)）维持趋势卡片（与 9 月 23 日 GameHorizon / WorldCrafter 形成双联证据）；为 AI Neuroscientist（[2609.25254](http://arxiv.org/abs/2609.25254)）、MedGate-Fusion（[2609.25272](http://arxiv.org/abs/2609.25272)）、ReAdapt（[2609.25284](http://arxiv.org/abs/2609.25284)）、Do Synthetic Personas（[2609.25010](http://arxiv.org/abs/2609.25010)）、TabPFN Preconditioner Study（[2609.25013](http://arxiv.org/abs/2609.25013)）、Hyper GNN for GBM（[2609.25088](http://arxiv.org/abs/2609.25088)）、Lean Pool（[2609.25199](http://arxiv.org/abs/2609.25199)）维持长尾卡片。⚠️ 今日特别关注：观察 arXiv 是否恢复 API、是否会出现与昨日不重叠的新批次。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,13 +39,13 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-25](daily/2026/2026-09-25.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-24](daily/2026/2026-09-24.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-23](daily/2026/2026-09-23.md) | Harness-Zero: Harness Distillation via Agent-as-Harness | 即时价值 | 重点学习 |
 | [2026-09-21](daily/2026/2026-09-21.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-20](daily/2026/2026-09-20.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-19](daily/2026/2026-09-19.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-18](daily/2026/2026-09-18.md) | Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments | 趋势价值 | 重点学习 |
-| [2026-09-17](daily/2026/2026-09-17.md) | ZGCM-1: A Fully Open and Extremely Efficient Foundation Model for Math and Agentic Search | 趋势价值 | 重点学习 |
 
 ## 当前重点趋势
 
