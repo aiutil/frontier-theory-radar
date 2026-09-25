@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-09-25T04:32:26.630283",
+  "updated_at": "2026-09-26T04:33:42.501241",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-09-26",
+      "title": "论文价值发现日报 - 2026-09-26",
+      "deep_dive_title": "DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs",
+      "deep_dive_url": "https://arxiv.org/abs/2609.28570",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "把 DEEPO（[2609.28570](https://arxiv.org/abs/2609.28570)）列为即时试点方向，写'RL correction chain 双熵治理'checklist 草稿；把 TWIST（[2609.28575](https://arxiv.org/abs/2609.28575)）'Intervention Quality Benchmark for Conversational Memory'同步列为即时试点，写'memory intervention quality'checklist 草稿；为 [28075](https://arxiv.org/abs/2609.28475) 'Behavioral Stress Tests for Reliability Routing'、[28609](https://arxiv.org/abs/2609.28609) 'AdvRole'、[28547](https://arxiv.org/abs/2609.28547) 'PAWS'、[28654](https://arxiv.org/abs/2609.28654) 'Object Permanence in World Models'维持趋势卡片；为 [28557](https://arxiv.org/abs/2609.28557) 'BaseCamp'、[28554](https://arxiv.org/abs/2609.28554) 'Pistis'、[28506](https://arxiv.org/abs/2609.28506) 'TW3Cast'、[28690](https://arxiv.org/abs/2609.28690) 'TRACER'维持长尾卡片；持续观察 arXiv API 是否恢复、RSS archive 滞后时长是否缩短。",
+      "max_uncertainty": "arXiv API 仍返回 HTTP 406（连续第七日靠 RSS 后备），今日 RSS 拉到的 URL 集合（[2609.28475](https://arxiv.org/abs/2609.28475)-[2609.28690](https://arxiv.org/abs/2609.28690)）与昨日（[2026-09-25](https://arxiv.org/abs/2609.25010-2609.25284)）完全不重叠，意味着本次 fetch 是新批次，但仍需在下一轮 fetch 时核验 RSS archive 滞后时长是否缩短；DEEPO（[2609.28570](https://arxiv.org/abs/2609.28570)）双熵的具体公式、消融实验规模、跨模型泛化是否公开；TWIST（[28575](https://arxiv.org/abs/2609.28575)）4 tracks 协议、human-validated 数据规模、scoring 是否公开；28075 实验协议、source breakdown、stress test 维度是否公开；28609 对抗改写算法、消融、role-playing benchmark 是否公开；28547 数据集 release、benchmark 协议、citation policy 是否公开；28654 数据规模、benchmark 协议、baseline 模型是否公开；28557 agent loop、工具集、案例研究是否公开；28554 IDRL 算法、消融、benchmark 覆盖是否公开；28506 selection table 设计、专家清单、MASE 计算口径是否公开；28690 intent 演化建模、对齐训练协议、benchmark 覆盖是否公开。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL，按规则统一标'暂无'，证据不足项明确写入每条 reason。",
+      "one_line_judgement": "据摘要（arXiv [2609.28570](https://arxiv.org/abs/2609.28570)），DEEPO 把 MLLM 幻觉归因到 RL correction chain 的两处明确弱点——(1) rollout 层：高 semantic-entropy 的 hard queries 频繁产生 unanimously-wrong sample groups，让 group-relative advantage 在'幻觉风险最高处'坍缩到 0；(2) optimization 层：confidence 信号被滥用。这是 ai-agent × multimodal-agent × llm-evaluation 的'失败机制命名 + 可移植修复'工程资产：与今日 [28075](https://arxiv.org/abs/2609.28475) 'Behavioral Stress Tests for Reliability Routing'、[28609](https://arxiv.org/abs/2609.28609) 'Adversarial Closed-Loop Curriculum'形成'今日 agent 可靠性三联证据'——分别覆盖 RL 内部熵治理、agent 行为级 reliability、训练分布动态化三个维度。⚠️ 重要观察：今日 arXiv API 仍返回 HTTP 406（连续第七日靠 RSS 后备），但 RSS 拉到的 URL 集合（[2609.28475](https://arxiv.org/abs/2609.28475)-[2609.28690](https://arxiv.org/abs/2609.28690)）与昨日（[2026-09-25](https://arxiv.org/abs/2609.25010-2609.25284)）完全不重叠，是新批次。",
+      "path": "daily-detail.html?date=2026-09-26"
+    },
     {
       "date": "2026-09-25",
       "title": "论文价值发现日报 - 2026-09-25",
@@ -378,19 +391,6 @@
       "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；今日 10 篇中 4 篇摘要存在截断（AI with Authority、TurboBias、Asymmetric Capacity Allocation、PerturbRx 等），影响具体方法/实验设置的判断；Artic 的 artifact 具体表示形式（数据结构？schema？typed IR？）、AI with Authority 验证栈端到端形式（spec 形式化？equi-check？）、Asymmetric Capacity 的具体实验规模、Truthful Calibration 的证明与对 LLM evaluator 的具体意涵均需正文确认；今日未出现昨日的 AI4AI-Bench（该结论不跨日）；RAG 关键词在 Primal Acceleration 与 Across-Design Pricing 上为误标签，已在评分中剔除。",
       "one_line_judgement": "Artic 把自然语言工作流转成 artifact 形式，强迫把隐式数据依赖外化为可被求解的输入——这是当前 agent 工作流易碎（长程/分支下 context 压力失效）的关键工程缺口，可直接对接到 LangGraph/DSPy/Temporal 这类编排器的'workflow-as-input'思路。AI with Authority 论证机器验证是规模化调度自主机器工作的前提——'不可腐化裁判'作为一项基础设施命题，足以催生一整个工程方向：verification-first agent runtimes、evaluator harness 与 runtime rollback。Asymmetric Capacity Allocation 则用 self-refinement 三阶段容量异构的实验探索，支撑'mixed-size pipeline 是 LLM 工程的成本金矿'这一更普遍趋势。三者共同折射：agent 价值密度正在从模型能力转向'基础设施（编译、验证、容量编排）'。",
       "path": "daily-detail.html?date=2026-08-25"
-    },
-    {
-      "date": "2026-08-24",
-      "title": "论文价值发现日报 - 2026-08-24",
-      "deep_dive_title": "AI4AI-Bench: Benchmarking LLM Agents in Algorithmic Design for Recursive Self-Improvement",
-      "deep_dive_url": "http://arxiv.org/abs/2608.20318v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成三件事：评估 AI4AI-Bench 是否能成为团队'训练侧 agent 研究'的评测底座（关注任务是否覆盖实际训练算法修改的搜索空间，是否能与团队既有训练栈对接）；盘点内部 GUI/电脑使用 agent 的 trace 资产（评估 Inducing Task Models 思路的迁移可行性，trace 格式/规模/可审计任务模型的形式）；把 BrowseComp-Plus_CM 作为 agentic search 评测的更可信基线跟踪（即使 ClimbMix 不可直接复用，'避免同源干扰'原则可立刻应用到内部评测）。",
-      "max_uncertainty": "全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述，其中 7 篇摘要存在截断（AI4AI-Bench、Inducing Task Models、BrowseComp-Plus_CM、Pandora Routing、ConceptGuard、Agentic Travel、G-CARL、Information on Trajectories）；AI4AI-Bench 的具体任务设置（搜索形式、奖励/评分机制）、Inducing Task Models 的归纳算法与审计机制、BrowseComp-Plus_CM 的 ClimbMix 规模与定量差异、Pandora Routing 的混合策略、ConceptGuard 的 context-sensitive 定义、Agentic Travel 的三 agent 实现细节均需正文确认；关键词 RAG 在 AI4AI-Bench/Agentic Travel/G-CARL 中为宽泛命中，已在评分中剔除。",
-      "one_line_judgement": "AI4AI-Bench 把'agent 能否设计出更好的训练算法'这一递归自我改进的核心命题从整体能力里隔离出来，变成可单独评测的对象——这正是当前 agent 研究最缺的一环（过去 RSI 多停留在叙事，缺乏可量化的任务）。Inducing Task Models 揭示一个具体缺口：GUI/电脑使用 agent 已有大量被动 trace，但缺少能从中归纳出'可审计、可复用任务模型'的方法——对要把 agent 部署进真实工作流（而非一次性演示）的团队是关键信号。BrowseComp-Plus_CM 指出当前 agentic search 评测的语料同源偏差——证据与干扰项同 query 选出会高估 agent 的检索能力，把 ClimbMix 替换进去是更真实压力测试。三者都指向同一根源：评测与基础设施必须跟上 agent 从演示走向部署的现实。",
-      "path": "daily-detail.html?date=2026-08-24"
     }
   ]
 }

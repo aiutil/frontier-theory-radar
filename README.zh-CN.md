@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-25
+## 最新研究 · 2026-09-26
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 111 | 193 | 187 | 1319 |
+| 10 | 113 | 197 | 191 | 1319 |
 
-**今日深挖：** [Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings](daily/2026/2026-09-25.md) · 即时价值 · 重点学习
+**今日深挖：** [DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs](daily/2026/2026-09-26.md) · 即时价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv 2609.25165），这篇提出 native omni-modal embedding——text/image/video/audio 共享一个 multimodal backbone，不再'组装'单独的 modality tower，并声称三项关键进展：(1) native omni-modal initialization（用预训练 Qwen-omni 做 embedding backbone 并适配）、(2) shared representation space、(3) 把 embedding 用作检索/RAG/分类的统一接口。这是 multimodal-agent × inference-serving × llm-evaluation 的'工程交付'直接路线：embedding 是 RAG/检索/分类的基石，'omni-modal + shared backbone'若工程可行，会直接降低多模态检索/分类系统的部署复杂度（不再维护多套 modality-specific encoder）。⚠️ 重要观察：今日 RSS 拉取的 URL 集合（2609.25010-2609.25284）与昨日（2026-09-24）完全相同，并非 9 月 25 日新 announce 的论文——这是 arXiv API 连续第六日返回 HTTP 406 后、RSS 在 archive 层面的滞后。价值路由沿用昨日已铺设判断，今日核心动作不是重铺链路，而是观察 arXiv 是否恢复 API、是否会出现与昨日不重叠的新批次。
+**核心判断：** 据摘要（arXiv [2609.28570](https://arxiv.org/abs/2609.28570)），DEEPO 把 MLLM 幻觉归因到 RL correction chain 的两处明确弱点——(1) rollout 层：高 semantic-entropy 的 hard queries 频繁产生 unanimously-wrong sample groups，让 group-relative advantage 在'幻觉风险最高处'坍缩到 0；(2) optimization 层：confidence 信号被滥用。这是 ai-agent × multimodal-agent × llm-evaluation 的'失败机制命名 + 可移植修复'工程资产：与今日 [28075](https://arxiv.org/abs/2609.28475) 'Behavioral Stress Tests for Reliability Routing'、[28609](https://arxiv.org/abs/2609.28609) 'Adversarial Closed-Loop Curriculum'形成'今日 agent 可靠性三联证据'——分别覆盖 RL 内部熵治理、agent 行为级 reliability、训练分布动态化三个维度。⚠️ 重要观察：今日 arXiv API 仍返回 HTTP 406（连续第七日靠 RSS 后备），但 RSS 拉到的 URL 集合（[2609.28475](https://arxiv.org/abs/2609.28475)-[2609.28690](https://arxiv.org/abs/2609.28690)）与昨日（[2026-09-25](https://arxiv.org/abs/2609.25010-2609.25284)）完全不重叠，是新批次。
 
-**建议动作：** 把 Ovis-Embedding（[2609.25165](http://arxiv.org/abs/2609.25165)）继续列为即时试点方向（沿用昨日判断）；为 X-Planner（[2609.25187](http://arxiv.org/abs/2609.25187)）、4DGS-JEPA（[2609.25036](http://arxiv.org/abs/2609.25036)）维持趋势卡片（与 9 月 23 日 GameHorizon / WorldCrafter 形成双联证据）；为 AI Neuroscientist（[2609.25254](http://arxiv.org/abs/2609.25254)）、MedGate-Fusion（[2609.25272](http://arxiv.org/abs/2609.25272)）、ReAdapt（[2609.25284](http://arxiv.org/abs/2609.25284)）、Do Synthetic Personas（[2609.25010](http://arxiv.org/abs/2609.25010)）、TabPFN Preconditioner Study（[2609.25013](http://arxiv.org/abs/2609.25013)）、Hyper GNN for GBM（[2609.25088](http://arxiv.org/abs/2609.25088)）、Lean Pool（[2609.25199](http://arxiv.org/abs/2609.25199)）维持长尾卡片。⚠️ 今日特别关注：观察 arXiv 是否恢复 API、是否会出现与昨日不重叠的新批次。
+**建议动作：** 把 DEEPO（[2609.28570](https://arxiv.org/abs/2609.28570)）列为即时试点方向，写'RL correction chain 双熵治理'checklist 草稿；把 TWIST（[2609.28575](https://arxiv.org/abs/2609.28575)）'Intervention Quality Benchmark for Conversational Memory'同步列为即时试点，写'memory intervention quality'checklist 草稿；为 [28075](https://arxiv.org/abs/2609.28475) 'Behavioral Stress Tests for Reliability Routing'、[28609](https://arxiv.org/abs/2609.28609) 'AdvRole'、[28547](https://arxiv.org/abs/2609.28547) 'PAWS'、[28654](https://arxiv.org/abs/2609.28654) 'Object Permanence in World Models'维持趋势卡片；为 [28557](https://arxiv.org/abs/2609.28557) 'BaseCamp'、[28554](https://arxiv.org/abs/2609.28554) 'Pistis'、[28506](https://arxiv.org/abs/2609.28506) 'TW3Cast'、[28690](https://arxiv.org/abs/2609.28690) 'TRACER'维持长尾卡片；持续观察 arXiv API 是否恢复、RSS archive 滞后时长是否缩短。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-26](daily/2026/2026-09-26.md) | DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs | 即时价值 | 重点学习 |
 | [2026-09-25](daily/2026/2026-09-25.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-24](daily/2026/2026-09-24.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-23](daily/2026/2026-09-23.md) | Harness-Zero: Harness Distillation via Agent-as-Harness | 即时价值 | 重点学习 |
 | [2026-09-21](daily/2026/2026-09-21.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-20](daily/2026/2026-09-20.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-19](daily/2026/2026-09-19.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
-| [2026-09-18](daily/2026/2026-09-18.md) | Cognitive Extensions for Dual-Process Language Agents: Memory and Self-Reflection in Interactive Environments | 趋势价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 573 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 516 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 573 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 574 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 524 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 574 |
 
 ## 为什么做这个项目
 
