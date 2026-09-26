@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-26
+## 最新研究 · 2026-09-27
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 113 | 197 | 191 | 1319 |
+| 10 | 115 | 199 | 197 | 1319 |
 
-**今日深挖：** [DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs](daily/2026/2026-09-26.md) · 即时价值 · 重点学习
+**今日深挖：** [Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning](daily/2026/2026-09-27.md) · 即时价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv [2609.28570](https://arxiv.org/abs/2609.28570)），DEEPO 把 MLLM 幻觉归因到 RL correction chain 的两处明确弱点——(1) rollout 层：高 semantic-entropy 的 hard queries 频繁产生 unanimously-wrong sample groups，让 group-relative advantage 在'幻觉风险最高处'坍缩到 0；(2) optimization 层：confidence 信号被滥用。这是 ai-agent × multimodal-agent × llm-evaluation 的'失败机制命名 + 可移植修复'工程资产：与今日 [28075](https://arxiv.org/abs/2609.28475) 'Behavioral Stress Tests for Reliability Routing'、[28609](https://arxiv.org/abs/2609.28609) 'Adversarial Closed-Loop Curriculum'形成'今日 agent 可靠性三联证据'——分别覆盖 RL 内部熵治理、agent 行为级 reliability、训练分布动态化三个维度。⚠️ 重要观察：今日 arXiv API 仍返回 HTTP 406（连续第七日靠 RSS 后备），但 RSS 拉到的 URL 集合（[2609.28475](https://arxiv.org/abs/2609.28475)-[2609.28690](https://arxiv.org/abs/2609.28690)）与昨日（[2026-09-25](https://arxiv.org/abs/2609.25010-2609.25284)）完全不重叠，是新批次。
+**核心判断：** 据摘要（arXiv [2609.28581](https://arxiv.org/abs/2609.28581)），Auditability 把 RL policy 审计拆为 6 个可独立测试的离散谓词——trace integrity / lossless coding / rule coverage / behavioral agreement / composition quality / value-model reliability——目标是让'opaque neural checkpoints'可以表示并组合为'auditable discrete behavioral rules'。这是 ai-agent × llm-evaluation × security-governance 的'审计协议工程化'资产：'auditability is not one property'是把单一口号拆为可逐项验证的协议集合，与昨日 [28575](https://arxiv.org/abs/2609.28575) 'TWIST memory intervention quality'、[28570](https://arxiv.org/abs/2609.28570) 'DEEPO 双熵治理'、[28475](https://arxiv.org/abs/2609.28475) 'Behavioral Stress Tests'形成'agent 可靠性 × 评估协议'连续主线——分别覆盖 memory 干预点评估、RL 内部熵治理、agent 行为级 reliability、RL 审计离散谓词化。⚠️ 重要观察：今日 arXiv API 仍返回 HTTP 406（连续第八日靠 RSS 后备），RSS 拉到的 URL 集合（[2609.28502](https://arxiv.org/abs/2609.28502)-[2609.28581](https://arxiv.org/abs/2609.28581)）与昨日（[2026-09-26](https://arxiv.org/abs/2609.28475-2609.28690)）编号区间高度重叠但 ID 全不重叠——是同批采样的相邻子集，价值路由按新样本重做。
 
-**建议动作：** 把 DEEPO（[2609.28570](https://arxiv.org/abs/2609.28570)）列为即时试点方向，写'RL correction chain 双熵治理'checklist 草稿；把 TWIST（[2609.28575](https://arxiv.org/abs/2609.28575)）'Intervention Quality Benchmark for Conversational Memory'同步列为即时试点，写'memory intervention quality'checklist 草稿；为 [28075](https://arxiv.org/abs/2609.28475) 'Behavioral Stress Tests for Reliability Routing'、[28609](https://arxiv.org/abs/2609.28609) 'AdvRole'、[28547](https://arxiv.org/abs/2609.28547) 'PAWS'、[28654](https://arxiv.org/abs/2609.28654) 'Object Permanence in World Models'维持趋势卡片；为 [28557](https://arxiv.org/abs/2609.28557) 'BaseCamp'、[28554](https://arxiv.org/abs/2609.28554) 'Pistis'、[28506](https://arxiv.org/abs/2609.28506) 'TW3Cast'、[28690](https://arxiv.org/abs/2609.28690) 'TRACER'维持长尾卡片；持续观察 arXiv API 是否恢复、RSS archive 滞后时长是否缩短。
+**建议动作：** 把 [28581](https://arxiv.org/abs/2609.28581) Auditability 列为即时试点方向，写'auditability as 6 verifiable predicates'checklist 草稿；把 [28565](https://arxiv.org/abs/2609.28565) TW3-RTL 'XAI RTL 渲染 correctness'同步列为即时试点，写'XAI RTL rendering correctness'checklist 草稿；为 [28561](https://arxiv.org/abs/2609.28561) CARE 'conditioning-aware 正则化'、[28576](https://arxiv.org/abs/2609.28576) VINTAGE-TS 'revision-aware 时序评估'维持趋势卡片；为 [28553](https://arxiv.org/abs/2609.28553) SMILESGNN、[28502](https://arxiv.org/abs/2609.28502) KT 解释协议、[28563](https://arxiv.org/abs/2609.28563) SpaFactor、[28567](https://arxiv.org/abs/2609.28567) HE region-held-out、[28578](https://arxiv.org/abs/2609.28578) PV-EV workflow、[28558](https://arxiv.org/abs/2609.28558) VAE-CFD 维持长尾卡片；持续观察 arXiv API 是否恢复、RSS archive 滞后时长是否缩短。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-27](daily/2026/2026-09-27.md) | Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning | 即时价值 | 重点学习 |
 | [2026-09-26](daily/2026/2026-09-26.md) | DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs | 即时价值 | 重点学习 |
 | [2026-09-25](daily/2026/2026-09-25.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-24](daily/2026/2026-09-24.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-23](daily/2026/2026-09-23.md) | Harness-Zero: Harness Distillation via Agent-as-Harness | 即时价值 | 重点学习 |
 | [2026-09-21](daily/2026/2026-09-21.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 | [2026-09-20](daily/2026/2026-09-20.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
-| [2026-09-19](daily/2026/2026-09-19.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 574 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 524 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 574 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 575 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 531 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 575 |
 
 ## 为什么做这个项目
 

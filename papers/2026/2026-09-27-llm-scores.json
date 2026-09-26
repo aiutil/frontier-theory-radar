@@ -1,0 +1,67 @@
+{
+  "date": "2026-09-27",
+  "generated_at": "2026-09-27T04:30:00",
+  "note": "今日 arXiv API 仍返回 HTTP 406（连续第八日靠 RSS 后备）。RSS 拉到的 URL 集合（2609.28502-2609.28581）与昨日（2026-09-26）的 2609.28475-2609.28690 区间高度重叠但 ID 全不重叠（编号 28502、28553、28558、28561、28563、28565、28567、28576、28578、28581），属于 RSS 同批采样的相邻子集，可视为 9 月 25-26 日 announce 的论文延续采样，价值路由按新样本重做。本次 10 篇里：(1) 即时价值候选：Auditability（2609.28581）'Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning'——把 RL policy 审计拆为 6 个可独立测试的离散谓词（trace integrity / lossless coding / rule coverage / behavioral agreement / composition quality / value-model reliability），是 ai-agent × llm-evaluation × security-governance 的'审计协议工程化'资产——把 RL 黑箱 checkpoint 从'opaque neural checkpoints'转化为'auditable discrete behavioral rules'，与昨日 TWIST（28575）'memory intervention quality'、DEEPO（28570）'RL correction chain 双熵治理'、28075 'Behavioral Stress Tests'形成'agent 可靠性 × 评估协议'连续主线；TW3-RTL（2609.28565）'When Explanations Cannot Be Read: Measuring and Correcting SHAP and LIME Rendering for Right-to-Left Languages'——指出 SHAP/LIME 在 RTL 语言（乌尔都/阿拉伯/波斯/希伯来）下数值有效但视觉失效（token 顺序乱、字形断裂、布局反向），提出 measurement + correction 协议，是 llm-evaluation × security-governance 的'XAI 渲染评测空白填补'方法学资产，与昨日 TWIST 同属'评测盲区系统化填补'系列。(2) 趋势加固：CARE（2609.28561）'Condition-Aware Representation Regularization for Diffusion Models'——指出常用扩散正则化忽略条件信号对特征分布的影响，引入 plug-and-play CARE 正则化，与 28581 RL 审计协议形成'今日 conditioning signal × representation regularization'加固主线；VINTAGE-TS（2609.28576）'Time-Series Foundation Models That Understand Data Revisions'——区分 observation time vs information-availability time，是 llm-evaluation × context-engineering 的'评估协议诚信度'方法学资产。(3) 趋势观察：28581 + 28565 + 28576 + 28561 共同加固'agent 可靠性 × 评估协议诚信度'主线。(4) 长尾保存：SMILESGNN（28553）'可解释药物毒性 + 跨模态融合'垂直领域资产、Knowledge Tracing（28502）'教育 AI 解释协议'、SpaFactor（28563）'空间转录组基因程序建模'、Hydrogen Embrittlement（28567）'region-held-out 协议'、PV-EV Co-Adoption（28578）'智能电表工作流'、VAE-CFD（28558）'潜空间适配修正'。(5) 待观察：28581 Auditability 是否公开六大谓词协议、28565 是否提供 RTL 渲染修复工具。所有论文均未在摘要里显式披露 code / benchmark / project URL，按规则统一标'暂无'，证据不足项明确写入每条 reason。",
+  "by_url": {
+    "https://arxiv.org/abs/2609.28581": {
+      "score": 82.5,
+      "value_type": "immediate",
+      "matched_topics": ["ai-agent", "llm-evaluation", "security-governance"],
+      "reason": "据摘要（arXiv 2609.28581）：Auditability 把 RL policy 审计拆为 6 个可独立测试的离散谓词——trace integrity / lossless coding / rule coverage / behavioral agreement / composition quality / value-model reliability——目标是让'opaque neural checkpoints'可以表示并组合为'auditable discrete behavioral rules'。这是 ai-agent × llm-evaluation × security-governance 的'审计协议工程化'资产：'auditability is not one property'是把单一口号拆为可逐项验证的协议集合，与昨日 TWIST（28575）'memory intervention quality'、DEEPO（28570）'RL correction chain 双熵治理'、28075 'Behavioral Stress Tests'形成'agent 可靠性 × 评估协议'连续主线——分别覆盖 memory 干预点评估、RL 内部熵治理、agent 行为级 reliability、RL 审计离散谓词化。代码/benchmark/项目页：暂无，需打开 PDF 看 6 个谓词的 protocol 形式化、composability theorem、独立训练 policy 的合成条件。今日动作：即时试点方向，写'auditability as 6 verifiable predicates'checklist 草稿，关注与同批 28565 'XAI RTL 渲染'的'评估协议诚信度'主线共振。"
+    },
+    "https://arxiv.org/abs/2609.28565": {
+      "score": 79.0,
+      "value_type": "immediate",
+      "matched_topics": ["llm-evaluation", "security-governance"],
+      "reason": "据摘要（arXiv 2609.28565）：TW3-RTL 系统指出 SHAP / LIME 在 RTL 语言（乌尔都/阿拉伯/波斯/希伯来）下 attribution 数值有效但视觉失效——token 顺序乱、字形断裂、plot 布局反向，并给出 measurement + correction 协议。这是 llm-evaluation × security-governance 的'XAI 渲染评测空白填补'方法学资产：与昨日 TWIST（28575）'memory intervention quality'同属'评测盲区系统化填补'系列——TWIST 补的是 memory 在 belief change points 的 correctness 维度，本篇补的是 post-hoc explanation 在 non-LTR script 下的 rendering correctness 维度。代码/benchmark/项目页：暂无，需打开 PDF 看 measurement 协议、correction 工具、是否开源 RTL font mapping。今日动作：即时试点方向，写'XAI RTL 渲染 correctness'checklist 草稿，关注与 28581 RL 审计协议形成'今日评估协议诚信度双联证据'。"
+    },
+    "https://arxiv.org/abs/2609.28561": {
+      "score": 74.0,
+      "value_type": "trend",
+      "matched_topics": ["multimodal-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.28561）：CARE（Condition-Aware REpresentation regularization）指出常用扩散模型表示正则化忽略了条件信号（label / text）对特征分布的影响，引入 plug-and-play 的 CARE 正则化——直接针对'conditioning signals affect the feature distribution'这一可观测现象。这是 multimodal-agent × llm-evaluation 的方法学资产：把'conditioning × representation'作为可治理对象，'plug-and-play'形态便于跨任务迁移；与 28581 RL 审计协议形成'今日 conditioning signal × representation regularization'加固主线——前者把 conditioning 显式纳入表示正则化，后者把 condition (rule / value-model) 显式纳入 RL 审计。代码/benchmark/项目页：暂无，需打开 PDF 看正则化形式、消融、跨条件类型的兼容性。今日动作：趋势卡片维护，关注与近期'diffusion regularization'系列研究的连续性。"
+    },
+    "https://arxiv.org/abs/2609.28576": {
+      "score": 72.5,
+      "value_type": "trend",
+      "matched_topics": ["llm-evaluation", "context-engineering"],
+      "reason": "据摘要（arXiv 2609.28576）：VINTAGE-TS 是 revision-aware 时间序列基础模型，明确区分 observation time vs information-availability time；targets 同时包含下期 first-published 值与 available-at-target-time 的 revised 值。这是 llm-evaluation × context-engineering 的'评估协议诚信度'方法学资产：直接对应'forecasting from a contemporary download can therefore expose a model to information unavailable at the date it purportedly made a prediction'——把 information leakage 这一评估隐患显式拆为可治理对象；与 28581 Auditability 的'value-model reliability'谓词、28565 XAI 渲染 correction 同属'评估协议诚信度'主线。代码/benchmark/项目页：暂无，需打开 PDF 看 revision-aware adaptation 协议、benchmark 协议、citation policy 是否公开。今日动作：趋势卡片维护，做 1 周内多源证据复盘。"
+    },
+    "https://arxiv.org/abs/2609.28553": {
+      "score": 67.5,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent", "inference-serving"],
+      "reason": "据摘要（arXiv 2609.28553）：SMILESGNN 是 SMILES Transformer + GNN 跨模态融合架构，针对药物毒性预测的严重类别不平衡、scaffold-based 泛化、可解释性需求，提供 graph-attributed explanations。这是 multimodal-agent × inference-serving 的'垂直领域跨模态融合'资产：长尾保存——为团队日后做'垂直领域跨模态融合 + 解释性'（药物 / 材料 / 化合物）提供 SMILES-GNN 跨注意力融合的具体范式，把'graph-attributed explanations'作为可移植设计选择。代码/benchmark/项目页：暂无，需打开 PDF 看跨注意力架构、消融、benchmark 协议是否公开。今日动作：沉淀为长尾卡片，标注'vertical-domain cross-modal fusion + interpretability'触发条件。"
+    },
+    "https://arxiv.org/abs/2609.28502": {
+      "score": 66.0,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation", "ai-agent"],
+      "reason": "据摘要（arXiv 2609.28502）：Knowledge Tracing 解释协议同时测试 predictive competitiveness (RQ1) / explanation stability (RQ2) / retraining-based faithfulness (RQ3)，并从 ASSISTments 2009-2012 工程化 13 个行为特征跨 5 个教学主题。这是 llm-evaluation × ai-agent 的'教育 AI 解释协议'资产：长尾保存——把'prediction × stability × faithfulness'三件套从口号变成可逐项验证的协议集合，与 28581 Auditability 6 谓词、28565 XAI RTL 渲染 correction、28576 revision-aware evaluation 同属'评估协议逐项形式化'系列；教育 AI 是 aiutil 当前非核心，但 KT 解释协议三件套可移植到任何 KT-like model。代码/benchmark/项目页：暂无，需打开 PDF 看三件套协议具体形式、retraining-based faithfulness 算法。今日动作：沉淀为长尾卡片，标注'KT-like model 解释协议三件套'触发条件。"
+    },
+    "https://arxiv.org/abs/2609.28563": {
+      "score": 65.5,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent"],
+      "reason": "据摘要（arXiv 2606.28563 / 2609.28563）：SpaFactor 是轻量空间上下文感知基因程序建模，从 H&E 图像推断空间转录组，把高维基因输出视为'基因程序'而非独立目标。这是 multimodal-agent 的'垂直领域多输出建模'资产：长尾保存——为团队日后做'病理图像 × 分子表达'跨模态推断提供'基因程序作为联合目标'的具体范式；'context-aware'形态与 28561 CARE 的'conditioning signal × representation'同源。代码/benchmark/项目页：暂无，需打开 PDF 看 gene program 设计、context-aware 注意力、消融是否公开。今日动作：沉淀为长尾卡片，标注'pathology-image × molecular-expression inference'触发条件。"
+    },
+    "https://arxiv.org/abs/2609.28567": {
+      "score": 64.5,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.28567）：Hydrogen Embrittlement ML 检测提出 region-held-out 评估协议（同一 specimen region 图像不应在 train / test 间泄漏），对比 image-level split 的 leakage 风险。这是 llm-evaluation 的'评估协议诚信度'资产：长尾保存——为团队日后做'microscopy / medical imaging / materials imaging'任何 specimen-level 任务提供'region-held-out vs image-level'的具体对比，与 28576 VINTAGE-TS revision-aware、28581 Auditability value-model reliability、28565 XAI RTL correction 同属'评估协议诚信度'系列。代码/benchmark/项目页：暂无，需打开 PDF 看 region 划分协议、benchmark 规模、baseline 模型是否公开。今日动作：沉淀为长尾卡片，标注'specimen-level image eval protocol'触发条件。"
+    },
+    "https://arxiv.org/abs/2609.28578": {
+      "score": 63.5,
+      "value_type": "long_tail",
+      "matched_topics": ["data-engineering", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2609.28578）：PV-EV 共采纳智能电表分析提出两段式工作流——先聚类 load archetypes，再做 PV-EV 共采纳检测，针对 AMI 数据做需求侧管理 / tariff 设计 / 低压网络规划。这是 data-engineering × llm-evaluation 的'能源领域数据资产 + 检测工作流'资产：长尾保存——为团队日后做'智能电表 × 需求侧管理'提供 archetype-then-detection 的具体工作流；与 28567 'region-held-out 评估'、28576 'revision-aware 评估'同属'领域内数据工作流'系列。代码/benchmark/项目页：暂无，需打开 PDF 看聚类算法、检测协议、AMI 数据 release 是否公开。今日动作：沉淀为长尾卡片，标注'smart-meter × demand-side workflow'触发条件。"
+    },
+    "https://arxiv.org/abs/2609.28558": {
+      "score": 62.5,
+      "value_type": "long_tail",
+      "matched_topics": ["inference-serving"],
+      "reason": "据摘要（arXiv 2609.28558）：VAE-CFD 用变分自编码器 + 潜空间适配做 CFD 非侵入式修正，针对压缩机叶栅 open tip clearance flow；用 166 个参数化 CFD 总压损失场训练 VAE 学习低维统计表示。这是 inference-serving 的'物理仿真潜空间适配'资产：长尾保存——为团队日后做'CFD / FEA / 物理仿真 ML 修正'提供'VAE 潜空间适配'的具体范式，与 28553 SMILESGNN 跨模态融合同属'科学计算 × ML'长尾。代码/benchmark/项目页：暂无，需打开 PDF 看 VAE 架构、潜空间适配协议、CFD 数据集是否公开。今日动作：沉淀为长尾卡片，标注'CFD latent-space correction'触发条件。"
+    }
+  }
+}
