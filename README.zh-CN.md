@@ -21,13 +21,13 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-28
+## 最新研究 · 2026-09-29
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 1 | 115 | 199 | 197 | 1319 |
+| 10 | 115 | 199 | 197 | 1329 |
 
-**今日深挖：** [[占位] 今日论文抓取失败或无新论文](daily/2026/2026-09-28.md) · 暂时忽略 · 暂时忽略
+**今日深挖：** [Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer](daily/2026/2026-09-29.md) · 暂时忽略 · 暂时忽略
 
 **核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-29](daily/2026/2026-09-29.md) | Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer | 暂时忽略 | 暂时忽略 |
 | [2026-09-28](daily/2026/2026-09-28.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-27](daily/2026/2026-09-27.md) | Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning | 即时价值 | 重点学习 |
 | [2026-09-26](daily/2026/2026-09-26.md) | DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs | 即时价值 | 重点学习 |
 | [2026-09-25](daily/2026/2026-09-25.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-24](daily/2026/2026-09-24.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-23](daily/2026/2026-09-23.md) | Harness-Zero: Harness Distillation via Agent-as-Harness | 即时价值 | 重点学习 |
-| [2026-09-21](daily/2026/2026-09-21.md) | Quantifying Overclaiming Propensity in Frontier LLM Agents | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 575 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 531 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 575 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 577 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 532 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 577 |
 
 ## 为什么做这个项目
 
