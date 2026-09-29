@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-29
+## 最新研究 · 2026-09-30
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 115 | 199 | 197 | 1329 |
+| 10 | 117 | 201 | 201 | 1331 |
 
-**今日深挖：** [Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer](daily/2026/2026-09-29.md) · 暂时忽略 · 暂时忽略
+**今日深挖：** [TokenCast: Forecasting Token Consumption During LLM Agent Execution](daily/2026/2026-09-30.md) · 即时价值 · 重点学习
 
-**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
+**核心判断：** 据摘要（arXiv [2609.35760](http://arxiv.org/abs/2609.35760v1)），TokenCast 解决'同一任务 token 消耗跨 run 可变超一个数量级'这一对 agent 经济性的核心痛点，把 token consumption 建模为可组合的 cost model：可在执行前估计预算、随执行过程（context 增长 / tool feedback）动态刷新估值。这是 ai-agent × inference-serving × ai-k8s-platform 的'agent cost governance'工程化资产——把'token consumption'从隐性指标变成可显式观测、预测、调度的对象；与今日 [35769](http://arxiv.org/abs/2609.35769v1) telescopic LM'one-model-many-budgets'、[35768](http://arxiv.org/abs/2609.35768v1) PDMD'扩散蒸馏稳定性'、[35767](http://arxiv.org/abs/2609.35767v1) Native Reflection'视觉自修复 agent'形成'inference efficiency × agent cost governance'连续主线，分别覆盖 agent 成本可观测、模型多档预算、扩散蒸馏稳定性、视觉反思。
 
-**建议动作：** 完成摘要精读与最小实验设计
+**建议动作：** 把 [35760](http://arxiv.org/abs/2609.35760v1) TokenCast 列为即时试点方向，写'token-cast cost routing'checklist 草稿；把 [35769](http://arxiv.org/abs/2609.35769v1) Telescopic LM 同步列为即时试点方向，写'telescopic-LM multi-budget serving'checklist 草稿；为 [35768](http://arxiv.org/abs/2609.35768v1) PDMD '扩散蒸馏稳定性'、[35767](http://arxiv.org/abs/2609.35767v1) Native Reflection '多模态反思'维持趋势卡片；为 [35763](http://arxiv.org/abs/2609.35763v1) Distributional Training 统一框架、[35759](http://arxiv.org/abs/2609.35759v1) NstAgent 长篇 agent、[35752](http://arxiv.org/abs/2609.35752v1) NHMO PDE solver、[35765](http://arxiv.org/abs/2609.35765v1) Biblical Intertextual 维持长尾卡片；忽略 [35770](http://arxiv.org/abs/2609.35770v1) FurE 3D 毛发重建、[35758](http://arxiv.org/abs/2609.35758v1) Composite Adaptive Control 控制理论资产。⚠️ 持续观察 35760 / 35769 / 35768 / 35767 / 35763 / 35759 / 35752 / 35765 是否开源 code / benchmark / project page。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-09-30](daily/2026/2026-09-30.md) | TokenCast: Forecasting Token Consumption During LLM Agent Execution | 即时价值 | 重点学习 |
 | [2026-09-29](daily/2026/2026-09-29.md) | Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer | 暂时忽略 | 暂时忽略 |
 | [2026-09-28](daily/2026/2026-09-28.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-27](daily/2026/2026-09-27.md) | Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning | 即时价值 | 重点学习 |
 | [2026-09-26](daily/2026/2026-09-26.md) | DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs | 即时价值 | 重点学习 |
 | [2026-09-25](daily/2026/2026-09-25.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 | [2026-09-24](daily/2026/2026-09-24.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
-| [2026-09-23](daily/2026/2026-09-23.md) | Harness-Zero: Harness Distillation via Agent-as-Harness | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 577 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 532 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 577 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 579 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 537 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 579 |
 
 ## 为什么做这个项目
 
