@@ -1,6 +1,1333 @@
 {
-  "updated_at": "2026-09-30T04:31:45.870633",
+  "updated_at": "2026-10-01T04:33:38.369017",
   "papers": {
+    "leapquant-efficient-linear-attention-with-accurate-recurrent-state-quantization": {
+      "id": "leapquant-efficient-linear-attention-with-accurate-recurrent-state-quantization",
+      "title": "LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization",
+      "authors": [
+        "Yi Pan",
+        "Haocheng Xi",
+        "Kan Zhu",
+        "Xingyang Li",
+        "Yibo Wu"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38166v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38166v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 82.0,
+      "decision": "重点学习",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2609.38166）：LeapQuant 解决 hybrid linear-attention LLM（明确点名 Ga…",
+      "one_line_essence": "据摘要（arXiv 2609.38166）：LeapQuant 解决 hybrid linear-attention LLM（明确点名 Gated DeltaNet / Kimi Delta Attention）部署时的核心 inference 瓶颈——recurrent state 反复读写的高代价与量化导致的模型质量退化。提出 accurate recurrent state quantization，在 state read/update 过程中减少精度损失，避免 quantization error 通过 successive state update 累积。这是 inference-serving × context-engineering × memory 的'recurrent state quantization for linear-attention LLMs'工程化资产——直接把'linear-attention recurrent state'从内存瓶颈变成可量化的工程对象；与昨日 35769 Telescopic LM 'one-model-many-budgets'、35768 PDMD '扩散蒸馏稳定性'同属'inference efficiency'主线，但今日整体把重心从'diffusion 蒸馏 / 多模态反思'移到'linear-attention recurrent state 量化'这条更贴近 production LLM serving 的子主线；GDN/KDA 的命名暴露了方法直接面向 production 部署。代码/benchmark/项目页：暂无，需打开 PDF 看 quantization scheme 形式化、与 GDN/KDA 原生实现的兼容性、quantization-error accumulation 抑制细节。今日动作：即时试点方向，写'leapquant recurrent-state quantization' checklist 草稿；与同批 STEPQuant（38169）形成'方法 × 分析'双联资产。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38166）：LeapQuant 解决 hybrid linear-attention LLM（明确点名 Gated DeltaNet / Kimi Delta Attention）部署时的核心 inference 瓶颈——recurrent state 反复读写的高代价与量化导致的模型质量退化。提出 accurate recu",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38166）：LeapQuant 解决 hybrid linear-attention LLM（明确点名 Gated DeltaNet / Kimi Delta ",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38166v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38166v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=leapquant-efficient-linear-attention-with-accurate-recurrent-state-quantization",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "stepquant-when-and-where-errors-matter-in-delta-rule-recurrent-state-quantization": {
+      "id": "stepquant-when-and-where-errors-matter-in-delta-rule-recurrent-state-quantization",
+      "title": "STEPQuant: When and Where Errors Matter in Delta-Rule Recurrent State Quantization",
+      "authors": [
+        "Bingchen Yao",
+        "Haobo Xu",
+        "Haokun Lin",
+        "Yichen Wu",
+        "Ziyu Guo"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38169v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38169v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 78.5,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2609.38169）：STEPQuant 不直接提出量化方法，而是把 LeapQuant（38166）解决的核心痛点—…",
+      "one_line_essence": "据摘要（arXiv 2609.38169）：STEPQuant 不直接提出量化方法，而是把 LeapQuant（38166）解决的核心痛点——'quantization error 通过 successive state update 累积导致严重精度退化'——拆成两个互补维度做 analytical understanding：temporally（errors 在 long-lived memory 中跨多 decoding step 持续），spatially（errors 在特定 update step 集中），并相应给出量化策略。这是 inference-serving × context-engineering × llm-evaluation 的'分析驱动的 recurrent state quantization'资产——'when and where errors matter'的分析范式可指导 LeapQuant 的部署工程；与 LeapQuant 同属'linear-attention recurrent state 量化'主线（'方法 vs 分析'双联）；与昨日 35769 Telescopic LM、35768 PDMD 共同加固'inference efficiency'主线。代码/benchmark/项目页：暂无，需打开 PDF 看 error propagation 分析框架、temporal/spatial 维度量化策略的实证。今日动作：即时路线资产，为 LeapQuant 试点提供分析骨架；写'stepquant error-when-where' checklist 草稿。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38169）：STEPQuant 不直接提出量化方法，而是把 LeapQuant（38166）解决的核心痛点——'quantization error 通过 successive state update 累积导致严重精度退化'——拆成两个互补维度做 analytical understanding：temporally（err",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "context-engineering",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38169）：STEPQuant 不直接提出量化方法，而是把 LeapQuant（38166）解决的核心痛点——'quantization error 通过 su",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38169v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38169v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=stepquant-when-and-where-errors-matter-in-delta-rule-recurrent-state-quantization",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "beyond-the-timeline-augmenting-long-video-memory-with-grounded-entity-biographies": {
+      "id": "beyond-the-timeline-augmenting-long-video-memory-with-grounded-entity-biographies",
+      "title": "Beyond the Timeline: Augmenting Long-Video Memory with Grounded Entity Biographies",
+      "authors": [
+        "Hui Ren",
+        "Lei Fan",
+        "Henry Pao",
+        "Han Guo",
+        "Zeeshan Zia"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38155v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38155v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 73.5,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.38155）：Beyond the Timeline 解决长视频问答中'同一物体跨小时/跨天识别'的核心痛点—…",
+      "one_line_essence": "据摘要（arXiv 2609.38155）：Beyond the Timeline 解决长视频问答中'同一物体跨小时/跨天识别'的核心痛点——chronological descriptions / text-derived entities 无法解决物理身份（不同物体可能共享描述，同一个对象可能跨事件未被关联）。提出 grounded entity biographies，把每个实体变成 grounded（带视觉证据 + 跨事件追溯）的对象，使 retrieval 不只回事件还能直接回实体。这是 multimodal-agent × context-engineering × rag-knowledge × llm-evaluation 的'grounded entity memory for long video'资产——'entity as first-class object + grounded across time'是与昨日 35759 NstAgent 'narrative state as first-class object' 同源的'memory persistence over long horizon'路线，但 NstAgent 走 narrative state，Beyond the Timeline 走 grounded entity biographies（更视觉、更跨帧）；与 LeapQuant / STEPQuant 'inference efficiency' 主线并列但不同主题。代码/benchmark/项目页：暂无，需打开 PDF 看 entity grounding 协议、biography 更新机制、长视频 QA 评测设置。今日动作：趋势卡片维护，关注'grounded entity memory'路线与 narrative-state 路线的合流可能。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38155）：Beyond the Timeline 解决长视频问答中'同一物体跨小时/跨天识别'的核心痛点——chronological descriptions / text-derived entities 无法解决物理身份（不同物体可能共享描述，同一个对象可能跨事件未被关联）。提出 grounded entity bio",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "context-engineering",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38155）：Beyond the Timeline 解决长视频问答中'同一物体跨小时/跨天识别'的核心痛点——chronological description",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38155v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38155v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=beyond-the-timeline-augmenting-long-video-memory-with-grounded-entity-biographies",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=context-engineering",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "pretraining-latent-information-feedback-transformers-with-teacher-supervision": {
+      "id": "pretraining-latent-information-feedback-transformers-with-teacher-supervision",
+      "title": "Pretraining Latent Information Feedback Transformers with Teacher Supervision",
+      "authors": [
+        "Dor Tirosh",
+        "Ido Amos",
+        "Mor Geva"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38149v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38149v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 71.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2609.38149）：Pretraining Latent Information Feedback Transfor…",
+      "one_line_essence": "据摘要（arXiv 2609.38149）：Pretraining Latent Information Feedback Transformers 直接打破 Transformer feed-forward 单向信息流——传统 LM 深层表征从不反馈回浅层，跨生成步的下行信息通道只有 decoded token，迫使模型 recompute intermediate results 并丢弃替代续写。该工作把 feedback 在 pretraining 阶段就引入，让浅层直接拿到深层表征。这是 inference-serving × context-engineering 的'feedback-augmented pretraining'架构资产——与 LeapQuant / STEPQuant 'linear-attention recurrent state 量化'同属'打破 Transformer 单向信息流'大主线，但路径不同：前者改 attention state 量化、后者改 pretraining 阶段的层间信息流；与近期 feedback transformer 系列（如 Feedback Transformer）形成延续，但强调 pretraining 而非 inference-time adaptation。代码/benchmark/项目页：暂无，需打开 PDF 看 feedback 形式化、teacher supervision 设计、pretraining cost vs quality 曲线。今日动作：趋势卡片维护，关注'feedback-aware pretraining'路线与 inference-time recurrent state 主线的潜在交集。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38149）：Pretraining Latent Information Feedback Transformers 直接打破 Transformer feed-forward 单向信息流——传统 LM 深层表征从不反馈回浅层，跨生成步的下行信息通道只有 decoded token，迫使模型 recompute interme",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38149）：Pretraining Latent Information Feedback Transformers 直接打破 Transformer feed",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38149v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38149v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=pretraining-latent-information-feedback-transformers-with-teacher-supervision",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "imagine3d-llm-teaching-mllms-to-imagine-3d-scenes-before-answering": {
+      "id": "imagine3d-llm-teaching-mllms-to-imagine-3d-scenes-before-answering",
+      "title": "Imagine3D-LLM: Teaching MLLMs to Imagine 3D Scenes Before Answering",
+      "authors": [
+        "Jaewoo Jung",
+        "Hyeonseo Yu",
+        "Honggyu An",
+        "Jisang Han",
+        "Mungyeom Kim"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38177v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38177v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 68.5,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.38177）：Imagine3D-LLM 解决 MLLM 从多视图推理 3D 场景的根本挑战——现有方法要么靠…",
+      "one_line_essence": "据摘要（arXiv 2609.38177）：Imagine3D-LLM 解决 MLLM 从多视图推理 3D 场景的根本挑战——现有方法要么靠 fine-grained pixel-level cross-view correspondence，要么靠融合 3D geometry foundation model 特征，但都没让模型在答前先 imagine 3D scene。该工作让 MLLM 在回答前先生成 3D 场景表征，再基于此做推理。这是 multimodal-agent × llm-evaluation 的'imagine-before-answer for 3D MLLM'资产——长尾保存——'先 imagine 再 answer'的范式可迁移到任何需要多视图融合 / 空间推理的 MLLM 任务；与 LeapQuant / STEPQuant 'inference efficiency' 在主题上不直接同源但同属 MLLM 体系；与 Beyond the Timeline（38155）'grounded entity memory' 在'3D-aware MLLM'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 imagine 阶段的 representation 设计、benchmark 规模、3D 推理 baseline。今日动作：沉淀为长尾卡片，标注'imagine-before-answer multimodal'触发条件。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38177）：Imagine3D-LLM 解决 MLLM 从多视图推理 3D 场景的根本挑战——现有方法要么靠 fine-grained pixel-level cross-view correspondence，要么靠融合 3D geometry foundation model 特征，但都没让模型在答前先 imagine 3",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38177）：Imagine3D-LLM 解决 MLLM 从多视图推理 3D 场景的根本挑战——现有方法要么靠 fine-grained pixel-level ",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-10-22"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38177v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38177v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=imagine3d-llm-teaching-mllms-to-imagine-3d-scenes-before-answering",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "a-spectral-theory-of-distortion-in-llm-graph-reconstruction-sharp-bounds-and-empirical-characterization": {
+      "id": "a-spectral-theory-of-distortion-in-llm-graph-reconstruction-sharp-bounds-and-empirical-characterization",
+      "title": "A Spectral Theory of Distortion in LLM Graph Reconstruction: Sharp Bounds and Empirical Characterization",
+      "authors": [
+        "Jianru Shen"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38161v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38161v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 67.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.38161）：A Spectral Theory of Distortion in LLM Graph Rec…",
+      "one_line_essence": "据摘要（arXiv 2609.38161）：A Spectral Theory of Distortion in LLM Graph Reconstruction 指出当前 LLM 图重构评估的痛点——只报 Wasserstein distance between Laplacian spectra 的单点聚合距离。论文证明该距离被两个 edge count 严格夹住（net change in edge number 从下界、symmetric difference 从上界），均以 2/n 缩放（n 为顶点数），并给出实证刻画。这是 llm-evaluation 的'sharp bounds for LLM graph reconstruction evaluation'理论资产——长尾保存——为团队日后做'LLM 图重构 / 结构化输出评估'提供'Laplacian spectral Wasserstein bracketed by edge counts'具体范式，可直接转化为'图重构评估 rubic'；与 LeapQuant / STEPQuant 'recurrent state quantization' 主线不直接同源但同属'inference-time / 评估时'的方法学资产。代码/benchmark/项目页：暂无，需打开 PDF 看 sharp bound 推导、empirical characterization 协议、与现有 graph reconstruction benchmark 的对照。今日动作：沉淀为长尾卡片，标注'spectral-distortion graph-reconstruction evaluation'触发条件。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38161）：A Spectral Theory of Distortion in LLM Graph Reconstruction 指出当前 LLM 图重构评估的痛点——只报 Wasserstein distance between Laplacian spectra 的单点聚合距离。论文证明该距离被两个 edge count",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38161）：A Spectral Theory of Distortion in LLM Graph Reconstruction 指出当前 LLM 图重构评估",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-10-22"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38161v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38161v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=a-spectral-theory-of-distortion-in-llm-graph-reconstruction-sharp-bounds-and-empirical-characterization",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "breakdown-of-local-denoising-as-semantic-speciation": {
+      "id": "breakdown-of-local-denoising-as-semantic-speciation",
+      "title": "Breakdown of Local Denoising as Semantic Speciation",
+      "authors": [
+        "Guangkuo Liu",
+        "Mert Okyay",
+        "Yifan F. Zhang",
+        "Fangjun Hu",
+        "Rahul Nandkishore"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38176v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38176v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 6.0,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 65.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.38176）：Breakdown of Local Denoising as Semantic Speciat…",
+      "one_line_essence": "据摘要（arXiv 2609.38176）：Breakdown of Local Denoising as Semantic Speciation 在生成模型动力学里识别两个时间窗——speciation window（样本 commit 到语义类的时刻）与 nonlocality window（local context window 不再足以生成）——并在'common cause'假设下证明 nonlocality window 必须落在 speciation window 之内（基于 semantic information 的空间分布）。这是 inference-serving × llm-evaluation 的'生成模型动力学理论统一'资产——长尾保存——为团队日后做'diffusion 步数 vs 语义稳定性'分析提供'speciation-first'具体思路；理论 cs.LG + cond-mat.stat-mech 跨界，与 LeapQuant / STEPQuant 'linear-attention 量化'在方法学层面同源（都涉及 error propagation / state evolution），与昨日 35763 Unifying Distributional Training 'Wasserstein 统一框架'在'theoretical unification of generative dynamics'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 common cause 假设形式化、跨生成模型验证。今日动作：沉淀为长尾卡片，标注'speciation-nonlocality generative dynamics'触发条件。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38176）：Breakdown of Local Denoising as Semantic Speciation 在生成模型动力学里识别两个时间窗——speciation window（样本 commit 到语义类的时刻）与 nonlocality window（local context window 不再足以生成）——并",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38176）：Breakdown of Local Denoising as Semantic Speciation 在生成模型动力学里识别两个时间窗——spec",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-10-22"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38176v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38176v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=breakdown-of-local-denoising-as-semantic-speciation",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "skill-space-shooting-for-autonomous-robot-policy-improvement": {
+      "id": "skill-space-shooting-for-autonomous-robot-policy-improvement",
+      "title": "Skill-Space Shooting for Autonomous Robot Policy Improvement",
+      "authors": [
+        "Zihang Rui",
+        "Renhao Wang",
+        "Haoxu Huang",
+        "Yang Gao"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38178v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38178v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 6.0,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 4.15,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 62.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2609.38178）：Skill-Space Shooting for Autonomous Robot Policy…",
+      "one_line_essence": "据摘要（arXiv 2609.38178）：Skill-Space Shooting for Autonomous Robot Policy Improvement 解决物理世界机器人需在初始训练后持续改进、且不能依赖人类对每次修正做示范的痛点。利用 agentic systems 通过 foundation model 自主组合 learned behaviors 完成任务的范式，把 task completion 转成 teachable signal。这是 ai-agent × multimodal-agent 的'skill-space self-improvement'资产——长尾保存——'skill space as optimization target + agentic composition'的具体范式可迁移到任意长程 agent 任务；与昨日 35760 TokenCast'agent cost governance'、35759 NstAgent 'narrative state'同属'agent production 治理'路线但更偏向 robotics 落地；与 LeapQuant / STEPQuant 'linear-attention quantization' 在主题上不同但同属'LLM-era agent 基础设施'。代码/benchmark/项目页：暂无，需打开 PDF 看 skill space 定义、shooting 算法、跨任务迁移验证、cs.RO 标准 benchmark。今日动作：沉淀为长尾卡片，标注'skill-space shooting agent self-improvement'触发条件；持续观察是否开源 + 是否能在 LLM agent（非物理机器人）上做迁移。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38178）：Skill-Space Shooting for Autonomous Robot Policy Improvement 解决物理世界机器人需在初始训练后持续改进、且不能依赖人类对每次修正做示范的痛点。利用 agentic systems 通过 foundation model 自主组合 learned behav",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38178）：Skill-Space Shooting for Autonomous Robot Policy Improvement 解决物理世界机器人需在初始",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-10-22"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38178v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38178v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=skill-space-shooting-for-autonomous-robot-policy-improvement",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "emores-tts-residual-enhanced-vector-steering-for-emotional-speech-generation": {
+      "id": "emores-tts-residual-enhanced-vector-steering-for-emotional-speech-generation",
+      "title": "EmoRES-TTS: Residual-Enhanced Vector Steering for Emotional Speech Generation",
+      "authors": [
+        "Kuan-Po Huang",
+        "Haohe Liu",
+        "Puyuan Peng",
+        "Haibin Wu",
+        "Zhaoheng Ni"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38157v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38157v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 51.5,
+      "decision": "持续观察",
+      "one_line_judgement": "当前可忽略：据摘要（arXiv 2609.38157）：EmoRES-TTS 是 emotion-conditioned TTS 方向，用 vector…",
+      "one_line_essence": "据摘要（arXiv 2609.38157）：EmoRES-TTS 是 emotion-conditioned TTS 方向，用 vector steering（training-free 改 frozen model 内部表征）做 emotion controllability。这是 cs.SD/cs.CL/eess.AS 方向的'情绪语音合成 asset'——当前相关性有限——aiutil 雷达核心关注 LLM serving / Agent / Evaluation，'vector steering for speech'与'LLM 中的 vector steering（representation engineering）'虽同名但介质不同；缺少代码/benchmark/项目页链接（仅 PDF）。今日动作：保留最小索引，除非出现 LLM-driven speech / multimodal-emotional agent 等跨界信号，否则不继续投入。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38157）：EmoRES-TTS 是 emotion-conditioned TTS 方向，用 vector steering（training-free 改 frozen model 内部表征）做 emotion controllability。这是 cs.SD/cs.CL/eess.AS 方向的'情绪语音合成 asset'",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38157）：EmoRES-TTS 是 emotion-conditioned TTS 方向，用 vector steering（training-free 改 ",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38157v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38157v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=emores-tts-residual-enhanced-vector-steering-for-emotional-speech-generation",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "cropland-patterns-parallel-dimensional-attention-networks-and-attention-to-dataset-disparity-for-crop-segmentation-in-satellite-imagery-time-series-data": {
+      "id": "cropland-patterns-parallel-dimensional-attention-networks-and-attention-to-dataset-disparity-for-crop-segmentation-in-satellite-imagery-time-series-data",
+      "title": "Cropland PAtteRNS: Parallel Dimensional Attention Networks and Attention to Dataset Disparity for Crop Segmentation in Satellite Imagery Time Series Data",
+      "authors": [
+        "Joseph Metcalfe",
+        "Sara Sharifzadeh",
+        "Fabio Caraffini"
+      ],
+      "source": "arXiv",
+      "published": "2026-09-29",
+      "url": "http://arxiv.org/abs/2609.38165v1",
+      "pdf_url": "https://arxiv.org/pdf/2609.38165v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-01",
+      "first_deep_dive_daily": "2026-10-01",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 6.0,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 47.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：据摘要（arXiv 2609.38165）：Cropland PAtteRNS（Parallel Dimensional Attention…",
+      "one_line_essence": "据摘要（arXiv 2609.38165）：Cropland PAtteRNS（Parallel Dimensional Attention Networks + Attention to Dataset Disparity）是卫星时序影像 crop segmentation 域的 hybrid transformer-convolutional 模型，针对 domain dataset 偏移。这是 cs.CV/cs.LG 方向的'域农业遥感 asset'——当前相关性有限——aiutil 雷达核心关注 LLM / Agent / Inference / Evaluation 主线，crop segmentation 属非核心；缺少代码/benchmark/项目页链接（仅 PDF）。今日动作：保留最小索引，除非出现 LLM-driven remote sensing / geospatial agent 等跨界信号，否则不继续投入。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2609.38165）：Cropland PAtteRNS（Parallel Dimensional Attention Networks + Attention to Dataset Disparity）是卫星时序影像 crop segmentation 域的 hybrid transformer-convolutional 模型，针对",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2609.38165）：Cropland PAtteRNS（Parallel Dimensional Attention Networks + Attention to D",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2609.38165v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2609.38165v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=cropland-patterns-parallel-dimensional-attention-networks-and-attention-to-dataset-disparity-for-crop-segmentation-in-satellite-imagery-time-series-data",
+      "daily_path": "daily-detail.html?date=2026-10-01",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
     "tokencast-forecasting-token-consumption-during-llm-agent-execution": {
       "id": "tokencast-forecasting-token-consumption-during-llm-agent-execution",
       "title": "TokenCast: Forecasting Token Consumption During LLM Agent Execution",

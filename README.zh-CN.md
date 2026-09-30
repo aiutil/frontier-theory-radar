@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-09-30
+## 最新研究 · 2026-10-01
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 117 | 201 | 201 | 1331 |
+| 10 | 119 | 203 | 205 | 1333 |
 
-**今日深挖：** [TokenCast: Forecasting Token Consumption During LLM Agent Execution](daily/2026/2026-09-30.md) · 即时价值 · 重点学习
+**今日深挖：** [LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization](daily/2026/2026-10-01.md) · 即时价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv [2609.35760](http://arxiv.org/abs/2609.35760v1)），TokenCast 解决'同一任务 token 消耗跨 run 可变超一个数量级'这一对 agent 经济性的核心痛点，把 token consumption 建模为可组合的 cost model：可在执行前估计预算、随执行过程（context 增长 / tool feedback）动态刷新估值。这是 ai-agent × inference-serving × ai-k8s-platform 的'agent cost governance'工程化资产——把'token consumption'从隐性指标变成可显式观测、预测、调度的对象；与今日 [35769](http://arxiv.org/abs/2609.35769v1) telescopic LM'one-model-many-budgets'、[35768](http://arxiv.org/abs/2609.35768v1) PDMD'扩散蒸馏稳定性'、[35767](http://arxiv.org/abs/2609.35767v1) Native Reflection'视觉自修复 agent'形成'inference efficiency × agent cost governance'连续主线，分别覆盖 agent 成本可观测、模型多档预算、扩散蒸馏稳定性、视觉反思。
+**核心判断：** 据摘要（arXiv [2609.38166](http://arxiv.org/abs/2609.38166v1)），LeapQuant 解决 hybrid linear-attention LLM（明确点名 Gated DeltaNet / Kimi Delta Attention）部署时的核心 inference 瓶颈——recurrent state 反复读写的高代价与量化导致的模型质量退化。这是 inference-serving × context-engineering × memory 的'recurrent state quantization for linear-attention LLMs'工程化资产——直接把'linear-attention recurrent state'从内存瓶颈变成可量化的工程对象；与同批 [38169](http://arxiv.org/abs/2609.38169v1) STEPQuant（'when and where errors matter'的分析资产）形成'方法 × 分析'双联；与昨日 [35769](http://arxiv.org/abs/2609.35769v1) Telescopic LM 'one-model-many-budgets'、[35768](http://arxiv.org/abs/2609.35768v1) PDMD'扩散蒸馏稳定性'共同加固'inference efficiency'主线，但今日整体重心从'diffusion 蒸馏 / 多模态反思'转到'linear-attention recurrent state 量化'这条更贴近 production LLM serving 实际的子主线。
 
-**建议动作：** 把 [35760](http://arxiv.org/abs/2609.35760v1) TokenCast 列为即时试点方向，写'token-cast cost routing'checklist 草稿；把 [35769](http://arxiv.org/abs/2609.35769v1) Telescopic LM 同步列为即时试点方向，写'telescopic-LM multi-budget serving'checklist 草稿；为 [35768](http://arxiv.org/abs/2609.35768v1) PDMD '扩散蒸馏稳定性'、[35767](http://arxiv.org/abs/2609.35767v1) Native Reflection '多模态反思'维持趋势卡片；为 [35763](http://arxiv.org/abs/2609.35763v1) Distributional Training 统一框架、[35759](http://arxiv.org/abs/2609.35759v1) NstAgent 长篇 agent、[35752](http://arxiv.org/abs/2609.35752v1) NHMO PDE solver、[35765](http://arxiv.org/abs/2609.35765v1) Biblical Intertextual 维持长尾卡片；忽略 [35770](http://arxiv.org/abs/2609.35770v1) FurE 3D 毛发重建、[35758](http://arxiv.org/abs/2609.35758v1) Composite Adaptive Control 控制理论资产。⚠️ 持续观察 35760 / 35769 / 35768 / 35767 / 35763 / 35759 / 35752 / 35765 是否开源 code / benchmark / project page。
+**建议动作：** 把 [38166](http://arxiv.org/abs/2609.38166v1) LeapQuant 列为即时试点方向，写'leapquant recurrent-state quantization' checklist 草稿；把 [38169](http://arxiv.org/abs/2609.38169v1) STEPQuant 同步列为即时路线资产（分析方法），写'stepquant error-when-where' checklist 草稿；为 [38155](http://arxiv.org/abs/2609.38155v1) Beyond the Timeline 'grounded entity memory'、38149 Feedback Transformer'打破 Transformer 单向信息流'维持趋势卡片；为 [38177](http://arxiv.org/abs/2609.38177v1) Imagine3D-LLM、38161 Spectral Theory of Distortion、38176 Speciation/Nonlocality、38178 Skill-Space Shooting 维持长尾卡片；忽略 [38157](http://arxiv.org/abs/2609.38157v1) EmoRES-TTS 情绪语音、[38165](http://arxiv.org/abs/2609.38165v1) Cropland PAtteRNS 农业遥感。⚠️ 持续观察 38166 / 38169 / 38155 / 38149 / 38177 / 38161 / 38176 / 38178 是否开源 code / benchmark / project page。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-01](daily/2026/2026-10-01.md) | LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization | 即时价值 | 重点学习 |
 | [2026-09-30](daily/2026/2026-09-30.md) | TokenCast: Forecasting Token Consumption During LLM Agent Execution | 即时价值 | 重点学习 |
 | [2026-09-29](daily/2026/2026-09-29.md) | Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer | 暂时忽略 | 暂时忽略 |
 | [2026-09-28](daily/2026/2026-09-28.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-27](daily/2026/2026-09-27.md) | Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning | 即时价值 | 重点学习 |
 | [2026-09-26](daily/2026/2026-09-26.md) | DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs | 即时价值 | 重点学习 |
 | [2026-09-25](daily/2026/2026-09-25.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
-| [2026-09-24](daily/2026/2026-09-24.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 579 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 537 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 579 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 583 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 543 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 583 |
 
 ## 为什么做这个项目
 
