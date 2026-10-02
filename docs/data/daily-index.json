@@ -1,7 +1,33 @@
 {
-  "updated_at": "2026-10-01T04:33:44.797976",
+  "updated_at": "2026-10-03T04:31:44.827828",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-10-03",
+      "title": "论文价值发现日报 - 2026-10-03",
+      "deep_dive_title": "KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards",
+      "deep_dive_url": "http://arxiv.org/abs/2610.02206v1",
+      "decision": "持续观察",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-10-03"
+    },
+    {
+      "date": "2026-10-02",
+      "title": "论文价值发现日报 - 2026-10-02",
+      "deep_dive_title": "Turbo Harness: Instance-Adaptive Harness Optimization",
+      "deep_dive_url": "http://arxiv.org/abs/2609.40330v1",
+      "decision": "轻量试点",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "据摘要（arXiv 2609.40330）：Turbo Harness 把 agent harness optimization 从'single global harness uniformly applied'推到'instance-adaptive'——认识到'a harness that works well on average may not be optimal for every instance'。复用优化过程生成的信息（按 instance 调整 harness）为每个 task instance 优化，是 ai-agent × inference-serving 的'per-instance harness self-improvement'工程化资产——把'harness'从全局静态配置变成 instance-level 动态资产；与昨日 35760 TokenCast 'agent cost governance' 同属'agent production 治理'主线（前者 cost、本次 harness），今日 40360 Semifactual RLVR 在'decoding-time robustness' 互补。代码/benchmark/项目页：暂无，需打开 PDF 看 reused-information 形式化、per-instance adaptation cost、benchmark 是否覆盖多 agent framework。今日动作：即时试点方向，写'turbo-harness instance-adaptive' checklist 草稿。",
+      "path": "daily-detail.html?date=2026-10-02"
+    },
     {
       "date": "2026-10-01",
       "title": "论文价值发现日报 - 2026-10-01",
@@ -365,32 +391,6 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-09-02"
-    },
-    {
-      "date": "2026-09-01",
-      "title": "论文价值发现日报 - 2026-09-01",
-      "deep_dive_title": "PULSAR: Pooled Unified Late-Interaction Search and Retrieval for Enterprise Visual Document RAG",
-      "deep_dive_url": "http://arxiv.org/abs/2608.28572v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "2026-09-01 回看 | 完成四件事：(1) 跟踪 PULSAR 开源与定量结果，并在团队内部视觉文档检索 pipeline 上做最小验证（不依赖完整开源，冻结 backbone + 两阶段池化思路可作为对比基线，1 周内可设计验证实验）；(2) 把 Logos 的 cross-process bus 思路纳入 agent harness 韧性设计清单（30 分钟可梳理现有架构的故障边界、识别单进程 plugin 的故障域传播风险点，1 周内可在内部架构评审中应用）；(3) 把 Quest 综述的四轴（temporal estimation / update geometry / horizon-schedule / state representation）作为评估/选型/自研优化器的结构化视角，并在团队当前 optimizer 上做四轴定位；(4) 评估 Aero Hand Open 对团队具身/操作学习研究计划的潜在价值，建立仿真平台候选清单。",
-      "max_uncertainty": "2026-09-01 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述。PULSAR 摘要截断导致 pooling 与 late-interaction 的具体计算开销、与传统 OCR+embedding pipeline 的定量对比、索引更新延迟、页面版本控制缺失；Logos 摘要截断导致 cross-process bus 的具体协议、inverse 跨进程追踪、与现有进程间通信（gRPC / message bus / capability system）的定量对比、故障域隔离的实证数据缺失；Quest 综述摘要截断导致四轴下具体优化器的对比表、与 SOTA 优化器（Muon / Shampoo / Lion / SOAP 等）的覆盖关系、对分片+低精度的存活约束细节缺失；Aero Hand Open 摘要截断导致具体仿真平台、benchmark、USD/MuJoCo/Isaac 兼容性、学习 task suite、与 direct-drive 手的定量对比缺失；Size-Weight Frontier 摘要截断导致 frontier 的具体构造、对 LLM 评测数据合成的适用性、与传统 CI/贝叶斯合成数据方法的定量对比缺失；Formal Limitation 摘要截断导致上界对应的具体信息度量、与 BERT/Transformer 隐藏态的实证校准、是否依赖特定相关性假设缺失；QGPINNs 摘要截断导致与经典数值方法（FEM / spectral method）的定量对比、训练稳定性、量子图具体出处缺失；KRR Power-Law Anisotropy 摘要截断导致 κ regime 内是否存在相位转捩、与深度学习理论的桥接、实证校准缺失；QUEST Asylum Law 摘要截断导致主题 schema 设计、人评/自动评对比、是否公布 benchmark 缺失；Dikin Walks d² Mixing 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
-      "one_line_judgement": "PULSAR 是部署在 Mubadala Investment Company 的 production vision-first retrieval system，用冻结 ColPali-style backbone 直接索引 page images + pooled two-stage late-interaction index（page summaries 初检 + page-level scoring 精排），把视觉文档检索从'OCR + 图说'改为'视觉直接索引 + 两阶段 late-interaction'——在小时级节奏的企业文档检索上免掉 OCR 刷新成本。Logos 把 agent harness 从'单进程共享一个 context'改为'cross-process bus'——所有 component 共处一个物理故障域的问题被解耦，让故障悬挂与进程死亡不再传播到全组件，直击单进程 plugin 的核心故障传播问题，并为 agent 治理提供更可审计的故障边界。一个趋势信号：[Quest: Survey of Optimizers](http://arxiv.org/abs/2608.28557v1) 把 NN 优化从'Adam 变体盘点'重构为四轴设计空间（temporal estimation / update geometry / horizon-schedule / state representation），强调分片+低精度生存能力，为评估/选型/自研优化器提供比'新旧 Adam 变体'更结构化的视角；[Aero Hand Open](http://arxiv.org/abs/2608.28578v1) 把 tendon-driven 灵巧手作为可直接学习的仿真资产开放，示范了'硬件经济性 + 仿真可学性'的搭配。",
-      "path": "daily-detail.html?date=2026-09-01"
-    },
-    {
-      "date": "2026-08-30",
-      "title": "论文价值发现日报 - 2026-08-30",
-      "deep_dive_title": "WikiSkill: Compiling Agent Experience into Persistent Knowledge for Skill Evolution",
-      "deep_dive_url": "http://arxiv.org/abs/2608.27454v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "2026-08-30 回看 | 完成三件事：(1) 跟踪 WikiSkill 开源——评估其持久知识结构是否可与团队 long-horizon agent 的 memory 抽象兼容，可在内部 agent 上做 'skill library + wiki knowledge' 概念验证（不依赖完整开源，知识结构化思想可借鉴，1 周内可做概念验证）；(2) 把 CritICL 的'失败模式判别器'思路纳入推理时成本治理设计——评估在内部任务上'小模型 ICL 桥接大模型'是否能省下重复采样/外验证成本（30 分钟可设计实验、1-2 天可实施）；(3) 把 PES 的 persona/execution trust domain 分离原则纳入企业 agent 合规架构评估清单（30 分钟可梳理要点，1 周内可在内部架构评审中应用）。",
-      "max_uncertainty": "2026-08-30 回看 | 全部 10 篇论文的 code/benchmark/Papers with Code/OpenReview 链接均暂无待核验；评分与分析基于 arXiv 摘要自述；WikiSkill 摘要截断导致持久知识结构的存储/检索机制、跨任务复用实证数据缺失；CritICL 摘要截断导致具体 ICL/检索机制、与 self-consistency / verifier-based 推理时方法的定量对比、适用模型家族缺失；PES 摘要截断导致 contract bridge 的具体协议、persona 漂移边界、execution 审计的可证伪保证缺失；TTPO 摘要截断导致目标函数、与多数投票/Verifier-based TTT 的定量对比、数学推理外的适用任务缺失；SWE-Prime 摘要截断导致'高质量'具体过滤/打分准则、与全量 SFT 的定量对比、SWE-bench Verified 关联缺失；RedEvoAgent 摘要截断导致 skill evolution 具体机制、与固定攻击/检索基线的定量对比、目标模型/任务范围缺失；MCR-Bench、Tacet、MAELLE 摘要均截断导致各自方法细节与定量对比缺失；Transduced LM 摘要截断导致具体估计器、计算复杂度分析、与现有捷径的定量对比缺失。",
-      "one_line_judgement": "WikiSkill 把分散在 trajectory/optimization history 里的洞察结构化沉淀为 wiki-style 持久知识，与昨日（8-27）Recuris 的 Working + Experiential 双层 memory 同方向——但更聚焦'skill 知识结构化'而非'memory 分层'；CritICL 利用小模型结构化失败模式做 ICL 桥接大模型，把弱模型从'答案提供者'变成'失败模式判别器'，可在不增加采样/外验证成本下提升推理质量；Persona-Execution Separation 把 persona 与 execution 显式分到不同 trust domain、用 governed contract bridge 桥接，直击企业 agent '可演化 vs 可审计'的核心冲突。三篇 immediate 共同把 AI 工程从'演示层'推向'经验沉淀 + 成本受限推理 + 合规治理'的运营层。三个趋势信号：TTPO 把 RL/OPSD 的 ground truth 依赖换成'利用多数/少数 rollout 不对称性'的推理时训练、SWE-Prime 把 SWE agent 训练从'采大量轨迹'转向'精选高质量轨迹'、RedEvoAgent 把红队 agent 攻击技能从'固定/检索'改为'经验驱动 skill evolution'。",
-      "path": "daily-detail.html?date=2026-08-30"
     }
   ]
 }

@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-02",
+  "generated_at": "2026-10-02T04:30:00",
+  "note": "今日 arXiv API 正常（成功从 export.arxiv.org 拉到 10 篇 2609.40324-2609.40361 区间论文）。今日 10 篇整体偏向'ai-agent harness optimization × RL training × eval benchmark'，无单一 dominate 主线，价值路由：(1) 即时价值候选：Turbo Harness（2609.40330）——把 agent harness optimization 从'single global harness'推到'instance-adaptive'，复用优化过程生成的信息为每个 task instance 调整 harness；是 ai-agent × inference-serving 的'per-instance harness self-improvement'工程化资产，与昨日 35760 TokenCast 'agent cost governance'、今日 40360 Semifactual RLVR 在'agent 生产治理 + RL 训练稳定性'层面同源。(2) 趋势加固：Semifactual Credit-Augmented Policy Optimization（2609.40360）——用 semifactual prompt interventions 暴露 RLVR 训练 LLM 在 token-level 对 task-irrelevant features 的敏感性，并提出 decoding-time 抑制高漂移 token 的策略；是 inference-serving × llm-evaluation 的'decoding-time robustness for RLVR-trained LLM'资产；EvoDuet（2609.40340）——把 web search + scientific task solving 走 bilevel co-evolution（solution × query 共同进化），解决'stuck in same document loop'问题，是 ai-agent × rag-knowledge 的'co-evolution of retrieval + task solving'资产，与昨日 35760 TokenCast、35759 NstAgent 'narrative state' 共同加固'agentic self-improvement'主线；Ranking-Aware Prompt Optimization（2609.40361）——用 AUROC 替代 accuracy 做 prompt optimization，直接对应临床场景 class-imbalance 的痛点，是 llm-evaluation × multimodal-agent 的'ranking-aware clinical MLLM prompt'资产。(3) 长尾保存：Cogentic（2609.40324）——multi-agent orchestration for automated proof discovery，把 open research problem 的'multiple competing conjectures + subtle technical obstructions + long-horizon progress retention'做实，是 ai-agent × llm-evaluation 长尾资产；Weight Tying under DP-SGD（2609.40335）——研究 weight tying 在 differentially private fine-tuning 下的实际效果，是 security-governance × llm-evaluation 长尾理论资产；VideoMSN（2609.40347）——用 image classifier 的 ViT 当 video SSL learner，省 3D / reconstruction 成本，是 inference-serving × multimodal-agent 长尾资产；WorldAuditBench（2609.40325）——给 interactive 3D world auditing 立 benchmark，是 multimodal-agent × llm-evaluation 长尾资产；Removing Timing Shortcuts（2609.40359）——揭示脑-机接口 BCI 领域 d'Ascoli 2025 的 'window overlap timing shortcut'导致数据可被无脑信号复现，是 llm-evaluation 的'negative result + methodology audit'长尾资产，与 cs.LG 跨 q-bio.NC。(4) 暂时忽略：ViTeX-Bench（2609.40356）——video scene text editing benchmark，方向较窄（视觉合成评估子方向），与 aiutil 雷达当前核心（LLM serving / agent / RL 训练 / evaluation）相关性低。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason。",
+  "by_url": {
+    "http://arxiv.org/abs/2609.40330v1": {
+      "score": 78.5,
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.40330）：Turbo Harness 把 agent harness optimization 从'single global harness uniformly applied'推到'instance-adaptive'——认识到'a harness that works well on average may not be optimal for every instance'。复用优化过程生成的信息（按 instance 调整 harness）为每个 task instance 优化，是 ai-agent × inference-serving 的'per-instance harness self-improvement'工程化资产——把'harness'从全局静态配置变成 instance-level 动态资产；与昨日 35760 TokenCast 'agent cost governance' 同属'agent production 治理'主线（前者 cost、本次 harness），今日 40360 Semifactual RLVR 在'decoding-time robustness' 互补。代码/benchmark/项目页：暂无，需打开 PDF 看 reused-information 形式化、per-instance adaptation cost、benchmark 是否覆盖多 agent framework。今日动作：即时试点方向，写'turbo-harness instance-adaptive' checklist 草稿。"
+    },
+    "http://arxiv.org/abs/2609.40360v1": {
+      "score": 76.0,
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2609.40360）：Semifactual Credit-Augmented Policy Optimization 用 semifactual prompt interventions（保留 underlying problem 与 answer、只扰 task-irrelevant features）暴露 RLVR 训练 LLM 在 token-level 对 task-irrelevant features 的敏感性，发现 token-level 敏感性差异显著，提出 decoding-time 抑制 high-drift token candidate 提升推理准确度。是 inference-serving × llm-evaluation × context-engineering 的'decoding-time robustness for RLVR-trained LLM'趋势资产——'semifactual sensitivity as RLVR diagnostic'范式可迁移到任何 RLVR 后 LLM；与 40330 Turbo Harness 同属'agent × RL 训练稳定性'主线但路径不同（前者 harness、后者 decoding）；与 40361 Ranking-Aware Prompt Optimization 在'非 accuracy 目标 × 鲁棒性'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 semifactual intervention 协议、token-level 漂移度量、跨 RLVR 模型验证。今日动作：趋势卡片维护。"
+    },
+    "http://arxiv.org/abs/2609.40340v1": {
+      "score": 73.5,
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "rag-knowledge",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.40340）：EvoDuet 把 web search + scientific task solving 走 bilevel co-evolution（solution × search query 共同进化，固定 model 参数）——每次迭代用一个 retrieval gate 让 LLM 评估自身 knowledge gap 决定 retrieve 新文档 / reuse stored document。直接解决'stuck in same document loop'（即'repeatedly retrieving the same pages as solutions change'）痛点。是 ai-agent × rag-knowledge × llm-evaluation 的'co-evolution of retrieval + task solving'趋势资产——'bilevel co-evolution + retrieval gate'范式可迁移到任何 'LLM 进化 + 检索协同'场景；与 35760 TokenCast、35759 NstAgent 'narrative state' 同属'agentic self-improvement'主线但介质不同（cost / narrative / retrieval-co-evolution）；与 40330 Turbo Harness 同属今日'agent self-improvement'主线。代码/benchmark/项目页：暂无，需打开 PDF 看 bilevel 收敛保证、retrieval gate 阈值协议、跨领域 scientific benchmark。今日动作：趋势卡片维护。"
+    },
+    "http://arxiv.org/abs/2609.40361v1": {
+      "score": 72.5,
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2609.40361）：Ranking-Aware Prompt Optimization 用 AUROC（threshold-free，对 class balance 不变）替代 accuracy 做 prompt optimization，直接对应 clinical class-imbalanced 场景痛点（constant-majority predictor >90% accuracy 但 clinically useless）。是 llm-evaluation × multimodal-agent × context-engineering 的'ranking-aware clinical MLLM prompt'趋势资产——'AUROC-based prompt optimization'范式可迁移到任何 class-imbalanced 场景；与 40360 Semifactual RLVR 在'非 accuracy 目标'层面同源；与昨日 35759 NstAgent 'long-form narrative generation' 的 quality 度量同属'evaluation 目标多元化'路线。代码/benchmark/项目页：暂无，需打开 PDF 看 reflective prompt optimization 协议、跨 clinical benchmark 验证。今日动作：趋势卡片维护。"
+    },
+    "http://arxiv.org/abs/2609.40324v1": {
+      "score": 67.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.40324）：Cogentic 是 multi-agent harness for automated proof discovery on open research problems，用 iterative prove-verify loop 应对'open problems 需要 explore multiple competing conjectures + overcome subtle technical obstructions + retain intermediate progress over long horizon'。是 ai-agent × llm-evaluation 的'multi-agent proof discovery harness'长尾资产——'iterative prove-verify + orchestrator + competing conjectures'范式可迁移到任何 open-ended research 任务；与 40330 Turbo Harness、40340 EvoDuet 同属今日'agent harness'主线（前者 single-agent instance-adaptive、本次 multi-agent open-ended）；与 35759 NstAgent 'narrative state' 在'long-horizon progress retention'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 orchestrator 协议、prove-verify loop 收敛、与现有 Lean / Isabelle 对照。今日动作：长尾卡片维护。"
+    },
+    "http://arxiv.org/abs/2609.40335v1": {
+      "score": 65.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "security-governance",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "reason": "据摘要（arXiv 2609.40335）：Is Weight Tying Still Beneficial for Decoder-Only LLMs in Private Settings Under DP-SGD? 系统研究 weight tying（input/output embedding 共享）在 differentially private fine-tuning 下的实际效果——'originally introduced for parameter efficiency + improved LM performance in non-private setting'但 DP-SGD 下 largely unexplored。是 security-governance × llm-evaluation × inference-serving 的'weight tying under DP-SGD'长尾理论资产——'当隐私约束改变时，原 non-private 的 design choice 是否仍成立'是 design audit 类问题；与 40361 Ranking-Aware Prompt Optimization 在'evaluation 目标多元化'层面同源；与昨日 security-governance 路线相接。代码/benchmark/项目页：暂无，需打开 PDF 看 DP-SGD 设置、weight tying 影响实证、decoder-only LM 跨规模验证。今日动作：长尾卡片维护。"
+    },
+    "http://arxiv.org/abs/2609.40347v1": {
+      "score": 63.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "inference-serving"
+      ],
+      "reason": "据摘要（arXiv 2609.40347）：VideoMSN 用 image Vision Transformers + masked siamese network（不靠 heavy 3D architectures 或 reconstruction-based autoencoders）做 video SSL，把 video 表示成 'super images'（frame grid），构造 spatial patch masking + temporal shift masking 两个 view。是 multimodal-agent × inference-serving 的'image ViT as video SSL learner'长尾资产——'super image + spatial/temporal masking + siamese'范式把 video 预训练成本从 3D / reconstruction 拉到 image ViT 级别；与 40325 WorldAuditBench、40356 ViTeX-Bench 同属今日 multimodal-agent 长尾主线。代码/benchmark/项目页：暂无，需打开 PDF 看 masking 比例、跨 video benchmark 验证、super image 拼接协议。今日动作：长尾卡片维护。"
+    },
+    "http://arxiv.org/abs/2609.40325v1": {
+      "score": 62.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.40325）：WorldAuditBench 给 interactive 3D world auditing 立 benchmark——识别 simulated environment 里的 anomalies（floating objects / traversable walls / objects inconsistent with surrounding scene），用 VLM / VLA 自动化该 task。是 multimodal-agent × llm-evaluation 的'3D world auditing benchmark'长尾资产——'anomaly as first-class + VLM/VLA automation'范式与 40347 VideoMSN、40356 ViTeX-Bench 同属今日 multimodal 长尾主线；与 40361 Ranking-Aware Prompt 在'评估多元'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 anomaly 协议、跨 VLM / VLA baseline、benchmark 规模。今日动作：长尾卡片维护。"
+    },
+    "http://arxiv.org/abs/2609.40359v1": {
+      "score": 60.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.40359）：Removing Timing Shortcuts Improves Non-Invasive Brain-to-Text 发现 d'Ascoli 2025 报告的'非侵入式脑信号解码词'主要改进可在没有脑信号的情况下复现——window overlap 隐式揭示 word boundary timing，给模型一个 timing shortcut。是 llm-evaluation 的'negative result + methodology audit'长尾资产——'window timing shortcut as confound' 与近期 LLM eval shortcut 讨论同源（很多 eval 改进来自未识别的 confounding），可迁移到任何 sequence evaluation；cs.LG × q-bio.NC 跨界，长尾保存。代码/benchmark/项目页：暂无，需打开 PDF 看 timing-shortcut ablation、跨数据集验证、fix 方案。今日动作：长尾卡片维护。"
+    },
+    "http://arxiv.org/abs/2609.40356v1": {
+      "score": 47.0,
+      "value_type": "ignore",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2609.40356）：ViTeX-Bench 是 video scene text editing 的 benchmark——编辑 storefront / whiteboard / product label 等场景表面文字，同时保留周围 content / motion / camera dynamics。是 llm-evaluation 的'video scene text editing benchmark'窄方向资产——主题上更接近视觉合成评估子方向（diffusion-based video editing），与 aiutil 雷达当前核心（LLM serving / agent / RL 训练 / evaluation）相关性低；与 40325 WorldAuditBench 同属视觉 benchmark 但场景更窄。代码/benchmark/项目页：暂无。综合当前关注主线，标记暂时忽略；如未来 video editing 进入主线再升级。今日动作：保持忽略卡片。"
+    }
+  }
+}

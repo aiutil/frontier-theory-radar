@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-01
+## 最新研究 · 2026-10-03
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 119 | 203 | 205 | 1333 |
+| 10 | 120 | 206 | 211 | 1343 |
 
-**今日深挖：** [LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization](daily/2026/2026-10-01.md) · 即时价值 · 重点学习
+**今日深挖：** [KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards](daily/2026/2026-10-03.md) · 长尾价值 · 持续观察
 
-**核心判断：** 据摘要（arXiv [2609.38166](http://arxiv.org/abs/2609.38166v1)），LeapQuant 解决 hybrid linear-attention LLM（明确点名 Gated DeltaNet / Kimi Delta Attention）部署时的核心 inference 瓶颈——recurrent state 反复读写的高代价与量化导致的模型质量退化。这是 inference-serving × context-engineering × memory 的'recurrent state quantization for linear-attention LLMs'工程化资产——直接把'linear-attention recurrent state'从内存瓶颈变成可量化的工程对象；与同批 [38169](http://arxiv.org/abs/2609.38169v1) STEPQuant（'when and where errors matter'的分析资产）形成'方法 × 分析'双联；与昨日 [35769](http://arxiv.org/abs/2609.35769v1) Telescopic LM 'one-model-many-budgets'、[35768](http://arxiv.org/abs/2609.35768v1) PDMD'扩散蒸馏稳定性'共同加固'inference efficiency'主线，但今日整体重心从'diffusion 蒸馏 / 多模态反思'转到'linear-attention recurrent state 量化'这条更贴近 production LLM serving 实际的子主线。
+**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
 
-**建议动作：** 把 [38166](http://arxiv.org/abs/2609.38166v1) LeapQuant 列为即时试点方向，写'leapquant recurrent-state quantization' checklist 草稿；把 [38169](http://arxiv.org/abs/2609.38169v1) STEPQuant 同步列为即时路线资产（分析方法），写'stepquant error-when-where' checklist 草稿；为 [38155](http://arxiv.org/abs/2609.38155v1) Beyond the Timeline 'grounded entity memory'、38149 Feedback Transformer'打破 Transformer 单向信息流'维持趋势卡片；为 [38177](http://arxiv.org/abs/2609.38177v1) Imagine3D-LLM、38161 Spectral Theory of Distortion、38176 Speciation/Nonlocality、38178 Skill-Space Shooting 维持长尾卡片；忽略 [38157](http://arxiv.org/abs/2609.38157v1) EmoRES-TTS 情绪语音、[38165](http://arxiv.org/abs/2609.38165v1) Cropland PAtteRNS 农业遥感。⚠️ 持续观察 38166 / 38169 / 38155 / 38149 / 38177 / 38161 / 38176 / 38178 是否开源 code / benchmark / project page。
+**建议动作：** 完成摘要精读与最小实验设计
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-03](daily/2026/2026-10-03.md) | KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards | 长尾价值 | 持续观察 |
+| [2026-10-02](daily/2026/2026-10-02.md) | Turbo Harness: Instance-Adaptive Harness Optimization | 即时价值 | 轻量试点 |
 | [2026-10-01](daily/2026/2026-10-01.md) | LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization | 即时价值 | 重点学习 |
 | [2026-09-30](daily/2026/2026-09-30.md) | TokenCast: Forecasting Token Consumption During LLM Agent Execution | 即时价值 | 重点学习 |
 | [2026-09-29](daily/2026/2026-09-29.md) | Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer | 暂时忽略 | 暂时忽略 |
 | [2026-09-28](daily/2026/2026-09-28.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
 | [2026-09-27](daily/2026/2026-09-27.md) | Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning | 即时价值 | 重点学习 |
-| [2026-09-26](daily/2026/2026-09-26.md) | DEEPO: Dual-Entropy Enhanced Policy Optimization for Hallucination in MLLMs | 即时价值 | 重点学习 |
-| [2026-09-25](daily/2026/2026-09-25.md) | Ovis-Embedding: Pushing the Frontiers of Universal Omni-Modal Embeddings | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 583 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 543 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 583 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 592 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 554 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 592 |
 
 ## 为什么做这个项目
 
