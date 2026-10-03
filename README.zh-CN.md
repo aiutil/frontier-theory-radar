@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-03
+## 最新研究 · 2026-10-04
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 120 | 206 | 211 | 1343 |
+| 10 | 122 | 209 | 215 | 1334 |
 
-**今日深挖：** [KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards](daily/2026/2026-10-03.md) · 长尾价值 · 持续观察
+**今日深挖：** [VISTA: A Visual Harness for Reasoning in an Interactive World](daily/2026/2026-10-04.md) · 即时价值 · 轻量试点
 
-**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
+**核心判断：** 据摘要（arXiv [2610.02200](http://arxiv.org/abs/2610.02200v1)），VISTA 把'visual harness'作为 first-class 概念 ——给 general-purpose multimodal model 配备 long-horizon vision，让它直接通过 visual observation 感知 environment，并用 lossless visual memory 保留 past observations 的原始形态（preserves past observations in their original form），同时允许模型主动 retrieve 过去 observation。这是 ai-agent × multimodal-agent × context-engineering 的 'long-horizon visual memory harness' 即时价值资产 ——把'视觉感知'从 'static prompt' 拉到 'first-class memory asset + active retrieval'；与昨日 / 上周 multimodal-agent 主线在 'visual memory as first-class asset' 层面同源；与 aiutil 长期关注的 context-engineering × memory 主线在 'long-horizon lossless memory' 层面同源（视觉分支）。
 
-**建议动作：** 完成摘要精读与最小实验设计
+**建议动作：** 把 [2610.02200](http://arxiv.org/abs/2610.02200v1) VISTA 列为即时试点方向，写 'vista long-horizon visual memory' checklist 草稿；把 [2610.02199](http://arxiv.org/abs/2610.02199v1) TACO 同步列为即时路线资产，写 'taco ternary-optimizer-state' checklist 草稿；为 [2610.02204](http://arxiv.org/abs/2610.02204v1) RPG 'embodied self-improvement without weight update'、2610.02206 KaliBench 'strict-syntax tool-use benchmark'、2610.02203 NEPA 'next-embedding diffusion condition' 维持趋势卡片并设置 7 天观察周期；为 [2610.02202](http://arxiv.org/abs/2610.02202v1) ScholarCatalyst 'inspiration benchmark'、2610.02201 SILSA 'sliding-window 3D latent'、2610.02198 FERPO 'forward entropy RL'、2610.02195 Schrödinger bridges 'Feynman-Kac tilt'、2610.02207 GALA 'Gaussian avatar linear-blend' 维持长尾卡片；忽略无（今日 10 篇全部进入 value routing）。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 VISTA 是否 plug-in 到 production multimodal model 而不破坏 native capability。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-04](daily/2026/2026-10-04.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 | [2026-10-03](daily/2026/2026-10-03.md) | KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards | 长尾价值 | 持续观察 |
 | [2026-10-02](daily/2026/2026-10-02.md) | Turbo Harness: Instance-Adaptive Harness Optimization | 即时价值 | 轻量试点 |
 | [2026-10-01](daily/2026/2026-10-01.md) | LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization | 即时价值 | 重点学习 |
 | [2026-09-30](daily/2026/2026-09-30.md) | TokenCast: Forecasting Token Consumption During LLM Agent Execution | 即时价值 | 重点学习 |
 | [2026-09-29](daily/2026/2026-09-29.md) | Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer | 暂时忽略 | 暂时忽略 |
 | [2026-09-28](daily/2026/2026-09-28.md) | [占位] 今日论文抓取失败或无新论文 | 暂时忽略 | 暂时忽略 |
-| [2026-09-27](daily/2026/2026-09-27.md) | Auditability Is Not One Property: Rule Overlap, Behavioural Agreement, and Composition in Reinforcement Learning | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 592 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 554 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 592 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 589 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 558 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 589 |
 
 ## 为什么做这个项目
 

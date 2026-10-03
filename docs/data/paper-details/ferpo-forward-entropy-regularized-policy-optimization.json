@@ -14,10 +14,10 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-03",
-  "first_deep_dive_daily": "2026-10-03",
-  "value_type": "ignore",
-  "value_type_label": "暂时忽略",
+  "first_seen_date": "2026-10-04",
+  "first_deep_dive_daily": "2026-10-04",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
   "value_scores": {
     "novelty": 4.8,
     "relevance": 3.8,
@@ -28,13 +28,13 @@
     "actionability": 3.8,
     "noise_risk": 2.4
   },
-  "score": 28.5,
-  "decision": "暂时忽略",
-  "one_line_judgement": "当前可忽略：前沿论文：Several state-of-the-art methods for online reinforcement learnin…",
-  "one_line_essence": "前沿论文：Several state-of-the-art methods for online reinforcement learning in continuo…",
+  "score": 64.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：据摘要（arXiv 2610.02198）：FERPO（Forward Entropy-Regularized Policy Optimiz…",
+  "one_line_essence": "据摘要（arXiv 2610.02198）：FERPO（Forward Entropy-Regularized Policy Optimization）挑战'critics 训练预测 returns，但 accurate value prediction 不一定 yield accurate action derivatives'，提出 on-policy maximum entropy RL 算法绕过 critic 在 action-derivative 上的失败。是 inference-serving × multimodal-agent × llm-evaluation 的'forward entropy-regularized on-policy RL'长尾理论资产——'critic accuracy ≠ action derivative accuracy' 是 RL 训练稳定性的核心痛点，'forward entropy regularization' 路线为绕过 critic 提供具体范式；与今日 RPG 在'agent self-improvement without retraining'层面互补（RPG 走 sim practice、FERPO 走 actor-only gradient）。代码/benchmark/项目页：暂无，需打开 PDF 看 forward entropy 形式化、on-policy 收敛保证、跨 continuous control benchmark、actor-only baseline 对照。今日动作：长尾卡片维护。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "前沿论文：Several state-of-the-art methods for online reinforcement learning in continuo…",
-  "research_position": "source_paper",
+  "new_claim_or_method": "据摘要（arXiv 2610.02198）：FERPO（Forward Entropy-Regularized Policy Optimization）挑战'critics 训练预测 returns，但 accurate value prediction 不一定 yield accurate action derivatives'，提出 on-policy ",
+  "research_position": "long_tail_insight",
   "engineering_testability": {
     "has_code": false,
     "has_benchmark": false,
@@ -47,8 +47,11 @@
     ]
   },
   "trend_relation": {
-    "status": "noise",
-    "related_trends": [],
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
     "evidence": [
       "论文主题匹配固定研究方向"
     ],
@@ -57,9 +60,9 @@
     ]
   },
   "long_tail": {
-    "why_save": "前沿论文：Several state-of-the-art methods for online reinforcement learning in continuo…",
+    "why_save": "据摘要（arXiv 2610.02198）：FERPO（Forward Entropy-Regularized Policy Optimization）挑战'critics 训练预测 retu",
     "future_trigger": [
-      "待更多证据"
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
     ],
     "possible_use_cases": [
       "Prompt 设计",
@@ -74,7 +77,7 @@
       "模板"
     ],
     "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
-    "revisit_date": ""
+    "revisit_date": "2026-10-25"
   },
   "insights": {
     "system_design": [
@@ -99,8 +102,12 @@
   "actions": {
     "immediate_actions": [],
     "trend_actions": [],
-    "long_tail_actions": [],
-    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
   },
   "references": [
     {
@@ -113,8 +120,11 @@
     }
   ],
   "detail_path": "paper-detail.html?id=ferpo-forward-entropy-regularized-policy-optimization",
-  "daily_path": "daily-detail.html?date=2026-10-03",
-  "trend_paths": [],
+  "daily_path": "daily-detail.html?date=2026-10-04",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
   "long_tail_path": "long-tail.html",
   "mermaid": {
     "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",

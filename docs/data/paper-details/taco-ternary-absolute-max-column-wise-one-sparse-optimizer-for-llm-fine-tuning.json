@@ -16,10 +16,10 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-03",
-  "first_deep_dive_daily": "2026-10-03",
-  "value_type": "ignore",
-  "value_type_label": "暂时忽略",
+  "first_seen_date": "2026-10-04",
+  "first_deep_dive_daily": "2026-10-04",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
   "value_scores": {
     "novelty": 5.4,
     "relevance": 6.2,
@@ -30,12 +30,12 @@
     "actionability": 3.8,
     "noise_risk": 1.2
   },
-  "score": 38.0,
-  "decision": "暂时忽略",
-  "one_line_judgement": "当前可忽略：Context Engineering：Full-parameter fine-tuning of large language model…",
-  "one_line_essence": "Context Engineering：Full-parameter fine-tuning of large language models (LLMs) incurs substantial …",
+  "score": 75.5,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：据摘要（arXiv 2610.02199）：TACO（Ternary Absolute-max Column-wise One-sparse…",
+  "one_line_essence": "据摘要（arXiv 2610.02199）：TACO（Ternary Absolute-max Column-wise One-sparse Optimizer）解决 LLM full-parameter fine-tuning 的 optimizer state 内存瓶颈——既不放弃 first-order gradient（不像 sign-SGD 类方法），也保留 AdamW 风格 update geometry（不像 Muon 把几何改成 matrix-valued）；用 ternary quantization + absolute-max column-wise one-sparse 把 optimizer state 内存压下来。是 inference-serving × memory × llm-evaluation 的'ternary one-sparse optimizer state'即时资产——'optimizer state memory as governance object'是 LLM training/serving 关键的内存维度，与昨日 / 上周 KV-cache / linear-attention recurrent state 量化主线在'把 LLM memory 维度变成可量化工程对象'层面同源；与 aiutil 长期关注的 inference-serving × memory × context-engineering 主线高度对齐。代码/benchmark/项目页：暂无，需打开 PDF 看 ternary quantization scheme 形式化、column-wise one-sparse 实现、跨 AdamW / Muon baseline 对照、跨 LLM 规模验证。今日动作：即时路线资产，写'taco ternary-optimizer-state' checklist 草稿。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "Context Engineering：Full-parameter fine-tuning of large language models (LLMs) incurs substantial …",
+  "new_claim_or_method": "据摘要（arXiv 2610.02199）：TACO（Ternary Absolute-max Column-wise One-sparse Optimizer）解决 LLM full-parameter fine-tuning 的 optimizer state 内存瓶颈——既不放弃 first-order gradient（不像 sign-SGD 类方法",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
@@ -49,9 +49,9 @@
     ]
   },
   "trend_relation": {
-    "status": "noise",
+    "status": "emerging",
     "related_trends": [
-      "context-engineering"
+      "coding-agent"
     ],
     "evidence": [
       "论文主题匹配固定研究方向"
@@ -61,7 +61,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "Context Engineering：Full-parameter fine-tuning of large language models (LLMs) incurs substantia",
+    "why_save": "据摘要（arXiv 2610.02199）：TACO（Ternary Absolute-max Column-wise One-sparse Optimizer）解决 LLM full-par",
     "future_trigger": [
       "待更多证据"
     ],
@@ -101,10 +101,14 @@
     ]
   },
   "actions": {
-    "immediate_actions": [],
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
     "trend_actions": [],
     "long_tail_actions": [],
-    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+    "ignore_reason": ""
   },
   "references": [
     {
@@ -117,9 +121,9 @@
     }
   ],
   "detail_path": "paper-detail.html?id=taco-ternary-absolute-max-column-wise-one-sparse-optimizer-for-llm-fine-tuning",
-  "daily_path": "daily-detail.html?date=2026-10-03",
+  "daily_path": "daily-detail.html?date=2026-10-04",
   "trend_paths": [
-    "trend-detail.html?id=context-engineering"
+    "trend-detail.html?id=coding-agent"
   ],
   "long_tail_path": "long-tail.html",
   "mermaid": {

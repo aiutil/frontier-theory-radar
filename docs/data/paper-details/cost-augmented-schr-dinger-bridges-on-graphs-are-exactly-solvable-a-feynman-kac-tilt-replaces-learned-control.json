@@ -12,10 +12,10 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-03",
-  "first_deep_dive_daily": "2026-10-03",
-  "value_type": "ignore",
-  "value_type_label": "暂时忽略",
+  "first_seen_date": "2026-10-04",
+  "first_deep_dive_daily": "2026-10-04",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
   "value_scores": {
     "novelty": 4.8,
     "relevance": 3.8,
@@ -26,13 +26,13 @@
     "actionability": 3.8,
     "noise_risk": 2.4
   },
-  "score": 28.5,
-  "decision": "暂时忽略",
-  "one_line_judgement": "当前可忽略：前沿论文：The generalized Schrödinger bridge on a graph moves mass between …",
-  "one_line_essence": "前沿论文：The generalized Schrödinger bridge on a graph moves mass between two distribut…",
+  "score": 61.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：据摘要（arXiv 2610.02195）：Cost-augmented Schrödinger bridges on graphs 用 F…",
+  "one_line_essence": "据摘要（arXiv 2610.02195）：Cost-augmented Schrödinger bridges on graphs 用 Feynman-Kac tilt 把 'generalized Schrödinger bridge with state cost' 变成 'plain bridge against tilted reference'，证明 the bridge is computed exactly by alternation，替代 learned control（TD penalty）。是 inference-serving × llm-evaluation 的'exact-solvable cost-augmented bridge'长尾理论资产——'Feynman-Kac tilt 替代 learned control'是 generative model 与 control 的元层方法学；与 aiutil 长期关注的 inference-serving × llm-evaluation 主线在'graph / diffusion generative model'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 tilt 形式化、alternation 算法、跨 graph size 验证、与 learned TD control baseline 对照。今日动作：长尾卡片维护。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "前沿论文：The generalized Schrödinger bridge on a graph moves mass between two distribut…",
-  "research_position": "source_paper",
+  "new_claim_or_method": "据摘要（arXiv 2610.02195）：Cost-augmented Schrödinger bridges on graphs 用 Feynman-Kac tilt 把 'generalized Schrödinger bridge with state cost' 变成 'plain bridge against tilted reference'，",
+  "research_position": "long_tail_insight",
   "engineering_testability": {
     "has_code": false,
     "has_benchmark": false,
@@ -45,8 +45,10 @@
     ]
   },
   "trend_relation": {
-    "status": "noise",
-    "related_trends": [],
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
     "evidence": [
       "论文主题匹配固定研究方向"
     ],
@@ -55,9 +57,9 @@
     ]
   },
   "long_tail": {
-    "why_save": "前沿论文：The generalized Schrödinger bridge on a graph moves mass between two distribut…",
+    "why_save": "据摘要（arXiv 2610.02195）：Cost-augmented Schrödinger bridges on graphs 用 Feynman-Kac tilt 把 'general",
     "future_trigger": [
-      "待更多证据"
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
     ],
     "possible_use_cases": [
       "Prompt 设计",
@@ -72,7 +74,7 @@
       "模板"
     ],
     "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
-    "revisit_date": ""
+    "revisit_date": "2026-10-25"
   },
   "insights": {
     "system_design": [
@@ -97,8 +99,12 @@
   "actions": {
     "immediate_actions": [],
     "trend_actions": [],
-    "long_tail_actions": [],
-    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
   },
   "references": [
     {
@@ -111,8 +117,10 @@
     }
   ],
   "detail_path": "paper-detail.html?id=cost-augmented-schr-dinger-bridges-on-graphs-are-exactly-solvable-a-feynman-kac-tilt-replaces-learned-control",
-  "daily_path": "daily-detail.html?date=2026-10-03",
-  "trend_paths": [],
+  "daily_path": "daily-detail.html?date=2026-10-04",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
   "long_tail_path": "long-tail.html",
   "mermaid": {
     "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
