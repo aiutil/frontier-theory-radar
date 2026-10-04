@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-10-04
+## Latest research run · 2026-10-05
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 122 | 209 | 215 | 1334 |
 
-**Deep dive:** [VISTA: A Visual Harness for Reasoning in an Interactive World](daily/2026/2026-10-04.md) · Immediate · 轻量试点
+**Deep dive:** [VISTA: A Visual Harness for Reasoning in an Interactive World](daily/2026/2026-10-05.md) · Immediate · 轻量试点
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,13 +35,13 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-10-05](daily/2026/2026-10-05.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | Immediate | 轻量试点 |
 | [2026-10-04](daily/2026/2026-10-04.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | Immediate | 轻量试点 |
 | [2026-10-03](daily/2026/2026-10-03.md) | KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards | Long tail | 持续观察 |
 | [2026-10-02](daily/2026/2026-10-02.md) | Turbo Harness: Instance-Adaptive Harness Optimization | Immediate | 轻量试点 |
 | [2026-10-01](daily/2026/2026-10-01.md) | LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization | Immediate | 重点学习 |
 | [2026-09-30](daily/2026/2026-09-30.md) | TokenCast: Forecasting Token Consumption During LLM Agent Execution | Immediate | 重点学习 |
 | [2026-09-29](daily/2026/2026-09-29.md) | Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer | Ignore | 暂时忽略 |
-| [2026-09-28](daily/2026/2026-09-28.md) | [占位] 今日论文抓取失败或无新论文 | Ignore | 暂时忽略 |
 
 ## Directions under active observation
 
