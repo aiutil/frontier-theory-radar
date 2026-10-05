@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-05
+## 最新研究 · 2026-10-06
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 122 | 209 | 215 | 1334 |
+| 10 | 124 | 212 | 220 | 1334 |
 
-**今日深挖：** [VISTA: A Visual Harness for Reasoning in an Interactive World](daily/2026/2026-10-05.md) · 即时价值 · 轻量试点
+**今日深挖：** [LESSER: Post-Training Data Selection with Output-Layer Gradients](daily/2026/2026-10-06.md) · 即时价值 · 轻量试点
 
-**核心判断：** 据摘要（arXiv [2610.02200](http://arxiv.org/abs/2610.02200v1)），VISTA 把'visual harness'作为 first-class 概念 ——给 general-purpose multimodal model 配备 long-horizon vision，让它直接通过 visual observation 感知 environment，并用 lossless visual memory 保留 past observations 的原始形态（preserves past observations in their original form），同时允许模型主动 retrieve 过去 observation。这是 ai-agent × multimodal-agent × context-engineering 的 'long-horizon visual memory harness' 即时价值资产 ——把'视觉感知'从 'static prompt' 拉到 'first-class memory asset + active retrieval'；与昨日 / 上周 multimodal-agent 主线在 'visual memory as first-class asset' 层面同源；与 aiutil 长期关注的 context-engineering × memory 主线在 'long-horizon lossless memory' 层面同源（视觉分支）。
+**核心判断：** 据摘要（arXiv [2610.03702](http://arxiv.org/abs/2610.03702v1)），LESSER 把 LLM post-training data selection 的 ranking signal 从'full-parameter backward pass per sample'推到'output-layer gradients'——明确给出 fractional-cost 近似路径，在保留近似 full-gradient 信号的同时把 per-sample 算力压到常数倍。这是 inference-serving × llm-evaluation × memory 的 'output-layer gradient ranking' 即时价值资产 ——把'数据选择 ranking signal'从'full backward pass'拉到'output-layer as governance surface'，与昨日 / 上周 TACO（optimizer state memory compression）在'把训练时 memory/compute 维度变成可量化工程对象'层面同源，与 aiutil 长期关注的 inference-serving × memory × llm-evaluation 主线在'低成本 ranking signal for data curation'层面同源。
 
-**建议动作：** 把 [2610.02200](http://arxiv.org/abs/2610.02200v1) VISTA 列为即时试点方向，写 'vista long-horizon visual memory' checklist 草稿；把 [2610.02199](http://arxiv.org/abs/2610.02199v1) TACO 同步列为即时路线资产，写 'taco ternary-optimizer-state' checklist 草稿；为 [2610.02206](http://arxiv.org/abs/2610.02206v1) KaliBench 'strict-syntax tool-use benchmark'、[2610.02204](http://arxiv.org/abs/2610.02204v1) RPG 'embodied self-improvement without weight update'、[2610.02203](http://arxiv.org/abs/2610.02203v1) NEPA 'next-embedding diffusion condition' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.02202](http://arxiv.org/abs/2610.02202v1) ScholarCatalyst 'inspiration benchmark'、2610.02201 SILSA 'sliding-window 3D latent'、2610.02198 FERPO 'forward entropy RL'、2610.02195 Schrödinger bridges 'Feynman-Kac tilt'、2610.02207 GALA 'Gaussian avatar linear-blend' 维持长尾卡片；忽略无（今日 10 篇全部进入 value routing）。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 VISTA 是否 plug-in 到 production multimodal model 而不破坏 native capability。
+**建议动作：** 把 [2610.03702](http://arxiv.org/abs/2610.03702v1) LESSER 列为即时试点方向，写 'lesser output-layer data-selection' checklist 草稿；把 [2610.03715](http://arxiv.org/abs/2610.03715v1) 4DCodeBench 'physics-grounded 4D code agent' 同步列为即时路线资产，写 '4d-code-agent bench' checklist 草稿；为 [2610.03710](http://arxiv.org/abs/2610.03710v1) EyeRobot 2.0 'active foveal sensing'、[2610.03713](http://arxiv.org/abs/2610.03713v1) Stratified Retention 'world-model forgetting as feature'、[2610.03695](http://arxiv.org/abs/2610.03695v1) Queen chess-LM 'explainable domain-LM' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.03717](http://arxiv.org/abs/2610.03717v1) Less Decoder More Encoder / 2610.03712 RNADyn / 2610.03709 Graph Decomposition / 2610.03679 Simulation-Free Lagrangian / 2610.03693 Transcriptome AI 维持长尾卡片；忽略无（今日 10 篇全部进入 value routing）。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 LESSER 是否公开 output-layer gradient 形式化、4DCodeBench 是否公开 physics simulation abstraction 集合。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-06](daily/2026/2026-10-06.md) | LESSER: Post-Training Data Selection with Output-Layer Gradients | 即时价值 | 轻量试点 |
 | [2026-10-05](daily/2026/2026-10-05.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 | [2026-10-04](daily/2026/2026-10-04.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 | [2026-10-03](daily/2026/2026-10-03.md) | KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards | 长尾价值 | 持续观察 |
 | [2026-10-02](daily/2026/2026-10-02.md) | Turbo Harness: Instance-Adaptive Harness Optimization | 即时价值 | 轻量试点 |
 | [2026-10-01](daily/2026/2026-10-01.md) | LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization | 即时价值 | 重点学习 |
 | [2026-09-30](daily/2026/2026-09-30.md) | TokenCast: Forecasting Token Consumption During LLM Agent Execution | 即时价值 | 重点学习 |
-| [2026-09-29](daily/2026/2026-09-29.md) | Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer | 暂时忽略 | 暂时忽略 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 589 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 558 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 589 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 590 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 565 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 590 |
 
 ## 为什么做这个项目
 
