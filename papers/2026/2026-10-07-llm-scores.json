@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-07",
+  "generated_at": "2026-10-07T04:30:00",
+  "note": "今日 arXiv API 正常（成功从 export.arxiv.org 拉到 10 篇 2610.06829-2610.06852 区间论文，全部为 v1，2026-10-05 published）。价值路由：(1) 即时价值候选：Base Models Can Reason By Taking a Cue From Training Data（2610.06851）——把'RL 训练必要性'拉到'选对 starting-token cue 就能从 base model 拿到与 RL 同水平的 math/coding'，Olmo-3-7B MATH-500 42%→78%、Qwen3-14B 72%→更高，是 inference-serving × llm-evaluation × context-engineering 的'starting-token cue as RL replacement'即时资产；CLIFT（2610.06829）——把 web agent 强化学习的 binary sparse 监督搬到'conformal self-verification 自校准 verifier'，用 conformal 给出校准信号替代 frontier-LM judge，是 ai-agent × llm-evaluation × rag-knowledge 的'conformal self-verification for web agent'即时资产。(2) 趋势加固：MemPilot（2610.06830）——把 agent memory 从'query-agnostic preprocessing'拉到'on-demand multimodal memory curation at inference'，是 context-engineering × ai-agent × multimodal-agent 的'on-demand multimodal memory'趋势资产；Recursive Video In-Context Learning（2610.06843）——把 robot agent 的 video memory 从'full video / fixed keyframe'拉到'recursive video ICL with frame-level rollout'，是 multimodal-agent × ai-agent × context-engineering 的'recursive video memory'趋势资产；Towards Looped Models Done Right, Part II（2610.06833）——把 looped LM 的'recurrent state逼近 fixed point'推到'truncated BP / terminal KV share / 1.79× prefill student / 2× RL from saved states'，是 inference-serving × llm-evaluation 的'fixed-point recurrent truncation'趋势资产。(3) 长尾保存：Learning to Read the Contextual Tokens in Diffusion Transformers（2610.06844）——用 bottleneck network 把 MM-DiT 的 contextual tokens 反投影到 frozen LLaMA 的 input space，是 multimodal-agent × llm-evaluation 长尾 interpretability 资产；BiasFlow（2610.06846）——IBMI / W-IBMI 几何监控 + BFR 监督正则，是 llm-evaluation × ai-k8s-platform 长尾诊断资产；Direct Intermediate Initialization for Tilted Diffusion Samplers（2610.06834）——MCGDiff 等 tilted diffusion sampler 用 Gaussian bridge 把中间分布拉回 clean-space posterior，是 inference-serving × llm-evaluation 长尾理论资产；One Figure, Every Canvas（2610.06852）——aspect-ratio-adaptive flowchart relayout agent pipeline，是 multimodal-agent × ai-agent 长尾工程资产；UniSlider（2610.06831）——把 slider strength 映射到 perceptually uniform continuous editing，是 multimodal-agent × llm-evaluation 长尾 UX 资产。⚠️ 今日 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
+  "by_url": {
+    "http://arxiv.org/abs/2610.06851v1": {
+      "score": 78.5,
+      "value_type": "immediate",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2610.06851）：Base Models Can Reason By Taking a Cue From Training Data 把'base model 不会 reasoning / 必须 RL 训练才会'拉到'在 base model 开头固定特定 starting-token cue 即可让 base model 与 RL-trained counterpart 在 math/coding 上 competitive'——Olmo-3-7B MATH-500 pass@1 从 42% 拉到 78%（cue '.\\n\\nOkay'）、Qwen3-14B 从 72% 拉到更高（cue 'Alright,'）。是 inference-serving × llm-evaluation × context-engineering 的'starting-token cue as RL replacement'即时资产——'cue engineering replaces RL training'范式可迁移到任何'reasoning-style RL is needed'的子方向（math / code / agent planning），与 aiutil 长期关注的 inference-serving × llm-evaluation × memory 主线在'低成本 reasoning enablement'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 cue 形式化（哪些 cue 对哪些 task 有效、cue 是不是可学）、跨 base model 家族（Olmo / Qwen / Llama）验证、跨 RL 范式（RLHF / DPO / GRPO）对照、是否存在 adversarial cue selection。今日动作：即时试点方向，写'starting-token cue reasoning' checklist 草稿。"
+    },
+    "http://arxiv.org/abs/2610.06829v1": {
+      "score": 76.5,
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "rag-knowledge"
+      ],
+      "reason": "据摘要（arXiv 2610.06829）：CLIFT（ConformaL self-verIFication for web agent Training and Test-Time Scaling）把 open-source web agent 强化学习的'binary task success 太稀疏、frontier-LM judge 太贵且部署时不可用'拉到'conformal self-verification 自校准 verifier'——训练时让 agent 答 natural-language verification question，部署时用 conformal 给出校准过的置信度。是 ai-agent × llm-evaluation × rag-knowledge 的'conformal self-verification for web agent'即时资产——'self-verification replaces frontier judge'范式可迁移到任何'sparse reward + expensive judge'子方向（code agent / tool-use agent / multi-step planning），与 aiutil 长期关注的 ai-agent × llm-evaluation × rag-knowledge 主线在'calibrated self-supervision for agent RL'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 conformal 形式化（miscoverage guarantee / non-conformity score 设计）、跨 web agent baseline（WebArena / Mind2Web）、test-time scaling 协议、与 frontier-judge baseline 对照。今日动作：即时路线资产，写'clift conformal self-verification' checklist 草稿。"
+    },
+    "http://arxiv.org/abs/2610.06830v1": {
+      "score": 73.5,
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering",
+        "ai-agent",
+        "multimodal-agent"
+      ],
+      "reason": "据摘要（arXiv 2610.06830）：MemPilot 把 agent memory 从'query-agnostic preprocessing / specialized operations'拉到'on-demand multimodal memory curation at inference'——在 agent runtime 才决定哪些 memory 要 curate / 怎么处理、保持对 performance-cost tradeoff 的 flexible control。是 context-engineering × ai-agent × multimodal-agent 的'on-demand multimodal memory'趋势资产——'runtime memory curation'范式可迁移到任何'agent memory governance'子方向（retrieval trigger / write decision / memory compression），与昨日 / 上周 context-engineering × memory 主线在'agent controls its own memory budget'层面同源。今日维持趋势卡片并设置 7 天观察周期。代码/benchmark/项目页：暂无，需打开 PDF 看 on-demand 触发协议、multimodal memory 形式化、跨 agent task 验证、与 query-agnostic memory baseline 对照。"
+    },
+    "http://arxiv.org/abs/2610.06843v1": {
+      "score": 72.5,
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2610.06843）：Recursive Video In-Context Learning 把 robot agent 的 video memory 从'full video 每 turn 都看 / 固定 keyframe 丢 contact detail'拉到'recursive video ICL with frame-level rollout'——full video 慢、fixed keyframe 丢 contact 信息、agent 需求随 task 从'structure' 变到 'frames around contact'。是 multimodal-agent × ai-agent × context-engineering 的'recursive video memory'趋势资产——'recursive frame-level rollout'范式可迁移到任何'embodied / robot / world-model rollout'子方向（contact-rich manipulation / grasp / assembly），与 aiutil 长期关注的 multimodal-agent × ai-agent × context-engineering 主线在'agent recursively selects its own memory granularity'层面同源。今日维持趋势卡片并设置 7 天观察周期。代码/benchmark/项目页：暂无，需打开 PDF 看 recursive 触发协议、frame-level rollout 形式化、跨 robot task 验证、与 fixed-keyframe baseline 对照。"
+    },
+    "http://arxiv.org/abs/2610.06833v1": {
+      "score": 71.0,
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.06833）：Towards Looped Models Done Right, Part II 把 looped LM 的'recurrent state 越接近 fixed point 路径越不重要'推到'truncated BP / terminal KV share for decoding with almost no loss / 1.79× faster prefill student / 2× faster RL from saved rollout states'。是 inference-serving × llm-evaluation 的'fixed-point recurrent truncation'趋势资产——'recurrent state close to fixed point = truncation is safe'范式可迁移到任何'recurrent / iterative-refinement'子方向（diffusion LM / Mamba / looped reasoning），与 aiutil 长期关注的 inference-serving × llm-evaluation 主线在'fixed-point as engineering lever'层面同源。今日维持趋势卡片并设置 7 天观察周期。代码/benchmark/项目页：暂无，需打开 PDF 看 fixed-point 收敛保证、truncated BP 形式化、跨 looped LM baseline 对照、RL save-state 协议。"
+    },
+    "http://arxiv.org/abs/2610.06844v1": {
+      "score": 67.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.06844）：Learning to Read the Contextual Tokens in Diffusion Transformers 把 MM-DiT 的'动态 contextual tokens 功能不清晰'拉到'用 bottleneck network 把 contextual tokens 映射到 frozen LLaMA 的 input space 做自然语言 interrogation'。是 multimodal-agent × llm-evaluation 的'contextual-token-to-language projection'长尾 interpretability 资产——'project hidden representation into frozen LM input space'范式可迁移到任何'diffusion / transformer interpretability'子方向（cross-attention map / hidden state probing），与 aiutil 长期关注的 multimodal-agent × llm-evaluation 主线在'diffusion interpretability via LM projection'层面同源。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看 bottleneck architecture、跨 MM-DiT 任务验证、与 linear-probe baseline 对照。"
+    },
+    "http://arxiv.org/abs/2610.06846v1": {
+      "score": 64.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-k8s-platform"
+      ],
+      "reason": "据摘要（arXiv 2610.06846）：BiasFlow 把 WGA（worst-group accuracy）从'评估用'拉到'hook-based toolkit 监控 frozen backbone 在新 head 下的行为（IBMI / W-IBMI / feature-projection sensitivity）+ 配对 BiasFlow Regularization 监督正则'——指出 IBMI 被 class-attribute correlation confound 不是 causal feature reliance measure。是 llm-evaluation × ai-k8s-platform 的'geometric backbone monitoring + regularizer'长尾诊断资产——'backbone geometry as diagnostic surface'范式可迁移到任何'frozen-backbone + new-head fine-tuning'子方向（PEFT / adapter / LoRA），与 aiutil 长期关注的 llm-evaluation × ai-k8s-platform 主线在'frozen-backbone governance'层面同源。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看 hook 实现、跨 backbone 验证、与 WGA baseline 对照。"
+    },
+    "http://arxiv.org/abs/2610.06834v1": {
+      "score": 62.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.06834）：Direct Intermediate Initialization for Tilted Diffusion Samplers 把 Gaussian-tilted intermediate distribution 从'构造完整 noisy-space target'拉到'pull back 到 clean-space posterior with weaker conditioning + Gaussian bridge transport 到 noisy-space target'——MCGDiff 等 SMC sampler 的 effective observation variance 可拉到高比 ~2× diffusion noise variance。是 inference-serving × llm-evaluation 的'clean-space pullback + Gaussian bridge'长尾理论资产——'analytic transport between distributions'范式可迁移到任何'diffusion posterior sampling / bridge sampling'子方向，与 aiutil 长期关注的 inference-serving × llm-evaluation 主线在'diffusion transport theory'层面同源。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看 Gaussian bridge 形式化、跨 tilted sampler baseline 对照。"
+    },
+    "http://arxiv.org/abs/2610.06852v1": {
+      "score": 60.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "reason": "据摘要（arXiv 2610.06852）：One Figure, Every Canvas 把 ML pipeline figure 跨格式复用（paper column / 16:9 / portrait poster / 1:1 / 9:16）从'silent connection break'拉到'aspect-ratio-adaptive flowchart relayout agent pipeline'——给定 raster flowchart + target ratio，输出 structurally faithful / hallucination-free / editable layout。是 multimodal-agent × ai-agent 的'aspect-ratio-adaptive flowchart agent'长尾工程资产——'format-agnostic layout agent'范式可迁移到任何'diagram / poster / UI'子方向（slide generation / doc layout），与 aiutil 长期关注的 multimodal-agent × ai-agent 主线在'layout as agent task'层面同源。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看 relayout 形式化、跨 aspect ratio 验证、与 fixed-layout baseline 对照。"
+    },
+    "http://arxiv.org/abs/2610.06831v1": {
+      "score": 58.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.06831）：UniSlider 把 image-editing slider 从'rescaling strength parameter'拉到'perceptually uniform remapping'——slider 移动对应 perceptual change 而非线性插值，避免 partial revert / no visible difference / abrupt transform。是 multimodal-agent × llm-evaluation 的'perceptually uniform slider remapping'长尾 UX 资产——'strength-to-perception remap as engineering lever'范式可迁移到任何'slider / hyperparameter UX'子方向（image editing / 3D generation / audio），与 aiutil 长期关注的 multimodal-agent × llm-evaluation 主线在'UX as research artifact'层面同源。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看 remapping 形式化、跨生成模型 baseline 对照。"
+    }
+  }
+}
