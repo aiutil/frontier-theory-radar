@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-07
+## 最新研究 · 2026-10-08
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 126 | 215 | 225 | 1334 |
+| 10 | 129 | 218 | 228 | 1335 |
 
-**今日深挖：** [Base Models Can Reason By Taking a Cue From Training Data](daily/2026/2026-10-07.md) · 即时价值 · 轻量试点
+**今日深挖：** [Agent in a Bottle: Can LLM Agents Turn Their Capabilities Into Cheap, Scalable Artifacts?](daily/2026/2026-10-08.md) · 即时价值 · 轻量试点
 
-**核心判断：** 据摘要（arXiv [2610.06851](http://arxiv.org/abs/2610.06851v1)），论文把'base model 不会 reasoning / 必须 RL 后才能在 math/coding 上跑出来'拉到'在 base model 开头固定特定 starting-token cue（如 '.\n\nOkay' / 'Alright,'）就能让 base model 与 RL-trained counterpart 在 math/coding 上 competitive'——Olmo-3-7B MATH-500 pass@1 从 42% 拉到 78%、Qwen3-14B 从 72% 拉到更高。这是 inference-serving × llm-evaluation × context-engineering 的 'starting-token cue as RL replacement' 即时价值资产——把'是否需要 RL'从'必须 / 不必须'二值拉到'cue engineering 能替代大量 RL'，与昨日 / 上周 LESSER（output-layer gradient ranking）在'用 surface-level signal 把 RL training'层面同源，与 aiutil 长期关注的 inference-serving × memory × llm-evaluation 主线在'低成本 reasoning enablement'层面同源。
+**核心判断：** 据摘要（arXiv [2610.08775](http://arxiv.org/abs/2610.08775v1)），论文把'LLM agent 逐条 query 解决 narrow task 极其昂贵（百万条 related instances 的 workload 完全跑不起）'拉到'agent 在 unlabeled workload 上 autonomously 把 capability 蒸馏成 cheap scalable artifact（bottling）'——任务给固定时间预算，agent 必须保 answer quality + amortised cost 平衡。是 ai-agent × llm-evaluation × inference-serving 的 'bottling: capability → cheap scalable artifact' 即时价值资产——把 agent 的角色从'per-query solver'推到'per-doc solving-and-caching'，与昨日 / 上周 CLIFT（calibrated self-verification）/ MemPilot（on-demand memory curation）在'agent 自主做 cost-aware capability deployment'层面同源，与 aiutil 长期关注的 inference-serving × ai-agent × llm-evaluation 主线在'agent 自主做 capability→artifact distillation'层面同源。
 
-**建议动作：** 把 [2610.06851](http://arxiv.org/abs/2610.06851v1) Base Models + Cue Engineering 列为即时试点方向，写 'starting-token cue reasoning' checklist 草稿；把 [2610.06829](http://arxiv.org/abs/2610.06829v1) CLIFT 'conformal self-verification for web agent' 同步列为即时路线资产，写 'clift conformal self-verification' checklist 草稿；为 [2610.06830](http://arxiv.org/abs/2610.06830v1) MemPilot 'on-demand multimodal memory'、[2610.06843](http://arxiv.org/abs/2610.06843v1) Recursive Video ICL 'recursive video memory'、[2610.06833](http://arxiv.org/abs/2610.06833v1) Looped Models Part II 'fixed-point recurrent truncation' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.06844](http://arxiv.org/abs/2610.06844v1) Contextual Tokens Projection / [2610.06846](http://arxiv.org/abs/2610.06846v1) BiasFlow / [2610.06834](http://arxiv.org/abs/2610.06834v1) Tilted Diffusion Bridge / [2610.06852](http://arxiv.org/abs/2610.06852v1) One Figure / [2610.06831](http://arxiv.org/abs/2610.06831v1) UniSlider 维持长尾卡片；忽略无（今日 10 篇全部进入 value routing）。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 Base Models + Cue 是否公开 cue 候选表、CLIFT 是否公开 conformal miscoverage guarantee。
+**建议动作：** 把 [2610.08775](http://arxiv.org/abs/2610.08775v1) BOTTLED 'capability → artifact bottling' 列为即时试点方向，写 'agent bottling workload' checklist 草稿；把 [2610.08773](http://arxiv.org/abs/2610.08773v1) AdvSim2Real 'adaptive adversarial training in web simulator' 同步列为即时路线资产，写 'adaptive web agent adversarial training' checklist 草稿；把 [2610.08761](http://arxiv.org/abs/2610.08761v1) VeriFine 'scaling verification for embodied self-improvement' 列为即时路线资产，写 'scaling verification harness' checklist 草稿；为 [2610.08780](http://arxiv.org/abs/2610.08780v1) DepthWorld 'depth-grounded robot world model'、[2610.08789](http://arxiv.org/abs/2610.08789v1) QF3 'filtered Q-gradient flow RL'、[2610.08781](http://arxiv.org/abs/2610.08781v1) IdeaAnchor 'structured specification ideation' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.08785](http://arxiv.org/abs/2610.08785v1) Conformal Prediction × Info Gain / [2610.08778](http://arxiv.org/abs/2610.08778v1) Sherpa 'outcome-grounded adaptive teaching' / [2610.08782](http://arxiv.org/abs/2610.08782v1) 4D-HOF 'feed-forward hand-object flow matching' 维持长尾卡片；把 [2610.08764](http://arxiv.org/abs/2610.08764v1) Rapid Fredholm Stabilization 列为 ignore 候选。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 BOTTLED 是否公开 artifact cache、AdvSim2Real 是否公开 world model、VeriFine 是否公开 harness。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-08](daily/2026/2026-10-08.md) | Agent in a Bottle: Can LLM Agents Turn Their Capabilities Into Cheap, Scalable Artifacts? | 即时价值 | 轻量试点 |
 | [2026-10-07](daily/2026/2026-10-07.md) | Base Models Can Reason By Taking a Cue From Training Data | 即时价值 | 轻量试点 |
 | [2026-10-06](daily/2026/2026-10-06.md) | LESSER: Post-Training Data Selection with Output-Layer Gradients | 即时价值 | 轻量试点 |
 | [2026-10-05](daily/2026/2026-10-05.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 | [2026-10-04](daily/2026/2026-10-04.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 | [2026-10-03](daily/2026/2026-10-03.md) | KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards | 长尾价值 | 持续观察 |
 | [2026-10-02](daily/2026/2026-10-02.md) | Turbo Harness: Instance-Adaptive Harness Optimization | 即时价值 | 轻量试点 |
-| [2026-10-01](daily/2026/2026-10-01.md) | LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 594 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 572 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 594 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 596 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 577 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 596 |
 
 ## 为什么做这个项目
 
