@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-08
+## 最新研究 · 2026-10-10
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 129 | 218 | 228 | 1335 |
+| 10 | 132 | 220 | 233 | 1335 |
 
-**今日深挖：** [Agent in a Bottle: Can LLM Agents Turn Their Capabilities Into Cheap, Scalable Artifacts?](daily/2026/2026-10-08.md) · 即时价值 · 轻量试点
+**今日深挖：** [CSF: Contextual Safety Filtering for Motion Generators](daily/2026/2026-10-10.md) · 即时价值 · 轻量试点
 
-**核心判断：** 据摘要（arXiv [2610.08775](http://arxiv.org/abs/2610.08775v1)），论文把'LLM agent 逐条 query 解决 narrow task 极其昂贵（百万条 related instances 的 workload 完全跑不起）'拉到'agent 在 unlabeled workload 上 autonomously 把 capability 蒸馏成 cheap scalable artifact（bottling）'——任务给固定时间预算，agent 必须保 answer quality + amortised cost 平衡。是 ai-agent × llm-evaluation × inference-serving 的 'bottling: capability → cheap scalable artifact' 即时价值资产——把 agent 的角色从'per-query solver'推到'per-doc solving-and-caching'，与昨日 / 上周 CLIFT（calibrated self-verification）/ MemPilot（on-demand memory curation）在'agent 自主做 cost-aware capability deployment'层面同源，与 aiutil 长期关注的 inference-serving × ai-agent × llm-evaluation 主线在'agent 自主做 capability→artifact distillation'层面同源。
+**核心判断：** 据摘要（arXiv [2610.12467](http://arxiv.org/abs/2610.12467v1)），论文把 'text-conditioned motion generator 的 safety filter 只能看 prompt / 必须 labeled motion data / 只能 enforce geometric constraints' 拉到 'training-free contextual safety filter：把自然语言安全规则 grounded in scene-aware unsafe-class filtering，filter 在 safe / unsafe classifier 输出之上做 contextual decision'——同一个动作对物体和对人有不同语义，必须按 scene context 决定是否拦截。是 multimodal-agent × security-governance × llm-evaluation 的 'training-free contextual safety filtering' 即时价值资产——把 'safety filter' 从 '看 prompt / 看 label / 看 geometry' 三态拉到 'scene-grounded rule filtering'，与昨日 / 上周 BOTTLED（capability→artifact）/ AdvSim2Real（adaptive adversarial training）在 'agent runtime safety / capability governance' 层面同源，与 aiutil 长期关注的 multimodal-agent × security-governance 主线在 'training-free scene-grounded safety' 层面同源。
 
-**建议动作：** 把 [2610.08775](http://arxiv.org/abs/2610.08775v1) BOTTLED 'capability → artifact bottling' 列为即时试点方向，写 'agent bottling workload' checklist 草稿；把 [2610.08773](http://arxiv.org/abs/2610.08773v1) AdvSim2Real 'adaptive adversarial training in web simulator' 同步列为即时路线资产，写 'adaptive web agent adversarial training' checklist 草稿；把 [2610.08761](http://arxiv.org/abs/2610.08761v1) VeriFine 'scaling verification for embodied self-improvement' 列为即时路线资产，写 'scaling verification harness' checklist 草稿；为 [2610.08780](http://arxiv.org/abs/2610.08780v1) DepthWorld 'depth-grounded robot world model'、[2610.08789](http://arxiv.org/abs/2610.08789v1) QF3 'filtered Q-gradient flow RL'、[2610.08781](http://arxiv.org/abs/2610.08781v1) IdeaAnchor 'structured specification ideation' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.08785](http://arxiv.org/abs/2610.08785v1) Conformal Prediction × Info Gain / [2610.08778](http://arxiv.org/abs/2610.08778v1) Sherpa 'outcome-grounded adaptive teaching' / [2610.08782](http://arxiv.org/abs/2610.08782v1) 4D-HOF 'feed-forward hand-object flow matching' 维持长尾卡片；把 [2610.08764](http://arxiv.org/abs/2610.08764v1) Rapid Fredholm Stabilization 列为 ignore 候选。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 BOTTLED 是否公开 artifact cache、AdvSim2Real 是否公开 world model、VeriFine 是否公开 harness。
+**建议动作：** 把 [2610.12467](http://arxiv.org/abs/2610.12467v1) CSF 'training-free contextual safety filtering' 列为即时试点方向，写 'contextual safety filter' checklist 草稿；把 [2610.12445](http://arxiv.org/abs/2610.12445v1) Caught in the Act 'white-box probe deception detection' 列为即时路线资产，写 'frontier probe monitoring' checklist 草稿；把 [2610.12463](http://arxiv.org/abs/2610.12463v1) From Reactive Containment to Proactive Assurance 'proactive agent assurance governance' 列为即时路线资产，写 'proactive agent assurance' checklist 草稿；为 [2610.12452](http://arxiv.org/abs/2610.12452v1) BrickBench 'physical-grounded agentic design benchmark'、[2610.12449](http://arxiv.org/abs/2610.12449v1) Bi-FORK 'one-to-many bifurcation generative surrogate' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.12448](http://arxiv.org/abs/2610.12448v1) reViT 'depth-programmed recurrent ViT' / [2610.12466](http://arxiv.org/abs/2610.12466v1) On METR Plot 'IR-relaxed capability measurement' / [2610.12444](http://arxiv.org/abs/2610.12444v1) Rounding in Preconditioner Space '4-bit AdamW preconditioner-space rounding' / [2610.12437](http://arxiv.org/abs/2610.12437v1) Density Ratio Estimation with Stein Displacement Fields 'joint distribution-shift-and-transport estimation' / [2610.12465](http://arxiv.org/abs/2610.12465v1) A Balanced Data Diet 'diverse-reset-to-relieve-engineering-priors' 维持长尾卡片。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 CSF 是否公开 scene classifier 与 rule library、Caught in the Act 是否公开 probe 训练 pipeline、From Reactive Containment to Proactive Assurance 是否公开 incident taxonomy。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,20 +39,20 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-10](daily/2026/2026-10-10.md) | CSF: Contextual Safety Filtering for Motion Generators | 即时价值 | 轻量试点 |
 | [2026-10-08](daily/2026/2026-10-08.md) | Agent in a Bottle: Can LLM Agents Turn Their Capabilities Into Cheap, Scalable Artifacts? | 即时价值 | 轻量试点 |
 | [2026-10-07](daily/2026/2026-10-07.md) | Base Models Can Reason By Taking a Cue From Training Data | 即时价值 | 轻量试点 |
 | [2026-10-06](daily/2026/2026-10-06.md) | LESSER: Post-Training Data Selection with Output-Layer Gradients | 即时价值 | 轻量试点 |
 | [2026-10-05](daily/2026/2026-10-05.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 | [2026-10-04](daily/2026/2026-10-04.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 | [2026-10-03](daily/2026/2026-10-03.md) | KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards | 长尾价值 | 持续观察 |
-| [2026-10-02](daily/2026/2026-10-02.md) | Turbo Harness: Instance-Adaptive Harness Optimization | 即时价值 | 轻量试点 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
 | [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 596 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 577 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 584 |
 | [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 596 |
 
 ## 为什么做这个项目
