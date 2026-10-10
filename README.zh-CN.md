@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-10
+## 最新研究 · 2026-10-11
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 132 | 220 | 233 | 1335 |
+| 10 | 129 | 218 | 228 | 1345 |
 
-**今日深挖：** [CSF: Contextual Safety Filtering for Motion Generators](daily/2026/2026-10-10.md) · 即时价值 · 轻量试点
+**今日深挖：** [From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents](daily/2026/2026-10-11.md) · 暂时忽略 · 暂时忽略
 
-**核心判断：** 据摘要（arXiv [2610.12467](http://arxiv.org/abs/2610.12467v1)），论文把 'text-conditioned motion generator 的 safety filter 只能看 prompt / 必须 labeled motion data / 只能 enforce geometric constraints' 拉到 'training-free contextual safety filter：把自然语言安全规则 grounded in scene-aware unsafe-class filtering，filter 在 safe / unsafe classifier 输出之上做 contextual decision'——同一个动作对物体和对人有不同语义，必须按 scene context 决定是否拦截。是 multimodal-agent × security-governance × llm-evaluation 的 'training-free contextual safety filtering' 即时价值资产——把 'safety filter' 从 '看 prompt / 看 label / 看 geometry' 三态拉到 'scene-grounded rule filtering'，与昨日 / 上周 BOTTLED（capability→artifact）/ AdvSim2Real（adaptive adversarial training）在 'agent runtime safety / capability governance' 层面同源，与 aiutil 长期关注的 multimodal-agent × security-governance 主线在 'training-free scene-grounded safety' 层面同源。
+**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
 
-**建议动作：** 把 [2610.12467](http://arxiv.org/abs/2610.12467v1) CSF 'training-free contextual safety filtering' 列为即时试点方向，写 'contextual safety filter' checklist 草稿；把 [2610.12445](http://arxiv.org/abs/2610.12445v1) Caught in the Act 'white-box probe deception detection' 列为即时路线资产，写 'frontier probe monitoring' checklist 草稿；把 [2610.12463](http://arxiv.org/abs/2610.12463v1) From Reactive Containment to Proactive Assurance 'proactive agent assurance governance' 列为即时路线资产，写 'proactive agent assurance' checklist 草稿；为 [2610.12452](http://arxiv.org/abs/2610.12452v1) BrickBench 'physical-grounded agentic design benchmark'、[2610.12449](http://arxiv.org/abs/2610.12449v1) Bi-FORK 'one-to-many bifurcation generative surrogate' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.12448](http://arxiv.org/abs/2610.12448v1) reViT 'depth-programmed recurrent ViT' / [2610.12466](http://arxiv.org/abs/2610.12466v1) On METR Plot 'IR-relaxed capability measurement' / [2610.12444](http://arxiv.org/abs/2610.12444v1) Rounding in Preconditioner Space '4-bit AdamW preconditioner-space rounding' / [2610.12437](http://arxiv.org/abs/2610.12437v1) Density Ratio Estimation with Stein Displacement Fields 'joint distribution-shift-and-transport estimation' / [2610.12465](http://arxiv.org/abs/2610.12465v1) A Balanced Data Diet 'diverse-reset-to-relieve-engineering-priors' 维持长尾卡片。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 CSF 是否公开 scene classifier 与 rule library、Caught in the Act 是否公开 probe 训练 pipeline、From Reactive Containment to Proactive Assurance 是否公开 incident taxonomy。
+**建议动作：** 完成摘要精读与最小实验设计
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-11](daily/2026/2026-10-11.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
 | [2026-10-10](daily/2026/2026-10-10.md) | CSF: Contextual Safety Filtering for Motion Generators | 即时价值 | 轻量试点 |
 | [2026-10-08](daily/2026/2026-10-08.md) | Agent in a Bottle: Can LLM Agents Turn Their Capabilities Into Cheap, Scalable Artifacts? | 即时价值 | 轻量试点 |
 | [2026-10-07](daily/2026/2026-10-07.md) | Base Models Can Reason By Taking a Cue From Training Data | 即时价值 | 轻量试点 |
 | [2026-10-06](daily/2026/2026-10-06.md) | LESSER: Post-Training Data Selection with Output-Layer Gradients | 即时价值 | 轻量试点 |
 | [2026-10-05](daily/2026/2026-10-05.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 | [2026-10-04](daily/2026/2026-10-04.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
-| [2026-10-03](daily/2026/2026-10-03.md) | KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards | 长尾价值 | 持续观察 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 596 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 584 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 596 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 600 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 579 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 600 |
 
 ## 为什么做这个项目
 

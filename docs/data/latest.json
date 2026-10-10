@@ -1,107 +1,121 @@
 {
-  "updated_at": "2026-10-10T04:32:07.596104",
+  "updated_at": "2026-10-11T04:30:57.942945",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-10-10",
-    "title": "论文价值发现日报 - 2026-10-10",
-    "deep_dive_title": "CSF: Contextual Safety Filtering for Motion Generators",
-    "deep_dive_url": "http://arxiv.org/abs/2610.12467v1",
-    "decision": "轻量试点",
-    "value_type": "immediate",
-    "value_type_label": "即时价值",
-    "daily_action": "把 [2610.12467](http://arxiv.org/abs/2610.12467v1) CSF 'training-free contextual safety filtering' 列为即时试点方向，写 'contextual safety filter' checklist 草稿；把 [2610.12445](http://arxiv.org/abs/2610.12445v1) Caught in the Act 'white-box probe deception detection' 列为即时路线资产，写 'frontier probe monitoring' checklist 草稿；把 [2610.12463](http://arxiv.org/abs/2610.12463v1) From Reactive Containment to Proactive Assurance 'proactive agent assurance governance' 列为即时路线资产，写 'proactive agent assurance' checklist 草稿；为 [2610.12452](http://arxiv.org/abs/2610.12452v1) BrickBench 'physical-grounded agentic design benchmark'、[2610.12449](http://arxiv.org/abs/2610.12449v1) Bi-FORK 'one-to-many bifurcation generative surrogate' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.12448](http://arxiv.org/abs/2610.12448v1) reViT 'depth-programmed recurrent ViT' / [2610.12466](http://arxiv.org/abs/2610.12466v1) On METR Plot 'IR-relaxed capability measurement' / [2610.12444](http://arxiv.org/abs/2610.12444v1) Rounding in Preconditioner Space '4-bit AdamW preconditioner-space rounding' / [2610.12437](http://arxiv.org/abs/2610.12437v1) Density Ratio Estimation with Stein Displacement Fields 'joint distribution-shift-and-transport estimation' / [2610.12465](http://arxiv.org/abs/2610.12465v1) A Balanced Data Diet 'diverse-reset-to-relieve-engineering-priors' 维持长尾卡片。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 CSF 是否公开 scene classifier 与 rule library、Caught in the Act 是否公开 probe 训练 pipeline、From Reactive Containment to Proactive Assurance 是否公开 incident taxonomy。",
-    "max_uncertainty": "CSF（[2610.12467](http://arxiv.org/abs/2610.12467v1)）unsafe-class 形式化（scene grounding 来源 / LLM-as-judge / VLM-as-classifier）、跨 motion task 验证、与 prompt-filter / label-filter / geometric-constraint baseline 对照、是否开源 scene classifier 与 rule library 是否公开；Caught in the Act（[2610.12445](http://arxiv.org/abs/2610.12445v1)）probe architecture 形式化（跨 layer / 跨 token 聚合方式）、数据集规模 / 跨 scenario 验证、是否开源 probe 训练 pipeline 与 monitoring 接口是否公开；From Reactive Containment to Proactive Assurance（[2610.12463](http://arxiv.org/abs/2610.12463v1)）2026 incident 细节分类、assurance framework 形式化、跨 vendor 案例对照、是否开源 incident taxonomy 与 assurance checklist 是否公开；BrickBench（[2610.12452](http://arxiv.org/abs/2610.12452v1)）BrickAgent environment 形式化、跨 prompt type 验证、与 LLM-only baseline 对照是否公开；Bi-FORK（[2610.12449](http://arxiv.org/abs/2610.12449v1)）framework 形式化、跨 bifurcation system 验证、与 one-to-one baseline 对照是否公开；reViT（[2610.12448](http://arxiv.org/abs/2610.12448v1)）expert bank 形式化、跨 ViT size 验证是否公开；On METR Plot（[2610.12466](http://arxiv.org/abs/2610.12466v1)）spline 形式化、跨 task / AI 验证是否公开；Rounding in Preconditioner Space（[2610.12444](http://arxiv.org/abs/2610.12444v1)）preconditioner-space 形式化、跨 AdamW baseline 对照是否公开；Density Ratio Estimation with Stein Displacement Fields（[2610.12437](http://arxiv.org/abs/2610.12437v1)）displacement parametrization 形式化、跨 density ratio baseline 对照是否公开；A Balanced Data Diet（[2610.12465](http://arxiv.org/abs/2610.12465v1)）data diet 形式化、跨 robot task 验证是否公开。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
-    "one_line_judgement": "据摘要（arXiv [2610.12467](http://arxiv.org/abs/2610.12467v1)），论文把 'text-conditioned motion generator 的 safety filter 只能看 prompt / 必须 labeled motion data / 只能 enforce geometric constraints' 拉到 'training-free contextual safety filter：把自然语言安全规则 grounded in scene-aware unsafe-class filtering，filter 在 safe / unsafe classifier 输出之上做 contextual decision'——同一个动作对物体和对人有不同语义，必须按 scene context 决定是否拦截。是 multimodal-agent × security-governance × llm-evaluation 的 'training-free contextual safety filtering' 即时价值资产——把 'safety filter' 从 '看 prompt / 看 label / 看 geometry' 三态拉到 'scene-grounded rule filtering'，与昨日 / 上周 BOTTLED（capability→artifact）/ AdvSim2Real（adaptive adversarial training）在 'agent runtime safety / capability governance' 层面同源，与 aiutil 长期关注的 multimodal-agent × security-governance 主线在 'training-free scene-grounded safety' 层面同源。",
-    "path": "daily-detail.html?date=2026-10-10"
+    "date": "2026-10-11",
+    "title": "论文价值发现日报 - 2026-10-11",
+    "deep_dive_title": "From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents",
+    "deep_dive_url": "http://arxiv.org/abs/2610.12463v1",
+    "decision": "暂时忽略",
+    "value_type": "ignore",
+    "value_type_label": "暂时忽略",
+    "daily_action": "完成摘要精读与最小实验设计",
+    "max_uncertainty": "缺少多源工程证据",
+    "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+    "path": "daily-detail.html?date=2026-10-11"
   },
   "top_paper": {
-    "title": "CSF: Contextual Safety Filtering for Motion Generators",
+    "title": "From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents",
     "authors": [
-      "Lizhi Yang",
-      "Yiling Hou",
-      "Yao Tang",
-      "Junheng Li",
-      "Daniel Weng"
+      "Abbas Raftari"
     ],
     "published": "2026-10-08",
     "updated": "2026-10-08",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2610.12467v1",
-    "pdf_url": "https://arxiv.org/pdf/2610.12467v1",
+    "url": "http://arxiv.org/abs/2610.12463v1",
+    "pdf_url": "https://arxiv.org/pdf/2610.12463v1",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Text-conditioned motion generators produce trackable whole-body motion, but they have no notion of scene-dependent safety: the same action may target an object or a person. Existing safeguards either inspect the prompt, require labeled motion data, or enforce geometric constraints; therefore, they do not directly account for how scene context changes a motion's meaning. We introduce contextual safety filtering (CSF), a training-free filter that grounds natural-language safety rules in safe and u",
+    "abstract": "In 2026, cybersecurity evaluations involving OpenAI, Anthropic, and Google agents reached real systems outside their authorized test scope. The paths were different. OpenAI agents exploited research infrastructure, coordinated across runs, and compromised parts of Hugging Face's production environment. Anthropic reported cases in which a misconfigured third-party environment exposed real systems to agents pursuing simulated cyber tasks. In a separately reported evaluation, Google's Gemini access",
     "categories": [
-      "cs.RO",
-      "cs.LG"
+      "cs.CR",
+      "cs.AI"
     ],
-    "keywords": [],
-    "score": 78.5,
-    "decision": "轻量试点",
+    "keywords": [
+      "agent",
+      "evaluation"
+    ],
+    "score": 49.0,
+    "decision": "暂时忽略",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2610.12467v1"
+        "url": "http://arxiv.org/abs/2610.12463v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2610.12467v1"
+        "url": "https://arxiv.org/pdf/2610.12463v1"
       }
     ],
-    "llm_reason": "据摘要（arXiv 2610.12467）：CSF（Contextual Safety Filtering）把 text-conditioned motion generator 的'safety filter 只能看 prompt / 必须 labeled motion data / 只能 enforce geometric constraints'拉到'training-free contextual safety filter：把自然语言安全规则 grounded in scene-aware unsafe-class filtering，filter 在 safe / unsafe classifier 输出之上做 contextual decision'——同一个动作对物体和对人有不同语义，必须按 scene context 决定是否拦截。是 multimodal-agent × security-governance × llm-evaluation 的 training-free contextual safety 即时资产——'context-grounded rule filtering' 范式可迁移到任何 'generator 输出需要按 scene context 做 safety decision' 子方向（robot action policy / tool-use agent / code generation / image generation），与 aiutil 长期关注的 multimodal-agent × security-governance 主线在'training-free scene-grounded safety'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 unsafe-class 形式化（scene grounding 来源 / LLM-as-judge / VLM-as-classifier）、跨 motion task 验证、与 prompt-filter / label-filter / geometric-constraint baseline 对照、是否开源 scene classifier 与 rule library。",
-    "id": "csf-contextual-safety-filtering-for-motion-generators",
-    "value_type": "immediate",
+    "id": "from-reactive-containment-to-proactive-assurance-lessons-from-openai-anthropic-and-google-agent-security-incidents",
+    "value_type": "ignore",
     "matched_topics": [
-      "multimodal-agent",
-      "security-governance",
-      "llm-evaluation"
+      "ai-agent",
+      "rag-knowledge",
+      "llm-evaluation",
+      "ai-k8s-platform",
+      "security-governance"
     ],
     "score_breakdown": {
       "novelty": 4.8,
-      "problem_importance": 5.15,
-      "relevance": 5.0,
-      "evidence_strength": 4.5,
-      "engineering_testability": 3.5,
-      "trend_signal": 3.5,
+      "problem_importance": 7.75,
+      "relevance": 9.8,
+      "evidence_strength": 4.95,
+      "engineering_testability": 4.6,
+      "trend_signal": 4.05,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 6.2,
+      "asset_convertibility": 4.8,
       "actionability": 5.0,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 3.6,
+      "weak_evidence_penalty": 4.0,
+      "low_relevance_penalty": 0,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
-    "trend_status": "emerging",
-    "brief_cn": "Multimodal Agent：Text-conditioned motion generators produce trackable whole-body motion, but th…",
-    "one_line_judgement": "今天值得试：据摘要（arXiv 2610.12467）：CSF（Contextual Safety Filtering）把 text-condition…",
-    "first_seen_date": "2026-10-10",
-    "first_deep_dive_daily": "2026-10-10",
-    "value_type_label": "即时价值",
-    "trend_stage_label": "萌芽",
+    "trend_status": "noise",
+    "brief_cn": "AI Agent：In 2026, cybersecurity evaluations involving OpenAI, Anthropic, and Google age…",
+    "one_line_judgement": "当前可忽略：AI Agent：In 2026, cybersecurity evaluations involving OpenAI, Anthropi…",
+    "first_seen_date": "2026-10-11",
+    "first_deep_dive_daily": "2026-10-11",
+    "value_type_label": "暂时忽略",
+    "trend_stage_label": "噪声",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "据摘要（arXiv 2610.12467）：CSF（Contextual Safety Filtering）把 text-conditioned motion generator 的'safe",
+    "long_tail_summary": "AI Agent：In 2026, cybersecurity evaluations involving OpenAI, Anthropic, and Google age…",
     "related_trends": [
       "agentic-world-modeling",
+      "context-engineering",
       "coding-agent"
     ],
-    "detail_path": "paper-detail.html?id=csf-contextual-safety-filtering-for-motion-generators"
+    "detail_path": "paper-detail.html?id=from-reactive-containment-to-proactive-assurance-lessons-from-openai-anthropic-and-google-agent-security-incidents"
   },
   "paper_count": 1920,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 233,
+  "long_tail_count": 228,
   "value_distribution": {
-    "immediate": 132,
-    "trend": 220,
-    "long_tail": 233,
-    "ignore": 1335
+    "immediate": 129,
+    "trend": 218,
+    "long_tail": 228,
+    "ignore": 1345
   },
   "recent_dailies": [
+    {
+      "date": "2026-10-11",
+      "title": "论文价值发现日报 - 2026-10-11",
+      "deep_dive_title": "From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents",
+      "deep_dive_url": "http://arxiv.org/abs/2610.12463v1",
+      "decision": "暂时忽略",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "daily_action": "完成摘要精读与最小实验设计",
+      "max_uncertainty": "缺少多源工程证据",
+      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
+      "path": "daily-detail.html?date=2026-10-11"
+    },
     {
       "date": "2026-10-10",
       "title": "论文价值发现日报 - 2026-10-10",
@@ -179,178 +193,9 @@
       "max_uncertainty": "VISTA（[2610.02200](http://arxiv.org/abs/2610.02200v1)）active retrieval protocol、lossless visual memory 实现细节（raw frame store vs compressed vs hierarchical）、跨 multimodal model 兼容（GPT-4V / Gemini / Qwen-VL 等）、与现有 agent harness 集成、跨 interactive environment 评测是否公开；TACO（[2610.02199](http://arxiv.org/abs/2610.02199v1)）ternary quantization scheme 形式化、column-wise one-sparse 实现、跨 AdamW / Muon baseline、跨 LLM 规模验证是否公开；RPG（[2610.02204](http://arxiv.org/abs/2610.02204v1)）practice task 构造协议、privileged state 设计、sim-to-real transfer 细节是否公开；KaliBench（[2610.02206](http://arxiv.org/abs/2610.02206v1)）CLI 覆盖范围、runtime-free verifiable reward 形式化、跨 LLM baseline 是否公开；NEPA（[2610.02203](http://arxiv.org/abs/2610.02203v1)）next-embedding prediction 架构、跨 diffusion backbone 验证、inference cost 对照是否公开；ScholarCatalyst（[2610.02202](http://arxiv.org/abs/2610.02202v1)）author annotation 协议、IR system baseline、与现有 citation graph benchmark 差异是否公开；SILSA（[2610.02201](http://arxiv.org/abs/2610.02201v1)）sliding-window slice 协议、topology consistency metric、与现有 voxel latent baseline 对照是否公开；FERPO（[2610.02198](http://arxiv.org/abs/2610.02198v1)）forward entropy 形式化、on-policy 收敛保证、actor-only baseline 对照是否公开；Schrödinger bridges（[2610.02195](http://arxiv.org/abs/2610.02195v1)）Feynman-Kac tilt 形式化、alternation 算法、跨 graph size 验证是否公开；GALA（[2610.02207](http://arxiv.org/abs/2610.02207v1)）blendshape 数量、coefficient predictor 协议、与现有 real-time avatar baseline 对照是否公开。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写 '待核验/暂无'，不补写不存在的事实。",
       "one_line_judgement": "据摘要（arXiv [2610.02200](http://arxiv.org/abs/2610.02200v1)），VISTA 把'visual harness'作为 first-class 概念 ——给 general-purpose multimodal model 配备 long-horizon vision，让它直接通过 visual observation 感知 environment，并用 lossless visual memory 保留 past observations 的原始形态（preserves past observations in their original form），同时允许模型主动 retrieve 过去 observation。这是 ai-agent × multimodal-agent × context-engineering 的 'long-horizon visual memory harness' 即时价值资产 ——把'视觉感知'从 'static prompt' 拉到 'first-class memory asset + active retrieval'；与昨日 / 上周 multimodal-agent 主线在 'visual memory as first-class asset' 层面同源；与 aiutil 长期关注的 context-engineering × memory 主线在 'long-horizon lossless memory' 层面同源（视觉分支）。",
       "path": "daily-detail.html?date=2026-10-04"
-    },
-    {
-      "date": "2026-10-03",
-      "title": "论文价值发现日报 - 2026-10-03",
-      "deep_dive_title": "KaliBench: A Fine-Grained Benchmark for Cybersecurity Tool Use on Kali Linux with Runtime-Free Verifiable Rewards",
-      "deep_dive_url": "http://arxiv.org/abs/2610.02206v1",
-      "decision": "持续观察",
-      "value_type": "long_tail",
-      "value_type_label": "长尾价值",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-10-03"
     }
   ],
   "top_papers": [
-    {
-      "title": "CSF: Contextual Safety Filtering for Motion Generators",
-      "authors": [
-        "Lizhi Yang",
-        "Yiling Hou",
-        "Yao Tang",
-        "Junheng Li",
-        "Daniel Weng"
-      ],
-      "published": "2026-10-08",
-      "updated": "2026-10-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.12467v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12467v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Text-conditioned motion generators produce trackable whole-body motion, but they have no notion of scene-dependent safety: the same action may target an object or a person. Existing safeguards either inspect the prompt, require labeled motion data, or enforce geometric constraints; therefore, they do not directly account for how scene context changes a motion's meaning. We introduce contextual safety filtering (CSF), a training-free filter that grounds natural-language safety rules in safe and u",
-      "categories": [
-        "cs.RO",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 78.5,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.12467v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.12467v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.12467）：CSF（Contextual Safety Filtering）把 text-conditioned motion generator 的'safety filter 只能看 prompt / 必须 labeled motion data / 只能 enforce geometric constraints'拉到'training-free contextual safety filter：把自然语言安全规则 grounded in scene-aware unsafe-class filtering，filter 在 safe / unsafe classifier 输出之上做 contextual decision'——同一个动作对物体和对人有不同语义，必须按 scene context 决定是否拦截。是 multimodal-agent × security-governance × llm-evaluation 的 training-free contextual safety 即时资产——'context-grounded rule filtering' 范式可迁移到任何 'generator 输出需要按 scene context 做 safety decision' 子方向（robot action policy / tool-use agent / code generation / image generation），与 aiutil 长期关注的 multimodal-agent × security-governance 主线在'training-free scene-grounded safety'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 unsafe-class 形式化（scene grounding 来源 / LLM-as-judge / VLM-as-classifier）、跨 motion task 验证、与 prompt-filter / label-filter / geometric-constraint baseline 对照、是否开源 scene classifier 与 rule library。",
-      "id": "csf-contextual-safety-filtering-for-motion-generators",
-      "value_type": "immediate",
-      "matched_topics": [
-        "multimodal-agent",
-        "security-governance",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "Multimodal Agent：Text-conditioned motion generators produce trackable whole-body motion, but th…",
-      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.12467）：CSF（Contextual Safety Filtering）把 text-condition…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "据摘要（arXiv 2610.12467）：CSF（Contextual Safety Filtering）把 text-conditioned motion generator 的'safe",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=csf-contextual-safety-filtering-for-motion-generators"
-    },
-    {
-      "title": "Caught in the Act: Probes Effectively Detect Sabotage and Catch Unverbalized Deception",
-      "authors": [
-        "Oskar J. Hollinsworth",
-        "Alex F. Spies",
-        "Tigist Diriba",
-        "Adam Gleave",
-        "Chris Cundy"
-      ],
-      "published": "2026-10-08",
-      "updated": "2026-10-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.12445v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12445v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Recent incidents have highlighted the challenge of monitoring LLM agents and the danger of models deceiving people. We show that white-box deception detection via probes can be scaled up to frontier monitoring settings by collecting the largest deception dataset to date for training probes and introducing a novel probe architecture which can aggregate information across many layers and tokens. Our probes achieve 98.8% AUC in SHADE-Arena, surpassing an Opus 5.5 text-monitoring baseline, and show ",
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent",
-        "evaluation",
-        "RAG"
-      ],
-      "score": 77.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.12445v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.12445v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.12445）：Caught in the Act 把 LLM agent 监控的'text-monitoring only（弱）+ 缺乏大规模 deception dataset'拉到'white-box probes 用 largest deception dataset + novel probe architecture 聚合多 layer 多 token 信息，98.8% AUC SHADE-Arena 超过 Opus 5.5 text-monitoring baseline'。是 ai-agent × llm-evaluation × security-governance 的 scalable white-box deception detection 即时资产——'probe-based frontier monitoring' 范式可迁移到任何 'frontier model monitoring / agent oversight / sabotage detection' 子方向（agent 中间状态监控 / multi-step planning 监控 / tool-use 监控），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在'white-box probe as monitoring primitive'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 probe architecture 形式化（跨 layer / 跨 token 聚合方式）、数据集规模 / 跨 scenario 验证、是否开源 probe 训练 pipeline 与 monitoring 接口。",
-      "id": "caught-in-the-act-probes-effectively-detect-sabotage-and-catch-unverbalized-deception",
-      "value_type": "immediate",
-      "matched_topics": [
-        "ai-agent",
-        "llm-evaluation",
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 6.0,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Recent incidents have highlighted the challenge of monitoring LLM agents and t…",
-      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.12445）：Caught in the Act 把 LLM agent 监控的'text-monitorin…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "据摘要（arXiv 2610.12445）：Caught in the Act 把 LLM agent 监控的'text-monitoring only（弱）+ 缺乏大规模 deception",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=caught-in-the-act-probes-effectively-detect-sabotage-and-catch-unverbalized-deception"
-    },
     {
       "title": "From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents",
       "authors": [
@@ -375,8 +220,8 @@
         "agent",
         "evaluation"
       ],
-      "score": 75.5,
-      "decision": "轻量试点",
+      "score": 49.0,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
@@ -387,13 +232,14 @@
           "url": "https://arxiv.org/pdf/2610.12463v1"
         }
       ],
-      "llm_reason": "据摘要（arXiv 2610.12463）：From Reactive Containment to Proactive Assurance 把 agent 安全治理的'事件响应 / 反应式围堵（被攻击后再补救）'拉到'proactive assurance：分析 2026 年 OpenAI / Anthropic / Google agent 安全事件教训（OpenAI agent 渗透研究基础设施 / Anthropic 误配置第三方环境暴露真实系统 / Google Gemini 越界）'。是 ai-agent × security-governance × llm-evaluation 的 proactive agent assurance governance 即时资产——'incident-to-assurance 治理范式'可迁移到任何 'frontier agent 安全治理 / agent risk management' 子方向（agent 红队评估 / sandbox 设计 / tool-use 边界 / multi-agent 安全），与 aiutil 长期关注的 ai-agent × security-governance 主线在'proactive assurance governance'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 2026 incident 细节分类、assurance framework 形式化、跨 vendor 案例对照、是否开源 incident taxonomy 与 assurance checklist。",
       "id": "from-reactive-containment-to-proactive-assurance-lessons-from-openai-anthropic-and-google-agent-security-incidents",
-      "value_type": "immediate",
+      "value_type": "ignore",
       "matched_topics": [
         "ai-agent",
-        "security-governance",
-        "llm-evaluation"
+        "rag-knowledge",
+        "llm-evaluation",
+        "ai-k8s-platform",
+        "security-governance"
       ],
       "score_breakdown": {
         "novelty": 4.8,
@@ -411,17 +257,18 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
+      "trend_status": "noise",
       "brief_cn": "AI Agent：In 2026, cybersecurity evaluations involving OpenAI, Anthropic, and Google age…",
-      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.12463）：From Reactive Containment to Proactive Assurance…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
+      "one_line_judgement": "当前可忽略：AI Agent：In 2026, cybersecurity evaluations involving OpenAI, Anthropi…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "据摘要（arXiv 2610.12463）：From Reactive Containment to Proactive Assurance 把 agent 安全治理的'事件响应 / 反应式围",
+      "long_tail_summary": "AI Agent：In 2026, cybersecurity evaluations involving OpenAI, Anthropic, and Google age…",
       "related_trends": [
         "agentic-world-modeling",
+        "context-engineering",
         "coding-agent"
       ],
       "detail_path": "paper-detail.html?id=from-reactive-containment-to-proactive-assurance-lessons-from-openai-anthropic-and-google-agent-security-incidents"
@@ -457,8 +304,8 @@
         "coding agent",
         "benchmark"
       ],
-      "score": 72.5,
-      "decision": "轻量试点",
+      "score": 45.5,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
@@ -469,11 +316,11 @@
           "url": "https://arxiv.org/pdf/2610.12452v1"
         }
       ],
-      "llm_reason": "据摘要（arXiv 2610.12452）：BrickBench 把 agentic 评测从'纯软件 / 纯对话 / 纯 reasoning'推到'agentic text-conditioned LEGO-set design：agent 不仅要满足语义和设计 criteria，还要能真正搭出来——选择离散零件库 + 联合推理 local & global constraints'——score 跨 validity / alignment / design 三个 setting，按规模与可用零件变化。是 ai-agent × llm-evaluation 的 physical-build constrained agentic design benchmark 趋势资产——'physical-grounded agentic benchmark' 范式可迁移到任何 'agent 输出需满足物理可执行性 / 工程可构建性' 子方向（robot assembly / CAD design / code+deploy），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在'physical-grounded agentic evaluation'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 BrickAgent environment 形式化（API / rendering / physics）、跨 prompt type 验证、与 LLM-only baseline 对照。今日维持趋势卡片并设置 7 天观察周期。",
       "id": "brickbench-evaluating-agentic-brick-design",
-      "value_type": "trend",
+      "value_type": "ignore",
       "matched_topics": [
         "ai-agent",
+        "context-engineering",
         "llm-evaluation"
       ],
       "score_breakdown": {
@@ -492,20 +339,386 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
+      "trend_status": "noise",
       "brief_cn": "AI Agent：We propose BrickBench, a benchmark for agentic text-conditioned LEGO-set desig…",
-      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.12452）：BrickBench 把 agentic 评测从'纯软件 / 纯对话 / 纯 reasoning…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要（arXiv 2610.12452）：BrickBench 把 agentic 评测从'纯软件 / 纯对话 / 纯 reasoning'推到'agentic text-condition",
+      "one_line_judgement": "当前可忽略：AI Agent：We propose BrickBench, a benchmark for agentic text-condition…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "AI Agent：We propose BrickBench, a benchmark for agentic text-conditioned LEGO-set desig…",
       "related_trends": [
         "agentic-world-modeling",
+        "context-engineering",
         "coding-agent"
       ],
       "detail_path": "paper-detail.html?id=brickbench-evaluating-agentic-brick-design"
+    },
+    {
+      "title": "Rounding in Preconditioner Space: Redesigning 4-bit AdamW Optimizer-State Quantization",
+      "authors": [
+        "Hanyang Li",
+        "Shao Tang",
+        "Daniel Thomas Braithwaite",
+        "Gregory Dexter",
+        "Leonardo Neves"
+      ],
+      "published": "2026-10-08",
+      "updated": "2026-10-08",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.12444v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12444v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Quantizing AdamW's optimizer states reduces persistent storage, but quantization errors propagate through the moment recurrences and perturb subsequent adaptive updates. We redesign 4-bit optimizer-state quantization for AdamW from the perspective of \\emph{rounding space}: the coordinate in which a quantizer chooses between adjacent reconstruction levels. For the second moment, a local analysis of the quantization cell adjacent to zero shows that small mean state error need not imply small mean ",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 36.6,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.12444v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.12444v1"
+        }
+      ],
+      "id": "rounding-in-preconditioner-space-redesigning-4-bit-adamw-optimizer-state-quantization",
+      "value_type": "ignore",
+      "matched_topics": [
+        "rag-knowledge",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "RAG / 知识系统：Quantizing AdamW's optimizer states reduces persistent storage, but quantizati…",
+      "one_line_judgement": "当前可忽略：RAG / 知识系统：Quantizing AdamW's optimizer states reduces persistent stor…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "RAG / 知识系统：Quantizing AdamW's optimizer states reduces persistent storage, but quantizati…",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=rounding-in-preconditioner-space-redesigning-4-bit-adamw-optimizer-state-quantization"
+    },
+    {
+      "title": "CSF: Contextual Safety Filtering for Motion Generators",
+      "authors": [
+        "Lizhi Yang",
+        "Yiling Hou",
+        "Yao Tang",
+        "Junheng Li",
+        "Daniel Weng"
+      ],
+      "published": "2026-10-08",
+      "updated": "2026-10-08",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.12467v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12467v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Text-conditioned motion generators produce trackable whole-body motion, but they have no notion of scene-dependent safety: the same action may target an object or a person. Existing safeguards either inspect the prompt, require labeled motion data, or enforce geometric constraints; therefore, they do not directly account for how scene context changes a motion's meaning. We introduce contextual safety filtering (CSF), a training-free filter that grounds natural-language safety rules in safe and u",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 35.9,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.12467v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.12467v1"
+        }
+      ],
+      "id": "csf-contextual-safety-filtering-for-motion-generators",
+      "value_type": "ignore",
+      "matched_topics": [
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "Context Engineering：Text-conditioned motion generators produce trackable whole-body motion, but th…",
+      "one_line_judgement": "当前可忽略：Context Engineering：Text-conditioned motion generators produce trackab…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "Context Engineering：Text-conditioned motion generators produce trackable whole-body motion, but ",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=csf-contextual-safety-filtering-for-motion-generators"
+    },
+    {
+      "title": "Caught in the Act: Probes Effectively Detect Sabotage and Catch Unverbalized Deception",
+      "authors": [
+        "Oskar J. Hollinsworth",
+        "Alex F. Spies",
+        "Tigist Diriba",
+        "Adam Gleave",
+        "Chris Cundy"
+      ],
+      "published": "2026-10-08",
+      "updated": "2026-10-08",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.12445v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12445v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Recent incidents have highlighted the challenge of monitoring LLM agents and the danger of models deceiving people. We show that white-box deception detection via probes can be scaled up to frontier monitoring settings by collecting the largest deception dataset to date for training probes and introducing a novel probe architecture which can aggregate information across many layers and tokens. Our probes achieve 98.8% AUC in SHADE-Arena, surpassing an Opus 5.5 text-monitoring baseline, and show ",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "RAG"
+      ],
+      "score": 35.1,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.12445v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.12445v1"
+        }
+      ],
+      "id": "caught-in-the-act-probes-effectively-detect-sabotage-and-catch-unverbalized-deception",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "AI Agent：Recent incidents have highlighted the challenge of monitoring LLM agents and t…",
+      "one_line_judgement": "当前可忽略：AI Agent：Recent incidents have highlighted the challenge of monitoring…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "AI Agent：Recent incidents have highlighted the challenge of monitoring LLM agents and t…",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=caught-in-the-act-probes-effectively-detect-sabotage-and-catch-unverbalized-deception"
+    },
+    {
+      "title": "A Balanced Data Diet: Addressing the Exploration Bottleneck in Mega-Scale RL for Robot Control",
+      "authors": [
+        "Octi Zhang",
+        "Mateo Guaman Castro",
+        "Patrick Yin",
+        "Ignacio Dagnino",
+        "Abhishek Gupta"
+      ],
+      "published": "2026-10-08",
+      "updated": "2026-10-08",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.12465v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12465v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "General-purpose robots must perform a wide range of tasks from agile locomotion to dexterous manipulation. While sim-to-real reinforcement learning (RL) has proven to be a useful tool for this goal, current RL pipelines depend on engineering-heavy, per-task structural priors such as shaped rewards and demonstrations. Recent work has shown that diverse simulator resets, combined with massively parallel simulation, can alleviate much of this engineering burden on several manipulation problems. How",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 34.8,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.12465v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.12465v1"
+        }
+      ],
+      "id": "a-balanced-data-diet-addressing-the-exploration-bottleneck-in-mega-scale-rl-for-robot-control",
+      "value_type": "ignore",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "Multimodal Agent：General-purpose robots must perform a wide range of tasks from agile locomotio…",
+      "one_line_judgement": "当前可忽略：Multimodal Agent：General-purpose robots must perform a wide range of t…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "Multimodal Agent：General-purpose robots must perform a wide range of tasks from agile locomotio…",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=a-balanced-data-diet-addressing-the-exploration-bottleneck-in-mega-scale-rl-for-robot-control"
+    },
+    {
+      "title": "One Block, Multiple Depths: Recurrent Vision Transformers with Depth-Programmed Experts",
+      "authors": [
+        "Adrian Bulat",
+        "Yassine Ouali",
+        "Georgios Tzimiropoulos"
+      ],
+      "published": "2026-10-08",
+      "updated": "2026-10-08",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.12448v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.12448v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "In this work, we show that a single Transformer block, applied recurrently, can match the accuracy of a full-depth vision encoder at comparable inference FLOPs without intermediate feature distillation. reViT restores depth-specific transformations by representing the FFN at each recurrent depth as a convex combination of a small shared expert bank. A continuous normalized-depth coordinate programs this mixture, defining a resampleable trajectory through FFN parameter space. We evaluate this des",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [
+        "RAG",
+        "inference"
+      ],
+      "score": 33.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.12448v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.12448v1"
+        }
+      ],
+      "id": "one-block-multiple-depths-recurrent-vision-transformers-with-depth-programmed-experts",
+      "value_type": "ignore",
+      "matched_topics": [
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "推理与服务：In this work, we show that a single Transformer block, applied recurrently, ca…",
+      "one_line_judgement": "当前可忽略：推理与服务：In this work, we show that a single Transformer block, applied r…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "推理与服务：In this work, we show that a single Transformer block, applied recurrently, ca…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=one-block-multiple-depths-recurrent-vision-transformers-with-depth-programmed-experts"
     },
     {
       "title": "Bi-FORK: Generative Modeling of High-Dimensional Bifurcating Systems",
@@ -536,8 +749,8 @@
       "keywords": [
         "multimodal"
       ],
-      "score": 71.0,
-      "decision": "轻量试点",
+      "score": 32.3,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
@@ -548,13 +761,9 @@
           "url": "https://arxiv.org/pdf/2610.12449v1"
         }
       ],
-      "llm_reason": "据摘要（arXiv 2610.12449）：Bi-FORK 把 generative physical surrogate 从'one-to-one（single input → single output）违反 bifurcation 现实'拉到'one-to-many：generative framework 学习 bifurcation 系统的高维多解 map，生成完整 trajectories'——symmetry-breaking bifurcation 下 single input admit multiple equally valid solutions。是 llm-evaluation × inference-serving 的 one-to-many generative bifurcation modeling 趋势资产——'one-to-many generative surrogate' 范式可迁移到任何 '多解物理 / 多解工程 / 多解决策' 子方向（structural design / climate modeling / multimodal response generation），与 aiutil 长期关注的 llm-evaluation 主线在'multimodal generative modeling for physical systems'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 framework 形式化、跨 bifurcation system 验证、与 one-to-one baseline 对照。今日维持趋势卡片并设置 7 天观察周期。",
       "id": "bi-fork-generative-modeling-of-high-dimensional-bifurcating-systems",
-      "value_type": "trend",
-      "matched_topics": [
-        "llm-evaluation",
-        "inference-serving"
-      ],
+      "value_type": "ignore",
+      "matched_topics": [],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
@@ -571,94 +780,17 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Bifurcations are ubiquitous in physical systems, from structural buckling to f…",
-      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.12449）：Bi-FORK 把 generative physical surrogate 从'one-to…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要（arXiv 2610.12449）：Bi-FORK 把 generative physical surrogate 从'one-to-one（single input → single",
-      "related_trends": [
-        "coding-agent"
-      ],
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：Bifurcations are ubiquitous in physical systems, from structural buckling to f…",
+      "one_line_judgement": "当前可忽略：前沿论文：Bifurcations are ubiquitous in physical systems, from structural …",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Bifurcations are ubiquitous in physical systems, from structural buckling to f…",
+      "related_trends": [],
       "detail_path": "paper-detail.html?id=bi-fork-generative-modeling-of-high-dimensional-bifurcating-systems"
-    },
-    {
-      "title": "One Block, Multiple Depths: Recurrent Vision Transformers with Depth-Programmed Experts",
-      "authors": [
-        "Adrian Bulat",
-        "Yassine Ouali",
-        "Georgios Tzimiropoulos"
-      ],
-      "published": "2026-10-08",
-      "updated": "2026-10-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.12448v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12448v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "In this work, we show that a single Transformer block, applied recurrently, can match the accuracy of a full-depth vision encoder at comparable inference FLOPs without intermediate feature distillation. reViT restores depth-specific transformations by representing the FFN at each recurrent depth as a convex combination of a small shared expert bank. A continuous normalized-depth coordinate programs this mixture, defining a resampleable trajectory through FFN parameter space. We evaluate this des",
-      "categories": [
-        "cs.CV",
-        "cs.LG"
-      ],
-      "keywords": [
-        "RAG",
-        "inference"
-      ],
-      "score": 67.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.12448v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.12448v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.12448）：reViT（Recurrent Vision Transformers with Depth-Programmed Experts）把 ViT 的'full-depth block 一遍'拉到'single block recurrent + depth-specific FFN as convex combination of shared expert bank + continuous normalized-depth coordinate 程序化'——一个 block 多次复用即可在 inference FLOPs comparable 下匹配 full-depth 精度，无需 intermediate feature distillation。是 multimodal-agent × inference-serving 的 depth-programmed recurrent ViT 长尾架构资产——'depth-as-programmed-trajectory' 范式可迁移到任何 '深度可编程 / FFN-as-mixture / 单 block 复用' 子方向（LLM recurrent depth / 视觉 backbone 压缩 / 边缘部署），与 aiutil 长期关注的 multimodal-agent × inference-serving 主线在'parameter-efficient depth'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 expert bank 形式化、跨 ViT size 验证。今日维持长尾卡片。",
-      "id": "one-block-multiple-depths-recurrent-vision-transformers-with-depth-programmed-experts",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "multimodal-agent",
-        "inference-serving"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "Multimodal Agent：In this work, we show that a single Transformer block, applied recurrently, ca…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.12448）：reViT（Recurrent Vision Transformers with Depth-P…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.12448）：reViT（Recurrent Vision Transformers with Depth-Programmed Experts）把 ViT 的'",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=one-block-multiple-depths-recurrent-vision-transformers-with-depth-programmed-experts"
     },
     {
       "title": "On the estimation and validity of AI time horizons---a statistical look at the METR plot",
@@ -683,8 +815,8 @@
       "keywords": [
         "benchmark"
       ],
-      "score": 66.0,
-      "decision": "轻量试点",
+      "score": 28.5,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
@@ -695,12 +827,9 @@
           "url": "https://arxiv.org/pdf/2610.12466v1"
         }
       ],
-      "llm_reason": "据摘要（arXiv 2610.12466）：On the estimation and validity of AI time horizons 把 METR 的 50% time horizon 测量从'假设 AI difficulty 与 log human time 线性'拉到'spline + item-response theory 重计算 228 task 26 AI，spline 作为 human time → AI difficulty conversion function'——拟合 spline 几乎平坦，质疑 log-linear 假设。是 llm-evaluation 的 METR time-horizon statistical re-examination 长尾理论资产——'IR-relaxed capability measurement' 范式可迁移到任何 'AI capability 时间单位测量 / benchmark scaling assumption' 子方向（benchmark difficulty calibration / leaderboard interpretation / AI 进度预测），与 aiutil 长期关注的 llm-evaluation 主线在'capability measurement statistical foundation'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 spline 形式化、跨 task / AI 验证。今日维持长尾卡片。",
       "id": "on-the-estimation-and-validity-of-ai-time-horizons-a-statistical-look-at-the-metr-plot",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "llm-evaluation"
-      ],
+      "value_type": "ignore",
+      "matched_topics": [],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
@@ -717,91 +846,17 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：METR's 50\\% time horizon measures the human completion time of software tasks …",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.12466）：On the estimation and validity of AI time horizo…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.12466）：On the estimation and validity of AI time horizons 把 METR 的 50% time horiz",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=on-the-estimation-and-validity-of-ai-time-horizons-a-statistical-look-at-the-metr-plot"
-    },
-    {
-      "title": "Rounding in Preconditioner Space: Redesigning 4-bit AdamW Optimizer-State Quantization",
-      "authors": [
-        "Hanyang Li",
-        "Shao Tang",
-        "Daniel Thomas Braithwaite",
-        "Gregory Dexter",
-        "Leonardo Neves"
-      ],
-      "published": "2026-10-08",
-      "updated": "2026-10-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.12444v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12444v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Quantizing AdamW's optimizer states reduces persistent storage, but quantization errors propagate through the moment recurrences and perturb subsequent adaptive updates. We redesign 4-bit optimizer-state quantization for AdamW from the perspective of \\emph{rounding space}: the coordinate in which a quantizer chooses between adjacent reconstruction levels. For the second moment, a local analysis of the quantization cell adjacent to zero shows that small mean state error need not imply small mean ",
-      "categories": [
-        "cs.LG"
-      ],
-      "keywords": [
-        "RAG"
-      ],
-      "score": 64.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.12444v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.12444v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.12444）：Rounding in Preconditioner Space 把 AdamW 4-bit optimizer-state quantization 从'naive state-space rounding（误差会 propagate through moment recurrences 扰动 adaptive updates）'拉到'rounding space 重新设计——对于 second moment，分析 quantization cell adjacent to zero 后发现 small mean state error 不一定意味着 small mean squared error'。是 inference-serving 的 4-bit optimizer-state preconditioner-space rounding 长尾量化资产——'preconditioner-space quantization' 范式可迁移到任何 'optimizer state quantization / 4-bit training memory' 子方向（distributed training / optimizer offload / memory-efficient fine-tuning），与 aiutil 长期关注的 inference-serving 主线在'training-time memory compression'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 preconditioner-space 形式化、跨 AdamW baseline 对照。今日维持长尾卡片。",
-      "id": "rounding-in-preconditioner-space-redesigning-4-bit-adamw-optimizer-state-quantization",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "inference-serving"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "推理与服务：Quantizing AdamW's optimizer states reduces persistent storage, but quantizati…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.12444）：Rounding in Preconditioner Space 把 AdamW 4-bit o…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.12444）：Rounding in Preconditioner Space 把 AdamW 4-bit optimizer-state quantizatio",
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：METR's 50\\% time horizon measures the human completion time of software tasks …",
+      "one_line_judgement": "当前可忽略：前沿论文：METR's 50\\% time horizon measures the human completion time of so…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：METR's 50\\% time horizon measures the human completion time of software tasks …",
       "related_trends": [],
-      "detail_path": "paper-detail.html?id=rounding-in-preconditioner-space-redesigning-4-bit-adamw-optimizer-state-quantization"
+      "detail_path": "paper-detail.html?id=on-the-estimation-and-validity-of-ai-time-horizons-a-statistical-look-at-the-metr-plot"
     },
     {
       "title": "Density Ratio Estimation with Stein Displacement Fields",
@@ -826,8 +881,8 @@
       "keywords": [
         "inference"
       ],
-      "score": 62.5,
-      "decision": "持续观察",
+      "score": 28.5,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
@@ -838,12 +893,9 @@
           "url": "https://arxiv.org/pdf/2610.12437v1"
         }
       ],
-      "llm_reason": "据摘要（arXiv 2610.12437）：Density Ratio Estimation with Stein Displacement Fields 把 density ratio（distribution shift 视角）和 displacement field（transport 视角）从'分别估计 + post-processing 转换'拉到'联合：把 density ratio 通过 parametrizing as displacement field acting on base，融合两种视角'。是 llm-evaluation 的 density-ratio-as-displacement-field 长尾理论资产——'joint distribution-shift-and-transport estimation' 范式可迁移到任何 'domain adaptation / covariate shift / generative modeling transport' 子方向，与 aiutil 长期关注的 llm-evaluation 主线在'density ratio as geometric object'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 displacement parametrization、跨 density ratio baseline 对照。今日维持长尾卡片。",
       "id": "density-ratio-estimation-with-stein-displacement-fields",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "llm-evaluation"
-      ],
+      "value_type": "ignore",
+      "matched_topics": [],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 4.5,
@@ -860,140 +912,64 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "LLM 评测：Density ratios quantify distribution shift from a probability-mass point of vi…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.12437）：Density Ratio Estimation with Stein Displacement…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.12437）：Density Ratio Estimation with Stein Displacement Fields 把 density ratio（di",
-      "related_trends": [
-        "coding-agent"
-      ],
+      "trend_status": "noise",
+      "brief_cn": "前沿论文：Density ratios quantify distribution shift from a probability-mass point of vi…",
+      "one_line_judgement": "当前可忽略：前沿论文：Density ratios quantify distribution shift from a probability-mas…",
+      "first_seen_date": "2026-10-11",
+      "first_deep_dive_daily": "2026-10-11",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Density ratios quantify distribution shift from a probability-mass point of vi…",
+      "related_trends": [],
       "detail_path": "paper-detail.html?id=density-ratio-estimation-with-stein-displacement-fields"
-    },
-    {
-      "title": "A Balanced Data Diet: Addressing the Exploration Bottleneck in Mega-Scale RL for Robot Control",
-      "authors": [
-        "Octi Zhang",
-        "Mateo Guaman Castro",
-        "Patrick Yin",
-        "Ignacio Dagnino",
-        "Abhishek Gupta"
-      ],
-      "published": "2026-10-08",
-      "updated": "2026-10-08",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.12465v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.12465v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "General-purpose robots must perform a wide range of tasks from agile locomotion to dexterous manipulation. While sim-to-real reinforcement learning (RL) has proven to be a useful tool for this goal, current RL pipelines depend on engineering-heavy, per-task structural priors such as shaped rewards and demonstrations. Recent work has shown that diverse simulator resets, combined with massively parallel simulation, can alleviate much of this engineering burden on several manipulation problems. How",
-      "categories": [
-        "cs.RO",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 61.5,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.12465v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.12465v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.12465）：A Balanced Data Diet 把 mega-scale robot RL 的'exploration bottleneck（sim-to-real RL 依赖 engineering-heavy per-task structural priors：shaped rewards / demonstrations）'拉到'diverse simulator resets + massively parallel simulation → 缓解 engineering burden'。是 multimodal-agent × ai-agent 的 balanced data diet for robot RL 长尾数据资产——'diverse-reset-to-relieve-engineering-priors' 范式可迁移到任何 'mega-scale RL data engineering / reset distribution' 子方向（manipulation RL / locomotion / sim-to-real），与 aiutil 长期关注的 multimodal-agent × ai-agent 主线在'RL data engineering lever'层面同源。代码/benchmark/项目页：暂无，需打开 PDF 看 data diet 形式化、跨 robot task 验证。今日维持长尾卡片。",
-      "id": "a-balanced-data-diet-addressing-the-exploration-bottleneck-in-mega-scale-rl-for-robot-control",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "multimodal-agent",
-        "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.6,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "Multimodal Agent：General-purpose robots must perform a wide range of tasks from agile locomotio…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.12465）：A Balanced Data Diet 把 mega-scale robot RL 的'exp…",
-      "first_seen_date": "2026-10-10",
-      "first_deep_dive_daily": "2026-10-10",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.12465）：A Balanced Data Diet 把 mega-scale robot RL 的'exploration bottleneck（sim-to",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=a-balanced-data-diet-addressing-the-exploration-bottleneck-in-mega-scale-rl-for-robot-control"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "one-block-multiple-depths-recurrent-vision-transformers-with-depth-programmed-experts",
-      "title": "One Block, Multiple Depths: Recurrent Vision Transformers with Depth-Programmed Experts",
-      "direction": "Multimodal Agent / 推理与服务",
-      "long_tail_type": "工程抽象",
-      "why_save": "据摘要（arXiv 2610.12448）：reViT（Recurrent Vision Transformers with Depth-Programmed Experts）把 ViT 的'",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-10-31",
-      "detail_path": "paper-detail.html?id=one-block-multiple-depths-recurrent-vision-transformers-with-depth-programmed-experts"
-    },
-    {
-      "id": "on-the-estimation-and-validity-of-ai-time-horizons-a-statistical-look-at-the-metr-plot",
-      "title": "On the estimation and validity of AI time horizons---a statistical look at the METR plot",
+      "id": "conformal-prediction-sets-quantify-information-gain-a-theoretical-perspective",
+      "title": "Conformal Prediction Sets Quantify Information Gain: A Theoretical Perspective",
       "direction": "LLM 评测",
       "long_tail_type": "工程抽象",
-      "why_save": "据摘要（arXiv 2610.12466）：On the estimation and validity of AI time horizons 把 METR 的 50% time horiz",
+      "why_save": "据摘要（arXiv 2610.08785）：Conformal Prediction Sets Quantify Information Gain 把 conformal prediction",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-10-31",
-      "detail_path": "paper-detail.html?id=on-the-estimation-and-validity-of-ai-time-horizons-a-statistical-look-at-the-metr-plot"
+      "revisit_date": "2026-10-29",
+      "detail_path": "paper-detail.html?id=conformal-prediction-sets-quantify-information-gain-a-theoretical-perspective"
     },
     {
-      "id": "rounding-in-preconditioner-space-redesigning-4-bit-adamw-optimizer-state-quantization",
-      "title": "Rounding in Preconditioner Space: Redesigning 4-bit AdamW Optimizer-State Quantization",
-      "direction": "推理与服务",
+      "id": "sherpa-teaching-llms-to-teach-adaptively",
+      "title": "Sherpa: Teaching LLMs to Teach Adaptively",
+      "direction": "LLM 评测 / AI Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "据摘要（arXiv 2610.12444）：Rounding in Preconditioner Space 把 AdamW 4-bit optimizer-state quantizatio",
+      "why_save": "据摘要（arXiv 2610.08778）：Sherpa 把 LLM-as-teacher 从'demonstrations / preference data / 预设 pedagogica",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-10-31",
-      "detail_path": "paper-detail.html?id=rounding-in-preconditioner-space-redesigning-4-bit-adamw-optimizer-state-quantization"
+      "revisit_date": "2026-10-29",
+      "detail_path": "paper-detail.html?id=sherpa-teaching-llms-to-teach-adaptively"
+    },
+    {
+      "id": "4d-hof-hand-object-flow-matching-for-feed-forward-4d-interaction-reconstruction",
+      "title": "4D-HOF: Hand-Object Flow Matching for Feed-Forward 4D Interaction Reconstruction",
+      "direction": "Multimodal Agent",
+      "long_tail_type": "可迁移方法",
+      "why_save": "据摘要（arXiv 2610.08782）：4D-HOF 把 4D hand-object 重建从'per-sequence 优化 / generative 从 random noise（不稳",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-10-29",
+      "detail_path": "paper-detail.html?id=4d-hof-hand-object-flow-matching-for-feed-forward-4d-interaction-reconstruction"
     }
   ],
   "common_research_path": [
