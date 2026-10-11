@@ -21,13 +21,13 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-11
+## 最新研究 · 2026-10-12
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 129 | 218 | 228 | 1345 |
 
-**今日深挖：** [From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents](daily/2026/2026-10-11.md) · 暂时忽略 · 暂时忽略
+**今日深挖：** [From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents](daily/2026/2026-10-12.md) · 暂时忽略 · 暂时忽略
 
 **核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
 
@@ -39,13 +39,13 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-12](daily/2026/2026-10-12.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
 | [2026-10-11](daily/2026/2026-10-11.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
 | [2026-10-10](daily/2026/2026-10-10.md) | CSF: Contextual Safety Filtering for Motion Generators | 即时价值 | 轻量试点 |
 | [2026-10-08](daily/2026/2026-10-08.md) | Agent in a Bottle: Can LLM Agents Turn Their Capabilities Into Cheap, Scalable Artifacts? | 即时价值 | 轻量试点 |
 | [2026-10-07](daily/2026/2026-10-07.md) | Base Models Can Reason By Taking a Cue From Training Data | 即时价值 | 轻量试点 |
 | [2026-10-06](daily/2026/2026-10-06.md) | LESSER: Post-Training Data Selection with Output-Layer Gradients | 即时价值 | 轻量试点 |
 | [2026-10-05](daily/2026/2026-10-05.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
-| [2026-10-04](daily/2026/2026-10-04.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 
 ## 当前重点趋势
 
