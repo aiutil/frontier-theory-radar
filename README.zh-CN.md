@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-12
+## 最新研究 · 2026-10-13
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 129 | 218 | 228 | 1345 |
+| 10 | 132 | 220 | 229 | 1349 |
 
-**今日深挖：** [From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents](daily/2026/2026-10-12.md) · 暂时忽略 · 暂时忽略
+**今日深挖：** [RSI-Anything: Unlocking Recursive Self-Improvement with World Models](daily/2026/2026-10-13.md) · 即时价值 · 轻量试点
 
-**核心判断：** 它同时具备问题重要性、工程可验证性和研究资产转化价值。
+**核心判断：** 据摘要（arXiv [2610.13912](http://arxiv.org/abs/2610.13912v1)），论文把 recursive self-improvement（RSI）的'external feedback 昂贵 / 不可靠 / world-model predictions 随 policy 演化变得 unreliable'拉到'JEPA-Anything 框架：predictive world models 引导 action selection + learning-data selection；observed feedback 驱动 policy/workflow 改进 + conditional world-model adaptation；component & compatibility checks 担保'——一个 domain-general 的世界模型驱动的自改进框架。是 ai-agent × llm-evaluation × rag-knowledge × multimodal-agent 的 'world-model-guided recursive self-improvement' 即时价值资产——把 'agent self-improve' 从 '依赖 external feedback / 静态 world model' 两态拉到 'world-model-driven action + learning-data selection with compatibility checks'，与昨日 / 上周 BOTTLED（capability→artifact）/ Caught in the Act（white-box probe monitoring）/ CSF（scene-grounded safety filter）在 'agent runtime governance / capability scaling' 层面同源，与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'world-model-as-self-improvement-curriculum' 层面同源。
 
-**建议动作：** 完成摘要精读与最小实验设计
+**建议动作：** 把 [2610.13912](http://arxiv.org/abs/2610.13912v1) RSI-Anything 'world-model-guided recursive self-improvement' 列为即时试点方向，写 'world-model-driven self-improve' checklist 草稿；把 [2610.13928](http://arxiv.org/abs/2610.13928v1) AI Models Can Provably Hide Arbitrary Capabilities 'provably-hard-to-elicit hidden capability' 列为即时路线资产，写 'capability-hiding evaluation attack' checklist 草稿；把 [2610.13935](http://arxiv.org/abs/2610.13935v1) Hide and Seek (HnS) 'image-level concept attribution for black-box vision' 列为即时路线资产，写 'small-concept-set VLM XAI' checklist 草稿；为 [2610.13910](http://arxiv.org/abs/2610.13910v1) When VLMs Destroy What They Know 'EICS + CASP-VL representation audit'、[2610.13948](http://arxiv.org/abs/2610.13948v1) Can Language Models Play the Wikipedia Game? 'link-traversal IR analogy' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.13917](http://arxiv.org/abs/2610.13917v1) Prompteina 'natural-language-conditioned protein structure generation' 维持长尾卡片。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 RSI-Anything 是否公开 world model 与 curriculum 调度、AI Models Can Provably Hide Arbitrary Capabilities 是否公开 attack pipeline 与 evaluation harness、Hide and Seek (HnS) 是否公开 HnS pipeline 与 concept set 协议。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-13](daily/2026/2026-10-13.md) | RSI-Anything: Unlocking Recursive Self-Improvement with World Models | 即时价值 | 轻量试点 |
 | [2026-10-12](daily/2026/2026-10-12.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
 | [2026-10-11](daily/2026/2026-10-11.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
 | [2026-10-10](daily/2026/2026-10-10.md) | CSF: Contextual Safety Filtering for Motion Generators | 即时价值 | 轻量试点 |
 | [2026-10-08](daily/2026/2026-10-08.md) | Agent in a Bottle: Can LLM Agents Turn Their Capabilities Into Cheap, Scalable Artifacts? | 即时价值 | 轻量试点 |
 | [2026-10-07](daily/2026/2026-10-07.md) | Base Models Can Reason By Taking a Cue From Training Data | 即时价值 | 轻量试点 |
 | [2026-10-06](daily/2026/2026-10-06.md) | LESSER: Post-Training Data Selection with Output-Layer Gradients | 即时价值 | 轻量试点 |
-| [2026-10-05](daily/2026/2026-10-05.md) | VISTA: A Visual Harness for Reasoning in an Interactive World | 即时价值 | 轻量试点 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 600 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 579 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 600 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 602 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 585 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 602 |
 
 ## 为什么做这个项目
 
