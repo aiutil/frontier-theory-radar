@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-15
+## 最新研究 · 2026-10-16
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 135 | 223 | 230 | 1352 |
+| 10 | 138 | 226 | 231 | 1355 |
 
-**今日深挖：** [Hybrid Reasoning Agents](daily/2026/2026-10-15.md) · 即时价值 · 轻量试点
+**今日深挖：** [Co-Evolving Acting and Forecasting for Language Agents](daily/2026/2026-10-16.md) · 即时价值 · 轻量试点
 
-**核心判断：** 据摘要（arXiv [2610.18861](http://arxiv.org/abs/2610.18861v1)），论文把 agent reasoning 的'latent reasoning 缺少 tool access + reasoning transparency / text reasoning 通过 LLM 交互但 efficiency 不足'拉到'HybridAgents：在一个 unified generation process 中动态在 latent reasoning 与 text-based interaction 之间导航'。是 ai-agent × llm-evaluation × inference-serving 的 'latent-text hybrid reasoning' 即时价值资产——把 'agent reasoning' 从 'latent-only（无 tool access / 透明度低）' 或 'text-only（效率低）' 二态拉到 'unified generation 动态切换 latent / text'，与前两日（2026-10-13 / 2026-10-14）的 RSI-Anything 在 'agent self-improve'、Hide and Seek 在 'reasoning transparency' 层面同源；今日新观点：'hybrid latent-text reasoning' 是 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'reasoning efficiency + tool access + transparency 三难' 的具体范式响应。
+**核心判断：** 据摘要（arXiv [2610.20597](http://arxiv.org/abs/2610.20597v1)），论文把 language agent RL 的'长 horizon rollout cost 高 / 中间步骤监督浪费 / value target 与 observation target 都难构造'拉到'co-evolving acting and forecasting：用一个 forecast head 提供 intermediate supervision / 提升 sample efficiency'。是 ai-agent × llm-evaluation × inference-serving 的 'agentic RL co-evolving supervision' 即时价值资产——把 'language agent training' 从 'one terminal scalar reward' 或 'hand-crafted value / observation target' 三态拉到 'co-evolving acting and forecasting'，与昨日 2026-10-15 的 Two Clocks 在 'RLVR rollout sample efficiency'、DoubtLess 在 'reasoning cost' 层面同源；今日新观点：'co-evolving acting-and-forecasting supervision' 是 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'agentic RL intermediate supervision' 的具体范式响应。
 
-**建议动作：** 把 [2610.18861](http://arxiv.org/abs/2610.18861v1) Hybrid Reasoning Agents 'latent-text hybrid reasoning' 列为即时试点方向，写 'hybrid latent-text agent reasoning' checklist 草稿；把 [2610.18868](http://arxiv.org/abs/2610.18868v1) Tev 'long-horizon dense-progress-reward environment' 列为即时路线资产，写 'long-horizon env synthesis' checklist 草稿；把 [2610.18862](http://arxiv.org/abs/2610.18862v1) DoubtLess 'training-free reasoning trim contrastive decoding' 列为即时路线资产，写 'training-free reasoning trim' checklist 草稿；为 [2610.18853](http://arxiv.org/abs/2610.18853v1) Two Clocks 'RLVR rollout-batch two-clock'、[2610.18874](http://arxiv.org/abs/2610.18874v1) ChunkAct 'agentic robotics action-chunking'、[2610.18860](http://arxiv.org/abs/2610.18860v1) AesCode 'cross-modal aesthetic code' 设置 7 天观察周期；为 [2610.18869](http://arxiv.org/abs/2610.18869v1) VLA Pretraining Quality 'demo-quality VLA pretraining benchmark' 维持长尾卡片。⚠️ 今日抓取列表与前两日（2026-10-13 / 2026-10-14）的 2610.139xx 区间完全不同，新一批 arXiv 提交（2610.1885x-1887x）进入 submittedDate desc 前列，价值路由发生根本性变化（不是 '维持 / 微调'）——前两日的 RSI-Anything / AI Models Can Provably Hide Arbitrary Capabilities / Hide and Seek / When VLMs Destroy What They Know / Can Language Models Play the Wikipedia Game? / Prompteina 不再出现，今日改为 Hybrid Reasoning Agents / Tev / DoubtLess 即时试点 + Two Clocks / ChunkAct / AesCode 趋势卡片 + VLA Pretraining Quality 长尾 + Cepheid / Exact Topological Compliance / Data Free Diffusion 暂忽略；持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 Hybrid Reasoning Agents 是否公开 unified generation process 协议、Tev 是否公开 long-horizon env + training recipe、DoubtLess 是否公开 contrastive decoding harness。
+**建议动作：** 把 [2610.20597](http://arxiv.org/abs/2610.20597v1) Co-Evolving Acting and Forecasting 'co-evolving acting-and-forecasting agentic RL' 列为即时试点方向，写 'co-evolving acting-and-forecasting agentic RL' checklist 草稿；把 [2610.20588](http://arxiv.org/abs/2610.20588v1) Your Transformer Is Secretly Elastic 'retraining-free elastic transformer on-the-fly compute-budget adaptation' 列为即时路线资产，写 'elastic transformer compute budget' checklist 草稿；把 [2610.20582](http://arxiv.org/abs/2610.20582v1) Latent Compaction 'TTT-based KV cache compaction' 列为即时路线资产，写 'TTT-based KV cache compaction' checklist 草稿；为 [2610.20586](http://arxiv.org/abs/2610.20586v1) Continuum Attention 'continuous-curve attention operator'、[2610.20607](http://arxiv.org/abs/2610.20607v1) HiRe-MoMa 'hierarchical-residual MoMa real-world fine-tuning'、[2610.20587](http://arxiv.org/abs/2610.20587v1) Price of Anarchy 'agentic market FPA price-of-anarchy theory' 设置 7 天观察周期；为 [2610.20584](http://arxiv.org/abs/2610.20584v1) Player-1 'synthetic-experience game-agent training' 维持长尾卡片。⚠️ 今日抓取列表与昨日 2026-10-15 的 2610.1885x-1887x 区间完全不同，新一批 arXiv 提交（2610.20578-2610.20607）进入 submittedDate desc 前列，价值路由发生根本性变化（不是 '维持 / 微调'）——昨日的 Hybrid Reasoning Agents / Tev / DoubtLess / Two Clocks / ChunkAct / AesCode / VLA Pretraining Quality / Cepheid / Exact Topological Compliance / Data Free Diffusion 不再出现，今日改为 Co-Evolving Acting and Forecasting / Your Transformer Is Secretly Elastic / Latent Compaction 即时试点 + Continuum Attention / HiRe-MoMa / Price of Anarchy 趋势卡片 + Player-1 长尾 + Humanoid Weights Diffusion / Hodge-Laplacian MoE / SquashFS HPC 暂忽略；持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 Co-Evolving 是否公开 forecast head 训练协议、Elastic Transformer 是否公开 on-the-fly compute-budget 适配 API、Latent Compaction 是否公开 TTT cache training harness。⚠️ 证据标记：所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项需打开 PDF 核验；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-16](daily/2026/2026-10-16.md) | Co-Evolving Acting and Forecasting for Language Agents | 即时价值 | 轻量试点 |
 | [2026-10-15](daily/2026/2026-10-15.md) | Hybrid Reasoning Agents | 即时价值 | 轻量试点 |
 | [2026-10-14](daily/2026/2026-10-14.md) | RSI-Anything: Unlocking Recursive Self-Improvement with World Models | 即时价值 | 轻量试点 |
 | [2026-10-13](daily/2026/2026-10-13.md) | RSI-Anything: Unlocking Recursive Self-Improvement with World Models | 即时价值 | 轻量试点 |
 | [2026-10-12](daily/2026/2026-10-12.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
 | [2026-10-11](daily/2026/2026-10-11.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
 | [2026-10-10](daily/2026/2026-10-10.md) | CSF: Contextual Safety Filtering for Motion Generators | 即时价值 | 轻量试点 |
-| [2026-10-08](daily/2026/2026-10-08.md) | Agent in a Bottle: Can LLM Agents Turn Their Capabilities Into Cheap, Scalable Artifacts? | 即时价值 | 轻量试点 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 602 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 592 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 602 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 604 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 595 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 604 |
 
 ## 为什么做这个项目
 

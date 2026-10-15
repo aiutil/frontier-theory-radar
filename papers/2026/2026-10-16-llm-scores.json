@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-16",
+  "generated_at": "2026-10-16T04:31:30",
+  "note": "今日 arXiv API 正常（成功从 export.arxiv.org 拉到 10 篇 2610.20578-2610.20607 区间论文，全部为 v1，2026-10-13/14 published——与昨日 2026-10-15 的 2610.1885x-1887x 区间又切换了一轮，是 arXiv submittedDate desc 排序的新一批。今日未在 fetch_papers 输出中显示 OpenReview / HuggingFace / Papers with Code 子源（按 fetch_papers.py 提示三源仍 '待实现，跳过'），今日 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项需打开 PDF 核验。价值路由：(1) 即时价值候选：Co-Evolving Acting and Forecasting for Language Agents [2610.20597]——把语言 agent RL 的'长 horizon rollout cost 高 / 中间步骤监督浪费 / value target 与 observation target 都难构造'拉到'co-evolving acting and forecasting：用一个 forecast head 提供 intermediate supervision / 提升 sample efficiency'，是 ai-agent × llm-evaluation 的 'agentic RL co-evolving acting-and-forecasting' 即时资产；Your Transformer Is Secretly Elastic [2610.20588]——把 transformer 部署的'模型 family 只提供 S/B/L 固定档位 / 负载波动下不能 on-the-fly 适配'拉到'retraining-free elastic transformer：一个预训练模型即可在 inference 期间连续适配不同 compute budget'，是 inference-serving × ai-k8s-platform 的 'retraining-free elastic transformer' 即时资产；Latent Compaction with Test-Time Training [2610.20582]——把长上下文 KV cache 压缩的'压缩后信息保留差 / 通用压缩方法在未见 query 上掉点'拉到'latent compaction：在 test-time 上以 reconstruction importance / teacher attention / key-space diversity 初始化 + TTT 训练紧凑 document-specific cache'，是 inference-serving × context-engineering 的 'TTT-based KV cache compaction' 即时资产。(2) 趋势加固：Continuum Attention [2610.20586]——把因果 attention 的'离散 key/value lookup'拉到'continuum attention：连续分段线性 memory curve 上 query 诱导 exponential relevance density + closed-form moment 解 + analytic gradient'，是 inference-serving × context-engineering 的 'continuous-curve attention operator' 趋势资产；HiRe-MoMa [2610.20607]——把 real-world mobile manipulation fine-tuning 的'高维 action 空间 + 异构模块耦合 / 真实微调不稳定'拉到'hierarchical residual policy learning + sparse human guidance'，是 multimodal-agent × ai-agent 的 'hierarchical-residual MoMa real-world fine-tuning' 趋势资产；Price of Anarchy of First-Price Auctions in Agentic Markets [2610.20587]——把 agentic market 的'FPAs 自然但缺理论保证'拉到'first PoA bound for FPAs in agentic markets'，是 ai-agent × llm-evaluation 的 'agentic market FPA price-of-anarchy theory' 趋势资产。(3) 长尾迭代：Player-1 [2610.20584]——把 game-agent 的'大规模演示覆盖不足 + 交互训练环境难拿'拉到'synthetic experience from environment generators + Player-1 model'，是 ai-agent × multimodal-agent 的 'synthetic-experience game-agent training' 长尾资产。⚠️ 今日抓取列表与昨日（2026-10-15）的 2610.1885x-1887x 区间完全不同，新一批 arXiv 提交（2610.20578-2610.20607）进入 submittedDate desc 前列，价值路由发生根本性变化（不是 '维持 / 微调'）——昨日的 Hybrid Reasoning Agents / Tev / DoubtLess / Two Clocks / ChunkAct / AesCode / VLA Pretraining Quality / Cepheid / Exact Topological Compliance / Data Free Diffusion 不再出现，今日改为 Co-Evolving Acting and Forecasting / Your Transformer Is Secretly Elastic / Latent Compaction 即时试点 + Continuum Attention / HiRe-MoMa / Price of Anarchy 趋势卡片 + Player-1 长尾 + Humanoid Weights Diffusion / Hodge-Laplacian MoE / SquashFS HPC 暂忽略；持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 Co-Evolving 是否公开 forecast head 训练协议、Elastic Transformer 是否公开 on-the-fly compute-budget 适配 API、Latent Compaction 是否公开 TTT cache training harness。⚠️ 证据标记：所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项需打开 PDF 核验；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
+  "by_url": {
+    "http://arxiv.org/abs/2610.20597v1": {
+      "score": 78.0,
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "reason": "据摘要（arXiv 2610.20597）：Co-Evolving Acting and Forecasting for Language Agents 把 language agent RL 的'长 horizon rollout cost 高 / 中间步骤监督浪费 / value target（per-step success probability）难构造 / observation target（fit environment response）难构造'拉到'co-evolving acting and forecasting：用一个 forecast head 提供 intermediate supervision / 不依赖手工 value 或 observation target / 提升 sample efficiency'。是 ai-agent × llm-evaluation × inference-serving 的 'co-evolving acting-and-forecasting agentic RL' 即时资产——'forecast head as intermediate supervision' 范式可迁移到任何 'agentic RL sample efficiency / intermediate-supervision agent / long-horizon agent training' 子方向（coding agent RL sample efficiency、tool-use RL intermediate supervision、agentic workflow RL），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'agentic RL co-evolving supervision' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 forecast head 形式化（参数共享 / 损失设计）、acting head 与 forecast head 共训练稳定性、跨 long-horizon task 验证、与 value-target / observation-target baseline 对照、是否开源 Co-Evolving pipeline。今日新即时路线资产卡片：写 'co-evolving acting-and-forecasting agentic RL' checklist 草稿。"
+    },
+    "http://arxiv.org/abs/2610.20588v1": {
+      "score": 77.0,
+      "value_type": "immediate",
+      "matched_topics": [
+        "inference-serving",
+        "ai-k8s-platform"
+      ],
+      "reason": "据摘要（arXiv 2610.20588）：Your Transformer Is Secretly Elastic 把 transformer 部署的'model family 仅提供 S/B/L 固定档位 / 用户必须按硬件与 latency 选档 / 负载波动下 rigidity suboptimal'拉到'retraining-free elastic transformer：一个预训练模型即可在 inference 期间 on-the-fly 适配不同 compute budget / 跨连续计算预算'。是 inference-serving × ai-k8s-platform 的 'retraining-free elastic transformer on-the-fly compute-budget adaptation' 即时资产——'one-model adapts-on-the-fly across a compute continuum' 范式可迁移到任何 'inference compute-budget adaptation / elastic LLM serving / heterogeneous hardware serving' 子方向（serving 弹性调度、推理成本优化、agent workload scaling），与 aiutil 长期关注的 inference-serving × ai-k8s-platform 主线在 'elastic transformer compute budget' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 on-the-fly adaptation 形式化（哪些层 / 哪些 token 参与 / 切换成本）、跨 task 验证、与 early-exit / MoE-routing / cascade baseline 对照、是否开源 elastic transformer wrapper。今日新即时路线资产卡片：写 'retraining-free elastic transformer' checklist 草稿。"
+    },
+    "http://arxiv.org/abs/2610.20582v1": {
+      "score": 76.0,
+      "value_type": "immediate",
+      "matched_topics": [
+        "inference-serving",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2610.20582）：Latent Compaction with Test-Time Training 把长上下文 KV cache 压缩的'cache 越大 memory 与 attention 成本越高 / 压缩后信息保留差 / 通用压缩方法在 unseen query 上掉点'拉到'latent compaction：以 reconstruction importance / teacher attention / key-space diversity 初始化紧凑 document-specific cache + test-time training 同时拟合 attention 输出与 log-normalizer + reconstruction loss'。是 inference-serving × context-engineering 的 'TTT-based KV cache compaction' 即时资产——'test-time training cache compression' 范式可迁移到任何 'long-context inference cost / document-specific cache / TTT cache adaptation / KV cache serving' 子方向（long-context agent、coding agent long file、RAG long doc serving），与 aiutil 长期关注的 inference-serving × context-engineering 主线在 'TTT-based KV cache compaction' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 TTT cache 形式化（参数 / 优化步数）、跨 document 验证、与 quantize / prune / generic compression baseline 对照、是否开源 Latent Compaction harness。今日新即时路线资产卡片：写 'TTT-based KV cache compaction' checklist 草稿。"
+    },
+    "http://arxiv.org/abs/2610.20586v1": {
+      "score": 72.0,
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2610.20586）：Continuum Attention 把因果 Transformer attention 的'discrete key/value lookup / 离散 token 边界'拉到'continuum attention：连续分段线性 memory curve + query 沿曲线诱导 exponential relevance density + closed-form moment 解 + analytic gradient'。是 inference-serving × context-engineering 的 'continuous-curve attention operator' 趋势资产——'closed-form continuous attention' 范式可迁移到任何 'long-context attention / memory-curve attention / closed-form attention / continuous attention operator' 子方向（long-context agent、long doc RAG、agentic memory），与 aiutil 长期关注的 inference-serving × context-engineering 主线在 'continuous-curve attention' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看连续 memory curve 形式化（piecewise linear 参数化）、closed-form moment 是否在长上下文下稳定、跨 task 验证、与 sparse / sliding-window / linear attention baseline 对照。今日新趋势卡片：维持 7-30 天滚动观察周期。"
+    },
+    "http://arxiv.org/abs/2610.20607v1": {
+      "score": 71.0,
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "reason": "据摘要（arXiv 2610.20607）：Hierarchical Residual Policy Learning for Real-World Mobile Manipulation with Sparse Human Guidance（HiRe-MoMa）把 MoMa real-world fine-tuning 的'高维 action 空间 + 异构模块耦合 / 真实微调不稳定 + 样本效率低'拉到'hierarchical residual architecture + sparse human guidance + 稳定且 sample-efficient 的 real-world fine-tuning framework'。是 multimodal-agent × ai-agent 的 'hierarchical-residual MoMa real-world fine-tuning' 趋势资产——'hierarchical residual policy + sparse human guidance' 范式可迁移到任何 'real-world robot fine-tuning / hierarchical residual policy / human-in-the-loop robot learning' 子方向（VLA fine-tuning、agentic robotics、embodied agent），与 aiutil 长期关注的 multimodal-agent × ai-agent 主线在 'hierarchical residual MoMa' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 hierarchical residual 形式化（哪一层 residual / sparse guidance 触发条件）、跨 MoMa task 验证、与 flat policy baseline 对照。今日新趋势卡片：维持 7-30 天滚动观察周期。"
+    },
+    "http://arxiv.org/abs/2610.20587v1": {
+      "score": 70.5,
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.20587）：Price of Anarchy of First-Price Auctions in Agentic Markets 把 agentic market（AI agents 在 serving-time 为 user prompt 竞拍）的'FPAs 自然但缺理论保证 / 不知道 inefficiency 上界'拉到'first price-of-anarchy bound for FPAs in agentic markets'。是 ai-agent × llm-evaluation 的 'agentic market FPA price-of-anarchy theory' 趋势资产——'price-of-anarchy 形式化分析 agentic market' 范式可迁移到任何 'multi-agent market inefficiency / auction theory for AI agents / mechanism design for agent serving' 子方向（multi-agent serving、tool-use market、agent platform），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'agentic market theory' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 PoA bound 形式化（假设集合）、与 VCG / second-price baseline 对照、跨 agent distribution 验证。今日新趋势卡片：维持 7-30 天滚动观察周期。"
+    },
+    "http://arxiv.org/abs/2610.20584v1": {
+      "score": 64.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "multimodal-agent"
+      ],
+      "reason": "据摘要（arXiv 2610.20584）：Player-1: Learning to Play from Synthetic Experience 把 game-agent（computer-use agents 在游戏）的'演示覆盖不足 + 交互训练环境难拿 / 动态 game state 难以演示'拉到'Player-1：从 environment generators 生成 synthetic experience + training pipeline'。是 ai-agent × multimodal-agent 的 'synthetic-experience game-agent training' 长尾资产——'environment-generator synthetic experience' 范式可迁移到任何 'synthetic-experience agent / environment-generator agent training / game-agent training' 子方向（game agent、synthetic-experience coding agent、RL env scaling），与 aiutil 长期关注的 ai-agent × multimodal-agent 主线在 'synthetic-experience game-agent' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 environment generator 形式化、Player-1 训练协议、跨 game 验证。今日新长尾卡片：保存 + 触发条件（开源 env generator / Player-1 训练 harness / 高质量引用）。"
+    },
+    "http://arxiv.org/abs/2610.20606v1": {
+      "score": 46.0,
+      "value_type": "ignore",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "reason": "据摘要（arXiv 2610.20606）：Modeling and Understanding Neural Weights of Humanoid Policies with Diffusion 把 humanoid control 的'直接建模 learned weight 分布'拉到'diffusion over weight space 生成功能网络'——纯 humanoid control + weight-space diffusion 方向，与 aiutil 关注的 'agent / LLM / RAG / eval' 主线弱相关（属于 embodied 专用方向，未明确接入 LLM agent / agentic reasoning / tool-use），且 weight-space diffusion 训练成本高，工程即时价值密度低。代码/benchmark/项目页：暂无。"
+    },
+    "http://arxiv.org/abs/2610.20585v1": {
+      "score": 43.0,
+      "value_type": "ignore",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.20585）：Learnable Hodge-Laplacian Driven Mixture of Experts for Steady-PDE Surrogates on Coarse Unstructured Meshes 把 steady PDE 代理模型的'单一 mixing 机制'拉到'按 Hodge Laplacian 频谱分区 + transformer experts + gating'——纯 scientific ML / PDE surrogate 方向，与 aiutil 关注的 'agent / RAG / multimodal / eval governance' 主线弱相关。代码/benchmark/项目页：暂无。"
+    },
+    "http://arxiv.org/abs/2610.20578v1": {
+      "score": 40.0,
+      "value_type": "ignore",
+      "matched_topics": [
+        "data-engineering"
+      ],
+      "reason": "据摘要（arXiv 2610.20578）：Creating SquashFS Images to Support HPC and AI Datasets 把 HPC/AI dataset 在 metadata-server 高负担场景下的读路径拉到'SquashFS read-only image + workflow 比较'——纯 HPC infra / 文件系统打包方向，与 aiutil 关注的 'agent / LLM / RAG' 主线弱相关（属于 data pipeline infra 改进，未涉及模型 / agent / eval）。代码/benchmark/项目页：暂无。"
+    }
+  }
+}
