@@ -1,6 +1,1312 @@
 {
-  "updated_at": "2026-10-16T04:32:48.885486",
+  "updated_at": "2026-10-17T04:34:20.570769",
   "papers": {
+    "the-world-won-t-wait-evaluating-and-teaching-agents-under-a-live-clock": {
+      "id": "the-world-won-t-wait-evaluating-and-teaching-agents-under-a-live-clock",
+      "title": "The World Won't Wait: Evaluating and Teaching Agents Under a Live Clock",
+      "authors": [
+        "Ningxin Pan, Hanyu Li, Yeqing Shen, Ning Ding, Yehui Tang, Wentao Zhang"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20665",
+      "pdf_url": "https://arxiv.org/pdf/2610.20665",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 7.4,
+        "evidence": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 78.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.20665）：The World Won't Wait 把 LLM agent 在动态环境的'推理与工具调用耗…",
+      "one_line_essence": "据摘要（arXiv 2610.20665）：The World Won't Wait 把 LLM agent 在动态环境的'推理与工具调用耗时 / 时延敏感任务 / 否则正确动作可能 too late'拉到'RealtimeBench：180 tasks × 6 game types 在 inference 时游戏仍在运行 + GPT-6.1-sol 配 Jev 基线对照 + Two-Timescale Offline Recurrent Curriculum'。是 ai-agent × llm-evaluation × inference-serving 的 'realtime agent eval / two-timescale curriculum RL' 即时资产——'live-clock agent benchmark' 范式可迁移到任何 'inference-latency-sensitive agent / live-clock RL / time-constrained tool-use' 子方向（agentic browsing、tool-use RL latency budget、live-clock coding agent eval），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'live-clock agent RL/eval' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 RealtimeBench 任务协议、Two-Timescale curriculum 形式化（哪两 timescale、如何 rollout）、与 paused-clock baseline 对照、是否开源 RealtimeBench harness + benchmark。今天即时路线资产卡片：写 'realtime agent live-clock eval' checklist 草稿。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20665）：The World Won't Wait 把 LLM agent 在动态环境的'推理与工具调用耗时 / 时延敏感任务 / 否则正确动作可能 too late'拉到'RealtimeBench：180 tasks × 6 game types 在 inference 时游戏仍在运行 + GPT-6.1-sol 配 J",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20665）：The World Won't Wait 把 LLM agent 在动态环境的'推理与工具调用耗时 / 时延敏感任务 / 否则正确动作可能 too ",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20665"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20665"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=the-world-won-t-wait-evaluating-and-teaching-agents-under-a-live-clock",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "ineqagent-agentic-inequality-proving-in-lean-with-symbolic-computation": {
+      "id": "ineqagent-agentic-inequality-proving-in-lean-with-symbolic-computation",
+      "title": "IneqAgent: Agentic Inequality Proving in Lean with Symbolic Computation",
+      "authors": [
+        "Gaolei He, Jinhui Li, Ruobing Zuo, Xia Zeng, Zhengfeng Yang"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20681",
+      "pdf_url": "https://arxiv.org/pdf/2610.20681",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 76.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.20681）：IneqAgent 把形式化不等式证明（Lean4）的'纯 LLM reasoning 难精确计…",
+      "one_line_essence": "据摘要（arXiv 2610.20681）：IneqAgent 把形式化不等式证明（Lean4）的'纯 LLM reasoning 难精确计算 / 中间引理难构造 / 单一 symbolic backend 不够'拉到'agentic framework：Lemma-level MCTS 协调引理构造 + goal reformulation + symbolic backend 选择；互补 SoS / Bernstein / SDS backends 出精确证明'。是 ai-agent × llm-evaluation 的 'agentic formal proof lemma-level MCTS' 即时资产——'agent + lemma-level MCTS + symbolic backend' 范式可迁移到任何 'agentic theorem proving / lemma-level MCTS / multi-backend formal' 子方向（agentic formal verification、agent theorem search、代码形式化 RL），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'agentic formal proof' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 lemma-level MCTS 形式化（搜索空间如何编码）、symbolic backend 切换协议、跨 inequality task 验证、与 no-MCTS / single-backend baseline 对照、是否开源 IneqAgent harness。今天即时路线资产卡片：写 'agentic formal proof lemma-level MCTS' checklist 草稿。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20681）：IneqAgent 把形式化不等式证明（Lean4）的'纯 LLM reasoning 难精确计算 / 中间引理难构造 / 单一 symbolic backend 不够'拉到'agentic framework：Lemma-level MCTS 协调引理构造 + goal reformulation + symbo",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20681）：IneqAgent 把形式化不等式证明（Lean4）的'纯 LLM reasoning 难精确计算 / 中间引理难构造 / 单一 symbolic ",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20681"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20681"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=ineqagent-agentic-inequality-proving-in-lean-with-symbolic-computation",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "aria-runtime-inspection-and-amendment-for-multi-agent-systems": {
+      "id": "aria-runtime-inspection-and-amendment-for-multi-agent-systems",
+      "title": "ARIA: Runtime Inspection and Amendment for Multi-Agent Systems",
+      "authors": [
+        "Bolin Shen, Yushun Dong"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20780",
+      "pdf_url": "https://arxiv.org/pdf/2610.20780",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 72.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.20780）：ARIA 把多 agent 系统的'局部错误向其它 agent 传播变成失败任务 / 诊断完成 …",
+      "one_line_essence": "据摘要（arXiv 2610.20780）：ARIA 把多 agent 系统的'局部错误向其它 agent 传播变成失败任务 / 诊断完成 run 难学到 in-progress 干预策略'拉到'ARIA：把 execution-verification 变成 learned policy 在 multi-agent 执行中在线修复 / turn error-correction into amendable policy'。是 ai-agent × llm-evaluation 的 'runtime multi-agent repair / execution-verification' 趋势资产——'in-progress multi-agent amendable policy' 范式可迁移到任何 'runtime MAS repair / in-progress agent intervention / multi-agent verification' 子方向（MAS orchestration、coding multi-agent debug、tool-use multi-agent rollback），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'runtime MAS repair' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 execution-verification 形式化（怎么收集 trace、reward 形式）、amendable policy 训练协议、跨 MAS task 验证。今日新趋势卡片：维持 7-30 天滚动观察周期。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20780）：ARIA 把多 agent 系统的'局部错误向其它 agent 传播变成失败任务 / 诊断完成 run 难学到 in-progress 干预策略'拉到'ARIA：把 execution-verification 变成 learned policy 在 multi-agent 执行中在线修复 / turn error",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20780）：ARIA 把多 agent 系统的'局部错误向其它 agent 传播变成失败任务 / 诊断完成 run 难学到 in-progress 干预策略'拉",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20780"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20780"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=aria-runtime-inspection-and-amendment-for-multi-agent-systems",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "alphadiana-a-measurement-system-for-agents-in-verifiable-reasoning-tasks": {
+      "id": "alphadiana-a-measurement-system-for-agents-in-verifiable-reasoning-tasks",
+      "title": "AlphaDiana: A Measurement System for Agents in Verifiable Reasoning Tasks",
+      "authors": [
+        "Zhanke Zhou, Zongze Li, Weikai Huang, Xuan Li, Chentao Cao, Xiao Feng, Xiangyu Lu, Jinbo Hu, Yi Xie, Nico Pelleriti, Shiyang Liu, Menghan Lu, Max Zimmer, Brando Miranda, Jiangchao Yao, Bo Liu, Sanmi Koyejo, Sebastian Pokutta, Bo Han"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20675",
+      "pdf_url": "https://arxiv.org/pdf/2610.20675",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 71.5,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.20675）：AlphaDiana 把 agent benchmark 的'数据集 / agent / env…",
+      "one_line_essence": "据摘要（arXiv 2610.20675）：AlphaDiana 把 agent benchmark 的'数据集 / agent / env / scorer 紧耦合 / harness-native control 难以公平 / file reuse & memory retention 难控'拉到'AlphaDiana：modular 接口分 datasets, agents, environments, scorers + 保留 harness-native control loop + 控制 file reuse / memory retention + macro/micro 指标 + execution 条件关联 outcomes / behavior / resources'。是 ai-agent × llm-evaluation 的 'agent measurement system / modular harness' 趋势资产——'modular agent measurement with file-reuse & memory controls' 范式可迁移到任何 'agent evaluation harness / agent measurement methodology / multi-agent benchmark fairness' 子方向（agent eval governance、multi-agent harness、tool-use eval），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'agent measurement system' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 modular 接口细节、harness-native control 协议、跨 agent harness 验证。今日新趋势卡片：维持 7-30 天滚动观察周期。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20675）：AlphaDiana 把 agent benchmark 的'数据集 / agent / env / scorer 紧耦合 / harness-native control 难以公平 / file reuse & memory retention 难控'拉到'AlphaDiana：modular 接口分 datas",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20675）：AlphaDiana 把 agent benchmark 的'数据集 / agent / env / scorer 紧耦合 / harness-na",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20675"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20675"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=alphadiana-a-measurement-system-for-agents-in-verifiable-reasoning-tasks",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "counterfactual-neighborhood-risk-fields-evidence-grounded-selective-safety-for-vision-language-models": {
+      "id": "counterfactual-neighborhood-risk-fields-evidence-grounded-selective-safety-for-vision-language-models",
+      "title": "Counterfactual Neighborhood Risk Fields: Evidence-Grounded Selective Safety for Vision-Language Models",
+      "authors": [
+        "Tianshi Wang, Jingsong Wang, Fengling Li, Jingjing Li, Xin Li, Lei Zhu"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20679",
+      "pdf_url": "https://arxiv.org/pdf/2610.20679",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 6.2,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 70.5,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.20679）：CNRF 把 VLM representation-based safety 的'只做 repr…",
+      "one_line_essence": "据摘要（arXiv 2610.20679）：CNRF 把 VLM representation-based safety 的'只做 representation separation 不知道 risk score 含义 / 不知道什么时候可信赖'拉到'CNRF：context-matched benign-harmful counterfactual pair + 用 representation difference 作为 capability-related risk direction + neighborhood evidence + selective safety'。是 security-governance × multimodal-agent 的 'counterfactual risk field VLM safety' 趋势资产——'counterfactual risk field for selective VLM safety' 范式可迁移到任何 'evidence-grounded safety / counterfactual risk modeling / multimodal safety governance' 子方向（VLM guardrail、safety eval、risk score calibration），与 aiutil 长期关注的 security-governance × multimodal-agent 主线在 'counterfactual safety' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 counterfactual 构造方式、risk field 形式化（locally linear / kernel-based）、跨 VLM 验证。今日新趋势卡片：维持 7-30 天滚动观察周期。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20679）：CNRF 把 VLM representation-based safety 的'只做 representation separation 不知道 risk score 含义 / 不知道什么时候可信赖'拉到'CNRF：context-matched benign-harmful counterfactual pai",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20679）：CNRF 把 VLM representation-based safety 的'只做 representation separation 不知道 ",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20679"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20679"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=counterfactual-neighborhood-risk-fields-evidence-grounded-selective-safety-for-vision-language-models",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "l2g-sr-learning-to-guide-llm-based-symbolic-regression": {
+      "id": "l2g-sr-learning-to-guide-llm-based-symbolic-regression",
+      "title": "L2G-SR: Learning to Guide LLM-based Symbolic Regression",
+      "authors": [
+        "Letian Huang, Xiangyu Wang, Haowei Lin, Di He"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20685",
+      "pdf_url": "https://arxiv.org/pdf/2610.20685",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 70.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.20685）：L2G-SR 把 LLM-based symbolic regression 的'只 numer…",
+      "one_line_essence": "据摘要（arXiv 2610.20685）：L2G-SR 把 LLM-based symbolic regression 的'只 numerical error 易选出准确但结构错的 surrogate'拉到'学习结构 verifier + tree edit distance 监督（commutative op, alternative form 视为等效）+ LLM 引导 search'。是 ai-agent × llm-evaluation 的 'LLM-guided symbolic regression with structural verifier' 趋势资产——'learned structural verifier for SR' 范式可迁移到任何 'structural verifier / formula structure eval / SR evaluation' 子方向（code structure eval、SR for science、自动公式生成），与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'structural verifier for SR' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 structural verifier 形式化、TED-equivalence 监督细节、跨 SR benchmark 验证。今日新趋势卡片：维持 7-30 天滚动观察周期。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20685）：L2G-SR 把 LLM-based symbolic regression 的'只 numerical error 易选出准确但结构错的 surrogate'拉到'学习结构 verifier + tree edit distance 监督（commutative op, alternative form 视为等效",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20685）：L2G-SR 把 LLM-based symbolic regression 的'只 numerical error 易选出准确但结构错的 surr",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20685"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20685"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=l2g-sr-learning-to-guide-llm-based-symbolic-regression",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "when-reality-outpaces-cognition-a-new-scaling-principle-for-reliable-intelligence": {
+      "id": "when-reality-outpaces-cognition-a-new-scaling-principle-for-reliable-intelligence",
+      "title": "When Reality Outpaces Cognition: A New Scaling Principle for Reliable Intelligence",
+      "authors": [
+        "Ahsan Adeel, Talha Bin Riaz"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20764",
+      "pdf_url": "https://arxiv.org/pdf/2610.20764",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 66.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.20764）：When Reality Outpaces Cognition 把'系统是否能可靠感知-推理-动…",
+      "one_line_essence": "据摘要（arXiv 2610.20764）：When Reality Outpaces Cognition 把'系统是否能可靠感知-推理-动作'换成'effective Speed of Cognition 形式化 + 跨增长的 observation-reality gap 评估 + 新 scaling principle'。是 ai-agent × multimodal-agent 的 'observation-reality gap scaling / effective speed of cognition' 长尾资产——'effective speed-of-cognition scaling' 范式可迁移到任何 'observation-reality gap / real-time agent reasoning / reliable intelligence scaling' 子方向（real-world agent eval、闭环 agent、可信 autonomy），与 aiutil 长期关注的 ai-agent × multimodal-agent 主线在 'observation-reality gap scaling' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 effective speed-of-cognition 形式化（哪条曲线、量化方式）、跨 task 验证。今日新长尾卡片：保存 + 触发条件（开源实现 / 被后续 scaling paper 引用 / 与实时 agent benchmark 共振）。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20764）：When Reality Outpaces Cognition 把'系统是否能可靠感知-推理-动作'换成'effective Speed of Cognition 形式化 + 跨增长的 observation-reality gap 评估 + 新 scaling principle'。是 ai-agent × mu",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20764）：When Reality Outpaces Cognition 把'系统是否能可靠感知-推理-动作'换成'effective Speed of Co",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-11-07"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20764"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20764"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=when-reality-outpaces-cognition-a-new-scaling-principle-for-reliable-intelligence",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "evaluating-model-capabilities-after-benchmark-saturation": {
+      "id": "evaluating-model-capabilities-after-benchmark-saturation",
+      "title": "Evaluating Model Capabilities After Benchmark Saturation",
+      "authors": [
+        "Morio Hamada, Jehyeok Yeon, Matteo Migliarini, Justin Olive, Magda Dubois"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20667",
+      "pdf_url": "https://arxiv.org/pdf/2610.20667",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 64.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.20667）：Evaluating Model Capabilities After Benchmark Sa…",
+      "one_line_essence": "据摘要（arXiv 2610.20667）：Evaluating Model Capabilities After Benchmark Saturation 把'benchmark 饱和后单一 score 难区分模型 / 影响 safety cases / frontier policy 决策'拉到'从模型解题 transcript 提取差异信号 + 在 benchmark 饱和后仍能评估 capability'。是 llm-evaluation × security-governance 的 'post-saturation capability audit / transcript-based eval' 长尾资产——'transcript-based capability audit' 范式可迁移到任何 'post-saturation benchmark / transcript eval / capability audit' 子方向（model eval governance、frontier policy、AI safety eval），与 aiutil 长期关注的 llm-evaluation × security-governance 主线在 'transcript-based capability audit' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 transcript 特征、跨 task 验证、与原始 score baseline 对照。今日新长尾卡片：保存 + 触发条件（开源 transcript extraction / 多源 safety case 引用）。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20667）：Evaluating Model Capabilities After Benchmark Saturation 把'benchmark 饱和后单一 score 难区分模型 / 影响 safety cases / frontier policy 决策'拉到'从模型解题 transcript 提取差异信号 + 在 b",
+      "research_position": "benchmark",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20667）：Evaluating Model Capabilities After Benchmark Saturation 把'benchmark 饱和后单一",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-11-07"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20667"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20667"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=evaluating-model-capabilities-after-benchmark-saturation",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "value-informed-schedule-trimming-for-accelerated-sequential-monte-carlo-guidance-in-discrete-diffusion": {
+      "id": "value-informed-schedule-trimming-for-accelerated-sequential-monte-carlo-guidance-in-discrete-diffusion",
+      "title": "Value-Informed Schedule Trimming for Accelerated Sequential Monte Carlo Guidance in Discrete Diffusion",
+      "authors": [
+        "Jaehyeon Kim, Ziseok Lee, Siyoung Choi, Kyungsu Kim"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20669",
+      "pdf_url": "https://arxiv.org/pdf/2610.20669",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 63.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.20669）：Value-Informed Schedule Trimming 把 reward-guided…",
+      "one_line_essence": "据摘要（arXiv 2610.20669）：Value-Informed Schedule Trimming 把 reward-guided 离散扩散 SMC guidance 在每个 timestep 都用导致 compute cost 高拉到'value-informed sparse guidance schedule + 只在 subset of timesteps 引导 + reward evaluations & value-gradient 减量'。是 inference-serving × llm-evaluation 的 'SMC-guided discrete diffusion sparse schedule / value-informed trimming' 长尾资产——'value-informed sparse guidance' 范式可迁移到任何 'reward-guided discrete diffusion / SMC sparse schedule / inference cost trimming' 子方向（alignment with discrete diffusion、test-time alignment、generative inference cost），与 aiutil 长期关注的 inference-serving × llm-evaluation 主线在 'value-informed sparse schedule' 层面同源。代码/benchmark/项目页：暂无（仅 PDF / arXiv），需打开 PDF 看 value-informed schedule 形式化（怎么选 step）、跨 task 验证。今日新长尾卡片：保存 + 触发条件（开源 scheduler / 进入 alignment benchmark / 多源跟进）。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20669）：Value-Informed Schedule Trimming 把 reward-guided 离散扩散 SMC guidance 在每个 timestep 都用导致 compute cost 高拉到'value-informed sparse guidance schedule + 只在 subset of t",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20669）：Value-Informed Schedule Trimming 把 reward-guided 离散扩散 SMC guidance 在每个 tim",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-11-07"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20669"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20669"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=value-informed-schedule-trimming-for-accelerated-sequential-monte-carlo-guidance-in-discrete-diffusion",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "when-correctness-feedback-erases-evidence-phase-separated-completeness-auditing-in-verus": {
+      "id": "when-correctness-feedback-erases-evidence-phase-separated-completeness-auditing-in-verus",
+      "title": "When Correctness Feedback Erases Evidence: Phase-Separated Completeness Auditing in Verus",
+      "authors": [
+        "Adarsh Agrawal (Independent Researcher)"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-16",
+      "url": "https://arxiv.org/abs/2610.20676",
+      "pdf_url": "https://arxiv.org/pdf/2610.20676",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-17",
+      "first_deep_dive_daily": "2026-10-17",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 46.0,
+      "decision": "暂时忽略",
+      "one_line_judgement": "当前可忽略：据摘要（arXiv 2610.20676）：When Correctness Feedback Erases Evidence 把 Veru…",
+      "one_line_essence": "据摘要（arXiv 2610.20676）：When Correctness Feedback Erases Evidence 把 Verus/Rust formal spec completeness auditing 的'correctness feedback 反向压制应该被审计发现的 evidence / IntentShield loop 中 corrective feedback 反而压制 certified-witness yield'拉到'phase-separated completeness auditing / independent no-feedback discovery vs corrective-feedback loop / 12 tasks × 4 model families 对照（59.0% vs 27.1%）'——证据有趣但单作者 + 独立研究者 + 单一语言（Verus/Rust）实验，与 aiutil 关注的 'agent / LLM / RAG / multimodal / eval governance' 主线弱相关。代码/benchmark/项目页：暂无。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.20676）：When Correctness Feedback Erases Evidence 把 Verus/Rust formal spec completeness auditing 的'correctness feedback 反向压制应该被审计发现的 evidence / IntentShield loop 中 co",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.20676）：When Correctness Feedback Erases Evidence 把 Verus/Rust formal spec complet",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.20676"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.20676"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=when-correctness-feedback-erases-evidence-phase-separated-completeness-auditing-in-verus",
+      "daily_path": "daily-detail.html?date=2026-10-17",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
     "co-evolving-acting-and-forecasting-for-language-agents": {
       "id": "co-evolving-acting-and-forecasting-for-language-agents",
       "title": "Co-Evolving Acting and Forecasting for Language Agents",
