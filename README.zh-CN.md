@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-17
+## 最新研究 · 2026-10-18
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 140 | 230 | 234 | 1356 |
+| 10 | 142 | 234 | 237 | 1357 |
 
-**今日深挖：** [The World Won't Wait: Evaluating and Teaching Agents Under a Live Clock](daily/2026/2026-10-17.md) · 即时价值 · 轻量试点
+**今日深挖：** [MLExpert: Towards a Generalist Agentic Model for Autonomous Machine Learning Engineering](daily/2026/2026-10-18.md) · 即时价值 · 轻量试点
 
-**核心判断：** 它直接把 '推理与工具调用耗时 / 时延敏感任务的正确动作可能 too late' 拉到 '180-task × 6 game types 的 RealtimeBench + GPT-6.1-sol 在 paused 与 live 两种条件下对照 Jev + Two-Timescale Offline Recurrent Curriculum'，把 agent 评测从 '静态正确率' 推进到 'live-clock 时间预算'，并把 agentic RL 的 curriculum 切成两个 timescale。今天的工程即时价值体现在 'live-clock agent eval harness + two-timescale curriculum RL' 两个可迁移抓手。
+**核心判断：** 它把 'LLM 从辅助研究到自主开发与改进 AI 系统 / AI4AI / recursive self-improvement (RSI)' 拉到 'workflow-driven MLE 系统 + 模型自主交互 (model-directed interaction) + 长视野 experimentation orchestration + generalist agentic model'，把 agentic MLE 从'单一工作流'推进到'通用 agentic ML engineering 模型'。今天的工程即时价值体现在 'generalist agentic MLE 模型 + 长视野 orchestration + model-directed interaction' 三个可迁移抓手。
 
-**建议动作：** 完成 RealtimeBench 摘要精读；写 'realtime agent live-clock eval / two-timescale curriculum RL' checklist 草稿；标记待核验项：live-clock 任务协议、Two-Timescale 形式化、与 paused baseline 对照、是否开源 harness。
+**建议动作：** 完成 MLExpert 摘要精读；写 'generalist agentic MLE / model-directed / workflow-driven orchestration' checklist 草稿；标记待核验项：model-directed 形式化、长视野 orchestration 协议、与现有 MLE baseline 对照、是否开源 harness。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,20 +39,20 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-18](daily/2026/2026-10-18.md) | MLExpert: Towards a Generalist Agentic Model for Autonomous Machine Learning Engineering | 即时价值 | 轻量试点 |
 | [2026-10-17](daily/2026/2026-10-17.md) | The World Won't Wait: Evaluating and Teaching Agents Under a Live Clock | 即时价值 | 轻量试点 |
 | [2026-10-16](daily/2026/2026-10-16.md) | Co-Evolving Acting and Forecasting for Language Agents | 即时价值 | 轻量试点 |
 | [2026-10-15](daily/2026/2026-10-15.md) | Hybrid Reasoning Agents | 即时价值 | 轻量试点 |
 | [2026-10-14](daily/2026/2026-10-14.md) | RSI-Anything: Unlocking Recursive Self-Improvement with World Models | 即时价值 | 轻量试点 |
 | [2026-10-13](daily/2026/2026-10-13.md) | RSI-Anything: Unlocking Recursive Self-Improvement with World Models | 即时价值 | 轻量试点 |
 | [2026-10-12](daily/2026/2026-10-12.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
-| [2026-10-11](daily/2026/2026-10-11.md) | From Reactive Containment to Proactive Assurance: Lessons from OpenAI, Anthropic, and Google Agent Security Incidents | 暂时忽略 | 暂时忽略 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
 | [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 604 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 603 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 608 |
 | [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 604 |
 
 ## 为什么做这个项目
