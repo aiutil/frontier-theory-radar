@@ -1,0 +1,106 @@
+{
+  "date": "2026-10-19",
+  "generated_at": "2026-10-19T04:31:30",
+  "note": "今日 arXiv API 正常（成功从 export.arxiv.org 拉到 10 篇 2610.22343-2610.22372 区间论文，全部为 v1，2026-10-15 published）。今日 10 篇论文全部为 robotics/agent/world-model + 评测/基础设施方向，是过去一周偏向 embodied / agentic / evaluation 主线的延续。价值路由：(1) 即时价值候选：MLExpert（2610.22344）——'通用 agentic ML engineering model'，以'自主构造 dataset / feature / pipeline / training config / 代码迭代'为统一目标，是 ai-agent × coding-agent × llm-evaluation 的'agent4AI 自改进'直接路线资产，与过去多日 KARO / AIDE / MLAgentBench 主线同源；FDE-Gym（2610.22350）——95 个真实客户场景 end-to-end delivery 任务、显式把'需求澄清 / 在线系统 / 未说明约束'当作评测对象，是 ai-agent × llm-evaluation × security-governance 的'ambiguous-spec delivery benchmark'即时资产。(2) 趋势加固：T2-Z（2610.22364）——test-time optimization 把'environment latent'从 hard-coded 推到 learnable，是 multimodal-agent × ai-agent 的'test-time environment latent'趋势资产；CoDA（2610.22362）——'data engine + action policy 共同进化 + 异构 memory of env / failure / learning progress'，是 ai-agent × multimodal-agent 的'co-evolutionary data-policy loop'趋势资产；OmniVerifier-C1（2610.22355）——把'生成式视觉验证器'从 binary True/False 推到'decompose + pointwise score'，是 llm-evaluation × multimodal-agent × rag-knowledge 的'graded verifier'趋势资产。(3) 长尾保存：LIBERO-PeRM（2610.22372）——'preference learning in embodied agents' benchmark，是 multimodal-agent × llm-evaluation 的'preference-as-signal'长尾资产；PathFM（2610.22358）——flow matching 做 multivariate trajectory forecasting，是 inference-serving × multimodal-agent 的'trajectory generative FM'长尾资产；GeoState（2610.22343）——'view-decoupled geometry state for 3D world modeling'，是 multimodal-agent × ai-agent 的'view-invariant state'长尾架构资产；Rethinking Routing Exploration in MoE（2610.22353）——'shared expert + fine-grained expert 共存时 routing 的 exploration dilemma'，是 inference-serving 的'router exploration theory'长尾理论资产；量子电路 LLM（2610.22367）——LLM 发现 SOTA 量子电路，是 ai-agent × inference-serving 的'LLM for scientific circuit discovery'长尾资产。⚠️ 今日 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标 '暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写 '待核验/暂无'，不补写不存在的事实。",
+  "by_url": {
+    "http://arxiv.org/abs/2610.22344v1": {
+      "score": 82.0,
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.22344）：MLExpert 把自己定位为 'a generalist agentic model for autonomous machine learning engineering'，目标是让单个 LLM 自主决定 dataset / feature / pipeline / training config / 训练超参与后续迭代——把 MLE 从 workflow 编排推到 'model-directed interaction, allowing models to autonomously organize and evolve their own ML engineering process'。与 AIDE / KARO / MLAgentBench 主线同源，但定位更激进（'generalist agentic'），是 ai-agent × coding-agent × llm-evaluation 的 'agent4AI / recursive self-improvement' 直接路线资产；可作为内部 'AutoML agent rubric' / 'training-config agent skill' 草稿的素材。今日动作：即时试点方向，写 'ml-expert mle-agent' checklist。代码/benchmark/项目页：暂无，需打开 PDF 看是否公开训练轨迹 / 数据集 / benchmark。"
+    },
+    "http://arxiv.org/abs/2610.22350v1": {
+      "score": 79.5,
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "reason": "据摘要（arXiv 2610.22350）：FDE-Gym 是 'the last mile of AI delivery' benchmark——95 个 end-to-end delivery 任务 / 20 个客户场景 / 18 个行业，每条都从真实 FDE 项目由行业专家改造；明确点出 'existing agent benchmarks typically evaluate agents on well-specified tasks defined by issue reports, specifications, or task tickets. Real-world customer delivery is different: forward-deployed engineers (FDEs) must clarify ambiguous requirements, work in live systems, and uncover unstated constraints'。是把 '需求澄清 / 在线系统 / 未说明约束' 作为评测对象，是 ai-agent × llm-evaluation × security-governance 的 'ambiguous-spec delivery benchmark' 即时资产；与 9 月 OverclaimBench / 9 月-10 月 Harness 类资产在 '评测治理必须面对现实模糊性' 层面同源。今日动作：即时试点方向，写 'fde-gym ambiguous-spec eval' checklist 草稿。代码/benchmark/项目页：暂无，需打开 PDF 看任务数据是否公开 / 评估协议。"
+    },
+    "http://arxiv.org/abs/2610.22364v1": {
+      "score": 74.0,
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2610.22364）：T2-Z 是 test-time optimization of environment latents for robotic world models，把 'augments a robotic world model with a learnable environment latent to condition world predictions' 作为核心。底层假设：'predicting how the world responds to an action requires more than what can be seen: robots must account for environmental factors that are neither directly observable nor explicitly specified'。是 multimodal-agent × ai-agent × context-engineering 的 'test-time environment latent' 趋势资产——'世界模型条件向量可在测试时被优化' 是具身 / world model 路线最近一周的方向，与 VISTA / Workspace Models 类资产在 'long-horizon perception as first-class asset' 层面同源。今日维持趋势卡片并设置 7-14 天观察周期。代码/benchmark/项目页：暂无，需打开 PDF 看 latent 优化协议、跨 robot task 验证、与 baseline world model 对照。"
+    },
+    "http://arxiv.org/abs/2610.22362v1": {
+      "score": 73.5,
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2610.22362）：CoDA（Co-Evolution of Data Engines and Action Policies）提出 'a framework in which a simulation data engine and an action policy co-evolve through a shared heterogeneous memory of environment construction, policy failures, and learning progress'。把 '数据引擎' 与 '动作策略' 共同进化作为核心机制，是 ai-agent × multimodal-agent × context-engineering 的 'co-evolutionary data-policy loop' 趋势资产——'gen sim ≠ useful sim, 必须识别 address policy failure 的环境' 是 embodied data engine 路线最近的方向。今日维持趋势卡片并设置 7 天观察周期。代码/benchmark/项目页：暂无，需打开 PDF 看 memory schema / evolution protocol。"
+    },
+    "http://arxiv.org/abs/2610.22355v1": {
+      "score": 72.0,
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent",
+        "rag-knowledge"
+      ],
+      "reason": "据摘要（arXiv 2610.22355）：OmniVerifier-C1 是 'decomposed graded verifier for rule-governed generative world modeling'，把 'conventional binary verifiers that produce only True/False discrete judgments' 推到 'automatically decomposes complex prompts or environmental rules into fine-grained components and assigns pointwise scores'。是 llm-evaluation × multimodal-agent × rag-knowledge 的 'graded verifier' 趋势资产——'分解 + 连续打分' 范式可迁移到任意 VLM judge / RAG judge / agent eval 子方向，与 OverclaimBench / general judge 路线同源。今日维持趋势卡片并设置 7-14 天观察周期。代码/benchmark/项目页：暂无，需打开 PDF 看 decomposition 协议 / 跨 VLM baseline。"
+    },
+    "http://arxiv.org/abs/2610.22372v1": {
+      "score": 69.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "reason": "据摘要（arXiv 2610.22372）：LIBERO-PeRM 是 'benchmarking personalized robotic manipulation' benchmark，明确点出 'personalized robotic manipulation (PeRM) lacks a controlled benchmark for separating task completion from preference satisfaction'，提 5 个问题研究 'how policies follow preferences in zero-shot settings'。是 multimodal-agent × llm-evaluation × ai-agent 的 'preference-as-signal in embodied agents' 长尾资产——'把 preference 当作独立评测对象' 是 LLM 偏好学习向 embodied 延展的明确证据。今日维持长尾卡片并设置 21 天复盘周期。代码/benchmark/项目页：暂无，需打开 PDF 看 task design / preference 标注协议。"
+    },
+    "http://arxiv.org/abs/2610.22358v1": {
+      "score": 66.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.22358）：PathFM 是 'fast generative forecasting of multivariate trajectories'，明确点出 'most leading models predict marginal quantiles, leaving the dependence structure of future trajectories unspecified. This distinction matters for trajectory-dependent quantities such as cumulative demand, peak load, and event timing, yet point and marginal scores do not reveal it'，用 'flow matching to g[enerate joint trajectories]'。是 inference-serving × multimodal-agent × llm-evaluation 的 'trajectory generative FM' 长尾资产——'用 flow matching 做 multivariate trajectory' 范式可迁移到 demand / load / event-timing 等子方向。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看 flow matching 协议 / 跨 baseline。"
+    },
+    "http://arxiv.org/abs/2610.22343v1": {
+      "score": 65.5,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent",
+        "context-engineering"
+      ],
+      "reason": "据摘要（arXiv 2610.22343）：GeoState 是 'learning view-decoupled geometry states for 3D world modeling'，明确点出 'the view dependence of these features entangles scene dynamics with camera-induced variation, making the resulting state evolution harder to predict'，提出 'separates scene-state evolution from camera-dependent observation'。是 multimodal-agent × ai-agent × context-engineering 的 'view-invariant geometry state' 长尾架构资产——'把视角与几何解耦' 范式可迁移到任意 3D / world-model / embodied 子方向。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看 state 表征 / 跨视角 baseline。"
+    },
+    "http://arxiv.org/abs/2610.22353v1": {
+      "score": 63.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving",
+        "ai-agent"
+      ],
+      "reason": "据摘要（arXiv 2610.22353）：Rethinking Routing Exploration in Modern MoE 提出 'an exploration dilemma between these designs: shared experts can make routing less exploratory by reduci[ng diversity]'，聚焦 'fine-grained expert segmentation + shared experts' 共存时 routing 的探索困境。是 inference-serving × ai-agent 的 'router exploration theory' 长尾理论资产——'shared expert 与 fine-grained 共存' 是 MoE 路线最近的工程现实，'exploration dilemma' 是命名失败模式的关键。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看理论分析 / 跨 MoE baseline。"
+    },
+    "http://arxiv.org/abs/2610.22367v1": {
+      "score": 61.0,
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "reason": "据摘要（arXiv 2610.22367）：Discovering state-of-the-art quantum circuits with large language models 把 'discovering SOTA quantum circuits' 交给 LLM，明确点出 'optimizing them in the quantum setting presents unique challenges, including a reversibility constraint absent from ordinary classical computation'。是 ai-agent × inference-serving × llm-evaluation 的 'LLM for scientific circuit discovery' 长尾资产——'LLM 作为科学发现工具' 是 LLM × scientific discovery 路线的具体证据。今日维持长尾卡片。代码/benchmark/项目页：暂无，需打开 PDF 看 prompt design / search protocol / 跨量子硬件 baseline。"
+    }
+  }
+}
