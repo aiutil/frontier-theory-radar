@@ -1,0 +1,138 @@
+{
+  "id": "openvlharness-real-world-visual-agentic-tool-use-with-multimodal-memory",
+  "title": "OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory",
+  "authors": [
+    "Yu Zhou",
+    "Cheng-Fu Yang",
+    "Rui Sun",
+    "Di Wu",
+    "Sibo Peng"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-19",
+  "url": "http://arxiv.org/abs/2610.26860v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.26860v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-21",
+  "first_deep_dive_daily": "2026-10-21",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 10,
+    "evidence": 4.95,
+    "engineering_testability": 4.05,
+    "trend_signal": 6.55,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 86.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 '加推…",
+  "one_line_essence": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 '加推理预算' 这条最省事的路——'our controlled study on 22 benchmarks shows that simply increasing the inference budget of the base model yields only modest gains'；然后把收益做在 harness 结构上：'a capability layer and persistent multimodal memory'。capability layer 'provides consistent access to heterogeneous backends and converting their outputs into model-readable observations'；persistent memory 把图像、结构化数据与网页引用 'retained as addressable artifacts throughout each query'；coding interface 'executes generated programs over stored data'，从而 'support an iterative process of acquiring, inspecting, and composing multimodal evidence'。证据是 22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照：'improves average scores by 9.7-12.6 points over matched no-tool baselines'（Qwen3-VL-8B +11.2、Kimi K3 +9.7、GPT-6 Astra +9.9）；成本侧给了硬数字——'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。价值路由：这是今日唯一一篇 'harness 结构本身可以直接照着搭' 的论文，属 ai-agent × multimodal-agent × context-engineering × llm-evaluation 的即时资产。代码 / benchmark / 项目页：摘要未给出，暂无可核验链接（待核验/暂无），需打开 PDF 确认 harness 与工具适配协议是否开源。今日动作：按 capability layer / persistent memory / coding interface 三层写 visual-tool-harness checklist。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 '加推理预算' 这条最省事的路——'our controlled study on 22 benchmarks shows that simply increasing the inference budget of the ",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "context-engineering",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 '加推理预算' 这条最省事的路——'our control",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.26860v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.26860v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=openvlharness-real-world-visual-agentic-tool-use-with-multimodal-memory",
+  "daily_path": "daily-detail.html?date=2026-10-21",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

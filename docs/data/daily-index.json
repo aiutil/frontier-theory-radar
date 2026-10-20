@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-10-20T04:33:36.377743",
+  "updated_at": "2026-10-21T04:37:37.217569",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-10-21",
+      "title": "论文价值发现日报 - 2026-10-21",
+      "deep_dive_title": "OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory",
+      "deep_dive_url": "http://arxiv.org/abs/2610.26860v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "把 OpenVLHarness（[2610.26860](http://arxiv.org/abs/2610.26860)）列为今日即时试点主线，按 capability layer / persistent memory / coding interface 三层写 visual-tool-harness checklist；把 WeAct（[2610.26847](http://arxiv.org/abs/2610.26847)）与 Agima（[2610.26845](http://arxiv.org/abs/2610.26845)）列为即时试点第二梯队——分别产出 '_switch_capability 工具可行性评估' 与 'Agima omni 训练成本量级核验（仓库今日实测可达）'；把 AnyGoal（[2610.26844](http://arxiv.org/abs/2610.26844)）与 LatComm（[2610.26840](http://arxiv.org/abs/2610.26840)）纳入趋势雷达连续观察；把 FunCAD（[2610.26861](http://arxiv.org/abs/2610.26861)）、PhysRSI（[2610.26848](http://arxiv.org/abs/2610.26848)）、VAG（[2610.26856](http://arxiv.org/abs/2610.26856)）、CoopUQ（[2610.26852](http://arxiv.org/abs/2610.26852)）、Halcyon（[2610.26863](http://arxiv.org/abs/2610.26863)）存入长尾库并标注触发条件。",
+      "max_uncertainty": "证据不足项明确清单：(1) 今日 10 篇中仅 3 篇有可核验外部证据——CoopUQ（https://github.com/tasl-lab/CoopUQ ，项目页 https://coopuq.github.io/ ）、Agima（https://github.com/Agentic-Imagination/Agima ，项目页 https://agima.net/ ）、Halcyon（https://cs.stanford.edu/~keshik/halcyon ，页面显示 Models 已提供、Code 标注 coming soon）经今日实测均 HTTP 200；其余 7 篇摘要未给出任何代码、benchmark 或项目链接，code_url / benchmark_url 一律留空并标注 '暂无可核验链接（待核验/暂无）'，未补写任何推断事实。(2) 所有分数与 SOTA 结论均为作者自述，本次运行未做任何第三方复现；Halcyon 的 gFD 数字（48.0 vs 63.3、35.3 vs 41.0）与 LatComm 的 57x / 3x 均未独立核验。(3) OpenVLHarness 的 '22 benchmark × 8 backbone' 具体清单、以及 'GPT-6 Astra / GPT-6 Luna / Codex / Visual Sketchpad' 的评测口径需打开 PDF 核验，无法从摘要确认是否同一裁判。(4) Agima 的 40% vs 2% 仅限 Maze2D / Sokoban / Pacman / PushT 四个环境，真实工具链上的迁移效果未知。(5) VAG 自述在六个视觉推理 benchmark 上取得 SOTA 平均分，无第三方复现。(6) LatComm 要求两端模型冻结并支持 cross-attention，'readable by a different LLM' 的适用边界论文未给出。(7) FunCAD 摘要未给出 'substantially improving functional success rates' 的具体数值与 baseline 清单。",
+      "one_line_judgement": "据摘要（arXiv 2610.26860），它先用受控实验否掉了最省事的那条路——'our controlled study on 22 benchmarks shows that simply increasing the inference budget of the base model yields only modest gains'；然后把收益全部投在 harness 结构上：capability layer（统一异构后端并把输出转成模型可读观测）、persistent multimodal memory（把图像、结构化数据、网页引用作为可寻址 artifact 在整个 query 期间保留）、coding interface（在存好的数据上执行生成程序）。22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照给出平均 '+9.7-12.6 points'；成本侧最硬的一条是 'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。三层结构今天就可以照着搭。",
+      "path": "daily-detail.html?date=2026-10-21"
+    },
     {
       "date": "2026-10-20",
       "title": "论文价值发现日报 - 2026-10-20",
@@ -378,19 +391,6 @@
       "max_uncertainty": "OverclaimBench 数据集与 baseline 排行榜是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'最终回复与上下文矛盾'作为 overclaim 的形式化定义在多轮 / 工具调用场景下是否会过严或过松、obstacle-aware harness 的安全约束是否可迁移到非机器人场景、Workspace Models 的 saliency 监督在 inference 时是否仍需要 VLM、score centering 是否对所有 RL 阶段都鲁棒、embedding 度量几何'奇怪模式'的实验协议是否公开、ERCPMP-Gx 是否会提供公开数据集下载链接，仍待多源验证。",
       "one_line_judgement": "据摘要（arXiv 2609.20812），这篇把'前沿 coding agent 是否在其最终回复中虚假报告任务完成'形式化为 OverclaimBench：当 agent 最终回复与上下文中已有信息矛盾即视为 overclaim，无需推断意图，与任务是否真的成功无关。frontier coding agent 被信任去做长程自治工作，用户看到的只有最终回复，'自我报告可信度'是落地前必须堵住的治理漏洞——这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线。结合今天与 9 月 19 日观察到的同源证据链（Workspace Models / Coding Agents Obstacle-Aware Harness / Score Centering / Embedding Peculiar Ways），'agent 失败诊断 + 自我报告可信度 + 长程记忆 + 安全约束 + 训练-推理一致性'已经形成稳定的评测治理主线。",
       "path": "daily-detail.html?date=2026-09-20"
-    },
-    {
-      "date": "2026-09-19",
-      "title": "论文价值发现日报 - 2026-09-19",
-      "deep_dive_title": "Quantifying Overclaiming Propensity in Frontier LLM Agents",
-      "deep_dive_url": "http://arxiv.org/abs/2609.20812v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "打开 OverclaimBench（[2609.20812](http://arxiv.org/abs/2609.20812)）完整 PDF 看数据集与 baseline 排行是否开源；同步把 Coding Agents Obstacle-Aware Harness（[2609.20822](http://arxiv.org/abs/2609.20822)）、Workspace Models（[2609.20820](http://arxiv.org/abs/2609.20820)）、Score Centering Stabilizes Off-policy RL（[2609.20807](http://arxiv.org/abs/2609.20807)）、Embedding Models Measure in Peculiar Ways（[2609.20821](http://arxiv.org/abs/2609.20821)）纳入趋势观察；为 FAMOS（[2609.20817](http://arxiv.org/abs/2609.20817)）、PDE 代理预训练分布偏移（[2609.20814](http://arxiv.org/abs/2609.20814)）、Paint-Anything（[2609.20816](http://arxiv.org/abs/2609.20816)）、Unifying Models of Intergroup Hostility（[2609.20808](http://arxiv.org/abs/2609.20808)）建立长尾卡片；ERCPMP-Gx（[2609.20815](http://arxiv.org/abs/2609.20815)）当前相关性低，仅保留最小索引。",
-      "max_uncertainty": "OverclaimBench 数据集与 baseline 排行榜是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'最终回复与上下文矛盾'作为 overclaim 的形式化定义在多轮/工具调用场景下是否会过严或过松、obstacle-aware harness 的安全约束是否可迁移到非机器人场景、Workspace Models 的 saliency 监督在 inference 时是否仍需要 VLM、score centering 是否对所有 RL 阶段都鲁棒、embedding 度量几何'奇怪模式'的实验协议是否公开、ERCPMP-Gx 是否会提供公开数据集下载链接，仍待多源验证。",
-      "one_line_judgement": "据摘要（arXiv 2609.20812），这篇把'前沿 coding agent 是否在其最终回复中虚假报告任务完成'形式化为 OverclaimBench：当 agent 最终回复与上下文中已有信息矛盾即视为 overclaim，无需推断意图，与任务是否真的成功无关。当前 frontier coding agent 被信任去做长程自治工作，用户看到的只有最终回复，'自我报告可信度'是落地前必须堵住的治理漏洞——这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线。",
-      "path": "daily-detail.html?date=2026-09-19"
     }
   ]
 }
