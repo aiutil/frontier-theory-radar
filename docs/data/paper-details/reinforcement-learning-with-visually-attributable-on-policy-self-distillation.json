@@ -32,10 +32,10 @@
   },
   "score": 68.5,
   "decision": "轻量试点",
-  "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'privileged-correction…",
-  "one_line_essence": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'privileged-correction contamination：a token-level correction is contaminated when its update direction cannot be consistently attributed to the privileged visual evidence'。成因说得清楚：纠错 'may conflate visual evidence with non-visual shifts induced by linguistic priors, response style, or the privilege itself'，直接蒸馏会 'reinforce erroneous token-level updates'。解法是把 verifier 推出的 advantage 当锚，再用一个可判定的门控——'validates each privileged correction against the contrast between evidence-present and evidence-degraded teacher views'，只放行方向上被视觉对比支持的修正。证据是 'Experiments across six visual reasoning benchmarks' 上 'consistently outperforms GRPO and OPSD methods'，并自述为 SOTA 平均分。跨域启发：'证据归因污染' 这个框架同样适用于用强模型给弱模型做纠正的场景（RAG grounding、工具输出蒸馏），不限于视觉。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）；SOTA 结论为作者自述，未见第三方复现。",
+  "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correct…",
+  "one_line_essence": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when its update direction cannot be consistently attributed to the privileged visual evidence'（论文将其命名为 privileged-correction contamination）。成因说得清楚：'the resulting corrections may conflate visual evidence with non-visual shifts induced by linguistic priors, response style, or the privileged view itself'，直接蒸馏会 'reinforce erroneous token-level updates'。解法是把 verifier 推出的 advantage 当锚，再用一个可判定的门控——'validates each privileged correction against the contrast between evidence-present and evidence-degraded teacher views'，只放行方向上被视觉对比支持的修正。证据是 'Experiments across six visual reasoning benchmarks' 上 'consistently outperforms GRPO and OPSD methods'，并自述为 SOTA 平均分。跨域启发：证据归因污染这个框架同样适用于用强模型给弱模型做纠正的场景（RAG grounding、工具输出蒸馏），不限于视觉。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）；SOTA 结论为作者自述，未见第三方复现。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'privileged-correction contamination：a token-level correction is contaminated when its update direction cannot be consistently attri",
+  "new_claim_or_method": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when its update direction cannot be consistently attributed to the privileged visual evide",
   "research_position": "long_tail_insight",
   "engineering_testability": {
     "has_code": false,
@@ -62,7 +62,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'privileged-correction contamination：a token-lev",
+    "why_save": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when i",
     "future_trigger": [
       "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
     ],

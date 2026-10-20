@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-21T04:37:38.574180",
+  "updated_at": "2026-10-21T04:43:20.895275",
   "papers": {
     "openvlharness-real-world-visual-agentic-tool-use-with-multimodal-memory": {
       "id": "openvlharness-real-world-visual-agentic-tool-use-with-multimodal-memory",
@@ -35,10 +35,10 @@
       },
       "score": 86.0,
       "decision": "重点学习",
-      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 '加推…",
-      "one_line_essence": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 '加推理预算' 这条最省事的路——'our controlled study on 22 benchmarks shows that simply increasing the inference budget of the base model yields only modest gains'；然后把收益做在 harness 结构上：'a capability layer and persistent multimodal memory'。capability layer 'provides consistent access to heterogeneous backends and converting their outputs into model-readable observations'；persistent memory 把图像、结构化数据与网页引用 'retained as addressable artifacts throughout each query'；coding interface 'executes generated programs over stored data'，从而 'support an iterative process of acquiring, inspecting, and composing multimodal evidence'。证据是 22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照：'improves average scores by 9.7-12.6 points over matched no-tool baselines'（Qwen3-VL-8B +11.2、Kimi K3 +9.7、GPT-6 Astra +9.9）；成本侧给了硬数字——'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。价值路由：这是今日唯一一篇 'harness 结构本身可以直接照着搭' 的论文，属 ai-agent × multimodal-agent × context-engineering × llm-evaluation 的即时资产。代码 / benchmark / 项目页：摘要未给出，暂无可核验链接（待核验/暂无），需打开 PDF 确认 harness 与工具适配协议是否开源。今日动作：按 capability layer / persistent memory / coding interface 三层写 visual-tool-harness checklist。",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'si…",
+      "one_line_essence": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'simply increasing the inference budget of the base model yields only modest gains' 这条最省事的路（对照覆盖 22 个 benchmark）；然后把收益做在 harness 结构上——作者自述其 'organized around a capability layer and persistent multimodal memory'。capability layer 的原文是 'The capability layer combines task-level tool interfaces with evidence rendering, providing consistent access to heterogeneous backends and converting their outputs into model-readable observations'；persistent memory 'retains the corresponding images, structured data, and web references as addressable artifacts throughout each query'；coding interface 'executes generated programs over stored data'，从而 'support an iterative process of acquiring, inspecting, and composing multimodal evidence'。证据是 22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照：'improves average scores by 9.7-12.6 points over matched no-tool baselines'（Qwen3-VL-8B +11.2、Kimi K3 +9.7、GPT-6 Astra +9.9）；成本侧给了硬数字——'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。价值路由：这是今日唯一一篇 harness 结构本身可以直接照着搭的论文，属 ai-agent × multimodal-agent × context-engineering × llm-evaluation 的即时资产。代码 / benchmark / 项目页：摘要未给出，暂无可核验链接（待核验/暂无），需打开 PDF 确认 harness 与工具适配协议是否开源。今日动作：按 capability layer / persistent memory / coding interface 三层写 visual-tool-harness checklist。",
       "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-      "new_claim_or_method": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 '加推理预算' 这条最省事的路——'our controlled study on 22 benchmarks shows that simply increasing the inference budget of the ",
+      "new_claim_or_method": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'simply increasing the inference budget of the base model yields only modest gains' 这条最省事的路（对照覆盖 22 个 benchmark）；",
       "research_position": "benchmark",
       "engineering_testability": {
         "has_code": false,
@@ -66,7 +66,7 @@
         ]
       },
       "long_tail": {
-        "why_save": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 '加推理预算' 这条最省事的路——'our control",
+        "why_save": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'simply increasing the infere",
         "future_trigger": [
           "待更多证据"
         ],
@@ -453,10 +453,10 @@
       },
       "score": 77.0,
       "decision": "轻量试点",
-      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'for these uses to be re…",
-      "one_line_essence": "据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'for these uses to be reliable, the learned dynamics must behave well beyond the specific state-action combinations observed in expert rollouts'，并用 compositional generalization 作为切入口：'can a world model recombine familiar state and action factors into valid dynamics?'。benchmark 设计克制：每个任务 'within reach of a world model that has learned the underlying dynamics'，只是 'their combinations are underrepresented in expert trajectories'。结论是负面且重要的一类：'current models consistently exhibit failures under these recombinations'。这直接约束我们自己的 world-model / planner 选型——训练分布内跑得好不等于换个目标还能用。摘要提到 'together with an open-source library'，但未给出 URL，暂无可核验链接（待核验/暂无）。今日动作：给内部 world-model 评测加一组 goal-shift 变体，而不是只测训练分布内任务。",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'For these uses to be re…",
+      "one_line_essence": "据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'For these uses to be reliable, however, the learned dynamics must behave well beyond the specific state-action combinations observed in expert rollouts'，并用 compositional generalization 作为切入口：'can a world model recombine familiar state and action factors into valid dynamics?'。benchmark 设计克制：每个任务 'within reach of a world model that has learned the underlying dynamics'，只是 'their combinations are underrepresented in expert trajectories'。结论是负面且重要的一类：'current models consistently exhibit failures under these recombinations'。这直接约束我们自己的 world-model / planner 选型——训练分布内跑得好不等于换个目标还能用。摘要提到 'together with an open-source library'，但未给出 URL，暂无可核验链接（待核验/暂无）。今日动作：给内部 world-model 评测加一组 goal-shift 变体，而不是只测训练分布内任务。",
       "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-      "new_claim_or_method": "据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'for these uses to be reliable, the learned dynamics must behave well beyond the specific state-action combinations observed in expert",
+      "new_claim_or_method": "据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'For these uses to be reliable, however, the learned dynamics must behave well beyond the specific state-action combinations observed ",
       "research_position": "source_paper",
       "engineering_testability": {
         "has_code": false,
@@ -483,7 +483,7 @@
         ]
       },
       "long_tail": {
-        "why_save": "据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'for these uses to be reliable, the learned dynami",
+        "why_save": "据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'For these uses to be reliable, however, the learn",
         "future_trigger": [
           "出现多篇跟进论文、开源项目和工程博客共振"
         ],
@@ -589,7 +589,7 @@
       "score": 75.0,
       "decision": "轻量试点",
       "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.26840）：LatComm 解决的问题很具体——'When the context is passed be…",
-      "one_line_essence": "据摘要（arXiv 2610.26840）：LatComm 解决的问题很具体——'When the context is passed between models as text, the receiving model processes all of its tokens again for every question'。方法核心是把编码与读取拆开：'separating encoding from reading: the context is encoded once without the question, and the receiver selects what to read for each question'；冻结的 context encoder 压成 fixed-size packet，冻结的 receiver 通过 cross-attention 读取，且 'with gates computed from its prompt'。数字：12 个 MCQ 数据集上平均准确率比 single-vector 基线最多 '+10.2 points'；在 QuALITY 上 'it reduces the receiver's input by 57x and answers the questions of an article 3x faster'。价值路由：这是今日唯一一篇直接命中 '多模型串联系统里重复烧 token' 这张真实账单的论文，属 context-engineering × inference-serving 的趋势资产。边界必须写清：latent communication 要求两端模型冻结且可挂 cross-attention，实际接入要改 receiver 架构，'readable by a different LLM' 的泛化范围论文未给出。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）。今日动作：记录为 context-engineering 趋势候选，触发条件是出现可即插即用的实现。",
+      "one_line_essence": "据摘要（arXiv 2610.26840）：LatComm 解决的问题很具体——'When the context is passed between models as text, the receiving model processes all of its tokens again for every question'。方法核心是把编码与读取拆开：'separating encoding from reading: the context is encoded once without the question, and the receiver selects what to read for each question'；冻结的 context encoder 压成 fixed-size packet，冻结的 receiver 通过 cross-attention 读取，且 'with gates computed from its prompt'。数字：'LatComm improves average accuracy over single-vector baselines by up to 10.2 points'（12 个 MCQ 数据集平均）；在 QuALITY 上 'it reduces the receiver's input by 57x and answers the questions of an article 3x faster'。价值路由：这是今日唯一一篇直接命中多模型串联系统里重复烧 token 这张真实账单的论文，属 context-engineering × inference-serving 的趋势资产。边界必须写清：latent communication 要求两端模型冻结且可挂 cross-attention，实际接入要改 receiver 架构，摘要提到的 'readable by a different LLM' 的泛化范围论文未给出。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）。今日动作：记录为 context-engineering 趋势候选，触发条件是出现可即插即用的实现。",
       "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
       "new_claim_or_method": "据摘要（arXiv 2610.26840）：LatComm 解决的问题很具体——'When the context is passed between models as text, the receiving model processes all of its tokens again for every question'。方法核心是把编码与读取拆开：",
       "research_position": "source_paper",
@@ -996,10 +996,10 @@
       },
       "score": 68.5,
       "decision": "轻量试点",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'privileged-correction…",
-      "one_line_essence": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'privileged-correction contamination：a token-level correction is contaminated when its update direction cannot be consistently attributed to the privileged visual evidence'。成因说得清楚：纠错 'may conflate visual evidence with non-visual shifts induced by linguistic priors, response style, or the privilege itself'，直接蒸馏会 'reinforce erroneous token-level updates'。解法是把 verifier 推出的 advantage 当锚，再用一个可判定的门控——'validates each privileged correction against the contrast between evidence-present and evidence-degraded teacher views'，只放行方向上被视觉对比支持的修正。证据是 'Experiments across six visual reasoning benchmarks' 上 'consistently outperforms GRPO and OPSD methods'，并自述为 SOTA 平均分。跨域启发：'证据归因污染' 这个框架同样适用于用强模型给弱模型做纠正的场景（RAG grounding、工具输出蒸馏），不限于视觉。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）；SOTA 结论为作者自述，未见第三方复现。",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correct…",
+      "one_line_essence": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when its update direction cannot be consistently attributed to the privileged visual evidence'（论文将其命名为 privileged-correction contamination）。成因说得清楚：'the resulting corrections may conflate visual evidence with non-visual shifts induced by linguistic priors, response style, or the privileged view itself'，直接蒸馏会 'reinforce erroneous token-level updates'。解法是把 verifier 推出的 advantage 当锚，再用一个可判定的门控——'validates each privileged correction against the contrast between evidence-present and evidence-degraded teacher views'，只放行方向上被视觉对比支持的修正。证据是 'Experiments across six visual reasoning benchmarks' 上 'consistently outperforms GRPO and OPSD methods'，并自述为 SOTA 平均分。跨域启发：证据归因污染这个框架同样适用于用强模型给弱模型做纠正的场景（RAG grounding、工具输出蒸馏），不限于视觉。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）；SOTA 结论为作者自述，未见第三方复现。",
       "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-      "new_claim_or_method": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'privileged-correction contamination：a token-level correction is contaminated when its update direction cannot be consistently attri",
+      "new_claim_or_method": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when its update direction cannot be consistently attributed to the privileged visual evide",
       "research_position": "long_tail_insight",
       "engineering_testability": {
         "has_code": false,
@@ -1026,7 +1026,7 @@
         ]
       },
       "long_tail": {
-        "why_save": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'privileged-correction contamination：a token-lev",
+        "why_save": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when i",
         "future_trigger": [
           "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
         ],
@@ -1133,7 +1133,7 @@
       "score": 66.0,
       "decision": "轻量试点",
       "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26852）：CoopUQ 把多机器人导航里的一个工程直觉做成了显式机制——用不确定性而不只是占用预测来驱动策…",
-      "one_line_essence": "据摘要（arXiv 2610.26852）：CoopUQ 把多机器人导航里的一个工程直觉做成了显式机制——用不确定性而不只是占用预测来驱动策略：'predicts future occupancy grid maps through cross-robot spatiotemporal feature fusion and further leverages forecasts and their uncertainty to guide policy via constrained multi-agent reinforcement learning, where the cost penalizes navigation through regions predicted to be occupied or highly uncertain'。动机是单机器人策略在遮挡与 OOD 下 'often fails to ensure safety and efficiency'，因此策略 'can adapt its risk sensitivity under distribution shifts'。证据分两层：Unity3D 仿真下的 in-distribution + OOD 对比（含不同布局、行人流密度与 rushing 行为），加真机实验 'further demonstrate its robustness across various scenes'。代码与视频今日已实测可达：项目页 https://coopuq.github.io/ （HTTP 200），仓库 https://github.com/tasl-lab/CoopUQ 。长尾理由：领域（移动机器人社会导航）与本项目相关性低，但 '让不确定性显式进入代价函数，而不是只进感知置信度' 是可迁移的可靠性模式。",
+      "one_line_essence": "据摘要（arXiv 2610.26852）：CoopUQ 把多机器人导航里的一个工程直觉做成了显式机制——用不确定性而不只是占用预测来驱动策略：'predicts future occupancy grid maps through cross-robot spatiotemporal feature fusion and further leverages forecasts and their uncertainty to guide policy via constrained multi-agent reinforcement learning, where the cost penalizes navigation through regions predicted to be occupied or highly uncertain'。动机是单机器人策略在遮挡与 OOD 下 'often fails to ensure safety and efficiency'，因此作者称 'This design enables the policy to adapt its risk sensitivity under distribution shifts'。证据分两层：Unity3D 仿真下的 in-distribution + OOD 对比（含不同布局、行人流密度与 rushing 行为），加真机实验 'further demonstrate its robustness across various scenes'。代码与视频今日已实测可达：项目页 https://coopuq.github.io/ （HTTP 200），仓库 https://github.com/tasl-lab/CoopUQ 。长尾理由：领域（移动机器人社会导航）与本项目相关性低，但让不确定性显式进入代价函数、而不是只进感知置信度，是可迁移的可靠性模式。",
       "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
       "new_claim_or_method": "据摘要（arXiv 2610.26852）：CoopUQ 把多机器人导航里的一个工程直觉做成了显式机制——用不确定性而不只是占用预测来驱动策略：'predicts future occupancy grid maps through cross-robot spatiotemporal feature fusion and further leverages",
       "research_position": "long_tail_insight",
@@ -1275,7 +1275,7 @@
       "score": 63.5,
       "decision": "持续观察",
       "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26863）：Halcyon 是一次有价值的证伪型工作，问题是 'whether language pretr…",
-      "one_line_essence": "据摘要（arXiv 2610.26863）：Halcyon 是一次有价值的证伪型工作，问题是 'whether language pretraining is necessary for strong T2I generation'，做法是在 GPIC（100M 图文对）上从零预训练 early-fusion 多模态自回归模型族。两条带具体数字的对照：'Halcyon-0.52B outperforms LlamaGen-XL/8 (48.0 vs. 63.3 gFD) with 18.2× less pretraining compute'、'Halcyon-1.6B outperforms JiT-T2I-XXL/8++ (35.3 vs. 41.0 gFD) with 275× less pretraining compute'；最关键的一句是 'Controlled experiments show that text-only pretraining does not improve T2I generation'——整个领域的默认前提被受控实验否掉。项目页今日已实测可达：https://cs.stanford.edu/~keshik/halcyon （HTTP 200），页面显示 Models 已提供、Code 标注 'coming soon'，因此代码暂无可核验链接（待核验/暂无）。长尾理由：与本项目直接相关性低（文生图预训练），但 '某类预训练并非必需' 这类证伪结论在未来选型时可省下大量算力。",
+      "one_line_essence": "据摘要（arXiv 2610.26863）：Halcyon 是一次有价值的证伪型工作，问题是 'whether language pretraining is necessary for strong T2I generation'，做法是在 GPIC（100M 图文对）上从零预训练 early-fusion 多模态自回归模型族。两条带具体数字的对照：'Halcyon-0.52B outperforms LlamaGen-XL/8'（48.0 vs. 63.3 gFD）且预训练算力少 18.2 倍、'Halcyon-1.6B outperforms JiT-T2I-XXL/8++'（35.3 vs. 41.0 gFD）且预训练算力少 275 倍；最关键的一句是 'Controlled experiments show that text-only pretraining does not improve T2I generation'——整个领域的默认前提被受控实验否掉。项目页今日已实测可达：https://cs.stanford.edu/~keshik/halcyon （HTTP 200），页面显示 Models 已提供、Code 标注 coming soon，因此代码暂无可核验链接（待核验/暂无）。长尾理由：与本项目直接相关性低（文生图预训练），但某类预训练并非必需这类证伪结论在未来选型时可省下大量算力。",
       "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
       "new_claim_or_method": "据摘要（arXiv 2610.26863）：Halcyon 是一次有价值的证伪型工作，问题是 'whether language pretraining is necessary for strong T2I generation'，做法是在 GPIC（100M 图文对）上从零预训练 early-fusion 多模态自回归模型族。两条带具体数字的对照：'Ha",
       "research_position": "long_tail_insight",
