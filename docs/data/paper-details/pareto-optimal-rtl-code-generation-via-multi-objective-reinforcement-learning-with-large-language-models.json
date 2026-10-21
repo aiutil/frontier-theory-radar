@@ -1,0 +1,132 @@
+{
+  "id": "pareto-optimal-rtl-code-generation-via-multi-objective-reinforcement-learning-with-large-language-models",
+  "title": "Pareto-Optimal RTL Code Generation via Multi-Objective Reinforcement Learning with Large Language Models",
+  "authors": [
+    "Koki Takeshita, Kenji Uebayashi, Hikaru Tomonari, Masaya Tsunokake, Koichiro Yawata, Tatsuya Sasaki, Yusuke Ohtsubo, Kota Dohi, Yasuhiro Sogawa"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-21",
+  "url": "https://arxiv.org/abs/2610.26904",
+  "pdf_url": "https://arxiv.org/pdf/2610.26904",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-22",
+  "first_deep_dive_daily": "2026-10-22",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 65.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26904，Comments 为 'Accepted at COLM 2026'）：Pareto-Optima…",
+  "one_line_essence": "据摘要（arXiv 2610.26904，Comments 为 'Accepted at COLM 2026'）：Pareto-Optimal RTL 的目标是改变 RLVR 的优化对象——'not the quality of a single circuit, but the quality and diversity of the entire circuit set obtained through multiple generations in the PPA objective space'。批评很具体：现有方法 'aggregating multiple objectives into a single scalar reward'，于是 'difficult to simultaneously generate diverse Pareto-optimal solutions across different trade-offs'。方法两部分：把 'coverage improvement of the entire Pareto solution set' 改写成顺序生成问题（generation-based training pipeline），以及基于 'Hypervolume Contribution (HVC)' 的奖励函数衡量每个生成电路对 Pareto 面的贡献。数字为作者自述：RTLLM v2 上相对 Hypervolume 'achieves +13.3 percentage points in relative Hypervolume over a baseline without PPA optimization and +14.4 percentage points over a single-objective reinforcement learning method'，并自述在多样性上占优。价值路由：领域（RTL 生成）与我们无关，但 '把标量 reward 改成集合覆盖目标' 是一条通用 RL 训练工程启发——凡是我们在多个维度打分后再加权成一个分数的评测/训练任务（代码生成的正确性-性能-可读性、安全性-成本），加权都会塌掉一个 Pareto 面，此时应先出候选集再做 a posteriori 选择。证据边界：作者自述 'first to propose'，未核验；RTLLM v2 与两个基线的评测口径摘要未说明。代码 / benchmark / 项目页：待核验/暂无。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据摘要（arXiv 2610.26904，Comments 为 'Accepted at COLM 2026'）：Pareto-Optimal RTL 的目标是改变 RLVR 的优化对象——'not the quality of a single circuit, but the quality and diversity of the entire cir",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据摘要（arXiv 2610.26904，Comments 为 'Accepted at COLM 2026'）：Pareto-Optimal RTL 的目标是改变 RLVR 的优化对象——'",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-12"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26904"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.26904"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=pareto-optimal-rtl-code-generation-via-multi-objective-reinforcement-learning-with-large-language-models",
+  "daily_path": "daily-detail.html?date=2026-10-22",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

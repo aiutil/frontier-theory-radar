@@ -1,0 +1,132 @@
+{
+  "id": "datapraxis-scaling-analytics-tasks-via-verified-workspace-evolution",
+  "title": "DataPraxis: Scaling Analytics Tasks via Verified Workspace Evolution",
+  "authors": [
+    "Nan Jia, Wenxuan Shi, Jingqing Ruan, Zhizhao Zeng, Tianyi Zhai, Zhongda Su, Feng Hong, Zhengyu Chen, Wenhao Yan, Haojin Yang, Siqi Dai, Weipeng Zhang, Ke Zeng, Xunliang Cai"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-21",
+  "url": "https://arxiv.org/abs/2610.26924",
+  "pdf_url": "https://arxiv.org/pdf/2610.26924",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-22",
+  "first_deep_dive_daily": "2026-10-22",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 78.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.26924）：DataPraxis 的出发点是任务合成的证据问题——'generating tasks dir…",
+  "one_line_essence": "据摘要（arXiv 2610.26924）：DataPraxis 的出发点是任务合成的证据问题——'generating tasks directly from raw data often overlooks deeper questions that emerge through analysis and provides limited evidence for verification'。方法是 verified workspace evolution：'progressively enriches workspaces with validated findings and artifacts, then inherits and combines these workspaces to uncover deeper questions'，再从累积结论及其依赖构造任务，'verifying analytical results both during evolution and after task assembly'。产出是 DataPraxis-5K（'a dataset of 5,000 verified trajectories spanning diverse domains and output formats'），训练出 DataPraxis-27B 与 DataPraxis-35B-A3B。分数为作者自述：'DataPraxis-27B achieves 55.11 on DABStep and 51.9 on JobBench, matching or surpassing frontier models such as GLM-5.2'。价值路由：今天 10 篇里它与 Navalia 构成同一条主线——'用可验证的自动任务合成喂长程 agent 训练'，而 DataPraxis 的差异点是验证发生在 workspace 演化过程中而非只在任务装配后。对我们的实际用法是 '已验证轨迹' 这个资产形态：不是题目集合，而是带依赖与可验证结果的轨迹。证据 / 数据集：abs 页给出 http://huggingface.co/datasets/stargazerhust/DataPraxis-5k ，但 huggingface.co 今日从本机实测不可达（curl 返回 HTTP 000，非 404），无法确认数据集是否已可下载及实际规模，标注待核验/暂无；DABStep 55.11 / JobBench 51.9 与 GLM-5.2 的对比口径（是否同 prompt / 同工具 / 同裁判）摘要未说明，无第三方复现。今日动作：纳入趋势雷达连续观察；跟踪是否出现开源训练代码与复现报告。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据摘要（arXiv 2610.26924）：DataPraxis 的出发点是任务合成的证据问题——'generating tasks directly from raw data often overlooks deeper questions that emerge through analysis and provides limited evidenc",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据摘要（arXiv 2610.26924）：DataPraxis 的出发点是任务合成的证据问题——'generating tasks directly from raw data often ",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26924"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.26924"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=datapraxis-scaling-analytics-tasks-via-verified-workspace-evolution",
+  "daily_path": "daily-detail.html?date=2026-10-22",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

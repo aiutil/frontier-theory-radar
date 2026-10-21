@@ -1,120 +1,122 @@
 {
-  "updated_at": "2026-10-21T04:43:19.529579",
+  "updated_at": "2026-10-22T04:36:46.604291",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-10-21",
-    "title": "论文价值发现日报 - 2026-10-21",
-    "deep_dive_title": "OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory",
-    "deep_dive_url": "http://arxiv.org/abs/2610.26860v1",
+    "date": "2026-10-22",
+    "title": "论文价值发现日报 - 2026-10-22",
+    "deep_dive_title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
+    "deep_dive_url": "https://arxiv.org/abs/2610.26943",
     "decision": "重点学习",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "把 OpenVLHarness（[2610.26860](http://arxiv.org/abs/2610.26860)）列为今日即时试点主线，按 capability layer / persistent memory / coding interface 三层写 visual-tool-harness checklist；把 WeAct（[2610.26847](http://arxiv.org/abs/2610.26847)）与 Agima（[2610.26845](http://arxiv.org/abs/2610.26845)）列为即时试点第二梯队——分别产出 '_switch_capability 工具可行性评估' 与 'Agima omni 训练成本量级核验（仓库今日实测可达）'；把 AnyGoal（[2610.26844](http://arxiv.org/abs/2610.26844)）与 LatComm（[2610.26840](http://arxiv.org/abs/2610.26840)）纳入趋势雷达连续观察；把 FunCAD（[2610.26861](http://arxiv.org/abs/2610.26861)）、PhysRSI（[2610.26848](http://arxiv.org/abs/2610.26848)）、VAG（[2610.26856](http://arxiv.org/abs/2610.26856)）、CoopUQ（[2610.26852](http://arxiv.org/abs/2610.26852)）、Halcyon（[2610.26863](http://arxiv.org/abs/2610.26863)）存入长尾库并标注触发条件。",
-    "max_uncertainty": "证据不足项明确清单：(1) 今日 10 篇中仅 3 篇有可核验外部证据——CoopUQ（https://github.com/tasl-lab/CoopUQ ，项目页 https://coopuq.github.io/ ）、Agima（https://github.com/Agentic-Imagination/Agima ，项目页 https://agima.net/ ）、Halcyon（https://cs.stanford.edu/~keshik/halcyon ，页面显示 Models 已提供、Code 标注 coming soon）经今日实测均 HTTP 200；其余 7 篇摘要未给出任何代码、benchmark 或项目链接，code_url / benchmark_url 一律留空并标注「暂无可核验链接（待核验/暂无）」，未补写任何推断事实。(2) 所有分数与 SOTA 结论均为作者自述，本次运行未做任何第三方复现；Halcyon 的 gFD 数字（48.0 vs 63.3、35.3 vs 41.0）与 LatComm 的 57x / 3x 均未独立核验。(3) OpenVLHarness 所用的 22 个 benchmark 与 8 个 backbone 的具体清单、以及 GPT-6 Astra / GPT-6 Luna / Codex / Visual Sketchpad 的评测口径需打开 PDF 核验，无法从摘要确认是否同一裁判。(4) Agima 的 40% vs 2% 仅限 Maze2D / Sokoban / Pacman / PushT 四个环境，真实工具链上的迁移效果未知。(5) VAG 自述在六个视觉推理 benchmark 上取得 SOTA 平均分，无第三方复现。(6) LatComm 要求两端模型冻结并支持 cross-attention，摘要中 readable by a different LLM 这句的适用边界论文未给出。(7) FunCAD 摘要只写 substantially improving functional success rates，未给出具体数值与 baseline 清单。",
-    "one_line_judgement": "据摘要（arXiv 2610.26860），它先用受控实验否掉了最省事的那条路——'simply increasing the inference budget of the base model yields only modest gains'；然后把收益全部投在 harness 结构上：capability layer（统一异构后端并把输出转成模型可读观测）、persistent multimodal memory（把图像、结构化数据、网页引用作为可寻址 artifact 在整个 query 期间保留）、coding interface（在存好的数据上执行生成程序）。22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照给出平均 'improves average scores by 9.7-12.6 points over matched no-tool baselines'；成本侧最硬的一条是 'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。三层结构今天就可以照着搭。",
-    "path": "daily-detail.html?date=2026-10-21"
+    "daily_action": "把 MAMath-Bench（[2610.26943](https://arxiv.org/abs/2610.26943)）列为今日即时试点主线，产出两份资产：(1) 内部 agent 评测模板新增三维度——答案正确性 / 推理过程可靠性 / 对抗推理链扰动鲁棒性，并把 '多 agent vs 强单模型' 写入必跑对照清单；(2) 重试逻辑审计清单——统计当前被 '失败即丢弃' 分支吞掉的编译器/工具错误消息条数，对照 Lean 4 repair（[2610.26942](https://arxiv.org/abs/2610.26942)）的 84-96% 首次修复收益与 '浅层执行失败优先' 规则给出改造方案。把 DataPraxis（[2610.26924](https://arxiv.org/abs/2610.26924)）与 Navalia（[2610.26887](https://arxiv.org/abs/2610.26887)）纳入趋势雷达连续观察（自动任务合成 + 长程后训练主线）；把 STRIPS 难度分解（[2610.26964](https://arxiv.org/abs/2610.26964)）、LightCRS（[2610.26948](https://arxiv.org/abs/2610.26948)）、MedPAO-Assist（[2610.26913](https://arxiv.org/abs/2610.26913)）、Industrial Agentic AI（[2610.26941](https://arxiv.org/abs/2610.26941)）、Pareto-Optimal RTL（[2610.26904](https://arxiv.org/abs/2610.26904)）存入长尾库并标注触发条件；塔吊施工（[2610.26899](https://arxiv.org/abs/2610.26899)）保留最小索引。",
+    "max_uncertainty": "证据不足项明确清单：(1) 今日 arXiv 主 API 被限流（HTTP 429），fetch_papers.py 自动回退 rss.arxiv.org，且 RSS 后备只遍历 categories[:4]（cs.AI/cs.CL/cs.LG/cs.SE）后按 max_results=10 截断，因此本次实际覆盖极窄（10 篇全部标注 cs.AI），cs.IR/stat.ML/cs.DC 等分类未覆盖——这是取样口径问题，不代表当天无稿，趋势判断需在后续天数补齐口径后复核。(2) github.com 与 huggingface.co 今日从本机实测均不可达（curl 返回 HTTP 000，非 404，arxiv.org 正常 200），因此 MAMath-Bench 的 https://github.com/mira-ai-lab/AgentMath 、DataPraxis 的 http://huggingface.co/datasets/stargazerhust/DataPraxis-5K 无法确认实际可达性与内容，code_url / benchmark_url 一律留空并标注「待核验/暂无」，未补写任何推断事实。(3) 所有分数、SOTA 与对照结论均为作者自述，本次运行未做任何第三方复现：MAMath-Bench 的三条负面结论、LightCRS 的 HR@1 +35.4% 与 266 倍延迟降低、Pareto-Optimal RTL 的 +13.3pp / +14.4pp、MedPAO-Assist 的 3.3GB / 31 秒，均未独立核验。(4) Navalia（2610.26887）摘要列出五个 benchmark 名称但未给出任何绝对分数或提升幅度（RSS 500 字符截断与 abs 页全文均无数字），其 'consistent gains' 无法量化；起点模型记为 Qwen3.6-35B-A3B，未核验该模型规格。(5) DataPraxis 自述 27B 在 DABStep 55.11 / JobBench 51.9 匹敌 GLM-5.2，但与 frontier 模型的对比口径（是否同 prompt / 同工具 / 同裁判）摘要未说明，DataPraxis-5K 标注的 5,000 条规模无法从不可达的链接核验。(6) Lean 4 repair 的 +32% 相对增益、82 个额外定理、84-96% 首次修复占比均为作者自述，K∈{1,3,5,8} 的各档具体数值摘要未逐一给出；pretrained repair model 的来源、训练数据与许可摘要未说明，迁移到通用工具链需自行准备错误消息语料。(7) STRIPS 难度分解的 0.931 / 0.400 等为七个 STRIPS domain 上的 mean Spearman 绝对值均值，样本量小，属玩具设定，向真实工具链外推需重做；重命名实验的 67.5%→40.0% 未给出置信区间与逐档数值。(8) MAMath-Bench 的完整数据集 URL 在摘要中以 'this https URL' 占位，未展开，无法确认除 AgentMath 外是否另有独立数据发布。(9) 塔吊施工（2610.26899）摘要自述验证用 'several full-scalle retaining wall construction experiments'，未给出任何量化指标与对照，忽略判断主要基于赛道相关性而非质量评价。",
+    "one_line_judgement": "据摘要（arXiv 2610.26943），它把多 agent 数学推理的评测从 '只判最终答案对不对' 扩到三个维度——'problem-solving correctness, reasoning-process reliability, and robustness to adversarial reasoning-chain perturbations'，规模是 '1,003 problems spanning 11 mathematical categories' 且覆盖 text/image/audio 三种模态。但真正值得抄的是它三条结论全是负面的：(1) 'multi-agent collaboration does not consistently improve final-answer accuracy over strong single LLMs'；(2) 协作 'can substantially enhance the coverage of intermediate reasoning, but such gains may come at the cost of increased reasoning redundancy'；(3) 'current systems remain vulnerable to adversarial reasoning errors, particularly those involving subtle structural perturbations'。第 1 条直接推翻我们 '多 agent 默认更强' 的默认假设，第 3 条要求以后评测必须加推理链对抗扰动而不是只换数字。",
+    "path": "daily-detail.html?date=2026-10-22"
   },
   "top_paper": {
-    "title": "OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory",
+    "title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
     "authors": [
-      "Yu Zhou",
-      "Cheng-Fu Yang",
-      "Rui Sun",
-      "Di Wu",
-      "Sibo Peng"
+      "Xinping Wang, Jie Ma, Rui Xing, Wensong Guo, Xiayi Zhang, Jianhao Deng, Zihao Zhou, Boqian Yang, Feijuan He"
     ],
-    "published": "2026-10-19",
-    "updated": "2026-10-19",
+    "published": "2026-10-21",
+    "updated": "2026-10-21",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2610.26860v1",
-    "pdf_url": "https://arxiv.org/pdf/2610.26860v1",
+    "url": "https://arxiv.org/abs/2610.26943",
+    "pdf_url": "https://arxiv.org/pdf/2610.26943",
     "openreview_url": "",
     "paperswithcode_url": "",
     "code_url": "",
     "benchmark_url": "",
     "project_url": "",
-    "abstract": "Multimodal large language models (MLLMs) have made rapid progress on visual reasoning, yet many tasks require evidence that is difficult to obtain through internal reasoning alone: our controlled study on 22 benchmarks shows that simply increasing the inference budget of the base model yields only modest gains. Such tasks demand grounded perception, external knowledge, and numerical measurements obtained through heterogeneous tools, whose outputs must be made interpretable to the model and retai",
+    "abstract": "Mathematical reasoning is a fundamental capability for educational applications of Large Language Models (LLMs), where reliable problem solving requires not only correct answers but also coherent and verifiable reasoning processes. Multi-agent systems (MASs) have shown growing potential in this domain by leveraging collaboration and verification among multiple LLM agents. However, existing evaluations primarily focus on the correctness of final answers in text-only settings, offering limited ins",
     "categories": [
-      "cs.CL",
-      "cs.AI",
-      "cs.CV",
-      "cs.LG",
-      "cs.MM"
+      "cs.AI"
     ],
     "keywords": [
       "agent",
-      "agentic",
-      "memory",
+      "evaluation",
       "benchmark",
       "RAG",
-      "multimodal",
-      "inference"
+      "multimodal"
     ],
-    "score": 86.0,
+    "announce_type": "new",
+    "score": 84.0,
     "decision": "重点学习",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2610.26860v1"
+        "url": "https://arxiv.org/abs/2610.26943"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2610.26860v1"
+        "url": "https://arxiv.org/pdf/2610.26943"
       }
     ],
-    "llm_reason": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'simply increasing the inference budget of the base model yields only modest gains' 这条最省事的路（对照覆盖 22 个 benchmark）；然后把收益做在 harness 结构上——作者自述其 'organized around a capability layer and persistent multimodal memory'。capability layer 的原文是 'The capability layer combines task-level tool interfaces with evidence rendering, providing consistent access to heterogeneous backends and converting their outputs into model-readable observations'；persistent memory 'retains the corresponding images, structured data, and web references as addressable artifacts throughout each query'；coding interface 'executes generated programs over stored data'，从而 'support an iterative process of acquiring, inspecting, and composing multimodal evidence'。证据是 22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照：'improves average scores by 9.7-12.6 points over matched no-tool baselines'（Qwen3-VL-8B +11.2、Kimi K3 +9.7、GPT-6 Astra +9.9）；成本侧给了硬数字——'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。价值路由：这是今日唯一一篇 harness 结构本身可以直接照着搭的论文，属 ai-agent × multimodal-agent × context-engineering × llm-evaluation 的即时资产。代码 / benchmark / 项目页：摘要未给出，暂无可核验链接（待核验/暂无），需打开 PDF 确认 harness 与工具适配协议是否开源。今日动作：按 capability layer / persistent memory / coding interface 三层写 visual-tool-harness checklist。",
-    "id": "openvlharness-real-world-visual-agentic-tool-use-with-multimodal-memory",
+    "llm_reason": "据摘要（arXiv 2610.26943，abs 页 Comments 为 'The dataset is available at this https URL'）：MAMath-Bench 是 process-aware 的多模态多 agent 数学推理 benchmark，规模是 '1,003 problems spanning 11 mathematical categories, multiple difficulty levels, and several modalities, including text, images, and audio'。它把评测拆成三个维度——'problem-solving correctness, reasoning-process reliability, and robustness to adversarial reasoning-chain perturbations'，并带 fine-grained milestone 标注。三条结论全部带否定色彩，这是今日最有迁移价值的一篇：(1) 'multi-agent collaboration does not consistently improve final-answer accuracy over strong single LLMs'；(2) 协作 'can substantially enhance the coverage of intermediate reasoning, but such gains may come at the cost of increased reasoning redundancy'；(3) 'current systems remain vulnerable to adversarial reasoning errors, particularly those involving subtle structural perturbations'。价值路由：这是今日唯一一篇直接改我们评测口径的论文——第 1 条否掉 '多 agent 一定更强' 的默认假设，第 2 条说明过程覆盖率与 token 冗余要一起记，第 3 条要求评测必须包含对推理链的对抗扰动（换单位、变题干结构）而不是只换数字。证据 / 代码：abs 页指向 https://github.com/mira-ai-lab/AgentMath ，但 github.com 今日从本机实测不可达（curl 返回 HTTP 000，非 404），无法确认该仓库与 benchmark 的对应关系与代码可得性，标注待核验/暂无；数据集 URL 论文以 'this https URL' 占位，摘要未展开。今日动作：把三维度（答案正确性 / 推理过程可靠性 / 对抗扰动鲁棒性）抄进内部 agent 评测模板，并把 '多 agent vs 强单模型' 设为必跑对照。",
+    "id": "mamath-bench-process-aware-and-robust-evaluation-of-multimodal-multi-agent-mathematical-reasoning",
     "value_type": "immediate",
     "matched_topics": [
+      "llm-evaluation",
       "ai-agent",
-      "multimodal-agent",
-      "context-engineering",
-      "llm-evaluation"
+      "multimodal-agent"
     ],
     "score_breakdown": {
       "novelty": 4.8,
-      "problem_importance": 8.4,
-      "relevance": 10,
+      "problem_importance": 7.1,
+      "relevance": 8.6,
       "evidence_strength": 4.95,
       "engineering_testability": 4.05,
-      "trend_signal": 6.55,
+      "trend_signal": 4.05,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 5.6,
-      "actionability": 3.8,
+      "asset_convertibility": 4.8,
+      "actionability": 5.0,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 5.0,
+      "weak_evidence_penalty": 4.0,
       "low_relevance_penalty": 0,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "brief_cn": "AI Agent：Multimodal large language models (MLLMs) have made rapid progress on visual re…",
-    "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'si…",
-    "first_seen_date": "2026-10-21",
-    "first_deep_dive_daily": "2026-10-21",
+    "brief_cn": "LLM 评测：Mathematical reasoning is a fundamental capability for educational application…",
+    "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26943，abs 页 Comments 为 'The dataset is available at thi…",
+    "first_seen_date": "2026-10-22",
+    "first_deep_dive_daily": "2026-10-22",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'simply increasing the infere",
+    "long_tail_summary": "据摘要（arXiv 2610.26943，abs 页 Comments 为 'The dataset is available at this https URL'）：MAMath-Bench",
     "related_trends": [
-      "agentic-world-modeling",
-      "context-engineering",
-      "coding-agent"
+      "coding-agent",
+      "agentic-world-modeling"
     ],
-    "detail_path": "paper-detail.html?id=openvlharness-real-world-visual-agentic-tool-use-with-multimodal-memory"
+    "detail_path": "paper-detail.html?id=mamath-bench-process-aware-and-robust-evaluation-of-multimodal-multi-agent-mathematical-reasoning"
   },
-  "paper_count": 1990,
+  "paper_count": 2000,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 249,
+  "long_tail_count": 254,
   "value_distribution": {
-    "immediate": 147,
-    "trend": 238,
-    "long_tail": 249,
-    "ignore": 1356
+    "immediate": 149,
+    "trend": 240,
+    "long_tail": 254,
+    "ignore": 1357
   },
   "recent_dailies": [
+    {
+      "date": "2026-10-22",
+      "title": "论文价值发现日报 - 2026-10-22",
+      "deep_dive_title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
+      "deep_dive_url": "https://arxiv.org/abs/2610.26943",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "把 MAMath-Bench（[2610.26943](https://arxiv.org/abs/2610.26943)）列为今日即时试点主线，产出两份资产：(1) 内部 agent 评测模板新增三维度——答案正确性 / 推理过程可靠性 / 对抗推理链扰动鲁棒性，并把 '多 agent vs 强单模型' 写入必跑对照清单；(2) 重试逻辑审计清单——统计当前被 '失败即丢弃' 分支吞掉的编译器/工具错误消息条数，对照 Lean 4 repair（[2610.26942](https://arxiv.org/abs/2610.26942)）的 84-96% 首次修复收益与 '浅层执行失败优先' 规则给出改造方案。把 DataPraxis（[2610.26924](https://arxiv.org/abs/2610.26924)）与 Navalia（[2610.26887](https://arxiv.org/abs/2610.26887)）纳入趋势雷达连续观察（自动任务合成 + 长程后训练主线）；把 STRIPS 难度分解（[2610.26964](https://arxiv.org/abs/2610.26964)）、LightCRS（[2610.26948](https://arxiv.org/abs/2610.26948)）、MedPAO-Assist（[2610.26913](https://arxiv.org/abs/2610.26913)）、Industrial Agentic AI（[2610.26941](https://arxiv.org/abs/2610.26941)）、Pareto-Optimal RTL（[2610.26904](https://arxiv.org/abs/2610.26904)）存入长尾库并标注触发条件；塔吊施工（[2610.26899](https://arxiv.org/abs/2610.26899)）保留最小索引。",
+      "max_uncertainty": "证据不足项明确清单：(1) 今日 arXiv 主 API 被限流（HTTP 429），fetch_papers.py 自动回退 rss.arxiv.org，且 RSS 后备只遍历 categories[:4]（cs.AI/cs.CL/cs.LG/cs.SE）后按 max_results=10 截断，因此本次实际覆盖极窄（10 篇全部标注 cs.AI），cs.IR/stat.ML/cs.DC 等分类未覆盖——这是取样口径问题，不代表当天无稿，趋势判断需在后续天数补齐口径后复核。(2) github.com 与 huggingface.co 今日从本机实测均不可达（curl 返回 HTTP 000，非 404，arxiv.org 正常 200），因此 MAMath-Bench 的 https://github.com/mira-ai-lab/AgentMath 、DataPraxis 的 http://huggingface.co/datasets/stargazerhust/DataPraxis-5K 无法确认实际可达性与内容，code_url / benchmark_url 一律留空并标注「待核验/暂无」，未补写任何推断事实。(3) 所有分数、SOTA 与对照结论均为作者自述，本次运行未做任何第三方复现：MAMath-Bench 的三条负面结论、LightCRS 的 HR@1 +35.4% 与 266 倍延迟降低、Pareto-Optimal RTL 的 +13.3pp / +14.4pp、MedPAO-Assist 的 3.3GB / 31 秒，均未独立核验。(4) Navalia（2610.26887）摘要列出五个 benchmark 名称但未给出任何绝对分数或提升幅度（RSS 500 字符截断与 abs 页全文均无数字），其 'consistent gains' 无法量化；起点模型记为 Qwen3.6-35B-A3B，未核验该模型规格。(5) DataPraxis 自述 27B 在 DABStep 55.11 / JobBench 51.9 匹敌 GLM-5.2，但与 frontier 模型的对比口径（是否同 prompt / 同工具 / 同裁判）摘要未说明，DataPraxis-5K 标注的 5,000 条规模无法从不可达的链接核验。(6) Lean 4 repair 的 +32% 相对增益、82 个额外定理、84-96% 首次修复占比均为作者自述，K∈{1,3,5,8} 的各档具体数值摘要未逐一给出；pretrained repair model 的来源、训练数据与许可摘要未说明，迁移到通用工具链需自行准备错误消息语料。(7) STRIPS 难度分解的 0.931 / 0.400 等为七个 STRIPS domain 上的 mean Spearman 绝对值均值，样本量小，属玩具设定，向真实工具链外推需重做；重命名实验的 67.5%→40.0% 未给出置信区间与逐档数值。(8) MAMath-Bench 的完整数据集 URL 在摘要中以 'this https URL' 占位，未展开，无法确认除 AgentMath 外是否另有独立数据发布。(9) 塔吊施工（2610.26899）摘要自述验证用 'several full-scalle retaining wall construction experiments'，未给出任何量化指标与对照，忽略判断主要基于赛道相关性而非质量评价。",
+      "one_line_judgement": "据摘要（arXiv 2610.26943），它把多 agent 数学推理的评测从 '只判最终答案对不对' 扩到三个维度——'problem-solving correctness, reasoning-process reliability, and robustness to adversarial reasoning-chain perturbations'，规模是 '1,003 problems spanning 11 mathematical categories' 且覆盖 text/image/audio 三种模态。但真正值得抄的是它三条结论全是负面的：(1) 'multi-agent collaboration does not consistently improve final-answer accuracy over strong single LLMs'；(2) 协作 'can substantially enhance the coverage of intermediate reasoning, but such gains may come at the cost of increased reasoning redundancy'；(3) 'current systems remain vulnerable to adversarial reasoning errors, particularly those involving subtle structural perturbations'。第 1 条直接推翻我们 '多 agent 默认更强' 的默认假设，第 3 条要求以后评测必须加推理链对抗扰动而不是只换数字。",
+      "path": "daily-detail.html?date=2026-10-22"
+    },
     {
       "date": "2026-10-21",
       "title": "论文价值发现日报 - 2026-10-21",
@@ -192,890 +194,804 @@
       "max_uncertainty": "Co-Evolving Acting and Forecasting（[2610.20597](http://arxiv.org/abs/2610.20597v1)）forecast head 形式化（参数共享 / 损失设计）、acting head 与 forecast head 共训练稳定性、跨 long-horizon task 验证、与 value-target / observation-target baseline 对照、是否开源 Co-Evolving pipeline；Your Transformer Is Secretly Elastic（[2610.20588](http://arxiv.org/abs/2610.20588v1)）on-the-fly adaptation 形式化（哪些层 / 哪些 token 参与 / 切换成本）、跨 task 验证、与 early-exit / MoE-routing / cascade baseline 对照、是否开源 elastic transformer wrapper；Latent Compaction（[2610.20582](http://arxiv.org/abs/2610.20582v1)）TTT cache 形式化（参数 / 优化步数）、跨 document 验证、与 quantize / prune / generic compression baseline 对照、是否开源 Latent Compaction harness；Continuum Attention（[2610.20586](http://arxiv.org/abs/2610.20586v1)）连续 memory curve 形式化（piecewise linear 参数化）、closed-form moment 在长上下文下稳定性、跨 task 验证、与 sparse / sliding-window / linear attention baseline 对照是否公开；HiRe-MoMa（[2610.20607](http://arxiv.org/abs/2610.20607v1)）hierarchical residual 形式化（哪一层 residual / sparse guidance 触发条件）、跨 MoMa task 验证、与 flat policy baseline 对照是否公开；Price of Anarchy（[2610.20587](http://arxiv.org/abs/2610.20587v1)）PoA bound 形式化（假设集合）、与 VCG / second-price baseline 对照、跨 agent distribution 验证是否公开；Player-1（[2610.20584](http://arxiv.org/abs/2610.20584v1)）environment generator 形式化、Player-1 训练协议、跨 game 验证是否公开。今日 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
       "one_line_judgement": "据摘要（arXiv [2610.20597](http://arxiv.org/abs/2610.20597v1)），论文把 language agent RL 的'长 horizon rollout cost 高 / 中间步骤监督浪费 / value target 与 observation target 都难构造'拉到'co-evolving acting and forecasting：用一个 forecast head 提供 intermediate supervision / 提升 sample efficiency'。是 ai-agent × llm-evaluation × inference-serving 的 'agentic RL co-evolving supervision' 即时价值资产——把 'language agent training' 从 'one terminal scalar reward' 或 'hand-crafted value / observation target' 三态拉到 'co-evolving acting and forecasting'，与昨日 2026-10-15 的 Two Clocks 在 'RLVR rollout sample efficiency'、DoubtLess 在 'reasoning cost' 层面同源；今日新观点：'co-evolving acting-and-forecasting supervision' 是 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'agentic RL intermediate supervision' 的具体范式响应。",
       "path": "daily-detail.html?date=2026-10-16"
-    },
-    {
-      "date": "2026-10-15",
-      "title": "论文价值发现日报 - 2026-10-15",
-      "deep_dive_title": "Hybrid Reasoning Agents",
-      "deep_dive_url": "http://arxiv.org/abs/2610.18861v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 [2610.18861](http://arxiv.org/abs/2610.18861v1) Hybrid Reasoning Agents 'latent-text hybrid reasoning' 列为即时试点方向，写 'hybrid latent-text agent reasoning' checklist 草稿；把 [2610.18868](http://arxiv.org/abs/2610.18868v1) Tev 'long-horizon dense-progress-reward environment' 列为即时路线资产，写 'long-horizon env synthesis' checklist 草稿；把 [2610.18862](http://arxiv.org/abs/2610.18862v1) DoubtLess 'training-free reasoning trim contrastive decoding' 列为即时路线资产，写 'training-free reasoning trim' checklist 草稿；为 [2610.18853](http://arxiv.org/abs/2610.18853v1) Two Clocks 'RLVR rollout-batch two-clock'、[2610.18874](http://arxiv.org/abs/2610.18874v1) ChunkAct 'agentic robotics action-chunking'、[2610.18860](http://arxiv.org/abs/2610.18860v1) AesCode 'cross-modal aesthetic code' 设置 7 天观察周期；为 [2610.18869](http://arxiv.org/abs/2610.18869v1) VLA Pretraining Quality 'demo-quality VLA pretraining benchmark' 维持长尾卡片。⚠️ 今日抓取列表与前两日（2026-10-13 / 2026-10-14）的 2610.139xx 区间完全不同，新一批 arXiv 提交（2610.1885x-1887x）进入 submittedDate desc 前列，价值路由发生根本性变化（不是 '维持 / 微调'）——前两日的 RSI-Anything / AI Models Can Provably Hide Arbitrary Capabilities / Hide and Seek / When VLMs Destroy What They Know / Can Language Models Play the Wikipedia Game? / Prompteina 不再出现，今日改为 Hybrid Reasoning Agents / Tev / DoubtLess 即时试点 + Two Clocks / ChunkAct / AesCode 趋势卡片 + VLA Pretraining Quality 长尾 + Cepheid / Exact Topological Compliance / Data Free Diffusion 暂忽略；持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 Hybrid Reasoning Agents 是否公开 unified generation process 协议、Tev 是否公开 long-horizon env + training recipe、DoubtLess 是否公开 contrastive decoding harness。",
-      "max_uncertainty": "Hybrid Reasoning Agents（[2610.18861](http://arxiv.org/abs/2610.18861v1)）unified generation process 形式化（latent state × text interaction 切换条件）、tool access 在 latent 段的注入方式、reasoning transparency 协议、跨 task 验证、与 pure text agent / pure latent agent baseline 对照、是否开源 HybridAgents pipeline 与 environment 接口是否公开；Tev（[2610.18868](http://arxiv.org/abs/2610.18868v1)）environment synthesis 协议、dense progress reward 形式化、跨 hours-to-days 任务验证、与 sparse-reward long-horizon baseline 对照、是否开源 Tev environment + training recipe 是否公开；DoubtLess（[2610.18862](http://arxiv.org/abs/2610.18862v1)）contrastive decoding 形式化（small vs large logit difference）、accuracy preservation 跨 benchmark 验证、token reduction 比、与 early-stop / wait-ban baseline 对照、是否开源 DoubtLess 推理与 decoding harness 是否公开；Two Clocks（[2610.18853](http://arxiv.org/abs/2610.18853v1)）two-clock 形式化（progress clock + collapse clock）、local quadratic 模型范围、跨 task / model 验证是否公开；ChunkAct（[2610.18874](http://arxiv.org/abs/2610.18874v1)）action chunk 形式化（chunk length / chunk trigger / reasoning reuse 协议）、跨 VLA task 验证、与 naive per-primitive baseline 对照是否公开；AesCode（[2610.18860](http://arxiv.org/abs/2610.18860v1)）decoupled cross-modal reward 形式化、code model 与 image generator 接口、跨 artifact type 验证是否公开；VLA Pretraining Quality（[2610.18869](http://arxiv.org/abs/2610.18869v1)）24 target tasks 具体清单、reward × label granularity 协议、跨 VLA model 验证是否公开。今日 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
-      "one_line_judgement": "据摘要（arXiv [2610.18861](http://arxiv.org/abs/2610.18861v1)），论文把 agent reasoning 的'latent reasoning 缺少 tool access + reasoning transparency / text reasoning 通过 LLM 交互但 efficiency 不足'拉到'HybridAgents：在一个 unified generation process 中动态在 latent reasoning 与 text-based interaction 之间导航'。是 ai-agent × llm-evaluation × inference-serving 的 'latent-text hybrid reasoning' 即时价值资产——把 'agent reasoning' 从 'latent-only（无 tool access / 透明度低）' 或 'text-only（效率低）' 二态拉到 'unified generation 动态切换 latent / text'，与前两日（2026-10-13 / 2026-10-14）的 RSI-Anything 在 'agent self-improve'、Hide and Seek 在 'reasoning transparency' 层面同源；今日新观点：'hybrid latent-text reasoning' 是 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'reasoning efficiency + tool access + transparency 三难' 的具体范式响应。",
-      "path": "daily-detail.html?date=2026-10-15"
     }
   ],
   "top_papers": [
     {
-      "title": "OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory",
+      "title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
       "authors": [
-        "Yu Zhou",
-        "Cheng-Fu Yang",
-        "Rui Sun",
-        "Di Wu",
-        "Sibo Peng"
+        "Xinping Wang, Jie Ma, Rui Xing, Wensong Guo, Xiayi Zhang, Jianhao Deng, Zihao Zhou, Boqian Yang, Feijuan He"
       ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26860v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26860v1",
+      "url": "https://arxiv.org/abs/2610.26943",
+      "pdf_url": "https://arxiv.org/pdf/2610.26943",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Multimodal large language models (MLLMs) have made rapid progress on visual reasoning, yet many tasks require evidence that is difficult to obtain through internal reasoning alone: our controlled study on 22 benchmarks shows that simply increasing the inference budget of the base model yields only modest gains. Such tasks demand grounded perception, external knowledge, and numerical measurements obtained through heterogeneous tools, whose outputs must be made interpretable to the model and retai",
+      "abstract": "Mathematical reasoning is a fundamental capability for educational applications of Large Language Models (LLMs), where reliable problem solving requires not only correct answers but also coherent and verifiable reasoning processes. Multi-agent systems (MASs) have shown growing potential in this domain by leveraging collaboration and verification among multiple LLM agents. However, existing evaluations primarily focus on the correctness of final answers in text-only settings, offering limited ins",
       "categories": [
-        "cs.CL",
-        "cs.AI",
-        "cs.CV",
-        "cs.LG",
-        "cs.MM"
+        "cs.AI"
       ],
       "keywords": [
         "agent",
-        "agentic",
-        "memory",
+        "evaluation",
         "benchmark",
         "RAG",
-        "multimodal",
-        "inference"
+        "multimodal"
       ],
-      "score": 86.0,
+      "announce_type": "new",
+      "score": 84.0,
       "decision": "重点学习",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26860v1"
+          "url": "https://arxiv.org/abs/2610.26943"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26860v1"
+          "url": "https://arxiv.org/pdf/2610.26943"
         }
       ],
-      "llm_reason": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'simply increasing the inference budget of the base model yields only modest gains' 这条最省事的路（对照覆盖 22 个 benchmark）；然后把收益做在 harness 结构上——作者自述其 'organized around a capability layer and persistent multimodal memory'。capability layer 的原文是 'The capability layer combines task-level tool interfaces with evidence rendering, providing consistent access to heterogeneous backends and converting their outputs into model-readable observations'；persistent memory 'retains the corresponding images, structured data, and web references as addressable artifacts throughout each query'；coding interface 'executes generated programs over stored data'，从而 'support an iterative process of acquiring, inspecting, and composing multimodal evidence'。证据是 22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照：'improves average scores by 9.7-12.6 points over matched no-tool baselines'（Qwen3-VL-8B +11.2、Kimi K3 +9.7、GPT-6 Astra +9.9）；成本侧给了硬数字——'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。价值路由：这是今日唯一一篇 harness 结构本身可以直接照着搭的论文，属 ai-agent × multimodal-agent × context-engineering × llm-evaluation 的即时资产。代码 / benchmark / 项目页：摘要未给出，暂无可核验链接（待核验/暂无），需打开 PDF 确认 harness 与工具适配协议是否开源。今日动作：按 capability layer / persistent memory / coding interface 三层写 visual-tool-harness checklist。",
-      "id": "openvlharness-real-world-visual-agentic-tool-use-with-multimodal-memory",
+      "llm_reason": "据摘要（arXiv 2610.26943，abs 页 Comments 为 'The dataset is available at this https URL'）：MAMath-Bench 是 process-aware 的多模态多 agent 数学推理 benchmark，规模是 '1,003 problems spanning 11 mathematical categories, multiple difficulty levels, and several modalities, including text, images, and audio'。它把评测拆成三个维度——'problem-solving correctness, reasoning-process reliability, and robustness to adversarial reasoning-chain perturbations'，并带 fine-grained milestone 标注。三条结论全部带否定色彩，这是今日最有迁移价值的一篇：(1) 'multi-agent collaboration does not consistently improve final-answer accuracy over strong single LLMs'；(2) 协作 'can substantially enhance the coverage of intermediate reasoning, but such gains may come at the cost of increased reasoning redundancy'；(3) 'current systems remain vulnerable to adversarial reasoning errors, particularly those involving subtle structural perturbations'。价值路由：这是今日唯一一篇直接改我们评测口径的论文——第 1 条否掉 '多 agent 一定更强' 的默认假设，第 2 条说明过程覆盖率与 token 冗余要一起记，第 3 条要求评测必须包含对推理链的对抗扰动（换单位、变题干结构）而不是只换数字。证据 / 代码：abs 页指向 https://github.com/mira-ai-lab/AgentMath ，但 github.com 今日从本机实测不可达（curl 返回 HTTP 000，非 404），无法确认该仓库与 benchmark 的对应关系与代码可得性，标注待核验/暂无；数据集 URL 论文以 'this https URL' 占位，摘要未展开。今日动作：把三维度（答案正确性 / 推理过程可靠性 / 对抗扰动鲁棒性）抄进内部 agent 评测模板，并把 '多 agent vs 强单模型' 设为必跑对照。",
+      "id": "mamath-bench-process-aware-and-robust-evaluation-of-multimodal-multi-agent-mathematical-reasoning",
       "value_type": "immediate",
       "matched_topics": [
+        "llm-evaluation",
         "ai-agent",
-        "multimodal-agent",
-        "context-engineering",
-        "llm-evaluation"
+        "multimodal-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 8.4,
-        "relevance": 10,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
         "evidence_strength": 4.95,
         "engineering_testability": 4.05,
-        "trend_signal": 6.55,
+        "trend_signal": 4.05,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 3.8,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
+        "weak_evidence_penalty": 4.0,
         "low_relevance_penalty": 0,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "AI Agent：Multimodal large language models (MLLMs) have made rapid progress on visual re…",
-      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'si…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
+      "brief_cn": "LLM 评测：Mathematical reasoning is a fundamental capability for educational application…",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26943，abs 页 Comments 为 'The dataset is available at thi…",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "据摘要（arXiv 2610.26860，published 2026-10-19）：OpenVLHarness 先用受控实验否掉了 'simply increasing the infere",
+      "long_tail_summary": "据摘要（arXiv 2610.26943，abs 页 Comments 为 'The dataset is available at this https URL'）：MAMath-Bench",
       "related_trends": [
-        "agentic-world-modeling",
-        "context-engineering",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=openvlharness-real-world-visual-agentic-tool-use-with-multimodal-memory"
-    },
-    {
-      "title": "WeAct: Dynamic Weight Switching as Agent Actions",
-      "authors": [
-        "Rui Shi",
-        "Xunjian Yin",
-        "Jiacheng Sang",
-        "Zichuan Liu",
-        "Shuyan Zhou"
-      ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26847v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26847v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Long-horizon agents must learn heterogeneous capabilities from interleaved trajectories. Updating shared parameters to learn new capabilities can degrade previously acquired ones, resulting in catastrophic forgetting. As a trajectory unfolds, different stages may require different capabilities, yet conventional joint training and static adapter merging maintain a fixed parameter configuration throughout execution. We introduce WeAct (Weight-level Internal Actions), which trains independent capab",
-      "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CL"
-      ],
-      "keywords": [
-        "agent",
-        "benchmark",
-        "RAG"
-      ],
-      "score": 83.0,
-      "decision": "重点学习",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26847v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26847v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.26847）：WeAct 把 '选哪个能力' 直接做成 agent 的一个动作——'trains independent capability-specific LoRA adapters over a frozen backbone and adds adapter selection to the agent's action space'，并明确 'These internal actions use the model's native tool-calling interface for on-demand capability composition in a shared context'。它针对的是长程 agent 的老毛病：'Updating shared parameters to learn new capabilities can degrade previously acquired ones, resulting in catastrophic forgetting'，而 'conventional joint training and static adapter merging maintain a fixed parameter configuration throughout execution'。证据是八个 deep-research benchmark：Qwen3-32B 上比 full fine-tuning 对手提升 '6.2% relative' 且 'using less compute'，比最强静态 LoRA 合并提升 '27.5% relative'；并支持 'modular continual adaptation'——新增 code computation adapter 不动 backbone 与其他 adapter。工程含义很直接：能力路由走的是模型原生 function-calling 通道，不需要额外 head、不需要改 serving 协议，是今日最容易落地的 '能力组合' 实现路径。代码 / benchmark / 项目页：摘要未给出，暂无可核验链接（待核验/暂无）。今日动作：评估给现有 agent 增加一个 '_switch_capability' 类工具的可行性。",
-      "id": "weact-dynamic-weight-switching-as-agent-actions",
-      "value_type": "immediate",
-      "matched_topics": [
-        "ai-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Long-horizon agents must learn heterogeneous capabilities from interleaved tra…",
-      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26847）：WeAct 把 '选哪个能力' 直接做成 agent 的一个动作——'trains indepe…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "据摘要（arXiv 2610.26847）：WeAct 把 '选哪个能力' 直接做成 agent 的一个动作——'trains independent capability-specific ",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=weact-dynamic-weight-switching-as-agent-actions"
-    },
-    {
-      "title": "Train An Imaginative Agent",
-      "authors": [
-        "Jiaxin Ge",
-        "Junyi Zhang",
-        "Tianning Chai",
-        "Hanjun Yoo",
-        "Chenyang Wang"
-      ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26845v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26845v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "https://github.com/Agentic-Imagination/Agima",
-      "benchmark_url": "",
-      "project_url": "https://agima.net/",
-      "abstract": "A seemingly reasonable push in Sokoban can make the puzzle unsolvable. To avoid such mistakes, an agent has to anticipate the consequences of its actions before execution, especially when feedback from the real environment is sparse or actions are irreversible. We introduce Agentic Imagination (Agima), a training framework that trains an agent to imagine before acting, i.e. to be imaginative. Agima trains a single omni model to propose actions, generate images of their outcomes, and then reason ",
-      "categories": [
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent",
-        "agentic",
-        "world model",
-        "planning"
-      ],
-      "score": 81.5,
-      "decision": "重点学习",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26845v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26845v1"
-        },
-        {
-          "label": "Code",
-          "url": "https://github.com/Agentic-Imagination/Agima"
-        },
-        {
-          "label": "Project",
-          "url": "https://agima.net/"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.26845）：Agima（Agentic Imagination）训练单个 omni 模型 'propose actions, generate images of their outcomes, and then reason over these imagined futures to decide what to execute in the real environment'，先 SFT 统一 policy 与 world model，再用 agentic RL 教它用这些想象中的未来做规划。最强的一条数字：'Trained with SFT alone on two-box Sokoban, Agima solves 40% of four-box puzzles while seeing the real board only once every five moves, compared with an action-only planner that only solves 2%'——在真环境反馈稀疏且动作不可逆时，'先想象再执行' 的收益是 20 倍量级。行为层面的证据比分数更有价值：'it learns a new unified format that was unseen during the SFT stage, learns to conduct forward thinking only when necessary, and branches more frequently at critical decision points'，即 'learn when and where to look ahead'。代码与项目页今日已实测可达：项目页 https://agima.net/ （HTTP 200），仓库 https://github.com/Agentic-Imagination/Agima 。属 ai-agent × multimodal-agent × llm-evaluation 的即时资产，但迁移风险必须写清：证据全部来自 Maze2D / Sokoban / Pacman / PushT 四个玩具环境，'generalizes to harder settings unseen during training' 尚未在真实工具链上验证。今日动作：先读仓库确认 omni 模型的训练成本量级。",
-      "id": "train-an-imaginative-agent",
-      "value_type": "immediate",
-      "matched_topics": [
-        "ai-agent",
-        "multimodal-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 5.9,
-        "engineering_testability": 6.05,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 6.1,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 3.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 3.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：A seemingly reasonable push in Sokoban can make the puzzle unsolvable. To avoi…",
-      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26845）：Agima（Agentic Imagination）训练单个 omni 模型 'propose …",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "据摘要（arXiv 2610.26845）：Agima（Agentic Imagination）训练单个 omni 模型 'propose actions, generate images o",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=train-an-imaginative-agent"
-    },
-    {
-      "title": "AnyGoal: On World Model Generalization Beyond Expert Rollouts",
-      "authors": [
-        "Heejeong Nam",
-        "Divyat Mahajan",
-        "Quentin Le Lidec",
-        "Randall Balestriero",
-        "David Klindt"
-      ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26844v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26844v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "The goal of a world model is to capture the dynamics of an environment. This has the great appeal that it allows agents to plan and simulate a course of actions with the help of a world model. For these uses to be reliable, however, the learned dynamics must behave well beyond the specific state-action combinations observed in expert rollouts. Despite this, the relationship between data coverage, dynamics generalization, and downstream planning performance remains underexplored. We study this re",
-      "categories": [
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent",
-        "world model",
-        "evaluation",
-        "benchmark",
-        "RAG",
-        "planning"
-      ],
-      "score": 77.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26844v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26844v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'For these uses to be reliable, however, the learned dynamics must behave well beyond the specific state-action combinations observed in expert rollouts'，并用 compositional generalization 作为切入口：'can a world model recombine familiar state and action factors into valid dynamics?'。benchmark 设计克制：每个任务 'within reach of a world model that has learned the underlying dynamics'，只是 'their combinations are underrepresented in expert trajectories'。结论是负面且重要的一类：'current models consistently exhibit failures under these recombinations'。这直接约束我们自己的 world-model / planner 选型——训练分布内跑得好不等于换个目标还能用。摘要提到 'together with an open-source library'，但未给出 URL，暂无可核验链接（待核验/暂无）。今日动作：给内部 world-model 评测加一组 goal-shift 变体，而不是只测训练分布内任务。",
-      "id": "anygoal-on-world-model-generalization-beyond-expert-rollouts",
-      "value_type": "trend",
-      "matched_topics": [
-        "ai-agent",
-        "multimodal-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：The goal of a world model is to capture the dynamics of an environment. This h…",
-      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'For these uses to be re…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要（arXiv 2610.26844）：AnyGoal 盯住世界模型的一个具体失效面——'For these uses to be reliable, however, the learn",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=anygoal-on-world-model-generalization-beyond-expert-rollouts"
-    },
-    {
-      "title": "LatComm: Reusable Context Compression for Latent Communication between Large Language Models",
-      "authors": [
-        "Huawei Lin",
-        "Jinting Liu",
-        "Tan Yu",
-        "Weijie Zhao"
-      ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26840v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26840v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Systems that combine several large language models (LLMs) often use one context for many questions. When the context is passed between models as text, the receiving model processes all of its tokens again for every question. Avoiding this cost requires a context representation that is compact, reusable across questions, and readable by a different LLM. Existing compression and latent communication methods each provide only some of these properties. We introduce LatComm, a Latent Communication in",
-      "categories": [
-        "cs.CL",
-        "cs.AI"
-      ],
-      "keywords": [
-        "RAG"
-      ],
-      "score": 75.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26840v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26840v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.26840）：LatComm 解决的问题很具体——'When the context is passed between models as text, the receiving model processes all of its tokens again for every question'。方法核心是把编码与读取拆开：'separating encoding from reading: the context is encoded once without the question, and the receiver selects what to read for each question'；冻结的 context encoder 压成 fixed-size packet，冻结的 receiver 通过 cross-attention 读取，且 'with gates computed from its prompt'。数字：'LatComm improves average accuracy over single-vector baselines by up to 10.2 points'（12 个 MCQ 数据集平均）；在 QuALITY 上 'it reduces the receiver's input by 57x and answers the questions of an article 3x faster'。价值路由：这是今日唯一一篇直接命中多模型串联系统里重复烧 token 这张真实账单的论文，属 context-engineering × inference-serving 的趋势资产。边界必须写清：latent communication 要求两端模型冻结且可挂 cross-attention，实际接入要改 receiver 架构，摘要提到的 'readable by a different LLM' 的泛化范围论文未给出。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）。今日动作：记录为 context-engineering 趋势候选，触发条件是出现可即插即用的实现。",
-      "id": "latcomm-reusable-context-compression-for-latent-communication-between-large-language-models",
-      "value_type": "trend",
-      "matched_topics": [
-        "context-engineering",
-        "inference-serving",
-        "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 5.0,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "Context Engineering：Systems that combine several large language models (LLMs) often use one contex…",
-      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.26840）：LatComm 解决的问题很具体——'When the context is passed be…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据摘要（arXiv 2610.26840）：LatComm 解决的问题很具体——'When the context is passed between models as text, the ",
-      "related_trends": [
-        "context-engineering",
+        "coding-agent",
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=latcomm-reusable-context-compression-for-latent-communication-between-large-language-models"
+      "detail_path": "paper-detail.html?id=mamath-bench-process-aware-and-robust-evaluation-of-multimodal-multi-agent-mathematical-reasoning"
     },
     {
-      "title": "Can It Actually Work? Synthesizing Functional CAD Mechanisms",
+      "title": "Fix, Not Just Resample: Bounded Compiler-Guided Repair in Lean 4",
       "authors": [
-        "Wenqian Zhang",
-        "Yangyi Huang",
-        "Zigeng Xu",
-        "Weiyang Liu",
-        "Zhen Liu"
+        "Haotian Deng, Chris Farber, Sonal Narasimha, Samskrithi Sivakumar, Yexiang Xue"
       ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26861v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26861v1",
+      "url": "https://arxiv.org/abs/2610.26942",
+      "pdf_url": "https://arxiv.org/pdf/2610.26942",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "While LLM agents can generate visually plausible CAD assemblies, these designs often fail to fulfill their intended physical functions. We study functional CAD design, a setting where agents interpret underspecified requests to construct and iteratively revise mechanisms that satisfy functional requirements in physical simulation. Verifying these requirements is nontrivial: different candidate mechanisms may realize the same function through entirely different components, controls, and operating",
+      "abstract": "Automated theorem provers often rely on sampling language models, but proof assistants like Lean reject each failed step with a precise error message --- information that pure sampling discards. To overcome this, we introduce a bounded, online step-level repair module. Our search samples $K$ candidate tactics at each step and repairs a failed tactic at most $R$ times. Instead of discarding failed tactics, we feed the compiler's error message to a pretrained repair model to fix individual rejecte",
       "categories": [
-        "cs.CV",
-        "cs.CL",
-        "cs.GR"
+        "cs.AI"
       ],
       "keywords": [
-        "agent",
         "benchmark"
       ],
-      "score": 71.5,
-      "decision": "轻量试点",
+      "announce_type": "new",
+      "score": 82.0,
+      "decision": "重点学习",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26861v1"
+          "url": "https://arxiv.org/abs/2610.26942"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26861v1"
+          "url": "https://arxiv.org/pdf/2610.26942"
         }
       ],
-      "llm_reason": "据摘要（arXiv 2610.26861）：FunCAD 处理的是 agent 的 '看起来对但物理上不工作' 问题——'these designs often fail to fulfill their intended physical functions'。核心难点在验证而非生成：'different candidate mechanisms may realize the same function through entirely different components, controls, and operating sequences'，所以不能简单判 '功能是否达成'。FunCAD-Harness 的做法是 'translates abstract requirements into candidate-specific physical tests and uses simulation feedback to guide design revisions'；benchmark FunCADBench 覆盖 '46 mechanism families with interdependent and multi-step operations'。可迁移的启发不在 CAD，而在 '把抽象需求编译成候选相关的验证用例'——这对任何 '生成结果不可直接断言、但可被仿真或物理间接验证' 的 agent 场景都成立。证据为 'Experiments across frontier LLM agents' 上相对 standard simulation-augmented baselines 的成功率提升，摘要未给出具体数值与 baseline 列表。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）。今日动作：存为长尾，触发条件是出现开源实现或被多模态 agent 综述引用。",
-      "id": "can-it-actually-work-synthesizing-functional-cad-mechanisms",
-      "value_type": "long_tail",
+      "llm_reason": "据摘要（arXiv 2610.26942）：这篇的判断很克制——'proof assistants like Lean reject each failed step with a precise error message --- information that pure sampling discards'。方法是 bounded、online 的 step-level repair：每步采样 K 个候选 tactic，失败的那个最多修 R 次，'Instead of discarding failed tactics, we feed the compiler's error message to a pretrained repair model to fix individual rejected steps in place'。证据给得比较实：跨 K∈{1,3,5,8} 全部候选预算都优于 sampling-only baseline，'achieving up to a 32% relative gain and solving 82 additional theorems on a 1,990-theorem subset of the LeanDojo benchmark'。最有价值的是它没有回避代价与边界——'Repair is not free: it trades extra runtime for reachable proofs'；收益分布是 'the first repair attempt capturing 84--96% of the total gain'；收益来源是可诊断的：'the gain comes almost entirely from shallow tactic-execution failures rather than structural errors such as type mismatches'。并且做了第二次验证：'replicates on a second benchmark (Lean Workbook), nearly doubling the solve rate with zero regressions'。价值路由：跨域规则是今天就能用的那条——工具/编译器的精确错误消息是一等反馈信号，丢掉的每条错误都是免费信息；先修浅层失败、把修复预算集中在这类错误上性价比最高。代码 / benchmark / 项目页：abs 页未给出链接，待核验/暂无；pretrained repair model 的来源与训练数据摘要未说明，迁移到通用工具链需自行准备错误消息语料。今日动作：审计我们现有 agent 重试逻辑中 '失败即丢弃' 的分支，统计被丢弃的编译器/工具错误消息量。",
+      "id": "fix-not-just-resample-bounded-compiler-guided-repair-in-lean-4",
+      "value_type": "immediate",
       "matched_topics": [
+        "coding-agent",
         "ai-agent",
-        "llm-evaluation",
-        "multimodal-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "AI Agent：While LLM agents can generate visually plausible CAD assemblies, these designs…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26861）：FunCAD 处理的是 agent 的 '看起来对但物理上不工作' 问题——'these des…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.26861）：FunCAD 处理的是 agent 的 '看起来对但物理上不工作' 问题——'these designs often fail to fulfill",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=can-it-actually-work-synthesizing-functional-cad-mechanisms"
-    },
-    {
-      "title": "Where is Physical RSI capability from? An Observational Scaling Law of LLM-as-policy",
-      "authors": [
-        "Zekai Li",
-        "Jiayi Yu",
-        "Jinlu Zhang",
-        "Luyang Niu",
-        "Zekun Qi"
-      ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26848v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26848v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "In this paper, we systematically investigate the mechanisms, scaling behavior, and generalization of physical Recursive self-improvement. We introduce PhysRSI-eval to quantify physical RSI through a five-axis metric: First-Attempt Performance, Efficiency, Success, Budget and Improvement from failure. Different VLMs are evaluated on 18 manipulation tasks under a fixed interaction budget. The analysis of experimental results motivates the Physical Barrel Hypothesis: different capabilities may cons",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.CV"
-      ],
-      "keywords": [
-        "agent",
-        "benchmark",
-        "RAG"
-      ],
-      "score": 70.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26848v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26848v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.26848）：这篇的稀缺之处是它质疑了 '物理自我改进' 这个概念本身的可测性。评测用五轴指标——'First-Attempt Performance, Efficiency, Success, Budget and Improvement from failure'——跑 '18 manipulation tasks under a fixed interaction budget'。最有诊断价值的是它指出公开 benchmark 均分接近的系统可被区分，且 'high scores need not come with early or efficient gains'，即总分掩盖了学习曲线的差异。工作区干预实验给了具体结论：'Removing history reduces late-round success, frozen workspaces remain useful on unseen layouts, and three cross-task cases achieve success earlier'，并由此提出 'scene-specific adaptation and reusable experience can coexist'。对评测治理的直接启发：单一均分不足以判断 agent 是否在 '学习'。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）。今日动作：把五轴指标（尤其 Improvement from failure 与 Budget）抄进内部 agent 评测模板。",
-      "id": "where-is-physical-rsi-capability-from-an-observational-scaling-law-of-llm-as-policy",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-agent",
-        "llm-evaluation",
-        "multimodal-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 6.6,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.05,
-        "trend_signal": 4.05,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 4.0,
-        "actionability": 5.0,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "AI Agent：In this paper, we systematically investigate the mechanisms, scaling behavior,…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26848）：这篇的稀缺之处是它质疑了 '物理自我改进' 这个概念本身的可测性。评测用五轴指标——'First…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.26848）：这篇的稀缺之处是它质疑了 '物理自我改进' 这个概念本身的可测性。评测用五轴指标——'First-Attempt Performance, Effi",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=where-is-physical-rsi-capability-from-an-observational-scaling-law-of-llm-as-policy"
-    },
-    {
-      "title": "Reinforcement Learning with Visually Attributable On-Policy Self-Distillation",
-      "authors": [
-        "Shiao Xie",
-        "Siyu Chen",
-        "Jianwei Lv",
-        "Xiandong Li",
-        "Yujin Wang"
-      ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26856v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26856v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Multimodal reinforcement learning with verifiable rewards (RLVR) provides reliable task-level supervision, yet offers limited guidance for localizing errors in visual reasoning. On-policy self-distillation (OPSD) complements this supervision with dense token-level corrections from a privileged teacher equipped with an evidence-centered visual view. However, the resulting corrections may conflate visual evidence with non-visual shifts induced by linguistic priors, response style, or the privilege",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "keywords": [
-        "benchmark",
-        "RAG",
-        "multimodal"
-      ],
-      "score": 68.5,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26856v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26856v1"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when its update direction cannot be consistently attributed to the privileged visual evidence'（论文将其命名为 privileged-correction contamination）。成因说得清楚：'the resulting corrections may conflate visual evidence with non-visual shifts induced by linguistic priors, response style, or the privileged view itself'，直接蒸馏会 'reinforce erroneous token-level updates'。解法是把 verifier 推出的 advantage 当锚，再用一个可判定的门控——'validates each privileged correction against the contrast between evidence-present and evidence-degraded teacher views'，只放行方向上被视觉对比支持的修正。证据是 'Experiments across six visual reasoning benchmarks' 上 'consistently outperforms GRPO and OPSD methods'，并自述为 SOTA 平均分。跨域启发：证据归因污染这个框架同样适用于用强模型给弱模型做纠正的场景（RAG grounding、工具输出蒸馏），不限于视觉。代码 / benchmark / 项目页：暂无可核验链接（待核验/暂无）；SOTA 结论为作者自述，未见第三方复现。",
-      "id": "reinforcement-learning-with-visually-attributable-on-policy-self-distillation",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "multimodal-agent",
         "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "Multimodal Agent：Multimodal reinforcement learning with verifiable rewards (RLVR) provides reli…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correct…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when i",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=reinforcement-learning-with-visually-attributable-on-policy-self-distillation"
-    },
-    {
-      "title": "CoopUQ: Robust Multi-Robot Social Navigation via Uncertainty-Aware Cooperative Forecasting",
-      "authors": [
-        "Zehao Wang",
-        "Jianpeng Yao",
-        "Yuping Wang",
-        "Yiping Li",
-        "Jiaqi Li"
-      ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26852v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26852v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "https://github.com/tasl-lab/CoopUQ",
-      "benchmark_url": "",
-      "project_url": "https://coopuq.github.io/",
-      "abstract": "Reinforcement learning enables mobile robots to make fast and scalable navigation decisions in constrained human-shared environments. However, directly extending single-robot approaches to multi-robot settings often fails to ensure safety and efficiency, especially under occlusions and out-of-distribution (OOD) scenarios, where individual robots may overlook potential risks or make inaccurate predictions. Leveraging cooperation effectively for both prediction and navigation remains a major chall",
-      "categories": [
-        "cs.RO",
-        "cs.AI",
-        "cs.LG"
-      ],
-      "keywords": [
-        "agent",
-        "RAG"
-      ],
-      "score": 66.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26852v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26852v1"
-        },
-        {
-          "label": "Code",
-          "url": "https://github.com/tasl-lab/CoopUQ"
-        },
-        {
-          "label": "Project",
-          "url": "https://coopuq.github.io/"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.26852）：CoopUQ 把多机器人导航里的一个工程直觉做成了显式机制——用不确定性而不只是占用预测来驱动策略：'predicts future occupancy grid maps through cross-robot spatiotemporal feature fusion and further leverages forecasts and their uncertainty to guide policy via constrained multi-agent reinforcement learning, where the cost penalizes navigation through regions predicted to be occupied or highly uncertain'。动机是单机器人策略在遮挡与 OOD 下 'often fails to ensure safety and efficiency'，因此作者称 'This design enables the policy to adapt its risk sensitivity under distribution shifts'。证据分两层：Unity3D 仿真下的 in-distribution + OOD 对比（含不同布局、行人流密度与 rushing 行为），加真机实验 'further demonstrate its robustness across various scenes'。代码与视频今日已实测可达：项目页 https://coopuq.github.io/ （HTTP 200），仓库 https://github.com/tasl-lab/CoopUQ 。长尾理由：领域（移动机器人社会导航）与本项目相关性低，但让不确定性显式进入代价函数、而不是只进感知置信度，是可迁移的可靠性模式。",
-      "id": "coopuq-robust-multi-robot-social-navigation-via-uncertainty-aware-cooperative-forecasting",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-agent",
-        "multimodal-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 5.9,
-        "engineering_testability": 5.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 6.1,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 3.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 3.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "AI Agent：Reinforcement learning enables mobile robots to make fast and scalable navigat…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26852）：CoopUQ 把多机器人导航里的一个工程直觉做成了显式机制——用不确定性而不只是占用预测来驱动策…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.26852）：CoopUQ 把多机器人导航里的一个工程直觉做成了显式机制——用不确定性而不只是占用预测来驱动策略：'predicts future occupan",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=coopuq-robust-multi-robot-social-navigation-via-uncertainty-aware-cooperative-forecasting"
-    },
-    {
-      "title": "Text-to-Image Generative Modeling Without Language Pretraining",
-      "authors": [
-        "Keshigeyan Chandrasegaran",
-        "Yue Zhao",
-        "Armin W. Thomas",
-        "Ehsan Adeli",
-        "Jiajun Wu"
-      ],
-      "published": "2026-10-19",
-      "updated": "2026-10-19",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.26863v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.26863v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "https://cs.stanford.edu/~keshik/halcyon",
-      "abstract": "Modern text-to-image (T2I) systems use internet-scale language pretraining for text-conditioned image generation. We ask whether language pretraining is necessary for strong T2I generation. We introduce Halcyon, a family of early-fusion multimodal autoregressive models pretrained entirely from scratch on GPIC, a dataset of 100M image-text pairs. Halcyon-0.52B outperforms LlamaGen-XL/8 (48.0 vs. 63.3 gFD) with 18.2$\\times$ less pretraining compute. Further, Halcyon-1.6B outperforms JiT-T2I-XXL/8+",
-      "categories": [
-        "cs.LG",
-        "cs.CV"
-      ],
-      "keywords": [
-        "multimodal"
-      ],
-      "score": 63.5,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.26863v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.26863v1"
-        },
-        {
-          "label": "Project",
-          "url": "https://cs.stanford.edu/~keshik/halcyon"
-        }
-      ],
-      "llm_reason": "据摘要（arXiv 2610.26863）：Halcyon 是一次有价值的证伪型工作，问题是 'whether language pretraining is necessary for strong T2I generation'，做法是在 GPIC（100M 图文对）上从零预训练 early-fusion 多模态自回归模型族。两条带具体数字的对照：'Halcyon-0.52B outperforms LlamaGen-XL/8'（48.0 vs. 63.3 gFD）且预训练算力少 18.2 倍、'Halcyon-1.6B outperforms JiT-T2I-XXL/8++'（35.3 vs. 41.0 gFD）且预训练算力少 275 倍；最关键的一句是 'Controlled experiments show that text-only pretraining does not improve T2I generation'——整个领域的默认前提被受控实验否掉。项目页今日已实测可达：https://cs.stanford.edu/~keshik/halcyon （HTTP 200），页面显示 Models 已提供、Code 标注 coming soon，因此代码暂无可核验链接（待核验/暂无）。长尾理由：与本项目直接相关性低（文生图预训练），但某类预训练并非必需这类证伪结论在未来选型时可省下大量算力。",
-      "id": "text-to-image-generative-modeling-without-language-pretraining",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "multimodal-agent",
-        "inference-serving"
       ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 5.15,
         "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.8,
-        "actionability": 5.0,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 4.0,
         "reproducibility_risk": 5.0
       },
+      "trend_status": "emerging",
+      "brief_cn": "Coding Agent：Automated theorem provers often rely on sampling language models, but proof as…",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.26942）：这篇的判断很克制——'proof assistants like Lean reject eac…",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "据摘要（arXiv 2610.26942）：这篇的判断很克制——'proof assistants like Lean reject each failed step with a preci",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=fix-not-just-resample-bounded-compiler-guided-repair-in-lean-4"
+    },
+    {
+      "title": "DataPraxis: Scaling Analytics Tasks via Verified Workspace Evolution",
+      "authors": [
+        "Nan Jia, Wenxuan Shi, Jingqing Ruan, Zhizhao Zeng, Tianyi Zhai, Zhongda Su, Feng Hong, Zhengyu Chen, Wenhao Yan, Haojin Yang, Siqi Dai, Weipeng Zhang, Ke Zeng, Xunliang Cai"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26924",
+      "pdf_url": "https://arxiv.org/pdf/2610.26924",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "General-purpose agents are increasingly expected to perform professional analytics work, which requires sustained reasoning, iterative investigation, and reliable evidence. Training these capabilities requires diverse and challenging tasks. However, generating tasks directly from raw data often overlooks deeper questions that emerge through analysis and provides limited evidence for verification. To address these limitations, we introduce DataPraxis, an analytics task synthesis framework based o",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "announce_type": "new",
+      "score": 78.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.26924"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.26924"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2610.26924）：DataPraxis 的出发点是任务合成的证据问题——'generating tasks directly from raw data often overlooks deeper questions that emerge through analysis and provides limited evidence for verification'。方法是 verified workspace evolution：'progressively enriches workspaces with validated findings and artifacts, then inherits and combines these workspaces to uncover deeper questions'，再从累积结论及其依赖构造任务，'verifying analytical results both during evolution and after task assembly'。产出是 DataPraxis-5K（'a dataset of 5,000 verified trajectories spanning diverse domains and output formats'），训练出 DataPraxis-27B 与 DataPraxis-35B-A3B。分数为作者自述：'DataPraxis-27B achieves 55.11 on DABStep and 51.9 on JobBench, matching or surpassing frontier models such as GLM-5.2'。价值路由：今天 10 篇里它与 Navalia 构成同一条主线——'用可验证的自动任务合成喂长程 agent 训练'，而 DataPraxis 的差异点是验证发生在 workspace 演化过程中而非只在任务装配后。对我们的实际用法是 '已验证轨迹' 这个资产形态：不是题目集合，而是带依赖与可验证结果的轨迹。证据 / 数据集：abs 页给出 http://huggingface.co/datasets/stargazerhust/DataPraxis-5k ，但 huggingface.co 今日从本机实测不可达（curl 返回 HTTP 000，非 404），无法确认数据集是否已可下载及实际规模，标注待核验/暂无；DABStep 55.11 / JobBench 51.9 与 GLM-5.2 的对比口径（是否同 prompt / 同工具 / 同裁判）摘要未说明，无第三方复现。今日动作：纳入趋势雷达连续观察；跟踪是否出现开源训练代码与复现报告。",
+      "id": "datapraxis-scaling-analytics-tasks-via-verified-workspace-evolution",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "coding-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：General-purpose agents are increasingly expected to perform professional analy…",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.26924）：DataPraxis 的出发点是任务合成的证据问题——'generating tasks dir…",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要（arXiv 2610.26924）：DataPraxis 的出发点是任务合成的证据问题——'generating tasks directly from raw data often ",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=datapraxis-scaling-analytics-tasks-via-verified-workspace-evolution"
+    },
+    {
+      "title": "Navalia: Advancing Cowork Agents through Verifiable Task Synthesis and Long-Horizon Post-Training",
+      "authors": [
+        "Hengqi Liu, Ziyuan Liu, Yang Qin, Wanting Zhou, Zichuan Wang, Jiachen Liang, Xu Chu, Shaowei Chen, Zhaokai Luo, Mu Chuan"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26887",
+      "pdf_url": "https://arxiv.org/pdf/2610.26887",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large language model (LLM) agents are evolving from conversational assistants into Cowork Agents capable of autonomous planning, tool use, and complex task execution. Financial analysis requires these agents to integrate cross-document evidence and perform multistep numerical reasoning, but expert task authoring is costly, while direct LLM synthesis struggles to produce challenging tasks with reliable answers. We introduce Navalia, a framework for Cowork Agents that combines verifiable task synt",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "benchmark",
+        "tool use",
+        "planning"
+      ],
+      "announce_type": "new",
+      "score": 76.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.26887"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.26887"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2610.26887，Comments 为 '13 pages, 2 figures'）：Navalia 瞄准的是长程 Cowork Agent 的训练数据瓶颈——'expert task authoring is costly, while direct LLM synthesis struggles to produce challenging tasks with reliable answers'。方法两段：可验证任务合成（'semantically selects supporting evidence from complete fact sets and constructs executable computation chains to generate analytical tasks with traceable evidence and actual data dependencies between steps'）+ 长程后训练（trajectory collection、冷启动 SFT、RL）。验证手段值得记：'independent LLM review and programmatic checks' 双通道查证据一致性与答案正确性。起点模型是 'Qwen3.6-35B-A3B'。结论部分必须谨慎读：摘要只说 'achieves consistent gains over the base model across all five benchmarks: OfficeQA Pro, FinSearchComp, Finance Agent Benchmark, APEX-Agents-AA, and Workspace-Bench-Lite'——五个 benchmark 名称可用，但没有任何绝对分数或提升幅度（RSS 抓取的 500 字符截断与 abs 页全文均未见数字），因此不能把 'consistent gains' 量化。无第三方复现。价值路由：与 DataPraxis 同属 '自动任务合成 + 长程后训练' 这条 2026 下半年明显升温的主线，但 Navalia 的证据是金融文档的跨文档数值推理，迁移到通用工具链需另做领域任务合成。代码 / benchmark / 项目页：abs 页未给出链接，待核验/暂无。今日动作：纳入趋势雷达，重点观察是否开源权重/数据与是否出现第三方复现数字。",
+      "id": "navalia-advancing-cowork-agents-through-verifiable-task-synthesis-and-long-horizon-post-training",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "rag-knowledge",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Large language model (LLM) agents are evolving from conversational assistants …",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.26887，Comments 为 '13 pages, 2 figures'）：Navalia 瞄准的是长程 …",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "据摘要（arXiv 2610.26887，Comments 为 '13 pages, 2 figures'）：Navalia 瞄准的是长程 Cowork Agent 的训练数据瓶颈——'exp",
+      "related_trends": [
+        "agentic-world-modeling",
+        "context-engineering",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=navalia-advancing-cowork-agents-through-verifiable-task-synthesis-and-long-horizon-post-training"
+    },
+    {
+      "title": "When Planning Problems Become Hard for LLMs: Separating Structural Complexity from Semantic Interpretability",
+      "authors": [
+        "Mayukh Debnath, Adeyinka Adedigba, Rammohan Mallipeddi"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26964",
+      "pdf_url": "https://arxiv.org/pdf/2610.26964",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large language models (LLMs) struggle with classical planning, but benchmarks rarely distinguish structural difficulty from the difficulty of interpreting symbolic vocabulary. We examine seven STRIPS domains with BFS-optimal plan lengths. For predicting structural difficulty without solving an instance, the zero-training delete-relaxation heuristic $h_{\\mathrm{add}}$ outperforms learned alternatives on held-out domains (mean Spearman $|\\rho|=0.931$), including ridge regression ($0.707$), object ",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark",
+        "planning"
+      ],
+      "announce_type": "new",
+      "score": 74.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.26964"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.26964"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2610.26964，Comments 为 '10 pages, 1 figure, 17 supplementary pages'）：这篇的结论带两次证伪，都可迁移。(1) 结构难度不需要再训一个预测器——'the zero-training delete-relaxation heuristic h_add outperforms learned alternatives on held-out domains (mean Spearman |rho|=0.931)'，而学到的对照分别是 ridge regression 0.707、object count 0.657、episodic retrieval architecture ARC 0.400；更狠的一句是 'ARC also fails to outperform a linear model using the same features'。(2) 语义可读性是独立的一维——他们 'progressively rename predicates while preserving states, transitions, and optimal plans'，即状态空间不变只改命名，结果 'Valid LLM planning success drops from 67.5% to 40.0% between 0% and 100% renaming, while refusals remain at 0%'；'refusals remain at 0%' 这句很关键，说明模型是安静地做错而不是承认不会。(3) 结论直接落在工程上：'Hybrid routing between an LLM and a symbolic planner depends more on calibration to the target LLM's outcomes than on the structural score selected'，以及 'improving hybrid planning requires modeling LLM behavior sensitive to predicate semantics rather than developing more structural predictors'。价值路由：这不是一篇要给 LLM 加规划器的方法论文，而是一篇告诉我们 '别往哪个方向投预算' 的选型约束——domain complexity 该用 h_add 现算而不是训模型；语义敏感度才需要建模。我们的 agent 一旦接入符号规划器，这套评测口径可以直接搬。证据边界：七个 STRIPS domain、BFS 最优规划长度，属玩具设定，向真实工具链的外推需重做；h_add 的 0.931 是 mean Spearman 绝对值的均值，样本量小。代码 / benchmark / 项目页：待核验/暂无。今日动作：存长尾；若引入符号规划器，用 rename-invariance 作为必测维度。",
+      "id": "when-planning-problems-become-hard-for-llms-separating-structural-complexity-from-semantic-interpretability",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
       "trend_status": "long_tail_watch",
-      "brief_cn": "Multimodal Agent：Modern text-to-image (T2I) systems use internet-scale language pretraining for…",
-      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26863）：Halcyon 是一次有价值的证伪型工作，问题是 'whether language pretr…",
-      "first_seen_date": "2026-10-21",
-      "first_deep_dive_daily": "2026-10-21",
+      "brief_cn": "AI Agent：Large language models (LLMs) struggle with classical planning, but benchmarks …",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26964，Comments 为 '10 pages, 1 figure, 17 supplementary …",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据摘要（arXiv 2610.26863）：Halcyon 是一次有价值的证伪型工作，问题是 'whether language pretraining is necessary for st",
+      "long_tail_summary": "据摘要（arXiv 2610.26964，Comments 为 '10 pages, 1 figure, 17 supplementary pages'）：这篇的结论带两次证伪，都可迁移。(1",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=when-planning-problems-become-hard-for-llms-separating-structural-complexity-from-semantic-interpretability"
+    },
+    {
+      "title": "LightCRS: Lightweight Multi-Domain Conversational Recommendation System",
+      "authors": [
+        "He Ma, Lan You, Qiyang Wu, Chen Liu"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26948",
+      "pdf_url": "https://arxiv.org/pdf/2610.26948",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Conversational recommender systems have recently adopted vision-language models to match user dialogue intents with multimodal product information. However, extending these methods to many product domains faces a dilemma: deploying a separately adapted VLM per domain scales cost linearly with the number of domains and requires routing each dialogue to the right model, while naively merging all domains into a single VLM degrades accuracy because product characteristics vary widely across categori",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "RAG",
+        "multimodal"
+      ],
+      "announce_type": "new",
+      "score": 71.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.26948"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.26948"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2610.26948）：LightCRS 处理的是一个常见的两难——'deploying a separately adapted VLM per domain scales cost linearly with the number of domains and requires routing each dialogue to the right model, while naively merging all domains into a single VLM degrades accuracy'。解法把重活推到离线：'precomputes multimodal product representations once offline with frozen encoders'，在线只留一个 'compact 5.3M-parameter module' 做 'query-conditioned cross-attention'（参数跨域共享），再用 'inter-candidate Transformer' 联合比较候选。数字为作者自述：'LightCRS achieves state-of-the-art average HR@1, NDCG@5, and MRR, improving HR@1 by 35.4% over the strongest baseline while reducing per-query latency by 266 times'；另有一条反直觉的对照——'Joint multi-domain training itself improves HR@1 by 15.2% over separately trained single-domain models'，即合并训练比单域模型更好，与开头的 'naively merging degrades accuracy' 形成对照，说明关键不是合不合而是合的方式。benchmark 是作者自建的 MM-R2A-25（'a 25-domain benchmark pairing natural Reddit recommendation-seeking conversations with Amazon product listings'）。价值路由：可迁移的不是推荐，而是 '离线冻结编码 + 在线 5.3M 参数 query-conditioned 融合' 这个成本结构——凡是我们面对 '多域 × 多模态 × 在线延迟敏感' 的场景（如多租户工具集、多套 schema 的结构化输出解析）都能套。证据边界：266 倍延迟降低是相对最强基线的自述口径，基线的 serving 配置摘要未说明，无第三方复现。代码 / benchmark / 项目页：待核验/暂无。",
+      "id": "lightcrs-lightweight-multi-domain-conversational-recommendation-system",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Conversational recommender systems have recently adopted vision-language model…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26948）：LightCRS 处理的是一个常见的两难——'deploying a separately ad…",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2610.26948）：LightCRS 处理的是一个常见的两难——'deploying a separately adapted VLM per domain scale",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=lightcrs-lightweight-multi-domain-conversational-recommendation-system"
+    },
+    {
+      "title": "MedPAO-Assist: Edge-Deployable, Modality-Aware Agentic AI for Radiology Report Structuring",
+      "authors": [
+        "Shrish Shrinath Vaidya, Minmini Selvam, Ganapathy Krishnamurthi"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26913",
+      "pdf_url": "https://arxiv.org/pdf/2610.26913",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The adoption of Large Language Models for radiology report structuring has been largely dominated by either proprietary cloud-based models or large open models requiring high-end GPUs for deployment, which is a critical bottleneck for clinical adoption in radiology workflows that demand data privacy and offline operation. To address this, we present MedPAO-Assist, an edge-deployable agentic framework that generates structured radiology reports directly from radiologist dictation and voice comman",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "RAG"
+      ],
+      "announce_type": "new",
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.26913"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.26913"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic AI for Medicine, 2026'）：MedPAO-Assist 的稀缺性不在效果而在部署成本——整条流水线跑在 0.6B 级 SLM 上，'requiring only ~3.3 GB peak RAM and achieving an average end-to-end latency of ~31 seconds on a standard laptop CPU through an asynchronous, multi-threaded execution pipeline'，且 'no external API calls, or internet connectivity'。架构是 Extract-Ground-Generate：概念抽取 → SNOMED-CT 本体对齐 → 结构化报告生成，再加一个 'speech-driven human-in-the-loop correction phase'，作者称 'among the earliest agentic systems to run its entire pipeline with a Small Language Model (SLM) in the 0.6B-parameter range'。价值路由：迁移价值有两处一是 '0.6B SLM + 3.3GB RAM + CPU' 这条成本线给了 'agent 不必上大模型' 的第二个实测锚点（昨日 Agima 是环境侧证据，今天是业务侧）；二是 'human-in-the-loop correction' 被做成语音驱动的最后一环，即把人工修正放在管道末端而不是让 agent 自行冒险——这与 Lean 4 repair 那篇 '失败即反馈' 是同一思想的两种形态。证据边界必须写清：作者自述 'evaluate each pipeline stage individually'，未给出与开源大模型 / 云端方案的端到端准确率对照数字，'no-touch workflow' 与四种模态（Chest X-ray / Chest CT / Abdomen CT / Brain MRI）的效果无第三方复现；MICCAI workshop 论文。代码 / 项目页：待核验/暂无。",
+      "id": "medpao-assist-edge-deployable-modality-aware-agentic-ai-for-radiology-report-structuring",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 5.15,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：The adoption of Large Language Models for radiology report structuring has bee…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic A…",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic AI for Medicine, 2026'）：Med",
       "related_trends": [
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=text-to-image-generative-modeling-without-language-pretraining"
+      "detail_path": "paper-detail.html?id=medpao-assist-edge-deployable-modality-aware-agentic-ai-for-radiology-report-structuring"
+    },
+    {
+      "title": "Industrial Agentic AI: LLM-Driven New-Generation Agents for Smart Manufacturing",
+      "authors": [
+        "Lei Ren, Haiteng Wang, Shixiang Li, Jing Zhang, Yuqing Wang, Jingwei Guo, Yunfei Zhu, Yuanjun Laili, Yang Tang, Lihui Wang"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26941",
+      "pdf_url": "https://arxiv.org/pdf/2610.26941",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large language models (LLMs) are enabling agents to move beyond predefined workflows toward autonomous planning and execution, creating new opportunities for smart manufacturing. However, dynamic environments, complex physical constraints, and stringent reliability requirements hinder the direct deployment of general-purpose agents in smart manufacturing. This article presents a systematic overview of LLM-driven industrial agents. First, we analyze five key challenges and discuss the concept and",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "planning"
+      ],
+      "announce_type": "new",
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.26941"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.26941"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2610.26941）：Industrial Agentic AI 是综述，骨架清楚——先 'analyze five key challenges and discuss the concept and core characteristics of industrial agents'，再给 'a unified taxonomy covering application scenarios, embodiment forms, and five capability levels'，然后 'propose a four-layer system architecture and detail its core modules and operational mechanisms for closed-loop task execution'，最后过一遍工业生命周期各阶段的代表性应用与未来方向。价值路由：综述的价值在于坐标系而不是结论，它给的 '三维 taxonomy（场景 × 具身形态 × 五能力层级）' 与 '四层架构' 可以直接拿来给我们现有的 agent 能力分级用——尤其是 'five capability levels' 这种分级法，比我们现在 '即时/趋势/长尾' 的价值路由更接近能力成熟度维度，两者可互补。触发它的问题也很清楚：'dynamic environments, complex physical constraints, and stringent reliability requirements hinder the direct deployment of general-purpose agents'。证据边界：综述本身无新实验、无代码、无数据，全部结论依赖被引文献；五挑战与五层级的划分依据摘要未展开，无法核验其完备性；不涉及我们的主要领域（软件/工具链）。代码 / 项目页：待核验/暂无。",
+      "id": "industrial-agentic-ai-llm-driven-new-generation-agents-for-smart-manufacturing",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "data-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 5.15,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：Large language models (LLMs) are enabling agents to move beyond predefined wor…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26941）：Industrial Agentic AI 是综述，骨架清楚——先 'analyze five …",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2610.26941）：Industrial Agentic AI 是综述，骨架清楚——先 'analyze five key challenges and discuss",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=industrial-agentic-ai-llm-driven-new-generation-agents-for-smart-manufacturing"
+    },
+    {
+      "title": "Pareto-Optimal RTL Code Generation via Multi-Objective Reinforcement Learning with Large Language Models",
+      "authors": [
+        "Koki Takeshita, Kenji Uebayashi, Hikaru Tomonari, Masaya Tsunokake, Koichiro Yawata, Tatsuya Sasaki, Yusuke Ohtsubo, Kota Dohi, Yasuhiro Sogawa"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26904",
+      "pdf_url": "https://arxiv.org/pdf/2610.26904",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Recent studies have proposed reinforcement learning with verifiable rewards (RLVR) methods that enable LLMs to generate high-quality RTL circuits from natural-language specifications. Existing approaches optimize circuit PPA (Power, Performance, Area) by aggregating multiple objectives into a single scalar reward, making it difficult to simultaneously generate diverse Pareto-optimal solutions across different trade-offs such as low power, low latency, and small area. However, in practical design",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "RAG"
+      ],
+      "announce_type": "new",
+      "score": 65.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.26904"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.26904"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2610.26904，Comments 为 'Accepted at COLM 2026'）：Pareto-Optimal RTL 的目标是改变 RLVR 的优化对象——'not the quality of a single circuit, but the quality and diversity of the entire circuit set obtained through multiple generations in the PPA objective space'。批评很具体：现有方法 'aggregating multiple objectives into a single scalar reward'，于是 'difficult to simultaneously generate diverse Pareto-optimal solutions across different trade-offs'。方法两部分：把 'coverage improvement of the entire Pareto solution set' 改写成顺序生成问题（generation-based training pipeline），以及基于 'Hypervolume Contribution (HVC)' 的奖励函数衡量每个生成电路对 Pareto 面的贡献。数字为作者自述：RTLLM v2 上相对 Hypervolume 'achieves +13.3 percentage points in relative Hypervolume over a baseline without PPA optimization and +14.4 percentage points over a single-objective reinforcement learning method'，并自述在多样性上占优。价值路由：领域（RTL 生成）与我们无关，但 '把标量 reward 改成集合覆盖目标' 是一条通用 RL 训练工程启发——凡是我们在多个维度打分后再加权成一个分数的评测/训练任务（代码生成的正确性-性能-可读性、安全性-成本），加权都会塌掉一个 Pareto 面，此时应先出候选集再做 a posteriori 选择。证据边界：作者自述 'first to propose'，未核验；RTLLM v2 与两个基线的评测口径摘要未说明。代码 / benchmark / 项目页：待核验/暂无。",
+      "id": "pareto-optimal-rtl-code-generation-via-multi-objective-reinforcement-learning-with-large-language-models",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Recent studies have proposed reinforcement learning with verifiable rewards (R…",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26904，Comments 为 'Accepted at COLM 2026'）：Pareto-Optima…",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "据摘要（arXiv 2610.26904，Comments 为 'Accepted at COLM 2026'）：Pareto-Optimal RTL 的目标是改变 RLVR 的优化对象——'",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=pareto-optimal-rtl-code-generation-via-multi-objective-reinforcement-learning-with-large-language-models"
+    },
+    {
+      "title": "Large language model and reinforcement learning based autonomous construction and progress updates",
+      "authors": [
+        "Yifei Xiao, Huasheng Lin, T. Y. Yang"
+      ],
+      "published": "2026-10-21",
+      "updated": "2026-10-21",
+      "source": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26899",
+      "pdf_url": "https://arxiv.org/pdf/2610.26899",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Due to the rapid growth of the global population, traditional construction methods are gradually unable to meet the current housing demand. The advancement of machine learning algorithms has encouraged researchers to explore their applications in the construction industry, leading to more intelligent and efficient building processes. In particular, the rise of large language models in recent years has provided more possibilities for the transformation from traditional construction to smart const",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "announce_type": "new",
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "https://arxiv.org/abs/2610.26899"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.26899"
+        }
+      ],
+      "llm_reason": "据摘要（arXiv 2610.26899）：Large language model and reinforcement learning based autonomous construction and progress updates 是一个塔吊自主施工方法。做法是 enhanced soft actor-critic 为移动式塔吊按施工任务规划动作，用 'Robot kinematics and control algorithms' 保证 RL 出的动作塔吊真能执行，再训一个定制 embedding 模型按用户兴趣抽取施工环境信息，最后用 'a large language model, ChatGPT 5' 更新施工进度、向控制系统提供安全信息并生成进度报告。验证是 'several full-scalle retaining wall construction experiments'（挡土墙实物实验）。忽略理由：与我们赛道（软件/工具链 agent、评测、长程执行）几乎无交集，摘要未给出任何可量化的 benchmark 数字（无成功率、无任务完成率、无对照），没有代码或数据入口，价值主要是 'RL 出动作 + 运动学兜底 + LLM 做汇报' 这一组合的工程直觉，抽象层级远低于今日其他论文。按价值路由规则，不套用深挖链路，保留最小索引即可。代码 / benchmark / 项目页：待核验/暂无。",
+      "id": "large-language-model-and-reinforcement-learning-based-autonomous-construction-and-progress-updates",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "AI Agent：Due to the rapid growth of the global population, traditional construction met…",
+      "one_line_judgement": "当前可忽略：据摘要（arXiv 2610.26899）：Large language model and reinforcement learning …",
+      "first_seen_date": "2026-10-22",
+      "first_deep_dive_daily": "2026-10-22",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "据摘要（arXiv 2610.26899）：Large language model and reinforcement learning based autonomous construct",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=large-language-model-and-reinforcement-learning-based-autonomous-construction-and-progress-updates"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "can-it-actually-work-synthesizing-functional-cad-mechanisms",
-      "title": "Can It Actually Work? Synthesizing Functional CAD Mechanisms",
+      "id": "when-planning-problems-become-hard-for-llms-separating-structural-complexity-from-semantic-interpretability",
+      "title": "When Planning Problems Become Hard for LLMs: Separating Structural Complexity from Semantic Interpretability",
       "direction": "AI Agent / LLM 评测",
       "long_tail_type": "工程抽象",
-      "why_save": "据摘要（arXiv 2610.26861）：FunCAD 处理的是 agent 的 '看起来对但物理上不工作' 问题——'these designs often fail to fulfill",
+      "why_save": "据摘要（arXiv 2610.26964，Comments 为 '10 pages, 1 figure, 17 supplementary pages'）：这篇的结论带两次证伪，都可迁移。(1",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-11-11",
-      "detail_path": "paper-detail.html?id=can-it-actually-work-synthesizing-functional-cad-mechanisms"
+      "revisit_date": "2026-11-12",
+      "detail_path": "paper-detail.html?id=when-planning-problems-become-hard-for-llms-separating-structural-complexity-from-semantic-interpretability"
     },
     {
-      "id": "where-is-physical-rsi-capability-from-an-observational-scaling-law-of-llm-as-policy",
-      "title": "Where is Physical RSI capability from? An Observational Scaling Law of LLM-as-policy",
-      "direction": "AI Agent / LLM 评测",
-      "long_tail_type": "工程抽象",
-      "why_save": "据摘要（arXiv 2610.26848）：这篇的稀缺之处是它质疑了 '物理自我改进' 这个概念本身的可测性。评测用五轴指标——'First-Attempt Performance, Effi",
+      "id": "lightcrs-lightweight-multi-domain-conversational-recommendation-system",
+      "title": "LightCRS: Lightweight Multi-Domain Conversational Recommendation System",
+      "direction": "Multimodal Agent / 推理与服务",
+      "long_tail_type": "可迁移方法",
+      "why_save": "据摘要（arXiv 2610.26948）：LightCRS 处理的是一个常见的两难——'deploying a separately adapted VLM per domain scale",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-11-11",
-      "detail_path": "paper-detail.html?id=where-is-physical-rsi-capability-from-an-observational-scaling-law-of-llm-as-policy"
+      "revisit_date": "2026-11-12",
+      "detail_path": "paper-detail.html?id=lightcrs-lightweight-multi-domain-conversational-recommendation-system"
     },
     {
-      "id": "reinforcement-learning-with-visually-attributable-on-policy-self-distillation",
-      "title": "Reinforcement Learning with Visually Attributable On-Policy Self-Distillation",
-      "direction": "Multimodal Agent / LLM 评测",
+      "id": "medpao-assist-edge-deployable-modality-aware-agentic-ai-for-radiology-report-structuring",
+      "title": "MedPAO-Assist: Edge-Deployable, Modality-Aware Agentic AI for Radiology Report Structuring",
+      "direction": "AI Agent / 推理与服务",
       "long_tail_type": "工程抽象",
-      "why_save": "据摘要（arXiv 2610.26856）：VAG 形式化了一个我认为会被更多论文引用的概念——'a token-level correction is contaminated when i",
+      "why_save": "据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic AI for Medicine, 2026'）：Med",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-11-11",
-      "detail_path": "paper-detail.html?id=reinforcement-learning-with-visually-attributable-on-policy-self-distillation"
+      "revisit_date": "2026-11-12",
+      "detail_path": "paper-detail.html?id=medpao-assist-edge-deployable-modality-aware-agentic-ai-for-radiology-report-structuring"
     }
   ],
   "common_research_path": [

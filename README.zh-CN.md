@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-21
+## 最新研究 · 2026-10-22
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 147 | 238 | 249 | 1356 |
+| 10 | 149 | 240 | 254 | 1357 |
 
-**今日深挖：** [OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory](daily/2026/2026-10-21.md) · 即时价值 · 重点学习
+**今日深挖：** [MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning](daily/2026/2026-10-22.md) · 即时价值 · 重点学习
 
-**核心判断：** 据摘要（arXiv 2610.26860），它先用受控实验否掉了最省事的那条路——'simply increasing the inference budget of the base model yields only modest gains'；然后把收益全部投在 harness 结构上：capability layer（统一异构后端并把输出转成模型可读观测）、persistent multimodal memory（把图像、结构化数据、网页引用作为可寻址 artifact 在整个 query 期间保留）、coding interface（在存好的数据上执行生成程序）。22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照给出平均 'improves average scores by 9.7-12.6 points over matched no-tool baselines'；成本侧最硬的一条是 'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。三层结构今天就可以照着搭。
+**核心判断：** 据摘要（arXiv 2610.26943），它把多 agent 数学推理的评测从 '只判最终答案对不对' 扩到三个维度——'problem-solving correctness, reasoning-process reliability, and robustness to adversarial reasoning-chain perturbations'，规模是 '1,003 problems spanning 11 mathematical categories' 且覆盖 text/image/audio 三种模态。但真正值得抄的是它三条结论全是负面的：(1) 'multi-agent collaboration does not consistently improve final-answer accuracy over strong single LLMs'；(2) 协作 'can substantially enhance the coverage of intermediate reasoning, but such gains may come at the cost of increased reasoning redundancy'；(3) 'current systems remain vulnerable to adversarial reasoning errors, particularly those involving subtle structural perturbations'。第 1 条直接推翻我们 '多 agent 默认更强' 的默认假设，第 3 条要求以后评测必须加推理链对抗扰动而不是只换数字。
 
-**建议动作：** 把 OpenVLHarness（[2610.26860](http://arxiv.org/abs/2610.26860)）列为今日即时试点主线，按 capability layer / persistent memory / coding interface 三层写 visual-tool-harness checklist；把 WeAct（[2610.26847](http://arxiv.org/abs/2610.26847)）与 Agima（[2610.26845](http://arxiv.org/abs/2610.26845)）列为即时试点第二梯队——分别产出 '_switch_capability 工具可行性评估' 与 'Agima omni 训练成本量级核验（仓库今日实测可达）'；把 AnyGoal（[2610.26844](http://arxiv.org/abs/2610.26844)）与 LatComm（[2610.26840](http://arxiv.org/abs/2610.26840)）纳入趋势雷达连续观察；把 FunCAD（[2610.26861](http://arxiv.org/abs/2610.26861)）、PhysRSI（[2610.26848](http://arxiv.org/abs/2610.26848)）、VAG（[2610.26856](http://arxiv.org/abs/2610.26856)）、CoopUQ（[2610.26852](http://arxiv.org/abs/2610.26852)）、Halcyon（[2610.26863](http://arxiv.org/abs/2610.26863)）存入长尾库并标注触发条件。
+**建议动作：** 把 MAMath-Bench（[2610.26943](https://arxiv.org/abs/2610.26943)）列为今日即时试点主线，产出两份资产：(1) 内部 agent 评测模板新增三维度——答案正确性 / 推理过程可靠性 / 对抗推理链扰动鲁棒性，并把 '多 agent vs 强单模型' 写入必跑对照清单；(2) 重试逻辑审计清单——统计当前被 '失败即丢弃' 分支吞掉的编译器/工具错误消息条数，对照 Lean 4 repair（[2610.26942](https://arxiv.org/abs/2610.26942)）的 84-96% 首次修复收益与 '浅层执行失败优先' 规则给出改造方案。把 DataPraxis（[2610.26924](https://arxiv.org/abs/2610.26924)）与 Navalia（[2610.26887](https://arxiv.org/abs/2610.26887)）纳入趋势雷达连续观察（自动任务合成 + 长程后训练主线）；把 STRIPS 难度分解（[2610.26964](https://arxiv.org/abs/2610.26964)）、LightCRS（[2610.26948](https://arxiv.org/abs/2610.26948)）、MedPAO-Assist（[2610.26913](https://arxiv.org/abs/2610.26913)）、Industrial Agentic AI（[2610.26941](https://arxiv.org/abs/2610.26941)）、Pareto-Optimal RTL（[2610.26904](https://arxiv.org/abs/2610.26904)）存入长尾库并标注触发条件；塔吊施工（[2610.26899](https://arxiv.org/abs/2610.26899)）保留最小索引。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-22](daily/2026/2026-10-22.md) | MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning | 即时价值 | 重点学习 |
 | [2026-10-21](daily/2026/2026-10-21.md) | OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory | 即时价值 | 重点学习 |
 | [2026-10-20](daily/2026/2026-10-20.md) | Self-Building Labs | 即时价值 | 重点学习 |
 | [2026-10-19](daily/2026/2026-10-19.md) | MLExpert: Towards a Generalist Agentic Model for Autonomous Machine Learning Engineering | 即时价值 | 重点学习 |
 | [2026-10-18](daily/2026/2026-10-18.md) | MLExpert: Towards a Generalist Agentic Model for Autonomous Machine Learning Engineering | 即时价值 | 轻量试点 |
 | [2026-10-17](daily/2026/2026-10-17.md) | The World Won't Wait: Evaluating and Teaching Agents Under a Live Clock | 即时价值 | 轻量试点 |
 | [2026-10-16](daily/2026/2026-10-16.md) | Co-Evolving Acting and Forecasting for Language Agents | 即时价值 | 轻量试点 |
-| [2026-10-15](daily/2026/2026-10-15.md) | Hybrid Reasoning Agents | 即时价值 | 轻量试点 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 611 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 621 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 611 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 612 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 628 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 612 |
 
 ## 为什么做这个项目
 

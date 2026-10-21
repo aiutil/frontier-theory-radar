@@ -1,0 +1,97 @@
+{
+  "date": "2026-10-22",
+  "generated_at": "2026-10-22T04:40:00",
+  "note": "今日 arXiv 主 API 被限流（HTTP 429），fetch_papers.py 自动回退到 rss.arxiv.org 后备端点，取到 10 篇（2610.26887-2610.26964 区间，announce_type=new，published 2026-10-21，全部 cs.AI）。RSS 后备只抓 categories[:4]（cs.AI/cs.CL/cs.LG/cs.SE）后按 max_results=10 截断，因此 cs.IR/stat.ML 等分类本次未覆盖——覆盖面偏窄，是取样口径问题而非当天无稿。今日主线高度集中在 'agent 任务合成 → 长程后训练 → 评测口径' 这一条链上：Navalia（2610.26887）用可验证任务合成 + 长程后训练做 Cowork Agent；DataPraxis（2610.26924）用 verified workspace evolution 合成分析任务；Lean 4 修复（2610.26942）把编译器错误当一等反馈而非丢弃；MAMath-Bench（2610.26943）给出多 agent 数学推理的评测口径与三条负面结论；STRIPS 难度分解（2610.26964）证伪 '再训一个结构难度预测器'。价值路由：(1) 即时价值 2 篇：MAMath-Bench（2610.26943，1,003 题 × 11 类 × text/image/audio，三维度评测，三条结论全部带否定色彩，直接改我们自己的多 agent 评测口径）、Lean 4 bounded repair（2610.26942，把失败步骤的编译器错误喂回修复模型，+32% 相对增益、1,990 题子集多解 82 题，首次修复吃掉 84-96% 收益，且在第二个 benchmark Lean Workbook 上近乎翻倍、零回退——反馈信号不该丢这条规则可跨域迁移)。(2) 趋势价值 2 篇：DataPraxis（2610.26924，5,000 条已验证轨迹 + DataPraxis-27B 在 DABStep 55.11 / JobBench 51.9 自述匹敌 GLM-5.2，且数据集已公开)、Navalia（2610.26887，Qwen3.6-35B-A3B 起，五个 benchmark 全线自述有增益，摘要未给具体数值)。(3) 长尾 6 篇：STRIPS 难度分解（2610.26964，h_add 零训练即 |rho|=0.931 优于学到的 ARC 0.400，重命名实验把成功率从 67.5% 打到 40.0%）、LightCRS（2610.26948，5.3M 参数 query-conditioned 模块，HR@1 +35.4%、per-query 延迟降 266 倍）、MedPAO-Assist（2610.26913，0.6B SLM、峰值 3.3GB RAM、笔记本 CPU 端到端约 31 秒）、Industrial Agentic AI（2610.26941，综述：五挑战 + 三维 taxonomy + 五能力层级 + 四层架构）、Pareto-Optimal RTL（2610.26904，COLM 2026 接收，Hypervolume Contribution 奖励，相对 Hypervolume +13.3pp / 对单目标 RL +14.4pp）、塔吊施工（2610.26899，真实挡土墙实验但相关性低）。证据纪律：github.com 与 huggingface.co 今日从本机实测均不可达（curl 返回 HTTP 000，非 404），因此 Navalia / DataPraxis / MAMath-Bench / Lean 4 repair 等论文摘要或 abs 页中出现的代码与数据集链接一律标注 '待核验/暂无（今日无法实测可达性）'，未据此写入 code_url / benchmark_url；所有分数与 SOTA 结论均为作者自述，本次运行未做任何第三方复现。",
+  "by_url": {
+    "https://arxiv.org/abs/2610.26943": {
+      "score": 84,
+      "value_type": "immediate",
+      "matched_topics": ["llm-evaluation", "ai-agent", "multimodal-agent"],
+      "reason": "据摘要（arXiv 2610.26943，abs 页 Comments 为 'The dataset is available at this https URL'）：MAMath-Bench 是 process-aware 的多模态多 agent 数学推理 benchmark，规模是 '1,003 problems spanning 11 mathematical categories, multiple difficulty levels, and several modalities, including text, images, and audio'。它把评测拆成三个维度——'problem-solving correctness, reasoning-process reliability, and robustness to adversarial reasoning-chain perturbations'，并带 fine-grained milestone 标注。三条结论全部带否定色彩，这是今日最有迁移价值的一篇：(1) 'multi-agent collaboration does not consistently improve final-answer accuracy over strong single LLMs'；(2) 协作 'can substantially enhance the coverage of intermediate reasoning, but such gains may come at the cost of increased reasoning redundancy'；(3) 'current systems remain vulnerable to adversarial reasoning errors, particularly those involving subtle structural perturbations'。价值路由：这是今日唯一一篇直接改我们评测口径的论文——第 1 条否掉 '多 agent 一定更强' 的默认假设，第 2 条说明过程覆盖率与 token 冗余要一起记，第 3 条要求评测必须包含对推理链的对抗扰动（换单位、变题干结构）而不是只换数字。证据 / 代码：abs 页指向 https://github.com/mira-ai-lab/AgentMath ，但 github.com 今日从本机实测不可达（curl 返回 HTTP 000，非 404），无法确认该仓库与 benchmark 的对应关系与代码可得性，标注待核验/暂无；数据集 URL 论文以 'this https URL' 占位，摘要未展开。今日动作：把三维度（答案正确性 / 推理过程可靠性 / 对抗扰动鲁棒性）抄进内部 agent 评测模板，并把 '多 agent vs 强单模型' 设为必跑对照。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26942": {
+      "score": 82,
+      "value_type": "immediate",
+      "matched_topics": ["coding-agent", "ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2610.26942）：这篇的判断很克制——'proof assistants like Lean reject each failed step with a precise error message --- information that pure sampling discards'。方法是 bounded、online 的 step-level repair：每步采样 K 个候选 tactic，失败的那个最多修 R 次，'Instead of discarding failed tactics, we feed the compiler's error message to a pretrained repair model to fix individual rejected steps in place'。证据给得比较实：跨 K∈{1,3,5,8} 全部候选预算都优于 sampling-only baseline，'achieving up to a 32% relative gain and solving 82 additional theorems on a 1,990-theorem subset of the LeanDojo benchmark'。最有价值的是它没有回避代价与边界——'Repair is not free: it trades extra runtime for reachable proofs'；收益分布是 'the first repair attempt capturing 84--96% of the total gain'；收益来源是可诊断的：'the gain comes almost entirely from shallow tactic-execution failures rather than structural errors such as type mismatches'。并且做了第二次验证：'replicates on a second benchmark (Lean Workbook), nearly doubling the solve rate with zero regressions'。价值路由：跨域规则是今天就能用的那条——工具/编译器的精确错误消息是一等反馈信号，丢掉的每条错误都是免费信息；先修浅层失败、把修复预算集中在这类错误上性价比最高。代码 / benchmark / 项目页：abs 页未给出链接，待核验/暂无；pretrained repair model 的来源与训练数据摘要未说明，迁移到通用工具链需自行准备错误消息语料。今日动作：审计我们现有 agent 重试逻辑中 '失败即丢弃' 的分支，统计被丢弃的编译器/工具错误消息量。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26924": {
+      "score": 78,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "llm-evaluation", "coding-agent"],
+      "reason": "据摘要（arXiv 2610.26924）：DataPraxis 的出发点是任务合成的证据问题——'generating tasks directly from raw data often overlooks deeper questions that emerge through analysis and provides limited evidence for verification'。方法是 verified workspace evolution：'progressively enriches workspaces with validated findings and artifacts, then inherits and combines these workspaces to uncover deeper questions'，再从累积结论及其依赖构造任务，'verifying analytical results both during evolution and after task assembly'。产出是 DataPraxis-5K（'a dataset of 5,000 verified trajectories spanning diverse domains and output formats'），训练出 DataPraxis-27B 与 DataPraxis-35B-A3B。分数为作者自述：'DataPraxis-27B achieves 55.11 on DABStep and 51.9 on JobBench, matching or surpassing frontier models such as GLM-5.2'。价值路由：今天 10 篇里它与 Navalia 构成同一条主线——'用可验证的自动任务合成喂长程 agent 训练'，而 DataPraxis 的差异点是验证发生在 workspace 演化过程中而非只在任务装配后。对我们的实际用法是 '已验证轨迹' 这个资产形态：不是题目集合，而是带依赖与可验证结果的轨迹。证据 / 数据集：abs 页给出 http://huggingface.co/datasets/stargazerhust/DataPraxis-5k ，但 huggingface.co 今日从本机实测不可达（curl 返回 HTTP 000，非 404），无法确认数据集是否已可下载及实际规模，标注待核验/暂无；DABStep 55.11 / JobBench 51.9 与 GLM-5.2 的对比口径（是否同 prompt / 同工具 / 同裁判）摘要未说明，无第三方复现。今日动作：纳入趋势雷达连续观察；跟踪是否出现开源训练代码与复现报告。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26887": {
+      "score": 76,
+      "value_type": "trend",
+      "matched_topics": ["ai-agent", "rag-knowledge", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2610.26887，Comments 为 '13 pages, 2 figures'）：Navalia 瞄准的是长程 Cowork Agent 的训练数据瓶颈——'expert task authoring is costly, while direct LLM synthesis struggles to produce challenging tasks with reliable answers'。方法两段：可验证任务合成（'semantically selects supporting evidence from complete fact sets and constructs executable computation chains to generate analytical tasks with traceable evidence and actual data dependencies between steps'）+ 长程后训练（trajectory collection、冷启动 SFT、RL）。验证手段值得记：'independent LLM review and programmatic checks' 双通道查证据一致性与答案正确性。起点模型是 'Qwen3.6-35B-A3B'。结论部分必须谨慎读：摘要只说 'achieves consistent gains over the base model across all five benchmarks: OfficeQA Pro, FinSearchComp, Finance Agent Benchmark, APEX-Agents-AA, and Workspace-Bench-Lite'——五个 benchmark 名称可用，但没有任何绝对分数或提升幅度（RSS 抓取的 500 字符截断与 abs 页全文均未见数字），因此不能把 'consistent gains' 量化。无第三方复现。价值路由：与 DataPraxis 同属 '自动任务合成 + 长程后训练' 这条 2026 下半年明显升温的主线，但 Navalia 的证据是金融文档的跨文档数值推理，迁移到通用工具链需另做领域任务合成。代码 / benchmark / 项目页：abs 页未给出链接，待核验/暂无。今日动作：纳入趋势雷达，重点观察是否开源权重/数据与是否出现第三方复现数字。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26964": {
+      "score": 74,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2610.26964，Comments 为 '10 pages, 1 figure, 17 supplementary pages'）：这篇的结论带两次证伪，都可迁移。(1) 结构难度不需要再训一个预测器——'the zero-training delete-relaxation heuristic h_add outperforms learned alternatives on held-out domains (mean Spearman |rho|=0.931)'，而学到的对照分别是 ridge regression 0.707、object count 0.657、episodic retrieval architecture ARC 0.400；更狠的一句是 'ARC also fails to outperform a linear model using the same features'。(2) 语义可读性是独立的一维——他们 'progressively rename predicates while preserving states, transitions, and optimal plans'，即状态空间不变只改命名，结果 'Valid LLM planning success drops from 67.5% to 40.0% between 0% and 100% renaming, while refusals remain at 0%'；'refusals remain at 0%' 这句很关键，说明模型是安静地做错而不是承认不会。(3) 结论直接落在工程上：'Hybrid routing between an LLM and a symbolic planner depends more on calibration to the target LLM's outcomes than on the structural score selected'，以及 'improving hybrid planning requires modeling LLM behavior sensitive to predicate semantics rather than developing more structural predictors'。价值路由：这不是一篇要给 LLM 加规划器的方法论文，而是一篇告诉我们 '别往哪个方向投预算' 的选型约束——domain complexity 该用 h_add 现算而不是训模型；语义敏感度才需要建模。我们的 agent 一旦接入符号规划器，这套评测口径可以直接搬。证据边界：七个 STRIPS domain、BFS 最优规划长度，属玩具设定，向真实工具链的外推需重做；h_add 的 0.931 是 mean Spearman 绝对值的均值，样本量小。代码 / benchmark / 项目页：待核验/暂无。今日动作：存长尾；若引入符号规划器，用 rename-invariance 作为必测维度。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26948": {
+      "score": 71,
+      "value_type": "long_tail",
+      "matched_topics": ["multimodal-agent", "inference-serving", "llm-evaluation"],
+      "reason": "据摘要（arXiv 2610.26948）：LightCRS 处理的是一个常见的两难——'deploying a separately adapted VLM per domain scales cost linearly with the number of domains and requires routing each dialogue to the right model, while naively merging all domains into a single VLM degrades accuracy'。解法把重活推到离线：'precomputes multimodal product representations once offline with frozen encoders'，在线只留一个 'compact 5.3M-parameter module' 做 'query-conditioned cross-attention'（参数跨域共享），再用 'inter-candidate Transformer' 联合比较候选。数字为作者自述：'LightCRS achieves state-of-the-art average HR@1, NDCG@5, and MRR, improving HR@1 by 35.4% over the strongest baseline while reducing per-query latency by 266 times'；另有一条反直觉的对照——'Joint multi-domain training itself improves HR@1 by 15.2% over separately trained single-domain models'，即合并训练比单域模型更好，与开头的 'naively merging degrades accuracy' 形成对照，说明关键不是合不合而是合的方式。benchmark 是作者自建的 MM-R2A-25（'a 25-domain benchmark pairing natural Reddit recommendation-seeking conversations with Amazon product listings'）。价值路由：可迁移的不是推荐，而是 '离线冻结编码 + 在线 5.3M 参数 query-conditioned 融合' 这个成本结构——凡是我们面对 '多域 × 多模态 × 在线延迟敏感' 的场景（如多租户工具集、多套 schema 的结构化输出解析）都能套。证据边界：266 倍延迟降低是相对最强基线的自述口径，基线的 serving 配置摘要未说明，无第三方复现。代码 / benchmark / 项目页：待核验/暂无。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26913": {
+      "score": 68,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "inference-serving"],
+      "reason": "据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic AI for Medicine, 2026'）：MedPAO-Assist 的稀缺性不在效果而在部署成本——整条流水线跑在 0.6B 级 SLM 上，'requiring only ~3.3 GB peak RAM and achieving an average end-to-end latency of ~31 seconds on a standard laptop CPU through an asynchronous, multi-threaded execution pipeline'，且 'no external API calls, or internet connectivity'。架构是 Extract-Ground-Generate：概念抽取 → SNOMED-CT 本体对齐 → 结构化报告生成，再加一个 'speech-driven human-in-the-loop correction phase'，作者称 'among the earliest agentic systems to run its entire pipeline with a Small Language Model (SLM) in the 0.6B-parameter range'。价值路由：迁移价值有两处一是 '0.6B SLM + 3.3GB RAM + CPU' 这条成本线给了 'agent 不必上大模型' 的第二个实测锚点（昨日 Agima 是环境侧证据，今天是业务侧）；二是 'human-in-the-loop correction' 被做成语音驱动的最后一环，即把人工修正放在管道末端而不是让 agent 自行冒险——这与 Lean 4 repair 那篇 '失败即反馈' 是同一思想的两种形态。证据边界必须写清：作者自述 'evaluate each pipeline stage individually'，未给出与开源大模型 / 云端方案的端到端准确率对照数字，'no-touch workflow' 与四种模态（Chest X-ray / Chest CT / Abdomen CT / Brain MRI）的效果无第三方复现；MICCAI workshop 论文。代码 / 项目页：待核验/暂无。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26941": {
+      "score": 66,
+      "value_type": "long_tail",
+      "matched_topics": ["ai-agent", "data-engineering"],
+      "reason": "据摘要（arXiv 2610.26941）：Industrial Agentic AI 是综述，骨架清楚——先 'analyze five key challenges and discuss the concept and core characteristics of industrial agents'，再给 'a unified taxonomy covering application scenarios, embodiment forms, and five capability levels'，然后 'propose a four-layer system architecture and detail its core modules and operational mechanisms for closed-loop task execution'，最后过一遍工业生命周期各阶段的代表性应用与未来方向。价值路由：综述的价值在于坐标系而不是结论，它给的 '三维 taxonomy（场景 × 具身形态 × 五能力层级）' 与 '四层架构' 可以直接拿来给我们现有的 agent 能力分级用——尤其是 'five capability levels' 这种分级法，比我们现在 '即时/趋势/长尾' 的价值路由更接近能力成熟度维度，两者可互补。触发它的问题也很清楚：'dynamic environments, complex physical constraints, and stringent reliability requirements hinder the direct deployment of general-purpose agents'。证据边界：综述本身无新实验、无代码、无数据，全部结论依赖被引文献；五挑战与五层级的划分依据摘要未展开，无法核验其完备性；不涉及我们的主要领域（软件/工具链）。代码 / 项目页：待核验/暂无。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26904": {
+      "score": 65,
+      "value_type": "long_tail",
+      "matched_topics": ["llm-evaluation", "ai-agent"],
+      "reason": "据摘要（arXiv 2610.26904，Comments 为 'Accepted at COLM 2026'）：Pareto-Optimal RTL 的目标是改变 RLVR 的优化对象——'not the quality of a single circuit, but the quality and diversity of the entire circuit set obtained through multiple generations in the PPA objective space'。批评很具体：现有方法 'aggregating multiple objectives into a single scalar reward'，于是 'difficult to simultaneously generate diverse Pareto-optimal solutions across different trade-offs'。方法两部分：把 'coverage improvement of the entire Pareto solution set' 改写成顺序生成问题（generation-based training pipeline），以及基于 'Hypervolume Contribution (HVC)' 的奖励函数衡量每个生成电路对 Pareto 面的贡献。数字为作者自述：RTLLM v2 上相对 Hypervolume 'achieves +13.3 percentage points in relative Hypervolume over a baseline without PPA optimization and +14.4 percentage points over a single-objective reinforcement learning method'，并自述在多样性上占优。价值路由：领域（RTL 生成）与我们无关，但 '把标量 reward 改成集合覆盖目标' 是一条通用 RL 训练工程启发——凡是我们在多个维度打分后再加权成一个分数的评测/训练任务（代码生成的正确性-性能-可读性、安全性-成本），加权都会塌掉一个 Pareto 面，此时应先出候选集再做 a posteriori 选择。证据边界：作者自述 'first to propose'，未核验；RTLLM v2 与两个基线的评测口径摘要未说明。代码 / benchmark / 项目页：待核验/暂无。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    },
+    "https://arxiv.org/abs/2610.26899": {
+      "score": 52,
+      "value_type": "ignore",
+      "matched_topics": ["ai-agent"],
+      "reason": "据摘要（arXiv 2610.26899）：Large language model and reinforcement learning based autonomous construction and progress updates 是一个塔吊自主施工方法。做法是 enhanced soft actor-critic 为移动式塔吊按施工任务规划动作，用 'Robot kinematics and control algorithms' 保证 RL 出的动作塔吊真能执行，再训一个定制 embedding 模型按用户兴趣抽取施工环境信息，最后用 'a large language model, ChatGPT 5' 更新施工进度、向控制系统提供安全信息并生成进度报告。验证是 'several full-scalle retaining wall construction experiments'（挡土墙实物实验）。忽略理由：与我们赛道（软件/工具链 agent、评测、长程执行）几乎无交集，摘要未给出任何可量化的 benchmark 数字（无成功率、无任务完成率、无对照），没有代码或数据入口，价值主要是 'RL 出动作 + 运动学兜底 + LLM 做汇报' 这一组合的工程直觉，抽象层级远低于今日其他论文。按价值路由规则，不套用深挖链路，保留最小索引即可。代码 / benchmark / 项目页：待核验/暂无。",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": ""
+    }
+  }
+}

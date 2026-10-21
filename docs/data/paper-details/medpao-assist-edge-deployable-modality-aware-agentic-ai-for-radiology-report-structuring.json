@@ -1,0 +1,130 @@
+{
+  "id": "medpao-assist-edge-deployable-modality-aware-agentic-ai-for-radiology-report-structuring",
+  "title": "MedPAO-Assist: Edge-Deployable, Modality-Aware Agentic AI for Radiology Report Structuring",
+  "authors": [
+    "Shrish Shrinath Vaidya, Minmini Selvam, Ganapathy Krishnamurthi"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-21",
+  "url": "https://arxiv.org/abs/2610.26913",
+  "pdf_url": "https://arxiv.org/pdf/2610.26913",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-22",
+  "first_deep_dive_daily": "2026-10-22",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 4.5,
+    "engineering_testability": 5.15,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 68.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得先保存：据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic A…",
+  "one_line_essence": "据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic AI for Medicine, 2026'）：MedPAO-Assist 的稀缺性不在效果而在部署成本——整条流水线跑在 0.6B 级 SLM 上，'requiring only ~3.3 GB peak RAM and achieving an average end-to-end latency of ~31 seconds on a standard laptop CPU through an asynchronous, multi-threaded execution pipeline'，且 'no external API calls, or internet connectivity'。架构是 Extract-Ground-Generate：概念抽取 → SNOMED-CT 本体对齐 → 结构化报告生成，再加一个 'speech-driven human-in-the-loop correction phase'，作者称 'among the earliest agentic systems to run its entire pipeline with a Small Language Model (SLM) in the 0.6B-parameter range'。价值路由：迁移价值有两处一是 '0.6B SLM + 3.3GB RAM + CPU' 这条成本线给了 'agent 不必上大模型' 的第二个实测锚点（昨日 Agima 是环境侧证据，今天是业务侧）；二是 'human-in-the-loop correction' 被做成语音驱动的最后一环，即把人工修正放在管道末端而不是让 agent 自行冒险——这与 Lean 4 repair 那篇 '失败即反馈' 是同一思想的两种形态。证据边界必须写清：作者自述 'evaluate each pipeline stage individually'，未给出与开源大模型 / 云端方案的端到端准确率对照数字，'no-touch workflow' 与四种模态（Chest X-ray / Chest CT / Abdomen CT / Brain MRI）的效果无第三方复现；MICCAI workshop 论文。代码 / 项目页：待核验/暂无。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic AI for Medicine, 2026'）：MedPAO-Assist 的稀缺性不在效果而在部署成本——整条流水线跑在 0.6B 级 SLM 上，'requiring only ~3.3 GB peak RAM and",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据摘要（arXiv 2610.26913，Comments 为 'accepted at MICCAI Workshop Agentic AI for Medicine, 2026'）：Med",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-12"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "https://arxiv.org/abs/2610.26913"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.26913"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=medpao-assist-edge-deployable-modality-aware-agentic-ai-for-radiology-report-structuring",
+  "daily_path": "daily-detail.html?date=2026-10-22",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

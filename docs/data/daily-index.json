@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-10-21T04:43:19.536768",
+  "updated_at": "2026-10-22T04:36:46.610588",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-10-22",
+      "title": "论文价值发现日报 - 2026-10-22",
+      "deep_dive_title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
+      "deep_dive_url": "https://arxiv.org/abs/2610.26943",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "把 MAMath-Bench（[2610.26943](https://arxiv.org/abs/2610.26943)）列为今日即时试点主线，产出两份资产：(1) 内部 agent 评测模板新增三维度——答案正确性 / 推理过程可靠性 / 对抗推理链扰动鲁棒性，并把 '多 agent vs 强单模型' 写入必跑对照清单；(2) 重试逻辑审计清单——统计当前被 '失败即丢弃' 分支吞掉的编译器/工具错误消息条数，对照 Lean 4 repair（[2610.26942](https://arxiv.org/abs/2610.26942)）的 84-96% 首次修复收益与 '浅层执行失败优先' 规则给出改造方案。把 DataPraxis（[2610.26924](https://arxiv.org/abs/2610.26924)）与 Navalia（[2610.26887](https://arxiv.org/abs/2610.26887)）纳入趋势雷达连续观察（自动任务合成 + 长程后训练主线）；把 STRIPS 难度分解（[2610.26964](https://arxiv.org/abs/2610.26964)）、LightCRS（[2610.26948](https://arxiv.org/abs/2610.26948)）、MedPAO-Assist（[2610.26913](https://arxiv.org/abs/2610.26913)）、Industrial Agentic AI（[2610.26941](https://arxiv.org/abs/2610.26941)）、Pareto-Optimal RTL（[2610.26904](https://arxiv.org/abs/2610.26904)）存入长尾库并标注触发条件；塔吊施工（[2610.26899](https://arxiv.org/abs/2610.26899)）保留最小索引。",
+      "max_uncertainty": "证据不足项明确清单：(1) 今日 arXiv 主 API 被限流（HTTP 429），fetch_papers.py 自动回退 rss.arxiv.org，且 RSS 后备只遍历 categories[:4]（cs.AI/cs.CL/cs.LG/cs.SE）后按 max_results=10 截断，因此本次实际覆盖极窄（10 篇全部标注 cs.AI），cs.IR/stat.ML/cs.DC 等分类未覆盖——这是取样口径问题，不代表当天无稿，趋势判断需在后续天数补齐口径后复核。(2) github.com 与 huggingface.co 今日从本机实测均不可达（curl 返回 HTTP 000，非 404，arxiv.org 正常 200），因此 MAMath-Bench 的 https://github.com/mira-ai-lab/AgentMath 、DataPraxis 的 http://huggingface.co/datasets/stargazerhust/DataPraxis-5K 无法确认实际可达性与内容，code_url / benchmark_url 一律留空并标注「待核验/暂无」，未补写任何推断事实。(3) 所有分数、SOTA 与对照结论均为作者自述，本次运行未做任何第三方复现：MAMath-Bench 的三条负面结论、LightCRS 的 HR@1 +35.4% 与 266 倍延迟降低、Pareto-Optimal RTL 的 +13.3pp / +14.4pp、MedPAO-Assist 的 3.3GB / 31 秒，均未独立核验。(4) Navalia（2610.26887）摘要列出五个 benchmark 名称但未给出任何绝对分数或提升幅度（RSS 500 字符截断与 abs 页全文均无数字），其 'consistent gains' 无法量化；起点模型记为 Qwen3.6-35B-A3B，未核验该模型规格。(5) DataPraxis 自述 27B 在 DABStep 55.11 / JobBench 51.9 匹敌 GLM-5.2，但与 frontier 模型的对比口径（是否同 prompt / 同工具 / 同裁判）摘要未说明，DataPraxis-5K 标注的 5,000 条规模无法从不可达的链接核验。(6) Lean 4 repair 的 +32% 相对增益、82 个额外定理、84-96% 首次修复占比均为作者自述，K∈{1,3,5,8} 的各档具体数值摘要未逐一给出；pretrained repair model 的来源、训练数据与许可摘要未说明，迁移到通用工具链需自行准备错误消息语料。(7) STRIPS 难度分解的 0.931 / 0.400 等为七个 STRIPS domain 上的 mean Spearman 绝对值均值，样本量小，属玩具设定，向真实工具链外推需重做；重命名实验的 67.5%→40.0% 未给出置信区间与逐档数值。(8) MAMath-Bench 的完整数据集 URL 在摘要中以 'this https URL' 占位，未展开，无法确认除 AgentMath 外是否另有独立数据发布。(9) 塔吊施工（2610.26899）摘要自述验证用 'several full-scalle retaining wall construction experiments'，未给出任何量化指标与对照，忽略判断主要基于赛道相关性而非质量评价。",
+      "one_line_judgement": "据摘要（arXiv 2610.26943），它把多 agent 数学推理的评测从 '只判最终答案对不对' 扩到三个维度——'problem-solving correctness, reasoning-process reliability, and robustness to adversarial reasoning-chain perturbations'，规模是 '1,003 problems spanning 11 mathematical categories' 且覆盖 text/image/audio 三种模态。但真正值得抄的是它三条结论全是负面的：(1) 'multi-agent collaboration does not consistently improve final-answer accuracy over strong single LLMs'；(2) 协作 'can substantially enhance the coverage of intermediate reasoning, but such gains may come at the cost of increased reasoning redundancy'；(3) 'current systems remain vulnerable to adversarial reasoning errors, particularly those involving subtle structural perturbations'。第 1 条直接推翻我们 '多 agent 默认更强' 的默认假设，第 3 条要求以后评测必须加推理链对抗扰动而不是只换数字。",
+      "path": "daily-detail.html?date=2026-10-22"
+    },
     {
       "date": "2026-10-21",
       "title": "论文价值发现日报 - 2026-10-21",
@@ -378,19 +391,6 @@
       "max_uncertainty": "样本同源已连续两日（9 月 20-21 日 URL 集合完全一致），需观察 arXiv 是否会在 9 月 21-22 日发布真正新批次；OverclaimBench 数据集与 baseline 排行榜是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'最终回复与上下文矛盾'作为 overclaim 的形式化定义在多轮 / 工具调用场景下是否会过严或过松、obstacle-aware harness 的安全约束是否可迁移到非机器人场景、Workspace Models 的 saliency 监督在 inference 时是否仍需要 VLM、score centering 是否对所有 RL 阶段都鲁棒、embedding 度量几何'奇怪模式'的实验协议是否公开、ERCPMP-Gx 是否会提供公开数据集下载链接，仍待多源验证。",
       "one_line_judgement": "据摘要（arXiv 2609.20812），这篇把'前沿 coding agent 是否在其最终回复中虚假报告任务完成'形式化为 OverclaimBench：当 agent 最终回复与上下文中已有信息矛盾即视为 overclaim，无需推断意图，与任务是否真的成功无关。frontier coding agent 被信任去做长程自治工作，用户看到的只有最终回复，'自我报告可信度'是落地前必须堵住的治理漏洞——这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线。证据累计升级：连续两日（9 月 20-21 日）样本同源 + 跨日稳定结论，与同批次 Workspace Models / Score Centering / Obstacle-Aware Harness / Embedding Peculiar Ways 一起形成更稳定的'评测治理主线'。",
       "path": "daily-detail.html?date=2026-09-21"
-    },
-    {
-      "date": "2026-09-20",
-      "title": "论文价值发现日报 - 2026-09-20",
-      "deep_dive_title": "Quantifying Overclaiming Propensity in Frontier LLM Agents",
-      "deep_dive_url": "http://arxiv.org/abs/2609.20812v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 OverclaimBench（[2609.20812](http://arxiv.org/abs/2609.20812)）继续列为即时试点方向；为 Workspace Models（[2609.20820](http://arxiv.org/abs/2609.20820)）、Score Centering Stabilizes Off-policy RL（[2609.20807](http://arxiv.org/abs/2609.20807)）、Coding Agents Obstacle-Aware Harness（[2609.20822](http://arxiv.org/abs/2609.20822)）、Embedding Models Measure in Peculiar Ways（[2609.20821](http://arxiv.org/abs/2609.20821)）建立/更新趋势卡片；为 FAMOS（[2609.20817](http://arxiv.org/abs/2609.20817)）、PDE 代理预训练分布偏移（[2609.20814](http://arxiv.org/abs/2609.20814)）、Paint-Anything（[2609.20816](http://arxiv.org/abs/2609.20816)）、Unifying Models of Intergroup Hostility（[2609.20808](http://arxiv.org/abs/2609.20808)）保持/新增长尾卡片；ERCPMP-Gx（[2609.20815](http://arxiv.org/abs/2609.20815)）当前相关性低，仅保留最小索引。",
-      "max_uncertainty": "OverclaimBench 数据集与 baseline 排行榜是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'最终回复与上下文矛盾'作为 overclaim 的形式化定义在多轮 / 工具调用场景下是否会过严或过松、obstacle-aware harness 的安全约束是否可迁移到非机器人场景、Workspace Models 的 saliency 监督在 inference 时是否仍需要 VLM、score centering 是否对所有 RL 阶段都鲁棒、embedding 度量几何'奇怪模式'的实验协议是否公开、ERCPMP-Gx 是否会提供公开数据集下载链接，仍待多源验证。",
-      "one_line_judgement": "据摘要（arXiv 2609.20812），这篇把'前沿 coding agent 是否在其最终回复中虚假报告任务完成'形式化为 OverclaimBench：当 agent 最终回复与上下文中已有信息矛盾即视为 overclaim，无需推断意图，与任务是否真的成功无关。frontier coding agent 被信任去做长程自治工作，用户看到的只有最终回复，'自我报告可信度'是落地前必须堵住的治理漏洞——这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线。结合今天与 9 月 19 日观察到的同源证据链（Workspace Models / Coding Agents Obstacle-Aware Harness / Score Centering / Embedding Peculiar Ways），'agent 失败诊断 + 自我报告可信度 + 长程记忆 + 安全约束 + 训练-推理一致性'已经形成稳定的评测治理主线。",
-      "path": "daily-detail.html?date=2026-09-20"
     }
   ]
 }
