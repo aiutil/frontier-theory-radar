@@ -1,0 +1,135 @@
+{
+  "id": "longzero-enhancing-long-context-reasoning-in-llms-from-zero-data",
+  "title": "LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data",
+  "authors": [
+    "Zhennan Wan",
+    "Jianfei Chen"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-21",
+  "url": "http://arxiv.org/abs/2610.30132v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.30132v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-23",
+  "first_deep_dive_daily": "2026-10-23",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 2.4
+  },
+  "score": 82.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：据摘要（arXiv 2610.30132，abs 页 Comments 为 'Code and data are available at …",
+  "one_line_essence": "据摘要（arXiv 2610.30132，abs 页 Comments 为 'Code and data are available at this https URL'，Subjects 仅 cs.CL/cs.LG）：LongZero 打的是长上下文 RL 最硬的那个依赖——摘要开篇就把约束列全了：'it needs training data that are long, diverse, challenging, and verifiable'，而 'Human annotation of such data is expensive, naturally occurring data are too scarce to sustain RL, and existing synthesis methods depend on external corpora or stronger teacher models, which become harder to obtain as the trained models get stronger'。最后半句是关键论据：模型越强，能当教师的数据源越少，这是自蒸馏路线的结构性天花板，不只是工程 inconvenience。它的解法是反直觉的顺序——通常做法是'先有长文档再出题'，LongZero 反过来：'first has the model synthesize the question and answer with its supporting evidence in a compact structured form, and only then separately expands the evidence into a long multi-document context'。即短结构化生成在前、长上下文膨胀在后，这样可控性与长度解耦。训练侧 'combines these self-written multi-hop reasoning tasks with self-written multi-round retrieval tasks and trains the model with GRPO'——两类自造任务混训（多跳推理 + 多轮检索），后者说明它不只做阅读理解，还试图覆盖检索交互。证据强度必须打折：摘要只说 'LongZero can generalize to real tasks, and outperforms both baselines'，评测口径是 'two LLMs across five long-context reasoning benchmarks'——两个模型、五个 benchmark，名称一个都没给，零个绝对分数、零个提升幅度、零个方差区间，因此'优于两个 baseline'无法量化，baseline 是谁（外部语料 RL 的哪一档配置）摘要也未说明。代码与数据：本次经 GitHub API 核验 https://github.com/zhennan1/LongZero 真实存在（MIT，2 stars，4690KB，pushed 2026-10-22），顶层目录含 synthesis / training / evaluation / results / checks / figs / requirements.txt，结构与摘要描述的自造→训练→评测三段自洽；但仓库实际内容因 raw.githubusercontent.com 今日从本机不可达而未能逐文件核验，训练脚本、数据集与五个 benchmark 的具体名称均标注待核验/暂无，未据此写入 code_url。价值路由：这是今天最该排进工程验证队列的一篇，因为它攻击的是我们自建 agent 长程训练数据时每天都会撞到的同一个墙；但先做最小验证，不要照搬——用我们自己的模型跑一遍'短结构化生成 → 长上下文膨胀'，只验一件事：膨胀后证据链是否仍然可验证（这是 GRPO 可信的前提，也是摘要没说清楚的风险点）。今日动作：列一份最小验证计划（模型 × 膨胀倍率 × 证据可验证率三列），不预设结论。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据摘要（arXiv 2610.30132，abs 页 Comments 为 'Code and data are available at this https URL'，Subjects 仅 cs.CL/cs.LG）：LongZero 打的是长上下文 RL 最硬的那个依赖——摘要开篇就把约束列全了：'it needs training data that ",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据摘要（arXiv 2610.30132，abs 页 Comments 为 'Code and data are available at this https URL'，Subjects 仅",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.30132v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.30132v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=longzero-enhancing-long-context-reasoning-in-llms-from-zero-data",
+  "daily_path": "daily-detail.html?date=2026-10-23",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

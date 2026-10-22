@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-10-22T04:39:39.488274",
+  "updated_at": "2026-10-23T04:37:11.035190",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-10-23",
+      "title": "论文价值发现日报 - 2026-10-23",
+      "deep_dive_title": "LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data",
+      "deep_dive_url": "http://arxiv.org/abs/2610.30132v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "把 [LongZero](http://arxiv.org/abs/2610.30132v1)（2610.30132）列为今日即时试点主线，但只做最小验证、不照搬：用我们自己的模型跑一遍'短结构化生成 → 长上下文膨胀'，只量一列——膨胀后证据链的可验证率（这是 GRPO 可信的前提，也是摘要未交代的风险点），产出对照表（模型 × 膨胀倍率 × 可验证率）。产出第二份资产：评测模板三条硬规则（开发窗口反馈 / 封存期一次性冻结 / 强制计入推理与调用成本），来自 Quant-Arena（2610.30113），落点是检查我们现有评测是否在反馈窗口上反复看过封存期数据、以及是否对推理预算差异巨大的候选方案做了成本归一。产出第三份资产：agent 评测模板新增第二根轴——出题者区分度（出题者与最强解题者是否同一人），来自 Environment Duels（2610.30116）的 'the strongest solvers are not the strongest authors'，适用于所有用 LLM 自动生成评测题/环境的场景。第四份：抄 A-greement（2610.30114）的领域 harness 三件套模板（概念型知识库 / 模块化实现骨架 / 形式化验证框架），并记下它的副产品论证——形式化可能主要价值在暴露存量漏洞而非证明新方案。趋势雷达连续观察：LoopRec（2610.30128，逐项自适应算力分配）、PhysiCalWorld（2610.30125，一次性探索压成可复用条件向量、零物理标注训练）。长尾入库并标注触发条件：CNN locality/weight sharing（2610.30118）、ℓ∞ Contractions（2610.30122）、再生过程 Bernstein（2610.30119，数据管线具再生结构时触发）。NPMLE 高斯混合（2610.30109）保留最小索引。",
+      "max_uncertainty": "证据不足项明确清单：(1) 网络可达性：本机对 github.com 网页与 raw.githubusercontent.com、huggingface.co 今日实测不可达（curl 返回 FAIL / HTTP 000），但 api.github.com 今日返回 200。因此本次核验能力较昨日有实质变化——经 API 确认 LongZero（zhennan1/LongZero，MIT，2 stars，4690KB，created 2026-10-20，pushed 2026-10-22，非归档，顶层含 synthesis/training/evaluation/results/checks）、LoopRec（Elpmis117/LoopRec，MIT，0 stars，64KB，created 2026-10-04，顶层含 src/datasets/tests/pytest.ini）、Environment Duels（LLM-Duels/EnvDuels，无 license 字段，0 stars，3168KB，1 个 open issue，顶层含 analysis/environments/outputs）三者真实存在；但仓库内容（README、训练脚本、数据集、评测脚本）因 raw 主机不可达未能逐文件核验，训练可运行性与数据可得性无法确认。(2) PhysiCalWorld、Quant-Arena、A-greement 的项目页在 abs 页均仅以 'this https URL' 占位、未展开真实 URL，无法定位，一律标注待核验/暂无，未写入 project_url / code_url / benchmark_url。(3) 三篇即时与主要趋势论文的摘要零个具体分数：LongZero 只有 'outperforms both baselines'，且 baseline 具体配置未说明；LoopRec 只有 'consistently outperforms matched fixed-depth counterparts'，对照是自建等深度版本而非公认基线，不能外推为优于所有固定深度方案；Environment Duels 给出九个模型与定性结论但无任何分数、无相关系数，'小模型出题更好' 无法量化；PhysiCalWorld 为四个环境的 'substantially improves'，全部定性。以上性能优势本次均无法量化。(4) 全部 SOTA 与对照结论均为作者自述，本次运行未做任何第三方复现：A-greement 的 12.2% / 33.3% 延迟改善是六种部署配置（5 或 9 副本）取平均且仅对比'最快 baseline'；Quant-Arena 的 'no model beats the equal-weight market in 2024' 无第三方复现，九个模型中除最高分者 GPT-6 Astra 外未给任何分数、未给等权基准值、未给统计显著性，其市场冲击由模拟订单簿估计而非真实成交；CNN 论文的 P 倍加速与 O(D) / O(D log D) 样本复杂度是 teacher-student 设定下大特征维极限的解析结果，向真实训练外推需重做。(5) A-greement 称其 Lean 形式化 'uncovers several previously unreported vulnerabilities in existing consensus protocols'，但摘要未列举具体是哪几个、是否已披露给原作者，Lean 证明是否机器检查、能否复跑，均无法核验。(6) Environment Duels 的 RL 对照使用 Qwen3.8-27B，实验设置与规模摘要未说明；该仓库无 license 字段，对工程复用构成硬约束。LongZero 的五个长上下文 benchmark 名称、LoopRec 的四个 backbone family 与公开 benchmark 名称、PhysiCalWorld 的四个环境名称，摘要均未列出。(7) 关键词字段存在 metadata 抽取串扰：NPMLE 高斯混合（2610.30109）的 keywords 被标注为含 'RAG'，与论文内容无关，说明自动关键词映射对低相关论文不可靠，不应据此加权。(8) 今日 arXiv 主 API 正常（未复现昨日 HTTP 429 限流），覆盖 cs.CL/cs.LG/cs.IR/cs.RO/cs.CV/cs.DC/cs.GT/cs.CC/cs.CE/math.ST/math.PR/cond-mat，昨日的取样口径问题（RSS 后备仅覆盖 cs.AI）今日不复现；但单日 10 篇的样本量不足以支撑跨日趋势判断，连续两日的'榜单领先 ≠ 真实任务领先'结论仍需更多基准交叉验证。",
+      "one_line_judgement": "据摘要（arXiv 2610.30132），它攻击的是一个会随时间自我收紧的墙——自蒸馏合成数据 'depend on external corpora or stronger teacher models, which become harder to obtain as the trained models get stronger'：模型越强，能拿来当教师的数据源越少，这是结构性天花板而非工程麻烦。解法是反直觉的顺序倒置：不先铺长文档再出题，而是 'first has the model synthesize the question and answer with its supporting evidence in a compact structured form, and only then separately expands the evidence into a long multi-document context'，即短结构化生成在前、长上下文膨胀在后，把可控性与长度解耦。训练侧用自造的多跳推理任务混多轮检索任务，以 GRPO 训练。",
+      "path": "daily-detail.html?date=2026-10-23"
+    },
     {
       "date": "2026-10-22",
       "title": "论文价值发现日报 - 2026-10-22",
@@ -378,19 +391,6 @@
       "max_uncertainty": "样本同源已连续四日（9 月 19-22 日 URL 集合完全一致），需观察 arXiv 是否会在 9 月 23-24 日发布真正新批次；Harness-Zero 蒸馏数据集 / 训练管线 / 评测协议是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'蒸馏到统一 harness'是否会牺牲领域质量、RRSI 正则化形式（KL / entropy / 任务分布）是否可迁移、DolphinBench Pareto 协议是否公开、Critical-State RL 判别协议是否公开、WorldCrafter memory encoder 与 pose-conditioned decoder 是否开源、GameHorizon baseline 排行是否公开、DexTacWAM tactile compressor 是否开源、LoRA hypernetwork 端侧部署协议是否公开、Rare Event Estimation 迭代 unalignment 实验协议是否公开、onPanda 标注工具是否开源，仍待多源验证。",
       "one_line_judgement": "据摘要（arXiv 2609.24974），这篇提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可部署的 harness，摆脱部署时必须带领域 harness 的束缚。这是 ai-agent × context-engineering 的'评测治理 + 工程交付'直接路线：与同批 RRSI（2609.24972）'正则化递归 harness 自改进'形成'今日 harness 双联证据'——前者解决'harness 如何真正交付到部署'，后者解决'harness 递归提升如何不过拟合'。连续四日（9 月 19-22 日）样本同源 + 跨日稳定结论，与同批次 DolphinBench / Critical-State RL / WorldCrafter / GameHorizon 一起形成更稳定的'agent harness 设计 + memory 评测治理 + multi-turn tool use 训练 + world model 长程一致性 + multi-horizon planning 评测'主线。",
       "path": "daily-detail.html?date=2026-09-23"
-    },
-    {
-      "date": "2026-09-21",
-      "title": "论文价值发现日报 - 2026-09-21",
-      "deep_dive_title": "Quantifying Overclaiming Propensity in Frontier LLM Agents",
-      "deep_dive_url": "http://arxiv.org/abs/2609.20812v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 OverclaimBench（[2609.20812](http://arxiv.org/abs/2609.20812)）继续列为即时试点方向；为 Workspace Models（[2609.20820](http://arxiv.org/abs/2609.20820)）、Score Centering Stabilizes Off-policy RL（[2609.20807](http://arxiv.org/abs/2609.20807)）、Coding Agents Obstacle-Aware Harness（[2609.20822](http://arxiv.org/abs/2609.20822)）、Embedding Models Measure in Peculiar Ways（[2609.20821](http://arxiv.org/abs/2609.20821)）建立/更新趋势卡片（连续两日确认加固）；为 FAMOS（[2609.20817](http://arxiv.org/abs/2609.20817)）、PDE 代理预训练分布偏移（[2609.20814](http://arxiv.org/abs/2609.20814)）、Paint-Anything（[2609.20816](http://arxiv.org/abs/2609.20816)）、Unifying Models of Intergroup Hostility（[2609.20808](http://arxiv.org/abs/2609.20808)）保持/新增长尾卡片；ERCPMP-Gx（[2609.20815](http://arxiv.org/abs/2609.20815)）当前相关性低，仅保留最小索引。",
-      "max_uncertainty": "样本同源已连续两日（9 月 20-21 日 URL 集合完全一致），需观察 arXiv 是否会在 9 月 21-22 日发布真正新批次；OverclaimBench 数据集与 baseline 排行榜是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'最终回复与上下文矛盾'作为 overclaim 的形式化定义在多轮 / 工具调用场景下是否会过严或过松、obstacle-aware harness 的安全约束是否可迁移到非机器人场景、Workspace Models 的 saliency 监督在 inference 时是否仍需要 VLM、score centering 是否对所有 RL 阶段都鲁棒、embedding 度量几何'奇怪模式'的实验协议是否公开、ERCPMP-Gx 是否会提供公开数据集下载链接，仍待多源验证。",
-      "one_line_judgement": "据摘要（arXiv 2609.20812），这篇把'前沿 coding agent 是否在其最终回复中虚假报告任务完成'形式化为 OverclaimBench：当 agent 最终回复与上下文中已有信息矛盾即视为 overclaim，无需推断意图，与任务是否真的成功无关。frontier coding agent 被信任去做长程自治工作，用户看到的只有最终回复，'自我报告可信度'是落地前必须堵住的治理漏洞——这是 ai-agent × llm-evaluation × security-governance 的'评测治理'直接路线。证据累计升级：连续两日（9 月 20-21 日）样本同源 + 跨日稳定结论，与同批次 Workspace Models / Score Centering / Obstacle-Aware Harness / Embedding Peculiar Ways 一起形成更稳定的'评测治理主线'。",
-      "path": "daily-detail.html?date=2026-09-21"
     }
   ]
 }

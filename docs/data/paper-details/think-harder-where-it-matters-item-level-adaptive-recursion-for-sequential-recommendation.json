@@ -1,0 +1,134 @@
+{
+  "id": "think-harder-where-it-matters-item-level-adaptive-recursion-for-sequential-recommendation",
+  "title": "Think Harder Where It Matters: Item-Level Adaptive Recursion for Sequential Recommendation",
+  "authors": [
+    "Zhanshuo Cao",
+    "Jiakai Tang",
+    "Yuqi Zhou",
+    "Sunhao Dai",
+    "Jun Xu"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-21",
+  "url": "http://arxiv.org/abs/2610.30128v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.30128v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-23",
+  "first_deep_dive_daily": "2026-10-23",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 76.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.30128，Subjects 为 cs.IR/cs.AI/cs.CL/cs.LG）：LoopRec 表面是推荐…",
+  "one_line_essence": "据摘要（arXiv 2610.30128，Subjects 为 cs.IR/cs.AI/cs.CL/cs.LG）：LoopRec 表面是推荐系统，内核是一条关于'算力分配的默认设定错了'的论断，迁移价值比领域相关性强得多。它的第一条诊断是'non-uniform computational need'：'items within the same sequence vary drastically in how much computation they require. Most converge after shallow processing while a critical minority only stabilizes at full depth'。第二条诊断更有分量，因为它是 oracle 实验——'given oracle access to the target item, a non-uniform depth assignment consistently outranks the fixed one'，即即便只把固定深度换成事后最优的逐项深度都能赢，说明固定预算不是'够用但保守'，而是结构性次优：'existing uniform computation both wastes capacity on already-converged items and sacrifices overall recommendation quality'。方法上它把深度变成可学属性且不需要深度标签——'LoopRec recursively applies a single weight-shared block and introduces a lightweight gate at each recursion boundary that makes a binary exit-or-continue decision for every item independently'，'without auxiliary depth labels'，这是工程上最省事的一点（不用额外标注深度）。还有一条可解释性结果值得记：'lower-frequency items and more recent interactions naturally receive deeper computation'——深度分配与两个直觉信号对齐，可作为 sanity check。证据边界必须写清：摘要给出 'Extensive experiments on public benchmarks with four backbone families' 与 'LoopRec consistently outperforms matched fixed-depth counterparts'，但零个绝对分数、零个提升幅度、benchmark 名称未列；'matched fixed-depth' 是自建对照而非公认基线，因此'持续优于'只能读作'优于自建的等深度版本'，不能外推为优于所有固定深度方案。代码：本次经 GitHub API 核验 https://github.com/Elpmis117/LoopRec 真实存在（MIT，0 stars，64KB，created 2026-10-04），顶层含 src / datasets / tests / pytest.ini——64KB 体积与带测试说明是可复现代码的形态，但内容因 raw 主机不可达未核验，标注待核验/暂无，未写入 code_url。价值路由：LLM 侧的对应物是测试时算力（thinking budget / 采样步数 / 工具调用轮数）当前几乎都是按请求或按序列均匀分配的。若 LoopRec 的 oracle 结论在 LLM 侧成立，那统一分配就是普遍性次优——这与昨日 STRIPS 难度分解 'h_add 现算优于训预测器'（2610.26964）指向同一条：结构复杂度应当现算而非均摊。领域不同，但结论可迁移程度高，值得进趋势雷达连续观察。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据摘要（arXiv 2610.30128，Subjects 为 cs.IR/cs.AI/cs.CL/cs.LG）：LoopRec 表面是推荐系统，内核是一条关于'算力分配的默认设定错了'的论断，迁移价值比领域相关性强得多。它的第一条诊断是'non-uniform computational need'：'items within the same seque",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据摘要（arXiv 2610.30128，Subjects 为 cs.IR/cs.AI/cs.CL/cs.LG）：LoopRec 表面是推荐系统，内核是一条关于'算力分配的默认设定错了'的论断",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.30128v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.30128v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=think-harder-where-it-matters-item-level-adaptive-recursion-for-sequential-recommendation",
+  "daily_path": "daily-detail.html?date=2026-10-23",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

@@ -1,6 +1,1325 @@
 {
-  "updated_at": "2026-10-22T04:39:40.857532",
+  "updated_at": "2026-10-23T04:37:12.427966",
   "papers": {
+    "longzero-enhancing-long-context-reasoning-in-llms-from-zero-data": {
+      "id": "longzero-enhancing-long-context-reasoning-in-llms-from-zero-data",
+      "title": "LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data",
+      "authors": [
+        "Zhennan Wan",
+        "Jianfei Chen"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30132v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30132v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 2.4
+      },
+      "score": 82.0,
+      "decision": "重点学习",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.30132，abs 页 Comments 为 'Code and data are available at …",
+      "one_line_essence": "据摘要（arXiv 2610.30132，abs 页 Comments 为 'Code and data are available at this https URL'，Subjects 仅 cs.CL/cs.LG）：LongZero 打的是长上下文 RL 最硬的那个依赖——摘要开篇就把约束列全了：'it needs training data that are long, diverse, challenging, and verifiable'，而 'Human annotation of such data is expensive, naturally occurring data are too scarce to sustain RL, and existing synthesis methods depend on external corpora or stronger teacher models, which become harder to obtain as the trained models get stronger'。最后半句是关键论据：模型越强，能当教师的数据源越少，这是自蒸馏路线的结构性天花板，不只是工程 inconvenience。它的解法是反直觉的顺序——通常做法是'先有长文档再出题'，LongZero 反过来：'first has the model synthesize the question and answer with its supporting evidence in a compact structured form, and only then separately expands the evidence into a long multi-document context'。即短结构化生成在前、长上下文膨胀在后，这样可控性与长度解耦。训练侧 'combines these self-written multi-hop reasoning tasks with self-written multi-round retrieval tasks and trains the model with GRPO'——两类自造任务混训（多跳推理 + 多轮检索），后者说明它不只做阅读理解，还试图覆盖检索交互。证据强度必须打折：摘要只说 'LongZero can generalize to real tasks, and outperforms both baselines'，评测口径是 'two LLMs across five long-context reasoning benchmarks'——两个模型、五个 benchmark，名称一个都没给，零个绝对分数、零个提升幅度、零个方差区间，因此'优于两个 baseline'无法量化，baseline 是谁（外部语料 RL 的哪一档配置）摘要也未说明。代码与数据：本次经 GitHub API 核验 https://github.com/zhennan1/LongZero 真实存在（MIT，2 stars，4690KB，pushed 2026-10-22），顶层目录含 synthesis / training / evaluation / results / checks / figs / requirements.txt，结构与摘要描述的自造→训练→评测三段自洽；但仓库实际内容因 raw.githubusercontent.com 今日从本机不可达而未能逐文件核验，训练脚本、数据集与五个 benchmark 的具体名称均标注待核验/暂无，未据此写入 code_url。价值路由：这是今天最该排进工程验证队列的一篇，因为它攻击的是我们自建 agent 长程训练数据时每天都会撞到的同一个墙；但先做最小验证，不要照搬——用我们自己的模型跑一遍'短结构化生成 → 长上下文膨胀'，只验一件事：膨胀后证据链是否仍然可验证（这是 GRPO 可信的前提，也是摘要没说清楚的风险点）。今日动作：列一份最小验证计划（模型 × 膨胀倍率 × 证据可验证率三列），不预设结论。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30132，abs 页 Comments 为 'Code and data are available at this https URL'，Subjects 仅 cs.CL/cs.LG）：LongZero 打的是长上下文 RL 最硬的那个依赖——摘要开篇就把约束列全了：'it needs training data that ",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "context-engineering",
+          "agentic-world-modeling",
+          "coding-agent"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30132，abs 页 Comments 为 'Code and data are available at this https URL'，Subjects 仅",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30132v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30132v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=longzero-enhancing-long-context-reasoning-in-llms-from-zero-data",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering",
+        "trend-detail.html?id=agentic-world-modeling",
+        "trend-detail.html?id=coding-agent"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "the-end-of-consensus-research": {
+      "id": "the-end-of-consensus-research",
+      "title": "The End of Consensus Research?",
+      "authors": [
+        "Clément Burgelin",
+        "Rachid Guerraoui",
+        "Zicong Hong",
+        "Yinan Hu",
+        "Anne-Marie Kermarrec"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30114v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30114v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 7.4,
+        "evidence": 5.4,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 80.0,
+      "decision": "重点学习",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.30114，abs 页 Comments 为 '39 pages'，Subjects 仅 cs.DC/cs.A…",
+      "one_line_essence": "据摘要（arXiv 2610.30114，abs 页 Comments 为 '39 pages'，Subjects 仅 cs.DC/cs.AI）：这篇的稀缺性不在共识协议本身（A-greement 我们大概率不会直接用），而在它诚实地交代了共识研究为什么几十年来没进展——'discovering practical low-latency solutions to the problem is still open, as it requires combining protocol knowledge, correctness reasoning, implementation, and experimental evaluation'。四种能力要同时具备，所以卡住。它的产出有两层：协议层是 A-greement，'combines lease-authorized local reads, direct client learning for leader-ordered writes, and a fast fixed-quorum per-key write path, selected according to network topology and workload'——按网络拓扑与负载切换策略，不是单一算法。数字是今日唯一给了硬指标的论文：'Averaged across six deployments with 5 or 9 replicas'，geo-distributed key-value store 的平均延迟相对最快 baseline 在写重负载降 12.2%、读重负载降 33.3%，读多写少时持平——注意它是'六种部署配置取平均'的口径，且只与'fastest baseline'比，作者自述、无第三方复现。方法层才是对我们最有价值的：AI-greement 是个 agent harness，含三件套——'(1) a concept-oriented protocol knowledge base, (2) a modular implementation skeleton, and (3) a Lean-based verification framework with reusable safety definitions, reference specifications, and proofs'。并且它给出了 harness 副产品这条硬结论：'its Lean formalization uncovers several previously unreported vulnerabilities in existing consensus protocols'——形式化不只是给新协议上保险，还回头查出了老协议的洞。有两条自我设限也要记：'(4) ... it provides guidelines on how domain-specific harnesses can turn general-purpose coding agent into effective tools for (distributed) computing research'，以及 'we argue that human consensus experts remain essential before, during, and after the search: agents reshape the researcher's role rather than end consensus research'。价值路由：可迁移物是三件套 harness 结构（概念型知识库 / 模块化实现骨架 / 形式化验证框架），凡是我们要做'让 agent 在某个窄领域里做研究'的项目，这是现成的架构模板；可迁移的第二条是'形式化顺手查出存量漏洞'这一副产品论证——如果哪天我们对自家某个复杂协议/状态机做形式化，价值可能不在证明新的，而在暴露旧的。领域距离远（分布式共识与我们无交集），但方法层距离近。代码 / 数据 / 项目页：abs 页未给出任何仓库或项目链接，待核验/暂无；'previously unreported vulnerabilities' 未在摘要中列举具体是哪几个、是否已披露给原作者，无第三方核验。Lean 形式化的可用性（能否复跑、证明是否机器检查）无法核验。今日动作：把三件套结构抄成我们自己的领域 harness 模板（先用在评测口径这类有形式化潜力的域），不追协议本身。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30114，abs 页 Comments 为 '39 pages'，Subjects 仅 cs.DC/cs.AI）：这篇的稀缺性不在共识协议本身（A-greement 我们大概率不会直接用），而在它诚实地交代了共识研究为什么几十年来没进展——'discovering practical low-latency solutions",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30114，abs 页 Comments 为 '39 pages'，Subjects 仅 cs.DC/cs.AI）：这篇的稀缺性不在共识协议本身（A-greeme",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30114v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30114v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=the-end-of-consensus-research",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "environment-duels-a-microcosm-of-llm-co-evolution": {
+      "id": "environment-duels-a-microcosm-of-llm-co-evolution",
+      "title": "Environment Duels: A Microcosm of LLM Co-Evolution",
+      "authors": [
+        "Shibo Jin",
+        "Zhiqiu Xu",
+        "Yiling Zou",
+        "Shangyu Gong",
+        "Mayur Naik"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30116v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30116v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 6.2,
+        "evidence": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 78.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "今天值得试：据摘要（arXiv 2610.30116，Subjects 仅 cs.CL/cs.AI，abs 页末尾 'Code is available…",
+      "one_line_essence": "据摘要（arXiv 2610.30116，Subjects 仅 cs.CL/cs.AI，abs 页末尾 'Code is available at this https URL'）：Environment Duels 接着昨日 MAMath-Bench 那条评测主线再往前推了一步——昨日量的是'多 agent 是否更强'，今日量的是'模型作为出题者与解题者是不是同一种能力'。benchmark 设计是动态对抗式的：'Each model writes environments, each with a privileged hint, aiming for tasks that capable solvers fail without the hint and pass with it'——环境由被测模型自己写，且带一个特权提示，任务标准是'没有 hint 时强解题者做不出、有 hint 就能做出'，这比静态题库更难作弊，因为它主动去攻击出题模型自己的盲区。三条结论里第一条最值得抄：'Across nine frontier LLMs, solving and authoring prove to be distinct skills: the strongest solvers are not the strongest authors, while smaller models learn more from how others played and write the hardest environments and the most useful hints'。把'出题'与'解题'拆成两个独立维度，直接影响我们的评测设计——一个模型答分高不代表它能构造出有区分度的考题，而这恰恰是 auto-eval / benchmark 流水线依赖的能力。另外两条结构结论也有工程含义：'Head-to-head outcomes are transitive and so yield a stable ranking'（成对比较可传递，因此可稳定排序——这为用少量成对 duel 替代全量 benchmark 提供了依据）；'independent authors converge on the same designs'（不同作者独立写出的环境趋同，说明'什么是好题'存在共识基准）；以及一个 RL 侧的对照——'in a reinforcement-learning study with Qwen3.8-27B, the learner's hint lift on an author's environments tracks how much training on those environments improves it on held-out reasoning and agentic benchmarks, whether the environments are its own or another model's'，即 hint lift 可以当环境质量的代理指标。证据强度要打折：摘要给出九个模型、三个结论，但零个具体分数、零个表格数字、无相关系数，'小模型写得更好'这一反直觉结论无法量化；基座 Qwen3.8-27B 的 RL 实验设置与规模摘要未说明。代码：本次经 GitHub API 核验 https://github.com/LLM-Duels/EnvDuels 真实存在（0 stars，3168KB，1 个 open issue，无 license 字段），顶层含 analysis / environments / outputs；仓库内容因 raw 主机不可达未能核验，且无 license 对工程复用是硬约束，标注待核验/暂无，未据此写入 code_url。价值路由：与昨日 MAMath-Bench 叠加后，'出题能力 = 解题能力' 这一条应写进我们的 agent 评测模板——凡是用 LLM 自动生成评测题/环境的地方，必须单独度量出题方的区分度，不能默认出题模型够好。今日动作：给内部 agent 评测模板新增第二根轴——出题者区分度（出题者 vs 最强解题者是否同一人），并把 'strongest solvers are not the strongest authors' 列为默认假设的反例。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30116，Subjects 仅 cs.CL/cs.AI，abs 页末尾 'Code is available at this https URL'）：Environment Duels 接着昨日 MAMath-Bench 那条评测主线再往前推了一步——昨日量的是'多 agent 是否更强'，今日量的是'模型作为出题者与解题者是",
+      "research_position": "benchmark",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30116，Subjects 仅 cs.CL/cs.AI，abs 页末尾 'Code is available at this https URL'）：Envir",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "今天读摘要与方法",
+          "今天试最小实验",
+          "一周内沉淀为 Skill / Checklist"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30116v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30116v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=environment-duels-a-microcosm-of-llm-co-evolution",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "think-harder-where-it-matters-item-level-adaptive-recursion-for-sequential-recommendation": {
+      "id": "think-harder-where-it-matters-item-level-adaptive-recursion-for-sequential-recommendation",
+      "title": "Think Harder Where It Matters: Item-Level Adaptive Recursion for Sequential Recommendation",
+      "authors": [
+        "Zhanshuo Cao",
+        "Jiakai Tang",
+        "Yuqi Zhou",
+        "Sunhao Dai",
+        "Jun Xu"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30128v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30128v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 76.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.30128，Subjects 为 cs.IR/cs.AI/cs.CL/cs.LG）：LoopRec 表面是推荐…",
+      "one_line_essence": "据摘要（arXiv 2610.30128，Subjects 为 cs.IR/cs.AI/cs.CL/cs.LG）：LoopRec 表面是推荐系统，内核是一条关于'算力分配的默认设定错了'的论断，迁移价值比领域相关性强得多。它的第一条诊断是'non-uniform computational need'：'items within the same sequence vary drastically in how much computation they require. Most converge after shallow processing while a critical minority only stabilizes at full depth'。第二条诊断更有分量，因为它是 oracle 实验——'given oracle access to the target item, a non-uniform depth assignment consistently outranks the fixed one'，即即便只把固定深度换成事后最优的逐项深度都能赢，说明固定预算不是'够用但保守'，而是结构性次优：'existing uniform computation both wastes capacity on already-converged items and sacrifices overall recommendation quality'。方法上它把深度变成可学属性且不需要深度标签——'LoopRec recursively applies a single weight-shared block and introduces a lightweight gate at each recursion boundary that makes a binary exit-or-continue decision for every item independently'，'without auxiliary depth labels'，这是工程上最省事的一点（不用额外标注深度）。还有一条可解释性结果值得记：'lower-frequency items and more recent interactions naturally receive deeper computation'——深度分配与两个直觉信号对齐，可作为 sanity check。证据边界必须写清：摘要给出 'Extensive experiments on public benchmarks with four backbone families' 与 'LoopRec consistently outperforms matched fixed-depth counterparts'，但零个绝对分数、零个提升幅度、benchmark 名称未列；'matched fixed-depth' 是自建对照而非公认基线，因此'持续优于'只能读作'优于自建的等深度版本'，不能外推为优于所有固定深度方案。代码：本次经 GitHub API 核验 https://github.com/Elpmis117/LoopRec 真实存在（MIT，0 stars，64KB，created 2026-10-04），顶层含 src / datasets / tests / pytest.ini——64KB 体积与带测试说明是可复现代码的形态，但内容因 raw 主机不可达未核验，标注待核验/暂无，未写入 code_url。价值路由：LLM 侧的对应物是测试时算力（thinking budget / 采样步数 / 工具调用轮数）当前几乎都是按请求或按序列均匀分配的。若 LoopRec 的 oracle 结论在 LLM 侧成立，那统一分配就是普遍性次优——这与昨日 STRIPS 难度分解 'h_add 现算优于训预测器'（2610.26964）指向同一条：结构复杂度应当现算而非均摊。领域不同，但结论可迁移程度高，值得进趋势雷达连续观察。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30128，Subjects 为 cs.IR/cs.AI/cs.CL/cs.LG）：LoopRec 表面是推荐系统，内核是一条关于'算力分配的默认设定错了'的论断，迁移价值比领域相关性强得多。它的第一条诊断是'non-uniform computational need'：'items within the same seque",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30128，Subjects 为 cs.IR/cs.AI/cs.CL/cs.LG）：LoopRec 表面是推荐系统，内核是一条关于'算力分配的默认设定错了'的论断",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30128v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30128v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=think-harder-where-it-matters-item-level-adaptive-recursion-for-sequential-recommendation",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "quant-arena-benchmarking-llm-agents-for-quantitative-trading-research": {
+      "id": "quant-arena-benchmarking-llm-agents-for-quantitative-trading-research",
+      "title": "Quant-Arena: Benchmarking LLM Agents for Quantitative Trading Research",
+      "authors": [
+        "Houde Qian",
+        "Zheng Jiang",
+        "Wenyi Li",
+        "Chenxi Xu",
+        "Xinjie Lin"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30113v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30113v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 7.4,
+        "evidence": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 74.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.30113，abs 页 Comments 为 'Project page: this https URL'，S…",
+      "one_line_essence": "据摘要（arXiv 2610.30113，abs 页 Comments 为 'Project page: this https URL'，Subjects 为 cs.CL/cs.AI/cs.CE）：Quant-Arena 是端到端量化研究 benchmark，可迁移的是它的防作弊设计而非金融内容。它把研究闭环定义为 'proposes a market hypothesis, implements it as an executable signal, tests it on historical data, and decides what to keep'，并批评现有 benchmark 'score formulas, code, or individual trading decisions'——即只判片段、不判闭环，这个批评对我们同样成立。防过拟合设计是核心：'A model constructs features and stock-scoring code, receives feedback only on 2022--2023, and freezes one strategy for assessment on the sealed year 2024'。反馈窗口与封存评估窗口严格隔离，且策略只冻结一次——这条把'用测试集反复调参'这条路直接堵死，迁移到我们的 agent/代码评测就是'开发集反馈 + 封存集一次性定稿'。评估器也值得看：'A cash-account evaluator applies trading constraints and costs, including market impact estimated from a simulated order book'——即打分不只看收益，还强制计入约束与成本（市场冲击用模拟订单簿估计）。结论里有一条硬负面：'We evaluate nine frontier models, among which GPT-6 Astra scores highest; yet no model beats the equal-weight market in 2024'。九个前沿模型在真实 A 股封存年度上没有一个跑赢等权基准——这是今日最有分量的一条负面证据，且它与昨日 MAMath-Bench 的 'multi-agent collaboration does not consistently improve final-answer accuracy' 同向：2026 年这批基准的共同结论是'榜单领先 ≠ 真实任务领先'。证据边界：'no model beats the equal-weight market' 是自述结论，无第三方复现；九个模型除最高分者 GPT-6 Astra 外未给任何分数、未给基准值、未给统计显著性；市场冲击由模拟订单簿估计而非真实成交，评估器的保真度无法核验。项目页：abs 页仅以 'this https URL' 占位、未展开真实 URL，huggingface.co / github.com 网页今日从本机不可达，待核验/暂无，未写入 project_url / benchmark_url。价值路由：把'封存期 + 一次性冻结 + 强制计入成本'抄成我们评测模板的三条硬规则，重点是最后一条——任何不计入推理/调用成本的评测都会系统性高估重型方案。今日动作：检查我们现有评测是否在反馈窗口上反复看过封存期数据。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30113，abs 页 Comments 为 'Project page: this https URL'，Subjects 为 cs.CL/cs.AI/cs.CE）：Quant-Arena 是端到端量化研究 benchmark，可迁移的是它的防作弊设计而非金融内容。它把研究闭环定义为 'proposes a market hy",
+      "research_position": "benchmark",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "coding-agent",
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30113，abs 页 Comments 为 'Project page: this https URL'，Subjects 为 cs.CL/cs.AI/cs.C",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30113v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30113v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=quant-arena-benchmarking-llm-agents-for-quantitative-trading-research",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [
+        "trend-detail.html?id=coding-agent",
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "physicalworld-in-context-physics-calibration-for-world-models": {
+      "id": "physicalworld-in-context-physics-calibration-for-world-models",
+      "title": "PhysiCalWorld: In-Context Physics Calibration for World Models",
+      "authors": [
+        "Yunhao Luo",
+        "Wentao He",
+        "Yinpei Dai",
+        "Hyelin Nam",
+        "Hongze Fu"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30125v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30125v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "value_scores": {
+        "novelty": 5.4,
+        "relevance": 5.0,
+        "evidence": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "actionability": 5.0,
+        "noise_risk": 1.2
+      },
+      "score": 71.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得继续观察：据摘要（arXiv 2610.30125，abs 页 Comments 为 'Project page: this https URL'，S…",
+      "one_line_essence": "据摘要（arXiv 2610.30125，abs 页 Comments 为 'Project page: this https URL'，Subjects 为 cs.RO/cs.AI/cs.CV）：PhysiCalWorld 处理的是一个很干净的世界模型缺口——'these observations may not reveal the physics properties that determine transition dynamics, such as an object's mass distribution, joint damping, or surface friction'，结果是 'predictions tend to regress toward an empirical prior and induce severe drift in novel test scenes'。诊断很准确：新场景里模型不是算错，而是滑回先验。方法上有两个约束值得记：'calibrates action-conditioned world models to the instance-specific dynamics via in-context prompting, without fine-tuning or analytical physics modeling'——不微调、不做解析物理建模，只靠 in-context；实现方式是 'encodes an exploratory interaction clip collected within the test scene into a compact physics descriptor token'，然后 'grounded subsequent predictions in the scene's actual physical behavior'。训练侧 'trained end-to-end with the latent prediction loss alone, without physics labels'——这是最漂亮的一点：只有潜空间预测损失，没有任何物理标注，通常这类工作需要标质量/摩擦/阻尼，工程成本极高。推理侧成本也交代了：'the descriptor token is extracted once and can be reused across rollouts with negligible compute overhead'，一次性提取、跨 rollout 复用。还有一条外推性证据：'The learned descriptors also form a physically structured latent space and generalize beyond the physics ranges seen during training'——潜空间有物理结构且可外推到训练范围之外。证据边界：'We evaluate PhysiCalWorld across four environments covering diverse physics variations and show that it substantially improves rollout prediction accuracy and visual planning success rate'——四个环境，全部定性表述（substantially / improves），零个数字、零个提升幅度、四个环境名称未列；未与需要物理标注的强基线做对照（这一点摘要未提，属重要空白）。项目页：abs 页 'this https URL' 占位未展开，github.com 网页今日从本机不可达，待核验/暂无。价值路由：这条'用一次性探索片段压成 descriptor token、零物理标注训练'是 agentic-world-modeling 方向的一个低成本范式，可迁移的抽象是——当目标场景存在未被观测到的隐变量时，先花一次探索把它压成一个可复用的条件向量，而不是为每个场景重新训练或做解析建模。趋势雷达连续观察。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30125，abs 页 Comments 为 'Project page: this https URL'，Subjects 为 cs.RO/cs.AI/cs.CV）：PhysiCalWorld 处理的是一个很干净的世界模型缺口——'these observations may not reveal the physics pr",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "emerging",
+        "related_trends": [
+          "agentic-world-modeling"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30125，abs 页 Comments 为 'Project page: this https URL'，Subjects 为 cs.RO/cs.AI/cs.C",
+        "future_trigger": [
+          "出现多篇跟进论文、开源项目和工程博客共振"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [
+          "纳入趋势雷达",
+          "观察代码 / benchmark / 工程博客",
+          "7-30 天复盘"
+        ],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30125v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30125v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=physicalworld-in-context-physics-calibration-for-world-models",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [
+        "trend-detail.html?id=agentic-world-modeling"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "the-role-of-locality-and-weight-sharing-in-convolutional-neural-networks": {
+      "id": "the-role-of-locality-and-weight-sharing-in-convolutional-neural-networks",
+      "title": "The role of locality and weight sharing in convolutional neural networks",
+      "authors": [
+        "Francesco Mori",
+        "Melanie Weber"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30118v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30118v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 66.0,
+      "decision": "轻量试点",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.30118，abs 页 Comments 为 '39 pages, 11 figures, including…",
+      "one_line_essence": "据摘要（arXiv 2610.30118，abs 页 Comments 为 '39 pages, 11 figures, including appendices'，Subjects 为 cs.LG/cond-mat.dis-nn/cond-mat.stat-mech/stat.ML）：这篇是纯理论，但它的结论能直接回答'卷积到底为什么有效'这个工程上被默认了十年而没人算清楚的问题——开篇就点明 'how these two properties separately shape learning, and how their effects depend on the spatial correlations of natural images, remain poorly understood'。方法是可精确求解的：在教师-学生设定下 'derive ordinary differential equations that describe their dynamics exactly in the limit of large feature dimension D'，所以结论不是拟合出来的而是解析得到的。三条结论：(1) 位置不相关时（c=0）卷积学生 'learning exactly P times faster'——注意是精确的 P 倍，不是近似；(2) 样本复杂度依赖核尺寸匹配——'a student that matches the kernel size of the teacher recovers it from O(D) samples, whereas O(D log(D)) samples are needed with a larger kernel'，即核开大带来的表达力需要额外 O(log D) 倍样本；(3) 最反直觉的一条：'For c > 0, spatial correlations can reduce the advantage of weight sharing'——当输入位置间存在空间相关性时，权重共享的优势被削弱，因为此时'看更多邻居'的信息收益变小，'The asymptotic error of the convolutional student grows with c, whereas that of the locally connected student is independent of c and overall lower when evaluated at the same learning rate'。但它也没把结论说死，给出了反转条件：'When the learning rate is instead tuned to the training horizon, however, the locally connected student wins at early times and the convolutional student at late times, with a transition that we predict analytically'——同学习率下局部连接更好，但按训练周期调学习率后，早期局部连接赢、后期卷积赢，且转折点可解析预测。工程含义：权重共享的收益取决于数据的空间相关性结构与训练时长，不能无条件奉承；数据本身空间结构强时，局部连接（参数更多）在早期性价比更高。价值路由：与我们的直接相关性低（我们是 LLM/agent 赛道，不训视觉骨干），但它是'局部性 + 参数共享'这类结构先验的干净代价表，可迁移为'参数共享何时值得'的一般性参照，且那条例外条件（相关性削弱共享优势、存在阶段反转）提醒我们不要把这类结论当成无条件定律。存长尾即可。代码 / 数据 / 项目页：待核验/暂无（abs 页 github/huggingface 链接仅是站点导航元素，非论文仓库）。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30118，abs 页 Comments 为 '39 pages, 11 figures, including appendices'，Subjects 为 cs.LG/cond-mat.dis-nn/cond-mat.stat-mech/stat.ML）：这篇是纯理论，但它的结论能直接回答'卷积到底为什么有效'这个工程上被默认",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30118，abs 页 Comments 为 '39 pages, 11 figures, including appendices'，Subjects 为 cs",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-11-13"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30118v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30118v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=the-role-of-locality-and-weight-sharing-in-convolutional-neural-networks",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "a-quasipolynomial-algorithm-for-ell-infty-contractions": {
+      "id": "a-quasipolynomial-algorithm-for-ell-infty-contractions",
+      "title": "A Quasipolynomial Algorithm for $\\ell_\\infty$ Contractions",
+      "authors": [
+        "Ashkan Soleymani",
+        "Gabriele Farina"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30122v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30122v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 5.0,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 1.2
+      },
+      "score": 64.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.30122，Subjects 为 cs.GT/cs.CC/cs.LG/math.OC）：这是一篇纯理论、但分量…",
+      "one_line_essence": "据摘要（arXiv 2610.30122，Subjects 为 cs.GT/cs.CC/cs.LG/math.OC）：这是一篇纯理论、但分量很重的算法结果。它给出对任意 d 维 nonexpansion（l∞ 范数下）的 eps-近似不动点计算算法，时间为 log(1/eps)^{O(log^2 d)}；核心机制是 'uses a boosting argument to geometrically shrink a search region'（用 boosting 论证几何收缩搜索区域）。最有分量的推论是：'our algorithm implies that simple stochastic games can be solved in quasipolynomial time'——简单随机博弈的拟多项式时间可解性是理论计算机科学里长期悬着的问题，这条结论的重量级程度远超今日其他论文。需要说清的是：这条推论是'本文算法蕴含其可解性'，不等价于本文直接给出博弈的拟多项式算法证明，两者的归因边界摘要未展开。价值路由：对我们的当期工程价值为零——不动点迭代、nonexpansion、随机博弈都不在我们赛道；但它是'基础理论侧出现可迁移新工具'的典型样本，按长尾保留规则入库，触发条件是未来我们若涉及策略迭代、不动点求解、强化学习收敛性证明或形式化验证工具链，这类拟多项式界可能改变可用算法的量级。另外，它是今日唯一 cs.GT/cs.CC 分类命中，说明本仓分类配置在博弈论方向有覆盖，可作为 arXiv cs.GT 论文的长期跟踪入口。证据边界：摘要仅三句话，无任何实验、无代码、无基准（理论论文，符合预期），复杂度界的常数依赖与是否最优摘要未说明，是否已有前人独立得到同类界无法核验（'we give an algorithm' 的新颖性自述未核验）。代码 / 数据 / 项目页：待核验/暂无。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30122，Subjects 为 cs.GT/cs.CC/cs.LG/math.OC）：这是一篇纯理论、但分量很重的算法结果。它给出对任意 d 维 nonexpansion（l∞ 范数下）的 eps-近似不动点计算算法，时间为 log(1/eps)^{O(log^2 d)}；核心机制是 'uses a boosting argu",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30122，Subjects 为 cs.GT/cs.CC/cs.LG/math.OC）：这是一篇纯理论、但分量很重的算法结果。它给出对任意 d 维 nonexpa",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-11-13"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30122v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30122v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=a-quasipolynomial-algorithm-for-ell-infty-contractions",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "self-normalized-bernstein-inequalities-for-regenerative-processes-and-applications-to-learning-without-independence": {
+      "id": "self-normalized-bernstein-inequalities-for-regenerative-processes-and-applications-to-learning-without-independence",
+      "title": "Self-normalized Bernstein Inequalities for Regenerative Processes and Applications to Learning Without Independence",
+      "authors": [
+        "Imon Banerjee",
+        "Pierre Alquier"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30119v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30119v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "long_tail",
+      "value_type_label": "长尾价值",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 63.0,
+      "decision": "持续观察",
+      "one_line_judgement": "值得先保存：据摘要（arXiv 2610.30119，abs 页 Comments 为 '44 pages'，Subjects 为 cs.LG/math…",
+      "one_line_essence": "据摘要（arXiv 2610.30119，abs 页 Comments 为 '44 pages'，Subjects 为 cs.LG/math.PR/math.ST）：这篇是关于'非独立同分布数据下还能不能学'的理论结果，实际相关性取决于我们的数据管线是否会产生再生过程（regenerative process）结构。核心是自归一化 Bernstein 不等式，针对 'bounded functions of a regenerative process with independent, identically distributed marked cycles of finite mean length'——即观测可切成独立同分布且均值有限的循环。它的界有两个实用特性：'The bound uses observed cycle lengths'（用观测到的循环长度，可从数据估计，不需假设已知的重置机制）并 'retains explicit terms for truncation and the cycle ending after the observation horizon'（显式保留截断与观测窗口末未闭合循环的项——这是大多数简化版界会悄悄丢掉的两项，正好对应长会话被硬切断的现实）。工程上最有意思的一段是界的重尾项处理：'it turns out that it is of second-order in many cases of interest'，因此 'by minimizing the first-order term only in the bound, we define agnostic classifiers that still satisfy oracle inequalities'——只优化一阶项，仍满足 oracle 型泛化界。这条可直接用：给我们的损失函数设计一个近似可计算的代理目标，保留理论保证。另一条是 'the bound on the average deviation provided by our results is minimax-optimal in the sample size and in the expected regeneration time'（样本量与期望循环长度两维同时最优），以及与再生强逼近结合得到高斯近似并配 'an observable block variance estimator'。价值路由：领域是概率论，对我们的直接迁移取决于数据是否具再生结构（典型场景：定时重启的任务队列、按 episode 切分的 agent 轨迹、周期快照的数据流——这些都近似满足）。若满足，'显式保留截断项 + 只优化一阶项 + 用观测循环长度' 这三条是可落地的；不满足则仅作长尾保留。证据边界：纯理论，摘要无实验、无数据、无代码；'many cases of interest' 中哪些情形属一阶/二阶未逐一列举，无第三方复现。代码 / 数据 / 项目页：待核验/暂无。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30119，abs 页 Comments 为 '44 pages'，Subjects 为 cs.LG/math.PR/math.ST）：这篇是关于'非独立同分布数据下还能不能学'的理论结果，实际相关性取决于我们的数据管线是否会产生再生过程（regenerative process）结构。核心是自归一化 Bernstein 不等式",
+      "research_position": "long_tail_insight",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "long_tail_watch",
+        "related_trends": [
+          "context-engineering"
+        ],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30119，abs 页 Comments 为 '44 pages'，Subjects 为 cs.LG/math.PR/math.ST）：这篇是关于'非独立同分布数",
+        "future_trigger": [
+          "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": "2026-11-13"
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [
+          "加入长尾库",
+          "标注未来触发条件",
+          "先沉淀 Prompt / Skill 草案"
+        ],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30119v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30119v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=self-normalized-bernstein-inequalities-for-regenerative-processes-and-applications-to-learning-without-independence",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [
+        "trend-detail.html?id=context-engineering"
+      ],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
+    "minimax-optimality-of-the-npmle-for-gaussian-mixtures-in-hellinger-distance": {
+      "id": "minimax-optimality-of-the-npmle-for-gaussian-mixtures-in-hellinger-distance",
+      "title": "Minimax Optimality of the NPMLE for Gaussian Mixtures in Hellinger Distance",
+      "authors": [
+        "Shayan Hundrieser",
+        "Tudor Manole"
+      ],
+      "source": "arXiv",
+      "published": "2026-10-21",
+      "url": "http://arxiv.org/abs/2610.30109v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.30109v1",
+      "code_url": "",
+      "benchmark_url": "",
+      "paperswithcode_url": "",
+      "openreview_url": "",
+      "first_seen_date": "2026-10-23",
+      "first_deep_dive_daily": "2026-10-23",
+      "value_type": "ignore",
+      "value_type_label": "暂时忽略",
+      "value_scores": {
+        "novelty": 4.8,
+        "relevance": 3.8,
+        "evidence": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "actionability": 3.8,
+        "noise_risk": 2.4
+      },
+      "score": 52.0,
+      "decision": "持续观察",
+      "one_line_judgement": "当前可忽略：据摘要（arXiv 2610.30109，Subjects 为 math.ST/cs.IT/cs.LG）：Minimax Optimalit…",
+      "one_line_essence": "据摘要（arXiv 2610.30109，Subjects 为 math.ST/cs.IT/cs.LG）：Minimax Optimality of the NPMLE for Gaussian Mixtures in Hellinger Distance 是高斯混合密度非参数极大似然估计的极小极大最优性理论。结论有两层：无约束 NPMLE 在真混合测度为 sub-Gaussian 时达到 'the minimax optimal rate log(n)/n in squared Hellinger distance'；紧支撑情形下约束到紧区间的 NPMLE 更快，'of order log(n)/(n log log n)'。技术关键是 'sharply characterizing the local Hellinger bracketing entropy of the class of finite Gaussian mixtures'，其中一个 'key technical innovations' 是 sharply bound 有界次数多项式球的 L² bracketing entropy，作者称 'may be of independent interest'。应用面作者给的是 'the regret-optimality of g-modeling procedures based on the NPMLE in the Gaussian Empirical Bayes problem with bounded priors'——即高斯经验贝叶斯问题下 g-modeling 的遗憾最优性。忽略理由：这是一个封闭在单变量高斯混合这一狭窄模型族内的统计理论结果，与我们的赛道（LLM/agent/工程实践）无任何交集，既无可迁移的工程结构，也无可迁移的评测口径；关键词字段被 fetch_papers.py 误标为含 'RAG'（实为 metadata 抽取串扰，非论文内容），进一步说明该条不应占用注意力预算。按价值路由规则不套用深挖链路，保留最小索引即可——若将来我们做密度估计或经验贝叶斯超参学习，这篇是理论上的最优性保证，可回查。证据边界：纯理论，无实验、无代码、无数据；bracketing entropy 的新颖性自述未核验；'may be of independent interest' 属作者主观判断。代码 / 数据 / 项目页：待核验/暂无。",
+      "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+      "new_claim_or_method": "据摘要（arXiv 2610.30109，Subjects 为 math.ST/cs.IT/cs.LG）：Minimax Optimality of the NPMLE for Gaussian Mixtures in Hellinger Distance 是高斯混合密度非参数极大似然估计的极小极大最优性理论。结论有两层：无约束 NPMLE 在真混合测度为 ",
+      "research_position": "source_paper",
+      "engineering_testability": {
+        "has_code": false,
+        "has_benchmark": false,
+        "can_reproduce": false,
+        "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+        "engineering_scenarios": [
+          "AI Agent",
+          "Context Engineering",
+          "评测治理"
+        ]
+      },
+      "trend_relation": {
+        "status": "noise",
+        "related_trends": [],
+        "evidence": [
+          "论文主题匹配固定研究方向"
+        ],
+        "uncertainties": [
+          "是否会出现更多开源实现与生产案例"
+        ]
+      },
+      "long_tail": {
+        "why_save": "据摘要（arXiv 2610.30109，Subjects 为 math.ST/cs.IT/cs.LG）：Minimax Optimality of the NPMLE for Gaussia",
+        "future_trigger": [
+          "待更多证据"
+        ],
+        "possible_use_cases": [
+          "Prompt 设计",
+          "Skill 草案",
+          "评测方法",
+          "架构模式"
+        ],
+        "reusable_assets": [
+          "Prompt",
+          "Skill",
+          "Checklist",
+          "模板"
+        ],
+        "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+        "revisit_date": ""
+      },
+      "insights": {
+        "system_design": [
+          "先判断价值类型，再决定系统性投入。"
+        ],
+        "agent_engineering": [
+          "为 Agent 建立论文价值路由器。"
+        ],
+        "dev_process": [
+          "论文输出应沉淀为可执行资产。"
+        ],
+        "evaluation": [
+          "同时看方法与证据质量。"
+        ],
+        "platform_engineering": [
+          "长尾资产库可降低重复检索成本。"
+        ],
+        "personal_learning": [
+          "优先读能转化为未来复利的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.30109v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.30109v1"
+        }
+      ],
+      "detail_path": "paper-detail.html?id=minimax-optimality-of-the-npmle-for-gaussian-mixtures-in-hellinger-distance",
+      "daily_path": "daily-detail.html?date=2026-10-23",
+      "trend_paths": [],
+      "long_tail_path": "long-tail.html",
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      }
+    },
     "mamath-bench-process-aware-and-robust-evaluation-of-multimodal-multi-agent-mathematical-reasoning": {
       "id": "mamath-bench-process-aware-and-robust-evaluation-of-multimodal-multi-agent-mathematical-reasoning",
       "title": "MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning",
