@@ -1,0 +1,132 @@
+{
+  "id": "a-fix-for-softmax-and-cross-entropy",
+  "title": "A Fix for Softmax and Cross-Entropy",
+  "authors": [
+    "Jonathan T. Barron",
+    "Dan Gnanapragasam",
+    "Michael Tschannen"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-22",
+  "url": "http://arxiv.org/abs/2610.31642v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.31642v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-24",
+  "first_deep_dive_daily": "2026-10-24",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 79.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：据 arXiv 2610.31642 摘要与 HTML 全文（作者 Jonathan T. Barron、Dan Gnanapragasam…",
+  "one_line_essence": "据 arXiv 2610.31642 摘要与 HTML 全文（作者 Jonathan T. Barron、Dan Gnanapragasam、Michael Tschannen，机构 Google DeepMind，License: CC BY 4.0）：这篇短、硬、且改一行代码就能验证——它指出标准 softmax / log-softmax / cross-entropy 实现里有两个数值 bug，给出精确的失效阈值，并说明修完会怎样。Bug 一叫 Softmax Collapse：当目标 logit 远大于其它 logit 时，真实梯度本应指数衰减，但标准实现会在 margin 跨过精度悬崖后把它直接舍入为 0——作者给出的悬崖位置是 m ≈ 5.5（bf16）、16.6（fp32）、36.7（fp64），此时梯度不再求和为 0。Bug 二叫 Softmax Cancellation：student logit 逼近 teacher logit 时，真实梯度应趋于 0，但标准实现在 student 与 teacher logit 完全相等时仍产生非零梯度，形成一个噪声地板。修法是给出 log-softmax / softmax / cross-entropy 的简单实现。作者报告的收益有五条：消除此前观察到的 Slingshot 现象；带 weight decay 时加速 grokking；不带 weight decay 时避免精度崩塌；蒸馏时 student 不再漂离 teacher；记忆之后 logit 增长被 weight decay 与 Adam 的 ε 之间的平衡所界定。价值路由：这条迁移性极高且验证成本极低——我们只要自问一句：我们自己的训练/蒸馏栈在 bf16 下有没有训到 margin 超过 5.5 的阶段；如果有，我们可能在优化一个已经被舍入为 0 的梯度。这不需要相信任何 SOTA 数字，读一遍实现、改掉、再看一次曲线就行，属于典型的当天可做、当天可判的动作。证据边界：所有收益均为作者自述，本次未做任何第三方复现；论文未给出可对照的绝对指标（如 grokking 步数从多少降到多少），只有定性描述；abs 页与 HTML 全文中未出现作者自有代码仓库或项目页链接（仅见 CC BY 4.0 许可声明），参考实现获取方式标注 待核验/暂无；不过作者自述修法为 simple implementations，按论文描述自行实现成本很低，不必等仓库。今天动作：在我们自己的训练代码里定位 cross-entropy 实现，核对 margin 与 dtype 的交互，先做一次 A/B，不预设结论。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据 arXiv 2610.31642 摘要与 HTML 全文（作者 Jonathan T. Barron、Dan Gnanapragasam、Michael Tschannen，机构 Google DeepMind，License: CC BY 4.0）：这篇短、硬、且改一行代码就能验证——它指出标准 softmax / log-softmax / cros",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据 arXiv 2610.31642 摘要与 HTML 全文（作者 Jonathan T. Barron、Dan Gnanapragasam、Michael Tschannen，机构 Goog",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.31642v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.31642v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+  "daily_path": "daily-detail.html?date=2026-10-24",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

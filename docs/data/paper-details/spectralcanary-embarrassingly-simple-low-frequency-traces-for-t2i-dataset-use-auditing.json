@@ -1,0 +1,134 @@
+{
+  "id": "spectralcanary-embarrassingly-simple-low-frequency-traces-for-t2i-dataset-use-auditing",
+  "title": "SpectralCanary: Embarrassingly Simple Low-Frequency Traces for T2I Dataset-Use Auditing",
+  "authors": [
+    "Sy-Tuyen Ho",
+    "Anirudh Satheesh",
+    "Soham Chawathe",
+    "Huy Nghiem",
+    "Yongkyun Lee"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-22",
+  "url": "http://arxiv.org/abs/2610.31659v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.31659v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-24",
+  "first_deep_dive_daily": "2026-10-24",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 65.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得先保存：据 arXiv 2610.31659 摘要与 HTML 全文（abs 页 Comments: NeurIPS 2026 Workshop o…",
+  "one_line_essence": "据 arXiv 2610.31659 摘要与 HTML 全文（abs 页 Comments: NeurIPS 2026 Workshop on Attributing Model Behavior at Scale）：这篇是数据来源审计（dataset-use auditing）里工程设计很干净的一个样本，领域在文生图，与我们距离较远，但“主动埋信号、日后查信号”这个范式值得存进长尾库。问题设定很准：判断一个 T2I 模型是否在某图像集合上微调过很难，因为模型可以吸收集合级视觉特征却不复现训练图。主动式审计的做法是发布数据集前先埋一个共享信号，之后检查该信号是否出现在嫌疑模型生成结果中。作者的取舍是：smooth low-pass mask 把一张固定 canary 图混入每张集合图，caption 不动，既不需要辅助生成也不需要逐图优化，再用一个轻量 verifier 检测信号是否转移。数字可核但需打折：在 Pokemon 数据集上八项测试、三种现实数据变换、跨两个架构家族，SpectralCanary 取得被评方法中最高的平均逐生成 TPR@1% FPR（91.1%）与固定阈值下用 30 次生成的模型级准确率（94.8%）；在覆盖艺术、医疗、卫星、时尚五个数据集、以 SD3.5 为被审模型时，平均逐生成 TPR@1% FPR 为 92.4%，同时保留发布图像质量（SSIM 0.989、LPIPS 0.022），mean ΔFID 仅 0.05；matched-energy 消融（Pokemon 与 ROCOv2）支持低频放置比中频/高频传递更可靠；在所评的自适应攻击下，最有效的移除需要激进修改且要付出超过 25 个 ΔFID 点。证据边界：全部结果为作者自述，本次未做第三方复现；HTML 全文中的外部链接指向的是第三方实现（pytorch-fid、pokemon-blip-captions 数据集、DeCo、EnTruth/DIAGNOSIS/SIREN 对照），未发现作者自有仓库或项目页链接，标注 待核验/暂无；会议为 workshop，评审强度低于主会。价值路由：可迁移的抽象是——要让“数据是否被用于训练”可被外部审计，必须在数据发布时预先设计可转移信号，而不是事后靠指纹碰撞。对 LLM 侧的训练数据溯源，这是一条候选路线，触发条件是我们真的需要向外部证明某批语料是否进了某个模型。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据 arXiv 2610.31659 摘要与 HTML 全文（abs 页 Comments: NeurIPS 2026 Workshop on Attributing Model Behavior at Scale）：这篇是数据来源审计（dataset-use auditing）里工程设计很干净的一个样本，领域在文生图，与我们距离较远，但“主动埋信号、日后查",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据 arXiv 2610.31659 摘要与 HTML 全文（abs 页 Comments: NeurIPS 2026 Workshop on Attributing Model Behavi",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-14"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.31659v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.31659v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=spectralcanary-embarrassingly-simple-low-frequency-traces-for-t2i-dataset-use-auditing",
+  "daily_path": "daily-detail.html?date=2026-10-24",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "id": "direct-pass-k-optimization-for-thought-pruning-balancing-quality-and-diversity-in-test-time-reasoning",
+  "title": "Direct Pass@$k$ Optimization for Thought Pruning: Balancing Quality and Diversity in Test-Time Reasoning",
+  "authors": [
+    "Mahdi Salmani",
+    "Adel Javanmard",
+    "Devansh Gupta",
+    "Meisam Razaviyayn"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-22",
+  "url": "http://arxiv.org/abs/2610.31667v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.31667v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-24",
+  "first_deep_dive_daily": "2026-10-24",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 74.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：据 arXiv 2610.31667 摘要与 HTML 全文（Subjects cs.AI/cs.CL，无 Comments，未见作者仓库链…",
+  "one_line_essence": "据 arXiv 2610.31667 摘要与 HTML 全文（Subjects cs.AI/cs.CL，无 Comments，未见作者仓库链接）：这篇的方法论主张比它的绝对收益更有价值——推理时的 rollout 剪枝目前分成两派：quality-based 给每个部分解打分，只保留大概会答对的那批；diversity-based 挑推理路径彼此不同的那批。作者指出这两者其实是 explore/exploit 的一个实例，而几乎没有前人工作把这个张力摆到明面上优化；他们改为直接优化真正关心的目标：在被选中的候选池里，至少有一个续写后答对的概率（pass@k）。因为该目标同时奖励高质量部分解并惩罚冗余，质量与多样性的平衡由目标函数本身给出，不需要额外的手工设计。理论侧还给出 pass@k 概率的次模性，从而支撑贪心选择保证；并且解释了它与两个基线的位置关系：相关强度 ρ = 0 时退化为 Linear Probe（按质量排序），ρ > 0 时每多留一对表示相似的 rollout 就多付一笔惩罚。实验口径（HTML 全文）：八个 open-weight 推理模型，每题 N = 128 个 rollout，保留 k ∈ {1, 2, 4, 8, 16}，截断阈值 T = 4000 token，以 Random 剪枝为参照；基线是 Linear Probe（纯 exploitation）与 RepExp（纯 exploration，正则 τ = 1）；表示 h_i 取 hidden state 的 EMA，速率 10^{-3}。收益是可核的但幅度不大：DeepSeek-R1-Distill-Qwen-1.5B 在 k = 4 时比 Linear Probe 高 3.0 分、比 RepExp 高 3.2 分；Qwen3-0.6B 在所有 k ≥ 2 上领先两个基线 2 分以上；DeepSeek-R1-Distill-Qwen-7B 在 k = 4 时比 Linear Probe 高 3.3 分；且与两个基线不同，PKTP 在所有模型上 k ≥ 2 都始终高于 Random。另有一条容易被忽略但工程上很实用的结论：截断越晚通常越好——Qwen3-1.7B 的 pass@4 从 T = 2000 的 63.5% 升到 T = 8000 的 65.9%，DeepSeek-R1-Distill-Qwen-7B 从 57.4% 升到 61.7%。数据集口径：两档模型分别用 AIME 2024/2025/2026、HMMT 2024/2025/2026 与 RIMO-N，小档另加 BeyondAIME、OlymMATH (Easy)、Omni-MATH 7/8 级，大档换用 AMO-Bench、OlymMATH (Hard)、Omni-MATH 8/9 级，每模型约 600 题；验证用 Math-Verify。证据边界：所有分数与对比均为作者自述，本次未做第三方复现；提升幅度在 2–3 个百分点量级，在预算紧张时收益有限；k 较大时 PKTP 与 RepExp 差距收窄；abs 页与 HTML 全文中未发现作者代码仓库，标注 待核验/暂无。价值路由：可迁移的原则是“剪枝目标要直接对齐最终指标，不要用代理指标近似”，以及“截断点宁晚勿早”这条近乎免费的省钱结论。趋势雷达连续观察。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据 arXiv 2610.31667 摘要与 HTML 全文（Subjects cs.AI/cs.CL，无 Comments，未见作者仓库链接）：这篇的方法论主张比它的绝对收益更有价值——推理时的 rollout 剪枝目前分成两派：quality-based 给每个部分解打分，只保留大概会答对的那批；diversity-based 挑推理路径彼此不同的那批。",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据 arXiv 2610.31667 摘要与 HTML 全文（Subjects cs.AI/cs.CL，无 Comments，未见作者仓库链接）：这篇的方法论主张比它的绝对收益更有价值——推理",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.31667v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.31667v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=direct-pass-k-optimization-for-thought-pruning-balancing-quality-and-diversity-in-test-time-reasoning",
+  "daily_path": "daily-detail.html?date=2026-10-24",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

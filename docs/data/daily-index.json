@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-10-23T04:44:49.879142",
+  "updated_at": "2026-10-24T04:56:37.959358",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-10-24",
+      "title": "论文价值发现日报 - 2026-10-24",
+      "deep_dive_title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
+      "deep_dive_url": "http://arxiv.org/abs/2610.31650v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "把 [EpiSEM-Bench](http://arxiv.org/abs/2610.31650v1)（2610.31650）列为今日即时试点主线，但只做最小验证、不照搬：用我们自己的工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实后重跑，只量两列——遮蔽后越权执行率（对应 Critical UCR）与主动补证据率（对应 PUR），不引论文分数当基线。产出第二份资产：agent 安全评测模板六指标（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR），并补一条硬规则——凡是决定授权边界的事实，工具必须能被单独查询（对应 PUR 的训练目标）。产出第三份资产：升级阈值审计模板，来自 Cost-Aware Abstention（2610.31657）——显式成本模型 + calibration 选阈值 + 冻结后一次性评估 + 同时报 ECE / correctness AUROC / tie-aware risk-coverage；并对我们现有的一条 agent 升级链路先算 correctness AUROC，测不出区分度就不许上阈值。产出第四份资产：训练栈自查清单，来自 A Fix for Softmax and Cross-Entropy（2610.31642）——核对 cross-entropy 实现、核对 bf16 下 margin 是否越过 ≈5.5 的精度悬崖、核对蒸馏时 student/teacher logit 是否贴近 Softmax Cancellation 的噪声地板，做一次 A/B，不预设结论。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算）、S²（2610.31670，离线代理指标，并记住其 h=110 vs h=7 的口径教训）、PKTP（2610.31667，直接优化 pass@k + 截断宁晚勿早）、Low-Bit N-Gram（2610.31646，n-gram 表 47–75% 内存节省）。长尾入库并标注触发条件：SpectralCanary（2610.31659，主动埋信号做数据来源审计）、METTA（2610.31656，两时间尺度记忆）、Phase Transition（2610.31663，部分可训练比例收益曲线）。",
+      "max_uncertainty": "证据不足项明确清单：(1) 可复现性缺口最大的一处：EpiSEM-Bench（2610.31650）自称 executable benchmark，但 abs 页与 HTML 全文中均无作者仓库或项目页链接，本次经 GitHub 搜索 EpiSEM / episem-bench 及变体均无匹配项目，获取方式标注 待核验/暂无，其 300 对任务、6,052 个条件与 Table 1 全部数字无法独立核验，只能按作者自述处理。(2) 全部性能结论为作者自述，本次未做任何第三方复现：EpiSEM 十个模型的 SWS / UCR / SBM / PUR；Cost-Aware Abstention 的 0.763→0.472（38.1%，paired ratio-bootstrap 95% CI [35.7%, 40.4%]）、15.3%→3.5% 错误路由、0.477 vs 0.879 准确率、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速等定性收益；Selective Auditing 的三组实验（含在 ImageNet 上偏保守）；S² 的各队列相关系数；PKTP 的 2–3 分提升；Low-Bit N-Gram 的 75% / 47–55% 内存节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1% / 92.4% / 94.8%；METTA 的“成功率超过 50%”。(3) 已核验的代码只有三处，且都只是“存在且结构自洽”，不是“内容正确”：sensorimotor-alignment（MIT，4980 条目，record/README.md 与 README 已逐字读取）、RouteGuard（MIT，127 条目，含 tests/ 与 CI workflow，README 已读）、lowbit-ngram（Apache-2.0，33 条目，README 与 LICENSE 已读），三者均未运行过任何脚本，训练可运行性与数据可得性无法确认；lowbit-ngram 的 README 明确说明数据与 checkpoint 不在仓库内。(4) S² 的复现覆盖面由作者仓库自陈：当前论文的六 WAM 结果、五策略真机结果与 14-backbone 策略学习附录没有配套复现包；且真机头条 r = +0.831 用的是探索性 horizon h = 110，预设 h = 7 仅 r = +0.429，record/README.md 明确警告不要把两者当作同一设定比较。(5) Cost-Aware Abstention 的 Zenodo 产物 DOI 10.5281/zenodo.22609128 来自作者 README，但本机 zenodo.org 与 doi.org 均因 SSL record layer failure 不可达，该产物记录未经独立确认。(6) 网络口径：本机 github.com 网页与 huggingface.co 实测超时不可达，api.github.com 与 raw.githubusercontent.com 可达，arxiv.org abs 页与 HTML 全文可达；因此本轮所有仓库核验都基于 API 元数据 + raw 文件内容，未依赖 GitHub 网页。(7) 抽样口径：今日 arXiv 主 API 正常，取到 10 篇全部 published 2026-10-22（id 2610.31642–2610.31670），未取到 10-23 及之后的新稿；单日 10 篇覆盖不足以支撑趋势判断，趋势结论只按“值得连续观察”对待。(8) 流水线缺陷复现：fetch_papers.py 的 extract_keywords 先对全文做子串匹配再截断摘要，leverage / average / coverage 被误判为含关键词 RAG，今日 2610.31663、2610.31659、2610.31657 三篇均被错误打标，与昨日 NPMLE 那篇同源；关键词字段不可用于加权或路由判断。(9) METTA 未给出基线对应数值、训练预算与 wall-clock 绝对值、重复次数或方差；Phase Transition 的 4.1% 可训练比例是 d = 5、τ = 10 这一具体设定下的数值，不能外推到 LLM 的部分微调。(10) Softmax Fix 未给出可对照的绝对指标（grokking 步数从多少降到多少未给），亦未给作者仓库，参考实现获取方式标注 待核验/暂无；按其描述自行实现成本低，不构成阻塞，但收益幅度无法量化。",
+      "one_line_judgement": "据摘要与 arXiv HTML 全文（arXiv 2610.31650），它攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了——而且用户请求本身良性、工具返回的每句话都是真的。评测是可执行的：六个域、300 对任务、600 个世界，事实被拆成 evidence atom 逐个抑制，十个模型各跑 6,052 个固定条件。最刺眼的是 Table 1 的数字：Qwen3-14B 的 Full SWS 高达 92.0%，但 Critical UCR 同样高达 77.3%、SBM 仅 7.8%；GLM-4.7-Flash Recovery UCR 高达 87.7% 而 PUR 是 0.0%（能拿到证据却不据此收手）；MiMo-V2.5-Pro PUR 4.8%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、PUR 30.5%。论文自己给出两条结论：完整证据下高分与安全不是一回事（高完成率的模型同样频繁执行禁止操作），以及 Resistance to missing evidence does not necessarily translate into useful recovery——抗遮蔽和会用证据是两件事。",
+      "path": "daily-detail.html?date=2026-10-24"
+    },
     {
       "date": "2026-10-23",
       "title": "论文价值发现日报 - 2026-10-23",
@@ -378,19 +391,6 @@
       "max_uncertainty": "arXiv API 仍持续返回 HTTP 406（连续五日靠 RSS 后备），新批次 URL 集合（2609.25010-2609.25284）虽然与之前不重叠，但需观察是否真的是 9 月 24 日全新发布；Ovis-Embedding benchmark 覆盖（image/audio/video retrieval、分类）、训练数据、推理成本是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'native omni-modal initialization'用 Qwen-omni 做 backbone 的兼容成本、'shared representation space'是否真的跨模态对齐、X-Planner event-structured 监督数据来源、4DGS-JEPA hierarchical encoder 与 horizon 划分协议、MedGate-Fusion CPCSSN 数据可用性、ReAdapt relational hypothesis 更新协议、TabPFN preconditioner 5 种命名、Hyper GNN 可解释性度量是否公开，仍待多源验证。",
       "one_line_judgement": "据摘要（arXiv 2609.25165），这篇提出 native omni-modal embedding——text/image/video/audio 共享一个 multimodal backbone，不再'组装'单独的 modality tower，并声称三项关键进展：(1) native omni-modal initialization（用预训练 Qwen-omni 做 backbone 并适配）、(2) shared representation space、(3) 把 embedding 用作检索/RAG/分类的统一接口。这是 multimodal-agent × inference-serving × llm-evaluation 的'工程交付'直接路线：embedding 是 RAG/检索/分类的基石，'omni-modal + shared backbone'若工程可行，会直接降低多模态检索/分类系统的部署复杂度（不再维护多套 modality-specific encoder）。今日连续第五日样本同源观察但 URL 集合已切换到新批次（2609.25010-2609.25284，与 9 月 19-23 日不重叠），与同批次 X-Planner（2609.25187）、4DGS-JEPA（2609.25036）一起形成更稳定的'omni-modal embedding + event-structured planning + 4D scene prediction'主线。",
       "path": "daily-detail.html?date=2026-09-24"
-    },
-    {
-      "date": "2026-09-23",
-      "title": "论文价值发现日报 - 2026-09-23",
-      "deep_dive_title": "Harness-Zero: Harness Distillation via Agent-as-Harness",
-      "deep_dive_url": "http://arxiv.org/abs/2609.24974v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 Harness-Zero（[2609.24974](http://arxiv.org/abs/2609.24974)）列为即时试点方向；为 RRSI（[2609.24972](http://arxiv.org/abs/2609.24972)）、DolphinBench（[2609.24971](http://arxiv.org/abs/2609.24971)）、Critical-State RL（[2609.24985](http://arxiv.org/abs/2609.24985)）、WorldCrafter（[2609.24984](http://arxiv.org/abs/2609.24984)）、GameHorizon（[2609.25001](http://arxiv.org/abs/2609.25001)）建立/更新趋势卡片（连续两日加固）；为 onPanda（[2609.24983](http://arxiv.org/abs/2609.24983)）、DexTacWAM（[2609.24976](http://arxiv.org/abs/2609.24976)）、LoRA hypernetwork（[2609.24979](http://arxiv.org/abs/2609.24979)）、Rare Event Estimation（[2609.24969](http://arxiv.org/abs/2609.24969)）保持/新增长尾卡片。",
-      "max_uncertainty": "样本同源已连续四日（9 月 19-22 日 URL 集合完全一致），需观察 arXiv 是否会在 9 月 23-24 日发布真正新批次；Harness-Zero 蒸馏数据集 / 训练管线 / 评测协议是否开源（暂无代码与 benchmark 链接），需打开 PDF 核验实验可复现性；'蒸馏到统一 harness'是否会牺牲领域质量、RRSI 正则化形式（KL / entropy / 任务分布）是否可迁移、DolphinBench Pareto 协议是否公开、Critical-State RL 判别协议是否公开、WorldCrafter memory encoder 与 pose-conditioned decoder 是否开源、GameHorizon baseline 排行是否公开、DexTacWAM tactile compressor 是否开源、LoRA hypernetwork 端侧部署协议是否公开、Rare Event Estimation 迭代 unalignment 实验协议是否公开、onPanda 标注工具是否开源，仍待多源验证。",
-      "one_line_judgement": "据摘要（arXiv 2609.24974），这篇提出'agent harness 蒸馏'——用领域/实例优化过的 harness 当训练时监督，把收益'蒸馏进'一个统一可部署的 harness，摆脱部署时必须带领域 harness 的束缚。这是 ai-agent × context-engineering 的'评测治理 + 工程交付'直接路线：与同批 RRSI（2609.24972）'正则化递归 harness 自改进'形成'今日 harness 双联证据'——前者解决'harness 如何真正交付到部署'，后者解决'harness 递归提升如何不过拟合'。连续四日（9 月 19-22 日）样本同源 + 跨日稳定结论，与同批次 DolphinBench / Critical-State RL / WorldCrafter / GameHorizon 一起形成更稳定的'agent harness 设计 + memory 评测治理 + multi-turn tool use 训练 + world model 长程一致性 + multi-horizon planning 评测'主线。",
-      "path": "daily-detail.html?date=2026-09-23"
     }
   ]
 }

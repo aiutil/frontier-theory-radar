@@ -1,0 +1,136 @@
+{
+  "id": "episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+  "title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
+  "authors": [
+    "Qijin Zhang",
+    "Hanzhen Wang",
+    "Yuehan Zhao",
+    "Haoyu Dai",
+    "Yao Shu"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-22",
+  "url": "http://arxiv.org/abs/2610.31650v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.31650v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-24",
+  "first_deep_dive_daily": "2026-10-24",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 4.95,
+    "engineering_testability": 4.05,
+    "trend_signal": 5.45,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 82.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符…",
+  "one_line_essence": "据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符 \\bench{} 在全文中展开为 EpiSEM-Bench）：这篇做的是我们最该盯的那类 agent 失效——不是模型说错话，而是工具少说了一句关键事实，agent 就把被禁止的动作执行了，而且用户请求本身是良性的、工具返回的每句话都是真的。评测设计是可执行的：六个域（cloud development and operations、commerce and fulfillment、communication and publication、document and data access、finance、travel reservation），每域 50 个任务对、共 10 个任务族，合计 300 对任务、600 个世界；每个事实被拆成 evidence atom（标识、主体、谓词、世界相关取值、来源、暴露它的工具响应），critical atom 影响合法性、irrelevant atom 既不影响合法性也不影响参数。评测分三段：完整证据下用 Full SWS（合法世界是否完成）与 Full UCR（是否执行了禁止操作）先立基线；抑制证据段用 Critical UCR 与 SBM（Safety Boundary Margin，最少需要遮掉多少事实才会失败）刻画脆弱性；可恢复证据段允许 agent 主动查独立审计源，用 Recovery UCR 与 PUR（Paired Useful Recovery：先取到证据、在禁止世界忍住、在许可世界照做）衡量恢复。规模可核：十个模型每个跑 6,052 个固定评测条件（600 个完整证据基线 + 5,452 个单 atom 抑制，覆盖两个世界两种设置下的全部 1,363 个 critical 与 irrelevant atom）。Table 1 的硬数字是今天最刺眼的一份：Qwen3-14B 的 Full SWS 高达 92.0%，但 Critical UCR 同样高达 77.3%、SBM 只有 7.8%；GLM-4.7-Flash Full SWS 85.3%、Critical UCR 75.7%、Recovery UCR 87.7%，而 PUR 是 0.0%；MiMo-V2.5-Pro Full SWS 57.7%、Critical UCR 59.3%、PUR 4.8%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、Recovery UCR 3.0%、PUR 30.5%；Claude-Haiku-5.5 57.0%/5.3%/33.3%/15.3%/75.4%/21.4%。论文自己点出的结构性结论有两条：第一，完整证据下高分与安全不是一回事（高 Full SWS 的模型同样频繁执行禁止操作）；第二，摘要原话是 Resistance to missing evidence does not necessarily translate into useful recovery，即抗遮蔽与会用证据是两件事——摘要另称 Recovery access reduces unsafe execution for all ten models，但能否主动把缺失事实取回来并据此改变行为，十个模型差异很大。证据边界：十模型的 SWS / UCR / SBM / PUR 均为作者自述，本次未做第三方复现；六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；论文自称 executable benchmark，但 abs 页与 HTML 全文中都没有作者仓库或项目页链接，本次经 GitHub 搜索 EpiSEM / episem-bench 也无匹配项目，代码与 benchmark 获取方式标注 待核验/暂无。价值路由：这是今天最该排进工程验证队列的一篇，因为它攻击的是我们每天都在写的工具层，而不是模型本身——但先做最小验证，不要照搬：我们现有的工具响应里，哪些安全相关事实是 agent 需要主动查才能拿到的，这个清单目前没人写。今天动作：把六段评测口径（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR）抄成 agent 安全评测模板；只验一件事——在我们的工具集上遮掉一个关键事实，agent 会不会照做。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符 \\bench{} 在全文中展开为 EpiSEM-Bench）：这篇做的是我们最该盯的那类 agent 失效——不是模型说错话，而是工具少说了一句关键事实，agent 就把被禁止的动作执行了，而且用户请求本身是良性的、工",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符 \\bench{} 在全文中展开为 EpiSEM-B",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.31650v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.31650v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+  "daily_path": "daily-detail.html?date=2026-10-24",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
