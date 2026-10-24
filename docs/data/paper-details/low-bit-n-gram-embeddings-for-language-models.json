@@ -13,8 +13,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-24",
-  "first_deep_dive_daily": "2026-10-24",
+  "first_seen_date": "2026-10-25",
+  "first_deep_dive_daily": "2026-10-25",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -27,12 +27,12 @@
     "actionability": 6.1,
     "noise_risk": 1.2
   },
-  "score": 71.0,
+  "score": 73.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得继续观察：据 arXiv 2610.31646 摘要与 HTML 全文（abs 页 Comments: 24 pages, 10 figures, 1…",
-  "one_line_essence": "据 arXiv 2610.31646 摘要与 HTML 全文（abs 页 Comments: 24 pages, 10 figures, 10 tables；作者 Stephen Chung、Wenyu Du，DualverseAI）：这篇处理的是一个很实在的工程账单——近期不少 open-weight 模型用 n-gram embedding 表（存 2–3 个连续 token 的学得表示，推理时检索）来提效果，但这张表可能非常大：DeepSeek-V4.1-Flash 据称把 1960 亿参数分配给了它的 Engram n-gram 记忆。作者的做法是把 n-gram embedding 低精度存储，并系统比较不同量化方法与各表之间的比特分配。两组可核数字：其一，从头训练的 nanochat / Llama / GPT-2 系模型上，四比特表省下约 75% 的表内存，同时保留了加表带来的验证损失改进的 99% 以上；比特再降则性能下降更明显，但一段短微调能挽回其中相当一部分；把省下的内存再投入更大的表，效果可以超过原来的全精度表，同时总内存仍然更少。其二，落到已有的大模型上：DeepSeek-V4.1-Flash 与 Qwen3.8-Flash-Next 上低比特表省下 47–55% 表内存，困惑度上升小于 1.2%，下游任务性能基本保持。代码（本次实测核验）：https://github.com/dualverse-ai/lowbit-ngram 经 API 核验真实存在（Apache-2.0，46KB，created 2026-10-22，pushed 2026-10-22，非归档，33 个 tree 条目，含 lowbit_ngram/（attention.py、cli.py、data.py、experiments.py、large/）、docs/、tests/ 与 licenses/），raw README.md 与 LICENSE 均已读取；README 自述从零实验用 ClimbMix 数据、8192 token 分词器、单卡 RTX 5090，支持 nanochat-26m/50m、gpt2-30m、llama-31m/322m 五个模型，并明确说明数据与 checkpoint 不含在仓库里。一条来源说明值得记录：论文与 README 都写明这项工作扩展自 rStation agent 在其 Autonomous Research Program 中做出的、并经人工核验的发现——这是一个 agent 驱动的研究产出，本身也是今天趋势雷达上的一条弱信号。价值路由：适用面窄但极其具体——只有当我们自己部署带 n-gram 表的模型（DeepSeek-V4.1-Flash、Qwen3.8-Flash-Next 等）时才直接相关；届时 47–55% 表内存节省是能直接换成并发或显存的数字。证据边界：所有节省比例与困惑度变化均为作者自述，本次未做第三方复现，且未在真实部署负载上验证；论文同时给出了“用更大表换更好效果”的替代路径，说明单纯省内存不一定是终局。趋势雷达连续观察。",
+  "one_line_judgement": "值得继续观察：据 arXiv 2610.31646 摘要、HTML 全文（abs 页 Comments：24 pages, 10 figures, 10 …",
+  "one_line_essence": "据 arXiv 2610.31646 摘要、HTML 全文（abs 页 Comments：24 pages, 10 figures, 10 tables）与作者仓库 README（逐字读取）：这篇命中的是我们自己在跑的『训练栈内存预算』这条线。问题陈述清楚且数字具体：近年的开放权重模型用 n-gram embedding 表提升性能，但代价是内存——DeepSeek-V4.1-Flash 给 Engram n-gram memory 分配了 1960 亿参数。方法是把这些表做低比特量化。数字（作者自述，本次未做第三方复现）：在 nanochat-、Llama-、GPT-2-家族五个从头训练的模型上，四比特表节省约 75% 表内存、保留超过 99% 的验证集 loss 改善收益；Figure 4a 细项——四比特表省约一半表内存，DeepSeek 困惑度上升 1.26%、Qwen 几乎不变，三比特时 Qwen 困惑度只升 0.52%；在 DeepSeek-V4.1-Flash 与 Qwen3.8-Flash-Next 这两个现有大模型上，低比特表节省 47–55% 表内存、困惑度上升低于 1.2%，下游任务表现大体保持。⚠️ 口径提醒：昨日写的『47–75% 内存节省』把两组不同实验（从头训练模型 ~75%、现有大模型 47–55%）并列成一个区间，容易被误读为统一区间；今日按实验设置分开写。证据等级（昨日已核验，今日复核状态未变）：代码 https://github.com/dualverse-ai/lowbit-ngram（Apache-2.0，created 2026-10-22，33 个 tree 条目，raw README.md 与 LICENSE 均已读取，LICENSE 为 Apache License 2.0）。README 自陈的复现成本要说清：需要 Python ≥3.10 与 CUDA PyTorch，训练用 RTX 5090，数据走 ClimbMix（自动下载十个训练分片与两个留出分片），明确说明『Data and model checkpoints are not included in this repository』，且这是一个 rStation agent 自主研究程序的产物（README 指向 rstation.ai 与 DualverseAI 的 Autonomous Research Program）。另注：仓库 README 自述提供 nanochat-26m / nanochat-50m / gpt2-30m / llama-31m / llama-322m 五个模型、--rows 262141 或 1048573、--bits 1..5、codebook {lloyd,normal,uniform}、scale {fitted,rms,maximum}，以及 lowbit prepare / train / evaluate / finetune 四个命令。价值路由：趋势价值——降的是『表内存』这一项而不是端到端推理成本，口径必须写准，否则会被误当成『模型瘦身』；对我们更有用的是把 n-gram 表内存当成一个可预算的工程量来监控。今日动作：只做一件事——在我们自己的训练配置里估算 n-gram 表占显存的比例并记录基线；若占比高，再回来看低比特表能否替代（不必现在做）。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31646 摘要与 HTML 全文（abs 页 Comments: 24 pages, 10 figures, 10 tables；作者 Stephen Chung、Wenyu Du，DualverseAI）：这篇处理的是一个很实在的工程账单——近期不少 open-weight 模型用 n-gram embedding 表（存 2–",
+  "new_claim_or_method": "据 arXiv 2610.31646 摘要、HTML 全文（abs 页 Comments：24 pages, 10 figures, 10 tables）与作者仓库 README（逐字读取）：这篇命中的是我们自己在跑的『训练栈内存预算』这条线。问题陈述清楚且数字具体：近年的开放权重模型用 n-gram embedding 表提升性能，但代价是内存——Deep",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": true,
@@ -58,7 +58,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31646 摘要与 HTML 全文（abs 页 Comments: 24 pages, 10 figures, 10 tables；作者 Stephen Chung、",
+    "why_save": "据 arXiv 2610.31646 摘要、HTML 全文（abs 页 Comments：24 pages, 10 figures, 10 tables）与作者仓库 README（逐字读取）：",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -122,7 +122,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=low-bit-n-gram-embeddings-for-language-models",
-  "daily_path": "daily-detail.html?date=2026-10-24",
+  "daily_path": "daily-detail.html?date=2026-10-25",
   "trend_paths": [
     "trend-detail.html?id=context-engineering"
   ],

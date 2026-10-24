@@ -15,8 +15,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-24",
-  "first_deep_dive_daily": "2026-10-24",
+  "first_seen_date": "2026-10-25",
+  "first_deep_dive_daily": "2026-10-25",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -31,10 +31,10 @@
   },
   "score": 74.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得继续观察：据 arXiv 2610.31667 摘要与 HTML 全文（Subjects cs.AI/cs.CL，无 Comments，未见作者仓库链…",
-  "one_line_essence": "据 arXiv 2610.31667 摘要与 HTML 全文（Subjects cs.AI/cs.CL，无 Comments，未见作者仓库链接）：这篇的方法论主张比它的绝对收益更有价值——推理时的 rollout 剪枝目前分成两派：quality-based 给每个部分解打分，只保留大概会答对的那批；diversity-based 挑推理路径彼此不同的那批。作者指出这两者其实是 explore/exploit 的一个实例，而几乎没有前人工作把这个张力摆到明面上优化；他们改为直接优化真正关心的目标：在被选中的候选池里，至少有一个续写后答对的概率（pass@k）。因为该目标同时奖励高质量部分解并惩罚冗余，质量与多样性的平衡由目标函数本身给出，不需要额外的手工设计。理论侧还给出 pass@k 概率的次模性，从而支撑贪心选择保证；并且解释了它与两个基线的位置关系：相关强度 ρ = 0 时退化为 Linear Probe（按质量排序），ρ > 0 时每多留一对表示相似的 rollout 就多付一笔惩罚。实验口径（HTML 全文）：八个 open-weight 推理模型，每题 N = 128 个 rollout，保留 k ∈ {1, 2, 4, 8, 16}，截断阈值 T = 4000 token，以 Random 剪枝为参照；基线是 Linear Probe（纯 exploitation）与 RepExp（纯 exploration，正则 τ = 1）；表示 h_i 取 hidden state 的 EMA，速率 10^{-3}。收益是可核的但幅度不大：DeepSeek-R1-Distill-Qwen-1.5B 在 k = 4 时比 Linear Probe 高 3.0 分、比 RepExp 高 3.2 分；Qwen3-0.6B 在所有 k ≥ 2 上领先两个基线 2 分以上；DeepSeek-R1-Distill-Qwen-7B 在 k = 4 时比 Linear Probe 高 3.3 分；且与两个基线不同，PKTP 在所有模型上 k ≥ 2 都始终高于 Random。另有一条容易被忽略但工程上很实用的结论：截断越晚通常越好——Qwen3-1.7B 的 pass@4 从 T = 2000 的 63.5% 升到 T = 8000 的 65.9%，DeepSeek-R1-Distill-Qwen-7B 从 57.4% 升到 61.7%。数据集口径：两档模型分别用 AIME 2024/2025/2026、HMMT 2024/2025/2026 与 RIMO-N，小档另加 BeyondAIME、OlymMATH (Easy)、Omni-MATH 7/8 级，大档换用 AMO-Bench、OlymMATH (Hard)、Omni-MATH 8/9 级，每模型约 600 题；验证用 Math-Verify。证据边界：所有分数与对比均为作者自述，本次未做第三方复现；提升幅度在 2–3 个百分点量级，在预算紧张时收益有限；k 较大时 PKTP 与 RepExp 差距收窄；abs 页与 HTML 全文中未发现作者代码仓库，标注 待核验/暂无。价值路由：可迁移的原则是“剪枝目标要直接对齐最终指标，不要用代理指标近似”，以及“截断点宁晚勿早”这条近乎免费的省钱结论。趋势雷达连续观察。",
+  "one_line_judgement": "值得继续观察：据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发…",
+  "one_line_essence": "据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发式换成了一个明确的目标函数——直接优化 pass@k。问题陈述：测试期扩展靠生成大量候选解找至少一个正确的，但全部跑完代价高；现有做法是在生成短前缀后剪枝候选池，策略分两大类（基于质量、基于多样性），各偏一边。方法：把探针与 RepExp 用一个 pass@k 的次模近似连起来，用秩一贪心更新闭式计算似然并贪心选择保留集合，带次模近似的保证。数字（作者自述，本次未做第三方复现）：八个开放权重推理模型、两档尺寸（小档 Qwen3-0.6B、Qwen3-1.7B、OpenMath-Nemotron-1.5B、DeepSeek-R1-Distill-Qwen-1.7B 等），每个模型对 N=128 个 rollout 在 T=4000 token 截断处剪枝，评估 k∈{1,2,4,8,16}；PKTP 全面优于 Linear Probe 与 RepExp，优势在中等 k 最明显（论文原话：gains are largest at moderate k），在 DeepSeek-R1-Distill-Qwen-7B 上 k=4 时比 Linear Probe 高 3.3 分，且 PKTP 在所有模型 k≥2 时都稳在 Random 之上，而两个基线各有偏置（RepExp 偏好离群样本，中等 k 有时低于 Random；Linear Probe 会聚集在它认为正确的解上）。截止阈值口径：T 越大越好——Qwen3-1.7B 的 pass@4 从 T=2000 的 63.5% 升到 T=8000 的 65.9%，DeepSeek-R1-Distill-Qwen-7B 从 57.4% 升到 61.7%。⚠️ 昨日写的『2–3 分提升』口径不准：论文明确给出的单点差值是 3.3 分（DeepSeek-R1-Distill-Qwen-7B, k=4, 对 Linear Probe），本文中未见『2–3 分』这一表述；今日按 3.3 分写并注明出处。证据边界：全部结果为作者自述，本次未做第三方复现；abs 页与 HTML 全文中无作者仓库或项目页链接（全文里出现的 GitHub 链接是第三方 Math-Verify 校验库），代码标注 待核验/暂无；另需注意论文用并列括号归因，表中数值以全文表格为准。价值路由：趋势价值——『剪枝目标应当对齐最终要报的指标（pass@k）』这个思路可直接迁移到我们自己的推理预算控制：不要用代理分数去剪枝，要用最终评测指标去定义保留集。今日动作：不投入实现；记一条设计纪律——我们的 rollout 剪枝/早停策略应以最终上报指标对齐，并记录 cutoff 阈值作为显式超参。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31667 摘要与 HTML 全文（Subjects cs.AI/cs.CL，无 Comments，未见作者仓库链接）：这篇的方法论主张比它的绝对收益更有价值——推理时的 rollout 剪枝目前分成两派：quality-based 给每个部分解打分，只保留大概会答对的那批；diversity-based 挑推理路径彼此不同的那批。",
+  "new_claim_or_method": "据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发式换成了一个明确的目标函数——直接优化 pass@k。问题陈述：测试期扩展靠生成大量候选解找至少一个正确的，但全部跑完代价高；现有做法是在生成短前缀后剪枝候选池，策略分两大类（基于质量、基于多样性），各偏一边。方法：把探",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
@@ -61,7 +61,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31667 摘要与 HTML 全文（Subjects cs.AI/cs.CL，无 Comments，未见作者仓库链接）：这篇的方法论主张比它的绝对收益更有价值——推理",
+    "why_save": "据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发式换成了一个明确的目标函数——直接优化 pass@k",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -121,7 +121,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=direct-pass-k-optimization-for-thought-pruning-balancing-quality-and-diversity-in-test-time-reasoning",
-  "daily_path": "daily-detail.html?date=2026-10-24",
+  "daily_path": "daily-detail.html?date=2026-10-25",
   "trend_paths": [
     "trend-detail.html?id=coding-agent",
     "trend-detail.html?id=agentic-world-modeling"

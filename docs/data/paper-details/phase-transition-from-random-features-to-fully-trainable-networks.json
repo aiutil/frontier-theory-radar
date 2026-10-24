@@ -15,8 +15,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-24",
-  "first_deep_dive_daily": "2026-10-24",
+  "first_seen_date": "2026-10-25",
+  "first_deep_dive_daily": "2026-10-25",
   "value_type": "long_tail",
   "value_type_label": "长尾价值",
   "value_scores": {
@@ -31,10 +31,10 @@
   },
   "score": 58.0,
   "decision": "持续观察",
-  "one_line_judgement": "值得先保存：据 arXiv 2610.31663 摘要（Subjects math.NA/cs.LG/math.ST/stat.ML）：纯理论，领域是科…",
-  "one_line_essence": "据 arXiv 2610.31663 摘要（Subjects math.NA/cs.LG/math.ST/stat.ML）：纯理论，领域是科学计算里的逼近空间，与我们的赛道没有直接交集，但有一个数字值得记——它量化了“部分可训练网络”在逼近能力上的相变。问题背景：部分可训练网络处在固定随机特征与完全自适应表示之间，作者量化了逼近界中的相变模式，并观察到训练误差里类似的相变行为：先快速但平滑地改善，随后收益递减，且初始化失配越大转变越陡。主结果：在多项谱衰减指数 α > 1 与 leverage 兼容的条件下，对宽度 m、可训练比例 P 的两层网络，建立平方 L2 逼近率 O((κ_P log(m/δ)/m)^α)，其中 κ_P = (P/κ_1* + (1-P)/κ_0*)^{-1}，该界以至少 1-δ 的概率在 RKHS 单位球上均匀成立；κ_0* 与 κ_1* 分别刻画固定组与可训练组相对目标 RKHS 的采样失配。在 d 维球面有偏 ReLU 特征下，作者验证 α = (d+2)/(d-1)、初始化尺度 τ ≥ 1 时 κ_0* = 4√2·τ(d+1)/d、ridge leverage 采样下 κ_1* = 1。工程上唯一具体的一条：d = 5、τ = 10 时，约 4.1% 的可训练比例即可拿到从 P = 0 到 P = 1 逼近界下降量的 90%。另有结构化三层例子说明少量可训练首层神经元可通过非线性组合利用固定的下游模块，数值实验覆盖到 15 层网络并呈现类似的训练误差相变。价值路由：与我们的当期工程价值低，保留长尾的理由是它提供了一个“可训练比例的收益曲线”的一般性参照，触发条件是我们要评估部分冻结或稀疏微调方案时——但它关于网络逼近空间的结论不能直接外推到 LLM 的 LoRA / 部分层训练。证据边界：纯理论，无实验数据、无代码、无 benchmark（符合预期）；常数依赖与界是否最优摘要未说明；4.1% 那一组是 d = 5、τ = 10 这一具体设定下的数值，不能当作普适结论；abs 页与 HTML 全文中未发现作者仓库或项目页链接，标注 待核验/暂无。",
+  "one_line_judgement": "值得先保存：据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xi…",
+  "one_line_essence": "据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xiliang Lu、Shijun Zhang，通讯 shijun.zhang@polyu.edu.hk）：这是纯数学-数值分析方向，对我们的日常工程距离最远，但结论本身是一个可复用的直觉。部分可训练网络（partially trainable networks）处在固定随机特征与完全自适应表示两个端点之间，本文量化这条路径上的相变（phase transition）模式：在逼近上界上量化相变规律，并在训练误差中观察到类似行为——快速但平滑的初始改善，随后收益递减；初始化失配越大，相变越尖锐。理论条件：在多项式谱衰减指数 α>1 且满足 leverage compatibility 时，建立平方 L2 逼近速率；对球面 biased-ReLU 特征在维度 d 下验证假设（α = (d+2)/(d−1)）；用 κ0* 与 κ1* 刻画固定组与可训练组相对目标 RKHS 的采样失配。数值证据：两层与三层的 P-可训练 ReLU 网络，用 90% 归一化增益定义阈值 P0.1，深度 3–7、宽度 32–256 的扫描显示小 P 区间快速收益后进入递减区间。证据边界：全部理论与实验为作者自述，本次未做第三方复现；主文以理论定理与数值实验为主，没有代码或 benchmark 入口（abs 页与 HTML 全文中无仓库链接），标注 待核验/暂无；其『相变』在目标函数类与初始化分布失配的特定条件下成立，不可直接外推到我们的实际训练配置。价值路由：长尾保存——今天不投入任何动作；可迁移的只有一条直觉：在一个可训练比例的扫描里，收益往往在小比例处最陡、随后递减，所以『多训一点参数就一定更好』是错的。今日动作：仅入库留档，触发条件为出现工程侧可复现包或被我们实际遇到的『冻结 vs 全量训练』问题引用。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31663 摘要（Subjects math.NA/cs.LG/math.ST/stat.ML）：纯理论，领域是科学计算里的逼近空间，与我们的赛道没有直接交集，但有一个数字值得记——它量化了“部分可训练网络”在逼近能力上的相变。问题背景：部分可训练网络处在固定随机特征与完全自适应表示之间，作者量化了逼近界中的相变模式，并观察到训练误",
+  "new_claim_or_method": "据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xiliang Lu、Shijun Zhang，通讯 shijun.zhang@polyu.edu.hk）：这是纯数学-数值分析方向，对我们的日常工程距离最远，但结论本身是一个可复用的直觉。部分可训练网络（partially",
   "research_position": "long_tail_insight",
   "engineering_testability": {
     "has_code": false,
@@ -58,7 +58,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31663 摘要（Subjects math.NA/cs.LG/math.ST/stat.ML）：纯理论，领域是科学计算里的逼近空间，与我们的赛道没有直接交集，但有一",
+    "why_save": "据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xiliang Lu、Shijun Zhang，通讯 s",
     "future_trigger": [
       "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
     ],
@@ -75,7 +75,7 @@
       "模板"
     ],
     "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
-    "revisit_date": "2026-11-14"
+    "revisit_date": "2026-11-15"
   },
   "insights": {
     "system_design": [
@@ -118,7 +118,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=phase-transition-from-random-features-to-fully-trainable-networks",
-  "daily_path": "daily-detail.html?date=2026-10-24",
+  "daily_path": "daily-detail.html?date=2026-10-25",
   "trend_paths": [],
   "long_tail_path": "long-tail.html",
   "mermaid": {

@@ -16,8 +16,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-24",
-  "first_deep_dive_daily": "2026-10-24",
+  "first_seen_date": "2026-10-25",
+  "first_deep_dive_daily": "2026-10-25",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -32,10 +32,10 @@
   },
   "score": 76.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得继续观察：据 arXiv 2610.31670 摘要、作者项目页 https://yunfeixie233.github.io/s2/ 与代码仓库 h…",
-  "one_line_essence": "据 arXiv 2610.31670 摘要、作者项目页 https://yunfeixie233.github.io/s2/ 与代码仓库 https://github.com/yunfeixie233/sensorimotor-alignment（两者今日均实测可达）：这篇是今天证据最完整的一篇，但结论要分两层读。方法层：S²（Sensorimotor Alignment）是一个 training-free 的离线度量，把模型的感官表示（用机器人基础模型的 vision / text encoder 编码图像帧与任务指令）与运动表示（录制下来的末端执行器轨迹）做邻域比对，轨迹距离用 DTW，比对用 CKNNA（Centered Kernel Nearest-Neighbor Alignment）；参考数据集是 DROID 与 BridgeDataV2。作者项目页给出的队列与相关系数为：12 个 VLA 在 DROID / SimplerEnv 上 r = +0.717；8 个 raw VLM r = +0.681；6 个 WAM r = +0.718；5 个真机策略 r = +0.831。仓库 record/README.md 另给出 BridgeDataV2 r = +0.699、DROID 在不同 horizon 下 r 从 +0.610 到 +0.717、以及一个更有意思的对照——8 个 raw backbone 上 S² r = +0.681 而 VQA 分数 r = −0.154，即传统视觉问答能力与机器人任务成功基本不相关。项目页还给出机制层发现：VLA 常常无视语言指令、主要凭所见行动，而任务成功率与 vision 特征的 S² 相关、与 text 特征无关。证据层（必须打折）：仓库自己的 record/README.md 写明该发布是 earlier code release，当前论文的六 WAM 结果、五策略真机结果与 14-backbone 策略学习附录都没有配套复现包，因此 combined scatter 无法重建论文的四面板图；更关键的是，真机那个头条 r = +0.831 用的是探索性 horizon h = 110，而预先设定的 h = 7 只给出 r = +0.429——同一实验口径下相差近一倍。工程可验证性（本次实测核验）：仓库真实存在，MIT LICENSE 文件内容已逐字读取，4980 个 tree 条目，顶层含 analysis / assets / compute / config.py / data / docs / extractors / record / repos / tests / vision_encoder，record/README.md 含 released 结果表与 CPU 复现命令（README 明确说明这些脚本只渲染已发布输入，不重跑特征抽取、DTW 或 S² 计算）。代码可用，但复现论文完整结论需要 GPU 与数据集。价值路由：可迁移的抽象是“用便宜的离线代理指标给昂贵的闭环评测排序”，并且今天它给出了一个具体可借鉴的失败教训（探索性 horizon 与预设 horizon 差一倍）。对我们更相关的是它对语言指令被忽视的观察——多模态 agent 里，模型可能根本没在用我们写的指令。趋势雷达连续观察，不追机器人本体。",
+  "one_line_judgement": "值得继续观察：据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/…",
+  "one_line_essence": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（实测 HTTP 200，含 3:29 视频概览与复现指南）与仓库 record/README.md（逐字读取）：这篇把『昂贵的闭环 rollout 能不能被便宜的离线代理指标替代』这个问题，给出了一个可迁移的答案。思路来自 Platonic Representation Hypothesis——表示变强时视觉与语言会收敛到对现实的共享统计模型；这篇问运动轨迹是否也是这样一个模态，即具身模型越强，其感知表示是否越向共享统计模型收敛。指标 S² 用图像-文本特征作为感知表示，对齐到末端执行器轨迹。数字（作者自述）：在 6,000 集 DROID 子集、12 个视觉-语言-动作模型上，S² 与 SimplerEnv-WidowX 任务成功率在几乎所有测试 horizon 上 Pearson r > 0.5，且在 DROID 与 BridgeDataV2 两个参考数据集上结论一致；真实机器人头条结果是 r = +0.831（one-tailed p = 0.041），但这是探索性 horizon h = 110，而预设的 h = 7 只给 r = +0.429（p = 0.236）；WAM 一侧 S² 也比 FID/SSIM 更好指示成功。⚠️ 口径纪律（昨日已写，今日继续执行）：h=110 与 h=7 不可当作同一设定比较，作者仓库 record/README.md 明确写了这一句。证据等级复核（今日用 GitHub API 重新核验）：仓库 https://github.com/yunfeixie233/sensorimotor-alignment 仍存在、非归档、pushed 2026-10-23；但今日 API 返回 license 为 NOASSERTION，而 raw LICENSE 文件内容逐字读取为『MIT License / Copyright (c) 2026 Sensorimotor Alignment authors』——两者不一致，以 LICENSE 文件内容为准即 MIT，此处标注口径差异待作者在 GitHub 元数据侧修正。作者自陈的复现缺口（今日复核仍成立）：完整的六 WAM 结果、五策略真机结果与 14-backbone 策略学习结果都还没有配套复现包，record/README.md 原文是『do not yet have matching reproduction bundles here』，且『the combined scatter therefore does not recreate the current four-panel paper figure』；record/ 下提供的是可 CPU 渲染的图表脚本，不含训练。价值路由：趋势价值而非即时价值——它给的是评测范式（S² 这类离线代理指标可否替代闭环 rollout），不是今天就能用的系统组件。对我们的可迁移点：任何『用离线指标替代昂贵闭环评测』的设计都要预先写明 horizon 口径，并同时报预设 horizon 与探索性 horizon 两组数。今日动作：不投入实现；把一条口径纪律写进评测规范——离线代理指标必须同时报预设与探索性 horizon 的相关系数与显著性。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31670 摘要、作者项目页 https://yunfeixie233.github.io/s2/ 与代码仓库 https://github.com/yunfeixie233/sensorimotor-alignment（两者今日均实测可达）：这篇是今天证据最完整的一篇，但结论要分两层读。方法层：S²（Sensorimotor Al",
+  "new_claim_or_method": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（实测 HTTP 200，含 3:29 视频概览与复现指南）与仓库 record/README.md（逐字读取）：这篇把『昂贵的闭环 rollout 能不能被便宜的离线代理指标替代』这个问题，给出了一个可迁移的答案。思路",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": true,
@@ -62,7 +62,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31670 摘要、作者项目页 https://yunfeixie233.github.io/s2/ 与代码仓库 https://github.com/yunfeixi",
+    "why_save": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（实测 HTTP 200，含 3:29 视频概览与复",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -130,7 +130,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=sensorimotor-alignment-a-platonic-proxy-for-embodied-policy-success",
-  "daily_path": "daily-detail.html?date=2026-10-24",
+  "daily_path": "daily-detail.html?date=2026-10-25",
   "trend_paths": [
     "trend-detail.html?id=agentic-world-modeling",
     "trend-detail.html?id=coding-agent"

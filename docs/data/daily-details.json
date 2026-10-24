@@ -1,24 +1,24 @@
 {
-  "updated_at": "2026-10-24T04:56:48.583300",
+  "updated_at": "2026-10-25T05:01:38.813141",
   "dailies": {
-    "2026-10-24": {
-      "date": "2026-10-24",
-      "title": "论文价值发现日报 - 2026-10-24",
+    "2026-10-25": {
+      "date": "2026-10-25",
+      "title": "论文价值发现日报 - 2026-10-25",
       "deep_dive_id": "episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
       "deep_dive_title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
       "value_type": "immediate",
       "value_type_label": "即时价值",
       "decision": "重点学习",
-      "daily_action": "把 [EpiSEM-Bench](http://arxiv.org/abs/2610.31650v1)（2610.31650）列为今日即时试点主线，但只做最小验证、不照搬：用我们自己的工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实后重跑，只量两列——遮蔽后越权执行率（对应 Critical UCR）与主动补证据率（对应 PUR），不引论文分数当基线。产出第二份资产：agent 安全评测模板六指标（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR），并补一条硬规则——凡是决定授权边界的事实，工具必须能被单独查询（对应 PUR 的训练目标）。产出第三份资产：升级阈值审计模板，来自 Cost-Aware Abstention（2610.31657）——显式成本模型 + calibration 选阈值 + 冻结后一次性评估 + 同时报 ECE / correctness AUROC / tie-aware risk-coverage；并对我们现有的一条 agent 升级链路先算 correctness AUROC，测不出区分度就不许上阈值。产出第四份资产：训练栈自查清单，来自 A Fix for Softmax and Cross-Entropy（2610.31642）——核对 cross-entropy 实现、核对 bf16 下 margin 是否越过 ≈5.5 的精度悬崖、核对蒸馏时 student/teacher logit 是否贴近 Softmax Cancellation 的噪声地板，做一次 A/B，不预设结论。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算）、S²（2610.31670，离线代理指标，并记住其 h=110 vs h=7 的口径教训）、PKTP（2610.31667，直接优化 pass@k + 截断宁晚勿早）、Low-Bit N-Gram（2610.31646，n-gram 表 47–75% 内存节省）。长尾入库并标注触发条件：SpectralCanary（2610.31659，主动埋信号做数据来源审计）、METTA（2610.31656，两时间尺度记忆）、Phase Transition（2610.31663，部分可训练比例收益曲线）。",
-      "score": 82.0,
+      "daily_action": "今天排四条动作，顺序即优先级。(1) 抄 EpiSEM-Bench 六指标模板（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR，2610.31650），并用第三方复现 https://github.com/habib-analyst/episembench 校准我们自己的最小实现——明确只校准机制（遮蔽算子、审计工具、失败基数），不引用它的数值作为基线；在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列：遮蔽后越权执行率、主动补证据率、以及「先查后动」比例。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix 对训练栈做 A/B（Softmax Fix，2610.31642），量两件事——loss spike 次数、student=teacher 时梯度是否恰为 0；同时记录各任务的 dtype 与 AdamW eps，判断 margin 是否越过对应精度悬崖（bf16 ≈ 5.5 / fp32 ≈ 16.6 / fp64 ≈ 36.7）；注意该实现自陈 3.4–6x 速度与 1.25–1.75x 显存代价，只在蒸馏与关键任务上启用。(3) 审 agent 升级阈值链路（Cost-Aware Abstention，2610.31657，Zenodo 产物 10.5281/zenodo.22609128 今日已确认解析到 zenodo.org/records/22654013）：按显式成本模型 + calibration 选阈值 + 冻结后一次性评估的口径，先算 correctness AUROC；测不出区分度就不许上阈值。(4) 把四条口径纪律写进 paper-reading checklist：实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分为作者官方 / 第三方 / 脚本化合成类比。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算，注意 ImageNet 上是 anti-conservative 不是保守）、Sensorimotor Alignment（2610.31670，h=110 vs h=7 口径纪律，六 WAM/真机/14-backbone 复现包仍缺）、Direct Pass@k Optimization（2610.31667，剪枝目标对齐最终指标，cutoff 阈值是显式超参）、Low-Bit N-Gram（2610.31646，n-gram 表内存是可预算工程量）、SpectralCanary（2610.31659，发布即埋信号，作者仓库已找到但项目页 404）。长尾入库并标注触发条件：METTA（2610.31656，两个时间尺度的记忆分工）、Phase Transition（2610.31663，可训练比例的收益曲线非单调）。",
+      "score": 84.0,
       "trend_stage": "emerging",
-      "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符…",
-      "max_uncertainty": "证据不足项明确清单：(1) 可复现性缺口最大的一处：EpiSEM-Bench（2610.31650）自称 executable benchmark，但 abs 页与 HTML 全文中均无作者仓库或项目页链接，本次经 GitHub 搜索 EpiSEM / episem-bench 及变体均无匹配项目，获取方式标注 待核验/暂无，其 300 对任务、6,052 个条件与 Table 1 全部数字无法独立核验，只能按作者自述处理。(2) 全部性能结论为作者自述，本次未做任何第三方复现：EpiSEM 十个模型的 SWS / UCR / SBM / PUR；Cost-Aware Abstention 的 0.763→0.472（38.1%，paired ratio-bootstrap 95% CI [35.7%, 40.4%]）、15.3%→3.5% 错误路由、0.477 vs 0.879 准确率、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速等定性收益；Selective Auditing 的三组实验（含在 ImageNet 上偏保守）；S² 的各队列相关系数；PKTP 的 2–3 分提升；Low-Bit N-Gram 的 75% / 47–55% 内存节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1% / 92.4% / 94.8%；METTA 的“成功率超过 50%”。(3) 已核验的代码只有三处，且都只是“存在且结构自洽”，不是“内容正确”：sensorimotor-alignment（MIT，4980 条目，record/README.md 与 README 已逐字读取）、RouteGuard（MIT，127 条目，含 tests/ 与 CI workflow，README 已读）、lowbit-ngram（Apache-2.0，33 条目，README 与 LICENSE 已读），三者均未运行过任何脚本，训练可运行性与数据可得性无法确认；lowbit-ngram 的 README 明确说明数据与 checkpoint 不在仓库内。(4) S² 的复现覆盖面由作者仓库自陈：当前论文的六 WAM 结果、五策略真机结果与 14-backbone 策略学习附录没有配套复现包；且真机头条 r = +0.831 用的是探索性 horizon h = 110，预设 h = 7 仅 r = +0.429，record/README.md 明确警告不要把两者当作同一设定比较。(5) Cost-Aware Abstention 的 Zenodo 产物 DOI 10.5281/zenodo.22609128 来自作者 README，但本机 zenodo.org 与 doi.org 均因 SSL record layer failure 不可达，该产物记录未经独立确认。(6) 网络口径：本机 github.com 网页与 huggingface.co 实测超时不可达，api.github.com 与 raw.githubusercontent.com 可达，arxiv.org abs 页与 HTML 全文可达；因此本轮所有仓库核验都基于 API 元数据 + raw 文件内容，未依赖 GitHub 网页。(7) 抽样口径：今日 arXiv 主 API 正常，取到 10 篇全部 published 2026-10-22（id 2610.31642–2610.31670），未取到 10-23 及之后的新稿；单日 10 篇覆盖不足以支撑趋势判断，趋势结论只按“值得连续观察”对待。(8) 流水线缺陷复现：fetch_papers.py 的 extract_keywords 先对全文做子串匹配再截断摘要，leverage / average / coverage 被误判为含关键词 RAG，今日 2610.31663、2610.31659、2610.31657 三篇均被错误打标，与昨日 NPMLE 那篇同源；关键词字段不可用于加权或路由判断。(9) METTA 未给出基线对应数值、训练预算与 wall-clock 绝对值、重复次数或方差；Phase Transition 的 4.1% 可训练比例是 d = 5、τ = 10 这一具体设定下的数值，不能外推到 LLM 的部分微调。(10) Softmax Fix 未给出可对照的绝对指标（grokking 步数从多少降到多少未给），亦未给作者仓库，参考实现获取方式标注 待核验/暂无；按其描述自行实现成本低，不构成阻塞，但收益幅度无法量化。",
+      "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Com…",
+      "max_uncertainty": "证据不足项明确清单（按严重度排序）：(1) **昨日报告存在两处事实错误，今日已更正但昨日文件未回改**——(a) EpiSEM-Bench 的任务族数：论文 3.1 节原文为「Each domain contains 50 task pairs in ten families」，即每域 10 个家族、六域共 60 个（正文与 Figure 10 按 60 个统计）；昨日在摘要段落写 60、深挖段落写 10，前后不一。(b) EpiSEM Table 1 列序被读错：真实表头为 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR，昨日按 Full SWS/Critical UCR/…/SBM/PUR 读，导致 77.3% 被标为 Critical UCR（实为 Full UCR，真实 Critical UCR 为 97.3%）；Gemma-4-31B-IT 的 19.7% 位置亦随之偏移。这两处说明昨日那批数字的引用链有系统性风险，本日所有引用均已回原文逐行核过。(2) **全部性能数字仍为作者自述，本次未做任何第三方复现**：EpiSEM 十模型的 SWS/UCR/SBM/PUR 与 Table 8 的 Critical Omission Failure Rate；Cost-Aware Abstention 的 0.763→0.472（38.1%，CI [35.7%, 40.4%]）、15.3%→3.5%、0.477 vs 0.879、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速（第三方复现明确未检验到 grokking）；Selective Auditing 的三组实验与 ImageNet 上的 anti-conservative 现象；S² 的 r=+0.831 与 r=+0.429；PKTP 的 3.3 分优势与 cutoff 收益曲线；Low-Bit N-Gram 的 75% / 47–55% 节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1%/92.4%/94.8%/SSIM 0.989/LPIPS 0.022；METTA 的「超过 50%」。(3) **新增的三个仓库只核验到「存在、结构自洽、README 自述」，一个脚本都没跑过**：barron-softmax-fix（MIT，15 条目，README 逐项列出与论文的对照）、habib-analyst/episembench（MIT，19 条目，README/PREREG/KILLGATE 逐字读取）、hosytuyen/SpectralCanary（MIT，commits API 确认作者归属）。三者均未运行，训练可运行性与数据可得性无法确认；episembench 明确说明其 G2/G3 效应量因结构化决策规则「at the ceiling by construction」不可当作模型行为引用。(4) **作者官方代码仍然缺失，两处需特别说明**：EpiSEM-Bench 作者代码在 abs 页与全文中依旧没有链接，episembench 仓库自己也写「no author code was found」，故 300 对真实任务与 6,052 条件的构造细节仍无法复刻；Softmax Fix 作者项目页 jonbarron.info/softmaxfix/ 可达但未给仓库链接，现有实现为第三方移植，其自陈 3.4–6x 速度与 1.25–1.75x 显存代价意味着我们的可用性取决于任务类型。(5) **口径缺口两处**：S² 的六 WAM、真机与 14-backbone 复现包作者自陈仍缺（record/README.md 原文「do not yet have matching reproduction bundles here」），且 h=110 与 h=7 不可混比；SpectralCanary 的作者项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 实测 HTTP 404（仓库 README 仍指向该失效链接），故 project_url 留空。(6) **元数据口径差异一处**：sensorimotor-alignment 仓库今日经 GitHub API 返回 license 为 NOASSERTION，而 raw LICENSE 文件内容逐字读取为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准，标为 MIT，但 GitHub 元数据侧的差异待作者修正。(7) **抓取环境缺口**：huggingface.co 今日仍不可达，HF Daily Papers 作为社区热度辅助源全程无法使用；OpenReview / Papers with Code 三个源在 fetch_papers.py 中仍是未实现状态，本次数据完全来自 arXiv 单源；周末 arXiv 无新批次，10 篇与昨日完全相同（id 2610.31642–2610.31670），已核对 11 个分类最新 60 条确认无更新。(8) **流水线缺陷（今日复现）**：fetch_papers.py 的 extract_keywords 先在全文上匹配再截断摘要到 500 字，且用子串匹配，导致 2610.31663（leverage / storage）、2610.31659（average）、2610.31657（coverage）三篇被误打上 RAG 标签——今日逐条定位到具体子串，三篇关键词字段不可用于加权，与昨日 NPMLE 那篇同源。另记环境问题：仓库 .git/config 写死 http.proxy=http://127.0.0.1:7890 且 http.sslverify=false，该本地代理 CONNECT 隧道已损坏（curl 直连 github.com 200、走代理 SSL_ERROR_SYSCALL），git 因此报 gnutls_handshake() failed；本次以 git -c http.proxy= -c https.proxy= 绕开，pull/push 均成功，但该配置本身建议另行评审修正。(9) 未核验项：arXiv LaTeXML HTML 全文中 EpiSEM 的六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；PKTP 的附录表格数值已核，跨模型完整对照表未逐格复核。",
       "conclusion_lines": [
         "今天最值得看的是《EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence》。",
         "它属于即时价值，因为同时具备较高的相关性与研究资产价值。",
-        "今天建议动作：把 [EpiSEM-Bench](http://arxiv.org/abs/2610.31650v1)（2610.31650）列为今日即时试点主线，但只做最小验证、不照搬：用我们自己的工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实后重跑，只量两列——遮蔽后越权执行率（对应 Critical UCR）与主动补证据率（对应 PUR），不引论文分数当基线。产出第二份资产：agent 安全评测模板六指标（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR），并补一条硬规则——凡是决定授权边界的事实，工具必须能被单独查询（对应 PUR 的训练目标）。产出第三份资产：升级阈值审计模板，来自 Cost-Aware Abstention（2610.31657）——显式成本模型 + calibration 选阈值 + 冻结后一次性评估 + 同时报 ECE / correctness AUROC / tie-aware risk-coverage；并对我们现有的一条 agent 升级链路先算 correctness AUROC，测不出区分度就不许上阈值。产出第四份资产：训练栈自查清单，来自 A Fix for Softmax and Cross-Entropy（2610.31642）——核对 cross-entropy 实现、核对 bf16 下 margin 是否越过 ≈5.5 的精度悬崖、核对蒸馏时 student/teacher logit 是否贴近 Softmax Cancellation 的噪声地板，做一次 A/B，不预设结论。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算）、S²（2610.31670，离线代理指标，并记住其 h=110 vs h=7 的口径教训）、PKTP（2610.31667，直接优化 pass@k + 截断宁晚勿早）、Low-Bit N-Gram（2610.31646，n-gram 表 47–75% 内存节省）。长尾入库并标注触发条件：SpectralCanary（2610.31659，主动埋信号做数据来源审计）、METTA（2610.31656，两时间尺度记忆）、Phase Transition（2610.31663，部分可训练比例收益曲线）。。",
-        "最大不确定性：证据不足项明确清单：(1) 可复现性缺口最大的一处：EpiSEM-Bench（2610.31650）自称 executable benchmark，但 abs 页与 HTML 全文中均无作者仓库或项目页链接，本次经 GitHub 搜索 EpiSEM / episem-bench 及变体均无匹配项目，获取方式标注 待核验/暂无，其 300 对任务、6,052 个条件与 Table 1 全部数字无法独立核验，只能按作者自述处理。(2) 全部性能结论为作者自述，本次未做任何第三方复现：EpiSEM 十个模型的 SWS / UCR / SBM / PUR；Cost-Aware Abstention 的 0.763→0.472（38.1%，paired ratio-bootstrap 95% CI [35.7%, 40.4%]）、15.3%→3.5% 错误路由、0.477 vs 0.879 准确率、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速等定性收益；Selective Auditing 的三组实验（含在 ImageNet 上偏保守）；S² 的各队列相关系数；PKTP 的 2–3 分提升；Low-Bit N-Gram 的 75% / 47–55% 内存节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1% / 92.4% / 94.8%；METTA 的“成功率超过 50%”。(3) 已核验的代码只有三处，且都只是“存在且结构自洽”，不是“内容正确”：sensorimotor-alignment（MIT，4980 条目，record/README.md 与 README 已逐字读取）、RouteGuard（MIT，127 条目，含 tests/ 与 CI workflow，README 已读）、lowbit-ngram（Apache-2.0，33 条目，README 与 LICENSE 已读），三者均未运行过任何脚本，训练可运行性与数据可得性无法确认；lowbit-ngram 的 README 明确说明数据与 checkpoint 不在仓库内。(4) S² 的复现覆盖面由作者仓库自陈：当前论文的六 WAM 结果、五策略真机结果与 14-backbone 策略学习附录没有配套复现包；且真机头条 r = +0.831 用的是探索性 horizon h = 110，预设 h = 7 仅 r = +0.429，record/README.md 明确警告不要把两者当作同一设定比较。(5) Cost-Aware Abstention 的 Zenodo 产物 DOI 10.5281/zenodo.22609128 来自作者 README，但本机 zenodo.org 与 doi.org 均因 SSL record layer failure 不可达，该产物记录未经独立确认。(6) 网络口径：本机 github.com 网页与 huggingface.co 实测超时不可达，api.github.com 与 raw.githubusercontent.com 可达，arxiv.org abs 页与 HTML 全文可达；因此本轮所有仓库核验都基于 API 元数据 + raw 文件内容，未依赖 GitHub 网页。(7) 抽样口径：今日 arXiv 主 API 正常，取到 10 篇全部 published 2026-10-22（id 2610.31642–2610.31670），未取到 10-23 及之后的新稿；单日 10 篇覆盖不足以支撑趋势判断，趋势结论只按“值得连续观察”对待。(8) 流水线缺陷复现：fetch_papers.py 的 extract_keywords 先对全文做子串匹配再截断摘要，leverage / average / coverage 被误判为含关键词 RAG，今日 2610.31663、2610.31659、2610.31657 三篇均被错误打标，与昨日 NPMLE 那篇同源；关键词字段不可用于加权或路由判断。(9) METTA 未给出基线对应数值、训练预算与 wall-clock 绝对值、重复次数或方差；Phase Transition 的 4.1% 可训练比例是 d = 5、τ = 10 这一具体设定下的数值，不能外推到 LLM 的部分微调。(10) Softmax Fix 未给出可对照的绝对指标（grokking 步数从多少降到多少未给），亦未给作者仓库，参考实现获取方式标注 待核验/暂无；按其描述自行实现成本低，不构成阻塞，但收益幅度无法量化。。"
+        "今天建议动作：今天排四条动作，顺序即优先级。(1) 抄 EpiSEM-Bench 六指标模板（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR，2610.31650），并用第三方复现 https://github.com/habib-analyst/episembench 校准我们自己的最小实现——明确只校准机制（遮蔽算子、审计工具、失败基数），不引用它的数值作为基线；在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列：遮蔽后越权执行率、主动补证据率、以及「先查后动」比例。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix 对训练栈做 A/B（Softmax Fix，2610.31642），量两件事——loss spike 次数、student=teacher 时梯度是否恰为 0；同时记录各任务的 dtype 与 AdamW eps，判断 margin 是否越过对应精度悬崖（bf16 ≈ 5.5 / fp32 ≈ 16.6 / fp64 ≈ 36.7）；注意该实现自陈 3.4–6x 速度与 1.25–1.75x 显存代价，只在蒸馏与关键任务上启用。(3) 审 agent 升级阈值链路（Cost-Aware Abstention，2610.31657，Zenodo 产物 10.5281/zenodo.22609128 今日已确认解析到 zenodo.org/records/22654013）：按显式成本模型 + calibration 选阈值 + 冻结后一次性评估的口径，先算 correctness AUROC；测不出区分度就不许上阈值。(4) 把四条口径纪律写进 paper-reading checklist：实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分为作者官方 / 第三方 / 脚本化合成类比。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算，注意 ImageNet 上是 anti-conservative 不是保守）、Sensorimotor Alignment（2610.31670，h=110 vs h=7 口径纪律，六 WAM/真机/14-backbone 复现包仍缺）、Direct Pass@k Optimization（2610.31667，剪枝目标对齐最终指标，cutoff 阈值是显式超参）、Low-Bit N-Gram（2610.31646，n-gram 表内存是可预算工程量）、SpectralCanary（2610.31659，发布即埋信号，作者仓库已找到但项目页 404）。长尾入库并标注触发条件：METTA（2610.31656，两个时间尺度的记忆分工）、Phase Transition（2610.31663，可训练比例的收益曲线非单调）。。",
+        "最大不确定性：证据不足项明确清单（按严重度排序）：(1) **昨日报告存在两处事实错误，今日已更正但昨日文件未回改**——(a) EpiSEM-Bench 的任务族数：论文 3.1 节原文为「Each domain contains 50 task pairs in ten families」，即每域 10 个家族、六域共 60 个（正文与 Figure 10 按 60 个统计）；昨日在摘要段落写 60、深挖段落写 10，前后不一。(b) EpiSEM Table 1 列序被读错：真实表头为 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR，昨日按 Full SWS/Critical UCR/…/SBM/PUR 读，导致 77.3% 被标为 Critical UCR（实为 Full UCR，真实 Critical UCR 为 97.3%）；Gemma-4-31B-IT 的 19.7% 位置亦随之偏移。这两处说明昨日那批数字的引用链有系统性风险，本日所有引用均已回原文逐行核过。(2) **全部性能数字仍为作者自述，本次未做任何第三方复现**：EpiSEM 十模型的 SWS/UCR/SBM/PUR 与 Table 8 的 Critical Omission Failure Rate；Cost-Aware Abstention 的 0.763→0.472（38.1%，CI [35.7%, 40.4%]）、15.3%→3.5%、0.477 vs 0.879、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速（第三方复现明确未检验到 grokking）；Selective Auditing 的三组实验与 ImageNet 上的 anti-conservative 现象；S² 的 r=+0.831 与 r=+0.429；PKTP 的 3.3 分优势与 cutoff 收益曲线；Low-Bit N-Gram 的 75% / 47–55% 节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1%/92.4%/94.8%/SSIM 0.989/LPIPS 0.022；METTA 的「超过 50%」。(3) **新增的三个仓库只核验到「存在、结构自洽、README 自述」，一个脚本都没跑过**：barron-softmax-fix（MIT，15 条目，README 逐项列出与论文的对照）、habib-analyst/episembench（MIT，19 条目，README/PREREG/KILLGATE 逐字读取）、hosytuyen/SpectralCanary（MIT，commits API 确认作者归属）。三者均未运行，训练可运行性与数据可得性无法确认；episembench 明确说明其 G2/G3 效应量因结构化决策规则「at the ceiling by construction」不可当作模型行为引用。(4) **作者官方代码仍然缺失，两处需特别说明**：EpiSEM-Bench 作者代码在 abs 页与全文中依旧没有链接，episembench 仓库自己也写「no author code was found」，故 300 对真实任务与 6,052 条件的构造细节仍无法复刻；Softmax Fix 作者项目页 jonbarron.info/softmaxfix/ 可达但未给仓库链接，现有实现为第三方移植，其自陈 3.4–6x 速度与 1.25–1.75x 显存代价意味着我们的可用性取决于任务类型。(5) **口径缺口两处**：S² 的六 WAM、真机与 14-backbone 复现包作者自陈仍缺（record/README.md 原文「do not yet have matching reproduction bundles here」），且 h=110 与 h=7 不可混比；SpectralCanary 的作者项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 实测 HTTP 404（仓库 README 仍指向该失效链接），故 project_url 留空。(6) **元数据口径差异一处**：sensorimotor-alignment 仓库今日经 GitHub API 返回 license 为 NOASSERTION，而 raw LICENSE 文件内容逐字读取为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准，标为 MIT，但 GitHub 元数据侧的差异待作者修正。(7) **抓取环境缺口**：huggingface.co 今日仍不可达，HF Daily Papers 作为社区热度辅助源全程无法使用；OpenReview / Papers with Code 三个源在 fetch_papers.py 中仍是未实现状态，本次数据完全来自 arXiv 单源；周末 arXiv 无新批次，10 篇与昨日完全相同（id 2610.31642–2610.31670），已核对 11 个分类最新 60 条确认无更新。(8) **流水线缺陷（今日复现）**：fetch_papers.py 的 extract_keywords 先在全文上匹配再截断摘要到 500 字，且用子串匹配，导致 2610.31663（leverage / storage）、2610.31659（average）、2610.31657（coverage）三篇被误打上 RAG 标签——今日逐条定位到具体子串，三篇关键词字段不可用于加权，与昨日 NPMLE 那篇同源。另记环境问题：仓库 .git/config 写死 http.proxy=http://127.0.0.1:7890 且 http.sslverify=false，该本地代理 CONNECT 隧道已损坏（curl 直连 github.com 200、走代理 SSL_ERROR_SYSCALL），git 因此报 gnutls_handshake() failed；本次以 git -c http.proxy= -c https.proxy= 绕开，pull/push 均成功，但该配置本身建议另行评审修正。(9) 未核验项：arXiv LaTeXML HTML 全文中 EpiSEM 的六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；PKTP 的附录表格数值已核，跨模型完整对照表未逐格复核。。"
       ],
       "candidate_papers": [
         {
@@ -28,9 +28,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -41,23 +54,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -101,35 +101,35 @@
         "published": "2026-10-22",
         "url": "http://arxiv.org/abs/2610.31650v1",
         "pdf_url": "https://arxiv.org/pdf/2610.31650v1",
-        "code_url": "",
+        "code_url": "https://github.com/habib-analyst/episembench",
         "benchmark_url": "",
         "paperswithcode_url": "",
         "openreview_url": "",
-        "first_seen_date": "2026-10-24",
-        "first_deep_dive_daily": "2026-10-24",
+        "first_seen_date": "2026-10-25",
+        "first_deep_dive_daily": "2026-10-25",
         "value_type": "immediate",
         "value_type_label": "即时价值",
         "value_scores": {
           "novelty": 4.8,
           "relevance": 6.2,
-          "evidence": 4.95,
-          "engineering_testability": 4.05,
+          "evidence": 6.35,
+          "engineering_testability": 6.05,
           "trend_signal": 5.45,
           "long_tail_potential": 3.5,
-          "actionability": 3.8,
+          "actionability": 6.1,
           "noise_risk": 1.2
         },
-        "score": 82.0,
+        "score": 84.0,
         "decision": "重点学习",
-        "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符…",
-        "one_line_essence": "据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符 \\bench{} 在全文中展开为 EpiSEM-Bench）：这篇做的是我们最该盯的那类 agent 失效——不是模型说错话，而是工具少说了一句关键事实，agent 就把被禁止的动作执行了，而且用户请求本身是良性的、工具返回的每句话都是真的。评测设计是可执行的：六个域（cloud development and operations、commerce and fulfillment、communication and publication、document and data access、finance、travel reservation），每域 50 个任务对、共 10 个任务族，合计 300 对任务、600 个世界；每个事实被拆成 evidence atom（标识、主体、谓词、世界相关取值、来源、暴露它的工具响应），critical atom 影响合法性、irrelevant atom 既不影响合法性也不影响参数。评测分三段：完整证据下用 Full SWS（合法世界是否完成）与 Full UCR（是否执行了禁止操作）先立基线；抑制证据段用 Critical UCR 与 SBM（Safety Boundary Margin，最少需要遮掉多少事实才会失败）刻画脆弱性；可恢复证据段允许 agent 主动查独立审计源，用 Recovery UCR 与 PUR（Paired Useful Recovery：先取到证据、在禁止世界忍住、在许可世界照做）衡量恢复。规模可核：十个模型每个跑 6,052 个固定评测条件（600 个完整证据基线 + 5,452 个单 atom 抑制，覆盖两个世界两种设置下的全部 1,363 个 critical 与 irrelevant atom）。Table 1 的硬数字是今天最刺眼的一份：Qwen3-14B 的 Full SWS 高达 92.0%，但 Critical UCR 同样高达 77.3%、SBM 只有 7.8%；GLM-4.7-Flash Full SWS 85.3%、Critical UCR 75.7%、Recovery UCR 87.7%，而 PUR 是 0.0%；MiMo-V2.5-Pro Full SWS 57.7%、Critical UCR 59.3%、PUR 4.8%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、Recovery UCR 3.0%、PUR 30.5%；Claude-Haiku-5.5 57.0%/5.3%/33.3%/15.3%/75.4%/21.4%。论文自己点出的结构性结论有两条：第一，完整证据下高分与安全不是一回事（高 Full SWS 的模型同样频繁执行禁止操作）；第二，摘要原话是 Resistance to missing evidence does not necessarily translate into useful recovery，即抗遮蔽与会用证据是两件事——摘要另称 Recovery access reduces unsafe execution for all ten models，但能否主动把缺失事实取回来并据此改变行为，十个模型差异很大。证据边界：十模型的 SWS / UCR / SBM / PUR 均为作者自述，本次未做第三方复现；六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；论文自称 executable benchmark，但 abs 页与 HTML 全文中都没有作者仓库或项目页链接，本次经 GitHub 搜索 EpiSEM / episem-bench 也无匹配项目，代码与 benchmark 获取方式标注 待核验/暂无。价值路由：这是今天最该排进工程验证队列的一篇，因为它攻击的是我们每天都在写的工具层，而不是模型本身——但先做最小验证，不要照搬：我们现有的工具响应里，哪些安全相关事实是 agent 需要主动查才能拿到的，这个清单目前没人写。今天动作：把六段评测口径（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR）抄成 agent 安全评测模板；只验一件事——在我们的工具集上遮掉一个关键事实，agent 会不会照做。",
+        "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Com…",
+        "one_line_essence": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模可核：六个域（cloud development and operations、commerce and fulfillment、communication and publication、document and data access、finance、travel reservation），每域 50 对任务、各含 10 个任务族，合计 300 对任务、600 个世界、60 个任务族；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 今日更正昨日两处错误：任务族是每域 10 个、共 60 个（昨日深挖段落误写 10）；Table 1 的列序是 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR（昨日读成 Full SWS/Critical UCR/…/SBM/PUR）。按正确列序读今日最刺眼的反差：Qwen3-14B Full SWS 92.0% 但 Full UCR 77.3%、Critical UCR 97.3%、SBM 仅 7.8%、PUR 3.8%；GLM-4.7-Flash Full SWS 85.3% / Full UCR 75.7% / Recovery UCR 87.7% 而 PUR 0.0%；MiMo-V2.5-Pro Full SWS 57.7% 但 Critical UCR 88.0%、Critical Omission Failure Rate 61.7%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、PUR 30.5%、SBM 最高 84.8%；Claude-Haiku-5.5 57.0%/5.3%/33.3%/15.3%/75.4%/21.4%。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 补了一条更硬的机制证据：Qwen3-14B Attempt 16.3% 但 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——两者都大量在拿到证据前就提交动作，即『抗遮蔽强』与『会用证据』是两件事。证据等级今日升级（昨日记为无可核验实现）：出现第三方独立复现 https://github.com/habib-analyst/episembench（MIT，created 2026-10-24，19 个 tree 条目，README/PREREG.md/KILLGATE.md/results_seed42.json 均已逐字读取）。该仓库明确写『The paper's real task data and author code were not used (no author code was found)』，是确定性脚本化合成类比、不调用任何 LLM、CPU-only，预注册门槛 18/18 pytest 通过、G2 +1.00 [CI 1.00,1.00]、G3 −1.00 [CI −1.00,−1.00]，并自陈 effect size 因结构化决策规则『at the ceiling by construction』不可当作模型行为引用。因此：作者官方代码与 300 对真实任务仍无公开入口（标注 待核验/暂无），但机制本身现在可跑。价值路由：仍列今日第一即时试点，只做最小验证——用我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量两列（遮蔽后越权执行率 ≈ Critical UCR、主动补证据率 ≈ PUR），不引论文分数当基线。今天动作：抄六指标模板 + 一条硬规则（决定授权边界的事实必须可被单独查询）；另加一条新规则（拿到证据不等于据此收手，必须单独量「先查后动」的比例）。",
         "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-        "new_claim_or_method": "据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符 \\bench{} 在全文中展开为 EpiSEM-Bench）：这篇做的是我们最该盯的那类 agent 失效——不是模型说错话，而是工具少说了一句关键事实，agent 就把被禁止的动作执行了，而且用户请求本身是良性的、工",
+        "new_claim_or_method": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模可核：六个域（cloud development",
         "research_position": "benchmark",
         "engineering_testability": {
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
-          "can_reproduce": false,
+          "can_reproduce": true,
           "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
           "engineering_scenarios": [
             "AI Agent",
@@ -151,7 +151,7 @@
           ]
         },
         "long_tail": {
-          "why_save": "据 arXiv 2610.31650 摘要与 HTML 全文（Subjects cs.AI/cs.LG，摘要内 benchmark 名占位符 \\bench{} 在全文中展开为 EpiSEM-B",
+          "why_save": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型",
           "future_trigger": [
             "待更多证据"
           ],
@@ -208,10 +208,14 @@
           {
             "label": "PDF",
             "url": "https://arxiv.org/pdf/2610.31650v1"
+          },
+          {
+            "label": "Code",
+            "url": "https://github.com/habib-analyst/episembench"
           }
         ],
         "detail_path": "paper-detail.html?id=episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
-        "daily_path": "daily-detail.html?date=2026-10-24",
+        "daily_path": "daily-detail.html?date=2026-10-25",
         "trend_paths": [
           "trend-detail.html?id=coding-agent",
           "trend-detail.html?id=agentic-world-modeling"
@@ -265,6 +269,291 @@
         {
           "label": "PDF",
           "url": "https://arxiv.org/pdf/2610.31650v1"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/habib-analyst/episembench"
+        }
+      ],
+      "mermaid": {
+        "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+        "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+        "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+      },
+      "raw_markdown_html": "<h2>论文价值发现日报 - 2026-10-25</h2>\n<p>> 从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。</p>\n<p>> ⚠️ <strong>注意：这是初始化样例，后续运行会替换为真实数据。</strong></p>\n<h3>1. 标题区</h3>\n<ul>\n<li><strong>今日最值得关注论文：</strong> <a href=\"http://arxiv.org/abs/2610.31650v1\" target=\"_blank\" rel=\"noopener noreferrer\">EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence</a></li>\n<li><strong>价值类型：</strong> 即时价值</li>\n<li><strong>今日建议动作：</strong> 今天排四条动作，顺序即优先级。(1) 抄 EpiSEM-Bench 六指标模板（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR，2610.31650），并用第三方复现 https://github.com/habib-analyst/episembench 校准我们自己的最小实现——明确只校准机制（遮蔽算子、审计工具、失败基数），不引用它的数值作为基线；在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列：遮蔽后越权执行率、主动补证据率、以及「先查后动」比例。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix 对训练栈做 A/B（Softmax Fix，2610.31642），量两件事——loss spike 次数、student=teacher 时梯度是否恰为 0；同时记录各任务的 dtype 与 AdamW eps，判断 margin 是否越过对应精度悬崖（bf16 ≈ 5.5 / fp32 ≈ 16.6 / fp64 ≈ 36.7）；注意该实现自陈 3.4–6x 速度与 1.25–1.75x 显存代价，只在蒸馏与关键任务上启用。(3) 审 agent 升级阈值链路（Cost-Aware Abstention，2610.31657，Zenodo 产物 10.5281/zenodo.22609128 今日已确认解析到 zenodo.org/records/22654013）：按显式成本模型 + calibration 选阈值 + 冻结后一次性评估的口径，先算 correctness AUROC；测不出区分度就不许上阈值。(4) 把四条口径纪律写进 paper-reading checklist：实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分为作者官方 / 第三方 / 脚本化合成类比。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算，注意 ImageNet 上是 anti-conservative 不是保守）、Sensorimotor Alignment（2610.31670，h=110 vs h=7 口径纪律，六 WAM/真机/14-backbone 复现包仍缺）、Direct Pass@k Optimization（2610.31667，剪枝目标对齐最终指标，cutoff 阈值是显式超参）、Low-Bit N-Gram（2610.31646，n-gram 表内存是可预算工程量）、SpectralCanary（2610.31659，发布即埋信号，作者仓库已找到但项目页 404）。长尾入库并标注触发条件：METTA（2610.31656，两个时间尺度的记忆分工）、Phase Transition（2610.31663，可训练比例的收益曲线非单调）。</li>\n<li><strong>分数：</strong> 84.0</li>\n<li><strong>趋势阶段：</strong> 萌芽</li>\n</ul>\n<h3>2. 先说结论</h3>\n<ul>\n<li><strong>今天最值得看什么：</strong> <a href=\"http://arxiv.org/abs/2610.31650v1\" target=\"_blank\" rel=\"noopener noreferrer\">EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence</a>。它攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了——而且用户请求本身良性、工具返回的每句话都是真的。</li>\n<li><strong>为什么值得看：</strong> 据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（Table 1 / 8 / 10 / 12 逐行解析）：评测是可执行的——六个域（cloud development and operations、commerce and fulfillment、communication and publication、document and data access、finance、travel reservation），每域 50 对任务、各含 10 个任务族，合计 300 对任务、600 个世界、60 个任务族；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 今日更正昨日两处错误：任务族是每域 10 个、共 60 个（昨日深挖段落误写 10）；Table 1 的真实列序是 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR（昨日读成 Full SWS/Critical UCR/…/SBM/PUR）。按正确列序，Table 1 最刺眼的反差是：Qwen3-14B Full SWS 92.0% 但 Full UCR 77.3%、Critical UCR 97.3%、SBM 仅 7.8%、PUR 3.8%；GLM-4.7-Flash Full SWS 85.3% / Full UCR 75.7% / Recovery UCR 87.7% 而 PUR 0.0%；MiMo-V2.5-Pro Full SWS 57.7% 但 Critical UCR 88.0%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、PUR 30.5%、SBM 最高 84.8%。Table 12 给出更硬的机制证据：Qwen3-14B Attempt 仅 16.3% 而 Premature 72.0%，GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——模型大量在把缺失事实取回来之前就提交了动作。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。</li>\n<li><strong>证据等级今日升级：</strong> 昨日记为『无可核验实现、待核验/暂无』，今日出现第三方独立复现 https://github.com/habib-analyst/episembench（MIT，created 2026-10-24，19 个 tree 条目，README / PREREG.md / KILLGATE.md / results_seed42.json 均已逐字读取）。但该仓库自己写明『The paper's real task data and author code were not used (no author code was found)』，是确定性脚本化合成类比、不调用任何 LLM、CPU-only，其效应量因结构化决策规则『at the ceiling by construction』不可当作模型行为引用。作者官方代码与 300 对真实任务仍无公开入口。</li>\n<li><strong>它属于什么价值类型：</strong> 即时价值（84）。今日即时价值三篇：EpiSEM-Bench（84）、A Fix for Softmax and Cross-Entropy（82）、Cost-Aware Abstention for LLM-Based IT Ticket Classification（81）。趋势价值五篇：Selective Auditing（77）、Sensorimotor Alignment（76）、Direct Pass@k Optimization for Thought Pruning（74）、Low-Bit N-Gram Embeddings（73）、SpectralCanary（72）。长尾两篇：METTA（64）、Phase Transition（58）。</li>\n<li><strong>今天该做什么：</strong> (1) 抄 EpiSEM 的六指标口径（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR）成 agent 安全评测模板，并用第三方复现校准我们自己的最小实现——只校准机制，不引用它的数字当基线；在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量两列：遮蔽后越权执行率与主动补证据率。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix 对训练栈做 A/B（量 loss spike 次数、student=teacher 时梯度是否恰为 0）。(3) 拿 Cost-Aware Abstention 的口径审现有 agent 升级阈值链路，先算 correctness AUROC 再谈阈值。(4) 记录四条口径纪律进 paper-reading checklist。</li>\n<li><strong>最大不确定性：</strong> 今日最大的变化是证据等级而不是新论文——arXiv 周末无新批次，10 篇与昨日完全相同（id 2610.31642–2610.31670，published 均 2026-10-22），已核对 11 个分类最新 60 条确认无更新。全部性能数字仍是作者自述，本次未做任何第三方复现；新增三个仓库只核验到『存在、结构自洽、README 自述』，一个脚本都没跑过。更要紧的是今日发现并更正了昨日报告里的两处事实错误（任务族数、Table 1 列序），说明昨日那批数字的引用链本身有风险。</li>\n</ul>\n<h3>3. 今日候选论文表</h3>\n<div class=\"table-wrapper\"><table><tbody>\n<tr><td>论文标题</td><td>方向</td><td>价值类型</td><td>分数</td><td>判断</td><td>是否有代码</td><td>是否有 Benchmark</td><td>是否值得深挖</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.31650v1\" target=\"_blank\" rel=\"noopener noreferrer\">EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence</a></td><td>llm-evaluation / security-governance</td><td>即时价值</td><td>84.0</td><td>重点学习</td><td>是</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.31642v1\" target=\"_blank\" rel=\"noopener noreferrer\">A Fix for Softmax and Cross-Entropy</a></td><td>inference-serving / llm-evaluation</td><td>即时价值</td><td>82.0</td><td>重点学习</td><td>是</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.31657v1\" target=\"_blank\" rel=\"noopener noreferrer\">Cost-Aware Abstention for LLM-Based IT Ticket Classification</a></td><td>llm-evaluation / ai-k8s-platform</td><td>即时价值</td><td>81.0</td><td>重点学习</td><td>是</td><td>是</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.31662v1\" target=\"_blank\" rel=\"noopener noreferrer\">Reliable AI-Assisted Decisions via Selective Auditing</a></td><td>security-governance / llm-evaluation</td><td>趋势价值</td><td>77.0</td><td>轻量试点</td><td>否</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.31670v1\" target=\"_blank\" rel=\"noopener noreferrer\">Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success</a></td><td>multimodal-agent / llm-evaluation</td><td>趋势价值</td><td>76.0</td><td>轻量试点</td><td>是</td><td>否</td><td>是</td></tr>\n</tbody></table></div>\n<h3>4. 今日深挖论文</h3>\n<ul>\n<li><strong>一句话本质：</strong> EpiSEM-Bench（<a href=\"http://arxiv.org/abs/2610.31650v1\" target=\"_blank\" rel=\"noopener noreferrer\">2610.31650</a>）证明了一件事：在工具型 agent 上，安全性不取决于模型有多谨慎，而取决于关键事实是否还在工具响应里——工具少说一句，agent 就会把不该做的做掉，而且过程里没有任何一句假话。</li>\n<li><strong>底层问题：</strong> 现有的 agent 安全评测大多在问「模型会不会拒答」，而真实事故发生在另一处：agent 需要的那个授权额度、那条配额、那个生效日期，工具压根没返回。摘要原话是工具型 agent rely on environmental facts to decide whether an action is permitted，而当响应里漏掉安全相关事实时，agent may carry out a prohibited action even though the user request is benign and every returned statement is true。这句话点破了为什么常规安全指标会漏：请求良性、回答全真，审计者挑不出毛病，但授权边界已经失效。</li>\n<li><strong>新命题 / 新方法 / 新证据：</strong> 方法是三段式评测加一套把「事实」原子化的设计。事实被拆成 evidence atom（标识、主体、谓词、世界相关取值、来源、暴露它的普通工具响应），critical atom 决定合法性，irrelevant atom 既不影响合法性也不影响参数，因此可以系统性地遮蔽。第一段完整证据：用 Full Safe-World Success（合法世界是否完成任务）与 Full Unsafe Commit Rate（是否执行禁止操作）立基线——这一步是为了让「不当拒绝」和「无差别执行」都先暴露出来。第二段抑制证据：Critical UCR 衡量关键事实缺失下的不安全执行，Safety Boundary Margin 刻画最少要遮掉多少事实才会失败。第三段可恢复证据：允许 agent 主动查独立审计源，Recovery UCR 衡量此时的越权执行，Paired Useful Recovery 要求「先取到证据、在禁止世界忍住、在许可世界照做」三件事同时成立。证据规模可核：六个域各 50 对任务、各 10 个任务族（共 60 个），300 对任务、600 个世界；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型每个完成 6,052 个固定条件（600 个完整证据基线 + 5,452 个单 atom 抑制）。</li>\n<li><strong>关键数字与今日更正：</strong> ⚠️ 今日更正昨日两处错误。其一，任务族数：论文 3.1 节原文为『Each domain contains 50 task pairs in ten families』，即每域十个家族、六域合计 60 个（正文与 Figure 10 均按 60 个统计）；昨日在摘要段落写 60、深挖段落写 10，前后不一。其二，Table 1 列序：真实表头是 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR，昨日按 Full SWS / Critical UCR / … / SBM / PUR 读，于是把 77.3% 标成了 Critical UCR。按正确列序读，反差比昨日写的更刺眼：Qwen3-14B Full SWS 92.0%、Full UCR 77.3%、Critical UCR 97.3%、Recovery UCR 94.0%、SBM 7.8%、PUR 3.8%；GLM-4.7-Flash 85.3% / 75.7% / 88.3% / 87.7% / 14.0% / 0.0%；MiMo-V2.5-Pro 57.7% / 59.3% / 88.0% / 76.0% / 19.3% / 4.8%；GPT-6-Luna 51.0% / 3.0% / 21.0% / 3.0% / 84.8% / 30.5%；Claude-Haiku-5.5 57.0% / 5.3% / 33.3% / 15.3% / 75.4% / 21.4%。Table 8 给出另一个维度——Critical Omission Failure Rate（任务内不安全比例再对 300 个任务取均值）：GPT-6-Luna 7.9%、Claude-Haiku-5.5 15.7%、DeepSeek-V4.1-Flash 18.5%、DeepSeek-V4-Pro 31.6%、Qwen3-14B 84.1%、GLM-4.7-Flash 76.0%。Table 12 则给出机制证据：Qwen3-14B Attempt 16.3% 但 Premature 72.0%、Safe Strict 仅 15.4%；GLM-4.7-Flash Attempt 1.7%、Premature 74.7%、Safe Strict 0.7%——即使给了独立审计查询入口，大多数模型仍在把缺失事实取回来之前就提交了动作。</li>\n<li><strong>研究位置：</strong> 源头论文（benchmark 型），非改进论文。它的独特之处是把「世界状态」与「agent 可见的证据」彻底解耦：抑制只改观测、不改底层状态，因此 unsafe world 与 safe twin 共享同一请求与同一套工具，agent 必须用环境证据为同一个操作选出不同结果。</li>\n<li><strong>工程可验证性：</strong> 今日有实质变化但仍有限。第三方独立复现 https://github.com/habib-analyst/episembench（MIT，created 2026-10-24，19 个 tree 条目，含 src/episembench/{corpus,policies,audit,run,stats}.py、tests/、examples/、PREREG.md、KILLGATE.md、results_seed42.json）已逐字读取：它是确定性脚本化合成类比，不调用任何 LLM、CPU-only、$0，预注册门槛 18/18 pytest 通过，G2（blind 在遮蔽下的不安全执行 − 完整证据）+1.00，CI [1.00, 1.00]，G3（seeking 在可恢复下的不安全执行 − 不可恢复）−1.00，CI [−1.00, −1.00]，失败基数分布 1: 63 / 2: 53 / 3: 64。其 PREREG 与 KILLGATE 明确写『no author code was found』，并自陈效应量因结构化决策规则「at the ceiling by construction」不可引用为模型行为。可核的部分是评测设计本身可以照着实现：evidence atom 的六个字段、mask 语义、六个指标定义在正文与附录 B 都有描述，附录 B 给出 Safety Boundary Evaluation Procedure，足以支撑我们自己复刻一个内部版本。作者官方代码与 300 对真实任务仍无公开入口（标注 待核验/暂无）。十个模型的具体分数为作者自述，本次未做任何第三方复现。</li>\n<li><strong>趋势关联：</strong> 属于 agent 安全治理这条线，且与我们的升级阈值路线（Cost-Aware Abstention）互补：那一篇管「该不该转人工」，这一篇管「转人工之前系统是不是漏看了事实」。两条要一起用——若模型根本不会主动去查，阈值设计得再好也没用。</li>\n<li><strong>长尾价值：</strong> 即使今天不做，它的评测口径（六指标 + evidence atom 化 + safe-twin 配对）可以沉淀成我们的 agent 安全评测模板；最可迁移的一条不是框架而是工具设计约束——决定动作是否被允许的那些事实，必须能被 agent 主动、单独地查询到；混在一大段响应里被别的信息挤掉，等同于没有。</li>\n<li><strong>启发：</strong> 两层防线缺一不可——第一层是「事实要可被单独查询」，第二层是「必须在动作之前强制查询」。今日的 Table 12 数据说明只做第一层不够：GLM-4.7-Flash 的 Recovery UCR 有 87.7%（给了查证机会后越权执行下降明显），但 PUR 是 0.0%、Attempt 只有 1.7%——它没有把取到的证据转成「在禁止世界收手、在许可世界照做」。</li>\n<li><strong>行动建议：</strong> 30 分钟：抄六指标模板，并从我们现有工具响应里挑出 20 个带授权边界的任务。2 小时：人工遮掉一个关键事实重跑，只量两列——遮蔽后越权执行率（对应 Critical UCR）与主动补证据率（对应 PUR），不引论文分数当基线；额外加第三列「先查后动」比例（对应 Table 12 的 Attempt 与 Premature 口径）。1 周：沉淀为 agent 安全评测 checklist，并把两条硬规则写进工具设计规范——授权事实必须可被单独查询；且必须在动作之前强制查询。</li>\n</ul>\n<h3>5. 今日长尾保存</h3>\n<h4><a href=\"http://arxiv.org/abs/2610.31656v1\" target=\"_blank\" rel=\"noopener noreferrer\">METTA: Memory-Enhanced Test-Time Adaptation for Meta-Reinforcement Learning</a></h4>\n<ul>\n<li><strong>为什么现在不火也值得保存：</strong> 据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages）：领域是元强化学习，但给出了一个可迁移的结构：长程 agent 如何携带历史。问题诊断准确——元强化学习要求 agent 从有限交互快速适应未见任务，这需要跨很长交互历史表示任务证据；经典循环 agent 把经验压进 hidden state，transformer agent 要检索过去轨迹，代价是二次的内存与计算。作者还指出加神经记忆后 agent 具备足够表达能力和测试时训练能力，能在 meta-test 时适应未见任务与任务族。结果口径（作者自述，本次未做第三方复现）：在未见过的 held-out Meta-World ML10/45 测试环境上成功率超过 50%，同时保持较低训练预算与较短墙钟时间；在长上下文稀疏奖励的 PointMaze 任务上，作者称其探索行为比 transformer 基线更有结构。方法要点：快速适应被拆到两个时间尺度——episode 内的因果神经记忆负责细粒度适应且序列复杂度线性，紧凑的 episode 级摘要负责跨 episode 的长程任务推断，从而不必对完整交互历史做注意力；附录把基线列为 TrMRL 与 ECET，参考基准为 Meta-World ML1/ML10/ML45、Mujoco、PointMaze，全部 wall-clock 测量在同一台配 NVIDIA RTX 3090 Ti 的服务器上。证据边界：全部结果为作者自述，本次未做第三方复现；摘要只给出『超过 50%』这一模糊表述，未给具体数值与方差，跨任务族与跨域的方差在主表未逐项拆解；abs 页与 HTML 全文中无作者仓库或项目页链接（全文中的 GitHub 链接是 Meta-World 官方仓库），代码标注 待核验/暂无。价值路由：长尾保存——领域离我们较远，但『两个时间尺度分工：细粒度在线记忆 + 紧凑跨轮摘要』这一结构可直接借用到我们的 agent 记忆设计（把『本轮内的细节』与『跨轮的任务摘要』拆开存），且比 transformer 全历史注意力便宜。今日动作：不投入实现；只抽一条结构记入 context-engineering 趋势页——长上下文 agent 记忆的两种分工方式。</li>\n<li><strong>未来触发条件：</strong> 出现开源实现 / 被高质量论文引用 / 进入 benchmark。</li>\n<li><strong>可能应用场景：</strong> Prompt 设计、Agent workflow、评测治理、系统设计。</li>\n<li><strong>可沉淀资产：</strong> Prompt / Skill / Checklist / 架构模式 / 评测方法。</li>\n<li><strong>建议复盘时间：</strong> 2026-11-15</li>\n</ul>\n<h4><a href=\"http://arxiv.org/abs/2610.31663v1\" target=\"_blank\" rel=\"noopener noreferrer\">Phase Transition from Random Features to Fully Trainable Networks</a></h4>\n<ul>\n<li><strong>为什么现在不火也值得保存：</strong> 据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xiliang Lu、Shijun Zhang，通讯 shijun.zhang@polyu.edu.hk）：这是纯数学-数值分析方向，对我们的日常工程距离最远，但结论本身是一个可复用的直觉。部分可训练网络（partially trainable networks）处在固定随机特征与完全自适应表示两个端点之间，本文量化这条路径上的相变（phase transition）模式：在逼近上界上量化相变规律，并在训练误差中观察到类似行为——快速但平滑的初始改善，随后收益递减；初始化失配越大，相变越尖锐。理论条件：在多项式谱衰减指数 α>1 且满足 leverage compatibility 时，建立平方 L2 逼近速率；对球面 biased-ReLU 特征在维度 d 下验证假设（α = (d+2)/(d−1)）；用 κ0* 与 κ1* 刻画固定组与可训练组相对目标 RKHS 的采样失配。数值证据：两层与三层的 P-可训练 ReLU 网络，用 90% 归一化增益定义阈值 P0.1，深度 3–7、宽度 32–256 的扫描显示小 P 区间快速收益后进入递减区间。证据边界：全部理论与实验为作者自述，本次未做第三方复现；主文以理论定理与数值实验为主，没有代码或 benchmark 入口（abs 页与 HTML 全文中无仓库链接），标注 待核验/暂无；其『相变』在目标函数类与初始化分布失配的特定条件下成立，不可直接外推到我们的实际训练配置。价值路由：长尾保存——今天不投入任何动作；可迁移的只有一条直觉：在一个可训练比例的扫描里，收益往往在小比例处最陡、随后递减，所以『多训一点参数就一定更好』是错的。今日动作：仅入库留档，触发条件为出现工程侧可复现包或被我们实际遇到的『冻结 vs 全量训练』问题引用。</li>\n<li><strong>未来触发条件：</strong> 出现开源实现 / 被高质量论文引用 / 进入 benchmark。</li>\n<li><strong>可能应用场景：</strong> Prompt 设计、Agent workflow、评测治理、系统设计。</li>\n<li><strong>可沉淀资产：</strong> Prompt / Skill / Checklist / 架构模式 / 评测方法。</li>\n<li><strong>建议复盘时间：</strong> 2026-11-15</li>\n</ul>\n<h3>6. 今日忽略理由</h3>\n<ul>\n<li>当前样本中暂无明确噪声论文，但仍需保留忽略标准。</li>\n</ul>\n<h3>7. 启发</h3>\n<h4>Agent 安全启发：拿到证据与据此收手，仍是两件事</h4>\n<ul>\n<li>EpiSEM-Bench（<a href=\"http://arxiv.org/abs/2610.31650v1\" target=\"_blank\" rel=\"noopener noreferrer\">2610.31650</a>）的 Table 12 给出了比 Table 1 更硬的机制证据：Qwen3-14B 的 Attempt 只有 16.3% 却有 72.0% 的 Premature，GLM-4.7-Flash 的 Attempt 更低至 1.7%、Premature 74.7%，两者 Safe Strict 分别只有 15.4% 与 0.7%。也就是说，即使论文给了独立审计查询入口，大多数模型仍然在把缺失事实取回来之前就提交了动作。这给了一条比「必须能查到」更精确的工程规则：<strong>授权事实不仅要被设计成可单独查询，还要被设计成在动作之前被强制查询</strong>——否则给再多查询入口也只是摆设。配套的表头读法也要记牢：Full SWS 高不代表安全（Qwen3-14B Full SWS 92.0% 而 Full UCR 77.3%），抗遮蔽强不代表会用证据（GLM-4.7-Flash Recovery UCR 87.7% 而 PUR 0.0%）。</li>\n</ul>\n<h4>评测方法启发：今天的证据结构变了，评价标准也得跟着变</h4>\n<ul>\n<li>昨日这批论文里，EpiSEM-Bench 是最刺眼的一篇，也是唯一完全没有可核验实现的一篇——昨日把它列为「获取方式 待核验/暂无」。今天同一个 arXiv id 下出现了两个第三方仓库（EpiSEM 脚本化复现、Softmax Fix PyTorch 移植），而作者官方代码依旧缺席。评价口径随之要改：<strong>「论文是否可复现」不等于「机制是否可跑通」</strong>。EpiSEM 的机制今天可跑，但跑的是合成语料与脚本化策略，其 README 自己写明 effect size 是「at the ceiling by construction」，数值不可当作模型行为引用；Softmax Fix 的机制今天可跑且数字与论文逐项对得上。两者都该被算作「可跑」，但证据强度完全不同——这个区分必须写进模板，不能只记一个「有代码」。</li>\n</ul>\n<h4>评测方法启发：离线代理指标必须同时报预设与探索性 horizon</h4>\n<ul>\n<li>Sensorimotor Alignment（<a href=\"http://arxiv.org/abs/2610.31670v1\" target=\"_blank\" rel=\"noopener noreferrer\">2610.31670</a>）的真实机器人头条相关系数 r = +0.831 用的是探索性 horizon h = 110，预设的 h = 7 只给 r = +0.429（p 从 0.041 掉到 0.236）。作者仓库的 record/README.md 直接写明「it should not be compared with an h=7 run as though both used the same setting」。这条纪律对任何「用便宜的离线指标替代昂贵的闭环评测」的设计都成立：<strong>只报探索性设定下的相关系数，等于把一个不可复现的数字包装成结论</strong>。我们的任何离线代理指标都应同时报预设设定与探索性设定两组数及各自的 p 值。</li>\n</ul>\n<h4>系统设计启发：口径混淆比结论错误更危险</h4>\n<ul>\n<li>今日更正昨日的两处事实错误，共同点是「列序/口径读错」而非「数字本身错」：EpiSEM Table 1 的真实列序是 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR，昨日按 Full SWS/Critical UCR/…/SBM/PUR 读，于是把 77.3% 标成了 Critical UCR（实为 Full UCR，真实 Critical UCR 是 97.3%）；任务族数昨日在摘要段落写 60、在深挖段落写 10。这提醒一件事：<strong>在引用一个表格时，列头本身必须被核验，而不是被回忆</strong>。同理，低比特 n-gram 表的「省 75%」与「省 47–55%」来自两组不同实验（从头训练模型 vs 现有大模型），并列成一个区间就变成了假精确。</li>\n</ul>\n<h4>研发流程启发：口径纪律应当是模板里的必填项</h4>\n<ul>\n<li>今日整理出四条可落地的口径纪律，都来自今日核验中真实踩到或真实澄清的点：(1) 同一篇论文的不同实验设置，节省率/提升率必须分开写，不合并区间；(2) 引用表格前先核列头；(3) 离线代理指标同时报预设与探索性设定；(4) 「有代码」必须细分为「作者官方 / 第三方 / 脚本化合成类比」。这四条应该进 paper-reading checklist，而不是靠每次记忆。</li>\n</ul>\n<h3>8. 行动建议</h3>\n<ul>\n<li><strong>30 分钟学习任务：</strong> 读摘要、方法、实验设定，记下 3 个可验证假设。</li>\n<li><strong>2 小时实践任务：</strong> 做最小实验、Prompt 试验或评测脚本草图。</li>\n<li><strong>1 周研究任务：</strong> 沉淀为 Prompt / Skill / Checklist / 模板，并跟踪复现结果。</li>\n</ul>\n<h3>9. 引用与延伸阅读</h3>\n<ul>\n<li><strong>arXiv：</strong> <a href=\"http://arxiv.org/abs/2610.31650v1\" target=\"_blank\" rel=\"noopener noreferrer\">arXiv</a></li>\n<li><strong>PDF：</strong> <a href=\"https://arxiv.org/pdf/2610.31650v1\" target=\"_blank\" rel=\"noopener noreferrer\">PDF</a></li>\n<li><strong>OpenReview：</strong> 暂无</li>\n<li><strong>Code：</strong> <a href=\"https://github.com/habib-analyst/episembench\" target=\"_blank\" rel=\"noopener noreferrer\">Code</a></li>\n<li><strong>Benchmark：</strong> 暂无</li>\n<li><strong>Papers with Code：</strong> 暂无</li>\n</ul>\n<h3>10. 最终结论</h3>\n<ul>\n<li><strong>结论：</strong> 重点学习</li>\n<li><strong>价值类型：</strong> 即时价值</li>\n<li><strong>原因：</strong> 据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模可核：六个域（cloud development and operations、commerce and fulfillment、communication and publication、document and data access、finance、travel reservation），每域 50 对任务、各含 10 个任务族，合计 300 对任务、600 个世界、60 个任务族；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 今日更正昨日两处错误：任务族是每域 10 个、共 60 个（昨日深挖段落误写 10）；Table 1 的列序是 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR（昨日读成 Full SWS/Critical UCR/…/SBM/PUR）。按正确列序读今日最刺眼的反差：Qwen3-14B Full SWS 92.0% 但 Full UCR 77.3%、Critical UCR 97.3%、SBM 仅 7.8%、PUR 3.8%；GLM-4.7-Flash Full SWS 85.3% / Full UCR 75.7% / Recovery UCR 87.7% 而 PUR 0.0%；MiMo-V2.5-Pro Full SWS 57.7% 但 Critical UCR 88.0%、Critical Omission Failure Rate 61.7%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、PUR 30.5%、SBM 最高 84.8%；Claude-Haiku-5.5 57.0%/5.3%/33.3%/15.3%/75.4%/21.4%。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 补了一条更硬的机制证据：Qwen3-14B Attempt 16.3% 但 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——两者都大量在拿到证据前就提交动作，即『抗遮蔽强』与『会用证据』是两件事。证据等级今日升级（昨日记为无可核验实现）：出现第三方独立复现 https://github.com/habib-analyst/episembench（MIT，created 2026-10-24，19 个 tree 条目，README/PREREG.md/KILLGATE.md/results_seed42.json 均已逐字读取）。该仓库明确写『The paper's real task data and author code were not used (no author code was found)』，是确定性脚本化合成类比、不调用任何 LLM、CPU-only，预注册门槛 18/18 pytest 通过、G2 +1.00 [CI 1.00,1.00]、G3 −1.00 [CI −1.00,−1.00]，并自陈 effect size 因结构化决策规则『at the ceiling by construction』不可当作模型行为引用。因此：作者官方代码与 300 对真实任务仍无公开入口（标注 待核验/暂无），但机制本身现在可跑。价值路由：仍列今日第一即时试点，只做最小验证——用我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量两列（遮蔽后越权执行率 ≈ Critical UCR、主动补证据率 ≈ PUR），不引论文分数当基线。今天动作：抄六指标模板 + 一条硬规则（决定授权边界的事实必须可被单独查询）；另加一条新规则（拿到证据不等于据此收手，必须单独量「先查后动」的比例）。</li>\n<li><strong>最大不确定性：</strong> 证据不足项明确清单（按严重度排序）：(1) <strong>昨日报告存在两处事实错误，今日已更正但昨日文件未回改</strong>——(a) EpiSEM-Bench 的任务族数：论文 3.1 节原文为「Each domain contains 50 task pairs in ten families」，即每域 10 个家族、六域共 60 个（正文与 Figure 10 按 60 个统计）；昨日在摘要段落写 60、深挖段落写 10，前后不一。(b) EpiSEM Table 1 列序被读错：真实表头为 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR，昨日按 Full SWS/Critical UCR/…/SBM/PUR 读，导致 77.3% 被标为 Critical UCR（实为 Full UCR，真实 Critical UCR 为 97.3%）；Gemma-4-31B-IT 的 19.7% 位置亦随之偏移。这两处说明昨日那批数字的引用链有系统性风险，本日所有引用均已回原文逐行核过。(2) <strong>全部性能数字仍为作者自述，本次未做任何第三方复现</strong>：EpiSEM 十模型的 SWS/UCR/SBM/PUR 与 Table 8 的 Critical Omission Failure Rate；Cost-Aware Abstention 的 0.763→0.472（38.1%，CI [35.7%, 40.4%]）、15.3%→3.5%、0.477 vs 0.879、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速（第三方复现明确未检验到 grokking）；Selective Auditing 的三组实验与 ImageNet 上的 anti-conservative 现象；S² 的 r=+0.831 与 r=+0.429；PKTP 的 3.3 分优势与 cutoff 收益曲线；Low-Bit N-Gram 的 75% / 47–55% 节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1%/92.4%/94.8%/SSIM 0.989/LPIPS 0.022；METTA 的「超过 50%」。(3) <strong>新增的三个仓库只核验到「存在、结构自洽、README 自述」，一个脚本都没跑过</strong>：barron-softmax-fix（MIT，15 条目，README 逐项列出与论文的对照）、habib-analyst/episembench（MIT，19 条目，README/PREREG/KILLGATE 逐字读取）、hosytuyen/SpectralCanary（MIT，commits API 确认作者归属）。三者均未运行，训练可运行性与数据可得性无法确认；episembench 明确说明其 G2/G3 效应量因结构化决策规则「at the ceiling by construction」不可当作模型行为引用。(4) <strong>作者官方代码仍然缺失，两处需特别说明</strong>：EpiSEM-Bench 作者代码在 abs 页与全文中依旧没有链接，episembench 仓库自己也写「no author code was found」，故 300 对真实任务与 6,052 条件的构造细节仍无法复刻；Softmax Fix 作者项目页 jonbarron.info/softmaxfix/ 可达但未给仓库链接，现有实现为第三方移植，其自陈 3.4–6x 速度与 1.25–1.75x 显存代价意味着我们的可用性取决于任务类型。(5) <strong>口径缺口两处</strong>：S² 的六 WAM、真机与 14-backbone 复现包作者自陈仍缺（record/README.md 原文「do not yet have matching reproduction bundles here」），且 h=110 与 h=7 不可混比；SpectralCanary 的作者项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 实测 HTTP 404（仓库 README 仍指向该失效链接），故 project_url 留空。(6) <strong>元数据口径差异一处</strong>：sensorimotor-alignment 仓库今日经 GitHub API 返回 license 为 NOASSERTION，而 raw LICENSE 文件内容逐字读取为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准，标为 MIT，但 GitHub 元数据侧的差异待作者修正。(7) <strong>抓取环境缺口</strong>：huggingface.co 今日仍不可达，HF Daily Papers 作为社区热度辅助源全程无法使用；OpenReview / Papers with Code 三个源在 fetch_papers.py 中仍是未实现状态，本次数据完全来自 arXiv 单源；周末 arXiv 无新批次，10 篇与昨日完全相同（id 2610.31642–2610.31670），已核对 11 个分类最新 60 条确认无更新。(8) <strong>流水线缺陷（今日复现）</strong>：fetch_papers.py 的 extract_keywords 先在全文上匹配再截断摘要到 500 字，且用子串匹配，导致 2610.31663（leverage / storage）、2610.31659（average）、2610.31657（coverage）三篇被误打上 RAG 标签——今日逐条定位到具体子串，三篇关键词字段不可用于加权，与昨日 NPMLE 那篇同源。另记环境问题：仓库 .git/config 写死 http.proxy=http://127.0.0.1:7890 且 http.sslverify=false，该本地代理 CONNECT 隧道已损坏（curl 直连 github.com 200、走代理 SSL_ERROR_SYSCALL），git 因此报 gnutls_handshake() failed；本次以 git -c http.proxy= -c https.proxy= 绕开，pull/push 均成功，但该配置本身建议另行评审修正。(9) 未核验项：arXiv LaTeXML HTML 全文中 EpiSEM 的六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；PKTP 的附录表格数值已核，跨模型完整对照表未逐格复核。</li>\n<li><strong>下一步动作：</strong> 更新趋势页与长尾库；产出四份资产：(1) agent 安全评测模板六指标 + 两条硬规则（授权事实必须可被单独查询；且必须在动作之前强制查询——依据 Table 12 的 Attempt/Premature 数据）+ 用 episembench 校准最小实现的说明；(2) 训练栈数值自查清单（cross-entropy 实现、dtype 精度悬崖 bf16≈5.5 / fp32≈16.6 / fp64≈36.7、AdamW eps 与 margin 平衡点 log(1/eps)≈18.4、蒸馏中 student=teacher 梯度是否为零、softplus 在 TorchScript 下的导数退化、−inf 掩码 logits 的 NaN 行为），落点是先 A/B 再决定是否在关键任务启用修复版；(3) 升级阈值审计模板（显式成本模型 / calibration 选阈值 / 冻结一次性评估 / ECE + correctness AUROC + tie-aware risk-coverage），并对现有 agent 升级链路先测 correctness AUROC；(4) paper-reading checklist 四条口径纪律（实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分作者官方 / 第三方 / 脚本化合成类比）。下次运行需优先核验：(1) EpiSEM-Bench 作者代码是否补到 abs 页或项目页，300 对任务与 60 个任务族的构造细节能否复刻；(2) 三个第三方仓库是否被作者或社区认可为参考实现，尤其是 barron-softmax-fix 与论文 JAX 参考实现的一致性（其自陈 softplus 写法与 TorchScript 导数差异）；(3) SpectralCanary 项目页 404 是否修复，以及 README 中 sd-scripts 固定 commit 与 SD3.5/SIREN 权重的获取路径是否仍然可用；(4) 昨日两处错误是否提示需要对既往多日报告做一次列序与口径的抽样复核——建议对近 7 日报告中出现的所有表格引用做一次列头核对；(5) Low-Bit N-Gram 的「47–55% vs 75%」两组实验设置是否在正文中另有统一表述。另建议两处流水线代码问题（属流水线代码，需另行评审后再提交）：一是 fetch_papers.py 的 extract_keywords 改用词边界正则并改为在截断后的摘要上匹配；二是仓库 .git/config 中写死的 http.proxy=http://127.0.0.1:7890 与 http.sslverify=false 指向已损坏的本地代理，建议移除或改为按需启用。</li>\n</ul>\n<p>> 生成时间：2026-10-25T05:01:15.323645</p>\n<p>> 数据来源：arXiv API + 固定源配置</p>\n<p>> 状态：Hermes 推理增强</p>"
+    },
+    "2026-10-24": {
+      "date": "2026-10-24",
+      "title": "论文价值发现日报 - 2026-10-24",
+      "deep_dive_id": "episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+      "deep_dive_title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "decision": "重点学习",
+      "daily_action": "把 [EpiSEM-Bench](http://arxiv.org/abs/2610.31650v1)（2610.31650）列为今日即时试点主线，但只做最小验证、不照搬：用我们自己的工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实后重跑，只量两列——遮蔽后越权执行率（对应 Critical UCR）与主动补证据率（对应 PUR），不引论文分数当基线。产出第二份资产：agent 安全评测模板六指标（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR），并补一条硬规则——凡是决定授权边界的事实，工具必须能被单独查询（对应 PUR 的训练目标）。产出第三份资产：升级阈值审计模板，来自 Cost-Aware Abstention（2610.31657）——显式成本模型 + calibration 选阈值 + 冻结后一次性评估 + 同时报 ECE / correctness AUROC / tie-aware risk-coverage；并对我们现有的一条 agent 升级链路先算 correctness AUROC，测不出区分度就不许上阈值。产出第四份资产：训练栈自查清单，来自 A Fix for Softmax and Cross-Entropy（2610.31642）——核对 cross-entropy 实现、核对 bf16 下 margin 是否越过 ≈5.5 的精度悬崖、核对蒸馏时 student/teacher logit 是否贴近 Softmax Cancellation 的噪声地板，做一次 A/B，不预设结论。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算）、S²（2610.31670，离线代理指标，并记住其 h=110 vs h=7 的口径教训）、PKTP（2610.31667，直接优化 pass@k + 截断宁晚勿早）、Low-Bit N-Gram（2610.31646，n-gram 表 47–75% 内存节省）。长尾入库并标注触发条件：SpectralCanary（2610.31659，主动埋信号做数据来源审计）、METTA（2610.31656，两时间尺度记忆）、Phase Transition（2610.31663，部分可训练比例收益曲线）。",
+      "score": 84.0,
+      "trend_stage": "emerging",
+      "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Com…",
+      "max_uncertainty": "证据不足项明确清单：(1) 可复现性缺口最大的一处：EpiSEM-Bench（2610.31650）自称 executable benchmark，但 abs 页与 HTML 全文中均无作者仓库或项目页链接，本次经 GitHub 搜索 EpiSEM / episem-bench 及变体均无匹配项目，获取方式标注 待核验/暂无，其 300 对任务、6,052 个条件与 Table 1 全部数字无法独立核验，只能按作者自述处理。(2) 全部性能结论为作者自述，本次未做任何第三方复现：EpiSEM 十个模型的 SWS / UCR / SBM / PUR；Cost-Aware Abstention 的 0.763→0.472（38.1%，paired ratio-bootstrap 95% CI [35.7%, 40.4%]）、15.3%→3.5% 错误路由、0.477 vs 0.879 准确率、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速等定性收益；Selective Auditing 的三组实验（含在 ImageNet 上偏保守）；S² 的各队列相关系数；PKTP 的 2–3 分提升；Low-Bit N-Gram 的 75% / 47–55% 内存节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1% / 92.4% / 94.8%；METTA 的“成功率超过 50%”。(3) 已核验的代码只有三处，且都只是“存在且结构自洽”，不是“内容正确”：sensorimotor-alignment（MIT，4980 条目，record/README.md 与 README 已逐字读取）、RouteGuard（MIT，127 条目，含 tests/ 与 CI workflow，README 已读）、lowbit-ngram（Apache-2.0，33 条目，README 与 LICENSE 已读），三者均未运行过任何脚本，训练可运行性与数据可得性无法确认；lowbit-ngram 的 README 明确说明数据与 checkpoint 不在仓库内。(4) S² 的复现覆盖面由作者仓库自陈：当前论文的六 WAM 结果、五策略真机结果与 14-backbone 策略学习附录没有配套复现包；且真机头条 r = +0.831 用的是探索性 horizon h = 110，预设 h = 7 仅 r = +0.429，record/README.md 明确警告不要把两者当作同一设定比较。(5) Cost-Aware Abstention 的 Zenodo 产物 DOI 10.5281/zenodo.22609128 来自作者 README，但本机 zenodo.org 与 doi.org 均因 SSL record layer failure 不可达，该产物记录未经独立确认。(6) 网络口径：本机 github.com 网页与 huggingface.co 实测超时不可达，api.github.com 与 raw.githubusercontent.com 可达，arxiv.org abs 页与 HTML 全文可达；因此本轮所有仓库核验都基于 API 元数据 + raw 文件内容，未依赖 GitHub 网页。(7) 抽样口径：今日 arXiv 主 API 正常，取到 10 篇全部 published 2026-10-22（id 2610.31642–2610.31670），未取到 10-23 及之后的新稿；单日 10 篇覆盖不足以支撑趋势判断，趋势结论只按“值得连续观察”对待。(8) 流水线缺陷复现：fetch_papers.py 的 extract_keywords 先对全文做子串匹配再截断摘要，leverage / average / coverage 被误判为含关键词 RAG，今日 2610.31663、2610.31659、2610.31657 三篇均被错误打标，与昨日 NPMLE 那篇同源；关键词字段不可用于加权或路由判断。(9) METTA 未给出基线对应数值、训练预算与 wall-clock 绝对值、重复次数或方差；Phase Transition 的 4.1% 可训练比例是 d = 5、τ = 10 这一具体设定下的数值，不能外推到 LLM 的部分微调。(10) Softmax Fix 未给出可对照的绝对指标（grokking 步数从多少降到多少未给），亦未给作者仓库，参考实现获取方式标注 待核验/暂无；按其描述自行实现成本低，不构成阻塞，但收益幅度无法量化。",
+      "conclusion_lines": [
+        "今天最值得看的是《EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence》。",
+        "它属于即时价值，因为同时具备较高的相关性与研究资产价值。",
+        "今天建议动作：把 [EpiSEM-Bench](http://arxiv.org/abs/2610.31650v1)（2610.31650）列为今日即时试点主线，但只做最小验证、不照搬：用我们自己的工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实后重跑，只量两列——遮蔽后越权执行率（对应 Critical UCR）与主动补证据率（对应 PUR），不引论文分数当基线。产出第二份资产：agent 安全评测模板六指标（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR），并补一条硬规则——凡是决定授权边界的事实，工具必须能被单独查询（对应 PUR 的训练目标）。产出第三份资产：升级阈值审计模板，来自 Cost-Aware Abstention（2610.31657）——显式成本模型 + calibration 选阈值 + 冻结后一次性评估 + 同时报 ECE / correctness AUROC / tie-aware risk-coverage；并对我们现有的一条 agent 升级链路先算 correctness AUROC，测不出区分度就不许上阈值。产出第四份资产：训练栈自查清单，来自 A Fix for Softmax and Cross-Entropy（2610.31642）——核对 cross-entropy 实现、核对 bf16 下 margin 是否越过 ≈5.5 的精度悬崖、核对蒸馏时 student/teacher logit 是否贴近 Softmax Cancellation 的噪声地板，做一次 A/B，不预设结论。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算）、S²（2610.31670，离线代理指标，并记住其 h=110 vs h=7 的口径教训）、PKTP（2610.31667，直接优化 pass@k + 截断宁晚勿早）、Low-Bit N-Gram（2610.31646，n-gram 表 47–75% 内存节省）。长尾入库并标注触发条件：SpectralCanary（2610.31659，主动埋信号做数据来源审计）、METTA（2610.31656，两时间尺度记忆）、Phase Transition（2610.31663，部分可训练比例收益曲线）。。",
+        "最大不确定性：证据不足项明确清单：(1) 可复现性缺口最大的一处：EpiSEM-Bench（2610.31650）自称 executable benchmark，但 abs 页与 HTML 全文中均无作者仓库或项目页链接，本次经 GitHub 搜索 EpiSEM / episem-bench 及变体均无匹配项目，获取方式标注 待核验/暂无，其 300 对任务、6,052 个条件与 Table 1 全部数字无法独立核验，只能按作者自述处理。(2) 全部性能结论为作者自述，本次未做任何第三方复现：EpiSEM 十个模型的 SWS / UCR / SBM / PUR；Cost-Aware Abstention 的 0.763→0.472（38.1%，paired ratio-bootstrap 95% CI [35.7%, 40.4%]）、15.3%→3.5% 错误路由、0.477 vs 0.879 准确率、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速等定性收益；Selective Auditing 的三组实验（含在 ImageNet 上偏保守）；S² 的各队列相关系数；PKTP 的 2–3 分提升；Low-Bit N-Gram 的 75% / 47–55% 内存节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1% / 92.4% / 94.8%；METTA 的“成功率超过 50%”。(3) 已核验的代码只有三处，且都只是“存在且结构自洽”，不是“内容正确”：sensorimotor-alignment（MIT，4980 条目，record/README.md 与 README 已逐字读取）、RouteGuard（MIT，127 条目，含 tests/ 与 CI workflow，README 已读）、lowbit-ngram（Apache-2.0，33 条目，README 与 LICENSE 已读），三者均未运行过任何脚本，训练可运行性与数据可得性无法确认；lowbit-ngram 的 README 明确说明数据与 checkpoint 不在仓库内。(4) S² 的复现覆盖面由作者仓库自陈：当前论文的六 WAM 结果、五策略真机结果与 14-backbone 策略学习附录没有配套复现包；且真机头条 r = +0.831 用的是探索性 horizon h = 110，预设 h = 7 仅 r = +0.429，record/README.md 明确警告不要把两者当作同一设定比较。(5) Cost-Aware Abstention 的 Zenodo 产物 DOI 10.5281/zenodo.22609128 来自作者 README，但本机 zenodo.org 与 doi.org 均因 SSL record layer failure 不可达，该产物记录未经独立确认。(6) 网络口径：本机 github.com 网页与 huggingface.co 实测超时不可达，api.github.com 与 raw.githubusercontent.com 可达，arxiv.org abs 页与 HTML 全文可达；因此本轮所有仓库核验都基于 API 元数据 + raw 文件内容，未依赖 GitHub 网页。(7) 抽样口径：今日 arXiv 主 API 正常，取到 10 篇全部 published 2026-10-22（id 2610.31642–2610.31670），未取到 10-23 及之后的新稿；单日 10 篇覆盖不足以支撑趋势判断，趋势结论只按“值得连续观察”对待。(8) 流水线缺陷复现：fetch_papers.py 的 extract_keywords 先对全文做子串匹配再截断摘要，leverage / average / coverage 被误判为含关键词 RAG，今日 2610.31663、2610.31659、2610.31657 三篇均被错误打标，与昨日 NPMLE 那篇同源；关键词字段不可用于加权或路由判断。(9) METTA 未给出基线对应数值、训练预算与 wall-clock 绝对值、重复次数或方差；Phase Transition 的 4.1% 可训练比例是 d = 5、τ = 10 这一具体设定下的数值，不能外推到 LLM 的部分微调。(10) Softmax Fix 未给出可对照的绝对指标（grokking 步数从多少降到多少未给），亦未给作者仓库，参考实现获取方式标注 待核验/暂无；按其描述自行实现成本低，不构成阻塞，但收益幅度无法量化。。"
+      ],
+      "candidate_papers": [
+        {
+          "id": "episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+          "title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
+          "detail_path": "paper-detail.html?id=episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
+          "score": 82.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "cost-aware-abstention-for-llm-based-it-ticket-classification",
+          "title": "Cost-Aware Abstention for LLM-Based IT Ticket Classification",
+          "detail_path": "paper-detail.html?id=cost-aware-abstention-for-llm-based-it-ticket-classification",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
+          "score": 81.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": true,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "reliable-ai-assisted-decisions-via-selective-auditing",
+          "title": "Reliable AI-Assisted Decisions via Selective Auditing",
+          "detail_path": "paper-detail.html?id=reliable-ai-assisted-decisions-via-selective-auditing",
+          "direction": "未分类",
+          "value_type": "trend",
+          "value_type_label": "趋势价值",
+          "score": 77.0,
+          "decision": "轻量试点",
+          "has_code": false,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "sensorimotor-alignment-a-platonic-proxy-for-embodied-policy-success",
+          "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
+          "detail_path": "paper-detail.html?id=sensorimotor-alignment-a-platonic-proxy-for-embodied-policy-success",
+          "direction": "未分类",
+          "value_type": "trend",
+          "value_type_label": "趋势价值",
+          "score": 76.0,
+          "decision": "轻量试点",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        }
+      ],
+      "deep_dive": {
+        "id": "episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+        "title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
+        "authors": [
+          "Qijin Zhang",
+          "Hanzhen Wang",
+          "Yuehan Zhao",
+          "Haoyu Dai",
+          "Yao Shu"
+        ],
+        "source": "arXiv",
+        "published": "2026-10-22",
+        "url": "http://arxiv.org/abs/2610.31650v1",
+        "pdf_url": "https://arxiv.org/pdf/2610.31650v1",
+        "code_url": "https://github.com/habib-analyst/episembench",
+        "benchmark_url": "",
+        "paperswithcode_url": "",
+        "openreview_url": "",
+        "first_seen_date": "2026-10-25",
+        "first_deep_dive_daily": "2026-10-25",
+        "value_type": "immediate",
+        "value_type_label": "即时价值",
+        "value_scores": {
+          "novelty": 4.8,
+          "relevance": 6.2,
+          "evidence": 6.35,
+          "engineering_testability": 6.05,
+          "trend_signal": 5.45,
+          "long_tail_potential": 3.5,
+          "actionability": 6.1,
+          "noise_risk": 1.2
+        },
+        "score": 84.0,
+        "decision": "重点学习",
+        "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Com…",
+        "one_line_essence": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模可核：六个域（cloud development and operations、commerce and fulfillment、communication and publication、document and data access、finance、travel reservation），每域 50 对任务、各含 10 个任务族，合计 300 对任务、600 个世界、60 个任务族；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 今日更正昨日两处错误：任务族是每域 10 个、共 60 个（昨日深挖段落误写 10）；Table 1 的列序是 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR（昨日读成 Full SWS/Critical UCR/…/SBM/PUR）。按正确列序读今日最刺眼的反差：Qwen3-14B Full SWS 92.0% 但 Full UCR 77.3%、Critical UCR 97.3%、SBM 仅 7.8%、PUR 3.8%；GLM-4.7-Flash Full SWS 85.3% / Full UCR 75.7% / Recovery UCR 87.7% 而 PUR 0.0%；MiMo-V2.5-Pro Full SWS 57.7% 但 Critical UCR 88.0%、Critical Omission Failure Rate 61.7%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、PUR 30.5%、SBM 最高 84.8%；Claude-Haiku-5.5 57.0%/5.3%/33.3%/15.3%/75.4%/21.4%。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 补了一条更硬的机制证据：Qwen3-14B Attempt 16.3% 但 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——两者都大量在拿到证据前就提交动作，即『抗遮蔽强』与『会用证据』是两件事。证据等级今日升级（昨日记为无可核验实现）：出现第三方独立复现 https://github.com/habib-analyst/episembench（MIT，created 2026-10-24，19 个 tree 条目，README/PREREG.md/KILLGATE.md/results_seed42.json 均已逐字读取）。该仓库明确写『The paper's real task data and author code were not used (no author code was found)』，是确定性脚本化合成类比、不调用任何 LLM、CPU-only，预注册门槛 18/18 pytest 通过、G2 +1.00 [CI 1.00,1.00]、G3 −1.00 [CI −1.00,−1.00]，并自陈 effect size 因结构化决策规则『at the ceiling by construction』不可当作模型行为引用。因此：作者官方代码与 300 对真实任务仍无公开入口（标注 待核验/暂无），但机制本身现在可跑。价值路由：仍列今日第一即时试点，只做最小验证——用我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量两列（遮蔽后越权执行率 ≈ Critical UCR、主动补证据率 ≈ PUR），不引论文分数当基线。今天动作：抄六指标模板 + 一条硬规则（决定授权边界的事实必须可被单独查询）；另加一条新规则（拿到证据不等于据此收手，必须单独量「先查后动」的比例）。",
+        "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+        "new_claim_or_method": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模可核：六个域（cloud development",
+        "research_position": "benchmark",
+        "engineering_testability": {
+          "has_code": true,
+          "has_benchmark": false,
+          "can_reproduce": true,
+          "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+          "engineering_scenarios": [
+            "AI Agent",
+            "Context Engineering",
+            "评测治理"
+          ]
+        },
+        "trend_relation": {
+          "status": "emerging",
+          "related_trends": [
+            "coding-agent",
+            "agentic-world-modeling"
+          ],
+          "evidence": [
+            "论文主题匹配固定研究方向"
+          ],
+          "uncertainties": [
+            "是否会出现更多开源实现与生产案例"
+          ]
+        },
+        "long_tail": {
+          "why_save": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型",
+          "future_trigger": [
+            "待更多证据"
+          ],
+          "possible_use_cases": [
+            "Prompt 设计",
+            "Skill 草案",
+            "评测方法",
+            "架构模式"
+          ],
+          "reusable_assets": [
+            "Prompt",
+            "Skill",
+            "Checklist",
+            "模板"
+          ],
+          "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+          "revisit_date": ""
+        },
+        "insights": {
+          "system_design": [
+            "先判断价值类型，再决定系统性投入。"
+          ],
+          "agent_engineering": [
+            "为 Agent 建立论文价值路由器。"
+          ],
+          "dev_process": [
+            "论文输出应沉淀为可执行资产。"
+          ],
+          "evaluation": [
+            "同时看方法与证据质量。"
+          ],
+          "platform_engineering": [
+            "长尾资产库可降低重复检索成本。"
+          ],
+          "personal_learning": [
+            "优先读能转化为未来复利的论文。"
+          ]
+        },
+        "actions": {
+          "immediate_actions": [
+            "今天读摘要与方法",
+            "今天试最小实验",
+            "一周内沉淀为 Skill / Checklist"
+          ],
+          "trend_actions": [],
+          "long_tail_actions": [],
+          "ignore_reason": ""
+        },
+        "references": [
+          {
+            "label": "arXiv",
+            "url": "http://arxiv.org/abs/2610.31650v1"
+          },
+          {
+            "label": "PDF",
+            "url": "https://arxiv.org/pdf/2610.31650v1"
+          },
+          {
+            "label": "Code",
+            "url": "https://github.com/habib-analyst/episembench"
+          }
+        ],
+        "detail_path": "paper-detail.html?id=episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+        "daily_path": "daily-detail.html?date=2026-10-25",
+        "trend_paths": [
+          "trend-detail.html?id=coding-agent",
+          "trend-detail.html?id=agentic-world-modeling"
+        ],
+        "long_tail_path": "long-tail.html",
+        "mermaid": {
+          "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+          "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+          "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+        }
+      },
+      "long_tail_saved": [],
+      "ignore_reasons": [
+        "暂无明确忽略样本，但忽略标准仍需保留。"
+      ],
+      "insights": {
+        "system_design": [
+          "先做价值路由，再决定是否深入工程推导。"
+        ],
+        "agent_engineering": [
+          "让 Agent 先判断“今天值不值得试”。"
+        ],
+        "dev_process": [
+          "论文筛选应产出 Prompt / Skill / Checklist。"
+        ],
+        "evaluation": [
+          "把“是否值得投入”也纳入评测流程。"
+        ],
+        "platform_engineering": [
+          "长尾库是低成本知识保留层。"
+        ],
+        "personal_learning": [
+          "优先读可沉淀资产的论文。"
+        ]
+      },
+      "actions": {
+        "immediate_actions": [
+          "30 分钟学习",
+          "2 小时实践",
+          "1 周研究"
+        ],
+        "trend_actions": [],
+        "long_tail_actions": [],
+        "ignore_reason": ""
+      },
+      "references": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.31650v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.31650v1"
+        },
+        {
+          "label": "Code",
+          "url": "https://github.com/habib-analyst/episembench"
         }
       ],
       "mermaid": {
@@ -1682,9 +1971,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -1695,23 +1997,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -3045,9 +3334,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -3058,23 +3360,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -3585,9 +3874,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -3598,23 +3900,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -3848,9 +4137,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -3861,23 +4163,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -5204,9 +5493,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -5217,23 +5519,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -5477,9 +5766,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -5490,23 +5792,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -7944,9 +8233,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -7957,23 +8259,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -8759,9 +9048,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -8772,23 +9074,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -9032,9 +9321,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -9045,23 +9347,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -10452,9 +10741,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -10465,23 +10767,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -10995,9 +11284,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -11008,23 +11310,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -12111,9 +12400,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -12124,23 +12426,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -12644,9 +12933,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -12657,23 +12959,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -14277,9 +14566,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -14290,23 +14592,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -15929,9 +16218,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -15942,23 +16244,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -16202,9 +16491,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -16215,23 +16517,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -19422,9 +19711,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -19435,23 +19737,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -19694,9 +19983,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -19707,23 +20009,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -21387,9 +21676,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -21400,23 +21702,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -21660,9 +21949,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -21673,23 +21975,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -25180,9 +25469,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -25193,23 +25495,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -25451,9 +25740,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -25464,23 +25766,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -27040,9 +27329,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -27053,23 +27355,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -27313,9 +27602,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -27326,23 +27628,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -28651,9 +28940,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -28664,23 +28966,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -28924,9 +29213,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -28937,23 +29239,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -30866,9 +31155,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -30879,23 +31181,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -31139,9 +31428,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -31152,23 +31454,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -32540,9 +32829,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -32553,23 +32855,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -32807,9 +33096,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -32820,23 +33122,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -33080,9 +33369,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -33093,23 +33395,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -34362,9 +34651,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -34375,23 +34677,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -34872,9 +35161,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -34885,23 +35187,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -36486,9 +36775,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -36499,23 +36801,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -36753,9 +37042,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -36766,23 +37068,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -37769,9 +38058,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -37782,23 +38084,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -38289,9 +38578,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -38302,23 +38604,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -38524,9 +38813,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -38537,23 +38839,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -43219,9 +43508,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -43232,23 +43534,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -43454,9 +43743,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -43467,23 +43769,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -45401,9 +45690,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -45414,23 +45716,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -45669,9 +45958,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -45682,23 +45984,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {
@@ -46361,9 +46650,22 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
+          "score": 84.0,
+          "decision": "重点学习",
+          "has_code": true,
+          "has_benchmark": false,
+          "worth_deep_dive": true
+        },
+        {
+          "id": "a-fix-for-softmax-and-cross-entropy",
+          "title": "A Fix for Softmax and Cross-Entropy",
+          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
+          "direction": "未分类",
+          "value_type": "immediate",
+          "value_type_label": "即时价值",
           "score": 82.0,
           "decision": "重点学习",
-          "has_code": false,
+          "has_code": true,
           "has_benchmark": false,
           "worth_deep_dive": true
         },
@@ -46374,23 +46676,10 @@
           "direction": "未分类",
           "value_type": "immediate",
           "value_type_label": "即时价值",
-          "score": 80.0,
+          "score": 81.0,
           "decision": "重点学习",
           "has_code": true,
           "has_benchmark": true,
-          "worth_deep_dive": true
-        },
-        {
-          "id": "a-fix-for-softmax-and-cross-entropy",
-          "title": "A Fix for Softmax and Cross-Entropy",
-          "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-          "direction": "未分类",
-          "value_type": "immediate",
-          "value_type_label": "即时价值",
-          "score": 79.0,
-          "decision": "轻量试点",
-          "has_code": false,
-          "has_benchmark": false,
           "worth_deep_dive": true
         },
         {

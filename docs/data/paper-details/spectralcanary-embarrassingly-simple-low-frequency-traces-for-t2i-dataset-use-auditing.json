@@ -12,35 +12,35 @@
   "published": "2026-10-22",
   "url": "http://arxiv.org/abs/2610.31659v1",
   "pdf_url": "https://arxiv.org/pdf/2610.31659v1",
-  "code_url": "",
+  "code_url": "https://github.com/hosytuyen/SpectralCanary",
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-24",
-  "first_deep_dive_daily": "2026-10-24",
-  "value_type": "long_tail",
-  "value_type_label": "长尾价值",
+  "first_seen_date": "2026-10-25",
+  "first_deep_dive_daily": "2026-10-25",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
   "value_scores": {
     "novelty": 4.8,
     "relevance": 5.0,
-    "evidence": 4.5,
-    "engineering_testability": 3.5,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
     "trend_signal": 3.5,
     "long_tail_potential": 3.5,
-    "actionability": 3.8,
+    "actionability": 6.1,
     "noise_risk": 1.2
   },
-  "score": 65.0,
+  "score": 72.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得先保存：据 arXiv 2610.31659 摘要与 HTML 全文（abs 页 Comments: NeurIPS 2026 Workshop o…",
-  "one_line_essence": "据 arXiv 2610.31659 摘要与 HTML 全文（abs 页 Comments: NeurIPS 2026 Workshop on Attributing Model Behavior at Scale）：这篇是数据来源审计（dataset-use auditing）里工程设计很干净的一个样本，领域在文生图，与我们距离较远，但“主动埋信号、日后查信号”这个范式值得存进长尾库。问题设定很准：判断一个 T2I 模型是否在某图像集合上微调过很难，因为模型可以吸收集合级视觉特征却不复现训练图。主动式审计的做法是发布数据集前先埋一个共享信号，之后检查该信号是否出现在嫌疑模型生成结果中。作者的取舍是：smooth low-pass mask 把一张固定 canary 图混入每张集合图，caption 不动，既不需要辅助生成也不需要逐图优化，再用一个轻量 verifier 检测信号是否转移。数字可核但需打折：在 Pokemon 数据集上八项测试、三种现实数据变换、跨两个架构家族，SpectralCanary 取得被评方法中最高的平均逐生成 TPR@1% FPR（91.1%）与固定阈值下用 30 次生成的模型级准确率（94.8%）；在覆盖艺术、医疗、卫星、时尚五个数据集、以 SD3.5 为被审模型时，平均逐生成 TPR@1% FPR 为 92.4%，同时保留发布图像质量（SSIM 0.989、LPIPS 0.022），mean ΔFID 仅 0.05；matched-energy 消融（Pokemon 与 ROCOv2）支持低频放置比中频/高频传递更可靠；在所评的自适应攻击下，最有效的移除需要激进修改且要付出超过 25 个 ΔFID 点。证据边界：全部结果为作者自述，本次未做第三方复现；HTML 全文中的外部链接指向的是第三方实现（pytorch-fid、pokemon-blip-captions 数据集、DeCo、EnTruth/DIAGNOSIS/SIREN 对照），未发现作者自有仓库或项目页链接，标注 待核验/暂无；会议为 workshop，评审强度低于主会。价值路由：可迁移的抽象是——要让“数据是否被用于训练”可被外部审计，必须在数据发布时预先设计可转移信号，而不是事后靠指纹碰撞。对 LLM 侧的训练数据溯源，这是一条候选路线，触发条件是我们真的需要向外部证明某批语料是否进了某个模型。",
+  "one_line_judgement": "值得继续观察：据 arXiv 2610.31659 摘要、HTML 全文（abs 页 Comments：NeurIPS 2026 Workshop on …",
+  "one_line_essence": "据 arXiv 2610.31659 摘要、HTML 全文（abs 页 Comments：NeurIPS 2026 Workshop on Attributing Model Behavior at Scale）与作者仓库 README：今日最大变化是证据等级——昨日记为『未发现作者自有仓库或项目页链接，待核验/暂无』，今日已找到作者自有仓库 https://github.com/hosytuyen/SpectralCanary（MIT；GitHub commits API 显示三次提交作者均为 hosytuyen <hosytuyen99@gmail.com>，README 内嵌论文原摘要、Baseline 参数 δ=100%/alpha=0.02/c=0.20、News 标注 2026-09-30 发布代码，并给出第三方依赖 kohya-ss/sd-scripts 固定 commit 37a1cbbc5725ed2a3575506e7bd2001c9908ac92）。但其 README 指向的项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 实测 HTTP 404，故 project_url 留空。方法与数字（作者自述，本次未做第三方复现）：用平滑低通掩膜把一张固定 canary 图混入每张集合图，caption 不变，无需辅助生成也无需逐图优化，再由轻量 verifier 检测转移信号；八个 Pokemon 设置下平均逐生成 TPR@1% FPR 91.1%（次优 73.2%）、98.0% AUC、用 30 次生成的固定阈值模型级准确率 94.8%；五个数据集（艺术/医疗/卫星/时尚等）以 SD3.5 为被审模型时平均 TPR 92.4%、99.5% AUC、SSIM 0.989、LPIPS 0.022、mean ΔFID 0.05，Sketch-Scene 上 100% AUC 与 TPR；保护开销 0.39 秒/图（CPU）；matched-energy 消融（Pokemon 与 ROCOv2）支持低频放置比中/高频传递更可靠；所评自适应攻击下最有效的移除需激进修改且要付超过 25 个 ΔFID 点。证据边界：全部结果为作者自述；会议为 workshop，评审强度低于主会；README 说明 runner 需要自行克隆 sd-scripts 并准备 SD3.5 Medium + CLIP-L/G + T5-XXL 权重与 SIREN 检查点，复现成本高。价值路由：从昨日长尾上调为趋势价值——理由是可迁移抽象成立且现在有官方代码入口：『要让数据是否被用于训练可被外部审计，必须在数据发布时预先设计可转移信号，而不是事后靠指纹碰撞』。对 LLM 侧训练数据溯源这是一条候选路线。今日动作：不投入实现；只记一条触发条件——当我们真的需要向外部证明某批语料是否进了某个模型时，回来看它；并把『发布即埋信号』写进我们的数据治理 checklist 草稿。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31659 摘要与 HTML 全文（abs 页 Comments: NeurIPS 2026 Workshop on Attributing Model Behavior at Scale）：这篇是数据来源审计（dataset-use auditing）里工程设计很干净的一个样本，领域在文生图，与我们距离较远，但“主动埋信号、日后查",
-  "research_position": "long_tail_insight",
+  "new_claim_or_method": "据 arXiv 2610.31659 摘要、HTML 全文（abs 页 Comments：NeurIPS 2026 Workshop on Attributing Model Behavior at Scale）与作者仓库 README：今日最大变化是证据等级——昨日记为『未发现作者自有仓库或项目页链接，待核验/暂无』，今日已找到作者自有仓库 https:/",
+  "research_position": "source_paper",
   "engineering_testability": {
-    "has_code": false,
+    "has_code": true,
     "has_benchmark": false,
-    "can_reproduce": false,
+    "can_reproduce": true,
     "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
     "engineering_scenarios": [
       "AI Agent",
@@ -49,7 +49,7 @@
     ]
   },
   "trend_relation": {
-    "status": "long_tail_watch",
+    "status": "emerging",
     "related_trends": [
       "coding-agent"
     ],
@@ -61,9 +61,9 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31659 摘要与 HTML 全文（abs 页 Comments: NeurIPS 2026 Workshop on Attributing Model Behavi",
+    "why_save": "据 arXiv 2610.31659 摘要、HTML 全文（abs 页 Comments：NeurIPS 2026 Workshop on Attributing Model Behavior",
     "future_trigger": [
-      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+      "出现多篇跟进论文、开源项目和工程博客共振"
     ],
     "possible_use_cases": [
       "Prompt 设计",
@@ -78,7 +78,7 @@
       "模板"
     ],
     "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
-    "revisit_date": "2026-11-14"
+    "revisit_date": ""
   },
   "insights": {
     "system_design": [
@@ -102,12 +102,12 @@
   },
   "actions": {
     "immediate_actions": [],
-    "trend_actions": [],
-    "long_tail_actions": [
-      "加入长尾库",
-      "标注未来触发条件",
-      "先沉淀 Prompt / Skill 草案"
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
     ],
+    "long_tail_actions": [],
     "ignore_reason": ""
   },
   "references": [
@@ -118,10 +118,14 @@
     {
       "label": "PDF",
       "url": "https://arxiv.org/pdf/2610.31659v1"
+    },
+    {
+      "label": "Code",
+      "url": "https://github.com/hosytuyen/SpectralCanary"
     }
   ],
   "detail_path": "paper-detail.html?id=spectralcanary-embarrassingly-simple-low-frequency-traces-for-t2i-dataset-use-auditing",
-  "daily_path": "daily-detail.html?date=2026-10-24",
+  "daily_path": "daily-detail.html?date=2026-10-25",
   "trend_paths": [
     "trend-detail.html?id=coding-agent"
   ],

@@ -10,35 +10,35 @@
   "published": "2026-10-22",
   "url": "http://arxiv.org/abs/2610.31642v1",
   "pdf_url": "https://arxiv.org/pdf/2610.31642v1",
-  "code_url": "",
+  "code_url": "https://github.com/PwnerHarry/barron-softmax-fix",
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-24",
-  "first_deep_dive_daily": "2026-10-24",
+  "first_seen_date": "2026-10-25",
+  "first_deep_dive_daily": "2026-10-25",
   "value_type": "immediate",
   "value_type_label": "即时价值",
   "value_scores": {
     "novelty": 5.4,
     "relevance": 3.8,
-    "evidence": 4.5,
-    "engineering_testability": 3.5,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
     "trend_signal": 3.5,
     "long_tail_potential": 3.5,
-    "actionability": 3.8,
+    "actionability": 6.1,
     "noise_risk": 2.4
   },
-  "score": 79.0,
-  "decision": "轻量试点",
-  "one_line_judgement": "今天值得试：据 arXiv 2610.31642 摘要与 HTML 全文（作者 Jonathan T. Barron、Dan Gnanapragasam…",
-  "one_line_essence": "据 arXiv 2610.31642 摘要与 HTML 全文（作者 Jonathan T. Barron、Dan Gnanapragasam、Michael Tschannen，机构 Google DeepMind，License: CC BY 4.0）：这篇短、硬、且改一行代码就能验证——它指出标准 softmax / log-softmax / cross-entropy 实现里有两个数值 bug，给出精确的失效阈值，并说明修完会怎样。Bug 一叫 Softmax Collapse：当目标 logit 远大于其它 logit 时，真实梯度本应指数衰减，但标准实现会在 margin 跨过精度悬崖后把它直接舍入为 0——作者给出的悬崖位置是 m ≈ 5.5（bf16）、16.6（fp32）、36.7（fp64），此时梯度不再求和为 0。Bug 二叫 Softmax Cancellation：student logit 逼近 teacher logit 时，真实梯度应趋于 0，但标准实现在 student 与 teacher logit 完全相等时仍产生非零梯度，形成一个噪声地板。修法是给出 log-softmax / softmax / cross-entropy 的简单实现。作者报告的收益有五条：消除此前观察到的 Slingshot 现象；带 weight decay 时加速 grokking；不带 weight decay 时避免精度崩塌；蒸馏时 student 不再漂离 teacher；记忆之后 logit 增长被 weight decay 与 Adam 的 ε 之间的平衡所界定。价值路由：这条迁移性极高且验证成本极低——我们只要自问一句：我们自己的训练/蒸馏栈在 bf16 下有没有训到 margin 超过 5.5 的阶段；如果有，我们可能在优化一个已经被舍入为 0 的梯度。这不需要相信任何 SOTA 数字，读一遍实现、改掉、再看一次曲线就行，属于典型的当天可做、当天可判的动作。证据边界：所有收益均为作者自述，本次未做任何第三方复现；论文未给出可对照的绝对指标（如 grokking 步数从多少降到多少），只有定性描述；abs 页与 HTML 全文中未出现作者自有代码仓库或项目页链接（仅见 CC BY 4.0 许可声明），参考实现获取方式标注 待核验/暂无；不过作者自述修法为 simple implementations，按论文描述自行实现成本很低，不必等仓库。今天动作：在我们自己的训练代码里定位 cross-entropy 实现，核对 margin 与 dtype 的交互，先做一次 A/B，不预设结论。",
+  "score": 82.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：据 arXiv 2610.31642 摘要、HTML 全文（abs 页 Comments 为空）以及作者项目页 https://jonbar…",
+  "one_line_essence": "据 arXiv 2610.31642 摘要、HTML 全文（abs 页 Comments 为空）以及作者项目页 https://jonbarron.info/softmaxfix/（实测 HTTP 200，署名 Google DeepMind，barron@google.com 等，含 Interactive Demo 与完整章节导航）：这篇把一个每天在用的 API 的数值行为钉死了。机制：标准 softmax/log-softmax/cross-entropy 有两个数值 bug——Softmax Collapse（目标 logit 的 margin 超过精度悬崖时，1−p_t 被舍入为 0，梯度不再求和为 0，AdamW 会转成 Slingshot loss spike）与 Softmax Cancellation（蒸馏时 student/teacher logit 接近导致梯度不为 0，Adam 会把完美 student 推离 teacher）。精度悬崖原文：c16 ≈ 5.5（bf16）、c32 ≈ 16.6（fp32）、c64 ≈ 36.7（fp64）。⚠️ 今日更正昨日一处数字：昨日写『fp32 下 16.6、fp64 下 36.7』与原文一致，但昨日把 bf16 的 ≈5.5 写成 bf16 下 margin ≈ 5.5 同时又按 2610.31642 的 §2 例子给了 torch 实测 5.56 —— 实测值来自第三方移植 README，论文原文是近似值 ≈5.5，二者不可混用。证据等级今日升级：出现第三方 PyTorch 移植 https://github.com/PwnerHarry/barron-softmax-fix（MIT，created 2026-10-24，15 个 tree 条目含 tests/ 与 validation/{numerics,training}.py，README 已逐字读取），其 README 逐项对照并复现：精度悬崖 5.56/16.64/36.74 与论文一致；论文 §2 例子 z=[9,-9,-9] fp32 下 torch 给 0.0/0.0 而本实现给 3.046e-8/−3.046e-8；|sum(grad)|/max|grad| 在 32k 类、margin 20 时 torch 约 1e3 而本实现约 1e-7；蒸馏中 student=teacher 时 torch fp32/bf16 的 max|grad| 为 2e-3/3e-7 而本实现恰为 0；训练复现（a+b mod 31、1 层宽 64 ReLU、10k full-batch AdamW、3 seeds）torch fp32 出现 477–651 次 loss spike，本实现 0 次。重要反面结论（第三方自陈）：该配置下没有任何变体在 10k 步内 grokking，因此论文的 grokking 加速收益在此复现中未被检验；移植还自陈 3.4–6x 速度损失与 1.25–1.75x 显存开销，且 torch 2.11 CPU 下 torch.compile 的 Inductor 把 expm1 算成 exp(x)−1 会抵消 soft-target 修复。价值路由：仍列即时价值第一梯队，且从昨日『可自己验』升级为『有第三方实现可直接跑』——这是今天最可执行的一条：安装该包做 A/B 成本极低。今天动作：核对训练栈 cross-entropy 实现与 dtype；对 margin 是否越过悬崖做一次 A/B；蒸馏链路单独量 student=teacher 时梯度是否为 0。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31642 摘要与 HTML 全文（作者 Jonathan T. Barron、Dan Gnanapragasam、Michael Tschannen，机构 Google DeepMind，License: CC BY 4.0）：这篇短、硬、且改一行代码就能验证——它指出标准 softmax / log-softmax / cros",
+  "new_claim_or_method": "据 arXiv 2610.31642 摘要、HTML 全文（abs 页 Comments 为空）以及作者项目页 https://jonbarron.info/softmaxfix/（实测 HTTP 200，署名 Google DeepMind，barron@google.com 等，含 Interactive Demo 与完整章节导航）：这篇把一个每天在用的",
   "research_position": "source_paper",
   "engineering_testability": {
-    "has_code": false,
+    "has_code": true,
     "has_benchmark": false,
-    "can_reproduce": false,
+    "can_reproduce": true,
     "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
     "engineering_scenarios": [
       "AI Agent",
@@ -59,7 +59,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31642 摘要与 HTML 全文（作者 Jonathan T. Barron、Dan Gnanapragasam、Michael Tschannen，机构 Goog",
+    "why_save": "据 arXiv 2610.31642 摘要、HTML 全文（abs 页 Comments 为空）以及作者项目页 https://jonbarron.info/softmaxfix/（实测 HT",
     "future_trigger": [
       "待更多证据"
     ],
@@ -116,10 +116,18 @@
     {
       "label": "PDF",
       "url": "https://arxiv.org/pdf/2610.31642v1"
+    },
+    {
+      "label": "Code",
+      "url": "https://github.com/PwnerHarry/barron-softmax-fix"
+    },
+    {
+      "label": "Project",
+      "url": "https://jonbarron.info/softmaxfix/"
     }
   ],
   "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy",
-  "daily_path": "daily-detail.html?date=2026-10-24",
+  "daily_path": "daily-detail.html?date=2026-10-25",
   "trend_paths": [
     "trend-detail.html?id=coding-agent"
   ],

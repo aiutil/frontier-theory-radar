@@ -16,8 +16,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-24",
-  "first_deep_dive_daily": "2026-10-24",
+  "first_seen_date": "2026-10-25",
+  "first_deep_dive_daily": "2026-10-25",
   "value_type": "long_tail",
   "value_type_label": "长尾价值",
   "value_scores": {
@@ -30,12 +30,12 @@
     "actionability": 3.8,
     "noise_risk": 1.2
   },
-  "score": 63.0,
+  "score": 64.0,
   "decision": "持续观察",
-  "one_line_judgement": "值得先保存：据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages，附录列出基线 TrMRL 与 …",
-  "one_line_essence": "据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages，附录列出基线 TrMRL 与 ECET，参考数据集为 Meta-World ML1/ML10/ML45、Mujoco、PointMaze）：这篇的领域是元强化学习，但它对“长程 agent 如何携带历史”给出了一个可迁移的结构。问题诊断准确：元强化学习要求 agent 从有限交互中快速适应未见任务，这需要跨很长交互历史表示任务证据；经典循环 agent 把经验压进 hidden state，transformer agent 则要检索过去的轨迹，代价是二次的内存与计算。方法是把快速适应拆到两个时间尺度：episode 内的因果神经记忆负责细粒度适应且序列复杂度是线性的，紧凑的 episode 级摘要负责跨 episode 的长程任务推断，从而不必对完整交互历史做注意力。作者还指出加上神经记忆后 agent 具备了足够的表达能力和测试时训练能力，能在 meta-test 时适应未见任务与任务族。结果口径：未见过的 held-out Meta-World ML10/45 测试环境上成功率超过 50%，同时保持较低训练预算与较短 wall-clock 时间；在长上下文稀疏奖励的 PointMaze 任务上，通过更有结构的探索行为超过 transformer 基线。证据边界：摘要与主文只给“成功率超过 50%”这一处具体数字，未给基线的对应数值、未给训练预算与 wall-clock 的绝对值、未给实验重复次数或方差，全部为作者自述，本次未做第三方复现；abs 页与 HTML 全文中未发现作者仓库或项目页链接，标注 待核验/暂无。价值路由：可迁移的抽象是“两时间尺度记忆”——近程用线性复杂度的因果记忆做细粒度适应，长程用极紧凑的摘要承载跨会话证据，这与我们给 agent 做上下文工程的现实问题同形（长会话压缩 + 跨会话任务推断）。但证据密度不足（只有一处数字），按长尾保留并标注触发条件：若我们要在生产里做跨会话 agent 记忆且上下文成本开始吃紧，回来读它的摘要构造方式与复杂度分析。",
+  "one_line_judgement": "值得先保存：据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages）：领域是元强化学习，但给出了一…",
+  "one_line_essence": "据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages）：领域是元强化学习，但给出了一个可迁移的结构：长程 agent 如何携带历史。问题诊断准确——元强化学习要求 agent 从有限交互快速适应未见任务，这需要跨很长交互历史表示任务证据；经典循环 agent 把经验压进 hidden state，transformer agent 要检索过去轨迹，代价是二次的内存与计算。作者还指出加神经记忆后 agent 具备足够表达能力和测试时训练能力，能在 meta-test 时适应未见任务与任务族。结果口径（作者自述，本次未做第三方复现）：在未见过的 held-out Meta-World ML10/45 测试环境上成功率超过 50%，同时保持较低训练预算与较短墙钟时间；在长上下文稀疏奖励的 PointMaze 任务上，作者称其探索行为比 transformer 基线更有结构。方法要点：快速适应被拆到两个时间尺度——episode 内的因果神经记忆负责细粒度适应且序列复杂度线性，紧凑的 episode 级摘要负责跨 episode 的长程任务推断，从而不必对完整交互历史做注意力；附录把基线列为 TrMRL 与 ECET，参考基准为 Meta-World ML1/ML10/ML45、Mujoco、PointMaze，全部 wall-clock 测量在同一台配 NVIDIA RTX 3090 Ti 的服务器上。证据边界：全部结果为作者自述，本次未做第三方复现；摘要只给出『超过 50%』这一模糊表述，未给具体数值与方差，跨任务族与跨域的方差在主表未逐项拆解；abs 页与 HTML 全文中无作者仓库或项目页链接（全文中的 GitHub 链接是 Meta-World 官方仓库），代码标注 待核验/暂无。价值路由：长尾保存——领域离我们较远，但『两个时间尺度分工：细粒度在线记忆 + 紧凑跨轮摘要』这一结构可直接借用到我们的 agent 记忆设计（把『本轮内的细节』与『跨轮的任务摘要』拆开存），且比 transformer 全历史注意力便宜。今日动作：不投入实现；只抽一条结构记入 context-engineering 趋势页——长上下文 agent 记忆的两种分工方式。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages，附录列出基线 TrMRL 与 ECET，参考数据集为 Meta-World ML1/ML10/ML45、Mujoco、PointMaze）：这篇的领域是元强化学习，但它对“长程 agent 如何携带历史”给出了一个可迁移的结构。问题诊断准确：元强化学",
+  "new_claim_or_method": "据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages）：领域是元强化学习，但给出了一个可迁移的结构：长程 agent 如何携带历史。问题诊断准确——元强化学习要求 agent 从有限交互快速适应未见任务，这需要跨很长交互历史表示任务证据；经典循环 agent 把经验压进 hidden state，tra",
   "research_position": "long_tail_insight",
   "engineering_testability": {
     "has_code": false,
@@ -62,7 +62,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages，附录列出基线 TrMRL 与 ECET，参考数据集为 Meta-World ML1",
+    "why_save": "据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages）：领域是元强化学习，但给出了一个可迁移的结构：长程 agent 如何携带历史。问题",
     "future_trigger": [
       "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
     ],
@@ -79,7 +79,7 @@
       "模板"
     ],
     "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
-    "revisit_date": "2026-11-14"
+    "revisit_date": "2026-11-15"
   },
   "insights": {
     "system_design": [
@@ -122,7 +122,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=metta-memory-enhanced-test-time-adaptation-for-meta-reinforcement-learning",
-  "daily_path": "daily-detail.html?date=2026-10-24",
+  "daily_path": "daily-detail.html?date=2026-10-25",
   "trend_paths": [
     "trend-detail.html?id=agentic-world-modeling",
     "trend-detail.html?id=context-engineering"

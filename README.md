@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-10-24
+## Latest research run · 2026-10-25
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 155 | 247 | 260 | 1358 |
+| 10 | 155 | 248 | 259 | 1358 |
 
-**Deep dive:** [EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence](daily/2026/2026-10-24.md) · Immediate · 重点学习
+**Deep dive:** [EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence](daily/2026/2026-10-25.md) · Immediate · 重点学习
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,13 +35,13 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-10-25](daily/2026/2026-10-25.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | Immediate | 重点学习 |
 | [2026-10-24](daily/2026/2026-10-24.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | Immediate | 重点学习 |
 | [2026-10-23](daily/2026/2026-10-23.md) | LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data | Immediate | 重点学习 |
 | [2026-10-22](daily/2026/2026-10-22.md) | MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning | Immediate | 重点学习 |
 | [2026-10-21](daily/2026/2026-10-21.md) | OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory | Immediate | 重点学习 |
 | [2026-10-20](daily/2026/2026-10-20.md) | Self-Building Labs | Immediate | 重点学习 |
 | [2026-10-19](daily/2026/2026-10-19.md) | MLExpert: Towards a Generalist Agentic Model for Autonomous Machine Learning Engineering | Immediate | 重点学习 |
-| [2026-10-18](daily/2026/2026-10-18.md) | MLExpert: Towards a Generalist Agentic Model for Autonomous Machine Learning Engineering | Immediate | 轻量试点 |
 
 ## Directions under active observation
 
