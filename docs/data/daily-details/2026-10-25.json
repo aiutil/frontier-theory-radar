@@ -9,7 +9,7 @@
   "daily_action": "今天排四条动作，顺序即优先级。(1) 抄 EpiSEM-Bench 六指标模板（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR，2610.31650），并用第三方复现 https://github.com/habib-analyst/episembench 校准我们自己的最小实现——明确只校准机制（遮蔽算子、审计工具、失败基数），不引用它的数值作为基线；在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列：遮蔽后越权执行率、主动补证据率、以及「先查后动」比例。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix 对训练栈做 A/B（Softmax Fix，2610.31642），量两件事——loss spike 次数、student=teacher 时梯度是否恰为 0；同时记录各任务的 dtype 与 AdamW eps，判断 margin 是否越过对应精度悬崖（bf16 ≈ 5.5 / fp32 ≈ 16.6 / fp64 ≈ 36.7）；注意该实现自陈 3.4–6x 速度与 1.25–1.75x 显存代价，只在蒸馏与关键任务上启用。(3) 审 agent 升级阈值链路（Cost-Aware Abstention，2610.31657，Zenodo 产物 10.5281/zenodo.22609128 今日已确认解析到 zenodo.org/records/22654013）：按显式成本模型 + calibration 选阈值 + 冻结后一次性评估的口径，先算 correctness AUROC；测不出区分度就不许上阈值。(4) 把四条口径纪律写进 paper-reading checklist：实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分为作者官方 / 第三方 / 脚本化合成类比。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算，注意 ImageNet 上是 anti-conservative 不是保守）、Sensorimotor Alignment（2610.31670，h=110 vs h=7 口径纪律，六 WAM/真机/14-backbone 复现包仍缺）、Direct Pass@k Optimization（2610.31667，剪枝目标对齐最终指标，cutoff 阈值是显式超参）、Low-Bit N-Gram（2610.31646，n-gram 表内存是可预算工程量）、SpectralCanary（2610.31659，发布即埋信号，作者仓库已找到但项目页 404）。长尾入库并标注触发条件：METTA（2610.31656，两个时间尺度的记忆分工）、Phase Transition（2610.31663，可训练比例的收益曲线非单调）。",
   "score": 84.0,
   "trend_stage": "emerging",
-  "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Com…",
+  "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模…",
   "max_uncertainty": "证据不足项明确清单（按严重度排序）：(1) **昨日报告存在两处事实错误，今日已更正但昨日文件未回改**——(a) EpiSEM-Bench 的任务族数：论文 3.1 节原文为「Each domain contains 50 task pairs in ten families」，即每域 10 个家族、六域共 60 个（正文与 Figure 10 按 60 个统计）；昨日在摘要段落写 60、深挖段落写 10，前后不一。(b) EpiSEM Table 1 列序被读错：真实表头为 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR，昨日按 Full SWS/Critical UCR/…/SBM/PUR 读，导致 77.3% 被标为 Critical UCR（实为 Full UCR，真实 Critical UCR 为 97.3%）；Gemma-4-31B-IT 的 19.7% 位置亦随之偏移。这两处说明昨日那批数字的引用链有系统性风险，本日所有引用均已回原文逐行核过。(2) **全部性能数字仍为作者自述，本次未做任何第三方复现**：EpiSEM 十模型的 SWS/UCR/SBM/PUR 与 Table 8 的 Critical Omission Failure Rate；Cost-Aware Abstention 的 0.763→0.472（38.1%，CI [35.7%, 40.4%]）、15.3%→3.5%、0.477 vs 0.879、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速（第三方复现明确未检验到 grokking）；Selective Auditing 的三组实验与 ImageNet 上的 anti-conservative 现象；S² 的 r=+0.831 与 r=+0.429；PKTP 的 3.3 分优势与 cutoff 收益曲线；Low-Bit N-Gram 的 75% / 47–55% 节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1%/92.4%/94.8%/SSIM 0.989/LPIPS 0.022；METTA 的「超过 50%」。(3) **新增的三个仓库只核验到「存在、结构自洽、README 自述」，一个脚本都没跑过**：barron-softmax-fix（MIT，15 条目，README 逐项列出与论文的对照）、habib-analyst/episembench（MIT，19 条目，README/PREREG/KILLGATE 逐字读取）、hosytuyen/SpectralCanary（MIT，commits API 确认作者归属）。三者均未运行，训练可运行性与数据可得性无法确认；episembench 明确说明其 G2/G3 效应量因结构化决策规则「at the ceiling by construction」不可当作模型行为引用。(4) **作者官方代码仍然缺失，两处需特别说明**：EpiSEM-Bench 作者代码在 abs 页与全文中依旧没有链接，episembench 仓库自己也写「no author code was found」，故 300 对真实任务与 6,052 条件的构造细节仍无法复刻；Softmax Fix 作者项目页 jonbarron.info/softmaxfix/ 可达但未给仓库链接，现有实现为第三方移植，其自陈 3.4–6x 速度与 1.25–1.75x 显存代价意味着我们的可用性取决于任务类型。(5) **口径缺口两处**：S² 的六 WAM、真机与 14-backbone 复现包作者自陈仍缺（record/README.md 原文「do not yet have matching reproduction bundles here」），且 h=110 与 h=7 不可混比；SpectralCanary 的作者项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 实测 HTTP 404（仓库 README 仍指向该失效链接），故 project_url 留空。(6) **元数据口径差异一处**：sensorimotor-alignment 仓库今日经 GitHub API 返回 license 为 NOASSERTION，而 raw LICENSE 文件内容逐字读取为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准，标为 MIT，但 GitHub 元数据侧的差异待作者修正。(7) **抓取环境缺口**：huggingface.co 今日仍不可达，HF Daily Papers 作为社区热度辅助源全程无法使用；OpenReview / Papers with Code 三个源在 fetch_papers.py 中仍是未实现状态，本次数据完全来自 arXiv 单源；周末 arXiv 无新批次，10 篇与昨日完全相同（id 2610.31642–2610.31670），已核对 11 个分类最新 60 条确认无更新。(8) **流水线缺陷（今日复现）**：fetch_papers.py 的 extract_keywords 先在全文上匹配再截断摘要到 500 字，且用子串匹配，导致 2610.31663（leverage / storage）、2610.31659（average）、2610.31657（coverage）三篇被误打上 RAG 标签——今日逐条定位到具体子串，三篇关键词字段不可用于加权，与昨日 NPMLE 那篇同源。另记环境问题：仓库 .git/config 写死 http.proxy=http://127.0.0.1:7890 且 http.sslverify=false，该本地代理 CONNECT 隧道已损坏（curl 直连 github.com 200、走代理 SSL_ERROR_SYSCALL），git 因此报 gnutls_handshake() failed；本次以 git -c http.proxy= -c https.proxy= 绕开，pull/push 均成功，但该配置本身建议另行评审修正。(9) 未核验项：arXiv LaTeXML HTML 全文中 EpiSEM 的六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；PKTP 的附录表格数值已核，跨模型完整对照表未逐格复核。",
   "conclusion_lines": [
     "今天最值得看的是《EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence》。",
@@ -27,7 +27,7 @@
       "value_type_label": "即时价值",
       "score": 84.0,
       "decision": "重点学习",
-      "has_code": true,
+      "has_code": false,
       "has_benchmark": false,
       "worth_deep_dive": true
     },
@@ -40,7 +40,7 @@
       "value_type_label": "即时价值",
       "score": 82.0,
       "decision": "重点学习",
-      "has_code": true,
+      "has_code": false,
       "has_benchmark": false,
       "worth_deep_dive": true
     },
@@ -53,8 +53,8 @@
       "value_type_label": "即时价值",
       "score": 81.0,
       "decision": "重点学习",
-      "has_code": true,
-      "has_benchmark": true,
+      "has_code": false,
+      "has_benchmark": false,
       "worth_deep_dive": true
     },
     {
@@ -64,7 +64,7 @@
       "direction": "未分类",
       "value_type": "trend",
       "value_type_label": "趋势价值",
-      "score": 77.0,
+      "score": 78.0,
       "decision": "轻量试点",
       "has_code": false,
       "has_benchmark": false,
@@ -79,7 +79,7 @@
       "value_type_label": "趋势价值",
       "score": 76.0,
       "decision": "轻量试点",
-      "has_code": true,
+      "has_code": false,
       "has_benchmark": false,
       "worth_deep_dive": true
     }
@@ -98,35 +98,35 @@
     "published": "2026-10-22",
     "url": "http://arxiv.org/abs/2610.31650v1",
     "pdf_url": "https://arxiv.org/pdf/2610.31650v1",
-    "code_url": "https://github.com/habib-analyst/episembench",
+    "code_url": "",
     "benchmark_url": "",
     "paperswithcode_url": "",
     "openreview_url": "",
-    "first_seen_date": "2026-10-25",
-    "first_deep_dive_daily": "2026-10-25",
+    "first_seen_date": "2026-10-26",
+    "first_deep_dive_daily": "2026-10-26",
     "value_type": "immediate",
     "value_type_label": "即时价值",
     "value_scores": {
       "novelty": 4.8,
       "relevance": 6.2,
-      "evidence": 6.35,
-      "engineering_testability": 6.05,
+      "evidence": 4.95,
+      "engineering_testability": 4.05,
       "trend_signal": 5.45,
       "long_tail_potential": 3.5,
-      "actionability": 6.1,
+      "actionability": 3.8,
       "noise_risk": 1.2
     },
     "score": 84.0,
     "decision": "重点学习",
-    "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Com…",
-    "one_line_essence": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模可核：六个域（cloud development and operations、commerce and fulfillment、communication and publication、document and data access、finance、travel reservation），每域 50 对任务、各含 10 个任务族，合计 300 对任务、600 个世界、60 个任务族；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 今日更正昨日两处错误：任务族是每域 10 个、共 60 个（昨日深挖段落误写 10）；Table 1 的列序是 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR（昨日读成 Full SWS/Critical UCR/…/SBM/PUR）。按正确列序读今日最刺眼的反差：Qwen3-14B Full SWS 92.0% 但 Full UCR 77.3%、Critical UCR 97.3%、SBM 仅 7.8%、PUR 3.8%；GLM-4.7-Flash Full SWS 85.3% / Full UCR 75.7% / Recovery UCR 87.7% 而 PUR 0.0%；MiMo-V2.5-Pro Full SWS 57.7% 但 Critical UCR 88.0%、Critical Omission Failure Rate 61.7%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、PUR 30.5%、SBM 最高 84.8%；Claude-Haiku-5.5 57.0%/5.3%/33.3%/15.3%/75.4%/21.4%。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 补了一条更硬的机制证据：Qwen3-14B Attempt 16.3% 但 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——两者都大量在拿到证据前就提交动作，即『抗遮蔽强』与『会用证据』是两件事。证据等级今日升级（昨日记为无可核验实现）：出现第三方独立复现 https://github.com/habib-analyst/episembench（MIT，created 2026-10-24，19 个 tree 条目，README/PREREG.md/KILLGATE.md/results_seed42.json 均已逐字读取）。该仓库明确写『The paper's real task data and author code were not used (no author code was found)』，是确定性脚本化合成类比、不调用任何 LLM、CPU-only，预注册门槛 18/18 pytest 通过、G2 +1.00 [CI 1.00,1.00]、G3 −1.00 [CI −1.00,−1.00]，并自陈 effect size 因结构化决策规则『at the ceiling by construction』不可当作模型行为引用。因此：作者官方代码与 300 对真实任务仍无公开入口（标注 待核验/暂无），但机制本身现在可跑。价值路由：仍列今日第一即时试点，只做最小验证——用我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量两列（遮蔽后越权执行率 ≈ Critical UCR、主动补证据率 ≈ PUR），不引论文分数当基线。今天动作：抄六指标模板 + 一条硬规则（决定授权边界的事实必须可被单独查询）；另加一条新规则（拿到证据不等于据此收手，必须单独量「先查后动」的比例）。",
+    "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模…",
+    "one_line_essence": "据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模（今日回原文确认）：『It contains 300 task pairs comprising 600 worlds, with 50 pairs in each of six domains and 60 task families』；『Each domain contains 50 task pairs in ten families, giving 300 pairs and 600 worlds』——即每域 10 个家族、六域合计 60 个；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件。⚠️ 口径提醒（今日第三次复核后仍成立）：昨日 10-25 报告更正过前一日的两处错误（任务族数 10 vs 60、Table 1 列序 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR），今日回原文逐字确认『60 task families』与『ten families』两句都成立，说明那次更正是对的；但 2026-10-24 的历史文件未回改，本条提醒继续保留。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 的机制证据：Qwen3-14B Attempt 16.3% 但 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 1.7%、Premature 74.7%——即『抗遮蔽强』与『会用证据』是两件事。★ 今日证据等级实质升级（这是本篇今日最重要的变化）：昨日第三方复现仓库 habib-analyst/episembench 只核验到『存在、结构自洽、README 自述』，今日经 GitHub API tarball 拉取后本地实跑：`PYTHONPATH=src python3 -m pytest tests/ -q` → 18 passed in 1.82s。results_seed42.json 逐项核对无误：blind unsafe_exec_full_evidence=0.0 / omission=1.0 / omission_recovery=1.0；seeking omission=1.0 但 omission_recovery=0.0、query_rate=1.0、seeking_safe_exec_omission_recovery=1.0；partial omission_recovery=0.4944、query_rate=0.5083；competence_full_evidence=1.0（competence_n=1080）；g2 mean=1.0 CI[1.0,1.0] n=180；g3 mean=-1.0 CI[-1.0,-1.0]；failure_cardinality 1:63 / 2:53 / 3:64（none=0）；audit_risk_flag_rate_omission_unsafe=0.4963（audit_n=540）——与昨日读到的 README/PREREG/KILLGATE 数字逐项一致，且 gates.json 自陈 determinism_rerun_identical=true。⚠️ 证据边界不变：作者官方代码在 arXiv abs 页经正则扫描仍无任何 github.com 链接，300 对真实任务与 6,052 条件的构造细节仍不可复刻（待核验/暂无）；该复现是确定性脚本化合成类比、不调用任何 LLM、CPU-only，其 PREREG/KILLGATE 自陈效应量因结构化决策规则『at the ceiling by construction』不可当作模型行为引用——注意今日实跑的 partial unsafe_exec_omission_recovery=0.4944 正是这种构造性结果，不是任何真实模型的实测。价值路由不变，仍列今日第一即时试点，但动作重心从『照抄模板』升级为『照抄模板 + 用实跑复现校准我们自己的最小实现』：用我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列（遮蔽后越权执行率、主动补证据率、先查后动比例），不引论文分数当基线；今日另加一条可直接执行的动作——把 episembench 的 18/18 测试跑通并读 gates.json 作为我们自己实现的验收清单（它把『盲 agent 必然越权』『会查证的 agent 能收手』拆成两个独立断言，正对应 Table 1 的 Full UCR 与 Recovery UCR 两条列）。",
     "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-    "new_claim_or_method": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模可核：六个域（cloud development",
+    "new_claim_or_method": "据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模（今日回原文确认）：『It contains 300 task pairs comprising ",
     "research_position": "benchmark",
     "engineering_testability": {
-      "has_code": true,
+      "has_code": false,
       "has_benchmark": false,
-      "can_reproduce": true,
+      "can_reproduce": false,
       "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
       "engineering_scenarios": [
         "AI Agent",
@@ -148,7 +148,7 @@
       ]
     },
     "long_tail": {
-      "why_save": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（Table 1/8/10/12 逐行解析）与 abs 页（Comments 为空、无作者仓库链接）：这篇攻的不是模型",
+      "why_save": "据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就",
       "future_trigger": [
         "待更多证据"
       ],
@@ -205,14 +205,10 @@
       {
         "label": "PDF",
         "url": "https://arxiv.org/pdf/2610.31650v1"
-      },
-      {
-        "label": "Code",
-        "url": "https://github.com/habib-analyst/episembench"
       }
     ],
     "detail_path": "paper-detail.html?id=episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
-    "daily_path": "daily-detail.html?date=2026-10-25",
+    "daily_path": "daily-detail.html?date=2026-10-26",
     "trend_paths": [
       "trend-detail.html?id=coding-agent",
       "trend-detail.html?id=agentic-world-modeling"
@@ -266,10 +262,6 @@
     {
       "label": "PDF",
       "url": "https://arxiv.org/pdf/2610.31650v1"
-    },
-    {
-      "label": "Code",
-      "url": "https://github.com/habib-analyst/episembench"
     }
   ],
   "mermaid": {

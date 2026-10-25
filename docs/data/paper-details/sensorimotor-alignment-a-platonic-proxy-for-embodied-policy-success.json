@@ -12,35 +12,35 @@
   "published": "2026-10-22",
   "url": "http://arxiv.org/abs/2610.31670v1",
   "pdf_url": "https://arxiv.org/pdf/2610.31670v1",
-  "code_url": "https://github.com/yunfeixie233/sensorimotor-alignment",
+  "code_url": "",
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-25",
-  "first_deep_dive_daily": "2026-10-25",
+  "first_seen_date": "2026-10-26",
+  "first_deep_dive_daily": "2026-10-26",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
     "novelty": 6.0,
     "relevance": 5.0,
-    "evidence": 5.9,
-    "engineering_testability": 5.5,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
     "trend_signal": 3.5,
     "long_tail_potential": 3.5,
-    "actionability": 6.1,
+    "actionability": 3.8,
     "noise_risk": 1.2
   },
   "score": 76.0,
   "decision": "轻量试点",
   "one_line_judgement": "值得继续观察：据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/…",
-  "one_line_essence": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（实测 HTTP 200，含 3:29 视频概览与复现指南）与仓库 record/README.md（逐字读取）：这篇把『昂贵的闭环 rollout 能不能被便宜的离线代理指标替代』这个问题，给出了一个可迁移的答案。思路来自 Platonic Representation Hypothesis——表示变强时视觉与语言会收敛到对现实的共享统计模型；这篇问运动轨迹是否也是这样一个模态，即具身模型越强，其感知表示是否越向共享统计模型收敛。指标 S² 用图像-文本特征作为感知表示，对齐到末端执行器轨迹。数字（作者自述）：在 6,000 集 DROID 子集、12 个视觉-语言-动作模型上，S² 与 SimplerEnv-WidowX 任务成功率在几乎所有测试 horizon 上 Pearson r > 0.5，且在 DROID 与 BridgeDataV2 两个参考数据集上结论一致；真实机器人头条结果是 r = +0.831（one-tailed p = 0.041），但这是探索性 horizon h = 110，而预设的 h = 7 只给 r = +0.429（p = 0.236）；WAM 一侧 S² 也比 FID/SSIM 更好指示成功。⚠️ 口径纪律（昨日已写，今日继续执行）：h=110 与 h=7 不可当作同一设定比较，作者仓库 record/README.md 明确写了这一句。证据等级复核（今日用 GitHub API 重新核验）：仓库 https://github.com/yunfeixie233/sensorimotor-alignment 仍存在、非归档、pushed 2026-10-23；但今日 API 返回 license 为 NOASSERTION，而 raw LICENSE 文件内容逐字读取为『MIT License / Copyright (c) 2026 Sensorimotor Alignment authors』——两者不一致，以 LICENSE 文件内容为准即 MIT，此处标注口径差异待作者在 GitHub 元数据侧修正。作者自陈的复现缺口（今日复核仍成立）：完整的六 WAM 结果、五策略真机结果与 14-backbone 策略学习结果都还没有配套复现包，record/README.md 原文是『do not yet have matching reproduction bundles here』，且『the combined scatter therefore does not recreate the current four-panel paper figure』；record/ 下提供的是可 CPU 渲染的图表脚本，不含训练。价值路由：趋势价值而非即时价值——它给的是评测范式（S² 这类离线代理指标可否替代闭环 rollout），不是今天就能用的系统组件。对我们的可迁移点：任何『用离线指标替代昂贵闭环评测』的设计都要预先写明 horizon 口径，并同时报预设 horizon 与探索性 horizon 两组数。今日动作：不投入实现；把一条口径纪律写进评测规范——离线代理指标必须同时报预设与探索性 horizon 的相关系数与显著性。",
+  "one_line_essence": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（今日实测 HTTP 200，含 3:29 视频概览与复现指南）与仓库：这篇把『昂贵的闭环 rollout 能不能被便宜的离线代理指标替代』给出了一个可迁移的答案。思路来自 Platonic Representation Hypothesis——表示变强时视觉与语言会收敛到对现实的共享统计模型；这篇问运动轨迹是否也是这样一个模态。指标 S² 用图像-文本特征作为感知表示，对齐到末端执行器轨迹。数字（作者自述）：在 6,000 集 DROID 子集、12 个视觉-语言-动作模型上，S² 与 SimplerEnv-WidowX 任务成功率在几乎所有测试 horizon 上 Pearson r > 0.5，且在 DROID 与 BridgeDataV2 两个参考数据集上结论一致；真实机器人头条结果是 r = +0.831（one-tailed p = 0.041），但这是探索性 horizon h = 110，而预设的 h = 7 只给 r = +0.429（p = 0.236）。⚠️ 口径纪律（继续执行）：h=110 与 h=7 不可当作同一设定比较，作者仓库 record/README.md 明确写了这一句。证据等级今日复核（补齐可核验面）：仓库 https://github.com/yunfeixie233/sensorimotor-alignment 今日经 API 复核仍存在、非归档、stars=5 / forks=1、最后提交 2026-10-23T01:59:12Z（b0f9b7d0『Link the Paper badge and citation to arXiv 2610.31670』），今日未变更；★ 但今日发现一处必须更正的规模事实：该仓库 tree_blobs=4030（远大于此前记录的『无复现包』印象），包含完整 analysis/ 脚本目录（compare_pearson_spearman.py、compute_cknna_denoise_trajectory_3model.py、compute_multiframe_cknna.py、compute_perception_metrics_all3.py、plot_alignment_vs_performance.py、plot_exp_horizon_L.py 等 30+ 个脚本）与 analysis/out/ 下的 CSV/JSON 中间产物（cknna_denoise_3model_50x10.csv、perception_controlled_50x10.json、perception_natural_50x10.json 等）。⚠️ 因此昨日『没有配套复现包』的表述过重，需要收紧：作者自陈仍缺的是六 WAM 结果、五策略真机结果与 14-backbone 策略学习结果的『matching reproduction bundles』（record/README.md 原文『do not yet have matching reproduction bundles here』），而分析脚本与部分中间产物是公开的；今日未逐个运行这些脚本（依赖环境未核验），故仍标为部分核验。GitHub API 仍返回 license=NOASSERTION，而 raw LICENSE 文件内容为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准标 MIT，元数据差异待作者修正。价值路由：趋势价值而非即时价值——它给的是评测范式，不是今天就能用的系统组件。今日动作不变：不投入实现；把一条口径纪律写进评测规范——离线代理指标必须同时报预设与探索性 horizon 的相关系数与显著性。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（实测 HTTP 200，含 3:29 视频概览与复现指南）与仓库 record/README.md（逐字读取）：这篇把『昂贵的闭环 rollout 能不能被便宜的离线代理指标替代』这个问题，给出了一个可迁移的答案。思路",
+  "new_claim_or_method": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（今日实测 HTTP 200，含 3:29 视频概览与复现指南）与仓库：这篇把『昂贵的闭环 rollout 能不能被便宜的离线代理指标替代』给出了一个可迁移的答案。思路来自 Platonic Representation",
   "research_position": "source_paper",
   "engineering_testability": {
-    "has_code": true,
+    "has_code": false,
     "has_benchmark": false,
-    "can_reproduce": true,
+    "can_reproduce": false,
     "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
     "engineering_scenarios": [
       "AI Agent",
@@ -62,7 +62,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（实测 HTTP 200，含 3:29 视频概览与复",
+    "why_save": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（今日实测 HTTP 200，含 3:29 视频概览",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -119,18 +119,10 @@
     {
       "label": "PDF",
       "url": "https://arxiv.org/pdf/2610.31670v1"
-    },
-    {
-      "label": "Code",
-      "url": "https://github.com/yunfeixie233/sensorimotor-alignment"
-    },
-    {
-      "label": "Project",
-      "url": "https://yunfeixie233.github.io/s2/"
     }
   ],
   "detail_path": "paper-detail.html?id=sensorimotor-alignment-a-platonic-proxy-for-embodied-policy-success",
-  "daily_path": "daily-detail.html?date=2026-10-25",
+  "daily_path": "daily-detail.html?date=2026-10-26",
   "trend_paths": [
     "trend-detail.html?id=agentic-world-modeling",
     "trend-detail.html?id=coding-agent"

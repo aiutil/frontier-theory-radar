@@ -15,8 +15,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-25",
-  "first_deep_dive_daily": "2026-10-25",
+  "first_seen_date": "2026-10-26",
+  "first_deep_dive_daily": "2026-10-26",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -29,12 +29,12 @@
     "actionability": 5.0,
     "noise_risk": 1.2
   },
-  "score": 77.0,
+  "score": 78.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得继续观察：据 arXiv 2610.31662 摘要与 HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tib…",
-  "one_line_essence": "据 arXiv 2610.31662 摘要与 HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tibshirani、Tijana Zrnic；Subjects stat.ML/cs.LG/stat.ME；abs 页 Comments 为空）：这篇把『人审何时介入』从经验阈值升级成有保证的在线决策问题，设定与我们的 agent 升级链路几乎同形——每一轮 AI 系统给出决策与置信度分数，两者不必来自同一模型（一个 agent 出决策，另一个 verifier agent 打正确性/安全性分），我们要决定自动接受还是转人工，目标是让人工审计频次尽量低、同时保证未审计错误占比低于阈值。理论侧是硬的：目标 Err(T) = u_T/n_T（未审计错误期望数/总错误期望数），additive thresholding 在无任何分布假设下把误差控制做到 O(1/n_T) 余项，配合在线置信度校准可保住保证并提升效率；最优效率方法对 adversarial 与 i.i.d. 数据流都渐近达到可达的最优审计率。实验与口径（作者自述，本次未做第三方复现）：四个标注问题沿用 Gligorić et al. (2025) 与 Candès et al. (2026)，其中两个是计算社科文本分类（政治倾向等），另两个是 ImageNet 与 ImageNet-V2 图像分类，标注与置信度来自 GPT-4o（Gligorić et al. 2025 收集）；应用场景覆盖安全验证（筛 LLM 不安全响应）、定性数据标注（访谈转录）与数据标注。关键细节：论文称误差率总体贴近目标 α，但 optimally efficient 方法在 ImageNet 上相对其他方法偏『anti-conservative』（误差率略高于目标），而 uncapped 版本在错误稀疏时容易过度保守（误差率显著低于 α）；作者自陈该方法需要小心调超参，capping E_t 能改善效率但会在错误极稀疏时削弱误差控制。⚠️ 昨日写的『含在 ImageNet 上偏保守』方向写反了——原文是 anti-conservative（偏激进/误差率偏高），昨日口径今日更正。证据边界：全部实验为作者自述，本次未做第三方复现；abs 页与 HTML 全文中无作者仓库或项目页链接，代码标注 待核验/暂无。价值路由：趋势价值——理论保证扎实、且正好落在我们的升级链路上，但当前只有理论与自述实验，没有可跑实现，属于需要持续观察的方向而非今天试点。今日动作：把它列为升级阈值链路的理论备选（对照 Cost-Aware Abstention 的经验阈值路线），并记下观察问题——是否出现开源实现与在真实生产流上的复现。",
+  "one_line_judgement": "值得继续观察：据 arXiv 2610.31662 摘要与 LaTeXML HTML 全文（作者 Isaac Gibbs、Elise L. Han、Rya…",
+  "one_line_essence": "据 arXiv 2610.31662 摘要与 LaTeXML HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tibshirani、Tijana Zrnic；今日回原文逐字复核关键句），以及★今日新发现的第三方仓库 habib-analyst/selective-audit 实跑结果：这篇把『人审何时介入』从经验阈值升级成有保证的在线决策问题，设定与我们的 agent 升级链路几乎同形——每一轮 AI 系统给出决策与置信度分数，两者不必来自同一模型（一个 agent 出决策，另一个 verifier agent 打正确性/安全性分），我们决定自动接受还是转人工，目标是让人工审计频次尽量低、同时保证未审计错误占比低于阈值。理论侧是硬的：additive thresholding 在无任何分布假设下把误差控制做到 O(1/n_T) 余项（今日原文复核：『We showed that a simple online method called additive thresholding achieves this error control up to an O(1/n_T) term, without any assumptions on the data or on the quality of the confidence scores』），配合在线置信度校准可保住保证并提升效率；最优效率方法对 adversarial 与 i.i.d. 数据流都渐近达到可达的最优审计率。实验口径（作者自述，本次未做第三方复现）：四个标注问题沿用 Gligorić et al. (2025) 与 Candès et al. (2026)，其中两个是计算社科文本分类、另两个是 ImageNet 与 ImageNet-V2 图像分类，标注与置信度来自 GPT-4o。⚠️ 口径复核（今日第二次确认昨日的更正是对的）：原文原句『The achieved error rates generally track the target α closely, although the optimally efficient method is somewhat anti-conservative on ImageNet relative to the other methods』——方向是 anti-conservative（偏激进、误差率略高于目标），不是 conservative；昨日 10-25 的更正正确。同时今日确认原文对 baseline 的定义：random auditing 按概率 1−α 独立审计、按构造天然有效；oracle threshold 是事后用完整观测流挑出的『least conservative fixed threshold』。★ 今日证据等级升级（昨日记为『无可核验实现、待核验/暂无』，今日出现可跑实现）：新增第三方仓库 https://github.com/habib-analyst/selective-audit（created 2026-10-24T08:53:51Z，18 个 tree 条目，含 src/selective_audit/{streams,policies,engine}.py、scripts/run_benchmark.py、tests/、PAPER.md、KILLGATE.md、LAUNCH_NOTE.md、results/results.json）。今日经 GitHub API tarball 拉取后本地实跑：`PYTHONPATH=src python3 -m pytest tests/ -q` → 16 passed in 3.51s；`PYTHONPATH=src python3 scripts/run_benchmark.py` 实跑 63 秒完成 45 次迭代（3 regime × 5 seed）并写出 results/results.json，终端汇总 9 行与 README、PAPER.md 表格逐格一致（static 1% 22/24/45/31 vs oracle 50；static 5% 107/135/217/185 vs 250；static 10% 219/281/443/388 vs 500；burst 1% 8/9/8/9 vs 90；burst 5% 36/32/51/58 vs 291；burst 10% 72/68/95/120 vs 341；drift 1% 17/21/26/25 vs 50；drift 5% 93/98/141/160 vs 250；drift 10% 188/201/324/320 vs 500）。⚠️ 但必须说清这复现的是谁：该仓库不是本论文的复现，它自己的 README 与 KILLGATE 明确写『Inspired by Gibbs et al., arXiv:2610.31662』，并声明其问题与论文『orthogonal』——它研究的是『给定固定审计预算、没有逐条置信分时，预算该在哪些 segment 之间分配（segment 的违规率会突发与漂移）』，论文研究的是『有逐条置信分时，每一条是否审计』。所以它的 16 个测试与 180 次基准跑通，证明的是『审计预算分配问题有一套可跑的开源基准与策略库』，不是『本论文的数值被复现』。仓库自陈的三条反面结论今日也被实跑确认：static 1% 下 epsilon_greedy 45±8 明显高于 drift_ucb 31±6（漂移机制在无漂移时是纯保险成本）；burst 1% 时四种策略全部只有 8–9 次检出而 oracle 90——预算是约束而非策略；change-point reset 几乎未触发（0.0–0.3 次/运行），收益实际来自折扣统计 + UCB/softmax 分配 + coverage floor。KILLGATE 引用的两个 prior-art 条目今日已独立核验存在且标题吻合：arXiv 2510.03734『Cost Efficient Fairness Audit Under Partial Feedback』、arXiv 2608.00568『Fairness Auditing: Lower Bounds on Company Manipulation』。作者官方代码仍无（abs 页正则扫描无 github.com 链接，论文自身的数值仍无第三方复现，待核验/暂无）。价值路由：从昨日 77 分上调为 78 分，理由不是新证据支持论文数字，而是同一条『升级阈值链路』今天有了可跑的对照基线与三条可直接抄的反面结论（校准好≠能排序、预算太小谁都抓不到、漂移机制在静态场景是纯成本）。今日动作：不投入实现；把它的两条反例写进我们的阈值设计评审——(1) 若错误稀疏，先算『预算是否够用』而不是先调策略；(2) 若生产流量分段稳定，折扣型漂移策略是纯保险成本，经典 ε-greedy / 固定比例分配更划算。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31662 摘要与 HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tibshirani、Tijana Zrnic；Subjects stat.ML/cs.LG/stat.ME；abs 页 Comments 为空）：这篇把『人审何时介入』从经验阈值升级成有保证的在线决策问题，设定与我们的 ag",
+  "new_claim_or_method": "据 arXiv 2610.31662 摘要与 LaTeXML HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tibshirani、Tijana Zrnic；今日回原文逐字复核关键句），以及★今日新发现的第三方仓库 habib-analyst/selective-audit 实跑结果：这篇把『人审何时介入』从经验阈值升",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
@@ -61,7 +61,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "据 arXiv 2610.31662 摘要与 HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tibshirani、Tijana Zrnic；Subje",
+    "why_save": "据 arXiv 2610.31662 摘要与 LaTeXML HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tibshirani、Tijana Zrn",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -121,7 +121,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=reliable-ai-assisted-decisions-via-selective-auditing",
-  "daily_path": "daily-detail.html?date=2026-10-25",
+  "daily_path": "daily-detail.html?date=2026-10-26",
   "trend_paths": [
     "trend-detail.html?id=coding-agent",
     "trend-detail.html?id=agentic-world-modeling"

@@ -8,35 +8,35 @@
   "published": "2026-10-22",
   "url": "http://arxiv.org/abs/2610.31657v1",
   "pdf_url": "https://arxiv.org/pdf/2610.31657v1",
-  "code_url": "https://github.com/sachinkg12/RouteGuard",
-  "benchmark_url": "https://doi.org/10.5281/zenodo.22609128",
+  "code_url": "",
+  "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-25",
-  "first_deep_dive_daily": "2026-10-25",
+  "first_seen_date": "2026-10-26",
+  "first_deep_dive_daily": "2026-10-26",
   "value_type": "immediate",
   "value_type_label": "即时价值",
   "value_scores": {
     "novelty": 4.8,
     "relevance": 5.0,
-    "evidence": 7.2,
-    "engineering_testability": 5.5,
-    "trend_signal": 4.3,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
     "long_tail_potential": 3.5,
-    "actionability": 6.1,
+    "actionability": 3.8,
     "noise_risk": 1.2
   },
   "score": 81.0,
   "decision": "重点学习",
   "one_line_judgement": "今天值得试：据 arXiv 2610.31657 摘要与 HTML 全文（abs 页 Comments：Accepted at the 38th IEE…",
-  "one_line_essence": "据 arXiv 2610.31657 摘要与 HTML 全文（abs 页 Comments：Accepted at the 38th IEEE International Conference on Tools with Artificial Intelligence (ICTAI 2026). 9 pages, 5 figures, 9 tables）：这篇的价值不在 IT 工单场景，而在于用一组数字钉死了一个我们常搞混的事——校准好不等于能排序，正确率高不等于值得自动决策。口径：成本模型 (c_ok, c_triage, c_wrong) = (0, 1, 5)；offline、cost-conditional 的 readiness assessment——在 calibration 上按显式成本选策略，冻结后在 held-out test 上只评一次。语料公开 47,837 条工单、八分类，划分 33,486 / 4,784 / 9,567。硬数字（已逐条对照全文）：TF-IDF + LR 阈值 τ*=0.60 把期望成本从 0.763 降到 0.472（相对降 38.1%，paired ratio-bootstrap 95% CI [35.7%, 40.4%]），错误路由从 15.3% 降到 3.5%；同一套校准选择流程在 16 个事后成本设定里有 14 个同时优于 always-route 与 always-defer；最强 prompted 配置（Claude Haiku 4.5, k=3 few-shot）在 1,000 条分层测试子集上准确率 0.477，而同批工单上 fine-tuned DistilBERT 是 0.879——被 prompt 的 LLM 明显输给微调小模型。最该抄的反面结论：isotonic 只降 ECE 不改善区分度（对 correctness AUROC 的影响在本次运行中至多 0.007），GPT-4o-mini few-shot 只输出单一置信度取值，correctness AUROC = 0.500（完全无排序能力），按解析得出的盈亏平衡概率 0.80，七个 prompted 配置会全部 defer、Haiku few-shot 只路由 19/1,000。证据等级今日闭合（昨日 zenodo.org 与 doi.org 因 SSL record layer failure 不可达，产物记录无法确认）：DOI 10.5281/zenodo.22609128 现解析到 https://zenodo.org/records/22654013（HTTP 200，标题『RouteGuard: Cost-Aware Abstention for LLM-Based IT Ticket Classification — Camera-Ready Artifact』）；代码仓库 https://github.com/sachinkg12/RouteGuard（MIT，created 2026-09-05，127 个 tree 条目，raw README.md 与 LICENSE 已读取，LICENSE 为 MIT / Copyright (c) 2026 Sachin Gupta）状态不变；项目页 https://sachinkg12.github.io/RouteGuard/ 实测 HTTP 200。作者自陈范围：scoped to this dataset, prompt design, model endpoints, and illustrative costs，且是评测框架不是新 abstention 算法。价值路由：可直接落地的是评测口径（显式成本模型 + calibration 选阈值 + 冻结后一次性评估 + 同时报 ECE / correctness AUROC / tie-aware risk-coverage）与一条硬规范——agent 自报置信度不能直接当升级人工的依据，至少先量区分度。今天动作：拿这条模板审我们现有的一条 agent 升级阈值链路，先算 AUROC 再谈阈值。",
+  "one_line_essence": "据 arXiv 2610.31657 摘要与 HTML 全文（abs 页 Comments：Accepted at the 38th IEEE International Conference on Artificial Intelligence (ICTAI 2026)）：这篇的价值不在 IT 工单场景，而在于用一组数字钉死了一个我们常搞混的事——校准好不等于能排序，正确率高不等于值得自动决策。口径：成本模型 (c_ok, c_triage, c_wrong) = (0, 1, 5)；offline、cost-conditional 的 readiness assessment——在 calibration 上按显式成本选策略，冻结后在 held-out test 上只评一次。语料公开 47,837 条工单、八分类，划分 33,486 / 4,784 / 9,567。硬数字（作者自述，本次未做第三方复现）：TF-IDF + LR 阈值 τ*=0.60 把期望成本从 0.763 降到 0.472（相对降 38.1%，paired ratio-bootstrap 95% CI [35.7%, 40.4%]），错误路由从 15.3% 降到 3.5%；同一套校准选择流程在 16 个事后成本设定里有 14 个同时优于 always-route 与 always-defer；最强 prompted 配置（Claude Haiku 4.5, k=3 few-shot）在 1,000 条分层测试子集上准确率 0.477，而同批工单上 fine-tuned DistilBERT 是 0.879——被 prompt 的 LLM 明显输给微调小模型。最该抄的反面结论：isotonic 只降 ECE 不改善区分度（对 correctness AUROC 的影响在本次运行中至多 0.007），GPT-4o-mini few-shot 只输出单一置信度取值，correctness AUROC = 0.500（完全无排序能力），按解析得出的盈亏平衡概率 0.80，七个 prompted 配置会全部 defer、Haiku few-shot 只路由 19/1,000。证据等级今日复核（无变化）：DOI 10.5281/zenodo.22609128 → https://zenodo.org/records/22654013（今日实测 HTTP 200）；代码仓库 https://github.com/sachinkg12/RouteGuard（MIT，created 2026-09-05，110 个 tree 条目，最后提交 2026-09-10，状态未变）；项目页 https://sachinkg12.github.io/RouteGuard/ 今日实测 HTTP 200。作者自陈范围：scoped to this dataset, prompt design, model endpoints, and illustrative costs，且是评测框架不是新 abstention 算法。价值路由：可直接落地的是评测口径（显式成本模型 + calibration 选阈值 + 冻结后一次性评估 + 同时报 ECE / correctness AUROC / tie-aware risk-coverage）与一条硬规范——agent 自报置信度不能直接当升级人工的依据，至少先量区分度。今日动作不变：拿这条模板审我们现有的一条 agent 升级阈值链路，先算 correctness AUROC 再谈阈值。⚠️ 今日补充一条与 2610.31662 的对照结论：两篇都落在『升级阈值』上，但一个说『校准好不等于能排序』（本篇，经验口径），一个给出『无分布假设下 O(1/n_T) 的误差控制保证』（2610.31662，理论口径）——我们的评审应该先问『这条链路要的是可控的错误率，还是可控的成本』，两者不可混用。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "据 arXiv 2610.31657 摘要与 HTML 全文（abs 页 Comments：Accepted at the 38th IEEE International Conference on Tools with Artificial Intelligence (ICTAI 2026). 9 pages, 5 figures, 9 tables）：这",
+  "new_claim_or_method": "据 arXiv 2610.31657 摘要与 HTML 全文（abs 页 Comments：Accepted at the 38th IEEE International Conference on Artificial Intelligence (ICTAI 2026)）：这篇的价值不在 IT 工单场景，而在于用一组数字钉死了一个我们常搞混的事——校准好不",
   "research_position": "source_paper",
   "engineering_testability": {
-    "has_code": true,
-    "has_benchmark": true,
-    "can_reproduce": true,
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
     "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
     "engineering_scenarios": [
       "AI Agent",
@@ -114,22 +114,10 @@
     {
       "label": "PDF",
       "url": "https://arxiv.org/pdf/2610.31657v1"
-    },
-    {
-      "label": "Code",
-      "url": "https://github.com/sachinkg12/RouteGuard"
-    },
-    {
-      "label": "Benchmark",
-      "url": "https://doi.org/10.5281/zenodo.22609128"
-    },
-    {
-      "label": "Project",
-      "url": "https://sachinkg12.github.io/RouteGuard/"
     }
   ],
   "detail_path": "paper-detail.html?id=cost-aware-abstention-for-llm-based-it-ticket-classification",
-  "daily_path": "daily-detail.html?date=2026-10-25",
+  "daily_path": "daily-detail.html?date=2026-10-26",
   "trend_paths": [
     "trend-detail.html?id=coding-agent"
   ],

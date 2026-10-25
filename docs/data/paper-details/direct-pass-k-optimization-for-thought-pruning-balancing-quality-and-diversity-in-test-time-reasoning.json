@@ -15,8 +15,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-10-25",
-  "first_deep_dive_daily": "2026-10-25",
+  "first_seen_date": "2026-10-26",
+  "first_deep_dive_daily": "2026-10-26",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -32,7 +32,7 @@
   "score": 74.0,
   "decision": "轻量试点",
   "one_line_judgement": "值得继续观察：据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发…",
-  "one_line_essence": "据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发式换成了一个明确的目标函数——直接优化 pass@k。问题陈述：测试期扩展靠生成大量候选解找至少一个正确的，但全部跑完代价高；现有做法是在生成短前缀后剪枝候选池，策略分两大类（基于质量、基于多样性），各偏一边。方法：把探针与 RepExp 用一个 pass@k 的次模近似连起来，用秩一贪心更新闭式计算似然并贪心选择保留集合，带次模近似的保证。数字（作者自述，本次未做第三方复现）：八个开放权重推理模型、两档尺寸（小档 Qwen3-0.6B、Qwen3-1.7B、OpenMath-Nemotron-1.5B、DeepSeek-R1-Distill-Qwen-1.7B 等），每个模型对 N=128 个 rollout 在 T=4000 token 截断处剪枝，评估 k∈{1,2,4,8,16}；PKTP 全面优于 Linear Probe 与 RepExp，优势在中等 k 最明显（论文原话：gains are largest at moderate k），在 DeepSeek-R1-Distill-Qwen-7B 上 k=4 时比 Linear Probe 高 3.3 分，且 PKTP 在所有模型 k≥2 时都稳在 Random 之上，而两个基线各有偏置（RepExp 偏好离群样本，中等 k 有时低于 Random；Linear Probe 会聚集在它认为正确的解上）。截止阈值口径：T 越大越好——Qwen3-1.7B 的 pass@4 从 T=2000 的 63.5% 升到 T=8000 的 65.9%，DeepSeek-R1-Distill-Qwen-7B 从 57.4% 升到 61.7%。⚠️ 昨日写的『2–3 分提升』口径不准：论文明确给出的单点差值是 3.3 分（DeepSeek-R1-Distill-Qwen-7B, k=4, 对 Linear Probe），本文中未见『2–3 分』这一表述；今日按 3.3 分写并注明出处。证据边界：全部结果为作者自述，本次未做第三方复现；abs 页与 HTML 全文中无作者仓库或项目页链接（全文里出现的 GitHub 链接是第三方 Math-Verify 校验库），代码标注 待核验/暂无；另需注意论文用并列括号归因，表中数值以全文表格为准。价值路由：趋势价值——『剪枝目标应当对齐最终要报的指标（pass@k）』这个思路可直接迁移到我们自己的推理预算控制：不要用代理分数去剪枝，要用最终评测指标去定义保留集。今日动作：不投入实现；记一条设计纪律——我们的 rollout 剪枝/早停策略应以最终上报指标对齐，并记录 cutoff 阈值作为显式超参。",
+  "one_line_essence": "据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发式换成了一个明确的目标函数——直接优化 pass@k。问题陈述：测试期扩展靠生成大量候选解找至少一个正确的，但全部跑完代价高；现有做法是在生成短前缀后剪枝候选池，策略分两大类（基于质量、基于多样性），各偏一边。方法：把探针与 RepExp 用一个 pass@k 的次模近似连起来，用秩一贪心更新闭式计算似然并贪心选择保留集合，带次模近似的保证。数字（作者自述，本次未做第三方复现）：八个开放权重推理模型、两档尺寸（小档 Qwen3-0.6B、Qwen3-1.7B、OpenMath-Nemotron-1.5B、DeepSeek-R1-Distill-Qwen-1.7B 等），每个模型对 N=128 个 rollout 在 T=4000 token 截断处剪枝，评估 k∈{1,2,4,8,16}；PKTP 全面优于 Linear Probe 与 RepExp，优势在中等 k 最明显（论文原话：gains are largest at moderate k），在 DeepSeek-R1-Distill-Qwen-7B 上 k=4 时比 Linear Probe 高 3.3 分，且 PKTP 在所有模型 k≥2 时都稳在 Random 之上，而两个基线各有偏置（RepExp 偏好离群样本，中等 k 有时低于 Random；Linear Probe 会聚集在它认为正确的解上）。截止阈值口径：T 越大越好——Qwen3-1.7B 的 pass@4 从 T=2000 的 63.5% 升到 T=8000 的 65.9%，DeepSeek-R1-Distill-Qwen-7B 从 57.4% 升到 61.7%。⚠️ 口径纪律：论文明确给出的单点差值是 3.3 分（DeepSeek-R1-Distill-Qwen-7B, k=4, 对 Linear Probe），全文未见『2–3 分』这一表述，按 3.3 分写并注明出处。证据边界不变：全部结果为作者自述，本次未做第三方复现；abs 页与 HTML 全文中无作者仓库或项目页链接（全文里出现的 GitHub 链接是第三方 Math-Verify 校验库），代码标注 待核验/暂无；今日按 arXiv id 2610.31667 与标题短语在 GitHub 仓库搜索中复核，仍未发现任何指向本论文实现的仓库（搜索命中项均为无关的 daily-arxiv 聚合仓库与同名目录）。价值路由：趋势价值——『剪枝目标应当对齐最终要报的指标（pass@k）』可直接迁移到我们自己的推理预算控制。今日动作不变：不投入实现；记一条设计纪律——我们的 rollout 剪枝/早停策略应以最终上报指标对齐，并记录 cutoff 阈值作为显式超参。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
   "new_claim_or_method": "据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发式换成了一个明确的目标函数——直接优化 pass@k。问题陈述：测试期扩展靠生成大量候选解找至少一个正确的，但全部跑完代价高；现有做法是在生成短前缀后剪枝候选池，策略分两大类（基于质量、基于多样性），各偏一边。方法：把探",
   "research_position": "source_paper",
@@ -121,7 +121,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=direct-pass-k-optimization-for-thought-pruning-balancing-quality-and-diversity-in-test-time-reasoning",
-  "daily_path": "daily-detail.html?date=2026-10-25",
+  "daily_path": "daily-detail.html?date=2026-10-26",
   "trend_paths": [
     "trend-detail.html?id=coding-agent",
     "trend-detail.html?id=agentic-world-modeling"
