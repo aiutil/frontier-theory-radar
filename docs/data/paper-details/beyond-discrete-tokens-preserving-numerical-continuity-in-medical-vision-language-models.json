@@ -1,0 +1,136 @@
+{
+  "id": "beyond-discrete-tokens-preserving-numerical-continuity-in-medical-vision-language-models",
+  "title": "Beyond Discrete Tokens: Preserving Numerical Continuity in Medical Vision-Language Models",
+  "authors": [
+    "Dianye Huang",
+    "Jiamei Guo",
+    "Yue Zhou",
+    "Mingde Li",
+    "Yi Xiong"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-23",
+  "url": "http://arxiv.org/abs/2610.32948v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.32948v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-27",
+  "first_deep_dive_daily": "2026-10-27",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 60.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的…",
+  "one_line_essence": "今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的是一个具体而干净的错配——定量超声测量要求连续数值目标，而基于 token 的数值预测是离散的。它用自回归-扩散混合框架，在共享 backbone 内把自回归文本生成与连续测量预测结合起来；视觉 prompt tuning 适配视觉编码器；扩散过程预测一个五分量表示（卡尺两端点坐标 + 测量长度）；后处理结合『坐标-长度一致性机制』与集成预测来精修测量估计。作者自述（今日不可复现）：在 EchoNet-LVH 上四个超声测量任务（IVSd / LVIDd / LVIDs / LVPWd）的平均绝对误差分别为 1.36 / 2.77 / 3.05 / 1.16 mm，相对基于 Vicuna 的自回归基线误差降低 21.4–37.6%；在全部四个任务上优于微调后的 Qwen3-VL 与直接 MLP 回归；在评测数据集上医学问答能力得以保持；X 光脊柱测量上把平均绝对误差从 11.4 像素降到 6.7 像素。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接（唯一命中为 arXiv 模板自带的 huggingface.co/docs/hub），没有可核验的官方实现或第三方实现（待核验/暂无）；另注该篇属医学影像定量任务，离我们当前系统范围较远。⚠️ 证据边界：全部数值与『优于 Qwen3-VL / MLP 回归』的对比均为作者自述，本机无代码、无数据（EchoNet-LVH 需单独获取）、无第三方复现，无法核验。★ 价值路由：列长尾价值——领域（临床超声测量）离我们远，今天投入产出比低。但它带走一个可迁移的结构性判断：连续量不该硬塞进 token 空间，应该有一个连续的预测头；但『连续头 + 自回归共享 backbone』的具体做法与我们是否相关，取决于我们是否有连续数值的输出需求（今日我们没有明确需求）。动作：加入长尾库，先保存不投入；设置未来触发条件——当我们的某个 agent 任务开始产出连续数值（置信度、金额、时长、评分）时，回看这篇的『连续头 + 离散文本头共享 backbone』与『坐标-长度一致性后处理』两条设计；触发条件包括出现开源实现、被高质量论文引用、或我们自己出现连续数值输出需求。现在可沉淀的资产只有一句可复用的设计原则：『当输出类型混合了连续量与离散文本时，为连续量单独设计一个预测通路，别用离散 token 近似它』——这条原则本身今天就能进我们的设计检查表。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的是一个具体而干净的错配——定量超声测量要求连续数值目标，而基于 token 的数值预测是离散的。它用自回归-扩散混合框架，在共享 backbone 内把自回归文本生成与连续测量预测结合起来；视觉 prompt tunin",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的是一个具体而干净的错配——定量超声测量要求连续数值目",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-17"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32948v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.32948v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=beyond-discrete-tokens-preserving-numerical-continuity-in-medical-vision-language-models",
+  "daily_path": "daily-detail.html?date=2026-10-27",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

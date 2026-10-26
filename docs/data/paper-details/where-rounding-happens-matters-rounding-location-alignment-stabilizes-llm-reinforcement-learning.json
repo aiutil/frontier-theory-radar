@@ -1,0 +1,128 @@
+{
+  "id": "where-rounding-happens-matters-rounding-location-alignment-stabilizes-llm-reinforcement-learning",
+  "title": "Where Rounding Happens Matters: Rounding-Location Alignment Stabilizes LLM Reinforcement Learning",
+  "authors": [
+    "Yijing Ke",
+    "Tianle Cai",
+    "Ruosong Wang"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-23",
+  "url": "http://arxiv.org/abs/2610.32951v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.32951v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-27",
+  "first_deep_dive_daily": "2026-10-27",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 77.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第二。据 arXiv 2610.32951 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅有 abs …",
+  "one_line_essence": "今日趋势价值第二。据 arXiv 2610.32951 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅有 abs 页与摘要可核）：这篇问的问题非常具体——RLHF/RLVR 训练通常把推理和训练拆成两套系统，即使权重相同、张量同为 BF16，实现差异也足以让一次本该 on-policy 的更新变成 off-policy 并让训练崩掉；既有补救要么对齐整套推理训练栈、要么改全局精度、要么改学习算法，而本文问的是：只对齐执行栈里选定的部分能不能稳住 BF16 RL。做法是在训练侧把三个区域的舍入位置与推理侧对齐——RoPE、SwiGLU、residual RMSNorm，方式是让选定的中间结果保持 FP32 直到输出其 BF16 值。作者自述结论：跨四个 Qwen 系模型，对齐这三个区域可避免默认 BF16 基线下的崩塌；而仅对齐 RoPE 路径在所研究的运行里也已足够，尽管仍存在残余数值差异；干预保持推理引擎、矩阵乘与注意力 kernel、学习目标均不变。⚠️ 证据边界（今日最重要的一条）：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接（唯一命中为 arXiv 模板自带的 huggingface.co/docs/hub），即目前没有可核验的官方实现或第三方实现（待核验/暂无）；『四个 Qwen 系模型』『崩塌』『仅 RoPE 对齐即足够』这些结论全部依赖作者的内部训练栈，我们无从核验；该篇的 arXiv HTML 版为 404，意味着连全文细节都无法逐字复核，只有摘要级证据——这比昨天那批（全文可读）证据更薄。★ 价值路由：列趋势价值而非即时价值，因为我们既没有官方实现，也看不到可抄的具体补丁，贸然照着摘要改训练栈风险高。但它的『定位思路』本身极有价值且可立即迁移——把『同一个数学量在不同系统里被舍入的位置不同』当作一类 bug 来审计。我们的 RL/推理栈同样存在训练侧与推理侧的数值不一致风险，尤其在 BF16 下。可今天就做的最小动作（不需要这篇论文的实现）：在我们自己的训练-推理一致性检查里加一条断言——同一份权重、同一批输入，训练侧前向与推理侧前向在 RoPE 位置、激活函数位置、归一化位置分别比对最大绝对误差，把误差最大的位置记为待对齐点。这是纯工程动作，不依赖论文结论，收益来自『发现问题』而非『照抄解法』。同时把该篇列入趋势雷达连续观察：若后续放出实现或被 verl / OpenRLHF 等框架采纳，证据等级会立刻升级，届时再深挖。注意区分：这篇与前两天的 softmax 修复（barron-softmax-fix）属同一大类『数值实现细节决定训练成败』，但今天这篇连开源实现都没有，所以证据等级明确低于那篇已实跑复现的先例。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第二。据 arXiv 2610.32951 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅有 abs 页与摘要可核）：这篇问的问题非常具体——RLHF/RLVR 训练通常把推理和训练拆成两套系统，即使权重相同、张量同为 BF16，实现差异也足以让一次本该 on-policy 的更新变成 off-policy 并让训练崩掉",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第二。据 arXiv 2610.32951 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅有 abs 页与摘要可核）：这篇问的问题非常具体——RLHF/R",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32951v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.32951v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=where-rounding-happens-matters-rounding-location-alignment-stabilizes-llm-reinforcement-learning",
+  "daily_path": "daily-detail.html?date=2026-10-27",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

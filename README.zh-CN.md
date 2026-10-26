@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-26
+## 最新研究 · 2026-10-27
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 155 | 248 | 259 | 1358 |
+| 10 | 157 | 253 | 261 | 1359 |
 
-**今日深挖：** [EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence](daily/2026/2026-10-26.md) · 即时价值 · 重点学习
+**今日深挖：** [Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox](daily/2026/2026-10-27.md) · 即时价值 · 重点学习
 
-**核心判断：** 据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（今日回原文逐字复核）与第三方复现实跑：EpiSEM 攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了——而且用户请求本身良性、工具返回的每句话都是真的。规模今日复核确认：正文原句「It contains 300 task pairs comprising 600 worlds, with 50 pairs in each of six domains and 60 task families」与「Each domain contains 50 task pairs in ten families, giving 300 pairs and 600 worlds」——即每域 10 个家族、六域合计 60 个；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 口径提醒（连续第二日保留）：昨日 10-25 报告更正过前一日的两处错误（任务族数、Table 1 列序 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR），今日回原文逐字确认那次更正是对的，但 2026-10-24 的历史文件未回改。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 的机制证据最刺眼：Qwen3-14B Attempt 仅 16.3% 而 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——模型大量在把缺失事实取回来之前就提交了动作。
+**核心判断：** 据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（**均为作者自述，本机无法复现数值**，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——**它属于 contact graph，不属于 prompt**；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ **今日证据等级实质升级（这是本篇今日最重要的变化）：** 配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。
 
-**建议动作：** 今天排五条动作，顺序即优先级。(1) 抄 EpiSEM-Bench 六指标模板（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR，2610.31650），并把今日实跑的 habib-analyst/episembench 当我们自己实现的验收清单——它的 18/18 已本地跑通，两条核心断言正好对应 Table 1 的 Full UCR 与 Recovery UCR 两列：盲态 agent 在完整遮蔽下必然越权、会查证的 agent 能收手。在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列：遮蔽后越权执行率、主动补证据率、以及「先查后动」比例，不引论文分数当基线。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix（今日已验证 30/30 通过、numerics 与论文逐项对上）对我们训练栈做 A/B，量两件事——loss spike 次数、student=teacher 时梯度是否恰为 0（今日 numerics 实测：bf16 与 fp32 下 barron 实现全为 0.00e+00，而 torch 的 max|z_S-z_T| 达 3.22e-02 / 1.92e-02；★ 今日 grokking 缩减配置已实跑：torch_fp32 8 次 loss spike vs barron_fp32 0 次，且 barron 把最终 margin 中位数推到 16.23（越过 fp32 悬崖比例 0.29）而 torch 停在 9.63（0.00），测试准确率相当 0.3597 vs 0.3680——可直接把『我们训练栈的 loss spike 计数』作为 A/B 的验收指标）；同时记录各任务的 dtype 与 AdamW eps，判断 margin 是否越过对应精度悬崖（实测 torch 悬崖 bf16=5.56 / fp32=16.64 / fp64=36.74 / fp16=7.63，barron 推迟到 93.00 / 103.98 / nan / 17.34）；注意该实现自陈 3.4–6x 速度与 1.25–1.75x 显存代价，只在蒸馏与关键任务上启用。(3) 审 agent 升级阈值链路（Cost-Aware Abstention，2610.31657，Zenodo 产物 10.5281/zenodo.22609128 → zenodo.org/records/22654013 今日实测 200）：按显式成本模型 + calibration 选阈值 + 冻结后一次性评估的口径，先算 correctness AUROC；测不出区分度就不许上阈值。同时把今日新学到的第一道筛子加进去——先问「预算够不够」：selective-audit 实测 burst 1% 预算下四种策略全部只检出 8–9 而 oracle 90，约束不够时调策略无意义。(4) 把五条口径纪律写进 paper-reading checklist：实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分为作者官方 / 第三方 / 脚本化合成类比、新增「有复现仓库」分为 README 自述 / 本地实跑通过 / 实跑且逐项对上；并加一条记账纪律——「相邻基准 ≠ 原论文复现」（selective-audit 是受 2610.31662 启发但问题正交）。(5) 趋势雷达连续观察：Selective Auditing（2610.31662，今日新发现可跑相邻基准 habib-analyst/selective-audit，注意 anti-conservative 方向、O(1/n_T) 误差控制保证、以及作者官方代码仍缺）、Sensorimotor Alignment（2610.31670，h=110 vs h=7 口径纪律；今日更正规模印象——仓库 tree_blobs=4030，analysis/ 脚本与部分中间产物是公开的，作者自陈仍缺的是六 WAM / 真机 / 14-backbone 的 matching reproduction bundles）、Direct Pass@k（2610.31667，剪枝目标对齐最终指标，3.3 分优势与 cutoff 阈值是显式超参）、Low-Bit N-Gram（2610.31646，n-gram 表内存是可预算工程量，47–55% 与 75% 分属两组实验）、SpectralCanary（2610.31659，发布即埋信号；作者仓库结构今日可见 src/provenance_t2i/ 与 20+ 脚本，但项目页连续第二天 404）。长尾入库并标注触发条件：METTA（2610.31656，两个时间尺度的记忆分工）、Phase Transition（2610.31663，可训练比例的收益曲线非单调）。
+**建议动作：** 抄 Foyer 七步测量协议并在我们自己的收件箱/工单流上跑第一轮（抽 120–250 条、冻结快照、按线程切分、人工标注），今天只数三个数——多数类基线、生产规则基线、字段准确率——然后只盯「需要动作却被忽略」的比例；同时把它的 kappa.py（纯标准库、含 bootstrap CI）抄进评测工具链。附带三件不依赖任何论文数字的工程动作：给训练-推理一致性加 RoPE/激活/归一化位置误差断言；把「指令动作 + 实测状态」双写进 tool-call 日志；用 RobustRLlib 的语义/物理/时序扰动维度建我们自己的 agent shift 清单。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-10-27](daily/2026/2026-10-27.md) | Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox | 即时价值 | 重点学习 |
 | [2026-10-26](daily/2026/2026-10-26.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | 即时价值 | 重点学习 |
 | [2026-10-25](daily/2026/2026-10-25.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | 即时价值 | 重点学习 |
 | [2026-10-24](daily/2026/2026-10-24.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | 即时价值 | 重点学习 |
 | [2026-10-23](daily/2026/2026-10-23.md) | LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data | 即时价值 | 重点学习 |
 | [2026-10-22](daily/2026/2026-10-22.md) | MAMath-Bench: Process-Aware and Robust Evaluation of Multimodal Multi-Agent Mathematical Reasoning | 即时价值 | 重点学习 |
 | [2026-10-21](daily/2026/2026-10-21.md) | OpenVLHarness: Real World Visual Agentic Tool-Use with Multimodal Memory | 即时价值 | 重点学习 |
-| [2026-10-20](daily/2026/2026-10-20.md) | Self-Building Labs | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 616 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 639 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 616 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 617 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 643 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 617 |
 
 ## 为什么做这个项目
 

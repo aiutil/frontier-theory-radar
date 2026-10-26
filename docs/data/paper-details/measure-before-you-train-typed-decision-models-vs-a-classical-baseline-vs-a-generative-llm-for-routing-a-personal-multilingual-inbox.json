@@ -1,0 +1,132 @@
+{
+  "id": "measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
+  "title": "Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox",
+  "authors": [
+    "Federico Lucca"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-23",
+  "url": "http://arxiv.org/abs/2610.32955v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.32955v1",
+  "code_url": "https://gitlab.com/federicolucca/foyer-measure",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-27",
+  "first_deep_dive_daily": "2026-10-27",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 86.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitla…",
+  "one_line_essence": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇真正稀缺的不是模型对比，而是『先测量、再训练』的方法论本身——它指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（均为作者自述，本机无法复现数值，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——它属于 contact graph，不属于 prompt；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ 今日证据等级实质升级（这是本篇今日最重要的变化）：配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。⚠️ 证据边界必须说清：这证明的是『协议代码可运行、统计工具正确』，不是『论文数值被复现』——作者的真实邮件与标签按 README 明写不公开（No emails, labels or per-email results are included），所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 这些数字在本机一律无法独立核验，只能标为作者自述。★ 今日同时抓到一处论文自身口径不一致（首次发现，待作者确认）：arXiv abs 页摘要写『On 739 real Italian/English emails labelled by the owner (231 unbiased, 500 adversarially sampled)』，而 LaTeXML HTML 全文正文写 Round 3 为 500 封采样、491 封保留、『The v3 corpus (722 emails, 698 threads)』，且 231 + 491 = 722 自洽；全文通篇检索『739』零命中，唯一出现的『731』是 Table 3 里 action-48h 的 macro-F1 数值（0.731），与样本量无关。即摘要的 739 与正文的 722 差 17，且 739 = 231 + 500 直接把采样数当成了保留数——我们按正文口径（722）记，并保留此提醒，不替作者下结论。★ 价值路由与今天的动作重心：仍列即时价值第一，但动作从『读论文』升级为『直接抄协议、拿我们自己的收件箱跑一遍』——具体三步：(1) 照抄七步协议（分层抽样 → 冻结快照 → 按线程切分 → 在 agent review 回路里人工标注并记录谁提议谁确认 → 开标签前预注册假设 → 训练前先数多数类/生产系统/训练基线/零样本系统 → 把标签合成动作并按错误代价选阈值）；(2) 立刻在我们自己的 agent 上量三个数：多数类基线、生产规则基线、字段级准确率，然后只看一个数——『需要动作却被忽略』的比例，而不是准确率；(3) 抄两个可迁移的结论进工程规范：发件人关系进 contact graph 不进 prompt；阈值按错误代价选而不是按准确率选。注意一条边界：论文的 9 系统对比没有包含『自建小模型微调』这一档（只到 LogReg 与零样本），所以它不能证明『小模型不值得做』，也不能证明『LLM 该被替换掉』——它证明的是『在你自己的数据上，先量再选』。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇真正稀缺的不是模型对比，而是『先测量、再训练』的方法论本身——它指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32955v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.32955v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
+  "daily_path": "daily-detail.html?date=2026-10-27",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

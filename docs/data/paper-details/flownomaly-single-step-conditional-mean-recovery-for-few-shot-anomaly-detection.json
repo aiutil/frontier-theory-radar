@@ -1,0 +1,134 @@
+{
+  "id": "flownomaly-single-step-conditional-mean-recovery-for-few-shot-anomaly-detection",
+  "title": "Flownomaly: Single-Step Conditional-Mean Recovery for Few-Shot Anomaly Detection",
+  "authors": [
+    "Bernardo Perrone Ribeiro",
+    "Erkut Akdag",
+    "Egor Bondarev"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-23",
+  "url": "http://arxiv.org/abs/2610.32964v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.32964v1",
+  "code_url": "https://github.com/b-rbmp/Flownomaly",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-27",
+  "first_deep_dive_daily": "2026-10-27",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 83.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第二即时价值，理由是它把『少样本异常检测』的推理成本结构性地压成了一步。据 arXiv 2610.32964 摘要与 LaTeXML H…",
+  "one_line_essence": "今日第二即时价值，理由是它把『少样本异常检测』的推理成本结构性地压成了一步。据 arXiv 2610.32964 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 github.com/b-rbmp/Flownomaly 的本地核验：核心做法是在冻结的 DINOv2 特征空间里，把问题重新表述为『正常对应物恢复』——用条件流匹配在正常 patch token 上学一个速度场，把高斯噪声搬运到正常特征；沿直线路径，一次恢复步（只评估一次最优场）就给出干净正常 token 的后验均值，不需要轨迹积分；操作时间（operating time）控制恢复对 query token 的改写强度，而『没有异常验证样本可调』这个硬约束由一个仅用正常样本的 Jacobian 增益噪声比（JGN）判据从 support 单独选出这个时间；query token 与恢复后 token 的平方残差同时给出稠密定位与图像级检测信号。作者自述的 1-shot 结果（今日不可复现，见证据边界）：MVTec-AD 图像级 97.8% / 像素级 98.0% AUROC，VisA 95.3% / 98.7%，Real-IAD（1 sample、5 views）88.2% / 99.2%，并称在 VisA 上图像级比最强基线高 2.1 个百分点。★ 今日证据升级（结构级已核验，数值级不可复现）：仓库已下载，src/flownomaly/ 下 network.py（时间条件速度场）、calibration.py（JGN 校准，用 torch.func.jvp 做方向导数）、detector.py（拟合与推理主路径）、protocol.py（固定协议常量）、data.py / metrics.py / evaluation.py / rotation.py / workflow.py 齐全；protocol.py 常量可与正文逐项对照——backbone=dinov2_vitg14_reg、image_size=672、patch_size=14、target_layers=(15,19,23,27,31) 且注释自陈 0-indexed 对应第 16/20/24/28/32 层、shots=(1,2,4)、seeds=(42,43,44)、flow_batch_size=10240、jgn_candidates 为 0.05 至 0.95 步长 0.05、jgn_noise_pairs=4、jgn_probes=4、jgn_token_fraction=0.01、image_top_fraction=0.01、aupro_fpr_limit=0.3，与正文『1/2/4-shot』及 JGN 校准描述自洽。⚠️ 证据边界：detector.py 构造器明确 `if device != \"cuda\" or not torch.cuda.is_available(): raise RuntimeError(\"The reproduction path requires a CUDA GPU.\")`，README 也写明论文实验跑在 Linux + NVIDIA H100，本机为 CPU（J1900，无 AVX）故数值一律无法复现，上述 AUROC 全部标注『作者自述，待核验/暂无』；仓库里没有提交论文所用的 DINOv2 权重与数据集，也未提供 checkpoint，故连『跑一遍看趋势』都做不到。★ 价值判断：它今日进即时价值不是因为数值被验证，而是因为『单步替代轨迹积分』这个结构值得我们在自己的相似场景里试——如果我们在做基于自编码器/扩散特征的检索或重建，把采样次数从 N 降到 1 对线上延迟是数量级差别，而它的『仅用正常样本调超参』思路（JGN）也直接可用于我们缺标注的场景。动作：(1) 读 calibration.py 的 JGN 实现（约 160 行、纯 torch、无外部依赖），把它当作『无标注情况下选超参』的一个可复用范式抽出来——核心是只比较正常样本上的残差上尾与方向导数增益比；(2) 在我们自己的小规模检索/异常场景里做一次单步 vs 多步的对照实验，量延迟与质量比，不要引用其 AUROC 作为基线；(3) 记一条工程提醒：这类『先冻结大骨干、只在轻量头上做流匹配』的范式，其真实收益高度依赖骨干特征质量，而我们没有 DINOv2 级别的先验时，迁移收益未知（待核验/暂无）。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第二即时价值，理由是它把『少样本异常检测』的推理成本结构性地压成了一步。据 arXiv 2610.32964 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 github.com/b-rbmp/Flownomaly 的本地核验：核心做法是在冻结的 DINOv2 特征空间里，把问题重新表述为『正常对应物恢复』——用条件流匹配在正常",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第二即时价值，理由是它把『少样本异常检测』的推理成本结构性地压成了一步。据 arXiv 2610.32964 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 gi",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32964v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.32964v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=flownomaly-single-step-conditional-mean-recovery-for-few-shot-anomaly-detection",
+  "daily_path": "daily-detail.html?date=2026-10-27",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

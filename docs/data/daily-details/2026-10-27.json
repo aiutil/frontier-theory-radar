@@ -1,0 +1,269 @@
+{
+  "date": "2026-10-27",
+  "title": "论文价值发现日报 - 2026-10-27",
+  "deep_dive_id": "measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
+  "deep_dive_title": "Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "decision": "重点学习",
+  "daily_action": "抄 Foyer 七步测量协议并在我们自己的收件箱/工单流上跑第一轮（抽 120–250 条、冻结快照、按线程切分、人工标注），今天只数三个数——多数类基线、生产规则基线、字段准确率——然后只盯「需要动作却被忽略」的比例；同时把它的 kappa.py（纯标准库、含 bootstrap CI）抄进评测工具链。附带三件不依赖任何论文数字的工程动作：给训练-推理一致性加 RoPE/激活/归一化位置误差断言；把「指令动作 + 实测状态」双写进 tool-call 日志；用 RobustRLlib 的语义/物理/时序扰动维度建我们自己的 agent shift 清单。",
+  "score": 86.0,
+  "trend_stage": "emerging",
+  "one_line_judgement": "今天值得试：今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitla…",
+  "max_uncertainty": "今日最大的风险是把「代码跑通」误当成「论文被复现」：Foyer 的仓库确实本地跑通，但作者那 722 封真实邮件与标签按其 README 明写不公开，所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 全部只是作者自述，无法独立核验。其次环境已成硬约束：本机 J1900 无 AVX，MuJoCo 全版本 import 即 SIGILL，RobustRLlib 的 49 个失败经逐个归因全部且仅因缺 mujoco（25 passed / 42 skipped 均通过），任何需 MuJoCo/Isaac/GPU 的复现在当前机器不可行。第三，Flownomaly 明确要求 CUDA GPU（H100 实验环境），其 1-shot AUROC 与仓库权重/数据均无法复现。第四，Deco、Rounding-Location Alignment、HAD-VLM、Monetizing Intelligence、Language of Instruction 五篇至今无任何可核验实现（abs 页与 HTML 全文正则扫描无 github/gitlab 链接，GitHub 搜索亦零命中）。此外 Foyer 摘要的 739 与正文 722 存在样本量不一致，已按正文记录并保留待作者确认。",
+  "conclusion_lines": [
+    "今天最值得看的是《Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox》。",
+    "它属于即时价值，因为同时具备较高的相关性与研究资产价值。",
+    "今天建议动作：抄 Foyer 七步测量协议并在我们自己的收件箱/工单流上跑第一轮（抽 120–250 条、冻结快照、按线程切分、人工标注），今天只数三个数——多数类基线、生产规则基线、字段准确率——然后只盯「需要动作却被忽略」的比例；同时把它的 kappa.py（纯标准库、含 bootstrap CI）抄进评测工具链。附带三件不依赖任何论文数字的工程动作：给训练-推理一致性加 RoPE/激活/归一化位置误差断言；把「指令动作 + 实测状态」双写进 tool-call 日志；用 RobustRLlib 的语义/物理/时序扰动维度建我们自己的 agent shift 清单。。",
+    "最大不确定性：今日最大的风险是把「代码跑通」误当成「论文被复现」：Foyer 的仓库确实本地跑通，但作者那 722 封真实邮件与标签按其 README 明写不公开，所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 全部只是作者自述，无法独立核验。其次环境已成硬约束：本机 J1900 无 AVX，MuJoCo 全版本 import 即 SIGILL，RobustRLlib 的 49 个失败经逐个归因全部且仅因缺 mujoco（25 passed / 42 skipped 均通过），任何需 MuJoCo/Isaac/GPU 的复现在当前机器不可行。第三，Flownomaly 明确要求 CUDA GPU（H100 实验环境），其 1-shot AUROC 与仓库权重/数据均无法复现。第四，Deco、Rounding-Location Alignment、HAD-VLM、Monetizing Intelligence、Language of Instruction 五篇至今无任何可核验实现（abs 页与 HTML 全文正则扫描无 github/gitlab 链接，GitHub 搜索亦零命中）。此外 Foyer 摘要的 739 与正文 722 存在样本量不一致，已按正文记录并保留待作者确认。。"
+  ],
+  "candidate_papers": [
+    {
+      "id": "measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
+      "title": "Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox",
+      "detail_path": "paper-detail.html?id=measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
+      "direction": "未分类",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "score": 86.0,
+      "decision": "重点学习",
+      "has_code": true,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    },
+    {
+      "id": "flownomaly-single-step-conditional-mean-recovery-for-few-shot-anomaly-detection",
+      "title": "Flownomaly: Single-Step Conditional-Mean Recovery for Few-Shot Anomaly Detection",
+      "detail_path": "paper-detail.html?id=flownomaly-single-step-conditional-mean-recovery-for-few-shot-anomaly-detection",
+      "direction": "未分类",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "score": 83.0,
+      "decision": "重点学习",
+      "has_code": true,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    },
+    {
+      "id": "robustrllib-a-unified-library-and-benchmark-for-robust-reinforcement-learning-algorithms",
+      "title": "RobustRLlib: A Unified Library and Benchmark for Robust Reinforcement Learning Algorithms",
+      "detail_path": "paper-detail.html?id=robustrllib-a-unified-library-and-benchmark-for-robust-reinforcement-learning-algorithms",
+      "direction": "未分类",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 79.0,
+      "decision": "轻量试点",
+      "has_code": true,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    },
+    {
+      "id": "where-rounding-happens-matters-rounding-location-alignment-stabilizes-llm-reinforcement-learning",
+      "title": "Where Rounding Happens Matters: Rounding-Location Alignment Stabilizes LLM Reinforcement Learning",
+      "detail_path": "paper-detail.html?id=where-rounding-happens-matters-rounding-location-alignment-stabilizes-llm-reinforcement-learning",
+      "direction": "未分类",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 77.0,
+      "decision": "轻量试点",
+      "has_code": false,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    },
+    {
+      "id": "separating-thinking-from-spelling-for-efficient-generative-recommendation",
+      "title": "Separating Thinking from Spelling for Efficient Generative Recommendation",
+      "detail_path": "paper-detail.html?id=separating-thinking-from-spelling-for-efficient-generative-recommendation",
+      "direction": "未分类",
+      "value_type": "trend",
+      "value_type_label": "趋势价值",
+      "score": 76.0,
+      "decision": "轻量试点",
+      "has_code": false,
+      "has_benchmark": false,
+      "worth_deep_dive": true
+    }
+  ],
+  "deep_dive": {
+    "id": "measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
+    "title": "Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox",
+    "authors": [
+      "Federico Lucca"
+    ],
+    "source": "arXiv",
+    "published": "2026-10-23",
+    "url": "http://arxiv.org/abs/2610.32955v1",
+    "pdf_url": "https://arxiv.org/pdf/2610.32955v1",
+    "code_url": "https://gitlab.com/federicolucca/foyer-measure",
+    "benchmark_url": "",
+    "paperswithcode_url": "",
+    "openreview_url": "",
+    "first_seen_date": "2026-10-27",
+    "first_deep_dive_daily": "2026-10-27",
+    "value_type": "immediate",
+    "value_type_label": "即时价值",
+    "value_scores": {
+      "novelty": 4.8,
+      "relevance": 5.0,
+      "evidence": 5.9,
+      "engineering_testability": 6.05,
+      "trend_signal": 3.5,
+      "long_tail_potential": 3.5,
+      "actionability": 7.3,
+      "noise_risk": 1.2
+    },
+    "score": 86.0,
+    "decision": "重点学习",
+    "one_line_judgement": "今天值得试：今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitla…",
+    "one_line_essence": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇真正稀缺的不是模型对比，而是『先测量、再训练』的方法论本身——它指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（均为作者自述，本机无法复现数值，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——它属于 contact graph，不属于 prompt；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ 今日证据等级实质升级（这是本篇今日最重要的变化）：配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。⚠️ 证据边界必须说清：这证明的是『协议代码可运行、统计工具正确』，不是『论文数值被复现』——作者的真实邮件与标签按 README 明写不公开（No emails, labels or per-email results are included），所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 这些数字在本机一律无法独立核验，只能标为作者自述。★ 今日同时抓到一处论文自身口径不一致（首次发现，待作者确认）：arXiv abs 页摘要写『On 739 real Italian/English emails labelled by the owner (231 unbiased, 500 adversarially sampled)』，而 LaTeXML HTML 全文正文写 Round 3 为 500 封采样、491 封保留、『The v3 corpus (722 emails, 698 threads)』，且 231 + 491 = 722 自洽；全文通篇检索『739』零命中，唯一出现的『731』是 Table 3 里 action-48h 的 macro-F1 数值（0.731），与样本量无关。即摘要的 739 与正文的 722 差 17，且 739 = 231 + 500 直接把采样数当成了保留数——我们按正文口径（722）记，并保留此提醒，不替作者下结论。★ 价值路由与今天的动作重心：仍列即时价值第一，但动作从『读论文』升级为『直接抄协议、拿我们自己的收件箱跑一遍』——具体三步：(1) 照抄七步协议（分层抽样 → 冻结快照 → 按线程切分 → 在 agent review 回路里人工标注并记录谁提议谁确认 → 开标签前预注册假设 → 训练前先数多数类/生产系统/训练基线/零样本系统 → 把标签合成动作并按错误代价选阈值）；(2) 立刻在我们自己的 agent 上量三个数：多数类基线、生产规则基线、字段级准确率，然后只看一个数——『需要动作却被忽略』的比例，而不是准确率；(3) 抄两个可迁移的结论进工程规范：发件人关系进 contact graph 不进 prompt；阈值按错误代价选而不是按准确率选。注意一条边界：论文的 9 系统对比没有包含『自建小模型微调』这一档（只到 LogReg 与零样本），所以它不能证明『小模型不值得做』，也不能证明『LLM 该被替换掉』——它证明的是『在你自己的数据上，先量再选』。",
+    "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+    "new_claim_or_method": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇真正稀缺的不是模型对比，而是『先测量、再训练』的方法论本身——它指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系",
+    "research_position": "source_paper",
+    "engineering_testability": {
+      "has_code": true,
+      "has_benchmark": false,
+      "can_reproduce": true,
+      "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+      "engineering_scenarios": [
+        "AI Agent",
+        "Context Engineering",
+        "评测治理"
+      ]
+    },
+    "trend_relation": {
+      "status": "emerging",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "evidence": [
+        "论文主题匹配固定研究方向"
+      ],
+      "uncertainties": [
+        "是否会出现更多开源实现与生产案例"
+      ]
+    },
+    "long_tail": {
+      "why_save": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-",
+      "future_trigger": [
+        "待更多证据"
+      ],
+      "possible_use_cases": [
+        "Prompt 设计",
+        "Skill 草案",
+        "评测方法",
+        "架构模式"
+      ],
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist",
+        "模板"
+      ],
+      "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+      "revisit_date": ""
+    },
+    "insights": {
+      "system_design": [
+        "先判断价值类型，再决定系统性投入。"
+      ],
+      "agent_engineering": [
+        "为 Agent 建立论文价值路由器。"
+      ],
+      "dev_process": [
+        "论文输出应沉淀为可执行资产。"
+      ],
+      "evaluation": [
+        "同时看方法与证据质量。"
+      ],
+      "platform_engineering": [
+        "长尾资产库可降低重复检索成本。"
+      ],
+      "personal_learning": [
+        "优先读能转化为未来复利的论文。"
+      ]
+    },
+    "actions": {
+      "immediate_actions": [
+        "今天读摘要与方法",
+        "今天试最小实验",
+        "一周内沉淀为 Skill / Checklist"
+      ],
+      "trend_actions": [],
+      "long_tail_actions": [],
+      "ignore_reason": ""
+    },
+    "references": [
+      {
+        "label": "arXiv",
+        "url": "http://arxiv.org/abs/2610.32955v1"
+      },
+      {
+        "label": "PDF",
+        "url": "https://arxiv.org/pdf/2610.32955v1"
+      }
+    ],
+    "detail_path": "paper-detail.html?id=measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
+    "daily_path": "daily-detail.html?date=2026-10-27",
+    "trend_paths": [
+      "trend-detail.html?id=coding-agent",
+      "trend-detail.html?id=agentic-world-modeling"
+    ],
+    "long_tail_path": "long-tail.html",
+    "mermaid": {
+      "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+      "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+      "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+    }
+  },
+  "long_tail_saved": [],
+  "ignore_reasons": [
+    "暂无明确忽略样本，但忽略标准仍需保留。"
+  ],
+  "insights": {
+    "system_design": [
+      "先做价值路由，再决定是否深入工程推导。"
+    ],
+    "agent_engineering": [
+      "让 Agent 先判断“今天值不值得试”。"
+    ],
+    "dev_process": [
+      "论文筛选应产出 Prompt / Skill / Checklist。"
+    ],
+    "evaluation": [
+      "把“是否值得投入”也纳入评测流程。"
+    ],
+    "platform_engineering": [
+      "长尾库是低成本知识保留层。"
+    ],
+    "personal_learning": [
+      "优先读可沉淀资产的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "30 分钟学习",
+      "2 小时实践",
+      "1 周研究"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32955v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.32955v1"
+    }
+  ],
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  },
+  "raw_markdown_html": "<h2>论文价值发现日报 - 2026-10-27</h2>\n<p>> 从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。</p>\n<p>> ⚠️ <strong>注意：这是初始化样例，后续运行会替换为真实数据。</strong></p>\n<h3>1. 标题区</h3>\n<ul>\n<li><strong>今日最值得关注论文：</strong> <a href=\"http://arxiv.org/abs/2610.32955v1\" target=\"_blank\" rel=\"noopener noreferrer\">Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox</a></li>\n<li><strong>价值类型：</strong> 即时价值</li>\n<li><strong>今日建议动作：</strong> 抄 Foyer 七步测量协议并在我们自己的收件箱/工单流上跑第一轮（抽 120–250 条、冻结快照、按线程切分、人工标注），今天只数三个数——多数类基线、生产规则基线、字段准确率——然后只盯「需要动作却被忽略」的比例；同时把它的 kappa.py（纯标准库、含 bootstrap CI）抄进评测工具链。附带三件不依赖任何论文数字的工程动作：给训练-推理一致性加 RoPE/激活/归一化位置误差断言；把「指令动作 + 实测状态」双写进 tool-call 日志；用 RobustRLlib 的语义/物理/时序扰动维度建我们自己的 agent shift 清单。</li>\n<li><strong>分数：</strong> 86.0</li>\n<li><strong>趋势阶段：</strong> 萌芽</li>\n</ul>\n<h3>2. 先说结论</h3>\n<ul>\n<li><strong>今天最值得看什么：</strong> <a href=\"http://arxiv.org/abs/2610.32955v1\" target=\"_blank\" rel=\"noopener noreferrer\">Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox</a>（86 分，即时价值）——今天真正的变化是<strong>新论文 + 本地实跑证据</strong>同时到位：arXiv 批次整体换新（2610.32945–2610.32982，published 2026-10-23，与昨天那批 2610.31642–2610.31670 无交集），且今日实测了四个开源仓库、抓出两个论文未链接的第三方实现。Foyer 之所以排第一，是因为它稀缺的东西不是模型对比，而是<strong>「先测量、再训练」的方法论</strong>，而它的协议代码今天真的跑通了。</li>\n<li><strong>为什么值得看：</strong> 据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（<strong>均为作者自述，本机无法复现数值</strong>，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——<strong>它属于 contact graph，不属于 prompt</strong>；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ <strong>今日证据等级实质升级（这是本篇今日最重要的变化）：</strong> 配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。</li>\n<li><strong>★ 今日抓到一处论文自身的口径不一致（首次发现，待作者确认）：</strong> arXiv abs 页摘要写「On 739 real Italian/English emails labelled by the owner (231 unbiased, 500 adversarially sampled)」，而 LaTeXML HTML 全文正文写 Round 3 采样 500 封、保留 491 封、「The v3 corpus (722 emails, 698 threads)」，且 231 + 491 = 722 自洽；全文检索「739」零命中，唯一出现的「731」是 Table 3 里 action-48h 的 macro-F1 数值（0.731），与样本量无关。即摘要的 739 与正文的 722 差 17，且 739 = 231 + 500 直接把采样数当成了保留数——我们按正文口径（722）记，并保留此提醒，不替作者下结论。</li>\n<li><strong>它属于什么价值类型：</strong> 即时价值（86）。今日排序：Foyer（86）、Flownomaly（83）列即时价值；RobustRLlib（79）、Rounding-Location Alignment（77）、Deco（76）、DexPort（72）、SceneBloom（68）列趋势价值；HAD-VLM（60）、Monetizing Intelligence（55）列长尾；Language of Instruction（45）列暂时忽略。RobustRLlib 排趋势价值第一的理由是它今天有<strong>可跑的部分</strong>（25 个用例通过），而不是论文数字被验证；Rounding-Location Alignment 排第四且证据明显更薄——连 arXiv HTML 全文都是 404，连逐字复核都做不到。</li>\n<li><strong>今天该做什么：</strong> (1) <strong>直接抄 Foyer 的七步协议</strong>（分层抽样 → 冻结快照 → 按线程切分 → 在 agent review 回路里人工标注并记录谁提议谁确认 → 开标签前预注册假设 → 训练前先数多数类/生产系统/训练基线/零样本系统 → 把标签合成动作并按错误代价选阈值），拿我们自己的收件箱跑一遍；今天就量三个数：多数类基线、生产规则基线、字段级准确率，然后<strong>只看一个数——「需要动作却被忽略」的比例，而不是准确率</strong>。(2) 抄两条可迁移结论进工程规范：发件人关系进 contact graph 不进 prompt；阈值按错误代价选而不是按准确率选。(3) 读 Flownomaly 的 calibration.py（约 160 行、纯 torch、无外部依赖），把它的 JGN（仅用正常样本选超参）当作「无标注场景选超参」的可复用范式抽出来，在我们自己的小规模检索/异常场景做单步 vs 多步对照实验，量延迟与质量比，<strong>不要引用其 AUROC 作为基线</strong>。(4) 抄 RobustRLlib 的扰动分类维度（语义 / 物理 / 时序）做我们自己的 agent shift 清单：在『关键事实缺失』『工具返回噪声』『工具超时』三类 shift 下各跑一遍并记录越权率/成功率（不需要装它的库）。(5) 把 DexPort 的『同时记录指令动作与实测状态』抄进我们的 agent 日志设计——我们现在的 tool-call 日志基本只记了『调了什么』和『返回了什么』，没记『本来想让工具做什么 vs 实际发生了什么』。(6) 在我们自己的训练-推理一致性检查里加一条断言：同一份权重、同一批输入，在 RoPE、激活函数、归一化位置分别比对训练侧与推理侧前向的最大绝对误差，把误差最大的位置记为待对齐点（纯工程动作，不依赖任何论文结论）。(7) 趋势雷达连续观察：RobustRLlib、Rounding-Location Alignment、Deco、DexPort、SceneBloom。长尾入库：HAD-VLM、Monetizing Intelligence。</li>\n<li><strong>最大不确定性：</strong> 今日最大的风险是<strong>把「代码跑通」误当成「论文被复现」</strong>。Foyer 的仓库确实跑通了，但作者的 722 封真实邮件与标签按其 README 明写不公开（No emails, labels or per-email results are included），所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 这些数字在本机一律无法独立核验，只能标为作者自述。其次是<strong>环境限制已成硬约束</strong>：本机 CPU 是 Intel Celeron J1900（无 AVX/AVX2，torch 后端报 DEFAULT），MuJoCo 官方 wheel（2.3.3 / 3.2.3 / 3.17.0 全试过）在 import 或调用时触发 SIGILL 非法指令，RobustRLlib 的 49 个测试因此全部无法在本机运行——这 49 个失败经逐个 traceback 归因，<strong>全部且仅因为 `No module named 'mujoco'`（命中 49 次），不是逻辑缺陷</strong>，25 个 passed 与 42 个 skipped 的用例覆盖 Box2D 与纯 numpy 逻辑并全部通过；这也意味着任何需要 MuJoCo/Isaac/GPU 栈的复现任务在当前机器上不可行（已实测，不是推测）。第三，<strong>Flownomaly 需要 CUDA GPU</strong>（detector.py 构造器明确 `if device != \"cuda\" or not torch.cuda.is_available(): raise RuntimeError(...)`，README 也写明论文实验跑在 H100），其 1-shot AUROC（MVTec-AD 97.8/98.0、VisA 95.3/98.7、Real-IAD 88.2/99.2）全部无法复现，仓库也未提交权重与数据集。第四，<strong>五篇论文至今没有任何可核验实现</strong>：Deco、Rounding-Location Alignment、HAD-VLM、Monetizing Intelligence、Language of Instruction 的 abs 页与 HTML 全文经正则扫描均无 github/gitlab 链接，GitHub 搜索 'Deco generative recommendation trie' 零命中，确认非我们漏检。第五，RobustRLlib 的 273 个扰动配置、17 个算法的能力地图与「语义扰动在 VLA 上影响更大」这一结论，全部依赖作者的内部栈，本机无法核验（待核验/暂无）。</li>\n</ul>\n<h3>3. 今日候选论文表</h3>\n<div class=\"table-wrapper\"><table><tbody>\n<tr><td>论文标题</td><td>方向</td><td>价值类型</td><td>分数</td><td>判断</td><td>是否有代码</td><td>是否有 Benchmark</td><td>是否值得深挖</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.32955v1\" target=\"_blank\" rel=\"noopener noreferrer\">Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox</a></td><td>llm-evaluation / ai-agent</td><td>即时价值</td><td>86.0</td><td>重点学习</td><td>是</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.32964v1\" target=\"_blank\" rel=\"noopener noreferrer\">Flownomaly: Single-Step Conditional-Mean Recovery for Few-Shot Anomaly Detection</a></td><td>llm-evaluation / multimodal-agent</td><td>即时价值</td><td>83.0</td><td>重点学习</td><td>是</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.32971v1\" target=\"_blank\" rel=\"noopener noreferrer\">RobustRLlib: A Unified Library and Benchmark for Robust Reinforcement Learning Algorithms</a></td><td>ai-agent / llm-evaluation</td><td>趋势价值</td><td>79.0</td><td>轻量试点</td><td>是</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.32951v1\" target=\"_blank\" rel=\"noopener noreferrer\">Where Rounding Happens Matters: Rounding-Location Alignment Stabilizes LLM Reinforcement Learning</a></td><td>inference-serving / ai-k8s-platform</td><td>趋势价值</td><td>77.0</td><td>轻量试点</td><td>否</td><td>否</td><td>是</td></tr>\n<tr><td><a href=\"http://arxiv.org/abs/2610.32980v1\" target=\"_blank\" rel=\"noopener noreferrer\">Separating Thinking from Spelling for Efficient Generative Recommendation</a></td><td>inference-serving / ai-k8s-platform</td><td>趋势价值</td><td>76.0</td><td>轻量试点</td><td>否</td><td>否</td><td>是</td></tr>\n</tbody></table></div>\n<h3>4. 今日深挖论文</h3>\n<ul>\n<li><strong>一句话本质：</strong> Foyer（<a href=\"http://arxiv.org/abs/2610.32955v1\" target=\"_blank\" rel=\"noopener noreferrer\">2610.32955</a>）证明了一件事：<strong>大多数 agent 系统的错误率是未知的，因为标签是系统自己写的</strong>；而在拿到真标签之前去比较模型、比准确率、做微调，全都是在给自己打分。</li>\n<li><strong>底层问题：</strong> 摘要原句是「their error rate is rarely measured: the stored labels were written by the system itself」。这句话点破了为什么常规评测会漏：agent 的决策（这封信是什么类型、急不急、要不要回信、要不要建任务、要不要忽略）本来就被记进数据库了，于是「模型准不准」变成了「模型和它自己写下的标签像不像」——一个自证循环。作者的做法是把真值生产放在训练之前：分层抽样（按生产规则预测的类型分层，因为 39% 的存量标签是 altro、94% 的紧急度是 bassa，均匀抽样只会学到先验而不是内容）、冻结模型实际看到的快照（sender、subject、body 截断 1,500 字符、date、channel，与模型的预测并排存下，保证后续重跑不会改变样本）、按线程而非邮件 id 切分（第一轮按 id 切分把 92 个线程里的 11 个拆到了不同 split，4 封测试邮件在训练集里找到了近似重复；改按线程切后仍是 train 159 / validation 39 / test 33，且论文明确说这个固定 test split 因为没有 alta、只有一个 offerta，所以正文所有数字都来自线程分组交叉验证或全部 231 行）、密钥脱敏、在 agent 自己的 review 回路里由人确认或纠正模型提议、并记录谁提议谁确认、以及在打开标签前预注册假设（脚本先提交，只有一次事后改动，且是脚本格式修复、不是阈值）。</li>\n<li><strong>新命题 / 新方法 / 新证据：</strong> 方法是「测量协议」而非模型。协议有七步，每步都对应一个具体的失败模式：分层抽样对应学到先验、冻结快照对应重跑漂移、按线程切分对应近重复泄漏、人工在 review 回路里标注对应自证循环、预注册对应事后调阈值、训练前先数基线对应拿模型互比、把标签合成动作并按错误代价选阈值对应准确率不是产品指标。协议还产出了一条很硬的反直觉结论：<strong>发件人关系属于 contact graph，不属于 prompt</strong>——同一联系人的关系从其他邮件恢复可达 98.6%（仅对 63% 已见地址有效），但任何模型都无法从单封邮件推断它。</li>\n<li><strong>关键数字与口径核对（今日逐字复核）：</strong> ⚠️ <strong>口径纪律首次抓到论文自身不一致（今日新增）：</strong> arXiv abs 页摘要写「On 739 real Italian/English emails labelled by the owner (231 unbiased, 500 adversarially sampled)」；而 LaTeXML HTML 全文正文写 Round 3（500 封采样、491 封保留）后「The v3 corpus (722 emails, 698 threads)」，且 v2 的 231 封（207 线程）+ v3 的 491 封 = 722 自洽。全文检索「739」零命中；唯一出现的「731」是 Table 3 中 action-48h 的 macro-F1 数值 0.731，与样本量无关。<strong>我们按正文口径（722 封）记，并保留此提醒，不替作者下结论。</strong>其余逐字确认的数：类型分布 aggiornamento 132 / servizio 115 / newsletter 53 / cliente 69 / richiesta 20 / me 18 / altro 18 / monitoraggio 14 / offerta 5 / fornitore 8 / spam 3 / famiglia-socio-istituzione 7-6-2；紧急度 bassa/media/alta = 161/59/11；needs-reply yes 60；action-48h yes 20；is-noise yes 119。Table 3（231 封，准确率/macro-F1）：多数类 needs-reply 0.740/0.425、action-48h 0.913/0.477、is-noise 0.515/0.340；TF-IDF+LogReg 0.831/0.742、0.931/0.731、0.900/0.899。Table 5（关系继承，leave-one-out）：同地址覆盖 146/231（63%），覆盖部分准确率 0.986 / M-F1 0.953，全量含多数类回退 0.857；同域名 173/231（75%），0.890 / 0.574，回退 0.849；多数类（servizio）0.498。动作层面的关键数（v2，policy「noise wins」）：需处理被忽略的 false noise 以 68 为分母，TF-IDF+LogReg 18% vs 最好生成式模型 4%；成本化阈值把 false noise 从 v3 的 28/120 降到 13/120、v2 的 12/68 降到 7/68、Platt scaling 后 4/68，代价是处理两三倍多的噪声；此时基线 false noise 与 Nimble 已不可区分（v3 0.108 vs 0.092，p=0.72；v2 0.059 vs 0.118，p=0.34），但总成本更低（v3 22…）。</li>\n<li><strong>★ 今日证据等级实质升级（本篇最重要的变化）：</strong> 配套仓库 gitlab.com/federicolucca/foyer-measure（论文 abs 页未给链接，今日新发现的第三方实现）已本地实跑——tarball 含 8 个文件（bench_email.py、kappa.py、online_backends.py、systemone_email.py、README.md、INSTRUCTIONS_annotator.md、ISTRUZIONI_annotatore.md、LICENSE），`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通：自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement、Cohen's κ、2000 次 bootstrap 的 95% CI、混淆矩阵与分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]；tipo accordo=1.000 kappa=1.000）；bench_email.py 的 TF-IDF+LogReg 基线路径也实跑通过——带类别信号的 400 条合成集（320/80 按线程切分）上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138。两次结果都符合预期行为，说明该 harness 的学习路径与退化路径都真实工作。⚠️ <strong>证据边界必须说清：这证明的是「协议代码可运行、统计工具正确」，不是「论文数值被复现」</strong>——作者的真实邮件与标签按 README 明写不公开，因此上述全部数值在本机一律无法独立核验，只能标为作者自述（待核验/暂无）。</li>\n<li><strong>研究位置：</strong> 源头上是一篇「测量方法论」论文，不是改进类论文。它与昨天的 EpiSEM-Bench（agent 安全评测）、前天的 Selective Auditing（审计预算分配）构成同一研究序列的不同切片：<strong>都在攻击「先证明你的测量是可信的，再谈模型好不好」</strong>。Foyer 的独特之处是它把这件事做到了极致的个人系统规模——9 个系统、231 封真实邮件、单人标注、三个标注轮次、预注册 11 条假设（确认 7 条、推翻 4 条），而且明确说邮件数据不公开只放协议与 harness。这既是它的长处（最小可复制）也是它的短板（无法验证）。</li>\n<li><strong>工程可验证性：</strong> 有明确代码入口（GitLab，MIT + CC BY 4.0），且今日已实测可运行——这是本周第一批能本地实跑的论文之一。但注意协议仓库的性质：它给的是「在你自己的收件箱上跑同一套测量」的工具，不是「复现论文数字」的工具。README 里还给了两个工程细节值得抄：System One 端点在选项描述过长时会静默失败（每个 criteria 控制在约 120 字符内），以及在 CPU 上一次只跑一个请求（OLLAMA_NUM_PARALLEL=1）。</li>\n<li><strong>趋势关联：</strong> 归到 Context Engineering 方向——它把上下文工程的输入端（发给模型什么）往前推了一层：不只管 prompt 怎么写，而是管「你凭什么说你知道这个字段」。它也直接支撑 Coding Agent 方向的评测治理线：阈值、预注册、成本加权错误，这些正是我们评测 agent 时最缺的东西。</li>\n<li><strong>长尾价值：</strong> 即使今天不落地，它也是我们做 agent 评测的<strong>方法论底座</strong>：预注册、成本加权阈值、线程级切分、冻结快照，这四条今天就能进我们的评测 checklist，不依赖这篇论文的任何具体数字。</li>\n<li><strong>启发：</strong> 最可迁移的一条不是任何数字，而是这个顺序——<strong>先建真值，再谈模型</strong>。我们目前的 agent 评测大量是自己写 prompt、自己出题、自己判分，Foyer 的做法是把这三件事全部换成「先从真实流量里分层抽出来、先冻结、先人工确认」。第二条启发是「accuracy is not the product metric」：字段级最准的系统，可能在动作层面漏掉最多的正事；这提醒我们把评测的最后一层定义成<strong>动作成本</strong>而不是分类指标。第三条是「它属于 contact graph，不属于 prompt」——一个通用的架构判断：<strong>有些上下文根本不该塞进 prompt，而应该进检索层或状态层</strong>。</li>\n<li><strong>行动建议：</strong> 今天完成三件事：(1) 把七步协议抄成我们 agent 评测的 checklist，并在我们自己的收件箱/工单流上跑第一轮——抽 120–250 条、冻结快照、按线程切分、人工标注，先只数三个数：多数类、生产规则、字段准确率；然后只盯「需要动作却被忽略」的比例。(2) 抄两条规范：发件人/联系人关系进 contact graph 不进 prompt；阈值按错误代价选（漏掉一封正事的代价 ≫ 多处理一封噪音），参照它的 10:1 代价设定起步。(3) 把「先建真值再谈模型」这条顺序写进我们的 paper-reading checklist——新增一条纪律：<strong>引用某论文的对比结论前，必须确认它的 ground truth 标签不是被评系统自己写的</strong>。今日另加一条可立即执行的动作：把 Foyer 的 kappa.py 抄进我们的评测工具链（纯标准库、无依赖、含 bootstrap CI），以后任何人工标注环节都直接用它出 κ。</li>\n</ul>\n<h3>5. 今日长尾保存</h3>\n<h4><a href=\"http://arxiv.org/abs/2610.32948v1\" target=\"_blank\" rel=\"noopener noreferrer\">Beyond Discrete Tokens: Preserving Numerical Continuity in Medical Vision-Language Models</a></h4>\n<ul>\n<li><strong>为什么现在不火也值得保存：</strong> 今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的是一个具体而干净的错配——定量超声测量要求连续数值目标，而基于 token 的数值预测是离散的。它用自回归-扩散混合框架，在共享 backbone 内把自回归文本生成与连续测量预测结合起来；视觉 prompt tuning 适配视觉编码器；扩散过程预测一个五分量表示（卡尺两端点坐标 + 测量长度）；后处理结合『坐标-长度一致性机制』与集成预测来精修测量估计。作者自述（今日不可复现）：在 EchoNet-LVH 上四个超声测量任务（IVSd / LVIDd / LVIDs / LVPWd）的平均绝对误差分别为 1.36 / 2.77 / 3.05 / 1.16 mm，相对基于 Vicuna 的自回归基线误差降低 21.4–37.6%；在全部四个任务上优于微调后的 Qwen3-VL 与直接 MLP 回归；在评测数据集上医学问答能力得以保持；X 光脊柱测量上把平均绝对误差从 11.4 像素降到 6.7 像素。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接（唯一命中为 arXiv 模板自带的 huggingface.co/docs/hub），没有可核验的官方实现或第三方实现（待核验/暂无）；另注该篇属医学影像定量任务，离我们当前系统范围较远。⚠️ 证据边界：全部数值与『优于 Qwen3-VL / MLP 回归』的对比均为作者自述，本机无代码、无数据（EchoNet-LVH 需单独获取）、无第三方复现，无法核验。★ 价值路由：列长尾价值——领域（临床超声测量）离我们远，今天投入产出比低。但它带走一个可迁移的结构性判断：连续量不该硬塞进 token 空间，应该有一个连续的预测头；但『连续头 + 自回归共享 backbone』的具体做法与我们是否相关，取决于我们是否有连续数值的输出需求（今日我们没有明确需求）。动作：加入长尾库，先保存不投入；设置未来触发条件——当我们的某个 agent 任务开始产出连续数值（置信度、金额、时长、评分）时，回看这篇的『连续头 + 离散文本头共享 backbone』与『坐标-长度一致性后处理』两条设计；触发条件包括出现开源实现、被高质量论文引用、或我们自己出现连续数值输出需求。现在可沉淀的资产只有一句可复用的设计原则：『当输出类型混合了连续量与离散文本时，为连续量单独设计一个预测通路，别用离散 token 近似它』——这条原则本身今天就能进我们的设计检查表。</li>\n<li><strong>未来触发条件：</strong> 出现开源实现 / 被高质量论文引用 / 进入 benchmark。</li>\n<li><strong>可能应用场景：</strong> Prompt 设计、Agent workflow、评测治理、系统设计。</li>\n<li><strong>可沉淀资产：</strong> Prompt / Skill / Checklist / 架构模式 / 评测方法。</li>\n<li><strong>建议复盘时间：</strong> 2026-11-17</li>\n</ul>\n<h4><a href=\"http://arxiv.org/abs/2610.32945v1\" target=\"_blank\" rel=\"noopener noreferrer\">Monetizing Intelligence: Advertising and Subscription Design on LLM Platforms</a></h4>\n<ul>\n<li><strong>为什么现在不火也值得保存：</strong> 今日长尾价值第二。据 arXiv 2610.32945 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它研究的是 LLM 平台引入广告后的定价设计——垄断平台同时选择有成本的回答质量、广告强度与订阅价格，背景是广告降低用户价值但更好的服务又提升广告回报。作者自陈三条结论：(1) 当部分广告支持与免广告套餐并存时，广告可以为在纯订阅下得不到任何服务的消费者提供有用服务；但中间档位的较低有效质量削弱了高端用户可得的替代方案，从而让免广告服务可以卖更贵的价格；部分全广告用户效用上升，而部分广告支持用户与免广告用户效用下降——更广的可及性可以与效用分化并存。(2) 一个中间水平的广告上限可以最大化消费者剩余：保留部分收入用于补贴服务，同时限制退化。(3) 更便宜的算力可以提升质量并降低广告强度，但足够大的成本下降反而会让广告总收入超过初始水平，因为更好的服务抬高了剩余广告交互的价值；一个扩展说明广告资助的升级可以把各套餐带到相同的最大能力与相同广告暴露，从而消除差异化定价的基础。作者的总结是菜单设计（menu design）是评估 LLM 广告的核心：后果不只影响看到广告的人，也影响看不到广告的人所面对的替代方案与价格。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接，没有可核验的实现（待核验/暂无）；属 econ.TH 理论建模，无实验数据。⚠️ 证据边界：全部结论来自作者的垄断竞争理论模型，模型假设（垄断平台、单一质量维度、消费者效用设定）是否映射到真实 LLM 平台，未被任何人验证，本机也无法核验（无代码、无数据）。★ 价值路由：列长尾价值而非即时价值——它是理论结论，不含今天可抄的机制实现，且我们对广告定价无业务决策权。但其中一条判断值得保留，因为它会影响我们看平台公告的方式：广告的伤害会外溢到不看广告的人（通过替代方案变差、定价空间变大），所以『平台开始卖广告』这件事对我们不是纯噪声。动作：加入长尾库，先保存；设置未来触发条件——当我们在评估某个 LLM 供应商开始引入广告或调整套餐结构时，回看这篇的『中间广告上限最大化消费者剩余』与『算力降价反而可能抬高广告收入』两条。特别注意第三条的后两点：这是模型内结论，不是事实（待核验/暂无），不要在决策文档里当实证引用。</li>\n<li><strong>未来触发条件：</strong> 出现开源实现 / 被高质量论文引用 / 进入 benchmark。</li>\n<li><strong>可能应用场景：</strong> Prompt 设计、Agent workflow、评测治理、系统设计。</li>\n<li><strong>可沉淀资产：</strong> Prompt / Skill / Checklist / 架构模式 / 评测方法。</li>\n<li><strong>建议复盘时间：</strong> 2026-11-17</li>\n</ul>\n<h3>6. 今日忽略理由</h3>\n<ul>\n<li><a href=\"http://arxiv.org/abs/2610.32982v1\" target=\"_blank\" rel=\"noopener noreferrer\">The Language of Instruction: Genre and Generative AI</a>：新意弱 / 证据弱 / 当前相关性有限。</li>\n</ul>\n<h3>7. 启发</h3>\n<h4>系统设计启发</h4>\n<ul>\n<li><strong>先建真值，再谈模型。</strong> Foyer 最狠的一刀是「标签是系统自己写的」——我们的评测系统要定期检查这件事：如果标注者与被评系统同源，这条对比就不成立。</li>\n<li><strong>有些上下文属于状态层，不属于 prompt。</strong> 「发件人关系属于 contact graph，不属于 prompt」是一条可直接套用的架构判断：先问「这个信息该放在哪一层」，再决定怎么塞进模型。</li>\n<li><strong>生成 + 显式约束编译的两段式。</strong> SceneBloom 用「视觉布局采样 + 契约引导的 3D 编译」把提案变成物理有效的对象；我们的 agent 输出（计划、配置、文档骨架）目前只有「生成完再检查」，缺一道在生成过程中就限定形状的编译工序。</li>\n</ul>\n<h4>Agent 工程启发</h4>\n<ul>\n<li><strong>量「被忽略的正事」，不要量准确率。</strong> 字段最准的系统可能最常漏掉需要动作的邮件（18% vs 4%）。评测的最后一层必须定义成动作成本。</li>\n<li><strong>日志要同时记「我们想让工具做什么」和「实际发生了什么」。</strong> DexPort 记录指令关节目标 + 实测关节状态带来 11%→64% 的成功率提升（作者自述）；我们的 tool-call 日志今天就有这个缺口。</li>\n<li><strong>推理侧与训练侧的数值不一致要当 bug 审计。</strong> Rounding-Location Alignment 的提问方式（对齐执行栈的选定部分）可以直接变成我们的一条自检断言：同一权重同一输入，比对 RoPE/激活/归一化位置的最大绝对误差。</li>\n</ul>\n<h4>研发流程启发</h4>\n<ul>\n<li><strong>先数基线再谈训练。</strong> 论文的核心动作不是训模型，是「训练前先数多数类、生产系统、训练基线、零样本系统」——这一步能直接否掉很多没必要的训练。</li>\n<li><strong>阈值按错误代价选，不按准确率选。</strong> 漏掉一封正事 vs 多处理一封噪音，代价不对称（论文用 10:1），阈值应当按这个比来选。</li>\n<li><strong>代码可运行 ≠ 结论可复现。</strong> 今日四仓库实跑提醒我们把证据等级分开记：Foyer 的 harness 跑通只证明协议代码正确，不证明作者那 722 封邮件上的数字。</li>\n</ul>\n<h4>评测方法启发</h4>\n<ul>\n<li><strong>按线程切分，不按样本切分。</strong> 邮件/对话/工单都有近重复特性，按 id 切分会把泄漏当成性能（论文第一轮 92 个线程里 11 个跨 split，4 封测试邮件在训练集里找到近似重复）。</li>\n<li><strong>预注册假设，开标签前提交。</strong> 11 条预注册假设、确认 7 条推翻 4 条——这个「自我否证」的比例正是可信度的来源。</li>\n<li><strong>κ 要带 bootstrap 置信区间。</strong> Foyer 的 kappa.py 纯标准库实现（2000 次重采样、混淆矩阵、分歧清单），今天已实测跑通，可以直接抄进我们的评测工具链。</li>\n<li><strong>扰动清单要先建。</strong> RobustRLlib 的语义/物理/时序扰动分类可以直接改造成我们的 agent shift 矩阵（关键事实缺失 / 工具返回噪声 / 工具超时）。</li>\n</ul>\n<h4>平台工程启发</h4>\n<ul>\n<li><strong>过 backbone 的次数要当一等指标。</strong> Deco 指出生成式推荐的 SID 长度被「付两次」；结构同构的问题是——任何「大模型读上下文 + 小解码器写结构化输出」的流水线都可能存在同样的双付。我们的 tool-call 序列生成就是同构场景。</li>\n<li><strong>环境能力要先建档。</strong> 本机 J1900 无 AVX、MuJoCo 直接 SIGILL，这是实测事实而非推测；把「哪些复现任务在当前机器可行」写进值班手册，避免每天重复踩。</li>\n<li><strong>单步替代多步是数量级优化。</strong> Flownomaly 用一次场评估替代轨迹积分（作者自述），这类结构在检索/重建类链路上值得主动找。</li>\n</ul>\n<h4>个人学习启发</h4>\n<ul>\n<li><strong>优先读能改变我们工作顺序的论文。</strong> Foyer 改变的是顺序（先建真值），Deco 改变的是成本口径（过 backbone 次数），这类论文的复利远高于只提供新 SOTA 的论文。</li>\n<li><strong>区分「理论新意」与「工程新意」。</strong> Language of Instruction（45 分，今日忽略）把指令微调重新命名为一种体裁，工程上零可迁；今天真正该读的是能直接改我们 checklist 的那几篇。</li>\n</ul>\n<h3>8. 行动建议</h3>\n<ul>\n<li><strong>30 分钟学习任务：</strong> 读摘要、方法、实验设定，记下 3 个可验证假设。</li>\n<li><strong>2 小时实践任务：</strong> 做最小实验、Prompt 试验或评测脚本草图。</li>\n<li><strong>1 周研究任务：</strong> 沉淀为 Prompt / Skill / Checklist / 模板，并跟踪复现结果。</li>\n</ul>\n<h3>9. 引用与延伸阅读</h3>\n<ul>\n<li><strong>arXiv：</strong> <a href=\"http://arxiv.org/abs/2610.32955v1\" target=\"_blank\" rel=\"noopener noreferrer\">arXiv</a></li>\n<li><strong>PDF：</strong> <a href=\"https://arxiv.org/pdf/2610.32955v1\" target=\"_blank\" rel=\"noopener noreferrer\">PDF</a></li>\n<li><strong>OpenReview：</strong> 暂无</li>\n<li><strong>Code：</strong> <a href=\"https://gitlab.com/federicolucca/foyer-measure\" target=\"_blank\" rel=\"noopener noreferrer\">Code</a></li>\n<li><strong>Benchmark：</strong> 暂无</li>\n<li><strong>Papers with Code：</strong> 暂无</li>\n</ul>\n<h3>10. 最终结论</h3>\n<ul>\n<li><strong>结论：</strong> 重点学习</li>\n<li><strong>价值类型：</strong> 即时价值</li>\n<li><strong>原因：</strong> 今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇真正稀缺的不是模型对比，而是『先测量、再训练』的方法论本身——它指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（均为作者自述，本机无法复现数值，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——它属于 contact graph，不属于 prompt；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ 今日证据等级实质升级（这是本篇今日最重要的变化）：配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。⚠️ 证据边界必须说清：这证明的是『协议代码可运行、统计工具正确』，不是『论文数值被复现』——作者的真实邮件与标签按 README 明写不公开（No emails, labels or per-email results are included），所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 这些数字在本机一律无法独立核验，只能标为作者自述。★ 今日同时抓到一处论文自身口径不一致（首次发现，待作者确认）：arXiv abs 页摘要写『On 739 real Italian/English emails labelled by the owner (231 unbiased, 500 adversarially sampled)』，而 LaTeXML HTML 全文正文写 Round 3 为 500 封采样、491 封保留、『The v3 corpus (722 emails, 698 threads)』，且 231 + 491 = 722 自洽；全文通篇检索『739』零命中，唯一出现的『731』是 Table 3 里 action-48h 的 macro-F1 数值（0.731），与样本量无关。即摘要的 739 与正文的 722 差 17，且 739 = 231 + 500 直接把采样数当成了保留数——我们按正文口径（722）记，并保留此提醒，不替作者下结论。★ 价值路由与今天的动作重心：仍列即时价值第一，但动作从『读论文』升级为『直接抄协议、拿我们自己的收件箱跑一遍』——具体三步：(1) 照抄七步协议（分层抽样 → 冻结快照 → 按线程切分 → 在 agent review 回路里人工标注并记录谁提议谁确认 → 开标签前预注册假设 → 训练前先数多数类/生产系统/训练基线/零样本系统 → 把标签合成动作并按错误代价选阈值）；(2) 立刻在我们自己的 agent 上量三个数：多数类基线、生产规则基线、字段级准确率，然后只看一个数——『需要动作却被忽略』的比例，而不是准确率；(3) 抄两个可迁移的结论进工程规范：发件人关系进 contact graph 不进 prompt；阈值按错误代价选而不是按准确率选。注意一条边界：论文的 9 系统对比没有包含『自建小模型微调』这一档（只到 LogReg 与零样本），所以它不能证明『小模型不值得做』，也不能证明『LLM 该被替换掉』——它证明的是『在你自己的数据上，先量再选』。</li>\n<li><strong>最大不确定性：</strong> 今日最大的风险是把「代码跑通」误当成「论文被复现」：Foyer 的仓库确实本地跑通，但作者那 722 封真实邮件与标签按其 README 明写不公开，所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 全部只是作者自述，无法独立核验。其次环境已成硬约束：本机 J1900 无 AVX，MuJoCo 全版本 import 即 SIGILL，RobustRLlib 的 49 个失败经逐个归因全部且仅因缺 mujoco（25 passed / 42 skipped 均通过），任何需 MuJoCo/Isaac/GPU 的复现在当前机器不可行。第三，Flownomaly 明确要求 CUDA GPU（H100 实验环境），其 1-shot AUROC 与仓库权重/数据均无法复现。第四，Deco、Rounding-Location Alignment、HAD-VLM、Monetizing Intelligence、Language of Instruction 五篇至今无任何可核验实现（abs 页与 HTML 全文正则扫描无 github/gitlab 链接，GitHub 搜索亦零命中）。此外 Foyer 摘要的 739 与正文 722 存在样本量不一致，已按正文记录并保留待作者确认。</li>\n<li><strong>下一步动作：</strong> 更新趋势页、长尾库与论文详情档案；把「先建真值再谈模型」「按线程切分」「阈值按错误代价选」「引用前确认 ground truth 非自证」四条写进 paper-reading checklist；把本机 MuJoCo 不可用记录进值班手册；连续观察 RobustRLlib、Rounding-Location Alignment、Deco、DexPort、SceneBloom 五个趋势方向。</li>\n</ul>\n<p>> 生成时间：2026-10-27T04:56:40.459392</p>\n<p>> 数据来源：arXiv API + 固定源配置</p>\n<p>> 状态：Hermes 推理增强</p>"
+}

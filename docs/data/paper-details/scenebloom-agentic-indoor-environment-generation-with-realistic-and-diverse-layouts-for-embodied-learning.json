@@ -1,0 +1,132 @@
+{
+  "id": "scenebloom-agentic-indoor-environment-generation-with-realistic-and-diverse-layouts-for-embodied-learning",
+  "title": "SceneBloom: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning",
+  "authors": [
+    "Yuhan Liu",
+    "Lianhui Qin",
+    "Shenji Wan"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-23",
+  "url": "http://arxiv.org/abs/2610.32978v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.32978v1",
+  "code_url": "https://github.com/Tinaliu0123/scenebloom",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-27",
+  "first_deep_dive_daily": "2026-10-27",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 68.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第五。据 arXiv 2610.32978 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅摘要与 ab…",
+  "one_line_essence": "今日趋势价值第五。据 arXiv 2610.32978 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅摘要与 abs 页可核）：它要做的是为可泛化的具身 agent 生成真实、多样、可直接进仿真的室内环境。问题陈述很清楚——语言引导方法支持语义规划与物体级推理，但精确空间落地仍难；视觉生成模型有丰富的布局先验，但其输出需要几何推理才能成为物理有效的 3D 场景。SceneBloom 的做法是把视觉布局采样与契约引导的 3D 编译结合：分层采样器用扩散先验在功能分区内生成家具排布，编译器再用从每个提案中抽取的关系去引导几何拟合与局部位姿修正。作者自述（今日不可复现）：在五类房间上，SceneBloom 在被比较方法中取得最高的视觉质量与物理稳定性，并且是唯一没有检测到网格碰撞与越界物体的方法；其布局也比所有对比基线更接近真实房间分布；用这些真实场景训练的目标导航策略，在留出的真实扫描上成功率高于用等量真实训练扫描训练的策略。★ 今日证据状态：官方仓库 github.com/Tinaliu0123/scenebloom 存在，tarball 下载成功，scenebloom/ 下 pipeline.py、sampling/（proposals 与 zoning 两个子包）、compilation/compiler.py 等结构齐全，`python3 -m compileall` 全部通过；但 pyproject 明确 requires-python >=3.10,<3.11，且核心 GPU 栈（torch / diffusers / Genesis / OVMono3D 的 CUDA 扩展）由 envs/install_scenebloom.sh 另行安装，本机 Python 3.11 + 无 CUDA。⚠️ 证据边界：本机只核验到『存在、结构自洽、语法可编译』，数值一律不可复现（『最高视觉质量与物理稳定性』『唯一零碰撞』『导航策略真实扫描成功率更高』均为作者自述，待核验/暂无）。★ 价值路由：列趋势价值而非即时价值——依赖 Genesis + OVMono3D 的 CUDA 扩展，环境成本过高，且具身导航不在我们当前系统范围内。但『契约引导的 3D 编译』这个抽象值得记下：生成模型给出布局提案、编译器用显式约束（碰撞、越界、支撑关系）把提案编译成物理有效对象——这正是我们生成任何结构化产物（如 agent 计划、配置、文档骨架）时缺的第二道工序。动作：纳入趋势雷达，今天不投入环境；把『生成 + 显式约束编译』这条两段式写进我们的 agent 输出校验清单：我们目前只做『生成完再检查』，而不是『用显式约束在生成过程中就限定形状』。同时记住一条判断：作者自陈『唯一零碰撞』是相对被比较方法而言的相对结论，不是绝对保证，且无第三方复核。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第五。据 arXiv 2610.32978 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅摘要与 abs 页可核）：它要做的是为可泛化的具身 agent 生成真实、多样、可直接进仿真的室内环境。问题陈述很清楚——语言引导方法支持语义规划与物体级推理，但精确空间落地仍难；视觉生成模型有丰富的布局先验，但其输出需要几何推理才",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第五。据 arXiv 2610.32978 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅摘要与 abs 页可核）：它要做的是为可泛化的具身 agent ",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32978v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.32978v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=scenebloom-agentic-indoor-environment-generation-with-realistic-and-diverse-layouts-for-embodied-learning",
+  "daily_path": "daily-detail.html?date=2026-10-27",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

@@ -1,110 +1,120 @@
 {
-  "updated_at": "2026-10-26T05:24:44.044213",
+  "updated_at": "2026-10-27T04:57:37.802308",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-10-26",
-    "title": "论文价值发现日报 - 2026-10-26",
-    "deep_dive_title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
-    "deep_dive_url": "http://arxiv.org/abs/2610.31650v1",
+    "date": "2026-10-27",
+    "title": "论文价值发现日报 - 2026-10-27",
+    "deep_dive_title": "Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox",
+    "deep_dive_url": "http://arxiv.org/abs/2610.32955v1",
     "decision": "重点学习",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "今天排五条动作，顺序即优先级。(1) 抄 EpiSEM-Bench 六指标模板（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR，2610.31650），并把今日实跑的 habib-analyst/episembench 当我们自己实现的验收清单——它的 18/18 已本地跑通，两条核心断言正好对应 Table 1 的 Full UCR 与 Recovery UCR 两列：盲态 agent 在完整遮蔽下必然越权、会查证的 agent 能收手。在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列：遮蔽后越权执行率、主动补证据率、以及「先查后动」比例，不引论文分数当基线。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix（今日已验证 30/30 通过、numerics 与论文逐项对上）对我们训练栈做 A/B，量两件事——loss spike 次数、student=teacher 时梯度是否恰为 0（今日 numerics 实测：bf16 与 fp32 下 barron 实现全为 0.00e+00，而 torch 的 max|z_S-z_T| 达 3.22e-02 / 1.92e-02；★ 今日 grokking 缩减配置已实跑：torch_fp32 8 次 loss spike vs barron_fp32 0 次，且 barron 把最终 margin 中位数推到 16.23（越过 fp32 悬崖比例 0.29）而 torch 停在 9.63（0.00），测试准确率相当 0.3597 vs 0.3680——可直接把『我们训练栈的 loss spike 计数』作为 A/B 的验收指标）；同时记录各任务的 dtype 与 AdamW eps，判断 margin 是否越过对应精度悬崖（实测 torch 悬崖 bf16=5.56 / fp32=16.64 / fp64=36.74 / fp16=7.63，barron 推迟到 93.00 / 103.98 / nan / 17.34）；注意该实现自陈 3.4–6x 速度与 1.25–1.75x 显存代价，只在蒸馏与关键任务上启用。(3) 审 agent 升级阈值链路（Cost-Aware Abstention，2610.31657，Zenodo 产物 10.5281/zenodo.22609128 → zenodo.org/records/22654013 今日实测 200）：按显式成本模型 + calibration 选阈值 + 冻结后一次性评估的口径，先算 correctness AUROC；测不出区分度就不许上阈值。同时把今日新学到的第一道筛子加进去——先问「预算够不够」：selective-audit 实测 burst 1% 预算下四种策略全部只检出 8–9 而 oracle 90，约束不够时调策略无意义。(4) 把五条口径纪律写进 paper-reading checklist：实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分为作者官方 / 第三方 / 脚本化合成类比、新增「有复现仓库」分为 README 自述 / 本地实跑通过 / 实跑且逐项对上；并加一条记账纪律——「相邻基准 ≠ 原论文复现」（selective-audit 是受 2610.31662 启发但问题正交）。(5) 趋势雷达连续观察：Selective Auditing（2610.31662，今日新发现可跑相邻基准 habib-analyst/selective-audit，注意 anti-conservative 方向、O(1/n_T) 误差控制保证、以及作者官方代码仍缺）、Sensorimotor Alignment（2610.31670，h=110 vs h=7 口径纪律；今日更正规模印象——仓库 tree_blobs=4030，analysis/ 脚本与部分中间产物是公开的，作者自陈仍缺的是六 WAM / 真机 / 14-backbone 的 matching reproduction bundles）、Direct Pass@k（2610.31667，剪枝目标对齐最终指标，3.3 分优势与 cutoff 阈值是显式超参）、Low-Bit N-Gram（2610.31646，n-gram 表内存是可预算工程量，47–55% 与 75% 分属两组实验）、SpectralCanary（2610.31659，发布即埋信号；作者仓库结构今日可见 src/provenance_t2i/ 与 20+ 脚本，但项目页连续第二天 404）。长尾入库并标注触发条件：METTA（2610.31656，两个时间尺度的记忆分工）、Phase Transition（2610.31663，可训练比例的收益曲线非单调）。",
-    "max_uncertainty": "证据不足项明确清单（按严重度排序）：(1) **样本未变，全部为增量核验**：arXiv 周末无新批次，10 篇与 2026-10-24 / 2026-10-25 完全相同（id 2610.31642–2610.31670，published 均 2026-10-22，abs 页逐个扫描仍全部为 v1，无版本更新），已核对 cs.AI/cs.CL/cs.LG/cs.SE/cs.IR/cs.RO/cs.CV/cs.DC/cs.DB/cs.CR/stat.ML/cs.NE/cs.MA 共 13 个分类的最新 20 条，distinct published date 最高仍为 2026-10-22。今日无新采样，全部结论是对同一批样本的证据升级。(2) **作者官方代码全部仍然缺失，两处需特别说明**：2610.31650 与 2610.31662 的 arXiv abs 页今日经正则扫描均无任何 github.com 链接——300 对真实任务、6,052 条件的构造细节与 Selective Auditing 的全部数值仍无第三方复现（待核验/暂无）；2610.31642 的作者项目页 jonbarron.info/softmaxfix/ 今日实测 HTTP 200 但仍不给仓库链接，现有实现为第三方 PyTorch 移植，其自陈 3.4–6x 速度与 1.25–1.75x 显存代价意味着可用性取决于任务类型。(3) **今日新跑的三个仓库仍存在「跑通≠验证目标」的分层缺口**：selective-audit 虽 16/16 通过且 180 次基准逐格复现，但其 README/KILLGATE 自陈是受 2610.31662 启发且问题正交（它研究固定预算在会漂移的 segment 间分配，论文研究有逐条置信分时每条是否审计），故不构成对论文数值的验证；episembench 实跑的 partial unsafe_exec_omission_recovery=0.4944 是其结构化决策规则『at the ceiling by construction』的构造性结果，不可当作任何真实模型的行为引用；barron-softmax-fix 自陈该配置下没有任何变体在 10k 步内 grokking，论文的 grokking 加速收益在该复现中未被检验——今日实跑后这一条已给出确定答案：在 2,000 步、1 seed、eps=1e-8 的缩减配置下 torch_fp32 出现 8 次 loss spike 而 barron_fp32 出现 0 次，论文最核心的 Slingshot 主张被独立复现（8 → 0）；但两变体均未 grokking（测试准确率 0.3680 / 0.3597），故 grokking 加速收益依然未被检验到——今日是『主张部分复现、加速收益未复现』，不是『完全复现』。(4) **全部论文性能数字仍为作者自述**：EpiSEM 十模型的 SWS/UCR/SBM/PUR 与 Table 8 的 Critical Omission Failure Rate；Cost-Aware Abstention 的 0.763→0.472（38.1%，CI [35.7%, 40.4%]）、15.3%→3.5%、0.477 vs 0.879、AUROC 0.500；Selective Auditing 的四组任务实验与 ImageNet 上的 anti-conservative 现象；S² 的 r=+0.831（h=110）与 r=+0.429（h=7）；PKTP 的 3.3 分优势与 cutoff 收益曲线；Low-Bit N-Gram 的 75% / 47–55% 节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1%/92.4%/94.8%/SSIM 0.989/LPIPS 0.022；METTA 的『超过 50%』。今日只做了三个第三方仓库的实跑核验，未复现任何论文自身的表格。(5) **口径缺口与更正两处**：其一，2026-10-24 历史报告中的 EpiSEM 任务族数与 Table 1 列序两处错误——今日回原文逐字确认 10-25 的更正是对的，但历史文件未回改，本条提醒继续保留；其二，Sensorimotor Alignment 的规模表述今日收紧——昨日记『无配套复现包』过重，仓库实际 tree_blobs=4030、analysis/ 下 30+ 脚本与部分 CSV/JSON 中间产物公开，作者自陈仍缺的是六 WAM、真机与 14-backbone 的 matching reproduction bundles，今日未逐个运行这些脚本（依赖环境未核验）。另有两处链接与元数据差异：SpectralCanary 项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 连续第二天实测 HTTP 404（仓库 README 仍指向该失效链接），故 project_url 留空；sensorimotor-alignment 仓库 GitHub API 返回 license=NOASSERTION 而 raw LICENSE 文件内容为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准标 MIT，元数据差异待作者修正。(6) **元数据口径差异与链接复核（今日实测）**：sachinkg12.github.io/RouteGuard/ 200、jonbarron.info/softmaxfix/ 200、zenodo.org/records/22654013 200、doi.org/10.5281/zenodo.22609128 302 正常跳转、yunfeixie233.github.io/s2/ 200；KILLGATE.md 引用的两个 prior-art 条目已独立核验存在且标题吻合——arXiv 2510.03734『Cost Efficient Fairness Audit Under Partial Feedback』、arXiv 2608.00568『Fairness Auditing: Lower Bounds on Company Manipulation』。(7) **抓取环境与数据源缺口**：huggingface.co 今日经代理恢复可达（HTTP 200，昨日不可达），但 fetch_papers.py 中 OpenReview / Papers with Code 三个源仍是未实现状态，本次数据完全来自 arXiv 单源；github.com 直连失败、必须走仓库 .git/config 里写死的 http.proxy=http://127.0.0.1:7890（该代理今日可用，与昨日记录的『代理已损坏』相反），git clone 走该代理仍报 GnuTLS recv error(-110) / RPC 失败，今日改用 GitHub API tarball 端点拉取仓库（实测可用）——这说明网络可用性是逐日变化的，报告里的『昨日不可达』不能当作今天的结论。(8) **流水线缺陷（今日第三次复现）**：fetch_papers.py 的 extract_keywords 先在全文上匹配再截断摘要到 500 字，且用子串匹配，导致 2610.31663（leverage/storage）、2610.31659（average）、2610.31657（coverage）三篇被误打上 RAG 标签，三篇关键词字段不可用于加权（与前两日同源）。(9) 未核验项：arXiv LaTeXML HTML 全文中 EpiSEM 的六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；PKTP 的附录表格数值已核，跨模型完整对照表未逐格复核；三个仓库中只有 episembench / selective-audit / barron-softmax-fix 三个被实跑，RouteGuard、SpectralCanary、lowbit-ngram、sensorimotor-alignment 四个仓库今日仅做 API 层核验（存在性、tree 结构、提交历史），未运行其代码。",
-    "one_line_judgement": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（今日回原文逐字复核）与第三方复现实跑：EpiSEM 攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了——而且用户请求本身良性、工具返回的每句话都是真的。规模今日复核确认：正文原句「It contains 300 task pairs comprising 600 worlds, with 50 pairs in each of six domains and 60 task families」与「Each domain contains 50 task pairs in ten families, giving 300 pairs and 600 worlds」——即每域 10 个家族、六域合计 60 个；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 口径提醒（连续第二日保留）：昨日 10-25 报告更正过前一日的两处错误（任务族数、Table 1 列序 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR），今日回原文逐字确认那次更正是对的，但 2026-10-24 的历史文件未回改。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 的机制证据最刺眼：Qwen3-14B Attempt 仅 16.3% 而 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——模型大量在把缺失事实取回来之前就提交了动作。",
-    "path": "daily-detail.html?date=2026-10-26"
+    "daily_action": "抄 Foyer 七步测量协议并在我们自己的收件箱/工单流上跑第一轮（抽 120–250 条、冻结快照、按线程切分、人工标注），今天只数三个数——多数类基线、生产规则基线、字段准确率——然后只盯「需要动作却被忽略」的比例；同时把它的 kappa.py（纯标准库、含 bootstrap CI）抄进评测工具链。附带三件不依赖任何论文数字的工程动作：给训练-推理一致性加 RoPE/激活/归一化位置误差断言；把「指令动作 + 实测状态」双写进 tool-call 日志；用 RobustRLlib 的语义/物理/时序扰动维度建我们自己的 agent shift 清单。",
+    "max_uncertainty": "今日最大的风险是把「代码跑通」误当成「论文被复现」：Foyer 的仓库确实本地跑通，但作者那 722 封真实邮件与标签按其 README 明写不公开，所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 全部只是作者自述，无法独立核验。其次环境已成硬约束：本机 J1900 无 AVX，MuJoCo 全版本 import 即 SIGILL，RobustRLlib 的 49 个失败经逐个归因全部且仅因缺 mujoco（25 passed / 42 skipped 均通过），任何需 MuJoCo/Isaac/GPU 的复现在当前机器不可行。第三，Flownomaly 明确要求 CUDA GPU（H100 实验环境），其 1-shot AUROC 与仓库权重/数据均无法复现。第四，Deco、Rounding-Location Alignment、HAD-VLM、Monetizing Intelligence、Language of Instruction 五篇至今无任何可核验实现（abs 页与 HTML 全文正则扫描无 github/gitlab 链接，GitHub 搜索亦零命中）。此外 Foyer 摘要的 739 与正文 722 存在样本量不一致，已按正文记录并保留待作者确认。",
+    "one_line_judgement": "据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（**均为作者自述，本机无法复现数值**，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——**它属于 contact graph，不属于 prompt**；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ **今日证据等级实质升级（这是本篇今日最重要的变化）：** 配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。",
+    "path": "daily-detail.html?date=2026-10-27"
   },
   "top_paper": {
-    "title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
+    "title": "Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox",
     "authors": [
-      "Qijin Zhang",
-      "Hanzhen Wang",
-      "Yuehan Zhao",
-      "Haoyu Dai",
-      "Yao Shu"
+      "Federico Lucca"
     ],
-    "published": "2026-10-22",
-    "updated": "2026-10-22",
+    "published": "2026-10-23",
+    "updated": "2026-10-23",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2610.31650v1",
-    "pdf_url": "https://arxiv.org/pdf/2610.31650v1",
+    "url": "http://arxiv.org/abs/2610.32955v1",
+    "pdf_url": "https://arxiv.org/pdf/2610.32955v1",
     "openreview_url": "",
     "paperswithcode_url": "",
-    "code_url": "",
+    "code_url": "https://gitlab.com/federicolucca/foyer-measure",
     "benchmark_url": "",
-    "project_url": "",
-    "abstract": "Tool-using language model agents rely on environmental facts to decide whether an action is permitted. When a tool response omits a safety-relevant fact, an agent may carry out a prohibited action even though the user request is benign and every returned statement is true. We introduce \\bench{}, an executable benchmark for evaluating unsafe execution, safety boundaries, and evidence recovery in LLM agents under missing evidence. It contains 300 matched unsafe/safe task pairs across six domains. ",
+    "project_url": "https://gitlab.com/federicolucca/foyer-measure",
+    "abstract": "Personal email agents decide, for every message, what it is, whether it is urgent, whether to draft a reply, create a task, or ignore it. Their error rate is rarely measured: the stored labels were written by the system itself. We present Foyer, a self-hosted personal inbox agent in daily use, and a measurement protocol (stratified sampling, frozen snapshots, thread-grouped splits, pre-registered hypotheses, human labels in the agent's review loop) that yields ground truth before any training. O",
     "categories": [
-      "cs.AI",
+      "cs.CL",
+      "cs.HC",
       "cs.LG"
     ],
     "keywords": [
-      "agent",
-      "benchmark"
+      "agent"
     ],
-    "score": 84.0,
+    "score": 86.0,
     "decision": "重点学习",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2610.31650v1"
+        "url": "http://arxiv.org/abs/2610.32955v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2610.31650v1"
+        "url": "https://arxiv.org/pdf/2610.32955v1"
       }
     ],
-    "llm_reason": "据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模（今日回原文确认）：『It contains 300 task pairs comprising 600 worlds, with 50 pairs in each of six domains and 60 task families』；『Each domain contains 50 task pairs in ten families, giving 300 pairs and 600 worlds』——即每域 10 个家族、六域合计 60 个；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件。⚠️ 口径提醒（今日第三次复核后仍成立）：昨日 10-25 报告更正过前一日的两处错误（任务族数 10 vs 60、Table 1 列序 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR），今日回原文逐字确认『60 task families』与『ten families』两句都成立，说明那次更正是对的；但 2026-10-24 的历史文件未回改，本条提醒继续保留。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 的机制证据：Qwen3-14B Attempt 16.3% 但 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 1.7%、Premature 74.7%——即『抗遮蔽强』与『会用证据』是两件事。★ 今日证据等级实质升级（这是本篇今日最重要的变化）：昨日第三方复现仓库 habib-analyst/episembench 只核验到『存在、结构自洽、README 自述』，今日经 GitHub API tarball 拉取后本地实跑：`PYTHONPATH=src python3 -m pytest tests/ -q` → 18 passed in 1.82s。results_seed42.json 逐项核对无误：blind unsafe_exec_full_evidence=0.0 / omission=1.0 / omission_recovery=1.0；seeking omission=1.0 但 omission_recovery=0.0、query_rate=1.0、seeking_safe_exec_omission_recovery=1.0；partial omission_recovery=0.4944、query_rate=0.5083；competence_full_evidence=1.0（competence_n=1080）；g2 mean=1.0 CI[1.0,1.0] n=180；g3 mean=-1.0 CI[-1.0,-1.0]；failure_cardinality 1:63 / 2:53 / 3:64（none=0）；audit_risk_flag_rate_omission_unsafe=0.4963（audit_n=540）——与昨日读到的 README/PREREG/KILLGATE 数字逐项一致，且 gates.json 自陈 determinism_rerun_identical=true。⚠️ 证据边界不变：作者官方代码在 arXiv abs 页经正则扫描仍无任何 github.com 链接，300 对真实任务与 6,052 条件的构造细节仍不可复刻（待核验/暂无）；该复现是确定性脚本化合成类比、不调用任何 LLM、CPU-only，其 PREREG/KILLGATE 自陈效应量因结构化决策规则『at the ceiling by construction』不可当作模型行为引用——注意今日实跑的 partial unsafe_exec_omission_recovery=0.4944 正是这种构造性结果，不是任何真实模型的实测。价值路由不变，仍列今日第一即时试点，但动作重心从『照抄模板』升级为『照抄模板 + 用实跑复现校准我们自己的最小实现』：用我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列（遮蔽后越权执行率、主动补证据率、先查后动比例），不引论文分数当基线；今日另加一条可直接执行的动作——把 episembench 的 18/18 测试跑通并读 gates.json 作为我们自己实现的验收清单（它把『盲 agent 必然越权』『会查证的 agent 能收手』拆成两个独立断言，正对应 Table 1 的 Full UCR 与 Recovery UCR 两条列）。",
-    "id": "episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+    "llm_reason": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇真正稀缺的不是模型对比，而是『先测量、再训练』的方法论本身——它指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（均为作者自述，本机无法复现数值，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——它属于 contact graph，不属于 prompt；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ 今日证据等级实质升级（这是本篇今日最重要的变化）：配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。⚠️ 证据边界必须说清：这证明的是『协议代码可运行、统计工具正确』，不是『论文数值被复现』——作者的真实邮件与标签按 README 明写不公开（No emails, labels or per-email results are included），所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 这些数字在本机一律无法独立核验，只能标为作者自述。★ 今日同时抓到一处论文自身口径不一致（首次发现，待作者确认）：arXiv abs 页摘要写『On 739 real Italian/English emails labelled by the owner (231 unbiased, 500 adversarially sampled)』，而 LaTeXML HTML 全文正文写 Round 3 为 500 封采样、491 封保留、『The v3 corpus (722 emails, 698 threads)』，且 231 + 491 = 722 自洽；全文通篇检索『739』零命中，唯一出现的『731』是 Table 3 里 action-48h 的 macro-F1 数值（0.731），与样本量无关。即摘要的 739 与正文的 722 差 17，且 739 = 231 + 500 直接把采样数当成了保留数——我们按正文口径（722）记，并保留此提醒，不替作者下结论。★ 价值路由与今天的动作重心：仍列即时价值第一，但动作从『读论文』升级为『直接抄协议、拿我们自己的收件箱跑一遍』——具体三步：(1) 照抄七步协议（分层抽样 → 冻结快照 → 按线程切分 → 在 agent review 回路里人工标注并记录谁提议谁确认 → 开标签前预注册假设 → 训练前先数多数类/生产系统/训练基线/零样本系统 → 把标签合成动作并按错误代价选阈值）；(2) 立刻在我们自己的 agent 上量三个数：多数类基线、生产规则基线、字段级准确率，然后只看一个数——『需要动作却被忽略』的比例，而不是准确率；(3) 抄两个可迁移的结论进工程规范：发件人关系进 contact graph 不进 prompt；阈值按错误代价选而不是按准确率选。注意一条边界：论文的 9 系统对比没有包含『自建小模型微调』这一档（只到 LogReg 与零样本），所以它不能证明『小模型不值得做』，也不能证明『LLM 该被替换掉』——它证明的是『在你自己的数据上，先量再选』。",
+    "id": "measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
     "value_type": "immediate",
     "matched_topics": [
       "llm-evaluation",
+      "ai-agent",
       "security-governance",
-      "ai-agent"
+      "data-engineering"
     ],
     "score_breakdown": {
       "novelty": 4.8,
-      "problem_importance": 5.8,
-      "relevance": 6.2,
-      "evidence_strength": 4.95,
-      "engineering_testability": 4.05,
-      "trend_signal": 5.45,
+      "problem_importance": 5.15,
+      "relevance": 5.0,
+      "evidence_strength": 5.9,
+      "engineering_testability": 6.05,
+      "trend_signal": 3.5,
       "long_tail_potential": 3.5,
-      "asset_convertibility": 5.6,
-      "actionability": 3.8,
+      "asset_convertibility": 4.8,
+      "actionability": 7.3,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 5.0,
-      "low_relevance_penalty": 2.2,
+      "weak_evidence_penalty": 3.0,
+      "low_relevance_penalty": 3.6,
       "engineering_cost_penalty": 2.5,
-      "reproducibility_risk": 5.0
+      "reproducibility_risk": 3.0
     },
     "trend_status": "emerging",
-    "brief_cn": "LLM 评测：Tool-using language model agents rely on environmental facts to decide whether…",
-    "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模…",
-    "first_seen_date": "2026-10-26",
-    "first_deep_dive_daily": "2026-10-26",
+    "brief_cn": "LLM 评测：Personal email agents decide, for every message, what it is, whether it is urg…",
+    "one_line_judgement": "今天值得试：今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitla…",
+    "first_seen_date": "2026-10-27",
+    "first_deep_dive_daily": "2026-10-27",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就",
+    "long_tail_summary": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-",
     "related_trends": [
       "coding-agent",
       "agentic-world-modeling"
     ],
-    "detail_path": "paper-detail.html?id=episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence"
+    "detail_path": "paper-detail.html?id=measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox"
   },
-  "paper_count": 2020,
+  "paper_count": 2030,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 259,
+  "long_tail_count": 261,
   "value_distribution": {
-    "immediate": 155,
-    "trend": 248,
-    "long_tail": 259,
-    "ignore": 1358
+    "immediate": 157,
+    "trend": 253,
+    "long_tail": 261,
+    "ignore": 1359
   },
   "recent_dailies": [
+    {
+      "date": "2026-10-27",
+      "title": "论文价值发现日报 - 2026-10-27",
+      "deep_dive_title": "Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox",
+      "deep_dive_url": "http://arxiv.org/abs/2610.32955v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "抄 Foyer 七步测量协议并在我们自己的收件箱/工单流上跑第一轮（抽 120–250 条、冻结快照、按线程切分、人工标注），今天只数三个数——多数类基线、生产规则基线、字段准确率——然后只盯「需要动作却被忽略」的比例；同时把它的 kappa.py（纯标准库、含 bootstrap CI）抄进评测工具链。附带三件不依赖任何论文数字的工程动作：给训练-推理一致性加 RoPE/激活/归一化位置误差断言；把「指令动作 + 实测状态」双写进 tool-call 日志；用 RobustRLlib 的语义/物理/时序扰动维度建我们自己的 agent shift 清单。",
+      "max_uncertainty": "今日最大的风险是把「代码跑通」误当成「论文被复现」：Foyer 的仓库确实本地跑通，但作者那 722 封真实邮件与标签按其 README 明写不公开，所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 全部只是作者自述，无法独立核验。其次环境已成硬约束：本机 J1900 无 AVX，MuJoCo 全版本 import 即 SIGILL，RobustRLlib 的 49 个失败经逐个归因全部且仅因缺 mujoco（25 passed / 42 skipped 均通过），任何需 MuJoCo/Isaac/GPU 的复现在当前机器不可行。第三，Flownomaly 明确要求 CUDA GPU（H100 实验环境），其 1-shot AUROC 与仓库权重/数据均无法复现。第四，Deco、Rounding-Location Alignment、HAD-VLM、Monetizing Intelligence、Language of Instruction 五篇至今无任何可核验实现（abs 页与 HTML 全文正则扫描无 github/gitlab 链接，GitHub 搜索亦零命中）。此外 Foyer 摘要的 739 与正文 722 存在样本量不一致，已按正文记录并保留待作者确认。",
+      "one_line_judgement": "据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（**均为作者自述，本机无法复现数值**，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——**它属于 contact graph，不属于 prompt**；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ **今日证据等级实质升级（这是本篇今日最重要的变化）：** 配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。",
+      "path": "daily-detail.html?date=2026-10-27"
+    },
     {
       "date": "2026-10-26",
       "title": "论文价值发现日报 - 2026-10-26",
@@ -182,141 +192,653 @@
       "max_uncertainty": "证据不足项明确清单：(1) 今日 10 篇中仅 3 篇有可核验外部证据——CoopUQ（https://github.com/tasl-lab/CoopUQ ，项目页 https://coopuq.github.io/ ）、Agima（https://github.com/Agentic-Imagination/Agima ，项目页 https://agima.net/ ）、Halcyon（https://cs.stanford.edu/~keshik/halcyon ，页面显示 Models 已提供、Code 标注 coming soon）经今日实测均 HTTP 200；其余 7 篇摘要未给出任何代码、benchmark 或项目链接，code_url / benchmark_url 一律留空并标注「暂无可核验链接（待核验/暂无）」，未补写任何推断事实。(2) 所有分数与 SOTA 结论均为作者自述，本次运行未做任何第三方复现；Halcyon 的 gFD 数字（48.0 vs 63.3、35.3 vs 41.0）与 LatComm 的 57x / 3x 均未独立核验。(3) OpenVLHarness 所用的 22 个 benchmark 与 8 个 backbone 的具体清单、以及 GPT-6 Astra / GPT-6 Luna / Codex / Visual Sketchpad 的评测口径需打开 PDF 核验，无法从摘要确认是否同一裁判。(4) Agima 的 40% vs 2% 仅限 Maze2D / Sokoban / Pacman / PushT 四个环境，真实工具链上的迁移效果未知。(5) VAG 自述在六个视觉推理 benchmark 上取得 SOTA 平均分，无第三方复现。(6) LatComm 要求两端模型冻结并支持 cross-attention，摘要中 readable by a different LLM 这句的适用边界论文未给出。(7) FunCAD 摘要只写 substantially improving functional success rates，未给出具体数值与 baseline 清单。",
       "one_line_judgement": "据摘要（arXiv 2610.26860），它先用受控实验否掉了最省事的那条路——'simply increasing the inference budget of the base model yields only modest gains'；然后把收益全部投在 harness 结构上：capability layer（统一异构后端并把输出转成模型可读观测）、persistent multimodal memory（把图像、结构化数据、网页引用作为可寻址 artifact 在整个 query 期间保留）、coding interface（在存好的数据上执行生成程序）。22 个 benchmark × 8 个开源与闭源 backbone 的 matched no-tool 对照给出平均 'improves average scores by 9.7-12.6 points over matched no-tool baselines'；成本侧最硬的一条是 'outperforms the base model, Codex, and Visual Sketchpad at maximum effort by 7.7-8.5 points while incurring at most 37% of their model-token cost'。三层结构今天就可以照着搭。",
       "path": "daily-detail.html?date=2026-10-21"
-    },
-    {
-      "date": "2026-10-20",
-      "title": "论文价值发现日报 - 2026-10-20",
-      "deep_dive_title": "Self-Building Labs",
-      "deep_dive_url": "http://arxiv.org/abs/2610.23826v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 Self-Building Labs（[2610.23826](http://arxiv.org/abs/2610.23826)）列为即时试点方向；为 SEER-Repro（[2610.23845](http://arxiv.org/abs/2610.23845)）建立即时试点卡片（与 SBL 一起构成 'lab-as-agent + reproducibility-agent' 即时双线）；为 DiscoveryRSI（[2610.23839](http://arxiv.org/abs/2610.23839)）、Behavioral Couplings（[2610.23847](http://arxiv.org/abs/2610.23847)）、ReDiST（[2610.23831](http://arxiv.org/abs/2610.23831)）建立/更新趋势卡片（hypothesis RSI / behavioral coupling / learner-conditioned distillation 主线加固）；为 MFlow（[2610.23854](http://arxiv.org/abs/2610.23854)）、QoT in Quantum Networks（[2610.23827](http://arxiv.org/abs/2610.23827)）、ENFR（[2610.23825](http://arxiv.org/abs/2610.23825)）、Spectral Inductive Biases in PQC（[2610.23834](http://arxiv.org/abs/2610.23834)）、Waiting Buys Exactly Two Moments（[2610.23830](http://arxiv.org/abs/2610.23830)）保持/新增长尾卡片。",
-      "max_uncertainty": "今日 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标 '暂无'——所有'代码 / 榜单 / 复现门槛'层面的判断都需打开 PDF 核验；SBL 是否真能跨 wet-lab / dry-lab / simulation rig 都 self-configure、SEER-Repro 的 20 篇论文选取协议是否独立于 LLM 厂商、DiscoveryRSI 的 hypothesis tree 编码是否对 single-agent pipeline 也 work、Behavioral Couplings 的耦合度量是否在不同模型族上稳定、ReDiST 的 student-side conditioning 是否会显著增加训练成本、MFlow 的 adaptive parameterization 是否会带来优化不稳定、QoT 的 compute/simulate/learn 三态选择是否对 fault scenario 鲁棒、ENFR 的 flow-matched reference 是否对 OOD posterior 仍可扩展、量子电路 spectral bias 的 query 编码是否对远端 task 仍闭式、Predictive Allocation 的 two-moment 界是否在非 canonical 模型下成立，仍待多源验证。",
-      "one_line_judgement": "据摘要（arXiv 2610.23826），这篇把 SDL 从 '运行人类设计的流程' 推到 'design, configures, and operates its own laboratory setup'——即让 agent 自己设计 / 配置 / 运维整个实验台，明确点出 'existing SDLs can only run the procedures they were built for. Adapting them to a new experiment still takes extensive manual engineering, which makes laboratory flexibility the bottleneck for scaling discovery'。这是 ai-agent × multimodal-agent × ai-k8s-platform 的 'self-reconfiguring SDL / lab-as-agent' 直接路线资产；与昨日 CoDA（2610.22362 data × policy co-evolution）、DiscoveryRSI（2610.23839 hypothesis-tree RSI）一起构成 'agent4science / agent4SDL' 主线——若 SBL 公开 lab reconfiguration 协议与跨硬件 interface，会成为团队日后做 '内部 self-reconfiguring eval rig' / 'lab-reconfig agent skill' 的直接底座。",
-      "path": "daily-detail.html?date=2026-10-20"
     }
   ],
   "top_papers": [
     {
-      "title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
+      "title": "Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox",
       "authors": [
-        "Qijin Zhang",
-        "Hanzhen Wang",
-        "Yuehan Zhao",
-        "Haoyu Dai",
-        "Yao Shu"
+        "Federico Lucca"
       ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31650v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31650v1",
+      "url": "http://arxiv.org/abs/2610.32955v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32955v1",
       "openreview_url": "",
       "paperswithcode_url": "",
-      "code_url": "",
+      "code_url": "https://gitlab.com/federicolucca/foyer-measure",
       "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Tool-using language model agents rely on environmental facts to decide whether an action is permitted. When a tool response omits a safety-relevant fact, an agent may carry out a prohibited action even though the user request is benign and every returned statement is true. We introduce \\bench{}, an executable benchmark for evaluating unsafe execution, safety boundaries, and evidence recovery in LLM agents under missing evidence. It contains 300 matched unsafe/safe task pairs across six domains. ",
+      "project_url": "https://gitlab.com/federicolucca/foyer-measure",
+      "abstract": "Personal email agents decide, for every message, what it is, whether it is urgent, whether to draft a reply, create a task, or ignore it. Their error rate is rarely measured: the stored labels were written by the system itself. We present Foyer, a self-hosted personal inbox agent in daily use, and a measurement protocol (stratified sampling, frozen snapshots, thread-grouped splits, pre-registered hypotheses, human labels in the agent's review loop) that yields ground truth before any training. O",
       "categories": [
-        "cs.AI",
+        "cs.CL",
+        "cs.HC",
         "cs.LG"
       ],
       "keywords": [
-        "agent",
-        "benchmark"
+        "agent"
       ],
-      "score": 84.0,
+      "score": 86.0,
       "decision": "重点学习",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31650v1"
+          "url": "http://arxiv.org/abs/2610.32955v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31650v1"
+          "url": "https://arxiv.org/pdf/2610.32955v1"
         }
       ],
-      "llm_reason": "据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了，而且用户请求良性、工具返回的每句话都是真的。规模（今日回原文确认）：『It contains 300 task pairs comprising 600 worlds, with 50 pairs in each of six domains and 60 task families』；『Each domain contains 50 task pairs in ten families, giving 300 pairs and 600 worlds』——即每域 10 个家族、六域合计 60 个；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件。⚠️ 口径提醒（今日第三次复核后仍成立）：昨日 10-25 报告更正过前一日的两处错误（任务族数 10 vs 60、Table 1 列序 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR），今日回原文逐字确认『60 task families』与『ten families』两句都成立，说明那次更正是对的；但 2026-10-24 的历史文件未回改，本条提醒继续保留。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 的机制证据：Qwen3-14B Attempt 16.3% 但 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 1.7%、Premature 74.7%——即『抗遮蔽强』与『会用证据』是两件事。★ 今日证据等级实质升级（这是本篇今日最重要的变化）：昨日第三方复现仓库 habib-analyst/episembench 只核验到『存在、结构自洽、README 自述』，今日经 GitHub API tarball 拉取后本地实跑：`PYTHONPATH=src python3 -m pytest tests/ -q` → 18 passed in 1.82s。results_seed42.json 逐项核对无误：blind unsafe_exec_full_evidence=0.0 / omission=1.0 / omission_recovery=1.0；seeking omission=1.0 但 omission_recovery=0.0、query_rate=1.0、seeking_safe_exec_omission_recovery=1.0；partial omission_recovery=0.4944、query_rate=0.5083；competence_full_evidence=1.0（competence_n=1080）；g2 mean=1.0 CI[1.0,1.0] n=180；g3 mean=-1.0 CI[-1.0,-1.0]；failure_cardinality 1:63 / 2:53 / 3:64（none=0）；audit_risk_flag_rate_omission_unsafe=0.4963（audit_n=540）——与昨日读到的 README/PREREG/KILLGATE 数字逐项一致，且 gates.json 自陈 determinism_rerun_identical=true。⚠️ 证据边界不变：作者官方代码在 arXiv abs 页经正则扫描仍无任何 github.com 链接，300 对真实任务与 6,052 条件的构造细节仍不可复刻（待核验/暂无）；该复现是确定性脚本化合成类比、不调用任何 LLM、CPU-only，其 PREREG/KILLGATE 自陈效应量因结构化决策规则『at the ceiling by construction』不可当作模型行为引用——注意今日实跑的 partial unsafe_exec_omission_recovery=0.4944 正是这种构造性结果，不是任何真实模型的实测。价值路由不变，仍列今日第一即时试点，但动作重心从『照抄模板』升级为『照抄模板 + 用实跑复现校准我们自己的最小实现』：用我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列（遮蔽后越权执行率、主动补证据率、先查后动比例），不引论文分数当基线；今日另加一条可直接执行的动作——把 episembench 的 18/18 测试跑通并读 gates.json 作为我们自己实现的验收清单（它把『盲 agent 必然越权』『会查证的 agent 能收手』拆成两个独立断言，正对应 Table 1 的 Full UCR 与 Recovery UCR 两条列）。",
-      "id": "episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence",
+      "llm_reason": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇真正稀缺的不是模型对比，而是『先测量、再训练』的方法论本身——它指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（均为作者自述，本机无法复现数值，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——它属于 contact graph，不属于 prompt；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ 今日证据等级实质升级（这是本篇今日最重要的变化）：配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。⚠️ 证据边界必须说清：这证明的是『协议代码可运行、统计工具正确』，不是『论文数值被复现』——作者的真实邮件与标签按 README 明写不公开（No emails, labels or per-email results are included），所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 这些数字在本机一律无法独立核验，只能标为作者自述。★ 今日同时抓到一处论文自身口径不一致（首次发现，待作者确认）：arXiv abs 页摘要写『On 739 real Italian/English emails labelled by the owner (231 unbiased, 500 adversarially sampled)』，而 LaTeXML HTML 全文正文写 Round 3 为 500 封采样、491 封保留、『The v3 corpus (722 emails, 698 threads)』，且 231 + 491 = 722 自洽；全文通篇检索『739』零命中，唯一出现的『731』是 Table 3 里 action-48h 的 macro-F1 数值（0.731），与样本量无关。即摘要的 739 与正文的 722 差 17，且 739 = 231 + 500 直接把采样数当成了保留数——我们按正文口径（722）记，并保留此提醒，不替作者下结论。★ 价值路由与今天的动作重心：仍列即时价值第一，但动作从『读论文』升级为『直接抄协议、拿我们自己的收件箱跑一遍』——具体三步：(1) 照抄七步协议（分层抽样 → 冻结快照 → 按线程切分 → 在 agent review 回路里人工标注并记录谁提议谁确认 → 开标签前预注册假设 → 训练前先数多数类/生产系统/训练基线/零样本系统 → 把标签合成动作并按错误代价选阈值）；(2) 立刻在我们自己的 agent 上量三个数：多数类基线、生产规则基线、字段级准确率，然后只看一个数——『需要动作却被忽略』的比例，而不是准确率；(3) 抄两个可迁移的结论进工程规范：发件人关系进 contact graph 不进 prompt；阈值按错误代价选而不是按准确率选。注意一条边界：论文的 9 系统对比没有包含『自建小模型微调』这一档（只到 LogReg 与零样本），所以它不能证明『小模型不值得做』，也不能证明『LLM 该被替换掉』——它证明的是『在你自己的数据上，先量再选』。",
+      "id": "measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox",
       "value_type": "immediate",
       "matched_topics": [
         "llm-evaluation",
+        "ai-agent",
         "security-governance",
-        "ai-agent"
+        "data-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Personal email agents decide, for every message, what it is, whether it is urg…",
+      "one_line_judgement": "今天值得试：今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitla…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今日第一即时价值。据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=measure-before-you-train-typed-decision-models-vs-a-classical-baseline-vs-a-generative-llm-for-routing-a-personal-multilingual-inbox"
+    },
+    {
+      "title": "Flownomaly: Single-Step Conditional-Mean Recovery for Few-Shot Anomaly Detection",
+      "authors": [
+        "Bernardo Perrone Ribeiro",
+        "Erkut Akdag",
+        "Egor Bondarev"
+      ],
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32964v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32964v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/b-rbmp/Flownomaly",
+      "benchmark_url": "",
+      "project_url": "https://b-rbmp.github.io/Flownomaly/",
+      "abstract": "Few-shot industrial anomaly detection requires modeling category-specific normality from only a handful of defect-free images. Common approaches tie inference to stored exemplars, impose rigid linear structure, or risk reproducing anomalous content. Flownomaly instead casts the problem as normal-counterpart recovery in frozen DINOv2 feature space. Given normal supports, a velocity field is learned through conditional flow matching over frozen patch tokens to transport Gaussian noise toward norma",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark",
+        "inference"
+      ],
+      "score": 83.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.32964v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.32964v1"
+        }
+      ],
+      "llm_reason": "今日第二即时价值，理由是它把『少样本异常检测』的推理成本结构性地压成了一步。据 arXiv 2610.32964 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 github.com/b-rbmp/Flownomaly 的本地核验：核心做法是在冻结的 DINOv2 特征空间里，把问题重新表述为『正常对应物恢复』——用条件流匹配在正常 patch token 上学一个速度场，把高斯噪声搬运到正常特征；沿直线路径，一次恢复步（只评估一次最优场）就给出干净正常 token 的后验均值，不需要轨迹积分；操作时间（operating time）控制恢复对 query token 的改写强度，而『没有异常验证样本可调』这个硬约束由一个仅用正常样本的 Jacobian 增益噪声比（JGN）判据从 support 单独选出这个时间；query token 与恢复后 token 的平方残差同时给出稠密定位与图像级检测信号。作者自述的 1-shot 结果（今日不可复现，见证据边界）：MVTec-AD 图像级 97.8% / 像素级 98.0% AUROC，VisA 95.3% / 98.7%，Real-IAD（1 sample、5 views）88.2% / 99.2%，并称在 VisA 上图像级比最强基线高 2.1 个百分点。★ 今日证据升级（结构级已核验，数值级不可复现）：仓库已下载，src/flownomaly/ 下 network.py（时间条件速度场）、calibration.py（JGN 校准，用 torch.func.jvp 做方向导数）、detector.py（拟合与推理主路径）、protocol.py（固定协议常量）、data.py / metrics.py / evaluation.py / rotation.py / workflow.py 齐全；protocol.py 常量可与正文逐项对照——backbone=dinov2_vitg14_reg、image_size=672、patch_size=14、target_layers=(15,19,23,27,31) 且注释自陈 0-indexed 对应第 16/20/24/28/32 层、shots=(1,2,4)、seeds=(42,43,44)、flow_batch_size=10240、jgn_candidates 为 0.05 至 0.95 步长 0.05、jgn_noise_pairs=4、jgn_probes=4、jgn_token_fraction=0.01、image_top_fraction=0.01、aupro_fpr_limit=0.3，与正文『1/2/4-shot』及 JGN 校准描述自洽。⚠️ 证据边界：detector.py 构造器明确 `if device != \"cuda\" or not torch.cuda.is_available(): raise RuntimeError(\"The reproduction path requires a CUDA GPU.\")`，README 也写明论文实验跑在 Linux + NVIDIA H100，本机为 CPU（J1900，无 AVX）故数值一律无法复现，上述 AUROC 全部标注『作者自述，待核验/暂无』；仓库里没有提交论文所用的 DINOv2 权重与数据集，也未提供 checkpoint，故连『跑一遍看趋势』都做不到。★ 价值判断：它今日进即时价值不是因为数值被验证，而是因为『单步替代轨迹积分』这个结构值得我们在自己的相似场景里试——如果我们在做基于自编码器/扩散特征的检索或重建，把采样次数从 N 降到 1 对线上延迟是数量级差别，而它的『仅用正常样本调超参』思路（JGN）也直接可用于我们缺标注的场景。动作：(1) 读 calibration.py 的 JGN 实现（约 160 行、纯 torch、无外部依赖），把它当作『无标注情况下选超参』的一个可复用范式抽出来——核心是只比较正常样本上的残差上尾与方向导数增益比；(2) 在我们自己的小规模检索/异常场景里做一次单步 vs 多步的对照实验，量延迟与质量比，不要引用其 AUROC 作为基线；(3) 记一条工程提醒：这类『先冻结大骨干、只在轻量头上做流匹配』的范式，其真实收益高度依赖骨干特征质量，而我们没有 DINOv2 级别的先验时，迁移收益未知（待核验/暂无）。",
+      "id": "flownomaly-single-step-conditional-mean-recovery-for-few-shot-anomaly-detection",
+      "value_type": "immediate",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 5.8,
         "relevance": 6.2,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.05,
-        "trend_signal": 5.45,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 3.8,
+        "asset_convertibility": 4.8,
+        "actionability": 6.1,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
+        "weak_evidence_penalty": 3.0,
         "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
+        "reproducibility_risk": 3.0
       },
       "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Tool-using language model agents rely on environmental facts to decide whether…",
-      "one_line_judgement": "今天值得试：据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模…",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
+      "brief_cn": "LLM 评测：Few-shot industrial anomaly detection requires modeling category-specific norm…",
+      "one_line_judgement": "今天值得试：今日第二即时价值，理由是它把『少样本异常检测』的推理成本结构性地压成了一步。据 arXiv 2610.32964 摘要与 LaTeXML H…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及第三方复现仓库实跑结果：这篇攻的不是模型说错话，而是工具少说了一句关键事实、agent 就",
+      "long_tail_summary": "今日第二即时价值，理由是它把『少样本异常检测』的推理成本结构性地压成了一步。据 arXiv 2610.32964 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 gi",
       "related_trends": [
         "coding-agent",
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=episem-bench-evaluating-safety-and-evidence-recovery-in-llm-agents-under-missing-evidence"
+      "detail_path": "paper-detail.html?id=flownomaly-single-step-conditional-mean-recovery-for-few-shot-anomaly-detection"
     },
     {
-      "title": "A Fix for Softmax and Cross-Entropy",
+      "title": "RobustRLlib: A Unified Library and Benchmark for Robust Reinforcement Learning Algorithms",
       "authors": [
-        "Jonathan T. Barron",
-        "Dan Gnanapragasam",
-        "Michael Tschannen"
+        "Xi Chen",
+        "Fengqi Hu",
+        "Zeyu Shen",
+        "Jiaying Xu",
+        "Shangding Gu"
       ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31642v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31642v1",
+      "url": "http://arxiv.org/abs/2610.32971v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32971v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/robustrl-lib/robustrllib",
+      "benchmark_url": "",
+      "project_url": "https://robustrl-lib.github.io/",
+      "abstract": "Robust reinforcement learning (RL) is critical for reliable real-world deployment, where policies may fail under diverse shifts and disruptions. Existing robust RL algorithms offer a rich set of mechanisms and principles, yet two major barriers limit their broader potential: limited algorithm reusability and an unclear empirical capability boundary. We introduce RobustRLlib, an algorithm-centric library and benchmark that addresses both challenges. It integrates 17 representative robust online, ",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 79.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.32971v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.32971v1"
+        }
+      ],
+      "llm_reason": "今日趋势价值第一。据 arXiv 2610.32971 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 github.com/robustrl-lib/robustrllib 的本地实跑：这篇解决的是稳健 RL 里两个具体障碍——算法复用性差、实证能力边界不清——做法是『以算法为中心的统一库 + 基准』：统一接口下集成 17 个代表性的稳健 online / offline / safe RL 算法，配套一个覆盖多种真实世界扰动、先进人形机器人与视觉-语言-动作（VLA）任务的评测平台，并在 273 个扰动配置上系统评测，给出当前稳健 RL 算法的能力地图——哪里仍然有效、哪里存在显著稳健性缺口。作者自述结论（今日部分可核验，见证据边界）：性能敏感性在不同扰动来源上差异显著，语义类扰动在 VLA 任务上影响更大。★ 今日证据升级（这是本篇今日最重要的变化）：仓库经项目站 robustrl-lib.github.io（HTTP 200，README 反查确认）定位到 robustrl-lib/robustrllib，tarball 17.6MB，目录结构完整——robustrllib/ 包、baselines/、examples/、isaac/（Isaac Lab）、vla/（VLA 研究）、tests/robust/ 共 15 个测试文件、pyproject.toml（MIT、Python>=3.9、声明 mujoco/box2d/robosuite/methods/testing 等 extras）、requirements.txt。本地 `pytest tests -q` 实测：49 failed, 25 passed, 42 skipped in 10.03s。★ 49 个失败经逐个 traceback 归因，全部且仅因为 MuJoCo 缺失（`No module named 'mujoco'` 命中 49 次，DependencyNotInstalled 142 次），不是逻辑缺陷；25 个 passed 与 42 个 skipped 的用例覆盖 Box2D 与纯 numpy 逻辑并全部通过。过程中记录一次真实环境陷阱：装上 mujoco 2.3.3 后测试从『干净失败』退化为 SIGILL 崩溃（traceback 定位 robustrllib/gym/envs/robust_mujoco/mujoco_env.py:13 → registration.py:549 load_env_creator → pipeline.py:56 make_robust），因为本机 CPU 是无 AVX 的 Intel Celeron J1900，MuJoCo 在 import 路径即触发非法指令——故卸载 MuJoCo 后复跑，得到上述稳定结论。⚠️ 证据边界：273 个扰动配置、17 个算法、每个算法在各配置上的表现排名全部属作者自述，本机无法复现（依赖 MuJoCo + Isaac Lab + VLA 栈，且硬件不支持）；『语义扰动在 VLA 上影响更大』这一结论亦未经第三方验证（待核验/暂无）。★ 价值路由：列趋势价值而非即时价值，因为它的核心交付物是『能力地图』而非可直接抄的单点技术，且完整复现需要 MuJoCo/Isaac/GPU 栈，不适合今天投入。但里面有两个今天就能用的部分：(1) 它的『以算法为中心统一接口』思路可直接映射到我们的 agent/eval 栈——把分散的评测脚本收进一个可插拔接口，让『换算法』的成本降到换一行配置；(2) 它的扰动分类（语义 vs 物理 vs 时序）是一套现成的『我们该测哪些 shift』清单，可直接改造成我们 agent 系统的鲁棒性评测矩阵（今天可动手：把我们的 agent 在『关键事实缺失』『工具返回噪声』『工具超时』三类 shift 下各跑一遍并记录越权率/成功率）。动作：纳入趋势雷达，7-30 天滚动观察；今日只做一件事——把它的扰动分类维度抄成我们自己的 agent shift 清单（不需要装它的库）。同时记录一条环境事实：本机跑不起 MuJoCo，因此任何需要 MuJoCo 的复现任务在当前机器上不可行（已实测，不是推测）。",
+      "id": "robustrllib-a-unified-library-and-benchmark-for-robust-reinforcement-learning-algorithms",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "ai-k8s-platform"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 6.8,
+        "engineering_testability": 6.05,
+        "trend_signal": 5.45,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising",
+      "brief_cn": "AI Agent：Robust reinforcement learning (RL) is critical for reliable real-world deploym…",
+      "one_line_judgement": "值得继续观察：今日趋势价值第一。据 arXiv 2610.32971 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 githu…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "上升",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日趋势价值第一。据 arXiv 2610.32971 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 github.com/robustrl-lib/robustr",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=robustrllib-a-unified-library-and-benchmark-for-robust-reinforcement-learning-algorithms"
+    },
+    {
+      "title": "Where Rounding Happens Matters: Rounding-Location Alignment Stabilizes LLM Reinforcement Learning",
+      "authors": [
+        "Yijing Ke",
+        "Tianle Cai",
+        "Ruosong Wang"
+      ],
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32951v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32951v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Standard implementations of softmax, log-softmax, and cross-entropy have two numerical bugs. The first bug, Softmax Collapse, rounds the target logit's gradient to zero if that one logit is much larger than the others, resulting in gradients that no longer sum to zero. The second bug, Softmax Cancellation, occurs when student logits are close to teacher logits, and produces non-zero gradients even when the student and teacher logits are equal. We present simple implementations of log-softmax, so",
+      "abstract": "Reinforcement learning for large language models often uses separate systems for inference and training. Even with identical weights and BF16 tensors, implementation differences can make an intended on-policy update off-policy and destabilize training. Existing remedies align the entire inference and training stacks, change global precision, or modify the learning algorithm. We ask whether aligning selected parts of the execution stack can stabilize BF16 RL while other implementation differences",
       "categories": [
         "cs.LG"
       ],
-      "keywords": [],
-      "score": 82.0,
-      "decision": "重点学习",
+      "keywords": [
+        "inference"
+      ],
+      "score": 77.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31642v1"
+          "url": "http://arxiv.org/abs/2610.32951v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31642v1"
+          "url": "https://arxiv.org/pdf/2610.32951v1"
         }
       ],
-      "llm_reason": "据 arXiv 2610.31642 摘要、作者项目页 https://jonbarron.info/softmaxfix/（今日实测 HTTP 200，署名 Google DeepMind，含 Interactive Demo 与完整章节导航，仍不给仓库链接）与第三方 PyTorch 移植实跑结果：这篇把一个每天在用的 API 的数值行为钉死了。机制：标准 softmax/log-softmax/cross-entropy 有两个数值 bug——Softmax Collapse（目标 logit 的 margin 超过精度悬崖时 1−p_t 被舍入为 0，梯度不再求和为 0，AdamW 会转成 Slingshot loss spike）与 Softmax Cancellation（蒸馏时 student/teacher logit 接近导致梯度不为 0，Adam 会把完美 student 推离 teacher）。★ 今日证据等级实质升级：昨日第三方移植 PwnerHarry/barron-softmax-fix 只核验到『README 自述』，今日装 CPU 版 torch 2.14.1+cpu 后经 GitHub API tarball 拉取实跑：`PYTHONPATH=src python3 -m pytest tests/ -q` → 30 passed in 33.05s（昨日记录的 README 自陈为 18/18，今日实跑为 30 个用例全部通过，说明仓库昨日之后未变更、README 自陈的用例数不可直接当事实）。`validation/numerics.py` 实跑输出与论文逐项对上：torch 精度悬崖实测 fp16=7.63 / bf16=5.56 / fp32=16.64 / fp64=36.74，与脚本打印的理论预测 log(2^p)=7.6246 / 5.5452 / 16.6355 / 36.7368 吻合；同一 cliff 下 barron 实现把悬崖推迟到 fp16=17.34 / bf16=93.00 / fp32=103.98（fp64 为 nan），即修掉的是『悬崖提前到来』而不是把误差藏起来。E2 零和残差：torch 在 bf16 C=3 margin=10 时 |sum g|/max|g|=2.00e+00、target==0 比例 1.00，barron 同一格 2.69e-03 / 0.00；C=1000 margin=20 时 torch 达 1.11e+02，barron 3.47e-03。E5a 蒸馏：bf16 与 fp32 下 torch 的 mean KL 在 1e-8~1e-10 量级漂移而 max|z_S-z_T| 达 3.22e-02（bf16）/ 1.92e-02（fp32），barron 全部恰为 0.00e+00 —— 这条正是『student=teacher 时梯度是否恰为 0』的直接实测答案。论文 §2 例子 z=[9,-9,-9]：torch loss=-0.0、grad=[[0.0, 1.52e-08, 1.52e-08]]，barron loss=3.046e-08、grad=[[-3.046e-08, 1.52e-08, 1.52e-08]]，与昨日记录的 README 数字逐项一致。★★ 今日最硬的一条：论文的 Slingshot loss spike 主张今日被独立实跑复现。`validation/training.py grokking` 的 10k 步默认配置在 CPU 上超出时间预算（900s 超时，未产出结果），故今日改用 2,000 步、1 seed、eps=1e-8 的缩减配置实跑同一脚本（a+b mod 31、一层宽 64 ReLU transformer、全量 batch AdamW、lr=1e-3、betas=(0.9,0.98)、weight_decay=1.0）：torch_fp32 → 8 次 loss spike（>100x 近窗最小值），第二半程 loss 区间 min 1.33e-07 / max 1.87e-02（动态范围约 1.4e5）；barron_fp32 → 0 次 loss spike，第二半程 loss 区间 min 9.22e-08 / max 2.92e-06（动态范围约 3.2e1，比 torch 小约 4 个数量级）；两者测试准确率相近（torch 0.3680 vs barron 0.3597）、均在 2000 步内达到训练集 100%（torch 第 360 步 / barron 第 380 步），即修复没有牺牲拟合能力。机制侧的旁证是最终训练 margin：torch 中位数 9.63、最小 7.59、越过 fp32 悬崖的比例 0.00；barron 中位数 16.23、最小 14.67、越过悬崖比例 0.29——margin 被推到 log(1/eps)=18.4 附近，正是论文所说的 margin 与 AdamW eps 的平衡点。⚠️ 证据边界（今日明确收窄）：这是缩减配置（2,000 步 vs 论文 10,000 步、1 seed vs 3 seeds、仅 fp32 与 barron_fp32 两个变体、未含 torch_fp64），因此复现的是『loss spike 消失』这一条主张，不是论文完整的 grokking 加速结论——该仓库自陈在完整配置下没有任何变体在 10k 步内 grokking，与今日缩减配置下两变体均未 grokking（测试准确率约 0.36）一致，故论文的 grokking 加速收益在第三方复现中依然未被检验到。作者官方实现（JAX）仍无公开仓库入口（待核验/暂无），可用的是第三方 PyTorch 移植，其自陈 3.4–6x 速度损失与 1.25–1.75x 显存开销意味着我们的可用性取决于任务类型。价值路由：仍列即时价值第一梯队，且从昨日『有第三方实现可直接跑』再升级为『第三方实现已被本地实跑验证、30/30 通过，且论文核心的 loss spike 主张已被独立复现（8 → 0）』——这是今天最可执行的一条。",
-      "id": "a-fix-for-softmax-and-cross-entropy",
-      "value_type": "immediate",
+      "llm_reason": "今日趋势价值第二。据 arXiv 2610.32951 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅有 abs 页与摘要可核）：这篇问的问题非常具体——RLHF/RLVR 训练通常把推理和训练拆成两套系统，即使权重相同、张量同为 BF16，实现差异也足以让一次本该 on-policy 的更新变成 off-policy 并让训练崩掉；既有补救要么对齐整套推理训练栈、要么改全局精度、要么改学习算法，而本文问的是：只对齐执行栈里选定的部分能不能稳住 BF16 RL。做法是在训练侧把三个区域的舍入位置与推理侧对齐——RoPE、SwiGLU、residual RMSNorm，方式是让选定的中间结果保持 FP32 直到输出其 BF16 值。作者自述结论：跨四个 Qwen 系模型，对齐这三个区域可避免默认 BF16 基线下的崩塌；而仅对齐 RoPE 路径在所研究的运行里也已足够，尽管仍存在残余数值差异；干预保持推理引擎、矩阵乘与注意力 kernel、学习目标均不变。⚠️ 证据边界（今日最重要的一条）：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接（唯一命中为 arXiv 模板自带的 huggingface.co/docs/hub），即目前没有可核验的官方实现或第三方实现（待核验/暂无）；『四个 Qwen 系模型』『崩塌』『仅 RoPE 对齐即足够』这些结论全部依赖作者的内部训练栈，我们无从核验；该篇的 arXiv HTML 版为 404，意味着连全文细节都无法逐字复核，只有摘要级证据——这比昨天那批（全文可读）证据更薄。★ 价值路由：列趋势价值而非即时价值，因为我们既没有官方实现，也看不到可抄的具体补丁，贸然照着摘要改训练栈风险高。但它的『定位思路』本身极有价值且可立即迁移——把『同一个数学量在不同系统里被舍入的位置不同』当作一类 bug 来审计。我们的 RL/推理栈同样存在训练侧与推理侧的数值不一致风险，尤其在 BF16 下。可今天就做的最小动作（不需要这篇论文的实现）：在我们自己的训练-推理一致性检查里加一条断言——同一份权重、同一批输入，训练侧前向与推理侧前向在 RoPE 位置、激活函数位置、归一化位置分别比对最大绝对误差，把误差最大的位置记为待对齐点。这是纯工程动作，不依赖论文结论，收益来自『发现问题』而非『照抄解法』。同时把该篇列入趋势雷达连续观察：若后续放出实现或被 verl / OpenRLHF 等框架采纳，证据等级会立刻升级，届时再深挖。注意区分：这篇与前两天的 softmax 修复（barron-softmax-fix）属同一大类『数值实现细节决定训练成败』，但今天这篇连开源实现都没有，所以证据等级明确低于那篇已实跑复现的先例。",
+      "id": "where-rounding-happens-matters-rounding-location-alignment-stabilizes-llm-reinforcement-learning",
+      "value_type": "trend",
       "matched_topics": [
         "inference-serving",
+        "ai-k8s-platform"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "推理与服务：Reinforcement learning for large language models often uses separate systems f…",
+      "one_line_judgement": "值得继续观察：今日趋势价值第二。据 arXiv 2610.32951 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅有 abs …",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日趋势价值第二。据 arXiv 2610.32951 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅有 abs 页与摘要可核）：这篇问的问题非常具体——RLHF/R",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=where-rounding-happens-matters-rounding-location-alignment-stabilizes-llm-reinforcement-learning"
+    },
+    {
+      "title": "Separating Thinking from Spelling for Efficient Generative Recommendation",
+      "authors": [
+        "Danil Gusak",
+        "Anna Volodkevich",
+        "Ivan Oseledets",
+        "Evgeny Frolov"
+      ],
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32980v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32980v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Generative recommenders retrieve items by writing their semantic IDs (SIDs) code by code under trie-constrained beam search, an approach now deployed on large web platforms. Standard autoregressive interfaces pay for the SID length K twice: a history of T items enters the backbone as TK code tokens, and every beam-search step runs through the backbone, so returning B candidates costs O(BK) backbone decode tokens per user. The second cost often dominates, and it grows with the backbone, the SID d",
+      "categories": [
+        "cs.IR"
+      ],
+      "keywords": [],
+      "score": 76.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.32980v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.32980v1"
+        }
+      ],
+      "llm_reason": "今日趋势价值第三。据 arXiv 2610.32980 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这篇攻击的是生成式推荐里 SID 长度被『付两次』的成本结构——历史 T 个物品以 TK 个 code token 进入 backbone，而每个 beam-search 步都要过一遍 backbone，于是返回 B 个候选的代价是每个用户 O(BK) 个 backbone decode token，且这一项常常占主导并随 backbone 规模、SID 深度与候选预算增长。做法 Deco（decoding from concepts）把『读历史』与『写标识符』分开：backbone 把每个历史物品读成一个融合 token，一次性把历史压缩成紧凑的 next-item concept；一个轻量、带 KV cache 的 decoder 在该 concept 与已生成前缀的条件下跑完整 beam search，而标识符、trie 与自回归分解方式保持不变。作者自述（今日不可复现，见证据边界）：七个电商/电影/音乐流媒体数据集上，Deco 的准确率与标准生成式推荐器及融合输入的全 backbone teacher 相当或更好，同时在 50 ms p95 延迟预算的生产式服务流水线下给出 3.2–8.6 倍吞吐；轻量 decoder 仅用交叉熵即接近全 backbone 精度，蒸馏进一步提升；Deco 生成 1000 个候选比 teacher 生成 100 个还快；用 1.5B 参数 LLM backbone 时，它与 69M 参数 teacher 吞吐持平而准确率更高。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接（唯一命中为 arXiv 模板自带的 huggingface.co/docs/hub），即没有可核验的官方实现或第三方实现（待核验/暂无）；GitHub 搜 'Deco generative recommendation trie' 零命中，确认不是我们漏检。⚠️ 证据边界：全部数值（3.2–8.6×、50 ms p95、1000 vs 100、1.5B vs 69M）为作者自述，未经任何第三方核验，且论文属 cc-license 但未附代码，短期内无法升级证据等级。★ 价值路由与今日可迁移的判断：列趋势价值，不是因为数字可信，而是因为它指出了一条我们迟早要走的路——『把重 backbone 的读历史与轻结构的写输出解耦』。这条思路不止适用于推荐：任何『大模型读上下文 + 小解码器产生结构化输出』的 agent 流水线（工具调用序列生成、路由分类、结构化抽取）都在同一结构上。值得今天做的不是复现（无代码、依赖工业数据与专用 SID 体系，成本极高），而是把它的成本公式记下来并用在我们自己的流水线上：把『每请求过 backbone 的次数』作为一等指标去量，而不是只看端到端延迟——我们现在的很多流水线里，这个数比 p95 更能解释成本。动作：纳入趋势雷达连续观察 7-30 天；今日做一次我们自己的计数：统计一个典型请求路径上 backbone 前向次数与 decode token 数，看看是否存在『付两次』的同构问题（我们目前没有 SID 概念，所以这是结构类比而非直接可迁的方案——待核验/暂无）。",
+      "id": "separating-thinking-from-spelling-for-efficient-generative-recommendation",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "ai-k8s-platform"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "推理与服务：Generative recommenders retrieve items by writing their semantic IDs (SIDs) co…",
+      "one_line_judgement": "值得继续观察：今日趋势价值第三。据 arXiv 2610.32980 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这篇攻击的是生成式推荐…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日趋势价值第三。据 arXiv 2610.32980 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这篇攻击的是生成式推荐里 SID 长度被『付两次』的成本结构——历史 T ",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=separating-thinking-from-spelling-for-efficient-generative-recommendation"
+    },
+    {
+      "title": "DexPort: A Hand-Held Skill Interface for Dexterous Hand Data Collection",
+      "authors": [
+        "Amber Xie",
+        "Jiawei Fu",
+        "Xiaofeng Guo",
+        "Carmelo Sferrazza",
+        "Guanya Shi"
+      ],
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32969v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32969v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/amazon-far/dexport",
+      "benchmark_url": "",
+      "project_url": "https://amberxie88.github.io/dexport/",
+      "abstract": "Collecting high-quality demonstrations remains a central bottleneck for learning dexterous manipulation. Teleoperation records executable robot actions, but it requires a complete robot setup and places the burden of coordinating many finger joints on the operator. Human demonstrations are easier to collect, but their motions must be estimated and retargeted to the robot, and they do not directly provide robot actions. In this paper, we introduce DexPort, a portable data-collection interface for",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "tool use"
+      ],
+      "score": 72.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.32969v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.32969v1"
+        }
+      ],
+      "llm_reason": "今日趋势价值第四。据 arXiv 2610.32969 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）与官方仓库 github.com/amazon-far/dexport 的本地核验：它处理的是灵巧操作的数据瓶颈——遥操作能录到可执行动作但需要整套机器人且要求操作者协调多个手指关节；人类演示易采但动作需要估计与重定向，且不直接给出机器人动作。DexPort 用同一套手部硬件同时做采集与部署（消除 hand embodiment gap），同时记录指令关节目标与实测关节状态；核心观察是一小组技能可以支撑广泛的灵巧任务——采集时操作者移动手持接口来指定腕部运动，并通过选择/调整技能来协调手指运动，从而不必独立控制每个关节。采集 2,500+ 条演示（实验室与 in-the-wild，无机器人臂），用行为克隆直接训练视觉运动策略且不需要技能标签，评测四个任务：多样物体 pick-and-place、in-hand tool use 的拧螺丝、需同时抓取与拉动的抽屉收纳、双臂条码扫描。作者自述（今日不可复现）：用记录下来的机器人指令而非实测关节状态，把三个按成功率评测的任务的平均最终成功率从 11% 提升到 64%；与 in-the-wild 数据协同训练把 pick-and-place 平均成功率从 36% 提升到 78%（三个评测条件）。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无 github.com/gitlab.com 链接，但项目页 amberxie88.github.io/dexport/（HTTP 200）反查得到官方仓库 amazon-far/dexport；tree 可读（dexport/ + configs/ + sim/ + hardware/ + checkpoints/ + docs/usage.md + pyproject.toml + NOTICE），README 显示训练依赖 CUDA torch 与 Isaac Lab conda 环境、采集依赖 Quest 手柄读数器（需 git-lfs）与 Marvin SDK，且明确 `checkpoints/rotation_skill/model.pt is a random placeholder`——即占位权重，必须自行训练后才能采数据。⚠️ 证据边界：本机无 CUDA、无法跑 Isaac Lab，故上述 11%→64%、36%→78% 全部标注作者自述（待核验/暂无）；本机仅核验到『仓库存在、结构自洽、README 自述硬件与环境要求』。★ 价值路由：列趋势价值——它对我们最可迁移的不是灵巧操作本身（我们没有机器人硬件，投入产出极低），而是一条数据工程结论：同一套接口既用于采集又用于部署，可以消掉 embodiment gap；并且『记录指令目标 + 实测状态』双写比只记其一更有效（作者自述 11%→64% 即来自这个选择）。动作：纳入趋势雷达，今天不投入硬件；但把『同时记录被指令的动作与实际执行的动作』这条直接抄进我们的 agent 日志设计——我们现在的 tool-call 日志基本只记了『调了什么』和『返回了什么』，没记『我们本来想让工具做什么 vs 实际发生了什么』，这在工具失败时是排障的关键缺口，今天可落地。",
+      "id": "dexport-a-hand-held-skill-interface-for-dexterous-hand-data-collection",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 6.1,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Multimodal Agent：Collecting high-quality demonstrations remains a central bottleneck for learni…",
+      "one_line_judgement": "值得继续观察：今日趋势价值第四。据 arXiv 2610.32969 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）与官方仓库 github…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日趋势价值第四。据 arXiv 2610.32969 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）与官方仓库 github.com/amazon-far/dexport 的本",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=dexport-a-hand-held-skill-interface-for-dexterous-hand-data-collection"
+    },
+    {
+      "title": "SceneBloom: Agentic Indoor Environment Generation with Realistic and Diverse Layouts for Embodied Learning",
+      "authors": [
+        "Yuhan Liu",
+        "Lianhui Qin",
+        "Shenji Wan"
+      ],
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32978v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32978v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/Tinaliu0123/scenebloom",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Training generalizable embodied agents requires realistic, varied, and simulation-ready indoor environments. Language-guided methods support semantic planning and object-level reasoning, but precise spatial grounding remains difficult. Visual generative models offer rich priors over plausible arrangements, yet their outputs require geometric reasoning to become physically valid 3D scenes. We introduce SceneBloom, an agentic framework that combines visual layout sampling with contract-guided 3D c",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "planning"
+      ],
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.32978v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.32978v1"
+        }
+      ],
+      "llm_reason": "今日趋势价值第五。据 arXiv 2610.32978 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅摘要与 abs 页可核）：它要做的是为可泛化的具身 agent 生成真实、多样、可直接进仿真的室内环境。问题陈述很清楚——语言引导方法支持语义规划与物体级推理，但精确空间落地仍难；视觉生成模型有丰富的布局先验，但其输出需要几何推理才能成为物理有效的 3D 场景。SceneBloom 的做法是把视觉布局采样与契约引导的 3D 编译结合：分层采样器用扩散先验在功能分区内生成家具排布，编译器再用从每个提案中抽取的关系去引导几何拟合与局部位姿修正。作者自述（今日不可复现）：在五类房间上，SceneBloom 在被比较方法中取得最高的视觉质量与物理稳定性，并且是唯一没有检测到网格碰撞与越界物体的方法；其布局也比所有对比基线更接近真实房间分布；用这些真实场景训练的目标导航策略，在留出的真实扫描上成功率高于用等量真实训练扫描训练的策略。★ 今日证据状态：官方仓库 github.com/Tinaliu0123/scenebloom 存在，tarball 下载成功，scenebloom/ 下 pipeline.py、sampling/（proposals 与 zoning 两个子包）、compilation/compiler.py 等结构齐全，`python3 -m compileall` 全部通过；但 pyproject 明确 requires-python >=3.10,<3.11，且核心 GPU 栈（torch / diffusers / Genesis / OVMono3D 的 CUDA 扩展）由 envs/install_scenebloom.sh 另行安装，本机 Python 3.11 + 无 CUDA。⚠️ 证据边界：本机只核验到『存在、结构自洽、语法可编译』，数值一律不可复现（『最高视觉质量与物理稳定性』『唯一零碰撞』『导航策略真实扫描成功率更高』均为作者自述，待核验/暂无）。★ 价值路由：列趋势价值而非即时价值——依赖 Genesis + OVMono3D 的 CUDA 扩展，环境成本过高，且具身导航不在我们当前系统范围内。但『契约引导的 3D 编译』这个抽象值得记下：生成模型给出布局提案、编译器用显式约束（碰撞、越界、支撑关系）把提案编译成物理有效对象——这正是我们生成任何结构化产物（如 agent 计划、配置、文档骨架）时缺的第二道工序。动作：纳入趋势雷达，今天不投入环境；把『生成 + 显式约束编译』这条两段式写进我们的 agent 输出校验清单：我们目前只做『生成完再检查』，而不是『用显式约束在生成过程中就限定形状』。同时记住一条判断：作者自陈『唯一零碰撞』是相对被比较方法而言的相对结论，不是绝对保证，且无第三方复核。",
+      "id": "scenebloom-agentic-indoor-environment-generation-with-realistic-and-diverse-layouts-for-embodied-learning",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent",
+        "ai-k8s-platform"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Multimodal Agent：Training generalizable embodied agents requires realistic, varied, and simulat…",
+      "one_line_judgement": "值得继续观察：今日趋势价值第五。据 arXiv 2610.32978 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅摘要与 ab…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日趋势价值第五。据 arXiv 2610.32978 摘要（今日回原文逐字复核；该篇 arXiv HTML 全文为 404，仅摘要与 abs 页可核）：它要做的是为可泛化的具身 agent ",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=scenebloom-agentic-indoor-environment-generation-with-realistic-and-diverse-layouts-for-embodied-learning"
+    },
+    {
+      "title": "Beyond Discrete Tokens: Preserving Numerical Continuity in Medical Vision-Language Models",
+      "authors": [
+        "Dianye Huang",
+        "Jiamei Guo",
+        "Yue Zhou",
+        "Mingde Li",
+        "Yi Xiong"
+      ],
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32948v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32948v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Objective: To develop a unified vision-language model for prompt-conditioned quantitative ultrasound measurement that addresses the mismatch between continuous measurement targets and discrete token-based numerical prediction. Methods: This article presents HAD-VLM, a hybrid autoregressive-diffusion framework that combines autoregressive text generation with continuous measurement prediction within a shared backbone. Visual prompt tuning adapts the vision encoder to ultrasound images. A diffusio",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "keywords": [],
+      "score": 60.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.32948v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.32948v1"
+        }
+      ],
+      "llm_reason": "今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的是一个具体而干净的错配——定量超声测量要求连续数值目标，而基于 token 的数值预测是离散的。它用自回归-扩散混合框架，在共享 backbone 内把自回归文本生成与连续测量预测结合起来；视觉 prompt tuning 适配视觉编码器；扩散过程预测一个五分量表示（卡尺两端点坐标 + 测量长度）；后处理结合『坐标-长度一致性机制』与集成预测来精修测量估计。作者自述（今日不可复现）：在 EchoNet-LVH 上四个超声测量任务（IVSd / LVIDd / LVIDs / LVPWd）的平均绝对误差分别为 1.36 / 2.77 / 3.05 / 1.16 mm，相对基于 Vicuna 的自回归基线误差降低 21.4–37.6%；在全部四个任务上优于微调后的 Qwen3-VL 与直接 MLP 回归；在评测数据集上医学问答能力得以保持；X 光脊柱测量上把平均绝对误差从 11.4 像素降到 6.7 像素。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接（唯一命中为 arXiv 模板自带的 huggingface.co/docs/hub），没有可核验的官方实现或第三方实现（待核验/暂无）；另注该篇属医学影像定量任务，离我们当前系统范围较远。⚠️ 证据边界：全部数值与『优于 Qwen3-VL / MLP 回归』的对比均为作者自述，本机无代码、无数据（EchoNet-LVH 需单独获取）、无第三方复现，无法核验。★ 价值路由：列长尾价值——领域（临床超声测量）离我们远，今天投入产出比低。但它带走一个可迁移的结构性判断：连续量不该硬塞进 token 空间，应该有一个连续的预测头；但『连续头 + 自回归共享 backbone』的具体做法与我们是否相关，取决于我们是否有连续数值的输出需求（今日我们没有明确需求）。动作：加入长尾库，先保存不投入；设置未来触发条件——当我们的某个 agent 任务开始产出连续数值（置信度、金额、时长、评分）时，回看这篇的『连续头 + 离散文本头共享 backbone』与『坐标-长度一致性后处理』两条设计；触发条件包括出现开源实现、被高质量论文引用、或我们自己出现连续数值输出需求。现在可沉淀的资产只有一句可复用的设计原则：『当输出类型混合了连续量与离散文本时，为连续量单独设计一个预测通路，别用离散 token 近似它』——这条原则本身今天就能进我们的设计检查表。",
+      "id": "beyond-discrete-tokens-preserving-numerical-continuity-in-medical-vision-language-models",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
         "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Objective: To develop a unified vision-language model for prompt-conditioned q…",
+      "one_line_judgement": "值得先保存：今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的是一个具体而干净的错配——定量超声测量要求连续数值目",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=beyond-discrete-tokens-preserving-numerical-continuity-in-medical-vision-language-models"
+    },
+    {
+      "title": "Monetizing Intelligence: Advertising and Subscription Design on LLM Platforms",
+      "authors": [
+        "Yuhang Ji",
+        "Fasheng Xu",
+        "Tianjun Feng"
+      ],
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32945v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32945v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large language model (LLM) platforms introducing advertising must decide how much capability ad revenue should fund and what consumers should pay to avoid ads. We study a monopolistic platform that jointly chooses costly response quality, advertising intensity, and subscription prices when advertising reduces user value but better service raises advertising returns. Three findings follow. First, when partly ad-supported and ad-free plans coexist, advertising can finance useful service for consum",
+      "categories": [
+        "econ.TH",
+        "cs.AI"
+      ],
+      "keywords": [],
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2610.32945v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2610.32945v1"
+        }
+      ],
+      "llm_reason": "今日长尾价值第二。据 arXiv 2610.32945 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它研究的是 LLM 平台引入广告后的定价设计——垄断平台同时选择有成本的回答质量、广告强度与订阅价格，背景是广告降低用户价值但更好的服务又提升广告回报。作者自陈三条结论：(1) 当部分广告支持与免广告套餐并存时，广告可以为在纯订阅下得不到任何服务的消费者提供有用服务；但中间档位的较低有效质量削弱了高端用户可得的替代方案，从而让免广告服务可以卖更贵的价格；部分全广告用户效用上升，而部分广告支持用户与免广告用户效用下降——更广的可及性可以与效用分化并存。(2) 一个中间水平的广告上限可以最大化消费者剩余：保留部分收入用于补贴服务，同时限制退化。(3) 更便宜的算力可以提升质量并降低广告强度，但足够大的成本下降反而会让广告总收入超过初始水平，因为更好的服务抬高了剩余广告交互的价值；一个扩展说明广告资助的升级可以把各套餐带到相同的最大能力与相同广告暴露，从而消除差异化定价的基础。作者的总结是菜单设计（menu design）是评估 LLM 广告的核心：后果不只影响看到广告的人，也影响看不到广告的人所面对的替代方案与价格。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接，没有可核验的实现（待核验/暂无）；属 econ.TH 理论建模，无实验数据。⚠️ 证据边界：全部结论来自作者的垄断竞争理论模型，模型假设（垄断平台、单一质量维度、消费者效用设定）是否映射到真实 LLM 平台，未被任何人验证，本机也无法核验（无代码、无数据）。★ 价值路由：列长尾价值而非即时价值——它是理论结论，不含今天可抄的机制实现，且我们对广告定价无业务决策权。但其中一条判断值得保留，因为它会影响我们看平台公告的方式：广告的伤害会外溢到不看广告的人（通过替代方案变差、定价空间变大），所以『平台开始卖广告』这件事对我们不是纯噪声。动作：加入长尾库，先保存；设置未来触发条件——当我们在评估某个 LLM 供应商开始引入广告或调整套餐结构时，回看这篇的『中间广告上限最大化消费者剩余』与『算力降价反而可能抬高广告收入』两条。特别注意第三条的后两点：这是模型内结论，不是事实（待核验/暂无），不要在决策文档里当实证引用。",
+      "id": "monetizing-intelligence-advertising-and-subscription-design-on-llm-platforms",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "security-governance"
       ],
       "score_breakdown": {
         "novelty": 5.4,
@@ -334,632 +856,119 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "推理与服务：Standard implementations of softmax, log-softmax, and cross-entropy have two n…",
-      "one_line_judgement": "今天值得试：据 arXiv 2610.31642 摘要、作者项目页 https://jonbarron.info/softmaxfix/（今日实测 HT…",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "据 arXiv 2610.31642 摘要、作者项目页 https://jonbarron.info/softmaxfix/（今日实测 HTTP 200，署名 Google DeepMind，",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=a-fix-for-softmax-and-cross-entropy"
+      "trend_status": "long_tail_watch",
+      "brief_cn": "安全与治理：Large language model (LLM) platforms introducing advertising must decide how m…",
+      "one_line_judgement": "值得先保存：今日长尾价值第二。据 arXiv 2610.32945 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它研究的是 LLM 平…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日长尾价值第二。据 arXiv 2610.32945 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它研究的是 LLM 平台引入广告后的定价设计——垄断平台同时选择有成本的回",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=monetizing-intelligence-advertising-and-subscription-design-on-llm-platforms"
     },
     {
-      "title": "Cost-Aware Abstention for LLM-Based IT Ticket Classification",
+      "title": "The Language of Instruction: Genre and Generative AI",
       "authors": [
-        "Sachin Gupta"
+        "James E. Dobson"
       ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
+      "published": "2026-10-23",
+      "updated": "2026-10-23",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31657v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31657v1",
+      "url": "http://arxiv.org/abs/2610.32982v1",
+      "pdf_url": "https://arxiv.org/pdf/2610.32982v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Wrong automatic routing of an IT support ticket can cost more than human triage. We evaluate cost-aware abstention as an offline, cost-conditional readiness assessment: select a routing policy on calibration data under explicit costs, then evaluate that frozen policy once on held-out test data. On a public 47,837-ticket, eight-class corpus, we compare four trained non-LLM classifiers with four large language models under zero- and few-shot prompting. Under the illustrative cost model (c_ok, c_tr",
+      "abstract": "This article argues that instruction-fine-tuned language models should be understood as implementing a genre, what is proposed as the instructional-conversational genre. This genre is an amalgamation of discursive language from prior conversations between generative models and humans recursively run through these massive neural networks. It is instantiated in applications through instruction fine-tuning, the inclusion of a pretext known as a system prompt, and the formalization of inputs in mark",
       "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CL"
+        "cs.CL",
+        "cs.CY"
       ],
-      "keywords": [
-        "evaluation",
-        "RAG"
-      ],
-      "score": 81.0,
-      "decision": "重点学习",
+      "keywords": [],
+      "score": 45.0,
+      "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31657v1"
+          "url": "http://arxiv.org/abs/2610.32982v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31657v1"
+          "url": "https://arxiv.org/pdf/2610.32982v1"
         }
       ],
-      "llm_reason": "据 arXiv 2610.31657 摘要与 HTML 全文（abs 页 Comments：Accepted at the 38th IEEE International Conference on Artificial Intelligence (ICTAI 2026)）：这篇的价值不在 IT 工单场景，而在于用一组数字钉死了一个我们常搞混的事——校准好不等于能排序，正确率高不等于值得自动决策。口径：成本模型 (c_ok, c_triage, c_wrong) = (0, 1, 5)；offline、cost-conditional 的 readiness assessment——在 calibration 上按显式成本选策略，冻结后在 held-out test 上只评一次。语料公开 47,837 条工单、八分类，划分 33,486 / 4,784 / 9,567。硬数字（作者自述，本次未做第三方复现）：TF-IDF + LR 阈值 τ*=0.60 把期望成本从 0.763 降到 0.472（相对降 38.1%，paired ratio-bootstrap 95% CI [35.7%, 40.4%]），错误路由从 15.3% 降到 3.5%；同一套校准选择流程在 16 个事后成本设定里有 14 个同时优于 always-route 与 always-defer；最强 prompted 配置（Claude Haiku 4.5, k=3 few-shot）在 1,000 条分层测试子集上准确率 0.477，而同批工单上 fine-tuned DistilBERT 是 0.879——被 prompt 的 LLM 明显输给微调小模型。最该抄的反面结论：isotonic 只降 ECE 不改善区分度（对 correctness AUROC 的影响在本次运行中至多 0.007），GPT-4o-mini few-shot 只输出单一置信度取值，correctness AUROC = 0.500（完全无排序能力），按解析得出的盈亏平衡概率 0.80，七个 prompted 配置会全部 defer、Haiku few-shot 只路由 19/1,000。证据等级今日复核（无变化）：DOI 10.5281/zenodo.22609128 → https://zenodo.org/records/22654013（今日实测 HTTP 200）；代码仓库 https://github.com/sachinkg12/RouteGuard（MIT，created 2026-09-05，110 个 tree 条目，最后提交 2026-09-10，状态未变）；项目页 https://sachinkg12.github.io/RouteGuard/ 今日实测 HTTP 200。作者自陈范围：scoped to this dataset, prompt design, model endpoints, and illustrative costs，且是评测框架不是新 abstention 算法。价值路由：可直接落地的是评测口径（显式成本模型 + calibration 选阈值 + 冻结后一次性评估 + 同时报 ECE / correctness AUROC / tie-aware risk-coverage）与一条硬规范——agent 自报置信度不能直接当升级人工的依据，至少先量区分度。今日动作不变：拿这条模板审我们现有的一条 agent 升级阈值链路，先算 correctness AUROC 再谈阈值。⚠️ 今日补充一条与 2610.31662 的对照结论：两篇都落在『升级阈值』上，但一个说『校准好不等于能排序』（本篇，经验口径），一个给出『无分布假设下 O(1/n_T) 的误差控制保证』（2610.31662，理论口径）——我们的评审应该先问『这条链路要的是可控的错误率，还是可控的成本』，两者不可混用。",
-      "id": "cost-aware-abstention-for-llm-based-it-ticket-classification",
-      "value_type": "immediate",
+      "llm_reason": "今日唯一明确的暂时忽略项。据 arXiv 2610.32982 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这是 Dartmouth 英文与创意写作系 James E. Dobson 的单作者论述文章，主张指令微调的语言模型应当被理解为在实现一种体裁（genre），即所谓『指令-会话体裁』；这种体裁是人类与生成模型既往对话的话语语言经这些巨大神经网络递归沉淀而成的混合体；它在应用中通过三件事被实例化——指令微调、一个被称为 system prompt 的前言、以及用标记语言（以特殊 token 与角色分配构成轮次结构）对输入做形式化。作者的论证带有明显的文学理论取向（文中援引 Burke 的论辩理论、把 LLM 输出读作虚构等）。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接（唯一命中 arXiv 模板自带的 huggingface.co/docs/hub 与正文提到的 meta-llama/llama3 引用，属他人仓库非本文实现），无代码、无实验、无 benchmark。⚠️ 证据边界：全文可读但为纯理论论述，无可核验的实证主张，因此不存在『证据不足』的问题——它根本没有提出可检验的经验主张。★ 忽略理由（按本项目的忽略标准逐条对照）：新意弱——『指令微调 + system prompt + 标记语言 = 一种体裁』是把已有工程事实重新命名，未提出新的机制、新的度量或新的方法；证据弱——无实验、无数据、无可复现对象；当前相关性有限——对我们正在做的工程判断（评测协议、证据等级、价值路由）不提供任何可直接使用的判据或方法。★ 保留理由（为何不是彻底丢弃）：它提示了一个今天确实值得记下的观察——system prompt 与标记语言已经是产品事实（作者并指出 Anthropic 已公开发布 Claude 的 system prompt，而 OpenAI 的仍保密），这与我们的实践一致：我们的 prompt/skill 资产确实在按体裁运行。我们的处理：不投入阅读时间，但在需要为『为什么我们的 prompt 这么写』找理论说法时可以引用；同时明确提醒不要把它当作工程依据——它不能用来论证任何 prompt 设计方案的优劣（那需要 A/B 证据）。动作：仅保留最小索引（标题、来源、分数、忽略理由），不进入深挖，不列入长尾库。",
+      "id": "the-language-of-instruction-genre-and-generative-ai",
+      "value_type": "ignore",
       "matched_topics": [
-        "llm-evaluation",
-        "ai-k8s-platform",
-        "security-governance"
+        "context-engineering"
       ],
       "score_breakdown": {
         "novelty": 4.8,
         "problem_importance": 5.15,
         "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Wrong automatic routing of an IT support ticket can cost more than human triag…",
-      "one_line_judgement": "今天值得试：据 arXiv 2610.31657 摘要与 HTML 全文（abs 页 Comments：Accepted at the 38th IEE…",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "据 arXiv 2610.31657 摘要与 HTML 全文（abs 页 Comments：Accepted at the 38th IEEE International Conference",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=cost-aware-abstention-for-llm-based-it-ticket-classification"
-    },
-    {
-      "title": "Reliable AI-Assisted Decisions via Selective Auditing",
-      "authors": [
-        "Isaac Gibbs",
-        "Elise L. Han",
-        "Ryan J. Tibshirani",
-        "Tijana Zrnic"
-      ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31662v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31662v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "We consider online monitoring of an AI system that produces a sequence of decisions. At each round, the system outputs a proposed decision together with a confidence score estimating the trustworthiness of the decision. The decision and confidence score need not be produced by the same model: for example, one agent may propose a decision, while a separate verifier agent evaluates it and outputs a correctness or safety score. Based on this information, we must decide whether to accept the AI deci",
-      "categories": [
-        "stat.ML",
-        "cs.LG",
-        "stat.ME"
-      ],
-      "keywords": [
-        "agent"
-      ],
-      "score": 78.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31662v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31662v1"
-        }
-      ],
-      "llm_reason": "据 arXiv 2610.31662 摘要与 LaTeXML HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tibshirani、Tijana Zrnic；今日回原文逐字复核关键句），以及★今日新发现的第三方仓库 habib-analyst/selective-audit 实跑结果：这篇把『人审何时介入』从经验阈值升级成有保证的在线决策问题，设定与我们的 agent 升级链路几乎同形——每一轮 AI 系统给出决策与置信度分数，两者不必来自同一模型（一个 agent 出决策，另一个 verifier agent 打正确性/安全性分），我们决定自动接受还是转人工，目标是让人工审计频次尽量低、同时保证未审计错误占比低于阈值。理论侧是硬的：additive thresholding 在无任何分布假设下把误差控制做到 O(1/n_T) 余项（今日原文复核：『We showed that a simple online method called additive thresholding achieves this error control up to an O(1/n_T) term, without any assumptions on the data or on the quality of the confidence scores』），配合在线置信度校准可保住保证并提升效率；最优效率方法对 adversarial 与 i.i.d. 数据流都渐近达到可达的最优审计率。实验口径（作者自述，本次未做第三方复现）：四个标注问题沿用 Gligorić et al. (2025) 与 Candès et al. (2026)，其中两个是计算社科文本分类、另两个是 ImageNet 与 ImageNet-V2 图像分类，标注与置信度来自 GPT-4o。⚠️ 口径复核（今日第二次确认昨日的更正是对的）：原文原句『The achieved error rates generally track the target α closely, although the optimally efficient method is somewhat anti-conservative on ImageNet relative to the other methods』——方向是 anti-conservative（偏激进、误差率略高于目标），不是 conservative；昨日 10-25 的更正正确。同时今日确认原文对 baseline 的定义：random auditing 按概率 1−α 独立审计、按构造天然有效；oracle threshold 是事后用完整观测流挑出的『least conservative fixed threshold』。★ 今日证据等级升级（昨日记为『无可核验实现、待核验/暂无』，今日出现可跑实现）：新增第三方仓库 https://github.com/habib-analyst/selective-audit（created 2026-10-24T08:53:51Z，18 个 tree 条目，含 src/selective_audit/{streams,policies,engine}.py、scripts/run_benchmark.py、tests/、PAPER.md、KILLGATE.md、LAUNCH_NOTE.md、results/results.json）。今日经 GitHub API tarball 拉取后本地实跑：`PYTHONPATH=src python3 -m pytest tests/ -q` → 16 passed in 3.51s；`PYTHONPATH=src python3 scripts/run_benchmark.py` 实跑 63 秒完成 45 次迭代（3 regime × 5 seed）并写出 results/results.json，终端汇总 9 行与 README、PAPER.md 表格逐格一致（static 1% 22/24/45/31 vs oracle 50；static 5% 107/135/217/185 vs 250；static 10% 219/281/443/388 vs 500；burst 1% 8/9/8/9 vs 90；burst 5% 36/32/51/58 vs 291；burst 10% 72/68/95/120 vs 341；drift 1% 17/21/26/25 vs 50；drift 5% 93/98/141/160 vs 250；drift 10% 188/201/324/320 vs 500）。⚠️ 但必须说清这复现的是谁：该仓库不是本论文的复现，它自己的 README 与 KILLGATE 明确写『Inspired by Gibbs et al., arXiv:2610.31662』，并声明其问题与论文『orthogonal』——它研究的是『给定固定审计预算、没有逐条置信分时，预算该在哪些 segment 之间分配（segment 的违规率会突发与漂移）』，论文研究的是『有逐条置信分时，每一条是否审计』。所以它的 16 个测试与 180 次基准跑通，证明的是『审计预算分配问题有一套可跑的开源基准与策略库』，不是『本论文的数值被复现』。仓库自陈的三条反面结论今日也被实跑确认：static 1% 下 epsilon_greedy 45±8 明显高于 drift_ucb 31±6（漂移机制在无漂移时是纯保险成本）；burst 1% 时四种策略全部只有 8–9 次检出而 oracle 90——预算是约束而非策略；change-point reset 几乎未触发（0.0–0.3 次/运行），收益实际来自折扣统计 + UCB/softmax 分配 + coverage floor。KILLGATE 引用的两个 prior-art 条目今日已独立核验存在且标题吻合：arXiv 2510.03734『Cost Efficient Fairness Audit Under Partial Feedback』、arXiv 2608.00568『Fairness Auditing: Lower Bounds on Company Manipulation』。作者官方代码仍无（abs 页正则扫描无 github.com 链接，论文自身的数值仍无第三方复现，待核验/暂无）。价值路由：从昨日 77 分上调为 78 分，理由不是新证据支持论文数字，而是同一条『升级阈值链路』今天有了可跑的对照基线与三条可直接抄的反面结论（校准好≠能排序、预算太小谁都抓不到、漂移机制在静态场景是纯成本）。今日动作：不投入实现；把它的两条反例写进我们的阈值设计评审——(1) 若错误稀疏，先算『预算是否够用』而不是先调策略；(2) 若生产流量分段稳定，折扣型漂移策略是纯保险成本，经典 ε-greedy / 固定比例分配更划算。",
-      "id": "reliable-ai-assisted-decisions-via-selective-auditing",
-      "value_type": "trend",
-      "matched_topics": [
-        "security-governance",
-        "llm-evaluation",
-        "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
         "evidence_strength": 4.5,
         "engineering_testability": 4.05,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
+        "asset_convertibility": 6.2,
         "actionability": 5.0,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "安全与治理：We consider online monitoring of an AI system that produces a sequence of deci…",
-      "one_line_judgement": "值得继续观察：据 arXiv 2610.31662 摘要与 LaTeXML HTML 全文（作者 Isaac Gibbs、Elise L. Han、Rya…",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据 arXiv 2610.31662 摘要与 LaTeXML HTML 全文（作者 Isaac Gibbs、Elise L. Han、Ryan J. Tibshirani、Tijana Zrn",
-      "related_trends": [
-        "coding-agent",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=reliable-ai-assisted-decisions-via-selective-auditing"
-    },
-    {
-      "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
-      "authors": [
-        "Yunfei Xie",
-        "Howard H. Qian",
-        "Shiyi Lan",
-        "Kaiyu Hang",
-        "Chen Wei"
-      ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31670v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31670v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Robotic foundation models are typically evaluated through costly closed-loop rollouts, which motivates cheap offline proxies for model capability. The Platonic Representation Hypothesis (PRH) suggests that as representations improve, different modalities such as vision and language converge toward a shared statistical model of reality. We ask whether motion trajectories form another such modality: as embodied models become more capable, should their sensory representations converge toward the st",
-      "categories": [
-        "cs.CV",
-        "cs.LG",
-        "cs.RO"
-      ],
-      "keywords": [
-        "evaluation"
-      ],
-      "score": 76.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31670v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31670v1"
-        }
-      ],
-      "llm_reason": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（今日实测 HTTP 200，含 3:29 视频概览与复现指南）与仓库：这篇把『昂贵的闭环 rollout 能不能被便宜的离线代理指标替代』给出了一个可迁移的答案。思路来自 Platonic Representation Hypothesis——表示变强时视觉与语言会收敛到对现实的共享统计模型；这篇问运动轨迹是否也是这样一个模态。指标 S² 用图像-文本特征作为感知表示，对齐到末端执行器轨迹。数字（作者自述）：在 6,000 集 DROID 子集、12 个视觉-语言-动作模型上，S² 与 SimplerEnv-WidowX 任务成功率在几乎所有测试 horizon 上 Pearson r > 0.5，且在 DROID 与 BridgeDataV2 两个参考数据集上结论一致；真实机器人头条结果是 r = +0.831（one-tailed p = 0.041），但这是探索性 horizon h = 110，而预设的 h = 7 只给 r = +0.429（p = 0.236）。⚠️ 口径纪律（继续执行）：h=110 与 h=7 不可当作同一设定比较，作者仓库 record/README.md 明确写了这一句。证据等级今日复核（补齐可核验面）：仓库 https://github.com/yunfeixie233/sensorimotor-alignment 今日经 API 复核仍存在、非归档、stars=5 / forks=1、最后提交 2026-10-23T01:59:12Z（b0f9b7d0『Link the Paper badge and citation to arXiv 2610.31670』），今日未变更；★ 但今日发现一处必须更正的规模事实：该仓库 tree_blobs=4030（远大于此前记录的『无复现包』印象），包含完整 analysis/ 脚本目录（compare_pearson_spearman.py、compute_cknna_denoise_trajectory_3model.py、compute_multiframe_cknna.py、compute_perception_metrics_all3.py、plot_alignment_vs_performance.py、plot_exp_horizon_L.py 等 30+ 个脚本）与 analysis/out/ 下的 CSV/JSON 中间产物（cknna_denoise_3model_50x10.csv、perception_controlled_50x10.json、perception_natural_50x10.json 等）。⚠️ 因此昨日『没有配套复现包』的表述过重，需要收紧：作者自陈仍缺的是六 WAM 结果、五策略真机结果与 14-backbone 策略学习结果的『matching reproduction bundles』（record/README.md 原文『do not yet have matching reproduction bundles here』），而分析脚本与部分中间产物是公开的；今日未逐个运行这些脚本（依赖环境未核验），故仍标为部分核验。GitHub API 仍返回 license=NOASSERTION，而 raw LICENSE 文件内容为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准标 MIT，元数据差异待作者修正。价值路由：趋势价值而非即时价值——它给的是评测范式，不是今天就能用的系统组件。今日动作不变：不投入实现；把一条口径纪律写进评测规范——离线代理指标必须同时报预设与探索性 horizon 的相关系数与显著性。",
-      "id": "sensorimotor-alignment-a-platonic-proxy-for-embodied-policy-success",
-      "value_type": "trend",
-      "matched_topics": [
-        "multimodal-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 6.0,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 3.6,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "Multimodal Agent：Robotic foundation models are typically evaluated through costly closed-loop r…",
-      "one_line_judgement": "值得继续观察：据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/…",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据 arXiv 2610.31670 摘要、HTML 全文、作者项目页 https://yunfeixie233.github.io/s2/（今日实测 HTTP 200，含 3:29 视频概览",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=sensorimotor-alignment-a-platonic-proxy-for-embodied-policy-success"
-    },
-    {
-      "title": "Direct Pass@$k$ Optimization for Thought Pruning: Balancing Quality and Diversity in Test-Time Reasoning",
-      "authors": [
-        "Mahdi Salmani",
-        "Adel Javanmard",
-        "Devansh Gupta",
-        "Meisam Razaviyayn"
-      ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31667v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31667v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Test-time scaling has emerged as a key inference strategy for reasoning models, where a model generates a large number of candidate solutions in the hope of finding at least one correct solution. Running all candidate solutions to completion can be computationally demanding, so recent work prunes the candidate pool after generating only a short prefix, committing further computation only to the surviving candidates. Existing pruning strategies divide broadly into two categories: Quality-based me",
-      "categories": [
-        "cs.AI",
-        "cs.CL"
-      ],
-      "keywords": [
-        "inference"
-      ],
-      "score": 74.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31667v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31667v1"
-        }
-      ],
-      "llm_reason": "据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发式换成了一个明确的目标函数——直接优化 pass@k。问题陈述：测试期扩展靠生成大量候选解找至少一个正确的，但全部跑完代价高；现有做法是在生成短前缀后剪枝候选池，策略分两大类（基于质量、基于多样性），各偏一边。方法：把探针与 RepExp 用一个 pass@k 的次模近似连起来，用秩一贪心更新闭式计算似然并贪心选择保留集合，带次模近似的保证。数字（作者自述，本次未做第三方复现）：八个开放权重推理模型、两档尺寸（小档 Qwen3-0.6B、Qwen3-1.7B、OpenMath-Nemotron-1.5B、DeepSeek-R1-Distill-Qwen-1.7B 等），每个模型对 N=128 个 rollout 在 T=4000 token 截断处剪枝，评估 k∈{1,2,4,8,16}；PKTP 全面优于 Linear Probe 与 RepExp，优势在中等 k 最明显（论文原话：gains are largest at moderate k），在 DeepSeek-R1-Distill-Qwen-7B 上 k=4 时比 Linear Probe 高 3.3 分，且 PKTP 在所有模型 k≥2 时都稳在 Random 之上，而两个基线各有偏置（RepExp 偏好离群样本，中等 k 有时低于 Random；Linear Probe 会聚集在它认为正确的解上）。截止阈值口径：T 越大越好——Qwen3-1.7B 的 pass@4 从 T=2000 的 63.5% 升到 T=8000 的 65.9%，DeepSeek-R1-Distill-Qwen-7B 从 57.4% 升到 61.7%。⚠️ 口径纪律：论文明确给出的单点差值是 3.3 分（DeepSeek-R1-Distill-Qwen-7B, k=4, 对 Linear Probe），全文未见『2–3 分』这一表述，按 3.3 分写并注明出处。证据边界不变：全部结果为作者自述，本次未做第三方复现；abs 页与 HTML 全文中无作者仓库或项目页链接（全文里出现的 GitHub 链接是第三方 Math-Verify 校验库），代码标注 待核验/暂无；今日按 arXiv id 2610.31667 与标题短语在 GitHub 仓库搜索中复核，仍未发现任何指向本论文实现的仓库（搜索命中项均为无关的 daily-arxiv 聚合仓库与同名目录）。价值路由：趋势价值——『剪枝目标应当对齐最终要报的指标（pass@k）』可直接迁移到我们自己的推理预算控制。今日动作不变：不投入实现；记一条设计纪律——我们的 rollout 剪枝/早停策略应以最终上报指标对齐，并记录 cutoff 阈值作为显式超参。",
-      "id": "direct-pass-k-optimization-for-thought-pruning-balancing-quality-and-diversity-in-test-time-reasoning",
-      "value_type": "trend",
-      "matched_topics": [
-        "inference-serving",
-        "llm-evaluation",
-        "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "推理与服务：Test-time scaling has emerged as a key inference strategy for reasoning models…",
-      "one_line_judgement": "值得继续观察：据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发…",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据 arXiv 2610.31667 摘要与 HTML 全文（abs 页 Comments 为空）：这篇把测试期推理的『剪枝』目标从工程启发式换成了一个明确的目标函数——直接优化 pass@k",
-      "related_trends": [
-        "coding-agent",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=direct-pass-k-optimization-for-thought-pruning-balancing-quality-and-diversity-in-test-time-reasoning"
-    },
-    {
-      "title": "Low-Bit N-Gram Embeddings for Language Models",
-      "authors": [
-        "Stephen Chung",
-        "Wenyu Du"
-      ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31646v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31646v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Many recent open-weight language models use n-gram embedding tables to improve performance. These tables store learned representations of short token sequences, such as pairs or triples of consecutive tokens, which the model retrieves during processing. However, they can require substantial memory: DeepSeek-V4.1-Flash, for example, allocates 196 billion parameters to its Engram n-gram memory. We therefore investigate whether this memory cost can be reduced while preserving the performance improv",
-      "categories": [
-        "cs.CL",
-        "cs.AI"
-      ],
-      "keywords": [
-        "memory"
-      ],
-      "score": 73.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31646v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31646v1"
-        }
-      ],
-      "llm_reason": "据 arXiv 2610.31646 摘要、HTML 全文（abs 页 Comments：24 pages, 10 figures, 10 tables）与作者仓库：这篇命中的是我们自己在跑的『训练栈内存预算』这条线。问题陈述清楚且数字具体：近年的开放权重模型用 n-gram embedding 表提升性能，但代价是内存——DeepSeek-V4.1-Flash 给 Engram n-gram memory 分配了 1960 亿参数。方法是把这些表做低比特量化。数字（作者自述，本次未做第三方复现）：在 nanochat-、Llama-、GPT-2-家族五个从头训练的模型上，四比特表节省约 75% 表内存、保留超过 99% 的验证集 loss 改善收益；Figure 4a 细项——四比特表省约一半表内存，DeepSeek 困惑度上升 1.26%、Qwen 几乎不变，三比特时 Qwen 困惑度只升 0.52%；在 DeepSeek-V4.1-Flash 与 Qwen3.8-Flash-Next 这两个现有大模型上，低比特表节省 47–55% 表内存、困惑度上升低于 1.2%，下游任务表现大体保持。⚠️ 口径纪律（继续执行）：『47–55%』与『约 75%』来自两组不同实验（现有大模型 vs 从头训练模型），不可并列成一个区间。证据等级今日复核（状态未变，但补齐仓库结构）：作者仓库 https://github.com/dualverse-ai/lowbit-ngram（Apache-2.0，created 2026-10-22T14:24:08Z，28 个 tree 条目，最后提交 2026-10-22T18:22:56Z，commits API 显示两次提交作者均为 stephen.chung.mh）今日经 API 复核存在且未变更；仓库结构今日逐项可见，含 lowbit_ngram/{quantization,models,tokenizer,data,experiments,cli,nanochat}.py、large/{evaluate,extended_codec,lowbit_kernels,qwen_codec,worker}.py、docs/{experiments,large-models}.md、tests/{test_quantization,test_models,test_large_metrics}.py、licenses/nanochat-MIT.txt、NOTICE.md。README 自陈的复现成本要说清：需要 Python ≥3.10 与 CUDA PyTorch，训练用 RTX 5090，数据走 ClimbMix，并明确说明『Data and model checkpoints are not included in this repository』。今日未实跑（需 GPU 与外部数据），证据等级仍为『作者官方代码可核验、未复现』。价值路由：趋势价值——降的是『表内存』这一项而不是端到端推理成本，口径必须写准，否则会被误当成『模型瘦身』。今日动作不变：只做一件事——在我们自己的训练配置里估算 n-gram 表占显存的比例并记录基线；若占比高，再回来看低比特表能否替代（不必现在做）。",
-      "id": "low-bit-n-gram-embeddings-for-language-models",
-      "value_type": "trend",
-      "matched_topics": [
-        "inference-serving",
-        "context-engineering"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "推理与服务：Many recent open-weight language models use n-gram embedding tables to improve…",
-      "one_line_judgement": "值得继续观察：据 arXiv 2610.31646 摘要、HTML 全文（abs 页 Comments：24 pages, 10 figures, 10 …",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据 arXiv 2610.31646 摘要、HTML 全文（abs 页 Comments：24 pages, 10 figures, 10 tables）与作者仓库：这篇命中的是我们自己在跑的",
+      "trend_status": "noise",
+      "brief_cn": "Context Engineering：This article argues that instruction-fine-tuned language models should be unde…",
+      "one_line_judgement": "当前可忽略：今日唯一明确的暂时忽略项。据 arXiv 2610.32982 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这是 Dart…",
+      "first_seen_date": "2026-10-27",
+      "first_deep_dive_daily": "2026-10-27",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今日唯一明确的暂时忽略项。据 arXiv 2610.32982 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这是 Dartmouth 英文与创意写作系 James E. Do",
       "related_trends": [
         "context-engineering"
       ],
-      "detail_path": "paper-detail.html?id=low-bit-n-gram-embeddings-for-language-models"
-    },
-    {
-      "title": "SpectralCanary: Embarrassingly Simple Low-Frequency Traces for T2I Dataset-Use Auditing",
-      "authors": [
-        "Sy-Tuyen Ho",
-        "Anirudh Satheesh",
-        "Soham Chawathe",
-        "Huy Nghiem",
-        "Yongkyun Lee"
-      ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31659v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31659v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Auditing whether a text-to-image (T2I) model was fine-tuned on a particular image collection is difficult: a model can absorb collection-level visual characteristics without reproducing training images. Proactive dataset-use auditing plants a shared signal in a dataset before release, then later checks whether that signal appears in a suspect model's generated outputs. Existing approaches often trade off verifiability, fidelity, robustness, and deployability. We introduce $\\textbf{SpectralCanary",
-      "categories": [
-        "cs.CV",
-        "cs.LG"
-      ],
-      "keywords": [
-        "RAG"
-      ],
-      "score": 72.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31659v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31659v1"
-        }
-      ],
-      "llm_reason": "据 arXiv 2610.31659 摘要、HTML 全文（abs 页 Comments：NeurIPS 2026 Workshop on Attributing Model Behavior at Scale）与作者仓库：方法与数字（作者自述，本次未做第三方复现）：用平滑低通掩膜把一张固定 canary 图混入每张集合图，caption 不变，无需辅助生成也无需逐图优化，再由轻量 verifier 检测转移信号；八个 Pokemon 设置下平均逐生成 TPR@1% FPR 91.1%（次优 73.2%）、98.0% AUC、用 30 次生成的固定阈值模型级准确率 94.8%；五个数据集（艺术/医疗/卫星/时尚等）以 SD3.5 为被审模型时平均 TPR 92.4%、99.5% AUC、SSIM 0.989、LPIPS 0.022、mean ΔFID 0.05，Sketch-Scene 上 100% AUC 与 TPR；保护开销 0.39 秒/图（CPU）；matched-energy 消融（Pokemon 与 ROCOv2）支持低频放置比中/高频传递更可靠；所评自适应攻击下最有效的移除需激进修改且要付超过 25 个 ΔFID 点。证据等级今日复核（结构补齐，状态未变）：作者仓库 https://github.com/hosytuyen/SpectralCanary（MIT，created 2026-09-26T01:28:37Z，87 个 tree 条目，三次提交作者均为 hosytuyen，最后提交 2026-09-26T01:44:33Z）今日经 API 复核存在且未变更；★ 今日可见其完整实现结构 src/provenance_t2i/ 下含 common/metrics/{classification,image_quality,score_utils}.py、methods/diagnosis/{classifier,pipeline/*,train_verifier,verify_suspect,poisoning,prompts,types}.py 等模块，以及 scripts/{ours,siren,diagnosis,entruth}/{pokemon,sketch-scene}/{prepare_protected_dataset,verify_sd3}.sh 共 20+ 个脚本、setup.sh、pyproject.toml、requirements.txt、NOTICE 缺省——即方法本身是可核验的，不只是 README 声明。⚠️ 连续第二天确认失效链接：仓库 README 指向的项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 今日实测仍为 HTTP 404，故 project_url 继续留空。证据边界：全部结果为作者自述，本次未做第三方复现（需 SD3.5 Medium + CLIP-L/G + T5-XXL 权重与 SIREN 检查点，成本高）；会议为 workshop，评审强度低于主会。价值路由：趋势价值——可迁移抽象成立且有官方代码入口：『要让数据是否被用于训练可被外部审计，必须在数据发布时预先设计可转移信号，而不是事后靠指纹碰撞』。今日动作不变：不投入实现；只记一条触发条件——当我们真的需要向外部证明某批语料是否进了某个模型时，回来看它；并把『发布即埋信号』写进我们的数据治理 checklist 草稿。",
-      "id": "spectralcanary-embarrassingly-simple-low-frequency-traces-for-t2i-dataset-use-auditing",
-      "value_type": "trend",
-      "matched_topics": [
-        "security-governance",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "安全与治理：Auditing whether a text-to-image (T2I) model was fine-tuned on a particular im…",
-      "one_line_judgement": "值得继续观察：据 arXiv 2610.31659 摘要、HTML 全文（abs 页 Comments：NeurIPS 2026 Workshop on …",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "据 arXiv 2610.31659 摘要、HTML 全文（abs 页 Comments：NeurIPS 2026 Workshop on Attributing Model Behavior",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=spectralcanary-embarrassingly-simple-low-frequency-traces-for-t2i-dataset-use-auditing"
-    },
-    {
-      "title": "METTA: Memory-Enhanced Test-Time Adaptation for Meta-Reinforcement Learning",
-      "authors": [
-        "Ali Najar",
-        "Hosein Hasani",
-        "Amir Kooshan Fattah",
-        "Yasamin Rajabi",
-        "Mahdieh Soleymani Baghshah"
-      ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31656v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31656v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Meta-reinforcement learning aims to train agents that adapt quickly to unseen tasks from limited interaction, but this requires representing task evidence over long interaction histories. Classical recurrent agents compress experience into hidden states, while transformer-based agents retrieve from past trajectories at quadratic memory and computation cost. In this work, we propose Memory-Enhanced Test-Time Adaptation (METTA) for meta-reinforcement learning. It decomposes the fast adaptation pha",
-      "categories": [
-        "cs.LG",
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent",
-        "memory",
-        "inference"
-      ],
-      "score": 64.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31656v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31656v1"
-        }
-      ],
-      "llm_reason": "据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages）：领域是元强化学习，但给出了一个可迁移的结构：长程 agent 如何携带历史。问题诊断准确——元强化学习要求 agent 从有限交互快速适应未见任务，这需要跨很长交互历史表示任务证据；经典循环 agent 把经验压进 hidden state，transformer agent 要检索过去轨迹，代价是二次的内存与计算。作者还指出加神经记忆后 agent 具备足够表达能力和测试时训练能力，能在 meta-test 时适应未见任务与任务族。结果口径（作者自述，本次未做第三方复现）：在未见过的 held-out Meta-World ML10/45 测试环境上成功率超过 50%，同时保持较低训练预算与较短墙钟时间；在长上下文稀疏奖励的 PointMaze 任务上，作者称其探索行为比 transformer 基线更有结构。方法要点：快速适应被拆到两个时间尺度——episode 内的因果神经记忆负责细粒度适应且序列复杂度线性，紧凑的 episode 级摘要负责跨 episode 的长程任务推断，从而不必对完整交互历史做注意力；附录把基线列为 TrMRL 与 ECET，参考基准为 Meta-World ML1/ML10/ML45、Mujoco、PointMaze，全部 wall-clock 测量在同一台配 NVIDIA RTX 3090 Ti 的服务器上。证据边界不变：全部结果为作者自述，本次未做第三方复现；摘要只给出『超过 50%』这一模糊表述，未给具体数值与方差，跨任务族与跨域的方差在主表未逐项拆解；abs 页与 HTML 全文中无作者仓库或项目页链接（全文中的 GitHub 链接是 Meta-World 官方仓库），代码标注 待核验/暂无；今日按 arXiv id 2610.31656 在 GitHub 仓库搜索复核，仍未发现指向本论文实现的仓库。价值路由：长尾保存——领域离我们较远，但『两个时间尺度分工：细粒度在线记忆 + 紧凑跨轮摘要』这一结构可直接借用到我们的 agent 记忆设计（把『本轮内的细节』与『跨轮的任务摘要』拆开存），且比 transformer 全历史注意力便宜。今日动作不变：不投入实现；只抽一条结构记入 context-engineering 趋势页——长上下文 agent 记忆的两种分工方式。",
-      "id": "metta-memory-enhanced-test-time-adaptation-for-meta-reinforcement-learning",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-agent",
-        "context-engineering"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "AI Agent：Meta-reinforcement learning aims to train agents that adapt quickly to unseen …",
-      "one_line_judgement": "值得先保存：据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages）：领域是元强化学习，但给出了一…",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据 arXiv 2610.31656 摘要与 HTML 全文（abs 页 Comments: 9 pages）：领域是元强化学习，但给出了一个可迁移的结构：长程 agent 如何携带历史。问题",
-      "related_trends": [
-        "agentic-world-modeling",
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=metta-memory-enhanced-test-time-adaptation-for-meta-reinforcement-learning"
-    },
-    {
-      "title": "Phase Transition from Random Features to Fully Trainable Networks",
-      "authors": [
-        "Xin He",
-        "Huan Lao",
-        "Xiliang Lu",
-        "Shijun Zhang"
-      ],
-      "published": "2026-10-22",
-      "updated": "2026-10-22",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.31663v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.31663v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Constructing accurate and computationally tractable approximation spaces is a fundamental task in scientific computing. Partially trainable neural networks bridge fixed random features and fully adaptive representations. This paper quantifies a phase transition pattern in approximation bounds and observes analogous behavior in training errors: a rapid but smooth initial improvement followed by diminishing returns, with a sharper transition under greater initialization mismatch. Under polynomial ",
-      "categories": [
-        "math.NA",
-        "cs.LG",
-        "math.ST",
-        "stat.ML"
-      ],
-      "keywords": [
-        "RAG"
-      ],
-      "score": 58.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.31663v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.31663v1"
-        }
-      ],
-      "llm_reason": "据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xiliang Lu、Shijun Zhang，通讯 shijun.zhang@polyu.edu.hk）：这是纯数学-数值分析方向，对我们的日常工程距离最远，但结论本身是一个可复用的直觉。部分可训练网络处在固定随机特征与完全自适应表示两个端点之间，本文量化这条路径上的相变模式：在逼近上界上量化相变规律，并在训练误差中观察到类似行为——快速但平滑的初始改善，随后收益递减；初始化失配越大，相变越尖锐。理论条件：在多项式谱衰减指数 α>1 且满足 leverage compatibility 时，建立平方 L2 逼近速率；对球面 biased-ReLU 特征在维度 d 下验证假设（α = (d+2)/(d−1)）；用 κ0* 与 κ1* 刻画固定组与可训练组相对目标 RKHS 的采样失配。数值证据：两层与三层的 P-可训练 ReLU 网络，用 90% 归一化增益定义阈值 P0.1，深度 3–7、宽度 32–256 的扫描显示小 P 区间快速收益后进入递减区间。证据边界：全部理论与实验为作者自述，本次未做第三方复现；主文以理论定理与数值实验为主，没有代码或 benchmark 入口（abs 页与 HTML 全文中无仓库链接），标注 待核验/暂无；今日按 arXiv id 2610.31663 与标题短语在 GitHub 仓库搜索复核，仍未发现相关实现。其『相变』在特定条件下成立，不可直接外推到我们的实际训练配置。价值路由：长尾保存——今天不投入任何动作；可迁移的只有一条直觉：在一个可训练比例的扫描里，收益往往在小比例处最陡、随后递减，所以『多训一点参数就一定更好』是错的。今日动作不变：仅入库留档，触发条件为出现工程侧可复现包或被我们实际遇到的『冻结 vs 全量训练』问题引用。",
-      "id": "phase-transition-from-random-features-to-fully-trainable-networks",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "inference-serving"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "推理与服务：Constructing accurate and computationally tractable approximation spaces is a …",
-      "one_line_judgement": "值得先保存：据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xi…",
-      "first_seen_date": "2026-10-26",
-      "first_deep_dive_daily": "2026-10-26",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xiliang Lu、Shijun Zhang，通讯 s",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=phase-transition-from-random-features-to-fully-trainable-networks"
+      "detail_path": "paper-detail.html?id=the-language-of-instruction-genre-and-generative-ai"
     }
   ],
   "long_tail_highlights": [
+    {
+      "id": "beyond-discrete-tokens-preserving-numerical-continuity-in-medical-vision-language-models",
+      "title": "Beyond Discrete Tokens: Preserving Numerical Continuity in Medical Vision-Language Models",
+      "direction": "Multimodal Agent / LLM 评测",
+      "long_tail_type": "可迁移方法",
+      "why_save": "今日长尾价值第一。据 arXiv 2610.32948 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：HAD-VLM 处理的是一个具体而干净的错配——定量超声测量要求连续数值目",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-11-17",
+      "detail_path": "paper-detail.html?id=beyond-discrete-tokens-preserving-numerical-continuity-in-medical-vision-language-models"
+    },
+    {
+      "id": "monetizing-intelligence-advertising-and-subscription-design-on-llm-platforms",
+      "title": "Monetizing Intelligence: Advertising and Subscription Design on LLM Platforms",
+      "direction": "安全与治理",
+      "long_tail_type": "工程抽象",
+      "why_save": "今日长尾价值第二。据 arXiv 2610.32945 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它研究的是 LLM 平台引入广告后的定价设计——垄断平台同时选择有成本的回",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-11-17",
+      "detail_path": "paper-detail.html?id=monetizing-intelligence-advertising-and-subscription-design-on-llm-platforms"
+    },
     {
       "id": "metta-memory-enhanced-test-time-adaptation-for-meta-reinforcement-learning",
       "title": "METTA: Memory-Enhanced Test-Time Adaptation for Meta-Reinforcement Learning",
@@ -974,36 +983,6 @@
       ],
       "revisit_date": "2026-11-16",
       "detail_path": "paper-detail.html?id=metta-memory-enhanced-test-time-adaptation-for-meta-reinforcement-learning"
-    },
-    {
-      "id": "phase-transition-from-random-features-to-fully-trainable-networks",
-      "title": "Phase Transition from Random Features to Fully Trainable Networks",
-      "direction": "推理与服务",
-      "long_tail_type": "工程抽象",
-      "why_save": "据 arXiv 2610.31663 摘要与 HTML 全文（abs 页 Comments 为空；作者 Xin He、Huan Lao、Xiliang Lu、Shijun Zhang，通讯 s",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-11-16",
-      "detail_path": "paper-detail.html?id=phase-transition-from-random-features-to-fully-trainable-networks"
-    },
-    {
-      "id": "the-role-of-locality-and-weight-sharing-in-convolutional-neural-networks",
-      "title": "The role of locality and weight sharing in convolutional neural networks",
-      "direction": "推理与服务",
-      "long_tail_type": "工程抽象",
-      "why_save": "据摘要（arXiv 2610.30118，abs 页 Comments 为 '39 pages, 11 figures, including appendices'，Subjects 为 cs",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "reusable_assets": [
-        "Prompt",
-        "Skill",
-        "Checklist"
-      ],
-      "revisit_date": "2026-11-13",
-      "detail_path": "paper-detail.html?id=the-role-of-locality-and-weight-sharing-in-convolutional-neural-networks"
     }
   ],
   "common_research_path": [

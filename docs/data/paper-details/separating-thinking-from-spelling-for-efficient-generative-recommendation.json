@@ -1,0 +1,129 @@
+{
+  "id": "separating-thinking-from-spelling-for-efficient-generative-recommendation",
+  "title": "Separating Thinking from Spelling for Efficient Generative Recommendation",
+  "authors": [
+    "Danil Gusak",
+    "Anna Volodkevich",
+    "Ivan Oseledets",
+    "Evgeny Frolov"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-23",
+  "url": "http://arxiv.org/abs/2610.32980v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.32980v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-27",
+  "first_deep_dive_daily": "2026-10-27",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 76.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第三。据 arXiv 2610.32980 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这篇攻击的是生成式推荐…",
+  "one_line_essence": "今日趋势价值第三。据 arXiv 2610.32980 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这篇攻击的是生成式推荐里 SID 长度被『付两次』的成本结构——历史 T 个物品以 TK 个 code token 进入 backbone，而每个 beam-search 步都要过一遍 backbone，于是返回 B 个候选的代价是每个用户 O(BK) 个 backbone decode token，且这一项常常占主导并随 backbone 规模、SID 深度与候选预算增长。做法 Deco（decoding from concepts）把『读历史』与『写标识符』分开：backbone 把每个历史物品读成一个融合 token，一次性把历史压缩成紧凑的 next-item concept；一个轻量、带 KV cache 的 decoder 在该 concept 与已生成前缀的条件下跑完整 beam search，而标识符、trie 与自回归分解方式保持不变。作者自述（今日不可复现，见证据边界）：七个电商/电影/音乐流媒体数据集上，Deco 的准确率与标准生成式推荐器及融合输入的全 backbone teacher 相当或更好，同时在 50 ms p95 延迟预算的生产式服务流水线下给出 3.2–8.6 倍吞吐；轻量 decoder 仅用交叉熵即接近全 backbone 精度，蒸馏进一步提升；Deco 生成 1000 个候选比 teacher 生成 100 个还快；用 1.5B 参数 LLM backbone 时，它与 69M 参数 teacher 吞吐持平而准确率更高。★ 今日证据状态：arXiv abs 页与 LaTeXML HTML 全文经正则扫描均无任何 github.com/gitlab.com 链接（唯一命中为 arXiv 模板自带的 huggingface.co/docs/hub），即没有可核验的官方实现或第三方实现（待核验/暂无）；GitHub 搜 'Deco generative recommendation trie' 零命中，确认不是我们漏检。⚠️ 证据边界：全部数值（3.2–8.6×、50 ms p95、1000 vs 100、1.5B vs 69M）为作者自述，未经任何第三方核验，且论文属 cc-license 但未附代码，短期内无法升级证据等级。★ 价值路由与今日可迁移的判断：列趋势价值，不是因为数字可信，而是因为它指出了一条我们迟早要走的路——『把重 backbone 的读历史与轻结构的写输出解耦』。这条思路不止适用于推荐：任何『大模型读上下文 + 小解码器产生结构化输出』的 agent 流水线（工具调用序列生成、路由分类、结构化抽取）都在同一结构上。值得今天做的不是复现（无代码、依赖工业数据与专用 SID 体系，成本极高），而是把它的成本公式记下来并用在我们自己的流水线上：把『每请求过 backbone 的次数』作为一等指标去量，而不是只看端到端延迟——我们现在的很多流水线里，这个数比 p95 更能解释成本。动作：纳入趋势雷达连续观察 7-30 天；今日做一次我们自己的计数：统计一个典型请求路径上 backbone 前向次数与 decode token 数，看看是否存在『付两次』的同构问题（我们目前没有 SID 概念，所以这是结构类比而非直接可迁的方案——待核验/暂无）。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第三。据 arXiv 2610.32980 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这篇攻击的是生成式推荐里 SID 长度被『付两次』的成本结构——历史 T 个物品以 TK 个 code token 进入 backbone，而每个 beam-search 步都要过一遍 backbone，于是返回 B 个候选的代价是每个用户 ",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第三。据 arXiv 2610.32980 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这篇攻击的是生成式推荐里 SID 长度被『付两次』的成本结构——历史 T ",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.32980v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.32980v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=separating-thinking-from-spelling-for-efficient-generative-recommendation",
+  "daily_path": "daily-detail.html?date=2026-10-27",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
