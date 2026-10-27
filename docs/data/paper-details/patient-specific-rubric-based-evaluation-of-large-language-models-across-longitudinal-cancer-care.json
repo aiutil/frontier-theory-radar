@@ -1,0 +1,134 @@
+{
+  "id": "patient-specific-rubric-based-evaluation-of-large-language-models-across-longitudinal-cancer-care",
+  "title": "Patient-specific rubric-based evaluation of large language models across longitudinal cancer care",
+  "authors": [
+    "Wei-Wei Zhang",
+    "Pengkai Wang",
+    "Yan Li",
+    "Zhijie Sang",
+    "Guan-Qun Zhou"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-26",
+  "url": "http://arxiv.org/abs/2610.35847v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.35847v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-28",
+  "first_deep_dive_daily": "2026-10-28",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 5.4,
+    "engineering_testability": 3.5,
+    "trend_signal": 6.0,
+    "long_tail_potential": 4.15,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第四。据 arXiv 2610.35847 摘要与 LaTeXML HTML 全文（今日回原文逐字复核；41KB 正文可读）：它…",
+  "one_line_essence": "今日趋势价值第四。据 arXiv 2610.35847 摘要与 LaTeXML HTML 全文（今日回原文逐字复核；41KB 正文可读）：它的价值不在鼻咽癌，而在**它把评测单位从『一次问诊』换成了『一段纵向照护里的责任演进』**。做法：NPC-RubricBench 从两家癌症中心的 405 名患者纵向病历整理出 941 个 patient-phase unit，覆盖六个连续照护阶段，共 17,688 条患者特异的原子评分标准，每个评估严格限制在『决策时刻可得』的临床证据内；评测 30 个通用与医学专用 LLM。作者自述结论（今日不可复现，见证据边界）：**强诊断性能不会自动传导到下游照护**；而且失败模式在不同阶段会反转——解剖分期阶段的显式决策错误占主导（48.2%），而初始检查与治疗后随访阶段则以决策遗漏为主（33.4% 与 30.4%）；在所评测的模型集合里，医学适配过的模型遗漏率反而高于通用模型；此外改变提问粒度暴露一个关键权衡——宽泛开放式提问会让全部 30 个模型的 Decision Quality 下降，而更详细的 checklist 式提示会提高 Decision Quality、却降低 Evidence Faithfulness 与 Safety Adherence；结论是静态诊断 benchmark 不足以保证随时间一致的临床可靠性，需要阶段自适应的护栏。★ 今日证据状态：abs 页与 HTML 全文正则扫描仅命中参考文献里的 ZJU4HealthCare/HealthGPT，**无本文官方实现或数据发布**（待核验/暂无）；数据为两家癌症中心的患者纵向病历，涉及患者隐私，能否公开今日未核验。⚠️ 证据边界：全部百分比、模型对比与阶段划分均为作者自述，本机无代码、无数据（患者级数据不可获取）、无第三方复现；『医学适配模型遗漏率更高』这一结论限于所评测模型集合，不能外推。★ 价值路由：列趋势价值——领域（临床照护）离我们的系统远，今天投入产出比低。但里面有一条**跨领域成立的结构性判断**值得保存：它证明『在 A 阶段表现好，不代表在 B 阶段表现好』，因为**不同阶段的主导失败模式会反转**（该做的做错了 vs 该做的没做）。这在我们的 agent 系统里有一个直接对应物：我们的 agent 在『信息充足的任务』上表现好，不代表在『信息不全、需要主动追问或主动验证』的任务上表现好——后者恰恰是决策遗漏型失败，而不是决策错误型失败。我们今天的评测几乎全部是前者。更可抄的一条是它的粒度权衡：**更详细的 checklist 提示提升决策质量，却降低证据忠实度与安全遵循度**——即『把该做的都做对』和『只依据被授权的证据做』之间存在真实张力，不能同时最大化。动作：加入趋势雷达并保留为长尾研究资产；设置未来触发条件——当我们开始评测『多阶段/长周期 agent 任务』（例如一个跨天的项目助理）时，回看它的两条方法：一是按阶段分别统计失败模式（显式错误 vs 遗漏），二是把提问粒度当作一个显式变量而不是调优目标。今天可沉淀的一条资产进我们的评测 checklist：『不要只报总体成功率，要按阶段/按信息完备度拆分，显式错误与遗漏分开计数』——这条今天就能用，不依赖任何临床数据。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第四。据 arXiv 2610.35847 摘要与 LaTeXML HTML 全文（今日回原文逐字复核；41KB 正文可读）：它的价值不在鼻咽癌，而在**它把评测单位从『一次问诊』换成了『一段纵向照护里的责任演进』**。做法：NPC-RubricBench 从两家癌症中心的 405 名患者纵向病历整理出 941 个 patient-phase u",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第四。据 arXiv 2610.35847 摘要与 LaTeXML HTML 全文（今日回原文逐字复核；41KB 正文可读）：它的价值不在鼻咽癌，而在**它把评测单位从『一次问诊』",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.35847v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.35847v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=patient-specific-rubric-based-evaluation-of-large-language-models-across-longitudinal-cancer-care",
+  "daily_path": "daily-detail.html?date=2026-10-28",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

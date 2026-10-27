@@ -1,0 +1,136 @@
+{
+  "id": "auto-research-arena-benchmarking-and-advancing-auto-research-in-language-modeling",
+  "title": "Auto-Research Arena: Benchmarking and Advancing Auto-Research in Language Modeling",
+  "authors": [
+    "Xi Chen",
+    "Chongjian Ge",
+    "Yiran Xu",
+    "Yiqun Mei",
+    "Henrik I. Christensen"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-26",
+  "url": "http://arxiv.org/abs/2610.35866v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.35866v1",
+  "code_url": "https://github.com/Auto-Research-Arena/auto-research-arena",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-28",
+  "first_deep_dive_daily": "2026-10-28",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 6.8,
+    "engineering_testability": 6.05,
+    "trend_signal": 5.45,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 84.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第二即时价值。据 arXiv 2610.35866 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 githu…",
+  "one_line_essence": "今日第二即时价值。据 arXiv 2610.35866 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 github.com/Auto-Research-Arena/auto-research-arena 的本地核验：这篇真正稀缺的设计是**把『一个结果是否算数』和『它是否更好』拆成两件事**——admissibility（模型质量与资源约束决定这个结果算不算数）与 improvement（在算数的结果里，目标指标衡量进展）分离。这解决了 auto-research 评测里一个我们天天遇到的烂摊子：研究 harness 常常靠『看起来更好』自我肯定，而约束条件被悄悄当成了可交易项。做法是把 auto-research 实例化到语言模型预训练：九个目标（覆盖 model / data / training / inference 四类效率维度：data、decode、flops、kvcache、memory、params、request、steps、traintime），用两个基座模型评测七个研究 harness。作者自述结论（今日不可复现，见证据边界）：Arena 清晰区分了不同 harness 的长处，**若干精巧方法被作者自己的简单 sequential search 基线击败**，说明当前 auto-research 系统仍有大量提升空间；Arena 还暴露出比研究 harness 更宽的『模型与系统想法』边界，把这些发现回灌到新的质量驱动搜索后，在同等数据与 FLOPs 下训练 loss 更低、同等模型规模下 held-out BPB 更低；跨目标研究可以累积（参数优化后的程序继续做 FLOPs 优化，训练 FLOPs 再降 33.7%，FLOP 优化程序继续优化解码延迟，未缓存解码延迟降 87.5%），但也会产生权衡（优化训练时间使到质量时间降 21.1%，代价是参数增加 24.6%）。★ 今日证据状态（结构级已核验，数值级不可复现）：官方仓库今日拉下来（默认分支是 master 不是 main，codeload 的 main 返回 404，master 返回 2.07MB tarball），解包后确认 tasks/ 恰为 9 个目录、examples/ 恰为 7 个方法集成（arbor / autoscientists / beam-search / gear / heuresis-map-elites / sequential-search / tpe）外加一个 claude_transport.py 适配脚本，与正文『nine targets』『seven research harnesses』逐项吻合；engine/ 目录 compileall 全通过；tasks/params/task.json 的 quality_gate 明确是 val_bpb < 1.05，且 reference_launch.assert_exact.flops_per_token_measured = 239078400，与正文 Table 6 的『Reference 239.08 M FLOPs/token』一致；task.json 的 frozen_regions 机制写得极细——它把『参数计数打印块』『report_efficiency_metrics 调用』『FLOPs probe 调用』三段锚点冻结，并逐条给出理由（例如『不要重新赋值、缩放、round 或手写这个数，prepare.py 记录你传进去的数，这个任务不建 harness，所以传 harness=None』），这套『防作弊锚点』的设计本身比论文结论更值得抄。⚠️ 证据边界：所有任务都要求 NVIDIA_A100_80GB、每次 launch 600 秒训练时钟、最多 100 次 launch，本机无 GPU 因此全部数值一律标注『作者自述，待核验/暂无』；另外五个 examples 是 git submodule，tarball 里不含 upstream 源码，故第三方 harness 实现今日未核验。★ 价值路由：列即时价值，因为它的核心抽象（可采性 vs 改善分离 + 冻结锚点防作弊 + 预算计费规则）今天就能迁移到我们自己的 agent 实验评估上，而且不需要 GPU 就能用：我们做任何『让 agent 改代码/改 prompt 并自评』的实验时，都需要先定义『哪些产出算数』（例如：测试必须通过、不得改评测脚本、不得改打分函数、必须有可复现的种子），再定义『在数得上的产出里比什么』。作者自述『简单 sequential search 打败精巧方法』这件事也直接对我们有用：我们的 agent 优化流程很可能过度工程化了，先把基线做扎实比加机制更重要。动作：(1) 今天把『可采性 vs 改善』写进我们的 agent 实验协议模板——任何自评实验必须先声明可采性判据（测试通过 / 不可改评测 / 预算上限），再声明改善指标；(2) 把 task.json 的 frozen_regions 思路改造成我们的『不可改区域』清单（评测脚本、grader、测试集、种子），今天就能在我们的 prompt 优化实验里用上；(3) 把 sequential search 作为默认基线，不要跳过它。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第二即时价值。据 arXiv 2610.35866 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 github.com/Auto-Research-Arena/auto-research-arena 的本地核验：这篇真正稀缺的设计是**把『一个结果是否算数』和『它是否更好』拆成两件事**——admissibility（模型质量",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第二即时价值。据 arXiv 2610.35866 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及官方仓库 github.com/Auto-Research-Arena/",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.35866v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.35866v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=auto-research-arena-benchmarking-and-advancing-auto-research-in-language-modeling",
+  "daily_path": "daily-detail.html?date=2026-10-28",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

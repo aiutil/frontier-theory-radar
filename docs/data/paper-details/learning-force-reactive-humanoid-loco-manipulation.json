@@ -1,0 +1,134 @@
+{
+  "id": "learning-force-reactive-humanoid-loco-manipulation",
+  "title": "Learning Force-Reactive Humanoid Loco-Manipulation",
+  "authors": [
+    "Sihang Li",
+    "Xiaofeng Guo",
+    "Jinkun Cao",
+    "Charlie Cheng",
+    "Ruihan Yang"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-26",
+  "url": "http://arxiv.org/abs/2610.35862v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.35862v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-28",
+  "first_deep_dive_daily": "2026-10-28",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 63.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得继续观察：今日趋势价值第五。据 arXiv 2610.35862 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及项目页 louis-…",
+  "one_line_essence": "今日趋势价值第五。据 arXiv 2610.35862 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及项目页 louis-leee.github.io/FLoRe/ 的本地核验（HTTP 200）：它处理的是一个很具体的问题——很多日常任务不只需要控制运动，还需要控制接触力；在人形机器人上这个力往往要双手与全身协同，**无法只用运动学轨迹表达**。做法是 FLoRe 框架：用两把力感知 UMI 式手持夹爪 + 可穿戴追踪器采集无机器人演示（同时记录手部运动与接触力旋量、以及躯干与足部运动）；力反应式扩散策略以视觉、本体感知与实测力旋量为输入，同时预测动作与每手力指令；混合柔顺全身控制器负责执行，用实测 F/T 传感器的力误差积分让每只手沿指令方向精确跟踪力、同时在其它方向保持柔顺。作者自述（今日不可复现，见证据边界）：在仿真中控制器能跟踪不同幅值与方向的每手力指令，且全身运动精度损失很小；在真机三个接触密集任务上，力反应式策略在 80% 的 rollout 中成功，而**同样演示训练、同一控制器执行的位置-only 策略只有 26.7%**。★ 今日证据状态：项目页 HTTP 200 且页面明确写『Code (coming soon)』，即本文官方实现尚未发布（待核验/暂无）；正文中出现的 github.com/EGalahad/sim2real 已逐处核对上下文，确认是参考文献 [38] 引用的第三方 sim2real 部署栈（RoboParty Lab），**不是本文实现**；该第三方仓库本身存在（154 stars，主分支 tarball 1.76MB 可下载，含 .agents/skills/ 下的 sim2real 适配技能），但那是别人的项目。⚠️ 证据边界：80% vs 26.7%、仿真中的力跟踪精度全部为作者自述；本机无 CUDA、无机器人硬件、无 Quest 手柄读数器，无法复现。★ 价值路由：列趋势价值——我们没有机器人硬件，投入产出比低。但有一条**与硬件无关的数据工程结论**可以立刻带走：作者用**同一套力感知手持接口**同时做采集与部署，从而消除了 hand embodiment gap；并且他们同时记录『指令想要的动作』与『实测到的状态』（接触力旋量与关节状态）。这与我们前天记录的 DexPort 那条结论同构——『同时记录被指令的动作与实际执行的动作』是消除 embodiment gap 的关键。今天我们在 tool-call 日志上的做法仍然是只记『调了什么』和『返回了什么』，缺『我们本来想让工具做到什么 vs 实际做到了什么』，这在工具失败时是排障的关键缺口，今天就能补。另一个可迁移的判断是：作者的对比设计很干净——**position-only 策略用同样的演示、同样的控制器**，唯一变量是策略是否输出力指令（26.7% vs 80%）。这个『只变一个变量』的对照设计值得抄进我们的实验规范：评估『新增能力』时，必须让基线在其它一切上完全一致，否则结论不可归因。动作：纳入趋势雷达，今天不投入硬件环境；但把『指令意图 + 实测状态双写』写进我们的 tool-call 日志 schema，并把『对照组只变一个变量』写进我们的实验规范。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第五。据 arXiv 2610.35862 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及项目页 louis-leee.github.io/FLoRe/ 的本地核验（HTTP 200）：它处理的是一个很具体的问题——很多日常任务不只需要控制运动，还需要控制接触力；在人形机器人上这个力往往要双手与全身协同，**无法只用运动学轨迹表",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第五。据 arXiv 2610.35862 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及项目页 louis-leee.github.io/FLoRe/ 的本地核",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.35862v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.35862v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=learning-force-reactive-humanoid-loco-manipulation",
+  "daily_path": "daily-detail.html?date=2026-10-28",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

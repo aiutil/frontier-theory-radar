@@ -1,0 +1,126 @@
+{
+  "id": "on-the-stability-of-learning",
+  "title": "On the stability of learning",
+  "authors": [
+    "John J. Vastola"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-26",
+  "url": "http://arxiv.org/abs/2610.35856v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.35856v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-28",
+  "first_deep_dive_daily": "2026-10-28",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 55.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日长尾价值第二。据 arXiv 2610.35856 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它指出学习算法通常在『…",
+  "one_line_essence": "今日长尾价值第二。据 arXiv 2610.35856 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它指出学习算法通常在『信息性梯度持续可得』的假设下被分析，但这不总成立——生物神经网络里的学习信号是稀疏的、局部的、间歇可得的。作者证明：当梯度信息有噪声且仅间歇可得时，学习可能不稳定；**即使平均学习动力学收敛到正确最优点，学习中的方差仍可能是渐近无穷大的**。作者在若干解析可处理的情形下（单层与多层线性网络）推导出显式的稳定条件，并说明这些条件与已有的 SGD 稳定性条件互补但在概念上不同；结论是**无偏的信用分配不足以保证可靠学习，还需要足够频繁且有信息量的反馈**，这为生物学上合理的学习模型增加了额外约束。★ 今日证据状态：abs 页与 LaTeXML HTML 全文正则扫描**无任何 github/gitlab 链接**（唯一命中 arXiv 模板自带的 LaTeXML 反馈链接），无代码、无实验、无 benchmark（待核验/暂无）；arXiv comments 标注『20 pages, 6 figures』，无外部链接。⚠️ 证据边界：稳定性条件与『方差渐近无穷』是作者的解析结论，本机无代码可运行验证，也无实验数据；属 q-bio.NC / cs.LG 的理论工作。★ 价值路由：列长尾价值——它是理论论文，不含任何今天可抄的机制实现，且生物神经科学场景离我们的系统远。但它留下一条**可以直接转成工程断言**的判断：『间歇且有噪声的反馈会让学习不稳定，即使平均方向是对的』。我们每天都在做这类事：从稀疏的、延迟的、偶发的反馈里更新我们的 agent 策略/prompt——比如只记录了失败案例的日志、只在用户抱怨时才有的负样本、或者延迟到达的工具结果。按这篇的判断，这类反馈的方差会让策略更新不稳定，而『平均趋势看起来是对的』恰恰是最容易骗过人的指标。动作：加入长尾库，先保存不投入；今天可沉淀的一条资产进我们的评测 checklist：『用稀疏/间歇反馈更新策略时，除了看平均指标，必须同时看方差与最坏情况，且要区分『显式错误』与『遗漏』两类失败』。设置未来触发条件——当我们开始做持续性的在线策略更新或从失败日志自动生成训练样本时，回看这篇的稳定条件。注意边界：这是解析结论，不要在工程文档里当经验结论引用。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日长尾价值第二。据 arXiv 2610.35856 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它指出学习算法通常在『信息性梯度持续可得』的假设下被分析，但这不总成立——生物神经网络里的学习信号是稀疏的、局部的、间歇可得的。作者证明：当梯度信息有噪声且仅间歇可得时，学习可能不稳定；**即使平均学习动力学收敛到正确最优点，学习中的方差仍可",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日长尾价值第二。据 arXiv 2610.35856 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它指出学习算法通常在『信息性梯度持续可得』的假设下被分析，但这不总成立——",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-18"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.35856v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.35856v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=on-the-stability-of-learning",
+  "daily_path": "daily-detail.html?date=2026-10-28",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

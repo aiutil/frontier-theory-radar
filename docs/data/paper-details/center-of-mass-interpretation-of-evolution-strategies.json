@@ -1,0 +1,122 @@
+{
+  "id": "center-of-mass-interpretation-of-evolution-strategies",
+  "title": "Center-of-Mass Interpretation of Evolution Strategies",
+  "authors": [
+    "Akshat Gupta"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-26",
+  "url": "http://arxiv.org/abs/2610.35865v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.35865v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-28",
+  "first_deep_dive_daily": "2026-10-28",
+  "value_type": "ignore",
+  "value_type_label": "暂时忽略",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 45.0,
+  "decision": "暂时忽略",
+  "one_line_judgement": "当前可忽略：今日明确的暂时忽略项。据 arXiv 2610.35865 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这是一篇单作者的纯…",
+  "one_line_essence": "今日明确的暂时忽略项。据 arXiv 2610.35865 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这是一篇单作者的纯几何解释性短文，把进化策略（ES）的更新重新表述为几何过程——把每个被扰动的模型当作粒子、把奖励当作粒子质量，评分前所有粒子质量相同、群体平衡在质心，评分后则平衡在奖励加权质心；作者证明**均值减去的 ES 更新恰好就是这一位移乘上一个取决于平均奖励的标量因子，对任意有限种群都精确成立**；物理化读法需要非负奖励，而给每个奖励加同一个常数总能做到且不改变更新；在种群足够大或采用对偶采样（antithetic sampling）时质心落在模型自身上，于是 ES 有更简单的几何解释——模型从当前位置朝自身种群的奖励加权质心移动；同一个图景也解释了减去均值奖励的作用：它把位移的参考点从模型改成了采样质心。★ 今日证据状态：abs 页与 LaTeXML HTML 全文正则扫描**无任何 github/gitlab 链接**，无代码、无实验、无 benchmark（待核验/暂无）。⚠️ 证据边界：全文可读且结论是精确的解析陈述（对任意有限种群精确成立），因此不存在『证据不足』的问题——但同样也没有可检验的经验主张，它不提出新机制、不提出新度量、不提出新方法。★ 忽略理由（逐条对照本项目标准）：新意弱——『ES 更新 = 朝奖励加权质心移动』是对已有更新公式的**重新表述**，它自己就承认是『a geometrical interpretation』而非新算法；证据弱——无实验、无数据、无可复现对象；当前相关性有限——我们是应用层系统，不做 ES 训练栈，这条几何直觉对我们今天没有任何可直接使用的判据或方法。★ 保留理由（为何不是彻底丢弃）：作为教学/解释材料它有确切价值——如果我们需要向非 ML 背景的同事解释『为什么减去均值奖励是必要的』，这个质心图景比梯度估计的措辞更好懂；同时它顺带给出一条值得记住的数学事实（加常数不改变更新 ⇒ 可以假定奖励非负）。动作：仅保留最小索引（标题、来源、分数、忽略理由），不进入深挖，不列入长尾库，不投入阅读时间；只有在需要解释 ES 更新时再取出。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日明确的暂时忽略项。据 arXiv 2610.35865 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这是一篇单作者的纯几何解释性短文，把进化策略（ES）的更新重新表述为几何过程——把每个被扰动的模型当作粒子、把奖励当作粒子质量，评分前所有粒子质量相同、群体平衡在质心，评分后则平衡在奖励加权质心；作者证明**均值减去的 ES 更新恰好就是",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "noise",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日明确的暂时忽略项。据 arXiv 2610.35865 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：这是一篇单作者的纯几何解释性短文，把进化策略（ES）的更新重新表述为几",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.35865v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.35865v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=center-of-mass-interpretation-of-evolution-strategies",
+  "daily_path": "daily-detail.html?date=2026-10-28",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

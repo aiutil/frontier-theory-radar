@@ -182,6 +182,15 @@ def score_papers(papers, llm_overrides=None):
     llm_overrides = llm_overrides or {}
     scored = []
     for paper in papers:
+        # The research run records verified implementation entry points (official repos,
+        # project pages) in the llm-scores file. Merge them onto the paper record before
+        # scoring so the evidence breakdown reflects the code that actually exists.
+        llm_url_fields = llm_overrides.get(paper.get("url", ""))
+        if isinstance(llm_url_fields, dict):
+            for field in ("code_url", "benchmark_url", "project_url"):
+                value = llm_url_fields.get(field)
+                if value and not paper.get(field):
+                    paper[field] = value
         scores, topics = compute_score(paper)
         total = calculate_total_score(scores)
         decision = get_decision(total)

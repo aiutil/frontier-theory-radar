@@ -1,0 +1,138 @@
+{
+  "id": "acare-agent-context-aware-reranker-for-iterative-search",
+  "title": "ACARE: Agent-Context-Aware Reranker for Iterative Search",
+  "authors": [
+    "Sahel Sharifymoghaddam",
+    "Yauhen Babakhin",
+    "Reza Esfandiarpoor",
+    "Oliver Holworthy",
+    "Jimmy Lin"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-26",
+  "url": "http://arxiv.org/abs/2610.35840v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.35840v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-28",
+  "first_deep_dive_daily": "2026-10-28",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 4.95,
+    "engineering_testability": 3.5,
+    "trend_signal": 6.0,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 76.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第一。据 arXiv 2610.35840 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它指出 agentic…",
+  "one_line_essence": "今日趋势价值第一。据 arXiv 2610.35840 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它指出 agentic search 里一个被系统性忽略的错配——**文档可以匹配 agent 生成的子查询，却完全帮不上用户原始问题**；传统 reranker 只对着子查询打分，看不到更广的任务与 agent 的推理过程。ACARe 的做法是训练一个紧凑的 4B LLM reranker，在上下文可用时用它来重排文档。作者自述（今日不可复现，见证据边界）：在多个 benchmark 与多族 agent 上，ACARe 优于其基座 reranker 并同时降低检索开销；收益还传导到答案生成——相对完全不 rerank，ACARe 提高准确率并减少搜索次数，同时以更精确的证据达到或超过基座 reranker 的平均准确率；它还帮小模型缩小与更大模型的检索质量差距，说明更好的检索工具能让小 agent 更有效。论文还详述了 M0–M3 四种推理上下文模式、延迟与 rerank 深度分析、Agent API 成本分析，以及 Piika / ClimbMix / MTRAG / Natural Questions 四个数据集上的分数据集结果。★ 今日证据状态：abs 页与 HTML 全文正则扫描无任何 github/gitlab 链接，**正文明确写『The model, training data, and code will be released soon』**，即截至今日不存在任何可核验的官方实现或第三方实现（待核验/暂无）；GitHub 仓库检索因未认证触发 API rate limit 无法完成（已记录，不做推断）；huggingface.co 本机网络层直连超时，无法核验是否已有模型放出。⚠️ 证据边界：全部数值（各 benchmark 的 nDCG/准确率、LLM-turn 削减幅度、Agent API 成本）均为作者自述，本机无代码无权重无数据（Qwen3-Reranker-4B 是基座模型非本文产物），第三方复现为零。★ 价值路由：列趋势价值而非即时价值——因为它今天既不能抄（无代码无模型）、也不该抄（reranker 微调需要训练数据与算力）。但它指出的问题与我们直接相关且今天就能动手：『子查询命中 ≠ 回答了原始问题』这个错配，在我们的检索型 agent 里同样存在——我们的 rerank/过滤步骤大多是对着改写后的查询做的，没有把原始意图带进去。今天可做的最小动作（不依赖它的任何数字）：在我们现有的检索管线里加一个对照实验——同一批请求，分别用『只对子查询』和『原始问题 + 子查询一起』两种输入做重排，然后比较最终答案正确率；如果两者差距明显，说明我们正在犯同一个错。同时把它纳入趋势雷达：一旦 code/model 放出（NVIDIA 团队自述 will be released soon），证据等级会立刻升级，届时再深挖。另外记一条今天学到的边界判断：ACARe 把 reranker 的输入从『子查询』扩展到『任务 + agent 推理』，这与我们前两天记录的 Foyer 那条『发件人关系属于 contact graph，不属于 prompt』是同一族思路——**判断相关性所需的信息，不一定在当前的检索单元里**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第一。据 arXiv 2610.35840 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它指出 agentic search 里一个被系统性忽略的错配——**文档可以匹配 agent 生成的子查询，却完全帮不上用户原始问题**；传统 reranker 只对着子查询打分，看不到更广的任务与 agent 的推理过程。ACARe 的做",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第一。据 arXiv 2610.35840 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它指出 agentic search 里一个被系统性忽略的错配——**文档",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.35840v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.35840v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=acare-agent-context-aware-reranker-for-iterative-search",
+  "daily_path": "daily-detail.html?date=2026-10-28",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

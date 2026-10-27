@@ -1,0 +1,136 @@
+{
+  "id": "work-agents-systems-capabilities-and-optimization",
+  "title": "Work Agents: Systems, Capabilities, and Optimization",
+  "authors": [
+    "Zishan Xu",
+    "Enjun Du",
+    "Mingqi Gao",
+    "Cheng Yang",
+    "Junhao Shen"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-26",
+  "url": "http://arxiv.org/abs/2610.35845v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.35845v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-28",
+  "first_deep_dive_daily": "2026-10-28",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 6.2,
+    "evidence": 4.5,
+    "engineering_testability": 5.15,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 72.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第三。据 arXiv 2610.35845 摘要与 arXiv PDF 全文（今日回原文逐字复核；该篇 arXiv HTML 版…",
+  "one_line_essence": "今日趋势价值第三。据 arXiv 2610.35845 摘要与 arXiv PDF 全文（今日回原文逐字复核；该篇 arXiv HTML 版为 404，但 PDF 可下载且 pdftotext 成功抽出 445KB 正文，ar5iv 返回的实为 abs 页跳转而非全文）：它给出了一个『以工作为中心』的系统级视角，把 work agent 定义为**基础模型 + runtime harness 的组合**，在有状态工作区里执行任务并交付可验证的结果。它的两个原创维度是 work persistence（工作持续性：委托的责任在什么条件下才算结束）与 work openness（工作开放性：agent 在行动前与行动中必须自己发现多少东西），并据任务范围与组织方式把数字工作分成五类——conversation level / atomic action level / multi-step level / workflow level / workspace level（PDF 第 17–22 页逐节展开）。它进一步给出**五项核心能力**（Table 1）：Perception and Understanding、Reasoning and Decision Making、Planning and Coordination、Execution and State Management、Verification/Recovery/Replanning，并用两个维度分别说明它们各自被抬高的要求——例如高持久性要求 Execution and State Management『跨会话保持持久状态、重试时避免重复副作用』，高开放性要求它『在执行中建立适用的接口、权限与授权』。正文还从训练环境、模型优化、harness 优化及其联合优化三个层次讨论，并系统整理了 work-agent 评测的评估目标、维度、方法与模型性能指标（Table 10）。★ 今日证据状态：PDF 全文正则扫描命中的 github 链接均为他人项目引用（earendil、harveyai/harvey-llm、RUC-NLPIR/Awe、harnesstax 等），**无本文官方实现**（待核验/暂无）；abs 页也无 External Links。⚠️ 证据边界：这是一篇框架/综述型论文，提出的是分类法与研究议程，没有可复现实验、没有代码、没有数据集——它给的是词汇表与坐标系，不是证据。★ 价值路由：列趋势价值，因为它交付的是**一套重新命名我们每天在做的事的坐标系**，而不是一个能抄的机制。其中三条判断今天就能进我们的设计检查表：(1) 『durable state across sessions; avoiding duplicate effects on retry』——重试幂等性被单列为一项核心能力，这正是我们 tool-call 层最常出问题的地方；(2) 『re-verifying affected results; replanning when prerequisites change』——我们目前的 agent 在依赖变化后很少主动重新验证受影响的结果；(3) 『Establishing which sources count as evidence』——把『什么算证据』当成一项要被显式设计的能力，而不是默认沿用上下文里的东西。另一个可迁移的方法论是它对工作形态的五级分类（对话 / 原子动作 / 多步 / 工作流 / 工作区）：我们今天没有一套语言来区分『我们给 agent 的任务到底有多重』，而这直接决定该配多少 harness、该期待什么失败模式。动作：纳入趋势雷达；今天做两件不需要论文任何数据的事——第一，用它的五级分类给我们现有的 agent 任务做一次定级，标出哪些是『workflow level』和『workspace level』（这两级最需要 harness 与持久状态）；第二，把『重试幂等』与『依赖变化后重验受影响结果』两条写进我们的 agent 设计清单。记住证据边界：这是分类学，不是经验结论，不要在决策文档里当实证引用。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第三。据 arXiv 2610.35845 摘要与 arXiv PDF 全文（今日回原文逐字复核；该篇 arXiv HTML 版为 404，但 PDF 可下载且 pdftotext 成功抽出 445KB 正文，ar5iv 返回的实为 abs 页跳转而非全文）：它给出了一个『以工作为中心』的系统级视角，把 work agent 定义为**基础模型 ",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第三。据 arXiv 2610.35845 摘要与 arXiv PDF 全文（今日回原文逐字复核；该篇 arXiv HTML 版为 404，但 PDF 可下载且 pdftotext",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.35845v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.35845v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=work-agents-systems-capabilities-and-optimization",
+  "daily_path": "daily-detail.html?date=2026-10-28",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

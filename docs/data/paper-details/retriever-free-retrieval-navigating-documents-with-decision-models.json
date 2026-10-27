@@ -1,0 +1,136 @@
+{
+  "id": "retriever-free-retrieval-navigating-documents-with-decision-models",
+  "title": "Retriever-Free Retrieval: Navigating Documents with Decision Models",
+  "authors": [
+    "Chao Wan",
+    "Paul Jünger",
+    "Beixi Du",
+    "Bodong Liu",
+    "Navaneetha Krishnan"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-26",
+  "url": "http://arxiv.org/abs/2610.35868v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.35868v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-28",
+  "first_deep_dive_daily": "2026-10-28",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 74.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第二。据 arXiv 2610.35868 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它的核心论断是一句很锋…",
+  "one_line_essence": "今日趋势价值第二。据 arXiv 2610.35868 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它的核心论断是一句很锋利的话——**检索器与生成器之间存在能力不对称：检索器没找到的东西，再强的生成器也救不回来**。做法是 DecisionRAG：用 decision model 在**一次前向里联合评估候选分支、不生成任何 token**，作者认为让候选在共享上下文中被评判能使它们的相关性估计变得可比；结构上像『在图书馆里找书』一样，从宽主题逐层走到具体段落，每层决定哪些分支值得继续深入，不需要任务特定训练也不需要一阶段检索器。作者自述（今日不可复现，见证据边界）：在 MultiDoc2Dial 上比『稠密检索 + 8B reranker』高 13.8 个 R@1 点、在 Natural Questions 上高 17.4 个 Hit@1 点；在四个 benchmark 上（含 268 万段维基百科语料），检索每查询只需 0.7–1.8 秒。论文含完整的 ConditionalQA / MTRAG / Natural Questions 附录、检索配置细节、决策模型（open-weight judge）训练细节，以及一个专门的『延迟与成本』附录（含 DecisionRAG 与 baseline 的计时对比）。★ 今日证据状态：abs 页与 LaTeXML HTML 全文正则扫描**无任何 github/gitlab 链接**，无官方实现也无第三方实现（待核验/暂无）；正文中出现的 VectifyAI/PageIndex 已逐处核对上下文，确认是相关工作引用（PageIndex 用文档目录做 LLM 引导导航）而非本文代码；引用的决策模型为 TypeSafe AI 的 Jev 1.13（openrouter.ai/typesafe/jev-1.13），非本文产物。⚠️ 证据边界：13.8 / 17.4 / 0.7–1.8 秒 / 268 万段全部为作者自述，本机无代码、无语料、无 judge 模型，无法独立核验。★ 价值路由：列趋势价值而非即时价值——无代码、需 GPU 跑 4 benchmark 与 268 万段语料索引，今天投入产出比不合适。但它的**判断方式**值得今天就抄：它把检索从『给每段文档打分再排序』改成『在共享上下文里比较候选分支的可比性』。这对我们有直接启发——我们现有的 rerank 多数是逐候选独立打分，然后排序；当候选之间的相对关系才是关键时，独立打分会把『在对方存在时才有意义』的候选排到后面。把这条写进我们的检索设计检查表：『打分函数是独立打分还是有上下文比较？候选是否需要被并列呈现后再判？』。同时记录一条边界：决策模型不生成 token 这一点，与我们前几天记录的『过 backbone 次数要当一等指标』是同族——成本口径从『生成多少 token』扩展到『前向与比较的次数』。动作：纳入趋势雷达，7–30 天滚动观察（关注是否放出开源实现或被检索框架采纳）；今天只做一件事：在我们现有 rerank 里挑一批真实查询，做『独立打分』与『共享上下文并列比较』的对照，量一下最终答案正确率差异，不需要它的任何数字做基线。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第二。据 arXiv 2610.35868 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它的核心论断是一句很锋利的话——**检索器与生成器之间存在能力不对称：检索器没找到的东西，再强的生成器也救不回来**。做法是 DecisionRAG：用 decision model 在**一次前向里联合评估候选分支、不生成任何 token*",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第二。据 arXiv 2610.35868 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）：它的核心论断是一句很锋利的话——**检索器与生成器之间存在能力不对称：检索",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.35868v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.35868v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=retriever-free-retrieval-navigating-documents-with-decision-models",
+  "daily_path": "daily-detail.html?date=2026-10-28",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
