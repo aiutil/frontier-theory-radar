@@ -182,33 +182,31 @@ def score_papers(papers, llm_overrides=None):
     llm_overrides = llm_overrides or {}
     scored = []
     for paper in papers:
-        # The research run records verified implementation entry points (official repos,
-        # project pages) in the llm-scores file. Merge them onto the paper record before
-        # scoring so the evidence breakdown reflects the code that actually exists.
-        llm_url_fields = llm_overrides.get(paper.get("url", ""))
-        if isinstance(llm_url_fields, dict):
-            for field in ("code_url", "benchmark_url", "project_url"):
-                value = llm_url_fields.get(field)
-                if value and not paper.get(field):
-                    paper[field] = value
+        llm_hit = llm_overrides.get(paper.get("url", ""))
+        llm_hit = llm_hit if isinstance(llm_hit, dict) else {}
+        # The research run records the verified implementation entry points (official repos,
+        # project pages) next to the score. Merge them onto the paper before scoring, so the
+        # evidence breakdown reflects the code that actually exists.
+        for field in ("code_url", "benchmark_url", "project_url"):
+            value = llm_hit.get(field)
+            if value and not paper.get(field):
+                paper[field] = value
         scores, topics = compute_score(paper)
         total = calculate_total_score(scores)
         decision = get_decision(total)
         value_type = classify_value_type(scores, total)
 
-        llm_hit = llm_overrides.get(paper.get("url", ""))
-        if llm_hit and isinstance(llm_hit, dict):
-            llm_score = llm_hit.get("score")
-            if isinstance(llm_score, (int, float)):
-                total = round(max(0, min(100, float(llm_score))), 1)
-                decision = get_decision(total)
-                value_type = classify_value_type(scores, total)
-            if llm_hit.get("value_type"):
-                value_type = llm_hit["value_type"]
-            if isinstance(llm_hit.get("matched_topics"), list) and llm_hit.get("matched_topics"):
-                topics = llm_hit["matched_topics"]
-            if llm_hit.get("reason"):
-                paper["llm_reason"] = llm_hit["reason"]
+        llm_score = llm_hit.get("score")
+        if isinstance(llm_score, (int, float)):
+            total = round(max(0, min(100, float(llm_score))), 1)
+            decision = get_decision(total)
+            value_type = classify_value_type(scores, total)
+        if llm_hit.get("value_type"):
+            value_type = llm_hit["value_type"]
+        if isinstance(llm_hit.get("matched_topics"), list) and llm_hit.get("matched_topics"):
+            topics = llm_hit["matched_topics"]
+        if llm_hit.get("reason"):
+            paper["llm_reason"] = llm_hit["reason"]
 
         paper["id"] = paper.get("id") or slugify(paper.get("title", ""))
         paper["score"] = total
