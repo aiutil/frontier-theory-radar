@@ -1,0 +1,137 @@
+{
+  "id": "rare-relevant-and-still-wrong-how-memory-fails-llm-group-decisions",
+  "title": "Rare, Relevant, and Still Wrong: How Memory Fails LLM Group Decisions",
+  "authors": [
+    "Anouar Imel",
+    "Imad Charradi",
+    "Abderrahman Sghir",
+    "Khalil El Khammar"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37624v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37624v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 4.95,
+    "engineering_testability": 3.5,
+    "trend_signal": 6.0,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 78.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：今日第四即时价值，是**今天最值得带走的『反直觉结论』**。据 arXiv 2610.37624 摘要与 LaTeXML HTML 全文（今…",
+  "one_line_essence": "今日第四即时价值，是**今天最值得带走的『反直觉结论』**。据 arXiv 2610.37624 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，69.8KB 正文可读；作者来自 UESTC / 西电 / 南航 / 南航 AI 学院）：它问的是我们做多 agent 讨论时天天在做的事——**把一段群聊压缩成给决策者的短记忆时，记忆里该留什么？**两个最自然的启发式是『留最罕见的说法』与『留与决策标准相关的说法』。作者自述结论（今日不可复现）：在 hidden-profile 任务上两个启发式都在可预测的地方失效——按相关性筛选会把诱饵放回来（因为诱饵就是切题的），**即使一个完美的相关性过滤器，在经典 hidden-profile 配置下仍比『留最罕见』低 23 到 31 分**；而『留最罕见』平均起来并不比随机筛选好，只在罕见事实恰好有用时才赢。更关键的第三种失败是**从众（social proof）**：决策模型会给『被很多 agent 声称』的事实加额外的权重；去掉归属标签、或在保持行序不变的前提下随机重分配标签，在经典配置下准确率提升 13 到 24 分。另外一条最狠的：**在自然讨论里，证据是在任何记忆动作之前就丢掉了——完整 transcript 的准确率低于完全不做笔记。**★ 今日证据状态（**结构与实验设计已核验，无代码**）：arXiv abs 页与 LaTeXML HTML 全文正则扫描**无任何 github/gitlab 链接**，无官方实现也无第三方实现（待核验/暂无）。但实验设计的可核验性很高：CrossProfile 是 60 个模板、自动校验答案键，把支持性事实 / 诱饵事实 / 无关事实的**归属交叉**而文本保持不变，得到 480 个派生任务；正文写明『十个试点模板从所有主要估计中剔除』，答案键由结构化事实推出（每个有利事实给对应选项 +1，每个不利 -1，无关事实 0），并由自动验证器逐模板检查。作者还给出了对照设计：随机参照、固定条目数参照、oracle 相关性参照——**『oracle 相关性过滤器的相关类精确率 99.4% / 召回率 98.9%，但在同一配置下仍输给留最罕见』**这一条尤其硬：它排除了『过滤器不够好』这个解释。模型覆盖 Qwen2.5-7B、Llama-3.1-8B 与两个 DeepSeek 模型；正文另提到在开源自托管模型上另有证据（今日未逐一核验）。⚠️ 证据边界：23–31 分、13–24 分、99.4%/98.9%、91% vs 6% 等全部为作者自述；本机无代码、无数据、无第三方复现；『完整 transcript 低于不做笔记』这条只在论文的自然讨论设定下成立，不能外推到我们所有的摘要场景。★ 价值路由：列即时价值——因为**它推翻的是我们正在默认使用的一个直觉**，而且推翻得有对照。我们做 agent 记忆压缩时，默认动作就是『按与当前决策的相关性排序保留』；这篇用一个交叉实验说明：相关性过滤会把切题的诱饵放回来，而真正决定结果的是**留在记忆里的证据在选项之间的净优势**，不是筛选策略本身。还有一个更贴近我们的结论：模型会给『很多人这么说』的事实加权——这在多 agent 系统里就是**从众**；去掉或打乱归属标签就能提升 13–24 分，说明『谁说的』这个元数据本身可以变成有害信号。★ 今天就能做的动作：(1) 在我们现有的记忆压缩环节加一个对照——同一批对话，分别用『只按相关性留』与『留完之后再看选项间净优势』两种策略，比较最终决策正确率；(2) 检查我们的记忆条目里是否携带『谁说的 / 有几个人同意』这类归属元数据，如果有，评估是否要剥离或打乱；(3) 把『完整原文不一定比摘要好』写进我们的记忆设计检查表——在信息丢失发生在压缩之前时，压缩层再聪明也救不回来。这条与前几日记录的 ACARe（子查询命中 ≠ 回答原始问题）、Foyer（发件人关系属于 contact graph 不属于 prompt）属同族：**判断相关性所需的信息，不一定在当前的检索/摘要单元里**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第四即时价值，是**今天最值得带走的『反直觉结论』**。据 arXiv 2610.37624 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，69.8KB 正文可读；作者来自 UESTC / 西电 / 南航 / 南航 AI 学院）：它问的是我们做多 agent 讨论时天天在做的事——**把一段群聊压缩成给决策者的短记忆时，记忆里该留什么？**",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第四即时价值，是**今天最值得带走的『反直觉结论』**。据 arXiv 2610.37624 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，69.8KB 正文可读；作者来自 ",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37624v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37624v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=rare-relevant-and-still-wrong-how-memory-fails-llm-group-decisions",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

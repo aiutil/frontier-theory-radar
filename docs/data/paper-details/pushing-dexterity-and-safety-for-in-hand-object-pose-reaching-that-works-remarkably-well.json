@@ -1,0 +1,130 @@
+{
+  "id": "pushing-dexterity-and-safety-for-in-hand-object-pose-reaching-that-works-remarkably-well",
+  "title": "Pushing Dexterity and Safety for In-Hand Object Pose Reaching That Works Remarkably Well",
+  "authors": [
+    "Ian Chuang",
+    "Hiya Shah",
+    "Vamsi Chilamkur",
+    "Iman Soltani",
+    "Claire Tomlin"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37652v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37652v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "ignore",
+  "value_type_label": "暂时忽略",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 46.0,
+  "decision": "暂时忽略",
+  "one_line_judgement": "当前可忽略：今日明确的暂时忽略项之二。据 arXiv 2610.37652 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，118.3KB …",
+  "one_line_essence": "今日明确的暂时忽略项之二。据 arXiv 2610.37652 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，118.3KB 正文可读；arXiv comments 标注『26 pages, 30 figures, 14 tables』，项目页 ian-chuang.github.io/dexsafe/ HTTP 200）：它研究多指手的 in-hand object pose reaching（把物体移到手指可达范围内几乎任意位置与姿态、任意手腕朝向，经过一长串连续目标），并指出**安全（如不把物体掉了）在这个领域很少被测量**。做法是一套纯仿真训练配方（多样化重置与目标、生成式抓取数据集、自适应摩擦课程）+ 系统辨识，零样本迁移到真手（用动捕或单个腕部深度相机），并在任务策略之上加一个**可调保守度的残差安全滤波器**。作者自述（今日不可复现）：在 13.3 小时真机评测、4,800 个未见目标、4 个物体、多样手腕朝向下，状态策略达到 95.2% 的目标（容差 2 cm 与 0.4 rad），而滤波器把掉落减少 75% 的同时仍达到 91.5%。★ 今日证据状态（**本文无官方实现；命中的仓库都是第三方**）：abs 页与 LaTeXML HTML 全文正则扫描命中的 github 链接为 google-deepmind/mujoco_menagerie、google-deepmind/mujoco_warp、Rhoban/bam，**逐一核对上下文确认全部是第三方依赖或引用，不是本文实现**（正文引用 mujoco_warp 作为仿真基础设施、bam 作为相关方法）。故本文官方实现为**待核验/暂无**。⚠️ 证据边界：95.2% / 91.5% / 75% / 13.3 小时 / 4,800 目标全部为作者自述；本机无 GPU、无机器人硬件、无 LEAP 手，无法复现。★ 忽略理由：新意弱——「加一个可调保守度的残差安全滤波器」是把安全层叠在策略上的常规做法，本身不是新机制（有价值的部分在训练配方与系统辨识，但那些不可独立核验）；证据弱——单篇作者自述、真机评测无法复现；当前相关性有限——无机器人硬件、无仿真基础设施，今天投入产出比极低。★ 保留理由：它有一个**领域无关但很好用的做法值得记住**——把『性能/安全的权衡』做成**一个可调旋钮**（conservativeness），而不是两个固定选项；以及它坚持**把安全（掉落率）当作一等指标去测量**，这在我们做 agent 评测时同样适用：『危险但成功』和『安全但失败』在同一个成功率数字里是混在一起的。动作：仅保留最小索引，不进入深挖，不列入长尾库；今天可顺带沉淀一条与我们相关的资产进评测 checklist：『评测结果要能表达一个连续的安全–效能权衡，而不是合并成一个成功率；并把『危险但成功』单独计数』。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日明确的暂时忽略项之二。据 arXiv 2610.37652 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，118.3KB 正文可读；arXiv comments 标注『26 pages, 30 figures, 14 tables』，项目页 ian-chuang.github.io/dexsafe/ HTTP 200）：它研究多指手的 in",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "noise",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日明确的暂时忽略项之二。据 arXiv 2610.37652 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，118.3KB 正文可读；arXiv comments 标注『26 ",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37652v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37652v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=pushing-dexterity-and-safety-for-in-hand-object-pose-reaching-that-works-remarkably-well",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

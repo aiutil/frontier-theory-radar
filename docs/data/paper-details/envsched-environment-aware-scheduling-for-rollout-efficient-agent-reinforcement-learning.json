@@ -1,0 +1,136 @@
+{
+  "id": "envsched-environment-aware-scheduling-for-rollout-efficient-agent-reinforcement-learning",
+  "title": "EnvSched: Environment-Aware Scheduling for Rollout-Efficient Agent Reinforcement Learning",
+  "authors": [
+    "Sihan Yang",
+    "Weichen Bai",
+    "Ruichuan An",
+    "Yiming Cheng",
+    "Zhiyuan Feng"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37609v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37609v1",
+  "code_url": "https://github.com/Hhankyangg/envsched",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 81.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第三即时价值。据 arXiv 2610.37609 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，83.1KB 正文可读；…",
+  "one_line_essence": "今日第三即时价值。据 arXiv 2610.37609 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，83.1KB 正文可读；作者机构 PKU / XJTU / THU / Samsung Research / CASIA / CUHK）以及官方仓库 github.com/Hhankyangg/envsched 的本地下载与实跑：它处理的是agentic RL 里一个我们迟早会撞上的资源分配问题——**当可执行环境多到几千个时，下一批该训练哪个任务？**EnvSched 的做法是把环境–任务对建成一张双关系图：环境内边刻画任务语义与共享的工具/状态/verifier 结构，跨环境边刻画抽象的执行与奖励拓扑；沿两种边传播历史 rollout 统计量来预测任务内的奖励方差，然后用『一半覆盖度、一半利用率』的方式分配每一批。作者自述（今日不可复现）：在 Qwen3-8B 上，EnvSched 训练 40 步后在 BFCL-v3、τ-Bench、ACEBench-Agent 上平均分 48.81，**超过随机任务选择在 120 步内达到过的最高分**；在同等训练预算下对不同模型尺寸都有增益。★ 今日证据状态（**官方仓库已本地实跑，测试全绿**）：仓库 main 分支 tarball 1.02MB，MIT，created 2026-10-09，pushed 2026-10-28，13 stars。仓库结构与正文逐项吻合：selector/ 下确有 select_static_cold_start.py（选第 0 步批次）、select_online_high_variance.py（建图、预测方差、选后续批次）、task_progress_retirement.py（进度过滤）、reward_statistics.py 与 task_features.py（读 rollout 奖励、抽静态任务与 verifier 特征）、incremental_similarity_graph.py（可选的更快图后端）、topology_generator/。今日建 venv 装 CPU 侧依赖（numpy 1.26.4 / pandas 2.2.3 / scipy 1.15.3 / scikit-learn 1.6.1 / joblib 1.4.2 / omegaconf 2.3.1）后，`pytest tests -q` **实测 44 passed in 10.37s**，全部通过、无跳过、无失败。★ 今日最有价值的一个发现（论文正文没写透，但代码里写着）：仓库里有一个独立的模块 selector/online_rewarded_id_hack_guard.py，其 docstring 写得很清楚：『Suspicion alone is never enough: a trajectory must have positive within-group advantage, exact raw reward replay parity, and positive reward gain in an individual suspicious-root counterfactual』——即**光是怀疑不够，一条轨迹必须同时满足三条才被判为『刷奖励』**。它还要用保存下来的动作做重放（id_hack_replay.py），并且声明它只消费 target_step 之前严格完成的 rollout 分片、与 selector 解耦、不读任何 LLM 标注的拓扑。测试里也确有其事：tests/test_online_rewarded_id_hack_guard.py 用一个内嵌的 TinyEnv 复现了『改 id 刷分』的场景。**这套『怀疑 + 重放 + 反事实』三条件门槛，比论文正文的一句话有价值得多。**⚠️ 证据边界：48.81 与『40 步超过随机 120 步』是作者自述，本机无 GPU（torch.cuda.is_available()=False）、无 A100/H100、无 vLLM 0.8.4 / ray / megatron-core 环境，**训练结果完全不可复现**；仓库的 README 声明需要 Python 3.10 + PyTorch 2.6 / CUDA 12.4，本机 CPU 路径只覆盖 selector 侧；paper 正文的 Figure 1 数值、拓扑生成用的 LLM 调用与数据准备脚本今日未跑。★ 价值路由：列即时价值——**我们要做的『让 agent 从经验里学』，一旦数据量上去，就会立刻遇到『下一批该练什么』这个问题**，而这篇给出的答案是可落地的：不是随机抽，也不是按奖励贪心，而是『预测任务内奖励方差 + 强制覆盖度』。更值得抄的是那个 id-hack guard 的思路，它可以直接迁移到我们自己的 agent 评测与自我改进流水线上。动作：今天把两条写进我们的 agent RL / 自我改进设计清单——(1) 批次的分配要同时考虑『信息量（奖励方差）』与『覆盖度』，不能只按成功率贪心；(2) 任何『异常成功』在判定为刷分之前，必须同时满足『组内优势为正 + 原始奖励重放一致 + 单条反事实上确有收益』三条，我们今天就可以用这个三条件模板去审查自己的『agent 学会了作弊』判据。同时把 github.com/Hhankyangg/envsched 加入趋势雷达，7–30 天观察是否有更多环境池与更强 baseline。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第三即时价值。据 arXiv 2610.37609 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，83.1KB 正文可读；作者机构 PKU / XJTU / THU / Samsung Research / CASIA / CUHK）以及官方仓库 github.com/Hhankyangg/envsched 的本地下载与实跑：它处理的是ag",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第三即时价值。据 arXiv 2610.37609 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，83.1KB 正文可读；作者机构 PKU / XJTU / THU / Sa",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37609v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37609v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=envsched-environment-aware-scheduling-for-rollout-efficient-agent-reinforcement-learning",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

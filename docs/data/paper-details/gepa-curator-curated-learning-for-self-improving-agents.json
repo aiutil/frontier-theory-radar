@@ -1,0 +1,138 @@
+{
+  "id": "gepa-curator-curated-learning-for-self-improving-agents",
+  "title": "GEPA-Curator: Curated Learning for Self Improving Agents",
+  "authors": [
+    "Zack Yu",
+    "Nicholas Lee",
+    "Minjae Lee",
+    "Lakshya Agarwal",
+    "Luca Manolache"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37651v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37651v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 4.15,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 87.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第二即时价值，也是**今天与我们自身系统重合度最高**的一篇。据 arXiv 2610.37651 摘要与 LaTeXML HTML 全…",
+  "one_line_essence": "今日第二即时价值，也是**今天与我们自身系统重合度最高**的一篇。据 arXiv 2610.37651 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，92.6KB 正文可读；作者为 UC Berkeley / ICSI / LBNL / Furiosa AI / KAIST，通讯作者 Amir Gholami）：它指出反射式 prompt 优化器（GEPA 这类）的一个结构性缺陷——**agent 的失败不等于 prompt 的失败**。失败可能来自 prompt 弱点，也可能来自 harness 限制、执行随机性、judge 噪声，甚至任务本身歧义或不可行；如果把这些失败一股脑喂给 Reflector，优化器就会**把噪声误归因为 prompt 缺陷**，做出不必要甚至有害的更新。作者给出的补救是把『哪些经验值得学』本身变成一个可优化对象：GEPA-Curator 由两个部件组成——task curation（滤掉会提供噪声学习信号的任务）与 prior success retrieval（检索该任务过去成功的轨迹作为额外上下文给优化器）。作者自述（今日不可复现）：在 GoBrowse、ALFWorld、AppWorld、τ-bench 上，用 Gemini 3.1 Pro 与 Claude Opus 5 作优化器模型，GEPA-Curator 匹配或超过两个基线的平均表现，相对 GEPA 最高提升 20.7%、相对 ACE 最高提升 21.2%。★ 今日证据状态（**代码状态为『暂无』，今日已穷尽核验**）：arXiv abs 页无任何 github/gitlab 链接；LaTeXML HTML 全文正则扫描命中的 github 链接共 11 个，逐一核对上下文后确认**全部是相关工作/基线引用**——gepa-ai/gepa（GEPA 基线本身）、ace-agent/ace（ACE 基线）、ApGa/Go-Browse、StonyBrookNLP/appworld、alfworld/alfworld、sierra-research/tau-bench、stanford-iris-lab/meta-harness、web-arena-x/webarena、allenai/IFBench、gururise/AlpacaDataCleaned、arXiv/html_feedback 与 brucemiller/LaTeXML（后两个是 LaTeXML 模板自带的反馈链接）——**没有本文的官方实现**。全文检索『code is / our code / anonymous / available at / will be』均无命中，即正文没有代码发布承诺。GitHub 今日已认证，仓库检索 q=GEPA-Curator 只有 2 个结果：manavnotop/curator-gepa（0 stars，created 2025-11-18，早于本文，与本文无关）与 lixiaobinbin/skill-gepa（1 star，2026-06-20，无关项目）；对 gepa-ai/gepa 做 code search q='curator' 只有 1 处命中且是 docs/docs/guides/index.md 的索引条目，**上游仓库里没有 curator 实现**。⚠️ 证据边界：20.7% / 21.2% 全部为作者自述，本机无代码、无数据、无法复现；论文的评测依赖 Gemini 3.1 Pro 与 Claude Opus 5 两个付费 API 作优化器模型；摘要与正文里 tau-bench 的符号在抽取时被吃掉（显示为『-bench』），不影响结论。★ 价值路由：列即时价值——**它的结论今天就能用，而且不需要它的任何代码**：我们要做的正是『让 agent 从失败里改 prompt』这件事，作者指出的是我们每天都在犯的那个具体错误：把『agent 失败了』当成『prompt 写得不好』。这条判断的迁移成本几乎为零，但改造收益可能很大：我们的失败日志里必然混着工具超时、judge 抖动、任务本身不可行这三类噪声，它们正在污染我们的 prompt 优化。★ 今天可做的最小动作（不依赖论文任何数字）：在现有反思式优化流程里加一道『失败归因』闸门——对每条失败先判断它是不是 prompt 导致的（可复现？换个 harness 还失败吗？judge 是否一致？），只把 prompt 归因成立的失败喂给优化器；同时开始沉淀『成功轨迹』，作为后续优化的上下文。今天就能做的检查清单条目：『反思式优化前，先过滤掉归因不成立的失败；并保留过去的成功轨迹作为正例上下文』。★ 另外记一条边界：它引用的 OpenReview 链接与 huggingface 数据集链接均无法核验（huggingface.co 本机直连超时），ACE 基线的实现同样未核验。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第二即时价值，也是**今天与我们自身系统重合度最高**的一篇。据 arXiv 2610.37651 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，92.6KB 正文可读；作者为 UC Berkeley / ICSI / LBNL / Furiosa AI / KAIST，通讯作者 Amir Gholami）：它指出反射式 prompt 优化",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第二即时价值，也是**今天与我们自身系统重合度最高**的一篇。据 arXiv 2610.37651 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，92.6KB 正文可读；作者",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37651v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37651v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=gepa-curator-curated-learning-for-self-improving-agents",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

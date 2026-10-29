@@ -1,0 +1,136 @@
+{
+  "id": "heads-of-security-learned-attention-gates-improve-prompt-injection-robustness",
+  "title": "Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness",
+  "authors": [
+    "Igor Shilov",
+    "Xiaoxue Yang",
+    "Alexander Panfilov",
+    "Evgenii Kortukov",
+    "Matthieu Meeus"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37657v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37657v1",
+  "code_url": "https://github.com/imperial-aisp/heads_of_security",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 90.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第一即时价值，也是今日**证据等级最高**的一篇：论文数值 + 官方代码 + 已训练权重 + 本地实跑四者齐备。据 arXiv 2610…",
+  "one_line_essence": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文数值 + 官方代码 + 已训练权重 + 本地实跑四者齐备。据 arXiv 2610.37657 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，136.9KB 正文可读）以及官方仓库 github.com/imperial-aisp/heads_of_security 的本地下载与实跑：它给 prompt injection 防御提出了一条与『微调整个模型』『改架构』都不同的第三条路——**只在注意力上装一小组可学习的 per-head 门**，让模型学会在『可信 token』与『不可信 token』之间重新分配注意力，从而在不跟随被注入指令的前提下仍然阅读不可信内容。作者自述结论（今日不可复现，见证据边界）：在 Llama-3.3-70B-Instruct 与 GPT-OSS-20B 上，黑盒 RL-Hammer 攻击对 GPT-OSS-20B 达到 97% ASR、对 SecAlign 达到 85%，**对 HoS 只有 10%**；白盒攻击 Claudini 经 autoresearch 针对 HoS 强化后，要达到同等 ASR 所需的 FLOPs 是打 GPT-OSS-20B 或 SecAlign 的 3 倍。效用侧：5-shot MMLU-Pro 上 HoS 67% vs 基座 68%，而 SecAlign 与 ASIDE 掉到 59% 与 52%；Llama-3.3-70B 上 HoS 55% vs 基座 56%，SecAlign 掉到 16%。在 AgentDojo / AgentDyn / LLMail-Inject / WASP 上 HoS 与 SecAlign 相当、显著降低 ASR，而 ASIDE 在 tool use 上几乎不可用（三个 benchmark 接近 0 效用，AgentDojo 仅 10%）。★ 今日证据状态（**结构级与权重级已本地核验**）：官方仓库今日拉下来（main 分支，tarball 3.44MB，MIT，created 2026-09-25，pushed 2026-10-28）；仓库自带训练好的门权重，今日用 safetensors 逐一读取核对：gates/gpt-oss-20b/{lr0.01,0.025,0.05,0.1}/gates.safetensors 每个 48 个 tensor、**合计 18,432 个参数**，gates/llama-3.3-70b-instruct/lr0.008/gates.safetensors 80 个 tensor、**合计 46,080 个参数**，tensor 名为 model.layers.N.self_attn.head_gates / sink_gates——与论文『每头一组门』的主张以及 gates/README.md 里『GPT-OSS gates contain about 18,000 parameters per file; Llama gates contain about 46,000』**逐项吻合**。另有一处值得记的工程细节：gpt-oss 架构的注意力行带 sink logit，因此注意力行并不严格和为 1，均匀门并不等价于恒等变换（仓库 tests/utils.py 的 ARCHS_WITH_SINKS 明确标注了这一点），这是把『门』做对的关键细节。本地测试：仓库 tests/ 共 270 项，本机 CPU 无 CUDA、跑全量耗时过长，今日已确认前 61 项全部通过（无失败、无跳过），**全量 270 项的最终结果今日未跑完（待核验/暂无）**。⚠️ 证据边界必须说清：10% vs 97% vs 85% 的 ASR、67% vs 68% 的 MMLU-Pro、3 倍 FLOPs 全部是**作者自述**，本机无 CUDA 无法复现（需要 70B 与 20B 两个基座 + 攻击框架）；论文用的是 SecAlign++ 与 ASIDE 的作者实现，今日未独立核验这些基线的数字；『autoresearch 强化攻击』的细节在附录 F.1，攻击预算与真实预算是否可比今日未核验。★ 价值路由：列即时价值而不是趋势价值，因为它的核心资产（门权重 + 加载代码）**今天就能下载并接进我们的服务**，而且成本低到反常——18K 参数 vs 微调 70B。我们做的是会读邮件、读网页、读工具返回值的 agent，prompt injection 是我们自己的第一风险面，而 HoS 的形态正好对应我们的形态：给模型标注『哪些 token 可信』，用注意力门而不是再训一遍模型来隔离。★ 今天可以带走的判断（与前几天的结论同族但更具体）：**防御的落点可以是『注意力怎么分配』，而不是『再训一次模型』**——这是一个成本量级差三到四个数量级的选项，值得进入我们的技术选型清单。动作：今天下载 gates/gpt-oss-20b/lr0.1/gates.safetensors 与 load_gated_model_local，在我们的一个只读工具调用沙箱上做最小验证——对同一组含注入的 tool result，比较基座与加门后的『是否执行注入指令』；不追求复现论文 ASR，只验证『注意力门能否在我们自己的 prompt 模板上生效』。同时把『注意力门 / 信任通道标注』写进我们的防御方案清单。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文数值 + 官方代码 + 已训练权重 + 本地实跑四者齐备。据 arXiv 2610.37657 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，136.9KB 正文可读）以及官方仓库 github.com/imperial-aisp/heads_of_security 的本地下载与实跑：它",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文数值 + 官方代码 + 已训练权重 + 本地实跑四者齐备。据 arXiv 2610.37657 摘要与 LaTeXML HTML 全文",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37657v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37657v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=heads-of-security-learned-attention-gates-improve-prompt-injection-robustness",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

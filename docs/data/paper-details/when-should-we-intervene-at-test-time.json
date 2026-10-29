@@ -1,0 +1,133 @@
+{
+  "id": "when-should-we-intervene-at-test-time",
+  "title": "When Should We Intervene at Test Time?",
+  "authors": [
+    "Jiahao Zhang",
+    "Xinling Wen",
+    "Liangliang Li",
+    "Yu Chen"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37658v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37658v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 4.15,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 72.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第二。据 arXiv 2610.37658 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，79 页 preprin…",
+  "one_line_essence": "今日趋势价值第二。据 arXiv 2610.37658 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，79 页 preprint，abs 页与正文均可读）：它处理的是 test-time adaptation 的一个老问题的新形式——**同一个干预，这一批能救场，下一批就可能毁场**；平均准确率会把这些失败藏起来，也没法告诉模型『什么时候该用这个干预』。PORTAL 是一个控制器，决定三件事：什么时候部署干预、哪些输入值得去标、什么时候停止查询。作者自述（今日不可复现）：每个候选预测规则的预测在当前反馈到来之前就固定下来，因此每获取一个标签都能在**同一个输入上同时评估所有候选**；PORTAL 合并这些共享比较，并把查询导向那些仍可能超过当前领先者的候选；当剩余标签无法改变选择、或可能带来的准确率提升不再值得再查一次时停止。实验显示这个控制把『总体上掉分的干预』变成『在选中的批次上可用的选择』，防止了到达顺序变化导致的严重失败，并在完整损坏流上保住收益；当某个固定规则本来就表现好时，PORTAL 只用很少的反馈就能保住它的表现；周期性标签检查能暴露『过往证据需要刷新』，帮助控制器在条件变化后恢复；而且获取的标签还会训练出更强的候选，使同一份反馈既改善当次选择、也改善后续批次可用的预测。正文给了一个具体对照：BN 更新 + 原图与翻转视图（BN+flip）在块状到达时好用，但遇到『按类成块到达』的输入时准确率掉到 **22.58%**，PORTAL 在同样的到达方式下达到 **51.28%**。★ 今日证据状态（**代码存在但需审稿人身份，本机无法访问**）：abs 页无 github/gitlab 链接，HTML 全文也只命中 arXiv 模板自带的 LaTeXML 链接；但正文里明确写『Code, data, and manuscript: https://anonymous.4open.science/r/PORTAL-8322/』。今日用 curl 访问该地址返回 **HTTP 401 {\"error\":\"not_connected\"}**，即匿名审稿链接只对处于已连接评审会话的审稿人开放，**本机今日无法取到代码或数据（待核验/暂无）**；未在 GitHub 找到官方仓库（GitHub 今日已认证，检索无官方实现）。⚠️ 证据边界：22.58% vs 51.28% 与全部『防止到达顺序导致的严重失败』『保住收益』等结论均为作者自述；本机无代码、无数据、无 judge 模型，无法独立核验；该文是 79 页 preprint，尚无同行评审信号。★ 价值路由：列趋势价值——它今天既不能抄（代码取不到）也不该抄（要跑 4 个 benchmark 与多域损坏流），但**它的核心抽象是我们迟早要用的**：『如何决定何时启用一个昂贵/有风险的干预，以及何时停止收集反馈』，这正是我们做 agent 工具调用时的日常决策——什么时候该多跑一次校验、什么时候该停。今天能带走的判断有三条：(1) **让所有候选在同一批输入上被同时评估**（而不是各自挑样本），一份标签就能比较全部候选，这直接对应我们『每次只跑一个 agent 配置』的做法——改成同输入并行对比，一份预算能换来 N 倍信息；(2) **停止条件要写死**：当剩下的标签不可能改变选择时停止查询，这是一条可以直接抄进我们工具调用预算控制的规则；(3) **同一个判别器在分布漂移后需要重新校准**——周期性的标签检查是廉价的『证据保鲜』手段。动作：纳入趋势雷达，7–30 天滚动观察（关注是否公开仓库或被 TTA 框架采纳）；今天可沉淀的一条资产进我们的 agent 决策清单：『当有多个候选策略时，在同一批输入上并行比较；并显式定义停止条件与定期重新校准』。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第二。据 arXiv 2610.37658 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，79 页 preprint，abs 页与正文均可读）：它处理的是 test-time adaptation 的一个老问题的新形式——**同一个干预，这一批能救场，下一批就可能毁场**；平均准确率会把这些失败藏起来，也没法告诉模型『什么时候该用这",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第二。据 arXiv 2610.37658 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，79 页 preprint，abs 页与正文均可读）：它处理的是 test-",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37658v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37658v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=when-should-we-intervene-at-test-time",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

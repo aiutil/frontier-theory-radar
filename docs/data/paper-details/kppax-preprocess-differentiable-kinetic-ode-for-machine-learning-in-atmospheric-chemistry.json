@@ -1,0 +1,124 @@
+{
+  "id": "kppax-preprocess-differentiable-kinetic-ode-for-machine-learning-in-atmospheric-chemistry",
+  "title": "KPPax: preprocess differentiable kinetic ODE for machine learning in atmospheric chemistry",
+  "authors": [
+    "Wenqing Peng",
+    "Michael Boy",
+    "Zhi-Song Liu"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37655v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37655v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "ignore",
+  "value_type_label": "暂时忽略",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 50.0,
+  "decision": "持续观察",
+  "one_line_judgement": "当前可忽略：今日明确的暂时忽略项之一。据 arXiv 2610.37655 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，69.4KB 正…",
+  "one_line_essence": "今日明确的暂时忽略项之一。据 arXiv 2610.37655 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，69.4KB 正文可读）：KPPax 把大气化学机制（KPP 语言）转成**可微分、JIT 编译、向量化**的 JAX 代码，从而让化学动力学能接进可微分编程框架。做法是用稀疏运算在对数空间求速率律以保持可微，再用 diffrax 的隐式求解器与前向/反向模式伴随来积分刚性系统，从而**不需要手写伴随代码就能得到精确灵敏度**。作者自述（今日不可复现）：在 POLLU 基准机制上，自动微分 Jacobian 算出的 Fisher 信息矩阵能在拟合之前就预测出 25 个速率系数里哪些是可辨识的（9 个可辨识），带噪合成估计把这 9 个系数的预测不确定度验证到约 30% 以内，并暴露出只有比值被约束的快反应簇；第二个应用中，对排放清单的神经网络修正把生物源修正的误差降低了 2.4–5 倍。★ 今日证据状态（**本文无官方实现；仓库里的 pykpp 是第三方依赖**）：abs 页与 LaTeXML HTML 全文正则扫描命中的 github 链接只有 github.com/barronh/pykpp，**但今日核对上下文确认这是第三方已有工具**（GitHub API 显示 created 2013-05-14、19 stars、描述为『a KPP-like chemical mechanism parser that produces a box model solvable by SciPy's odeint solver』），正文也写明『We utilise the parsing module from pykpp』——即本文**复用了** pykpp 的解析模块，**不是本文的开源实现**。因此本文官方实现为**待核验/暂无**。⚠️ 证据边界：30%、2.4–5 倍、9/25 等全部为作者自述；本机无 JAX/diffrax 环境（且 CPU 无 AVX），无法复现；该工作属于大气化学 × 机器学习交叉，与我们的方向无交集。★ 忽略理由（逐条对照本项目标准）：新意弱——『把 KPP 翻译成 JAX 并用自动微分求灵敏度』是把已有工具接到已有框架上，属工程整合而非新机制；证据弱——结论依赖单一 POLLU 机制与作者自述数值，本机零复现；当前相关性有限——大气化学机制编译与我们做的 agent 系统、检索、评测、推理服务毫无交集，今天没有任何可直接使用的判据或方法。★ 保留理由（为何不是彻底丢弃）：它留了一条**与化学无关的通用工程结论**——『用自动微分得到精确灵敏度，可以避免手写伴随代码』；以及一条有意思的观察——**拟合之前就能用 Fisher 信息矩阵判断哪些参数根本不可辨识**（9/25 可辨识），这与我们的直觉相符：有些问题不是数据不够，而是结构上不可辨识。动作：仅保留最小索引（标题、来源、分数、忽略理由），不进入深挖，不列入长尾库，不投入阅读时间；只有在需要『用自动微分替代手写伴随』这类工程手法时才取出。今天可顺带沉淀一条与我们相关的资产：『在投入采集更多数据之前，先判断目标量在结构上是否可辨识』。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日明确的暂时忽略项之一。据 arXiv 2610.37655 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，69.4KB 正文可读）：KPPax 把大气化学机制（KPP 语言）转成**可微分、JIT 编译、向量化**的 JAX 代码，从而让化学动力学能接进可微分编程框架。做法是用稀疏运算在对数空间求速率律以保持可微，再用 diffrax 的隐",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "noise",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日明确的暂时忽略项之一。据 arXiv 2610.37655 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，69.4KB 正文可读）：KPPax 把大气化学机制（KPP 语言）",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37655v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37655v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=kppax-preprocess-differentiable-kinetic-ode-for-machine-learning-in-atmospheric-chemistry",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

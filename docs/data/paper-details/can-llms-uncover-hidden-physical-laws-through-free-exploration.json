@@ -1,0 +1,135 @@
+{
+  "id": "can-llms-uncover-hidden-physical-laws-through-free-exploration",
+  "title": "Can LLMs Uncover Hidden Physical Laws through Free Exploration?",
+  "authors": [
+    "Zhen Yang",
+    "Wen Wang",
+    "Xander Xu",
+    "Ying-Cong Chen"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37649v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37649v1",
+  "code_url": "https://github.com/EnVision-Research/LongChang",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 6.2,
+    "evidence": 6.35,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 70.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第三。据 arXiv 2610.37649 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，58.5KB 正文可读；…",
+  "one_line_essence": "今日趋势价值第三。据 arXiv 2610.37649 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，58.5KB 正文可读；作者来自 HKUST(GZ) / 阿里 / 浙大 / HKUST）：它问的是一个关于 LLM 科研能力的问题——**在被改变了物理规律的世界里，LLM 能不能自己注意到异常、并通过自由探索发现规律？**LongChang 构造带 altered physics 的模拟世界（法向对照、红色吸引、质量依赖下落、振荡重力等），被测 LLM 作为探索者操作物体、搭建工具、自主提出问题；另有独立的 LLM agent 负责生成与审阅场景、审阅工具设计、按被改变的物理规律与探索记录评估报告的正确性与实验支撑；这些记录再反过来指导场景演化，使整个循环无需人工干预。作者自述（今日不可复现）：12 个 LLM 中 **GPT-6-Astra 的发现率是 16.7%，其余 11 个全是 0%**；探索记录显示有些模型把观察到的异常放着不查，有些模型做了实验但只部分识别出被改变的规律，条件或适用范围仍未解决。评价口径作者写得很清楚：对 altered physics 场景，C 与 S 分别是通过对相应检查的运行百分比，**发现率 D 是两者都通过的百分比**；另有拒绝数 R（被拒的正常对照报告，含谎报异常与无支撑的规律）与探索统计（平均轮数 L、提前停止率 ES）。★ 今日证据状态（**仓库存在但今天只有 README**）：官方仓库 github.com/EnVision-Research/LongChang 存在（created 2026-10-27，pushed 2026-10-28，8 stars，无 LICENSE 文件），项目页 zhenyangcs.github.io/LongChang-website/ HTTP 200 可访问（交互式 demo 在项目页上）。今日拉下 main 分支 tarball（335KB）解包后确认：**仓库里目前只有一个 README.md 和一个 logo、一个 world 动图，没有任何源码目录**——即正文说的『project page and code are available』中的 code 部分尚未落地（**待核验/暂无**），这一点必须写清，不能因为仓库存在就当作代码已发布。⚠️ 证据边界：16.7% / 0% 的发现率与全部场景统计均为作者自述；本机无代码、无模拟器环境；GPT-6-Astra 与 GPT-6.1-Sol 这两个模型本机无法调用；『唯一成功者』这一结论受评测模型集合限制，不能外推为『只有 GPT-6 能做科学发现』。★ 价值路由：列趋势价值——无源码、无本机可复现路径，且它的设定（altered physics 模拟世界）离我们的系统远。但它留了两条**与设定无关、对我们直接有用**的判断：(1) **『把异常注意到并去查』这一步是可测的失败模式**，这和前几天记录的『该做的没做（遗漏型失败）』是同一族——我们的 agent 评测几乎只统计『做错了什么』，很少统计『看见了却没去查』；作者的 exploration 统计（平均轮数 L、提前停止率 ES、未被调查的异常数）就是现成的度量方式。(2) **『实验支撑』是一个独立于『结论正确性』的评判维度**——它要求报告为结论提供实验支撑，作者用『correctness』与『experimental support』两个独立判据，正好对应我们评测 agent 产出时的两个问题：结论对不对、有没有做实验支撑。动作：纳入趋势雷达（7–30 天观察代码是否真正放出）；今天可沉淀的两条资产进我们的 agent 评测 checklist：『(a) 把『发现了机会却没有去调查』单列为一类失败并计数；(b) 对 agent 产出的结论，同时评『正确性』与『实验支撑度』两轴』。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第三。据 arXiv 2610.37649 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，58.5KB 正文可读；作者来自 HKUST(GZ) / 阿里 / 浙大 / HKUST）：它问的是一个关于 LLM 科研能力的问题——**在被改变了物理规律的世界里，LLM 能不能自己注意到异常、并通过自由探索发现规律？**LongChang",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "rising",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第三。据 arXiv 2610.37649 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，58.5KB 正文可读；作者来自 HKUST(GZ) / 阿里 / 浙大 /",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37649v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37649v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=can-llms-uncover-hidden-physical-laws-through-free-exploration",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

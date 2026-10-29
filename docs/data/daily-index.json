@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-10-28T04:52:00.490344",
+  "updated_at": "2026-10-30T05:19:00.537797",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-10-30",
+      "title": "论文价值发现日报 - 2026-10-30",
+      "deep_dive_title": "Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness",
+      "deep_dive_url": "http://arxiv.org/abs/2610.37657v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做三件不依赖论文任何数字的事：(1) 下载 HoS 的 gates/gpt-oss-20b/lr0.1/gates.safetensors，用 load_gated_model_local 加载，在只读工具调用沙箱上验证注意力门在我们自己的 prompt 模板上是否生效；(2) 把『注意力门 / 信任通道标注』写进防御方案清单，作为『再训一次模型』之外的第三选项；(3) 把三条今日判断写进检查表——防御的落点可以是注意力怎么分配；反思式优化前先过滤归因不成立的失败并保留成功轨迹；批次分配要同时看信息量与覆盖度。",
+      "max_uncertainty": "HoS 的 10% vs 97% vs 85% ASR、67% vs 68% 的 MMLU-Pro、3 倍 FLOPs 全部为作者自述，本机无 CUDA 无法复现；SecAlign++ 与 ASIDE 的对比数字是作者实现，第三方未独立核验；仓库 270 项测试今日仅确认前 61 项通过，全量结果待核验/暂无；HuggingFace 托管模型 ID 因 huggingface.co 本机直连超时而待核验/暂无。次要不确定性：GEPA-Curator 无官方实现（已用认证 GitHub 检索穷尽确认），20.7%/21.2% 不可复现；EnvSched 的 48.81 与『40 步超随机 120 步』需 GPU 才能复现；CrossProfile 的 23–31 分与 13–24 分依赖其 480 任务构造，本机无代码无数据。",
+      "one_line_judgement": "据 arXiv 2610.37657 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，136.9KB 正文可读）以及官方仓库 github.com/imperial-aisp/heads_of_security 的本地下载与实跑：这篇给了一个**可判定的安全性质**，并把它做成了**今天就能接进服务的资产**。机制是：把输入 token 标注为可信 / 不可信 / 对话模板三类通道，为每个注意力头学习一组门，门在训练后学会压低不可信 token 的注意力权重、保留可信与模板 token，从而让模型能读懂不可信内容但不执行其中的指令。作者自述（今日不可复现）：黑盒 RL-Hammer 攻击对 GPT-OSS-20B 达到 **97% ASR**、对 SecAlign 达到 85%，**对 HoS 只有 10%**；白盒攻击 Claudini 经 autoresearch 针对 HoS 强化后，达到同等 ASR 所需 FLOPs 是打另外两者的 **3 倍**。效用侧没有牺牲：5-shot MMLU-Pro 上 HoS **67%** vs 基座 68%，而 SecAlign 与 ASIDE 掉到 59% 与 52%；Llama-3.3-70B 上 HoS 55% vs 基座 56%，SecAlign 掉到 16%。在 AgentDojo / AgentDyn / LLMail-Inject / WASP 上 HoS 与 SecAlign 相当且显著降低 ASR，而 ASIDE 在 tool use 上几乎不可用（三个 benchmark 接近 0 效用，AgentDojo 仅 10%）。★ **今日证据等级是本批最高的**（这是今天排第一的真正理由，不是分数）：官方仓库今日拉下（main 分支，3.44MB，MIT，created 2026-09-25，pushed 2026-10-28），仓库自带训练好的门权重，今日用 safetensors 逐一读取核对——gpt-oss-20b 四个学习率版本各 48 个 tensor、**合计 18,432 个参数**；llama-3.3-70b-instruct 版本 80 个 tensor、**合计 46,080 个参数**，tensor 名为 model.layers.N.self_attn.head_gates / sink_gates，与论文主张及 gates/README.md 自述的『GPT-OSS gates contain about 18,000 parameters per file; Llama gates contain about 46,000』**逐项吻合**。另有一处关键工程细节：gpt-oss 架构的注意力行带 sink logit，注意力行**不严格和为 1**，因此均匀门并不等价于恒等变换（仓库 tests/utils.py 的 ARCHS_WITH_SINKS 专门标注了这点）——这是把『门』做对、而不只是做出来的分水岭。",
+      "path": "daily-detail.html?date=2026-10-30"
+    },
     {
       "date": "2026-10-28",
       "title": "论文价值发现日报 - 2026-10-28",
@@ -378,19 +391,6 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-09-29"
-    },
-    {
-      "date": "2026-09-28",
-      "title": "论文价值发现日报 - 2026-09-28",
-      "deep_dive_title": "[占位] 今日论文抓取失败或无新论文",
-      "deep_dive_url": "",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-09-28"
     }
   ]
 }

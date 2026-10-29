@@ -1,0 +1,128 @@
+{
+  "id": "an-evm-cosmos-bridge-for-atomic-semantic-preserving-transfer-of-environmental-tokens",
+  "title": "An EVM-Cosmos Bridge for Atomic, Semantic-Preserving Transfer of Environmental Tokens",
+  "authors": [
+    "Sebastian Pandolfi",
+    "Guzmán Llambías",
+    "Laura González"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37663v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37663v1",
+  "code_url": "https://github.com/sebapandolfi/evm-cosmos-indicator-htlc",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 63.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日长尾价值第二。据 arXiv 2610.37663 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，54.4KB 正文可读）…",
+  "one_line_essence": "今日长尾价值第二。据 arXiv 2610.37663 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，54.4KB 正文可读）：它解决跨链的两件事——**语义混淆**（如不同方法学签发的 CO2 减排量在链上被混为一谈）与**原子性**。做法是：用密码学承诺派生的确定性指标身份，在两条链上镜像登记到 class registry，并在铸造时校验，从而**在构造上防止语义混淆**；把 HTLC 从双方交换扩展到单所有者转移，在目标链被认领后由自动回调销毁源链托管，并设一个协议最低赏金，让『兜底销毁』在面对恶意发送方时也激励相容。作者自述（今日不可复现）：用 TLC 机器检验协议不变量（**供给守恒在没有 rational-monitor 假设时失败、在有该假设时成立**），并在 Polygon 与 Neutron 主网上通过 Axelar GMP 验证双向原型——50 笔 Polygon→Neutron 转移跨 7 天全部由链上自动回调完成，端到端中位延迟 97 秒，反向 93 秒，语义校验开销低于消息成本的 0.4%。作者还记录了一个非预期的发现：**Cosmos 发起的消息里，主要运维风险不是 relay 延迟，而是 relay eligibility**——一条费用缺失或计价错误的消息会被路由出去然后**静默地永远不执行**，只有 monitor 路径（或超时）能兜住。★ 今日证据状态（**仓库与形式化模型均已下载核验，但未重跑 TLC、未跑合约测试**）：github.com/sebapandolfi/evm-cosmos-indicator-htlc 存在（tarball 174KB，MIT，created 2026-03-03，pushed 2026-10-09），含 evm-contracts/BridgeHTLC.sol、IndicatorToken1155.sol、cosmwasm-contract/src/{contract,state,msg,error}.rs、test/{bounty,reverse}.test.js，以及 formal/ 目录下的 HTLCCallback.tla 与 9 组 TLC 配置和逐字日志。formal/results.md 明确写着：『All output below is verbatim TLC output』『single-worker BFS, so state counts and counterexamples are bit-for-bit reproducible』，并记录了 TLC2 版本 2026.03.02 与 tla2tools.jar 的 sha256 来源。⚠️ 但今日**没有重跑 TLC**（需要 Java + tla2tools.jar，本机未搭建），也**没有运行 npm 合约测试**（需要 npm install 拉 hardhat / ethers / axelar SDK）；正文提到的 v1 规范存在两处缺陷并因此被 v2 取代，results.md 明确写『Its figures should not be cited』——**引用时只能引 v2 的结果**。⚠️ 证据边界：97s / 93s / 50 笔 / 7 天 / 0.4% 与 TLC 的不变量结论均为作者自述或作者机检输出，**今日未独立复现**；主网转账无法在本地复现。★ 价值路由：列长尾价值——区块链领域离我们远，今天不投入。但它留了两条**与链无关的工程结论**，且都由可核验的设计支撑：(1) **『语义身份要在两端各自登记并在写入时校验』**——这正是我们做多租户 / 多来源数据接入时的老问题：两个来源的同名指标含义不同，混在一起后无法事后分辨；作者的做法是给每个语义类别一个密码学派生的确定性身份并在写入侧卡住，『由构造防止』而不是『由流程检查』。(2) **『静默失败』比『慢失败』更危险**——那条『费用错误的消息被路由但永不执行』的发现，和我们做跨服务调用时的经典故障同构：请求发出去了、没有报错、但事情没发生；作者的处理是加一条 monitor 路径兜底，并把超时当作唯一的兜底，这提示我们**跨边界调用必须有独立的『它到底发生了吗』的核验路径』**。动作：加入长尾库，先保存不投入；设置未来触发条件——当我们做跨系统（跨模型、跨服务、跨云）数据/资产流转时回看；今天可沉淀的一条资产：『跨边界流转的每一类语义都要有独立的、写入侧强校验的身份标识；并为跨边界调用保留独立的确认路径，把静默失败当成一等故障来防』。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日长尾价值第二。据 arXiv 2610.37663 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，54.4KB 正文可读）：它解决跨链的两件事——**语义混淆**（如不同方法学签发的 CO2 减排量在链上被混为一谈）与**原子性**。做法是：用密码学承诺派生的确定性指标身份，在两条链上镜像登记到 class registry，并在铸造时校验",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日长尾价值第二。据 arXiv 2610.37663 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，54.4KB 正文可读）：它解决跨链的两件事——**语义混淆**（如不同方法",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-20"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37663v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37663v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=an-evm-cosmos-bridge-for-atomic-semantic-preserving-transfer-of-environmental-tokens",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

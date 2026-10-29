@@ -1,0 +1,136 @@
+{
+  "id": "scaling-laws-for-tool-use-agents-via-controllable-environment-synthesis",
+  "title": "Scaling Laws for Tool-Use Agents via Controllable Environment Synthesis",
+  "authors": [
+    "Andrew Szot",
+    "Samira Abnar",
+    "Omar Attia",
+    "Abbas Kazerouni",
+    "Michael Kirchhof"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-27",
+  "url": "http://arxiv.org/abs/2610.37648v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.37648v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-10-30",
+  "first_deep_dive_daily": "2026-10-30",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 5.15,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 74.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日趋势价值第一。据 arXiv 2610.37648 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，78.1KB 正文可读）…",
+  "one_line_essence": "今日趋势价值第一。据 arXiv 2610.37648 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，78.1KB 正文可读）：它问的是**合成 tool-use 训练数据该怎么配比**，并给出了规模定律的形态。作者自述（今日不可复现）：SynthAPI 管线显式控制三个多样性维度——工具、任务、以及工具所操作的数据库（data profile）；他们系统性地变化这些生成控制变量，在 **458,752 个任务、849 个训练模型、4 种模型尺寸**上导出一条预测下游 tool-use agent 泛化的规模定律。结论有三条可操作的：数据预算变大时，**扩工具与数据库的多样性比单纯加任务数更有效**；**同一批任务换不同 data profile 重复跑**，重要性也在上升；**提高数据复杂度收益更大**。按这些结论缩放得到的 agent 在四个评测 benchmark 上超过了此前大规模 tool-use agent 与合成环境生成工作的模型。★ 今日证据状态（**只有数据，无代码**）：arXiv abs 页与 LaTeXML HTML 全文正则扫描**无任何 github/gitlab 链接**（唯一下游链接是 huggingface.co/datasets/nvidia/Nemotron-Agentic-v1，属本文放出的数据集，但 huggingface.co 本机直连超时，**该数据集是否存在、内容规模、许可今日均待核验/暂无**）；无官方实现、无第三方实现。⚠️ 证据边界：458,752 / 849 / 四种尺寸 / 各 benchmark 分数全部为作者自述；本机无代码、无数据、无法复现；『849 个模型』的成本量级意味着复现门槛极高。★ 价值路由：列趋势价值而非即时价值——它没有可抄的机制（无代码），且它的核心是训练数据规模定律，我们短期内不训模型。但**它的三条结论本身可以直接迁移到『合成我们的 agent 任务』这件事上**，而且不需要 GPU：我们现在造 agent 评测任务时，默认是『多造点任务』；这篇说的是『应该优先扩工具面与数据状态的多样性，并且同一任务换不同数据状态重复出现，本身就是有价值的多样性』。这正好是我们做 agent 评测集时最常偷懒的地方——我们反复用同一批初始状态。动作：纳入趋势雷达，7–30 天观察是否放出开源 pipeline 或被主流训练框架采纳；今天可沉淀的一条资产进我们的评测 checklist：『造 agent 任务时，除任务数外，显式记录并扩三个维度：可用工具的种类、任务语义、初始数据状态的多样性；同一任务配不同初始状态重复计入多样性』。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日趋势价值第一。据 arXiv 2610.37648 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，78.1KB 正文可读）：它问的是**合成 tool-use 训练数据该怎么配比**，并给出了规模定律的形态。作者自述（今日不可复现）：SynthAPI 管线显式控制三个多样性维度——工具、任务、以及工具所操作的数据库（data profile",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日趋势价值第一。据 arXiv 2610.37648 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，78.1KB 正文可读）：它问的是**合成 tool-use 训练数据该怎么",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.37648v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.37648v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=scaling-laws-for-tool-use-agents-via-controllable-environment-synthesis",
+  "daily_path": "daily-detail.html?date=2026-10-30",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
