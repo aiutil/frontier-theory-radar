@@ -1,0 +1,134 @@
+{
+  "id": "shallowdefend-harnessing-shallow-safety-alignment-for-multi-turn-defender",
+  "title": "ShallowDefend: Harnessing Shallow Safety Alignment for Multi-Turn Defender",
+  "authors": [
+    "Qiyao Ma",
+    "Xiaodong Liu",
+    "Weiwei Yang",
+    "Mingqian Feng",
+    "Chengquan Guo"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-29",
+  "url": "http://arxiv.org/abs/2610.40627v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.40627v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-01",
+  "first_deep_dive_daily": "2026-11-01",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 82.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第二即时价值，是**与我们自身系统安全清单重合度最高**的一篇。据 arXiv 2610.40627 摘要与 LaTeXML HTML …",
+  "one_line_essence": "今日第二即时价值，是**与我们自身系统安全清单重合度最高**的一篇。据 arXiv 2610.40627 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，84.0KB 正文可读；作者为 Microsoft Research / UC Davis，通讯作者含 Chengquan Guo、Zhe Zhao）：它的核心是一个反直觉的机制论主张——**安全对齐是『浅』的**：安全行为集中在模型输出的最初几个 token 上，所以多轮越狱把同一请求拆散后仍然得手。作者据此提出『把浅层变成杠杆』的防御：Assess → Decide → Respond，即防御器先判定用户意图，再**显式提交一个可解析的安全决策**，最后才生成受该决策约束的回复；由于决策只是一个 token span，奖励可以是**规则**而非模型——self-verified reward 直接把已提交的标签与对话的已知性质比对，**无需 judge、无需人工标注**，同一格式也支持 LLM-as-judge 的分级决策空间加安全重定向。作者自述（今日不可复现）：在两个模型家族、**14 个 benchmark** 覆盖安全 / 效用 / 有用性上，两个变体都**匹配或超过所有同数据训练的基线**，在**六个独立 judge** 下保持领先，self-verified 变体**在无 judge 在环**的情况下做到同样效果，且配方跨 backbone 不改；效用被保住，有用性有『适度的代价』但作者量化了；per-token KL 分析与干预探针确认训练把效果集中在决定响应轨迹的那段短暂推演上，提交的决策是一个**因果控制点**。★ 今日证据状态（**论文级已核验，代码级为『暂无』**）：arXiv abs 页与 LaTeXML HTML 全文逐字复核，未见官方代码链接；用已认证的 GitHub CLI 做了穷尽检索（repository search q=ShallowDefend、以及 code search ShallowDefend in:file）——命中的全部是**第三方论文聚合镜像与他人日报**（yangbc2015/yangbc2015.github.io 的论文卡片、wuyoscar/AISafetyHot、luohongk/Embodied-AI-Daily、wonderNefelibata/Awesome-LRM-Safety 的 README），**没有任何官方实现仓库**；abs 页也无 comments cell 指向项目页。故代码状态为**待核验/暂无**。arXiv 全文另载明 License: CC BY 4.0、2026-10-29 v1、作者含 Qiyao Ma（UC Davis，实习期间于 Microsoft Research）、Xiaodong Liu、Weiwei Yang、Mingqian Feng、Chengquan Guo、Jialin Song、Carolyn Buractaon、Zhe Zhao（UCLA）等。★ 今日判断的落点：这条的**方法论**（把『显式决策 token span』作为可训练、可规则校验的中间变量）今天就能落到我们自己的 agent 防御设计清单里，**不需要等代码**；而它的**全部数字**（14 benchmark、6 judge、KL 分析）都是作者自述且无第三方复现，是纯粹的『待核验』。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第二即时价值，是**与我们自身系统安全清单重合度最高**的一篇。据 arXiv 2610.40627 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，84.0KB 正文可读；作者为 Microsoft Research / UC Davis，通讯作者含 Chengquan Guo、Zhe Zhao）：它的核心是一个反直觉的机制论主张——**安",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第二即时价值，是**与我们自身系统安全清单重合度最高**的一篇。据 arXiv 2610.40627 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，84.0KB 正文可读；作",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.40627v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.40627v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=shallowdefend-harnessing-shallow-safety-alignment-for-multi-turn-defender",
+  "daily_path": "daily-detail.html?date=2026-11-01",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

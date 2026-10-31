@@ -1,0 +1,136 @@
+{
+  "id": "rethinking-neural-thickets-without-weight-perturbations",
+  "title": "Rethinking Neural Thickets Without Weight Perturbations",
+  "authors": [
+    "Nicolas Dufour",
+    "Elouan Gardès",
+    "Amil Dravid",
+    "Patrick Pérez",
+    "Loic Landrieu"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-29",
+  "url": "http://arxiv.org/abs/2610.40649v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.40649v1",
+  "code_url": "https://github.com/kyutai-labs/logit-psv",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-01",
+  "first_deep_dive_daily": "2026-11-01",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 3.8,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 2.4
+  },
+  "score": 79.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：今日第三即时价值，是**今日工程可落地性最强**的一篇：一条完全冻结权重、不需要任何训练的推理期增强路径。据 arXiv 2610.4064…",
+  "one_line_essence": "今日第三即时价值，是**今日工程可落地性最强**的一篇：一条完全冻结权重、不需要任何训练的推理期增强路径。据 arXiv 2610.40649 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，114.2KB 正文可读；作者为 Kyutai / Meta FAIR / LIGM-CNRS / UC Berkeley / Google DeepMind，通讯作者 Patrick Pérez，标注 Work done while at Kyutai）：它复现了 Neural Thickets 报告的增益，但**拆掉了那个几何解释**——增益并不需要『预训练模型在权重空间里靠近任务专家』这个假设：只扰动单个 decoder block 就能拿回大部分提升；而**完全冻结模型、只在输出 logits 上加一个随机高斯偏置**，在多数推理任务上就能**匹配或超过**全权重扰动。作者把这重新解释为 PSV（Perturb-Select-Vote）：生成扰动预测器 → 在小验证集上按奖励**选择**高分成员 → **投票**聚合预测；并给出二阶分析说明小权重扰动主要通过其诱导的 logit 位移起作用。作者自述（今日不可复现）：在 OLMo-3-7B-Instruct 上，MATH-500 准确率从 **63.3% 提到 81.3%**，而全权重扰动集成是 **74.7%**——logit-only 版本**超过了**全权重版本；在 Countdown 上单个组件即可恢复全权重增益的 **至少 85%**（base 66.6% → 全权重 PSV 90.8%）；视觉侧 DINOv3 在 FMoW-OOD 上 **+6.2**、Waterbirds worst-group **+5.0**，而全权重扰动几乎无增益（+1.0 / +0.3）。★ 今日证据状态（**代码已下载并本地实跑，机制已核验**）：官方仓库 github.com/kyutai-labs/logit-psv 今日下载（★8，created 2026-10-29，pushed 2026-10-30，**license=none**），README 自述为『官方代码，针对论文的语言模型 logit PSV 结果』。用仓库自带 logit_psv/psv.py 在 CPU 上实跑成功，确认论文所述机制确实由代码实现：(a) make_population 生成的成员是 (seed, sigma) 对，同一 seed 两次调用结果完全一致（确定性，**无需为每个成员存任何状态**，偏置可由 seed 随时重建）；(b) rank_members 按训练集平均奖励排序，平局按原索引稳定排序（结果不依赖分片方式）；(c) majority_vote 做多数票，**弃答（空串）不参与投票**，平局时按排名靠前者先插入者胜出，全部弃答返回空串。★ 今日新发现的一个**关键工程约束**（论文正文没有把它写成限制条件，但它决定了能不能用）：仓库 logit_psv/engine.py 的实现是在 **vLLM 内部安装 logits hook**（compute_logits 里 logits.float() + ext._psv_bias(...)），**必须能拿到 logits**，即**白盒 / 开放权重**。因此这条路径**对闭源 API 模型不可用**，只适用于我们能自托管的开放权重模型——这一点在采纳前必须写进结论，不能当成通用的推理加速手段。论文主实验模型为 OLMo-3-7B-Instruct。★ 本地无法核验项：GPU 生成路径（vLLM + CUDA 12.8 驱动）未跑，63.3%→81.3% 与 74.7% 均为作者自述；仓库声明的复现实验给出 +25.2 / +14.0 / +19.0 / +10.4 / +11.0 / +2.1 / +0.7，『与报告值相差 3.7 分以内（六项任务）、countdown 高 6.8 分』同样是作者自述。huggingface.co 直连超时，仓库提到的 HF 侧模型 ID 状态待核验/暂无。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第三即时价值，是**今日工程可落地性最强**的一篇：一条完全冻结权重、不需要任何训练的推理期增强路径。据 arXiv 2610.40649 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，114.2KB 正文可读；作者为 Kyutai / Meta FAIR / LIGM-CNRS / UC Berkeley / Google DeepMin",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第三即时价值，是**今日工程可落地性最强**的一篇：一条完全冻结权重、不需要任何训练的推理期增强路径。据 arXiv 2610.40649 摘要与 LaTeXML HTML 全文（今日回原",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.40649v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.40649v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=rethinking-neural-thickets-without-weight-perturbations",
+  "daily_path": "daily-detail.html?date=2026-11-01",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

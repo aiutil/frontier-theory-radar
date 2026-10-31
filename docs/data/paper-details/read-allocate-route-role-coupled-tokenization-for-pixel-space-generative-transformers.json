@@ -1,0 +1,134 @@
+{
+  "id": "read-allocate-route-role-coupled-tokenization-for-pixel-space-generative-transformers",
+  "title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
+  "authors": [
+    "Jiongfan Yang",
+    "Weichen Fan",
+    "Haiwen Diao",
+    "Zhongang Cai",
+    "Ziwei Liu"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-29",
+  "url": "http://arxiv.org/abs/2610.40647v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.40647v1",
+  "code_url": "https://github.com/JiongfanYang/SpecSlot",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-01",
+  "first_deep_dive_daily": "2026-11-01",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 2.4
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得先保存：今日第一长尾保存项。据 arXiv 2610.40647 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，70.3KB 正文可读…",
+  "one_line_essence": "今日第一长尾保存项。据 arXiv 2610.40647 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，70.3KB 正文可读；作者为 Peking University / Nanyang Technological University / SenseTime，通讯作者 Ziwei Liu）：它提出 SpecSlot，一个像素空间 rectified-flow Transformer，核心观察是**更细的细节并不需要更多的全局通信**——低频结构受益于全局交换，高频细节可以局部建模；于是把每个空间 anchor 展开成多个 slot，每个 slot 分给一段互不相交的 DCT 系数带，**只有最低频的那个 slot 参与全局注意力**，所有 slot 局部交互，从而把『输出细节』与『全局注意力序列长度』解耦。作者自述（今日不可复现）：ImageNet-256 上 SpecSlot 达到与 FLOPs 对齐的 JiT 对照相当或更好的最终 FID 且收敛更快；ImageNet-512 上 FID 比 FLOPs 对齐的 JiT-CM 对照**好 2.84**，同时**少 3.9% FLOPs**，距 JiT-B/16 仅差 **0.69 FID** 而成本低 **38.2%**；文本到图像上 DPG-Bench 比 JiT-B/8 **高 1.06**、前向成本低 **40.6%**。★ 今日证据状态（**代码 + 权重 + 训练脚本齐备，工程可验证性最高**）：官方仓库 github.com/JiongfanYang/SpecSlot 今日下载（★33，created 2026-10-10，pushed 2026-10-30，MIT 许可），实测仓库结构含 denoiser.py / engine_jit.py / model_jit.py / main_jit.py / t2i_model.py / t2i_text.py / t2i_eval.py / train_t2i.py / fid_stats / util / tools，以及 scripts/ 下 run_jit.sh、run_specslot.sh、run_t2i_8gpu.sh；README 明确给出训练入口 run_specslot.sh IMAGENET_ROOT OUTPUT_ROOT RESOLUTION ALLOCATION（RESOLUTION 256 或 512，ALLOCATION k2 或 k4，评估在 50,000 样本 class-balanced 上跑），并标注 HF 权重 https://huggingface.co/Gokottaw434/SpecSlot 与项目页 https://yangjiongfan.site/specslot/（**该站点今日 HTTP 000 / 连接失败，项目页状态待核验/暂无**；HF 权重**因 huggingface.co 直连超时（HTTP=000）同样无法核验是否可下载**）。README 自带 News：2026-10-11 预训练权重已在 HF 放出、2026-10-30 论文上 arXiv。arXiv comments 逐字为『22 pages, 10 figures; under review at ICLR 2027』——**尚未被接收**，属于预印本状态。HTML 全文命中的 8 个 openreview 链接今日逐一核对上下文，全部是**参考文献条目**（Diffusion-Detective、SiT、VA-VAE、U-ViT、DiT 等的引用），**不是本论文的 OpenReview 投稿页**。仓库**无 tests 目录**。今日定位为长尾而非即时：方向（像素空间生成模型的 tokenization 重新分配）与我们做推理服务的关系是**间接的**，但『把一个耦合的预算决策拆成两个独立变量（anchor 密度 W × 频谱细分 K）』这个抽象本身是可迁移的设计模式。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一长尾保存项。据 arXiv 2610.40647 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，70.3KB 正文可读；作者为 Peking University / Nanyang Technological University / SenseTime，通讯作者 Ziwei Liu）：它提出 SpecSlot，一个像素空间 rect",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一长尾保存项。据 arXiv 2610.40647 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，70.3KB 正文可读；作者为 Peking University / N",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-22"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.40647v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.40647v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=read-allocate-route-role-coupled-tokenization-for-pixel-space-generative-transformers",
+  "daily_path": "daily-detail.html?date=2026-11-01",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-10-30
+## 最新研究 · 2026-11-01
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 13 | 163 | 261 | 266 | 1363 |
+| 10 | 166 | 264 | 269 | 1364 |
 
-**今日深挖：** [Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness](daily/2026/2026-10-30.md) · 即时价值 · 重点学习
+**今日深挖：** [Elucidating the Design Space of LM Data Attribution](daily/2026/2026-11-01.md) · 即时价值 · 重点学习
 
-**核心判断：** 据 arXiv 2610.37657 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，136.9KB 正文可读）以及官方仓库 github.com/imperial-aisp/heads_of_security 的本地下载与实跑：这篇给了一个**可判定的安全性质**，并把它做成了**今天就能接进服务的资产**。机制是：把输入 token 标注为可信 / 不可信 / 对话模板三类通道，为每个注意力头学习一组门，门在训练后学会压低不可信 token 的注意力权重、保留可信与模板 token，从而让模型能读懂不可信内容但不执行其中的指令。作者自述（今日不可复现）：黑盒 RL-Hammer 攻击对 GPT-OSS-20B 达到 **97% ASR**、对 SecAlign 达到 85%，**对 HoS 只有 10%**；白盒攻击 Claudini 经 autoresearch 针对 HoS 强化后，达到同等 ASR 所需 FLOPs 是打另外两者的 **3 倍**。效用侧没有牺牲：5-shot MMLU-Pro 上 HoS **67%** vs 基座 68%，而 SecAlign 与 ASIDE 掉到 59% 与 52%；Llama-3.3-70B 上 HoS 55% vs 基座 56%，SecAlign 掉到 16%。在 AgentDojo / AgentDyn / LLMail-Inject / WASP 上 HoS 与 SecAlign 相当且显著降低 ASR，而 ASIDE 在 tool use 上几乎不可用（三个 benchmark 接近 0 效用，AgentDojo 仅 10%）。★ **今日证据等级是本批最高的**（这是今天排第一的真正理由，不是分数）：官方仓库今日拉下（main 分支，3.44MB，MIT，created 2026-09-25，pushed 2026-10-28），仓库自带训练好的门权重，今日用 safetensors 逐一读取核对——gpt-oss-20b 四个学习率版本各 48 个 tensor、**合计 18,432 个参数**；llama-3.3-70b-instruct 版本 80 个 tensor、**合计 46,080 个参数**，tensor 名为 model.layers.N.self_attn.head_gates / sink_gates，与论文主张及 gates/README.md 自述的『GPT-OSS gates contain about 18,000 parameters per file; Llama gates contain about 46,000』**逐项吻合**。另有一处关键工程细节：gpt-oss 架构的注意力行带 sink logit，注意力行**不严格和为 1**，因此均匀门并不等价于恒等变换（仓库 tests/utils.py 的 ARCHS_WITH_SINKS 专门标注了这点）——这是把『门』做对、而不只是做出来的分水岭。
+**核心判断：** 作者自述（今日不可复现）：冗余与干扰项会一致地拖垮归因性能；训练文档内的**真实因果证据高度局部化**，标准方法把整个文档的 token 分数平均掉，等于把证据稀释成噪声；把交叉熵梯度换成**负对数几率（nlo）梯度**能分离关键 token；只聚合 **top-k 个最高分 token** 后，ground truth 召回率提升 **35 到 72 个百分点**；同样的 nlo 修正推广到外部 benchmark FTRACE-TREX，对 TRAK / EK-FAC / Grad-Dot 全部有效，反事实重训性能最高提升 **4.9 倍**。★ 今日已在本地把机制跑通：仓库自带 `losses.py` 的 `log_odds` 与闭式 `-(z_y - logsumexp_others)` 逐元素 `allclose=True`；`token_aggregation.py` 实测 mean 聚合 2.6 → top-2 聚合 5.1，**仅取 top-k 即恢复约 2.0 倍信号**；仓库自带数据实测物化了可配置轴（5000 文档 / 100 事实 / 每事实 50 篇 / 5000 条干扰项 / 三档事实数）。
 
-**建议动作：** 今天做三件不依赖论文任何数字的事：(1) 下载 HoS 的 gates/gpt-oss-20b/lr0.1/gates.safetensors，用 load_gated_model_local 加载，在只读工具调用沙箱上验证注意力门在我们自己的 prompt 模板上是否生效；(2) 把『注意力门 / 信任通道标注』写进防御方案清单，作为『再训一次模型』之外的第三选项；(3) 把三条今日判断写进检查表——防御的落点可以是注意力怎么分配；反思式优化前先过滤归因不成立的失败并保留成功轨迹；批次分配要同时看信息量与覆盖度。
+**建议动作：** 今天做三件不依赖论文任何数字的事：(1) 读完 CATT 的评测设计与 nlo 定义，把『归因失败是算法问题还是评测问题』作为一条独立排查步骤写进评测清单，并在自己的数据上试一次 nlo + top-k 聚合（对照均值聚合）；(2) 在 agent 防御方案清单里增加『显式决策 token span + 规则化自校验』这一选项，与『再训一次模型』『改架构』并列——ShallowDefend 的方法论今天就能用，不依赖它的代码（目前确认无官方实现）；(3) 读 logit-psv 的 logit_psv/psv.py 与 engine.py，确认我们自托管的开放权重模型上能否挂 logits hook，并在 OLMo-3-7B-Instruct 或等效开放权重模型上做一次 MATH-500 的最小复现（63.3% → 81.3% 为作者自述，需自行验证）；同时明确记录该路径对闭源 API 不可用这一前提。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-11-01](daily/2026/2026-11-01.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
 | [2026-10-30](daily/2026/2026-10-30.md) | Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness | 即时价值 | 重点学习 |
 | [2026-10-28](daily/2026/2026-10-28.md) | I-HITL: Inalienable Human-in-the-Loop | 即时价值 | 重点学习 |
 | [2026-10-27](daily/2026/2026-10-27.md) | Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox | 即时价值 | 重点学习 |
 | [2026-10-26](daily/2026/2026-10-26.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | 即时价值 | 重点学习 |
 | [2026-10-25](daily/2026/2026-10-25.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | 即时价值 | 重点学习 |
 | [2026-10-24](daily/2026/2026-10-24.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | 即时价值 | 重点学习 |
-| [2026-10-23](daily/2026/2026-10-23.md) | LongZero: Enhancing Long-Context Reasoning in LLMs from Zero Data | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 622 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 656 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 622 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 623 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 661 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 623 |
 
 ## 为什么做这个项目
 

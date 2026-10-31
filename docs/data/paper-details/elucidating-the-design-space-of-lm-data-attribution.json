@@ -1,0 +1,136 @@
+{
+  "id": "elucidating-the-design-space-of-lm-data-attribution",
+  "title": "Elucidating the Design Space of LM Data Attribution",
+  "authors": [
+    "Steven Yu",
+    "Sheng-Yu Wang",
+    "Kimia Hamidieh",
+    "Antonio Torralba",
+    "David Bau"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-29",
+  "url": "http://arxiv.org/abs/2610.40655v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.40655v1",
+  "code_url": "https://github.com/Lamsheeper/catt",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-01",
+  "first_deep_dive_daily": "2026-11-01",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 6.8,
+    "engineering_testability": 5.5,
+    "trend_signal": 6.0,
+    "long_tail_potential": 4.15,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 88.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第一即时价值，也是今日**证据等级最高**的一篇：论文 + 官方代码 + 官方数据三证齐备（**注意：仓库本身不含已发布的归因分数文件*…",
+  "one_line_essence": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文 + 官方代码 + 官方数据三证齐备（**注意：仓库本身不含已发布的归因分数文件**，作者把模型、轨迹与预计算分数放在 HuggingFace catt-bench，今日 huggingface.co 直连超时，故那部分为『待核验/暂无』）。据 arXiv 2610.40655 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，143.2KB 正文可读；作者为 Northeastern University / MIT，通讯作者 David Bau）以及官方仓库 github.com/Lamsheeper/catt 的本地下载与实跑（MIT 许可，★1，created 2026-09-30，pushed 2026-10-30）：它指出了数据归因（data attribution）领域一个此前被默认掉的结构性缺陷——**归因方法的失败被『评测设计』掩盖了**。作者的论点是：现有评测同时改变多个数据集属性（文档冗余度、词汇干扰项、文档数量），因此无法归因『到底是归因算法不行，还是评测把难度调乱了』。他们提出 CATT（Controlled Attribution Benchmark）：在**完全虚构的知识**上微调 LLM，从而给出无歧义的 ground truth，再一次只改一个配置项。作者自述结论（今日不可复现）：冗余与干扰项会一致地拖垮归因性能；训练文档内的**真实因果证据高度局部化**，标准方法把整个文档的 token 分数平均掉，等于把证据稀释成噪声；把标准交叉熵梯度换成**负对数几率（negative log-odds, nlo）梯度**能把关键 token 从无信息 token 中分离出来；只聚合**分数最高的 top-k 个 token**（而非全文档平均）后，ground truth 召回率提升 **35 到 72 个百分点**；同样的 nlo 修正推广到外部 benchmark FTRACE-TREX，对 TRAK / EK-FAC / Grad-Dot 都有效，反事实重训性能最高提升 **4.9 倍**。★ 今日证据状态（**结构级与机制级已本地核验**）：官方仓库今日拉下来并实跑成功，确认了论文主张的机制确实由代码实现：(a) 用仓库自带 src/catt/attribution/losses.py 的 log_odds 函数验证 nlo 梯度闭式 —— 实测 nlo 值与 -(z_y - logsumexp_others) 逐元素 torch.allclose 为 True；(b) 用仓库自带 token_aggregation.py 验证『局部证据被平均稀释』——构造 1 个强信号文档 + 2 个平坦文档，实测 mean 聚合得 2.6、top-2 聚合得 5.1，即**仅取 top-k 即可恢复约 2.0 倍信号**（对应论文的 dilution 论证）；(c) 仓库自带 data/function_bindings/ 实测物化了论文所说的可配置轴：5000 篇文档 / 100 个事实 / 每事实 50 篇（冗余度）、5000 条 lexical distractor、queries/{25,50,100}.jsonl 三档事实数、5 种文档原型（technical_reference / practical_guide / test_suite / tutorial / mathematical，各约 714 篇）、hop_depth 全为 0。★ 今日实测的一个**与论文口径不同的重要补充**（这是今日新增的判断，论文未以此口径报告）：用仓库自带 bm25_scores 对**已发布**数据实测词法基线（Recall@N，N=10 篇 ground truth）：fb 配置下 Recall@10 = **1.0000**（facts=25/50/100 三档全部为 1.0），即**纯词法检索在无干扰项时能拿满分**；加入 5000 条官方干扰项后（fb-distr）Recall@10 降至 **0.8104 / 0.9164 / 0.9486**（facts=25/50/100）——干扰项确实让检索退化，但**退化幅度远小于论文报告的梯度方法崩溃（论文称干扰项把 TRAK 打到 0）**。含义：论文『干扰项摧毁归因』的结论在梯度方法上成立（作者自述），但在词法基线上不成立，**我们不能用『BM25 也做不到』来佐证梯度方法的必要性**；要证明 nlo+top-k 的价值，必须对比的是**梯度方法的同配置数字**，而今日无 CUDA、无微调 checkpoint，梯度臂一条都没跑。仓库 README 自带一份已发布数字示例（f50_10d_sd1001 / ekfac：grad_cos.ce_mean Recall@N 0.0900 / AUC 0.4522，grad_cos.nlo_mean 0.9995 / 1.0000），这是**作者发布的示例输出**，非本地复现。本地无法核验项：README 声明全部模型、轨迹与归因分数在 HF Hub 的 catt-bench（vtok101 / vtok101-distr / route / route-ab-l8）——**huggingface.co 本机直连超时（HTTP=000），该 Hub 是否已实际放出、模型与预计算分数是否可用，均为『待核验/暂无』**；论文的 35–72 个百分点、4.9×、0.9995/1.0000 全部为作者自述，今日不可复现。工程入口明确（uv sync + catt attribute --task fb --facts 50 --docs 10 --seed 1001 --job ekfac），但明确要求 NVIDIA GPU；fast_jl 扩展需 CUDA 12.x 工具链。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文 + 官方代码 + 官方数据三证齐备（**注意：仓库本身不含已发布的归因分数文件**，作者把模型、轨迹与预计算分数放在 HuggingFace catt-bench，今日 huggingface.co 直连超时，故那部分为『待核验/暂无』）。据 arXiv 2610.40655 摘要与 LaTeXML",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文 + 官方代码 + 官方数据三证齐备（**注意：仓库本身不含已发布的归因分数文件**，作者把模型、轨迹与预计算分数放在 Hugging",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.40655v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.40655v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=elucidating-the-design-space-of-lm-data-attribution",
+  "daily_path": "daily-detail.html?date=2026-11-01",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

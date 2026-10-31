@@ -1,0 +1,135 @@
+{
+  "id": "from-extreme-weather-to-agricultural-consequences-with-agentic-ai",
+  "title": "From extreme weather to agricultural consequences with agentic AI",
+  "authors": [
+    "Minghan Yu",
+    "Mengyu Dai",
+    "Yixin Wen",
+    "Haizhao Yang"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-29",
+  "url": "http://arxiv.org/abs/2610.40641v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.40641v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-01",
+  "first_deep_dive_daily": "2026-11-01",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 7.4,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 74.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日第一趋势价值，是**『agent 的价值由可核验的外部记录背书』**的一个少见样本。据 arXiv 2610.40641 摘要与 LaT…",
+  "one_line_essence": "今日第一趋势价值，是**『agent 的价值由可核验的外部记录背书』**的一个少见样本。据 arXiv 2610.40641 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，100.3KB 正文可读；作者为 University of Maryland, College Park（数学系 + 计算机系）与 Stony Brook University 海洋与大气科学学院）：它提出 WxCrop，自述为**第一个**用物理可解释天气指数（经因果分析筛选）判定农业灾害、并把天气与农业信息结合来预测作物损失的 agent，在佛罗里达针对飓风 / 霜冻 / 干热三类灾害演示，损失模型用**保险理赔记录**校准。作者自述的三项可靠性检查（今日不可复现）：飓风指数识别已记录的气旋日 **AUC 0.98**；留出年份的已记录损失**复现到 2% 以内**；独立生产记录确认县级排序（**rank correlation 0.63**，110 个 county-season，Ian 季 11 县为 0.78）；另在 1,660 个 storm county-month 上 Brier score **0.177** 对比历史频率的 0.224，10 个等分概率组内实际赔付比例与预测相差 8 个百分点以内；霜冻指数 AUC **0.99**，干热指数 AUC **0.76**；作者自述 1991–2023 全球农业灾害损失约 3.26 万亿美元（约占全球农业 GDP 每年 4%）。★ 今日证据状态（**论文级已核验，代码级为『暂无』**）：arXiv abs 页与 HTML 全文未见官方仓库链接，comments cell 仅有『34 pages, 4 figures, 6 tables』；用已认证的 GitHub CLI 做了 repository search（WxCrop、WxCrop+weather+agricultural、WxCrop+weather+crop+agent）与 code search（WxCrop），命中的只有**无关的微信小程序同名项目**（mingmingxianseng/wxcrop、mars3770/wxCropper）与他人论文镜像（qhduan/cn-chat-arxiv、WingEdge777/daily-papers），**无官方实现**。故代码状态为**待核验/暂无**。⚠️ 今日判断上必须保留的一条限定：这是**农业垂直领域**的 agent，与我们做通用 AI 基础设施/agent 工程的方向重合度低于前三篇；它的价值在于**方法论范式**（把 agent 的每个输出数字都挂到可核验的外部记录上，用 AUC / Brier / rank correlation 三种独立口径交叉验证，而不是只看 LLM-as-judge 分数），而不是算法本身。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一趋势价值，是**『agent 的价值由可核验的外部记录背书』**的一个少见样本。据 arXiv 2610.40641 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，100.3KB 正文可读；作者为 University of Maryland, College Park（数学系 + 计算机系）与 Stony Brook Universi",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一趋势价值，是**『agent 的价值由可核验的外部记录背书』**的一个少见样本。据 arXiv 2610.40641 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，100",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.40641v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.40641v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=from-extreme-weather-to-agricultural-consequences-with-agentic-ai",
+  "daily_path": "daily-detail.html?date=2026-11-01",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

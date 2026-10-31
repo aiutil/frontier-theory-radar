@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-10-30T05:19:00.537797",
+  "updated_at": "2026-11-01T05:00:48.132050",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-11-01",
+      "title": "论文价值发现日报 - 2026-11-01",
+      "deep_dive_title": "Elucidating the Design Space of LM Data Attribution",
+      "deep_dive_url": "http://arxiv.org/abs/2610.40655v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做三件不依赖论文任何数字的事：(1) 读完 CATT 的评测设计与 nlo 定义，把『归因失败是算法问题还是评测问题』作为一条独立排查步骤写进评测清单，并在自己的数据上试一次 nlo + top-k 聚合（对照均值聚合）；(2) 在 agent 防御方案清单里增加『显式决策 token span + 规则化自校验』这一选项，与『再训一次模型』『改架构』并列——ShallowDefend 的方法论今天就能用，不依赖它的代码（目前确认无官方实现）；(3) 读 logit-psv 的 logit_psv/psv.py 与 engine.py，确认我们自托管的开放权重模型上能否挂 logits hook，并在 OLMo-3-7B-Instruct 或等效开放权重模型上做一次 MATH-500 的最小复现（63.3% → 81.3% 为作者自述，需自行验证）；同时明确记录该路径对闭源 API 不可用这一前提。",
+      "max_uncertainty": "CATT 的 35–72 个百分点、4.9× 与 README 示例里的 0.9995/1.0000 全部为作者自述，本机无 CUDA、无微调 checkpoint，**梯度方法一条都没跑**；README 声明模型、轨迹与归因分数在 HuggingFace catt-bench，但 huggingface.co 本机直连超时（HTTP=000），该 Hub 是否已实际放出、是否可用均为**待核验/暂无**；今日实测的 BM25 数字（fb Recall@10 = 1.0000；fb-distr = 0.8104 / 0.9164 / 0.9486）是用仓库自带数据与自带 bm25_scores 跑出的**词法基线**，只用于刻画数据集难度，**不是对论文梯度方法数字的复现，也不能替代梯度方法对照**。logit PSV 的 63.3%→81.3%、74.7%、countdown 85%、FMoW-OOD +6.2 均为作者自述，GPU 生成路径（vLLM + CUDA 12.8）未跑；仓库 license=none。ShallowDefend 的 14 benchmark / 6 judge / KL 分析均为作者自述，且**确认无官方实现**（GitHub 检索命中的全是第三方镜像）。WxCrop 的 AUC 0.98 / 0.99 / 0.76、Brier 0.177、rank correlation 0.63 均为作者自述，**确认无官方实现**。Probing Spatial State 的训练与评测代码快照未发布，MiniMax-H3 的 96 条 canonical + 16 条 C3 行无法从本仓库重跑，InsScene-15K revision 未固定，今日读到的 804 行数字是**作者自己发布的行**，非独立复现。world2vec 仓库明确写『code will be released soon』且本地确认为空，263k 参数、d=32、71 个吸引子等数字今日仅核到正文表述与参数量，其余细节因全文仅 24.2KB 未展开。SpecSlot 的 2.84 / 3.9% / 0.69 / 38.2% / 1.06 / 40.6% 均为作者自述，HF 权重因 huggingface.co 超时无法核验是否可下载，项目页 yangjiongfan.site/specslot/ 今日 HTTP 000，论文状态为 under review at ICLR 2027。PFR 与 KL-DRO 均**确认无官方实现**；PFR 全文另载 AI 辅助写作（Codex / Claude 参与正文与证明起草）。",
+      "one_line_judgement": "作者自述（今日不可复现）：冗余与干扰项会一致地拖垮归因性能；训练文档内的**真实因果证据高度局部化**，标准方法把整个文档的 token 分数平均掉，等于把证据稀释成噪声；把交叉熵梯度换成**负对数几率（nlo）梯度**能分离关键 token；只聚合 **top-k 个最高分 token** 后，ground truth 召回率提升 **35 到 72 个百分点**；同样的 nlo 修正推广到外部 benchmark FTRACE-TREX，对 TRAK / EK-FAC / Grad-Dot 全部有效，反事实重训性能最高提升 **4.9 倍**。★ 今日已在本地把机制跑通：仓库自带 `losses.py` 的 `log_odds` 与闭式 `-(z_y - logsumexp_others)` 逐元素 `allclose=True`；`token_aggregation.py` 实测 mean 聚合 2.6 → top-2 聚合 5.1，**仅取 top-k 即恢复约 2.0 倍信号**；仓库自带数据实测物化了可配置轴（5000 文档 / 100 事实 / 每事实 50 篇 / 5000 条干扰项 / 三档事实数）。",
+      "path": "daily-detail.html?date=2026-11-01"
+    },
     {
       "date": "2026-10-30",
       "title": "论文价值发现日报 - 2026-10-30",
@@ -378,19 +391,6 @@
       "max_uncertainty": "arXiv API 已恢复正常（成功从 export.arxiv.org 拉到 10 篇 2609.35752-2609.35770 区间论文），不再依赖 RSS 后备。TokenCast（[35760](http://arxiv.org/abs/2609.35760v1)）cost model 形式化、训练数据、跨 agent 框架（LangChain / AutoGen / CrewAI 等）兼容性是否公开；Telescopic LM（[35769](http://arxiv.org/abs/2609.35769v1)）prefix supervision 协议、anchor 设计、推理时调度策略是否公开；PDMD（[35768](http://arxiv.org/abs/2609.35768v1)）projection 操作、critic 形式、消融是否公开；Native Reflection（[35767](http://arxiv.org/abs/2609.35767v1)）interleaved RL 算法、reward 设计、reflection 质量评估是否公开；Distributional Training（[35763](http://arxiv.org/abs/2609.35763v1)）Wasserstein 流推导、跨方法消融是否公开；NstAgent（[35759](http://arxiv.org/abs/2609.35759v1)）narrative state 结构、agent 调度协议、长篇一致性评估是否公开；NHMO（[35752](http://arxiv.org/abs/2609.35752v1)）transformer kernel 设计、Walk-on-Spheres 协议、跨域泛化是否公开；Biblical Intertextual（[35765](http://arxiv.org/abs/2609.35765v1)）benchmark 规模、retrieval baseline、注释协议是否公开；FurE（[35770](http://arxiv.org/abs/2609.35770v1)）3D 毛发重建当前相关性有限；Composite Adaptive Control（[35758](http://arxiv.org/abs/2609.35758v1)）控制理论当前相关性有限。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason。",
       "one_line_judgement": "据摘要（arXiv [2609.35760](http://arxiv.org/abs/2609.35760v1)），TokenCast 解决'同一任务 token 消耗跨 run 可变超一个数量级'这一对 agent 经济性的核心痛点，把 token consumption 建模为可组合的 cost model：可在执行前估计预算、随执行过程（context 增长 / tool feedback）动态刷新估值。这是 ai-agent × inference-serving × ai-k8s-platform 的'agent cost governance'工程化资产——把'token consumption'从隐性指标变成可显式观测、预测、调度的对象；与今日 [35769](http://arxiv.org/abs/2609.35769v1) telescopic LM'one-model-many-budgets'、[35768](http://arxiv.org/abs/2609.35768v1) PDMD'扩散蒸馏稳定性'、[35767](http://arxiv.org/abs/2609.35767v1) Native Reflection'视觉自修复 agent'形成'inference efficiency × agent cost governance'连续主线，分别覆盖 agent 成本可观测、模型多档预算、扩散蒸馏稳定性、视觉反思。",
       "path": "daily-detail.html?date=2026-09-30"
-    },
-    {
-      "date": "2026-09-29",
-      "title": "论文价值发现日报 - 2026-09-29",
-      "deep_dive_title": "Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer",
-      "deep_dive_url": "http://arxiv.org/abs/2609.31587v1",
-      "decision": "暂时忽略",
-      "value_type": "ignore",
-      "value_type_label": "暂时忽略",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
-      "path": "daily-detail.html?date=2026-09-29"
     }
   ]
 }
