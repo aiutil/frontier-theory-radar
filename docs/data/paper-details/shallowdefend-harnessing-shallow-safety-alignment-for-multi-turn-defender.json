@@ -16,8 +16,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-01",
-  "first_deep_dive_daily": "2026-11-01",
+  "first_seen_date": "2026-11-02",
+  "first_deep_dive_daily": "2026-11-02",
   "value_type": "immediate",
   "value_type_label": "即时价值",
   "value_scores": {
@@ -32,10 +32,10 @@
   },
   "score": 82.0,
   "decision": "重点学习",
-  "one_line_judgement": "今天值得试：今日第二即时价值，是**与我们自身系统安全清单重合度最高**的一篇。据 arXiv 2610.40627 摘要与 LaTeXML HTML …",
-  "one_line_essence": "今日第二即时价值，是**与我们自身系统安全清单重合度最高**的一篇。据 arXiv 2610.40627 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，84.0KB 正文可读；作者为 Microsoft Research / UC Davis，通讯作者含 Chengquan Guo、Zhe Zhao）：它的核心是一个反直觉的机制论主张——**安全对齐是『浅』的**：安全行为集中在模型输出的最初几个 token 上，所以多轮越狱把同一请求拆散后仍然得手。作者据此提出『把浅层变成杠杆』的防御：Assess → Decide → Respond，即防御器先判定用户意图，再**显式提交一个可解析的安全决策**，最后才生成受该决策约束的回复；由于决策只是一个 token span，奖励可以是**规则**而非模型——self-verified reward 直接把已提交的标签与对话的已知性质比对，**无需 judge、无需人工标注**，同一格式也支持 LLM-as-judge 的分级决策空间加安全重定向。作者自述（今日不可复现）：在两个模型家族、**14 个 benchmark** 覆盖安全 / 效用 / 有用性上，两个变体都**匹配或超过所有同数据训练的基线**，在**六个独立 judge** 下保持领先，self-verified 变体**在无 judge 在环**的情况下做到同样效果，且配方跨 backbone 不改；效用被保住，有用性有『适度的代价』但作者量化了；per-token KL 分析与干预探针确认训练把效果集中在决定响应轨迹的那段短暂推演上，提交的决策是一个**因果控制点**。★ 今日证据状态（**论文级已核验，代码级为『暂无』**）：arXiv abs 页与 LaTeXML HTML 全文逐字复核，未见官方代码链接；用已认证的 GitHub CLI 做了穷尽检索（repository search q=ShallowDefend、以及 code search ShallowDefend in:file）——命中的全部是**第三方论文聚合镜像与他人日报**（yangbc2015/yangbc2015.github.io 的论文卡片、wuyoscar/AISafetyHot、luohongk/Embodied-AI-Daily、wonderNefelibata/Awesome-LRM-Safety 的 README），**没有任何官方实现仓库**；abs 页也无 comments cell 指向项目页。故代码状态为**待核验/暂无**。arXiv 全文另载明 License: CC BY 4.0、2026-10-29 v1、作者含 Qiyao Ma（UC Davis，实习期间于 Microsoft Research）、Xiaodong Liu、Weiwei Yang、Mingqian Feng、Chengquan Guo、Jialin Song、Carolyn Buractaon、Zhe Zhao（UCLA）等。★ 今日判断的落点：这条的**方法论**（把『显式决策 token span』作为可训练、可规则校验的中间变量）今天就能落到我们自己的 agent 防御设计清单里，**不需要等代码**；而它的**全部数字**（14 benchmark、6 judge、KL 分析）都是作者自述且无第三方复现，是纯粹的『待核验』。",
+  "one_line_judgement": "今天值得试：今日第二即时价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=Shallow…",
+  "one_line_essence": "今日第二即时价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=ShallowDefend 今日返回空数组，作者 arXiv abs 页与 HTML 全文亦未见官方仓库链接/comments 指向项目页。论文本身昨日已逐字复核（arXiv 2610.40627，LaTeXML HTML 正文 84.0KB 可读，作者含 Qiyao Ma（UC Davis，实习期间于 Microsoft Research）、Chengquan Guo、Zhe Zhao 等），核心主张今日不变：**安全对齐是『浅』的**——安全行为集中在模型输出最初几个 token，因此多轮越狱把同一请求拆散后仍然得手；其防御方案 Assess → Decide → Respond 让防御器**显式提交一个可解析的安全决策 token span**，由于决策只是一个 span，奖励可以是**规则**而非模型（self-verified reward，无需 judge、无需人工标注），同一格式也支持 LLM-as-judge 的分级决策空间。★ 今日判断的落点不变且不依赖任何论文数字：**方法论今天就能用**——把『显式决策 token span』作为可训练、可规则校验的中间变量写进我们的 agent 防御设计清单，与『再训一次模型』『改架构』并列。★ 全部数字（14 个 benchmark、6 个独立 judge、per-token KL 分析）仍是作者自述且无第三方复现，今日无新证据可加，**维持『待核验』**。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第二即时价值，是**与我们自身系统安全清单重合度最高**的一篇。据 arXiv 2610.40627 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，84.0KB 正文可读；作者为 Microsoft Research / UC Davis，通讯作者含 Chengquan Guo、Zhe Zhao）：它的核心是一个反直觉的机制论主张——**安",
+  "new_claim_or_method": "今日第二即时价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=ShallowDefend 今日返回空数组，作者 arXiv abs 页与 HTML 全文亦未见官方仓库链接/comments 指向项目页。论文本身昨日已逐字复核（arXiv 2610.40627，LaTeXML HTML 正文 84",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
@@ -61,7 +61,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第二即时价值，是**与我们自身系统安全清单重合度最高**的一篇。据 arXiv 2610.40627 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，84.0KB 正文可读；作",
+    "why_save": "今日第二即时价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=ShallowDefend 今日返回空数组，作者 arXiv ab",
     "future_trigger": [
       "待更多证据"
     ],
@@ -121,7 +121,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=shallowdefend-harnessing-shallow-safety-alignment-for-multi-turn-defender",
-  "daily_path": "daily-detail.html?date=2026-11-01",
+  "daily_path": "daily-detail.html?date=2026-11-02",
   "trend_paths": [
     "trend-detail.html?id=coding-agent"
   ],

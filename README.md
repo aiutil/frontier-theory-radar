@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-11-01
+## Latest research run · 2026-11-02
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 166 | 264 | 269 | 1364 |
 
-**Deep dive:** [Elucidating the Design Space of LM Data Attribution](daily/2026/2026-11-01.md) · Immediate · 重点学习
+**Deep dive:** [Elucidating the Design Space of LM Data Attribution](daily/2026/2026-11-02.md) · Immediate · 重点学习
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,13 +35,13 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-11-02](daily/2026/2026-11-02.md) | Elucidating the Design Space of LM Data Attribution | Immediate | 重点学习 |
 | [2026-11-01](daily/2026/2026-11-01.md) | Elucidating the Design Space of LM Data Attribution | Immediate | 重点学习 |
 | [2026-10-30](daily/2026/2026-10-30.md) | Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness | Immediate | 重点学习 |
 | [2026-10-28](daily/2026/2026-10-28.md) | I-HITL: Inalienable Human-in-the-Loop | Immediate | 重点学习 |
 | [2026-10-27](daily/2026/2026-10-27.md) | Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox | Immediate | 重点学习 |
 | [2026-10-26](daily/2026/2026-10-26.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | Immediate | 重点学习 |
 | [2026-10-25](daily/2026/2026-10-25.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | Immediate | 重点学习 |
-| [2026-10-24](daily/2026/2026-10-24.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | Immediate | 重点学习 |
 
 ## Directions under active observation
 

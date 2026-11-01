@@ -15,8 +15,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-01",
-  "first_deep_dive_daily": "2026-11-01",
+  "first_seen_date": "2026-11-02",
+  "first_deep_dive_daily": "2026-11-02",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -31,10 +31,10 @@
   },
   "score": 68.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得继续观察：今日第三趋势价值，方向（机制化世界模型）与我们长期关注的 agentic-world-modeling 趋势同频，但**今日的工程证据是负面…",
-  "one_line_essence": "今日第三趋势价值，方向（机制化世界模型）与我们长期关注的 agentic-world-modeling 趋势同频，但**今日的工程证据是负面的**。据 arXiv 2610.40637 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，24.2KB 正文可读，为本批次最短；作者为 Helmholtz Munich / Munich Center for Machine Learning，Schmidt 与 González Laiz 为共同一作）：它提出 world2vec，**不用奖励信息**、直接从观测与动作学习机制化世界模型，主张学到的隐式动力学能在长时间预测跨度上忠实复现真实系统，参数量**比 DreamerV3 / TD-MPC2 / LeWM 至少少一个数量级**；自述在从像素控制连续环境上达到 SOTA，并在 **71 个吸引子**的 benchmark 上做到准确的系统辨识。作者自述的参数量今日已在全文核到具体数字：**隐式维度 d=32，主模型 263k 参数（221k encoder + 42k dynamics）**，Adam lr 1e-3 + cosine decay，训练 20k 步，用 MPC 在隐空间控制（以目标观测序列编码为 goal latent），EQA 为 top-1 retrieval accuracy、512 个负例、以验证 EQA 选超参。★ 今日证据状态（**代码明确为『暂无』，这是硬结论**）：官方仓库 github.com/dynamical-inference/world2vec 今日查询到（★0，created 2026-10-15，pushed 2026-10-30，license=none），但仓库 README 的 Code 一节逐字写明『**The code will be released here soon.** Star or watch this repository to be notified when it is available.』，今日本地下载后确认**仓库内容为空**（仅 README 与 assets，无源码），GitHub API 的 size 仅 258 KB。另一处同名仓库 dynamical-inference_world2vec 亦为空目录。因此代码状态为**待核验/暂无**。项目页 https://worldmodels.science/world2vec 今日 HTTP 200 可达。论文全文 24.2KB 是本批次最短的一篇，实验细节（Benchmark 构造、71 个吸引子的清单、基线超参细节）今日未见完整展开，这本身也是一条证据不足项。",
+  "one_line_judgement": "值得继续观察：今日第三趋势价值，方向（机制化世界模型）与 agentic-world-modeling 同频，**但工程证据仍然是负面的**。★ 今日代码…",
+  "one_line_essence": "今日第三趋势价值，方向（机制化世界模型）与 agentic-world-modeling 同频，**但工程证据仍然是负面的**。★ 今日代码状态复核（硬结论）：官方仓库 github.com/dynamical-inference/world2vec 今日查询到（★0，created 2026-10-15，**pushed 2026-10-30，与昨日相同，即未再更新**，license=none），GitHub API contents 今日返回**仍只有 README.md 与 assets 两个条目**（本地下载目录同样为空）；README 的 Code 一节逐字写明『**The code will be released here soon.** Star or watch this repository to be notified when it is available.』→ **代码状态为『待核验/暂无』，且今日确认仓库自昨日以来无进展。**GitHub repository search q=world2vec 今日命中的 5 个结果中，仅 dynamical-inference/world2vec 相关，其余 4 个是 2016–2018 年的同名旧项目（lipiji/world2vec、ppn029012/World2Vec 等），**无官方实现**。论文本身昨日已逐字复核（arXiv 2610.40637，HTML 正文 24.2KB 为本批次最短）：提出 world2vec，**不用奖励信息**直接从观测与动作学习机制化世界模型，自述隐式维度 d=32、主模型 **263k 参数（221k encoder + 42k dynamics）**、参数量比 DreamerV3 / TD-MPC2 / LeWM 至少少一个数量级、在 71 个吸引子的 benchmark 上准确系统辨识。项目页 https://worldmodels.science/world2vec 昨日 HTTP 200 可达。★ 证据不足项维持：全文 24.2KB 是本批次最短，benchmark 构造、71 个吸引子清单、基线超参细节未完整展开。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第三趋势价值，方向（机制化世界模型）与我们长期关注的 agentic-world-modeling 趋势同频，但**今日的工程证据是负面的**。据 arXiv 2610.40637 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，24.2KB 正文可读，为本批次最短；作者为 Helmholtz Munich / Munich Center f",
+  "new_claim_or_method": "今日第三趋势价值，方向（机制化世界模型）与 agentic-world-modeling 同频，**但工程证据仍然是负面的**。★ 今日代码状态复核（硬结论）：官方仓库 github.com/dynamical-inference/world2vec 今日查询到（★0，created 2026-10-15，**pushed 2026-10-30，与昨日相同，",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
@@ -60,7 +60,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第三趋势价值，方向（机制化世界模型）与我们长期关注的 agentic-world-modeling 趋势同频，但**今日的工程证据是负面的**。据 arXiv 2610.40637 摘要与",
+    "why_save": "今日第三趋势价值，方向（机制化世界模型）与 agentic-world-modeling 同频，**但工程证据仍然是负面的**。★ 今日代码状态复核（硬结论）：官方仓库 github.com/",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -120,7 +120,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=world2vec-mechanistic-world-models-through-latent-dynamics-learning",
-  "daily_path": "daily-detail.html?date=2026-11-01",
+  "daily_path": "daily-detail.html?date=2026-11-02",
   "trend_paths": [
     "trend-detail.html?id=agentic-world-modeling"
   ],

@@ -16,8 +16,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-01",
-  "first_deep_dive_daily": "2026-11-01",
+  "first_seen_date": "2026-11-02",
+  "first_deep_dive_daily": "2026-11-02",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -32,10 +32,10 @@
   },
   "score": 71.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得继续观察：今日第二趋势价值，是**一份『负面结论被认真做实』的评测学样本**，与我们的评测治理方向高度相关。据 arXiv 2610.40636 摘要…",
-  "one_line_essence": "今日第二趋势价值，是**一份『负面结论被认真做实』的评测学样本**，与我们的评测治理方向高度相关。据 arXiv 2610.40636 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，97.4KB 正文可读；作者含 Baiqiao Yin、Zhongang Cai、Ruisi Wang、Qiwei Liang、Lei Yang、Ziwei Liu）：它问『视觉基础模型是否提供了支持持续空间状态的表征』，用**冻结特征探针**在流式第一视角观测下，分四个能力层级（空间结构 / 物体持久性 / 预测性空间更新 / 可行动性）考察 **10 个表征**。作者自述的关键结论（今日不可复现，但结论本身很硬）：**强读出可见场景并不保证准确的物体持久性或未来特征检索**；匹配对照把『读出精度』与『对视觉历史和运动的依赖』分开；原生未来预测保留可恢复的空间结构，但**在真实特征上训练的空间读出器无法原样迁移到预测特征上**；目标相关的候选选择**不能建立可靠的连续动作效用**——预测动作会响应目标变化，但给出正确目标**并不可靠地改善进展**。作者进一步给出层级依赖关系：物体持久性与可行动性建立在相机位姿读出之上，而特征预测建立在可见场景读出之上。★ 今日证据状态（**仓库与结果数据已下载并本地核验，但作者已自曝复现限制**）：官方仓库 github.com/yyyybq/Probing_Spatial_State_Release 今日下载（main 分支，★3，created 2026-10-19，pushed 2026-10-19，license=NOASSERTION）；仓库自带 results/canonical_v2_val_seed42.csv，**今日实测读入 804 行、status 全部为 ACCEPTED**，列含 model / probe / layer / prefix / timestep / primary_metric / primary_value / primary_ci_low / primary_ci_high / checkpoint_sha256 / caveats 等；今日按模型×探针聚合实测均值（如 dino 的 action_dynamics 0.2373、view_consistency 0.9557；f3r 的 view_consistency 0.9808 但 action_dynamics 仅 0.0133；aether 的 action_dynamics 0.0024、streaming_mask 7.1847），**与论文『读出强≠可行动』的结论方向一致**——这是今日对论文结论的一次独立数据侧确认，但用的是作者自己发布的数字，不是独立复现。★ 仓库 README 自列 Known limitations，今日逐字复核：**训练与评测代码快照未发布**（重跑只能复现协议、不能逐比特复现数字）；内部特征索引 PROBE_OWNER_OVERLAY_MANIFEST 未发布；**MiniMax-H3 的 96 条 canonical + 16 条 C3 行无法从本仓库重跑**（需要 diffusers.modular_pipelines.minimax_h3 与未公开的子集清单，reproduce_rows.py 会直接拒绝）；LingBot 特征提取的源 commit 未记录；InsScene-15K 数据集 revision 未固定；部分 GPU kernel（如 identity loss 的 scatter_add_）不确定。CSV 的 caveats 列 804 行全部非空，示例：VAL_SPLIT_SEED42_ONLY;TRAINING_AND_EVAL_PACK_COMMITS_NOT_ON_GITHUB;REPORT_WITH_NO_ACTION_SHUFFLED_COPY_LAST_CONTROLS。项目页 https://yyyybq.github.io/probing-spatial-state/ 今日 HTTP 200 可达。",
+  "one_line_judgement": "值得继续观察：今日第二趋势价值。**代码状态今日维持『已发布但作者自曝复现限制』**。官方仓库 github.com/yyyybq/Probing_Spa…",
+  "one_line_essence": "今日第二趋势价值。**代码状态今日维持『已发布但作者自曝复现限制』**。官方仓库 github.com/yyyybq/Probing_Spatial_State_Release 今日已在本机（昨日下载）：实测结构含 pytest.ini / THIRD_PARTY.md / LICENSE / configs/train.yaml / features/（run_inscene15k.py、run_inscene15k_mllm.py、offline_hf.py、noise_seed.py、canonical_gap_worklist.py）/ tests/（9 个测试文件）与 requirements-lock.txt；README 明确说明代码派生自 VidFM3D（arXiv:2512.19949，github.com/zxhuang1698/VidFM3D）并要求引用原作者。昨日已实测仓库自带 results/canonical_v2_val_seed42.csv（读入 804 行、status 全部 ACCEPTED），按模型×探针聚合的均值（f3r 的 view_consistency 0.9808 但 action_dynamics 仅 0.0133；aether 的 action_dynamics 0.0024）与论文『读出强 ≠ 可行动』的结论方向一致——但用的是作者自己发布的数字，不是独立复现。★ 仓库 README 自列 Known limitations，昨日逐字复核今日维持：**训练与评测代码快照未发布**（重跑只能复现协议、不能逐比特复现数字）；内部特征索引 PROBE_OWNER_OVERLAY_MANIFEST 未发布；**MiniMax-H3 的 96 条 canonical + 16 条 C3 行无法从本仓库重跑**（需 diffusers.modular_pipelines.minimax_h3 与未公开的子集清单，reproduce_rows.py 会直接拒绝）；LingBot 特征提取的源 commit 未记录；InsScene-15K 数据集 revision 未固定。★ 今日未新增可核验证据：数据仍以作者发布的 CSV 为准，**MiniMax-H3 与 InsScene-15K 相关的一切结论维持『待核验/暂无』**。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第二趋势价值，是**一份『负面结论被认真做实』的评测学样本**，与我们的评测治理方向高度相关。据 arXiv 2610.40636 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，97.4KB 正文可读；作者含 Baiqiao Yin、Zhongang Cai、Ruisi Wang、Qiwei Liang、Lei Yang、Ziwei Liu",
+  "new_claim_or_method": "今日第二趋势价值。**代码状态今日维持『已发布但作者自曝复现限制』**。官方仓库 github.com/yyyybq/Probing_Spatial_State_Release 今日已在本机（昨日下载）：实测结构含 pytest.ini / THIRD_PARTY.md / LICENSE / configs/train.yaml / features/（r",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": true,
@@ -62,7 +62,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第二趋势价值，是**一份『负面结论被认真做实』的评测学样本**，与我们的评测治理方向高度相关。据 arXiv 2610.40636 摘要与 LaTeXML HTML 全文（今日回原文逐字复",
+    "why_save": "今日第二趋势价值。**代码状态今日维持『已发布但作者自曝复现限制』**。官方仓库 github.com/yyyybq/Probing_Spatial_State_Release 今日已在本机（",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -122,7 +122,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=probing-spatial-state-representations-in-visual-foundation-models",
-  "daily_path": "daily-detail.html?date=2026-11-01",
+  "daily_path": "daily-detail.html?date=2026-11-02",
   "trend_paths": [
     "trend-detail.html?id=agentic-world-modeling",
     "trend-detail.html?id=coding-agent"

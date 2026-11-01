@@ -13,8 +13,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-01",
-  "first_deep_dive_daily": "2026-11-01",
+  "first_seen_date": "2026-11-02",
+  "first_deep_dive_daily": "2026-11-02",
   "value_type": "long_tail",
   "value_type_label": "长尾价值",
   "value_scores": {
@@ -30,9 +30,9 @@
   "score": 58.0,
   "decision": "持续观察",
   "one_line_judgement": "值得先保存：今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.…",
-  "one_line_essence": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，116.3KB 正文可读；作者为 MIT 系 eess.SY / cs.LG 交叉）：它指出标准 DRO 的歧义集对『记录里没有出现的实现』处理方式不同——散度球只含对记录的**重加权**，而输运球还含有记录支撑之外的分布，甚至含**数据生成过程根本产生不出来的实现**，决策也要对这些做防御。作者改为提出一个**以拟合到记录的密度模型为中心（learned nominal）的 KL 球**，让对手按模型给这些未观测实现加权的比例来放大它们；并给出一个自适应的场景集构造：在解有限问题和从 learned nominal 抽取新实现之间交替，用重要性权重把抽样纠回模型。作者自述（今日不可复现）：在多商品 newsvendor 问题与真实电网数据上的容量扩张问题上，当**记录稀缺且模型类能捕捉到足以让模型外推到记录之外的结构**时，把球中心放在 learned nominal 而非记录上可在分布漂移下降低成本、且分布内成本相当；**随着记录变多或漂移偏离模型已学到的结构，优势消失**。★ 今日证据状态（**论文级已核验，代码级为『暂无』**）：arXiv abs 页与 HTML 全文未见官方仓库链接，comments cell 为空；用已认证的 GitHub CLI 检索（KL-DRO+scenario+generation 等）未找到官方实现。HTML 全文命中的 2 个 openreview 链接今日逐一核对上下文，确认**全部是参考文献条目**（Dinh et al. 2017 RealNVP、Diffusion-DFL 2026），**不是本论文的 OpenReview 页**。今日定位长尾并明确其适用边界：这是一个**小样本 + 有强模型先验**场景下的决策方法，与我们当前做的是大样本工程系统，方向不重合；值得留存的抽象是『**对抗集应该围绕学到的模型而不是围绕有限样本来构造**』，以及作者自己给出的失败条件（记录变多或漂移越界时优势消失）——这条自我限定比结论本身更有工程参考价值。",
+  "one_line_essence": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644（LaTeXML HTML 正文 116.3KB，作者为 MIT 系 eess.SY / cs.LG 交叉）：它指出标准 DRO 的歧义集对『记录里没有出现的实现』处理方式不同——散度球只含对记录的**重加权**，而输运球还含有记录支撑之外的分布，甚至含**数据生成过程根本产生不出来的实现**；作者改为提出一个**以拟合到记录的密度模型为中心（learned nominal）的 KL 球**，并给出自适应场景集构造：在解有限问题与从 learned nominal 抽取新实现之间交替，用重要性权重把抽样纠回模型。作者自述（今日仍不可复现）：在多商品 newsvendor 与真实电网容量扩张问题上，当**记录稀缺且模型类能捕捉到足以外推的结构**时，把球中心放在 learned nominal 可在分布漂移下降低成本；**随着记录变多或漂移偏离模型已学到的结构，优势消失**。★ 今日证据状态（**论文级已核验，代码级仍为『暂无』**）：arXiv abs 页与 HTML 全文未见官方仓库链接，comments cell 为空；HTML 全文命中的 2 个 openreview 链接经昨日逐条核对，**全部是参考文献条目**，**不是本论文的 OpenReview 页**。今日定位长尾并明确其适用边界不变：这是一个**小样本 + 有强模型先验**场景下的决策方法，与我们当前做的大样本工程系统方向不重合；值得留存的抽象是『**对抗集应该围绕学到的模型而不是围绕有限样本来构造**』，以及作者自己给出的失败条件——这条自我限定比结论本身更有工程参考价值。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，116.3KB 正文可读；作者为 MIT 系 eess.SY / cs.LG 交叉）：它指出标准 DRO 的歧义集对『记录里没有出现的实现』处理方式",
+  "new_claim_or_method": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644（LaTeXML HTML 正文 116.3KB，作者为 MIT 系 eess.SY / cs.LG 交叉）：它指出标准 DRO 的歧义集对『记录里没有出现的实现』处理方式不同——散度球只含对记录的**重加权*",
   "research_position": "long_tail_insight",
   "engineering_testability": {
     "has_code": false,
@@ -56,7 +56,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644 摘要与 LaTeXML HTML 全文（",
+    "why_save": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644（LaTeXML HTML 正文 116.",
     "future_trigger": [
       "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
     ],
@@ -73,7 +73,7 @@
       "模板"
     ],
     "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
-    "revisit_date": "2026-11-22"
+    "revisit_date": "2026-11-23"
   },
   "insights": {
     "system_design": [
@@ -116,7 +116,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=adaptive-scenario-generation-for-kl-dro-around-a-learned-density-model",
-  "daily_path": "daily-detail.html?date=2026-11-01",
+  "daily_path": "daily-detail.html?date=2026-11-02",
   "trend_paths": [],
   "long_tail_path": "long-tail.html",
   "mermaid": {

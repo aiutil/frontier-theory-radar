@@ -16,8 +16,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-01",
-  "first_deep_dive_daily": "2026-11-01",
+  "first_seen_date": "2026-11-02",
+  "first_deep_dive_daily": "2026-11-02",
   "value_type": "long_tail",
   "value_type_label": "长尾价值",
   "value_scores": {
@@ -30,12 +30,12 @@
     "actionability": 6.1,
     "noise_risk": 2.4
   },
-  "score": 66.0,
+  "score": 67.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得先保存：今日第一长尾保存项。据 arXiv 2610.40647 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，70.3KB 正文可读…",
-  "one_line_essence": "今日第一长尾保存项。据 arXiv 2610.40647 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，70.3KB 正文可读；作者为 Peking University / Nanyang Technological University / SenseTime，通讯作者 Ziwei Liu）：它提出 SpecSlot，一个像素空间 rectified-flow Transformer，核心观察是**更细的细节并不需要更多的全局通信**——低频结构受益于全局交换，高频细节可以局部建模；于是把每个空间 anchor 展开成多个 slot，每个 slot 分给一段互不相交的 DCT 系数带，**只有最低频的那个 slot 参与全局注意力**，所有 slot 局部交互，从而把『输出细节』与『全局注意力序列长度』解耦。作者自述（今日不可复现）：ImageNet-256 上 SpecSlot 达到与 FLOPs 对齐的 JiT 对照相当或更好的最终 FID 且收敛更快；ImageNet-512 上 FID 比 FLOPs 对齐的 JiT-CM 对照**好 2.84**，同时**少 3.9% FLOPs**，距 JiT-B/16 仅差 **0.69 FID** 而成本低 **38.2%**；文本到图像上 DPG-Bench 比 JiT-B/8 **高 1.06**、前向成本低 **40.6%**。★ 今日证据状态（**代码 + 权重 + 训练脚本齐备，工程可验证性最高**）：官方仓库 github.com/JiongfanYang/SpecSlot 今日下载（★33，created 2026-10-10，pushed 2026-10-30，MIT 许可），实测仓库结构含 denoiser.py / engine_jit.py / model_jit.py / main_jit.py / t2i_model.py / t2i_text.py / t2i_eval.py / train_t2i.py / fid_stats / util / tools，以及 scripts/ 下 run_jit.sh、run_specslot.sh、run_t2i_8gpu.sh；README 明确给出训练入口 run_specslot.sh IMAGENET_ROOT OUTPUT_ROOT RESOLUTION ALLOCATION（RESOLUTION 256 或 512，ALLOCATION k2 或 k4，评估在 50,000 样本 class-balanced 上跑），并标注 HF 权重 https://huggingface.co/Gokottaw434/SpecSlot 与项目页 https://yangjiongfan.site/specslot/（**该站点今日 HTTP 000 / 连接失败，项目页状态待核验/暂无**；HF 权重**因 huggingface.co 直连超时（HTTP=000）同样无法核验是否可下载**）。README 自带 News：2026-10-11 预训练权重已在 HF 放出、2026-10-30 论文上 arXiv。arXiv comments 逐字为『22 pages, 10 figures; under review at ICLR 2027』——**尚未被接收**，属于预印本状态。HTML 全文命中的 8 个 openreview 链接今日逐一核对上下文，全部是**参考文献条目**（Diffusion-Detective、SiT、VA-VAE、U-ViT、DiT 等的引用），**不是本论文的 OpenReview 投稿页**。仓库**无 tests 目录**。今日定位为长尾而非即时：方向（像素空间生成模型的 tokenization 重新分配）与我们做推理服务的关系是**间接的**，但『把一个耦合的预算决策拆成两个独立变量（anchor 密度 W × 频谱细分 K）』这个抽象本身是可迁移的设计模式。",
+  "one_line_judgement": "值得先保存：今日第一长尾保存项。★ **今日新增了一条昨日未能核验的证据**：昨日因 huggingface.co 直连超时而无法核验的**预训练权重，…",
+  "one_line_essence": "今日第一长尾保存项。★ **今日新增了一条昨日未能核验的证据**：昨日因 huggingface.co 直连超时而无法核验的**预训练权重，今天经 hf-mirror.com 镜像确认已放出** —— HF 模型 **Gokottaw434/SpecSlot**（gated=False、private=False），含 3 个 checkpoint：**ImageNet_model/SpecSlotK2W256/checkpoint-last.pth**、**ImageNet_model/SpecSlotK4W256/checkpoint-last.pth**、**T2I_model/checkpoint-400.pth**。→ 昨日『HF 权重是否已放出、是否可下载』这一条**从『待核验/暂无』升级为『已放出、可下载』**（**今日未下载权重本体**，故权重能否成功加载与推理质量仍**待核验**）。同时该作者名下另有 Para_init_MMaDA、showlab_magvitv2、MMaDA0909、MMaDA000、TerraBagel_1200 等模型，确认为同一作者的真实 HF 账号。★ 项目页状态更新：昨日记为『HTTP 000 / 连接失败』，今日复测为 **TLS 证书主机名不匹配**（curl: (60) SSL: no alternative certificate subject name matches target host name 'yangjiongfan.site'），即**该站点当前证书与域名不匹配**，仍**待核验/暂无**（比『超时』更明确地不可用）。官方仓库 github.com/JiongfanYang/SpecSlot 今日复核：★43（昨日 ★33），created 2026-10-10，**pushed 2026-10-30（未再更新）**，**MIT 许可**；README 自带 News 标注 2026-10-11 预训练权重已在 HF 放出、2026-10-30 论文上 arXiv；arXiv comments 逐字为『22 pages, 10 figures; under review at ICLR 2027』——**仍是预印本，尚未被接收**。论文本身昨日已逐字复核（arXiv 2610.40647，HTML 正文 70.3KB，作者为 Peking University / NTU / SenseTime）：SpecSlot 把每个空间 anchor 展开成多个 slot、每 slot 分给一段互不相交的 DCT 系数带，**只有最低频的那个 slot 参与全局注意力**，从而把『输出细节』与『全局注意力序列长度』解耦。作者自述（今日仍不可复现）：ImageNet-512 上 FID 比 FLOPs 对齐的 JiT-CM 好 2.84 且少 3.9% FLOPs，距 JiT-B/16 仅差 0.69 FID 而成本低 38.2%；DPG-Bench 比 JiT-B/8 高 1.06、前向成本低 40.6%。★ 今日判断不变：方向与我们做推理服务的关系是**间接的**，但『把一个耦合的预算决策拆成两个独立变量（anchor 密度 W × 频谱细分 K）』这个抽象本身是可迁移的设计模式。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第一长尾保存项。据 arXiv 2610.40647 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，70.3KB 正文可读；作者为 Peking University / Nanyang Technological University / SenseTime，通讯作者 Ziwei Liu）：它提出 SpecSlot，一个像素空间 rect",
+  "new_claim_or_method": "今日第一长尾保存项。★ **今日新增了一条昨日未能核验的证据**：昨日因 huggingface.co 直连超时而无法核验的**预训练权重，今天经 hf-mirror.com 镜像确认已放出** —— HF 模型 **Gokottaw434/SpecSlot**（gated=False、private=False），含 3 个 checkpoint：**Im",
   "research_position": "long_tail_insight",
   "engineering_testability": {
     "has_code": true,
@@ -61,7 +61,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第一长尾保存项。据 arXiv 2610.40647 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，70.3KB 正文可读；作者为 Peking University / N",
+    "why_save": "今日第一长尾保存项。★ **今日新增了一条昨日未能核验的证据**：昨日因 huggingface.co 直连超时而无法核验的**预训练权重，今天经 hf-mirror.com 镜像确认已放出*",
     "future_trigger": [
       "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
     ],
@@ -78,7 +78,7 @@
       "模板"
     ],
     "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
-    "revisit_date": "2026-11-22"
+    "revisit_date": "2026-11-23"
   },
   "insights": {
     "system_design": [
@@ -121,7 +121,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=read-allocate-route-role-coupled-tokenization-for-pixel-space-generative-transformers",
-  "daily_path": "daily-detail.html?date=2026-11-01",
+  "daily_path": "daily-detail.html?date=2026-11-02",
   "trend_paths": [
     "trend-detail.html?id=agentic-world-modeling"
   ],

@@ -13,33 +13,33 @@
   "url": "http://arxiv.org/abs/2610.40655v1",
   "pdf_url": "https://arxiv.org/pdf/2610.40655v1",
   "code_url": "https://github.com/Lamsheeper/catt",
-  "benchmark_url": "",
+  "benchmark_url": "https://huggingface.co/datasets/catt-bench/vtok101-attribution-baselines",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-01",
-  "first_deep_dive_daily": "2026-11-01",
+  "first_seen_date": "2026-11-02",
+  "first_deep_dive_daily": "2026-11-02",
   "value_type": "immediate",
   "value_type_label": "即时价值",
   "value_scores": {
     "novelty": 4.8,
     "relevance": 6.2,
-    "evidence": 6.8,
+    "evidence": 8.1,
     "engineering_testability": 5.5,
-    "trend_signal": 6.0,
+    "trend_signal": 6.8,
     "long_tail_potential": 4.15,
     "actionability": 7.3,
     "noise_risk": 1.2
   },
-  "score": 88.0,
+  "score": 92.0,
   "decision": "重点学习",
-  "one_line_judgement": "今天值得试：今日第一即时价值，也是今日**证据等级最高**的一篇：论文 + 官方代码 + 官方数据三证齐备（**注意：仓库本身不含已发布的归因分数文件*…",
-  "one_line_essence": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文 + 官方代码 + 官方数据三证齐备（**注意：仓库本身不含已发布的归因分数文件**，作者把模型、轨迹与预计算分数放在 HuggingFace catt-bench，今日 huggingface.co 直连超时，故那部分为『待核验/暂无』）。据 arXiv 2610.40655 摘要与 LaTeXML HTML 全文（今日回原文逐字复核，143.2KB 正文可读；作者为 Northeastern University / MIT，通讯作者 David Bau）以及官方仓库 github.com/Lamsheeper/catt 的本地下载与实跑（MIT 许可，★1，created 2026-09-30，pushed 2026-10-30）：它指出了数据归因（data attribution）领域一个此前被默认掉的结构性缺陷——**归因方法的失败被『评测设计』掩盖了**。作者的论点是：现有评测同时改变多个数据集属性（文档冗余度、词汇干扰项、文档数量），因此无法归因『到底是归因算法不行，还是评测把难度调乱了』。他们提出 CATT（Controlled Attribution Benchmark）：在**完全虚构的知识**上微调 LLM，从而给出无歧义的 ground truth，再一次只改一个配置项。作者自述结论（今日不可复现）：冗余与干扰项会一致地拖垮归因性能；训练文档内的**真实因果证据高度局部化**，标准方法把整个文档的 token 分数平均掉，等于把证据稀释成噪声；把标准交叉熵梯度换成**负对数几率（negative log-odds, nlo）梯度**能把关键 token 从无信息 token 中分离出来；只聚合**分数最高的 top-k 个 token**（而非全文档平均）后，ground truth 召回率提升 **35 到 72 个百分点**；同样的 nlo 修正推广到外部 benchmark FTRACE-TREX，对 TRAK / EK-FAC / Grad-Dot 都有效，反事实重训性能最高提升 **4.9 倍**。★ 今日证据状态（**结构级与机制级已本地核验**）：官方仓库今日拉下来并实跑成功，确认了论文主张的机制确实由代码实现：(a) 用仓库自带 src/catt/attribution/losses.py 的 log_odds 函数验证 nlo 梯度闭式 —— 实测 nlo 值与 -(z_y - logsumexp_others) 逐元素 torch.allclose 为 True；(b) 用仓库自带 token_aggregation.py 验证『局部证据被平均稀释』——构造 1 个强信号文档 + 2 个平坦文档，实测 mean 聚合得 2.6、top-2 聚合得 5.1，即**仅取 top-k 即可恢复约 2.0 倍信号**（对应论文的 dilution 论证）；(c) 仓库自带 data/function_bindings/ 实测物化了论文所说的可配置轴：5000 篇文档 / 100 个事实 / 每事实 50 篇（冗余度）、5000 条 lexical distractor、queries/{25,50,100}.jsonl 三档事实数、5 种文档原型（technical_reference / practical_guide / test_suite / tutorial / mathematical，各约 714 篇）、hop_depth 全为 0。★ 今日实测的一个**与论文口径不同的重要补充**（这是今日新增的判断，论文未以此口径报告）：用仓库自带 bm25_scores 对**已发布**数据实测词法基线（Recall@N，N=10 篇 ground truth）：fb 配置下 Recall@10 = **1.0000**（facts=25/50/100 三档全部为 1.0），即**纯词法检索在无干扰项时能拿满分**；加入 5000 条官方干扰项后（fb-distr）Recall@10 降至 **0.8104 / 0.9164 / 0.9486**（facts=25/50/100）——干扰项确实让检索退化，但**退化幅度远小于论文报告的梯度方法崩溃（论文称干扰项把 TRAK 打到 0）**。含义：论文『干扰项摧毁归因』的结论在梯度方法上成立（作者自述），但在词法基线上不成立，**我们不能用『BM25 也做不到』来佐证梯度方法的必要性**；要证明 nlo+top-k 的价值，必须对比的是**梯度方法的同配置数字**，而今日无 CUDA、无微调 checkpoint，梯度臂一条都没跑。仓库 README 自带一份已发布数字示例（f50_10d_sd1001 / ekfac：grad_cos.ce_mean Recall@N 0.0900 / AUC 0.4522，grad_cos.nlo_mean 0.9995 / 1.0000），这是**作者发布的示例输出**，非本地复现。本地无法核验项：README 声明全部模型、轨迹与归因分数在 HF Hub 的 catt-bench（vtok101 / vtok101-distr / route / route-ab-l8）——**huggingface.co 本机直连超时（HTTP=000），该 Hub 是否已实际放出、模型与预计算分数是否可用，均为『待核验/暂无』**；论文的 35–72 个百分点、4.9×、0.9995/1.0000 全部为作者自述，今日不可复现。工程入口明确（uv sync + catt attribute --task fb --facts 50 --docs 10 --seed 1001 --job ekfac），但明确要求 NVIDIA GPU；fast_jl 扩展需 CUDA 12.x 工具链。",
+  "one_line_judgement": "今天值得试：今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、…",
+  "one_line_essence": "今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、轨迹与归因分数都在 HF Hub 的 catt-bench』，昨日因 huggingface.co 直连超时而标为『待核验/暂无』。**今日经 hf-mirror.com 镜像确认：该组织真实存在且已放出数据** —— 组织 catt-bench（fullname『CATT』，numDatasets=6、numModels=6、numSpaces=2、numFollowers=3），6 个数据集为 vtok101-attribution-baselines（downloads 5368）、vtok101-distr-attribution-baselines（10238）、route-attribution-baselines（6862）、catt-demo-data（213）、ftrace-trex-results（116）、ftrace-answer-only-query（4868）；6 个模型含 Qwen3.5-4B-d0-vtok101-base（380）、Qwen3.5-4B-d0-vtok101-distr-base（308）及各自 lora-seeds；Space catt-bench/catt-demo。**注意作者命名空间是组织 `catt-bench` 而不是个人 `Lamsheeper/catt-bench`**（昨日按后者查是 401，镜像对不存在的仓库同样返回 401，所以 401 本身不能作为『不存在』的判据——今日改用组织枚举得出结论）。★ 今日独立复算（一）：CATT 主表，用作者自己的 `catt.metrics.from_npz` 对**作者发布的分数文件**重算 AUC/Recall@N。任务 fb（Function Bindings，f50_10d_sd1001）Grad-Dot 各臂实测：CE 全 token 求和 Recall@N=0.0990/AUC=0.4475；CE 全 token 均值（ce_sum/n_sup）Recall@N=0.0935/AUC=0.4476；**nlo 全 token 均值 Recall@N=1.0000/AUC=1.0000**；nlo top-10 Recall@N=1.0000；nlo top-3 Recall@N=1.0000。任务 fb-distr（同 cell 加干扰项）Grad-Dot：CE 全 token 求和 0.0115/0.1039；CE 均值 0.0000/0.2815；**nlo 全 token 均值仅 0.0010/0.6270**；nlo top-3 0.9885/1.0000；nlo top-10 **0.9935/0.9999**。→ **今日新增的一条关键判断**：作者主张的『nlo + top-k 两个修正』**不是可互换的两件事**。在无干扰项数据上，nlo 单独就把 Recall@N 从 0.09 拉到 1.00（top-k 再无增益）；**但加入干扰项后，nlo 单独几乎归零（0.0010），必须配合 top-k 才能回到 0.9935**。也就是说，**『损失修正』负责无干扰场景，『top-k 聚合』才是抗干扰的那一半**——昨日报告把两者并列称为『两个修正』，今日的复算显示它们的**边际贡献高度依赖配置**。★ 今日独立复算（二）：论文 Figure 4（最常被引用的那组数字）在**正确 cell**（fb-distr，f50_50d_sd1001，N=50 篇/事实、|F|=50，Grad-Dot）上**完整复现成功，四臂全中** —— 作者称 CE 全 token 0.01、CE top-10 0.30、nlo 全 token 0.35、nlo+top-10 1.00；**今日实测：CE 全 token 均值 0.0065（对应 0.01）、CE top-10 0.2976（对应 0.30）、nlo 全 token 均值 0.3485（对应 0.35）、nlo top-10 1.0000（对应 1.00）**。★ 其中 **『CE top-10』一臂是作者根本没发布的**（Grad-Dot 的发布文件只有 ce / ce_sum，没有 ce_top10），但作者发布了 per-token terms 文件 `tokens.grad_dot.ce.npz`（472MB），今日用**作者自己的** `catt.attribution.token_aggregation.aggregate` 从原始 per-token terms **重建**了这一臂，得到 0.2976 —— 与论文的 0.30 吻合。同时用同一套重建逻辑做**内部一致性校验**：重建的 ce_sum = 0.1171 vs 作者发布的 ce 文件 0.1173（float32 精度差），ce_mean 重建 0.0065 vs 独立路径 0.0066，**说明我们的重建与作者的管线一致**。→ 这是本批次**唯一一个把论文头号数字逐臂复现到位**的证据链。同时实测到两个论文未单列的中间臂：nlo 全 token **求和** Recall@N=0.9609（几乎与 top-10 一样好），nlo mean×Q 0.0550 —— 说明 top-k 的价值主要来自**丢弃长尾噪声 token**，而『求和』也能达到类似效果。★ 今日独立复算（三）：**发现论文正文与作者发布数据不一致**（今日最重要的一条）。论文正文写『At the largest budget, the drop improves from 8% to 40% for TRAK (4.9x)』，论文 Table 16 对应 TRAK 行是 8±2 → 40±4。但作者发布的 `catt-bench/ftrace-trex-results`（含 retrain_top1.npz 原始 per-seed top-1 正确性矩阵，35 次重训 × 8437 个事实；cf50_facts.jsonl.gz 给出 50 个事实及其 proponent 行）今日用其原始矩阵**独立重算**，得到 **TRAK 9.0pp → TRAK(nlo) 47.0pp = 5.22×**，且与作者自己发布的 summaries/summary_b11522.json 的 drop_mean **逐条完全一致**（trak 9±3、trak_nlo 47±1、bm25 19±3、gt 6±0、layerwise_trak_top10 25±3）。**该发布物自己的 README 表格写的也是 9±3 → 47±1（5.22×），不是正文的 8%→40%（4.9×）。**→ 即**论文正文/Table 16 的数字与作者自己发布的数据集对不上**；发布数据更强，不是更弱。同时核到**发布覆盖不完整**：论文 Figure 7 题注与 Appendix E 均写『mean over **eight** retrain seeds』，但发布的 retrain_top1.npz **只有 seeds 2001 与 2002 两个**；且 Table 16 中 **EK-FAC 的 4 行与 Grad-Dot 的 4 行完全没有发布**（发布物只有 trak / trak_nlo / layerwise_trak_top10 / bm25 / gt / full 六个 ranking）。→ EK-FAC 30%→46%、Grad-Dot 7%→23% 这两条正文数字**无法核验**（缺档，非反例）。★ 结论修正：昨日把『4.9×』整条记为『作者自述、不可复现』，**今日必须更正为『可复现但与正文不一致』**。今日能确认的是：nlo 修正对 TRAK 的反事实重训确有大幅提升（复算 9→47pp），且**提升幅度高于正文所述**；但正文的具体百分比与倍数对不上发布数据，引用时应标注这一分歧。★ 另一处今日实测到的口径问题：昨日用仓库自带 bm25_scores 报出『fb 下 BM25 Recall@10 = 1.0000，fb-distr 下 0.8104/0.9164/0.9486』，今日用**作者发布的** bm25 分数文件重算，fb 任务确为 Recall@N=1.0000/AUC=1.0000（f=50, q=250），fb-distr 为 Recall@N=0.9852/AUC=0.9999，**decoy_auc=0.9916、decoy_top1=0.032** —— 即**词法基线在加干扰项后几乎不受损**（0.9852，远高于昨日自测的 0.81–0.95），且**几乎不会把干扰项文档排到第一（3.2%）**。结论不变但更强：**不能用『BM25 也做不到』来论证梯度方法的必要性**。★ 本地仍无法核验项：本机无 CUDA、无微调 checkpoint，**梯度计算本身一条都没跑**；上述全部是**评测层独立复算**（读作者发布的分数 + 作者自己的 metrics 代码重算指标），不是端到端复现；模型权重（Qwen3.5-4B base/adapter，8GB/0.5GB）与轨迹（4GB/条）今日未下载。论文的 35–72 个百分点增幅未在本次逐 cell 复算（Table 44 汇总值与 cell 级复算口径不同，标为**待核验**）。工程入口：uv sync + `catt attribute --task fb --facts 50 --docs 10 --seed 1001 --job ekfac`，要求 NVIDIA GPU，fast_jl 扩展需 CUDA 12.x 工具链。",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文 + 官方代码 + 官方数据三证齐备（**注意：仓库本身不含已发布的归因分数文件**，作者把模型、轨迹与预计算分数放在 HuggingFace catt-bench，今日 huggingface.co 直连超时，故那部分为『待核验/暂无』）。据 arXiv 2610.40655 摘要与 LaTeXML",
+  "new_claim_or_method": "今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、轨迹与归因分数都在 HF Hub 的 catt-bench』，昨日因 huggingface.co 直连超时而标为『待核验/暂无』。**今日经 hf-mirror.com 镜像确认：该组织真实存在且已放出数据** —— ",
   "research_position": "benchmark",
   "engineering_testability": {
     "has_code": true,
-    "has_benchmark": false,
+    "has_benchmark": true,
     "can_reproduce": true,
     "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
     "engineering_scenarios": [
@@ -62,7 +62,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第一即时价值，也是今日**证据等级最高**的一篇：论文 + 官方代码 + 官方数据三证齐备（**注意：仓库本身不含已发布的归因分数文件**，作者把模型、轨迹与预计算分数放在 Hugging",
+    "why_save": "今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、轨迹与归因分数都在 HF Hub 的 catt-be",
     "future_trigger": [
       "待更多证据"
     ],
@@ -122,7 +122,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=elucidating-the-design-space-of-lm-data-attribution",
-  "daily_path": "daily-detail.html?date=2026-11-01",
+  "daily_path": "daily-detail.html?date=2026-11-02",
   "trend_paths": [
     "trend-detail.html?id=coding-agent",
     "trend-detail.html?id=context-engineering"
