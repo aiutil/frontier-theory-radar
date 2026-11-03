@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-11-02
+## Latest research run · 2026-11-04
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 166 | 264 | 269 | 1364 |
+| 10 | 171 | 270 | 276 | 1366 |
 
-**Deep dive:** [Elucidating the Design Space of LM Data Attribution](daily/2026/2026-11-02.md) · Immediate · 重点学习
+**Deep dive:** [WebHarbor: Docking Real Websites for Evolving GUI Agent Environments](daily/2026/2026-11-04.md) · Immediate · 重点学习
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,21 +35,21 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-11-04](daily/2026/2026-11-04.md) | WebHarbor: Docking Real Websites for Evolving GUI Agent Environments | Immediate | 重点学习 |
+| [2026-11-03](daily/2026/2026-11-03.md) | Flide: Accelerating Decision Inference with Exact State Forking | Immediate | 重点学习 |
 | [2026-11-02](daily/2026/2026-11-02.md) | Elucidating the Design Space of LM Data Attribution | Immediate | 重点学习 |
 | [2026-11-01](daily/2026/2026-11-01.md) | Elucidating the Design Space of LM Data Attribution | Immediate | 重点学习 |
 | [2026-10-30](daily/2026/2026-10-30.md) | Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness | Immediate | 重点学习 |
 | [2026-10-28](daily/2026/2026-10-28.md) | I-HITL: Inalienable Human-in-the-Loop | Immediate | 重点学习 |
 | [2026-10-27](daily/2026/2026-10-27.md) | Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox | Immediate | 重点学习 |
-| [2026-10-26](daily/2026/2026-10-26.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | Immediate | 重点学习 |
-| [2026-10-25](daily/2026/2026-10-25.md) | EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence | Immediate | 重点学习 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 623 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 661 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 623 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 627 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 673 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 627 |
 
 ## Why this repository exists
 

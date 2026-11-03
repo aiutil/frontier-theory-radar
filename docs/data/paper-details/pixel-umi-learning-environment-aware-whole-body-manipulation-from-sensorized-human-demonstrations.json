@@ -1,0 +1,133 @@
+{
+  "id": "pixel-umi-learning-environment-aware-whole-body-manipulation-from-sensorized-human-demonstrations",
+  "title": "Pixel-UMI: Learning Environment-Aware Whole-Body Manipulation from Sensorized Human Demonstrations",
+  "authors": [
+    "Jason Jingzhou Liu",
+    "Tony Tao",
+    "Deepak Pathak",
+    "Ruslan Salakhutdinov"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-02",
+  "url": "http://arxiv.org/abs/2611.03647v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.03647v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-04",
+  "first_deep_dive_daily": "2026-11-04",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 58.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投…",
+  "one_line_essence": "今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投**。★ 方法三段式（论文摘要口径）：(1) **Environment-Aware Retargeting (EAR)**——把**重建的场景几何**与**演示中的头部和夹爪轨迹**结合起来，**决定机器人姿态**并生成**避碰的关节与基座目标**；(2) **Delay-calibrated action assignment**——把轨迹转成动作；(3) **Retargeting-Error-Aware Masking (REAM)**——运动学差异会留下**残余位姿误差**，在人类演示与机器人观测之间造成**视角错配**，REAM 在训练时利用这些误差**降低模型对错配视角的依赖**。此外因为估计的动作无法完全刻画**接触丰富的交互**，他们**用 DAgger 收集 on-policy 的人类纠正**。实测口径：5 类挑战任务（铰接物体操作、可变形物体处理、受限空间够取、全身避碰、接触丰富的双臂协同），**平均任务进度 87.0%**。★ 独立执行一（论文 HTML 全文核对）：确认无代码声明，github.com/ 的命中**全部是参考文献**（kevinzakka/mink 是 MuJoCo 逆运动学库、pink-kinematics/pink 是同类库），**不是本文实现**。★ 独立执行二（项目页实测）：https://pixel-robot.com/pixel-umi **可访问**，实测标题、作者（Jason Jingzhou Liu*、Tony Tao*、Deepak Pathak†、Ruslan Salakhutdinov†，Carnegie Mellon University，*共同一作 †共同指导）以及页面结构（Abstract / System Design / Autonomous Tasks / More Experiments / BibTeX）。→ **关键事实：页面上的链接是 arXiv、PDF、Twitter、Open Sourced、Soon!——Open Sourced 后面紧跟 Soon!，即官方明确标注代码尚未开源**，且页面上**没有任何 GitHub 链接**（实测 regex 扫描 github 链接集合为空）。★ 证据边界：(1) **代码明确即将开源但今日未开源**，因此**无任何可执行验证**，87.0% 完全是作者自述；(2) **无 benchmark 收录、无第三方复现**；(3) 项目页只有视频与 BibTeX，**无数据、无模型权重说明**；(4) 需要真实机器人 + 传感器化人类演示数据，**复现门槛在硬件而非软件**。★ 为什么给长尾价值：**它提出了一个我们迟早会遇到的工程问题——演示数据的形态与执行体的形态不一致**——并给出三个可迁移的机制（场景几何决定姿态、误差感知的掩码训练、用 on-policy 纠正补齐接触交互）。这套方法对任何用 A 的数据训 B 的策略的场景都有参考价值（人→机器人、视频→动作、文本→Agent 轨迹）。**触发条件：官方开源 / 被后续硬件论文大量引用 / 我们真的开始做人形或移动操作。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投**。★ 方法三段式（论文摘要口径）：(1) **Environment-Aware Retargeting (EAR)**——把**重建的场景几何**与**演示中的头部和夹爪轨迹**结合起来，**决定机器人姿态**并生",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投**。★ 方法三段式（论文摘要口径）：(1) **E",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-25"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03647v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.03647v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=pixel-umi-learning-environment-aware-whole-body-manipulation-from-sensorized-human-demonstrations",
+  "daily_path": "daily-detail.html?date=2026-11-04",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

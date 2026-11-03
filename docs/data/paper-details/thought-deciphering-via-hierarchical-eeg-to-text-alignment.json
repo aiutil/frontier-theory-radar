@@ -1,0 +1,130 @@
+{
+  "id": "thought-deciphering-via-hierarchical-eeg-to-text-alignment",
+  "title": "Thought-deciphering via hierarchical EEG-to-text alignment",
+  "authors": [
+    "Xiaopeng Mao",
+    "Morten Mørup",
+    "Xin Xu",
+    "Sang Wan Lee",
+    "Sadasivan Puthusserypady"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-02",
+  "url": "http://arxiv.org/abs/2611.03623v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.03623v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-04",
+  "first_deep_dive_daily": "2026-11-04",
+  "value_type": "ignore",
+  "value_type_label": "暂时忽略",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 45.0,
+  "decision": "暂时忽略",
+  "one_line_judgement": "当前可忽略：今日暂缓，**方向有真实价值（无创 BCI 的句级解码是明确的应用缺口），但与我们的主线距离最远，且今天是 10 篇里证据最薄的一篇**。★…",
+  "one_line_essence": "今日暂缓，**方向有真实价值（无创 BCI 的句级解码是明确的应用缺口），但与我们的主线距离最远，且今天是 10 篇里证据最薄的一篇**。★ 核心内容（论文摘要口径）：非侵入式脑机接口（BCI）为沟通障碍者（闭锁综合征、脑瘫、构音障碍）提供替代沟通通路；但近期突破多依赖 fMRI、MEG 等**笨重昂贵**的模态，而更轻更便宜的 EEG 解码**结果仍逊于其他模态**；更关键的是，**人们并不理解这些模态在字母、词、句子及更高语义层级上究竟如何对应文本**。以往研究多聚焦于句以下的解码（音素、字母、词更好设计实验），但**沟通中句子远比词和字母重要**——句子携带的信息在高位，即使部分词与字母缺失也能被理解；而**句级分类相比句级生成研究更少**，导致难以判断在 EEG-to-text 中**该检索还是该生成**。本文用一个新的**分层对齐框架**研究**句级 EEG-to-text 分类**，目标是**用上下文与 EEG 作为输入检索出一句可读句子**。★ 独立执行（论文 HTML 全文核对）：**未发现任何代码或模型发布**（code is available 等零命中）；论文只声明**使用公开数据集 ChineseEEG 与 Chisco**，**未发布训练代码或模型权重**。★ 证据边界：(1) **无代码、无权重、无可复现产物**，摘要也**未给出任何准确率或 BLEU 等量化结果**——今天的证据强度低于同批其他论文；(2) 中文 EEG 数据集（ChineseEEG、Chisco）**受试者规模与采集条件苛刻**，我们无任何复现条件；(3) 神经科学方法论严谨，但**离 AI 系统工程极远**；(4) fetch_papers.py 给它打的 evaluation 标签来自 evaluation 一词在摘要中的普通语义用法，**与 LLM 评测无关**——再次暴露关键词匹配的噪声（见 note）。★ 判断：保留最小索引。**触发条件：作者开源 / 出现句级 EEG-to-text 的量化结果 / 我们进入 BCI 方向。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日暂缓，**方向有真实价值（无创 BCI 的句级解码是明确的应用缺口），但与我们的主线距离最远，且今天是 10 篇里证据最薄的一篇**。★ 核心内容（论文摘要口径）：非侵入式脑机接口（BCI）为沟通障碍者（闭锁综合征、脑瘫、构音障碍）提供替代沟通通路；但近期突破多依赖 fMRI、MEG 等**笨重昂贵**的模态，而更轻更便宜的 EEG 解码**结果仍逊于其",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "noise",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日暂缓，**方向有真实价值（无创 BCI 的句级解码是明确的应用缺口），但与我们的主线距离最远，且今天是 10 篇里证据最薄的一篇**。★ 核心内容（论文摘要口径）：非侵入式脑机接口（BCI",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03623v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.03623v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=thought-deciphering-via-hierarchical-eeg-to-text-alignment",
+  "daily_path": "daily-detail.html?date=2026-11-04",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

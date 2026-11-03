@@ -1,0 +1,134 @@
+{
+  "id": "from-natural-language-to-exact-cover-a-neuro-symbolic-approach-to-zebra-puzzles",
+  "title": "From Natural Language to Exact Cover: A Neuro-Symbolic Approach to Zebra Puzzles",
+  "authors": [
+    "Paulius Skaisgiris",
+    "Thomas Pammer",
+    "Veronika Semmelrock",
+    "Mykyta Ielanskyi",
+    "Maximilian Heisinger"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-02",
+  "url": "http://arxiv.org/abs/2611.03641v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.03641v1",
+  "code_url": "https://codeberg.org/bilai-ss25-booleguru-llm/zebrallm",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-04",
+  "first_deep_dive_daily": "2026-11-04",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 62.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 L…",
+  "one_line_essence": "今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 LLM 做初等逻辑推理时**缺少符号推理系统那种确定性、可靠性与完备性**；而 SAT 求解、exact cover 这类经典符号方法**保证正确性与完备性，却要求问题被写成高度专门的正式编码**，因此难以直接用于自然语言输入。本文的神经-符号框架把两者接起来：**LLM 先做语义解析**，把实体与约束翻译成构造 exact cover 实例的**结构化 tool call**，**符号求解器给出解并回传反馈**，以此**迭代修正非法、欠约束或过约束的编码**，并利用斑马谜题的**解唯一性**。实测口径：跨多个参数规模、多种后训练范式、多个 LLM 家族，混合方案**持续优于强纯神经基线（含 CoT prompting）以及近期神经-符号方法**。★ 独立执行一（**代码托管在 Codeberg 而不是 GitHub——这是今天少见的形态，必须点出来**）：arXiv HTML 全文脚注确认 Code is available at https://codeberg.org/bilai-ss25-booleguru-llm/zebrallm；Codeberg API 实测该仓库**真实存在**（描述为 Solving Zebra Logic Puzzles with LLMs endowed with an exact cover solver），目录内容实测完整且是**真能跑的评测工程**：eval_zebra_logic.py(32196 B)、solve_with_tool_calls.py(18256 B)、clients/、puzzle_classes/、tool_encodings/、utils/、environment.yaml、四个 eval 脚本（eval_miniexact_4k_output.sh / eval_miniexact_extreme_30k_output.sh / eval_miniexact_extreme_feedback_30k_output.sh / eval_miniexact_feedback_4k_output.sh）。**注意：这四个脚本名说明它的评测横跨 4k / 30k token 预算 × 有无 feedback 两档**——即它自己就在研究反馈回路对神经-符号框架的作用。★ 独立执行二（依赖的求解器）：仓库同时依赖 github.com/miniexact/miniexact（**实测存在**，exact cover 求解器，homepage=miniexact.github.io，2023-12 创建、2026-02 仍在推送，stars=7）——**这是一个现成的、可独立使用的 exact cover 求解器**，即使不做神经-符号，也可以拿来当 CSP 后端。★ 独立执行三（作者线索）：论文页引用 huggingface.co/blog/yuchenlin/zebra-logic，**huggingface.co 今日直连超时，该博客正文今日未读**（hf-mirror 镜像上也没有对应条目）→ 标记**待核验**。★ 证据边界：(1) 载体是**斑马谜题**——这是一个有人工构造、有唯一解保证的玩具式 CSP，**与代码、文档、需求等真实工程约束求解之间隔着很长一段路**，论文的持续优于 CoT 结论**不能直接搬到我们的任务上**；(2) **Codeberg 仓库 stars=0/forks=0，GitHub 上完全搜不到该仓库**（不在 GitHub 生态内，且 Codeberg 的可见度远低），**社区验证为零**；(3) 摘要**未给出具体分数或提升幅度**，只说 consistently outperforms——**没有可核对的量化结论**；(4) 依赖的 miniexact 是**外部第三方求解器**，混合方案的实际增益有多少来自求解器本身、多少来自 LLM 的解析，论文未做消融说明（今日未读附录，无法确认）。★ 为什么给长尾价值：**方法模式值得存——LLM 只做语义解析、确定性求解器负责正确性、解算反馈反过来修正 LLM 的编码**，这个神经负责理解、符号负责保证、解算反馈负责收敛的三段式，正是我们做需求约束、权限校验、配置合法性检查时想要的形态；而**斑马谜题作为载体**，恰恰说明它当前离工程还远，所以存而不投。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 LLM 做初等逻辑推理时**缺少符号推理系统那种确定性、可靠性与完备性**；而 SAT 求解、exact cover 这类经典符号方法**保证正确性与完备性，却要求问题被写成高度专门的正式编码**，因此难以直接用于自然语言",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 LLM 做初等逻辑推理时**缺少符号推理系统那种确定性",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-25"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03641v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.03641v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=from-natural-language-to-exact-cover-a-neuro-symbolic-approach-to-zebra-puzzles",
+  "daily_path": "daily-detail.html?date=2026-11-04",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

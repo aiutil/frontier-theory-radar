@@ -1,0 +1,136 @@
+{
+  "id": "dittany-contribution-guided-repair-framework-for-mas-applications",
+  "title": "Dittany: Contribution-Guided Repair Framework for MAS Applications",
+  "authors": [
+    "Hanqi Sun",
+    "Yuchen Shao",
+    "Hanyi Si",
+    "Beibei Xu",
+    "Lisheng Wang"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-30",
+  "url": "http://arxiv.org/abs/2610.42144v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.42144v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-03",
+  "first_deep_dive_daily": "2026-11-03",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 5.15,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 76.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日第一趋势价值：**多 agent 系统『跑到一半没跑完』的修复，从『重跑』变成了『按贡献图补做』**。★ 独立执行一（今日的一处小修复，…",
+  "one_line_essence": "今日第一趋势价值：**多 agent 系统『跑到一半没跑完』的修复，从『重跑』变成了『按贡献图补做』**。★ 独立执行一（今日的一处小修复，便于日后复核）：论文摘要里工具名渲染成 `\\tool`（LaTeX 宏未展开），今日从 arXiv 源码包（e-print tarball）解出 macro.tex，**`\\newcommand{\\tool}{Dittany\\xspace}`**——确认该工具就叫 **Dittany**，与论文标题一致。此前若直接按 `\\tool` 检索会漏掉。★ 独立执行二：**全部关键数字已逐条核对到正文原句**，无一出入——「on **30 applications across six MAS frameworks and 9,000 tasks**」；「detects runtime failures with **88.28% precision and 79.18% recall**」；「achieves **84.76%** task accuracy, compared with **58.01%** for Native execution, **63.48%** for Reflexion, **58.21%** for Iterative Rollback, **48.39%** for SupervisorAgent, and **50.41%** for AgentTether」；「improving over Native execution by **26.74 percentage points** and the strongest of four recovery baselines by **21.28 points**」；「estimated deployment tokens increase from **317.963M** for Native to **374.948M** for Dittany, an increase of **17.92%**」；「**24.19%** below Reflexion and **13.05%** below Iterative Rollback」。→ 由此得到今日最实用的一条判断：**Dittany 不是最准的（Reflexion 63.48% < Dittany 84.76%）这不成立——它比所有基线都准，同时 token 比 Reflexion 少 24.19%**。但也要如实写出代价：**比『不修复』的 Native 多花 17.92% token**。这是典型的『用可控的成本换确定性』，对预算敏感的团队要按 +17.92% token 来立项，不要当成免费收益。★ 独立执行三：**评测口径已核实**——「Detection precision, recall, F1, and accuracy use **8,758 resolved labels**；**164 ambiguous runs and 78 runs with format-only discrepancies are excluded**」；「semantic assessment uses **DeepSeek V4 Flash with thinking disabled**」。→ 排除 164 个 ambiguous run 是诚实做法，但也说明**检测口径本身有 1.8% 左右的人工判灰区**。→ 且语义评估依赖一个 LLM 判官（DeepSeek V4 Flash），**『84.76%』这个数继承了判官偏差——待核验（未做人工双评）**。★ 机制上最值得抄的一条（正文）：Dittany 从任务要求与方法规格推导 **expected contributions 与 acceptance conditions**，连成 **contribution graph**；运行时检查定位未满足的条件，判断哪些已有结果仍然可用；然后**按作用域分两档修复**——输入足够时做 **action-level correction**，前提或未完成工作需要改时做 **graph-level recovery**；两档都**保留已验证的贡献**并在后续使用前复检修复结果。消融结论：「combining the two repair scopes achieves higher accuracy and lower token consumption than graph-level repair alone」。→ 这是今天最可迁移的机制：**失败修复的关键不是『重来』，而是『先判定哪些中间产物仍然有效』**。★ 证据边界（今日必须明确写下的短板）：**官方代码仓库今日未找到——暂无**。GitHub 检索 `dittany` 只命中同名无关项目（书籍/视觉项目），作者 Hanqi Sun 名下仓库仅有两个 2025 年的空仓库；arXiv abs 页与正文 HTML **均未给出任何 github/huggingface 链接**（今日用正则逐页扫描全部外链确认，42144 页内除 arXiv/LaTeXML 脚手架外**零个代码或数据链接**）。论文是 ACM 会议格式（模板含 acmart.cls / ACM-Reference-Format.bst），说明它**已经过同行评审**，这提升了理论可信度，但**不等于工程可用性**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一趋势价值：**多 agent 系统『跑到一半没跑完』的修复，从『重跑』变成了『按贡献图补做』**。★ 独立执行一（今日的一处小修复，便于日后复核）：论文摘要里工具名渲染成 `\\tool`（LaTeX 宏未展开），今日从 arXiv 源码包（e-print tarball）解出 macro.tex，**`\\newcommand{\\tool}{Ditta",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一趋势价值：**多 agent 系统『跑到一半没跑完』的修复，从『重跑』变成了『按贡献图补做』**。★ 独立执行一（今日的一处小修复，便于日后复核）：论文摘要里工具名渲染成 `\\tool",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.42144v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.42144v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=dittany-contribution-guided-repair-framework-for-mas-applications",
+  "daily_path": "daily-detail.html?date=2026-11-03",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

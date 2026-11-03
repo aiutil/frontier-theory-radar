@@ -1,0 +1,130 @@
+{
+  "id": "instance-dependent-sequential-limits-as-an-exact-information-ledger",
+  "title": "Instance-dependent sequential limits as an exact information ledger",
+  "authors": [
+    "Akshay Balsubramani"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-30",
+  "url": "http://arxiv.org/abs/2610.42133v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.42133v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-03",
+  "first_deep_dive_daily": "2026-11-03",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 55.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日第二长尾保存：**它想统一 bandit / 序贯检验 / best-arm / MDP 的 instance-dependent 极限…",
+  "one_line_essence": "今日第二长尾保存：**它想统一 bandit / 序贯检验 / best-arm / MDP 的 instance-dependent 极限，但今天既无代码也未发现同行关注，价值在于『账本式写法』这个思路本身。**★ 独立执行一：**论文结构已核实到正文原句**——「It runs from a divergence decomposition through data processing to a statistic, a testing step that turns a class guarantee into a requirement on the history, and optimization over alternatives and allocations. **Only the first step is an identity.**」；「By the chain rule, data processing loses exactly a conditional divergence, which vanishes for arms in natural exponential families at the per-arm counts and reward sums」；「A one-parameter family of martingale identities extends the decomposition to every tilt between two instances」；「The classical limits follow by **relaxations with named defects**」；「**All defects but the asymptotic step's can be computed from an algorithm's own runs**, the uniform quantification's only when the class guarantee is a number」。→ **最有迁移价值的一句是『除渐近步之外，所有缺陷都能从算法自己的运行里算出来』**——这提供了一个『用真实运行数据反推理论松弛损失』的可操作接口，值得在评估类工作中借用：把每个经验损失项对应到一个可从日志计算的缺陷项。★ 独立执行二：**实证范围已核对**——「On **seven published sources**, from movie ratings to engine replacement, the ledger locates the difference between standard algorithms and the classical limits.」并给出「For identification among trained models and for Wald's test the largest term is usually the uniform quantification's」。★ 独立执行三：**作者与定位**——Akshay Balsubramani 单人作者（GitHub: b-akshay 账号真实存在），论文用词克制（「writes the chain as an exact ledger」而非宣称解决了经典极限问题）。★ 证据边界（今日明确标注）：**无官方代码仓库——暂无**（GitHub 检索无命中，arXiv 页与 HTML 无任何仓库/数据链接）；**GitHub 无 star / 无 issue / 无第三方复现——今日未能发现任何社区关注**；『seven published sources』的具体数据集清单今日未逐项核实，**待核验**；单作者、单条论证链、无实验代码，**属于典型的『理论侧今日不产生工程动作』条目**。→ **留它的理由不是它今天能用，而是它提供了一个可借用的『账本/缺陷分解』写法**，以及一个具体的自检问题：『我们的评测结论里，最大的那个不确定性项能不能被算出来？』",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第二长尾保存：**它想统一 bandit / 序贯检验 / best-arm / MDP 的 instance-dependent 极限，但今天既无代码也未发现同行关注，价值在于『账本式写法』这个思路本身。**★ 独立执行一：**论文结构已核实到正文原句**——「It runs from a divergence decomposition throug",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第二长尾保存：**它想统一 bandit / 序贯检验 / best-arm / MDP 的 instance-dependent 极限，但今天既无代码也未发现同行关注，价值在于『账本式写",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-24"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.42133v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.42133v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=instance-dependent-sequential-limits-as-an-exact-information-ledger",
+  "daily_path": "daily-detail.html?date=2026-11-03",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

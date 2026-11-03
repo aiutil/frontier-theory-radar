@@ -1,0 +1,134 @@
+{
+  "id": "fade-factored-ability-difficulty-filtering-for-online-rlvr-scheduling",
+  "title": "FADE: Factored Ability--Difficulty Filtering for Online RLVR Scheduling",
+  "authors": [
+    "Tomas Duncun",
+    "Jonah Ellison",
+    "Mateo Ruiz",
+    "Hanae Fujita",
+    "Ingrid Solberg"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-02",
+  "url": "http://arxiv.org/abs/2611.03625v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.03625v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-04",
+  "first_deep_dive_daily": "2026-11-04",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 68.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得先保存：今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group…",
+  "one_line_essence": "今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group-based RLVR 只从采样结果有分歧的 prompt 里学习，**全对（all-pass）和全错（all-fail）的组相对优势为零，白烧生成预算还不推进策略**。自适应调度器的做法是把 rollout 引向有信息量的 prompt，但这些调度器依赖**每 prompt 的 pass-rate 追踪器**，而 pass-rate 把**两个演化速度完全不同的量纠缠在一起**：(1) 策略在各推理技能上的**能力在漂移**（快），(2) 每个 prompt 的**内在难度**（慢）。用单一指数平均或 Beta 计数器同时跟踪两者时，**短记忆会打乱 prompt 的相对排序，长记忆则报告陈旧的通过率**。★ 方法（FADE = Factored Ability–Difficulty Estimation）：把每个 prompt 的成功 logit 表示为**白化后的 K 维技能载荷与快速漂移的策略能力向量的内积，减去一个缓慢收缩的标量 item 截距**——即用**双线性状态空间滤波**把能力与难度在两个时间尺度上分离。用 **Pólya–Gamma 增广**，每个 minibatch 的二元 rollout 结果通过 **rank-K Woodbury 步**闭式更新 K 维能力后验，**能力变化会立刻传导到所有共享这些技能的未观测 prompt，同时保持 item 截距稳定**；再由后验均值与方差导出**抽到非退化 rollout 组的概率的闭式 utility**。实测口径：**5 个推理 benchmark、2 个基座模型、4 种调度范式，在相同 rollout 预算下，FADE 持续提升下游准确率与校准，每步额外开销 < 0.6 ms**。★ 独立执行（论文全文核对，确认了它到底有多完整）：arXiv HTML 全文可读，结构包含 §4 理论分析（含 Minimax 时间尺度分离证明）、附录 A 数学推导与证明（**A.1 共轭 Pólya–Gamma 滤波步、A.2 零样本方差收缩、A.3 Minimax 时间尺度分离、A.4 方差感知组 utility 的推导**）、附录 B 实现与集成细节（**B.1 技能基构造与数值稳定性、B.2 与宿主 RLVR 调度器的集成**）、附录 C 附加实验（**C.1 与 VIP rollout 分配器的集成与多种子稳定性、C.2 跨模型规模 1B→7B 扩展、C.3 对技能维度 K、保留系数、编码器选择的敏感性**）、附录 D 扩展讨论（**为什么双线性分解优于图聚类与消息传递、何时 FADE 退化为更简单的估计器**）。→ **这份附录结构本身就是这方法被认真做过的证据**，也说明它不是拍脑袋的滤波器。★ 证据边界（今天的实际情况，必须诚实）：(1) **全文检索 code is available / code will be / available at 零命中，GitHub 上按 FADE ability difficulty RLVR 检索 total_count=0**；作者账户 duncun（public_repos=0）、ingridsolberg（public_repos=1，均非本仓库）**都没有对应的公开实现** → **今日无法执行、无法复现、无法核对任何一个数字**；(2) 论文**没有给出开源计划声明**（连 will release 这类措辞都没有），**代码状态标记为待核验/暂无**；(3) 5 benchmark / 2 模型 / 4 调度器的实验规模在论文里属中规中矩，**且全部是论文自述**；(4) 作者名单（Tomas Duncun、Jonah Ellison、Mateo Ruiz、Hanae Fujita、Ingrid Solberg）在 GitHub 上**均无关联公开仓库**，无法交叉验证。★ 为什么给长尾价值而不是忽略：它诊断的问题（**能力与难度的时间尺度纠缠导致调度器排序错乱**）是 RLVR 工程里的真问题，附录 B.2 与宿主 RLVR 调度器的集成说明它被设计成可插拔组件，**一旦开源就是可直接接入的**；而且其中的多时间尺度分离思路本身可以现在就用在我们的 RL 数据采样上。→ **存进长尾库，触发条件：出现公开实现 / 被其他 RLVR 调度论文引用 / 我们的调度器出现 pass-rate 排序错乱的实证。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group-based RLVR 只从采样结果有分歧的 prompt 里学习，**全对（all-pass）和全错（all-fail）的组相对优势为零，白烧生成预算还不推进策略**。自适应调度器的做法是把 rollout 引向有信息",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group-based RLVR 只从采样结果有分歧的 pro",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-25"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03625v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.03625v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=fade-factored-ability-difficulty-filtering-for-online-rlvr-scheduling",
+  "daily_path": "daily-detail.html?date=2026-11-04",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

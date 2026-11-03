@@ -1,0 +1,133 @@
+{
+  "id": "not-all-reasoning-generalizes-a-case-study-on-learning-generalizable-reasoning-strategies-in-rlvr",
+  "title": "Not All Reasoning Generalizes: A Case Study on Learning Generalizable Reasoning Strategies in RLVR",
+  "authors": [
+    "Ziqi Pang",
+    "Yu-Xiong Wang"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-02",
+  "url": "http://arxiv.org/abs/2611.03627v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.03627v1",
+  "code_url": "https://github.com/ziqipang/rl_meta_thinking",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-04",
+  "first_deep_dive_daily": "2026-11-04",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 3.8,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 2.4
+  },
+  "score": 78.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日第二价值，**是今天最有方法论迁移价值的一篇，因为它诊断的是 RLVR 训完之后推理策略在分布外会崩塌这个几乎所有 RLVR 团队都在踩…",
+  "one_line_essence": "今日第二价值，**是今天最有方法论迁移价值的一篇，因为它诊断的是 RLVR 训完之后推理策略在分布外会崩塌这个几乎所有 RLVR 团队都在踩、但很少有人正面测量的失败模式**。★ 独立执行一（GitHub API 核验，实测）：github.com/ziqipang/rl_meta_thinking **真实存在**（created 2026-01-14，pushed **2026-11-03**，即论文发布后第二天仍在更新，Apache-2.0），仓库结构实测完整且是**可训练的真实工程**而非玩具：含 verl/（protocol.py 31883 B、trainer/、models/、single_controller/、third_party/，即在 verl 训练框架上做的）、examples/grpo_trainer、examples/sft、projects/（atomic_functions.py 21267 B、generators/、pipelines/）、scripts/merge_sft_data.py、scripts/model_merger.py、setup.py、pyproject.toml。README 的 TL;DR 与论文摘要口径一致。★ 独立执行二（论文全文核对，抓到摘要里没有的实验设定细节）：README 中读到完整实验规格——24 个非双射函数（18 训练 / 6 held-out）+ 24 个双射函数用于 co-training，基座 Qwen2.5-7B-Instruct，GRPO + DAPO 式零方差组过滤，评分用 min(#correct unique, k)/max(k, #submitted) **通过实际执行 f 来验证**。★ 独立执行三（核心发现的准确表述，必须写准）：**这不是 RLVR 无效也不是 reward hacking**——论文的论证是：模型在分布内用正确的推导策略（derivation）拿到高精度，OOD 时**放弃推导、退化为暴力枚举**，准确率断崖式下跌（论文明确排除基座模型能力不足和 reward hacking 两种解释）。**修复手段是间接的**：与双射反演任务 co-training，双射任务实际并不更难、甚至离评测分布更远，却能把 OOD 上的推导使用率**大致翻倍**并显著恢复准确率。★ 独立执行四（可迁移的机制解释，这才是它真正的价值）：README 给出一个**每 token 信息量**视角——把推理看作收缩候选解空间，derivation 每 token 的信息比特数高于 enumeration；由此推出 **outcome-only 的 RLVR（actor-critic 与 GRPO）其实在隐式地为有效的推理策略记账**，所以那些能拉大比特率差距的任务（双射任务、更短 token 预算、更受约束的解空间）会偏好推导。→ **这直接改变了我们训 RL 时的数据配比思路：不该只堆难题，该主动混入能强化正确推理过程的任务，哪怕它们离最终评测更远。** ★ 证据边界：(1) **只有 2 位作者**（Ziqi Pang、Yu-Xiong Wang，UIUC），代码仓库 stars=0、forks=0，**目前没有任何外部关注或独立复现**；(2) 实验规模是**单模型单任务族**（Qwen2.5-7B + 一个自制的字符串函数反演框架），**结论是否能外推到代码、数学、工具调用类 RLVR 任务完全待验证**，论文自己也把范围限定在 case study；(3) 其分布外指标（更多解、更长 y、长度改变）是**人造的、可控的**，与真实世界的分布外不等价；(4) GitHub 仓库虽小但**结构完整且 Apache-2.0**，代码确实在，可以直接跑——但今天的机器没有 GPU，**没有实测跑通任何训练**。★ 为什么给趋势价值而不是即时价值：机制普适性目前只有单任务族证据，但它指向的是 RLVR 数据工程这个我们迟早要碰的问题，且代码可跑、有 Apache-2.0，值得纳入 7–30 天观察窗口。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第二价值，**是今天最有方法论迁移价值的一篇，因为它诊断的是 RLVR 训完之后推理策略在分布外会崩塌这个几乎所有 RLVR 团队都在踩、但很少有人正面测量的失败模式**。★ 独立执行一（GitHub API 核验，实测）：github.com/ziqipang/rl_meta_thinking **真实存在**（created 2026-01-14，p",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第二价值，**是今天最有方法论迁移价值的一篇，因为它诊断的是 RLVR 训完之后推理策略在分布外会崩塌这个几乎所有 RLVR 团队都在踩、但很少有人正面测量的失败模式**。★ 独立执行一（",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03627v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.03627v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=not-all-reasoning-generalizes-a-case-study-on-learning-generalizable-reasoning-strategies-in-rlvr",
+  "daily_path": "daily-detail.html?date=2026-11-04",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

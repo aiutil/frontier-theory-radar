@@ -1,0 +1,644 @@
+{
+  "date": "2026-11-04",
+  "total": 10,
+  "generated_at": "2026-11-04T04:32:04.198819",
+  "papers": [
+    {
+      "title": "WebHarbor: Docking Real Websites for Evolving GUI Agent Environments",
+      "authors": [
+        "Zhaoyang Wang",
+        "Qianhui Wu",
+        "Boyu Gou",
+        "Demi Wang",
+        "Jiacheng Zhang"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03634v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03634v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/aiming-lab/WebHarbor",
+      "benchmark_url": "https://huggingface.co/datasets/ChilleD/WebHarbor",
+      "project_url": "https://aiming-lab.github.io/WebHarbor/",
+      "abstract": "GUI web agents require realistic and interactive environments that remain stable during both evaluation and training. Live website evaluation suffers from changing content, access restrictions, and limited coverage of authenticated workflows, while existing synthetic environments for training often lack functional depth and visual fidelity. We propose WebHarbor, a suite of 153 executable and dockerized website environments that faithfully reconstruct the visual interfaces, content, and functiona",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 90.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03634v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03634v1"
+        }
+      ],
+      "llm_reason": "今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重 + 已发布数据集 + Docker 镜像。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/aiming-lab/WebHarbor **真实存在**（created 2026-05-02，pushed 2026-11-03，stars=42，forks=42，homepage=https://aiming-lab.github.io/WebHarbor/，size=210254 KB）。仓库顶层结构实测完整：Dockerfile(31415 B)、requirements.lock、control_server.py(17541 B)、site_runner.py、websyn_start.sh、harbor/、sites/、agent_demo/、AGENTS.md(15297 B)、CONTRIBUTING.md(17191 B)、assets-manifest.json。★ 独立执行二（**数字逐个核对，不是转述摘要**）：用 GitHub API 列出 sites/ 目录，实测**恰好 153 个站点子目录**，与论文/README 声称的 153 个环境完全一致——这是今日唯一被独立复算的工件数量（抽查可见 amazon、airbnb、bbc_news、github、imdb、nvidia、google_maps 等真实站点镜像）。★ 独立执行三（数据集与权重）：hf-mirror.com 镜像 API 确认 huggingface.co/datasets/ChilleD/WebHarbor **存在**（lastModified 2026-11-03，tags 含 webharbor / web-agent / gui-agent / computer-use-agents / environments / reinforcement-learning / arxiv:2611.03634）；模型 huggingface.co/ChilleD/WebHarbor-4B **存在**（lastModified 2026-11-03，downloads=39，base_model=OpenWebRL/OpenWebRL-4B-SFT，backend=sglang，format=safetensors）。★ 独立执行四（README 全文读取，抓到了论文摘要里没有的关键细节）：README 明确写出 Trained solely in WebHarbor's synthetic environments and tasks, WebHarbor-4B reaches a **75.8** average on WebVoyager and Online-Mind2Web, **the best open-source GUI web agent at the 4B scale**；项目页 Results 段进一步给出**对比基线**：同为 4B、同一 SFT checkpoint、同一多模态 GRPO 目标的 OpenWebRL-4B 是基线，WebHarbor-4B **live-web 平均分 +5.2（75.8 vs 70.6）**，**比共同 SFT checkpoint 高 +22.2**，WebArena 上 28.8（4B 模型最佳），且 **6/6 成对排名保持、Spearman 秩相关 1.00、Pearson 分相关 0.80**（即代理环境分数排序与真实站点一致，但绝对分数高 4.4–18.8 分）。→ **这是今天工程上最可落地的一条判断：我们可以在 WebHarbor 里跑自己的 agent 评测，而不必被真实站点的内容漂移、登录墙和反爬干扰；但必须知道 WebHarbor 的绝对分比真实站点高 4.4–18.8 分，不能拿它当真实成绩汇报。** ★ 独立执行五（**合成环境的保真度是被实测过的，不是口号**）：项目页写明 6/6 排序保留、1.00 Spearman；并且 WebArena no-auto-login 变体上 WebHarbor-4B 只掉 -2.7 分，而 OpenWebRL 系列掉 -3.6 / -4.9。任务数 3,518（README 与项目页一致），其中测试集 306 个 verified tasks。★ 独立执行六（构建方式本身值得学）：README 写明用 **coding agent（Claude Code / CodeX）把真实站点镜像成本地 Docker**，每个站点占一个端口（40000+i），控制面在 :8101 用 token 保护并可把任一站点重置到种子状态，**153 个环境打包进一个约 20 GB 的镜像**。→ 这是一个用 agent 造评测环境的自我强化闭环，且它的贡献形式是**环境而非模型**，这在当前 agent 生态里稀缺。★ 证据边界（必须写明，不要拔高）：(1) 153 个环境全部镜像进**一个** 20 GB 镜像，**这意味着拉取成本不低**，本地可复现不等于轻量；(2) **hub.docker.com 今日全程超时**（两个 endpoint 均 timeout），所以 **20 GB 体积、镜像 tag 数、Dockerfile 能否真正 build 今日均未独立核验**，README 的 20 GB 与 wildawm/webharbor 镜像名来自作者自述；(3) WebHarbor **没有 LICENSE 文件**（GitHub API /license 返回 404，README 无 License 段），**许可状态待核验**——这直接影响我们能否在内部项目里复用其环境代码；(4) **论文无 arXiv HTML 全文**（arxiv.org/html/2611.03634 与 /v1 均返回 404），上述所有实验数字均来自 README 与项目页（作者自述），**没有第三方独立复现**；(5) 论文摘要说 31 pages，但正文表格不可读；(6) 论文作者列表长达 51 人（含多位知名研究者），**单篇归属判断的边际价值有限，真正的资产是环境集与 checkpoint**。★ 与今日被截断的 2611.03116《From Local Skills to Long-Horizon Web Tasks (SCOPE)》对照：两者同属 web agent 训练方向，SCOPE 讲的是渐进式技能探索的**训练方法**，WebHarbor 讲的是**评测与训练环境本身**——环境是更硬的资产，且 SCOPE 未找到公开仓库，**WebHarbor 的证据等级明确更高**。",
+      "id": "webharbor-docking-real-websites-for-evolving-gui-agent-environments",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "coding-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 7.65,
+        "engineering_testability": 6.05,
+        "trend_signal": 4.85,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Not All Reasoning Generalizes: A Case Study on Learning Generalizable Reasoning Strategies in RLVR",
+      "authors": [
+        "Ziqi Pang",
+        "Yu-Xiong Wang"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03627v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03627v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/ziqipang/rl_meta_thinking",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) can enable generalizable improvement for large language model (LLM) reasoning. This paper studies how to incentivize such generalization via reasoning strategies. We study this question with a controllable equation-solving framework: finding multiple inputs x for equations f(x)=y, where f is a non-bijective string function. This setting makes reasoning strategies observable while supporting a clear definition of easy-to-hard out-of-distributi",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 78.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03627v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03627v1"
+        }
+      ],
+      "llm_reason": "今日第二价值，**是今天最有方法论迁移价值的一篇，因为它诊断的是 RLVR 训完之后推理策略在分布外会崩塌这个几乎所有 RLVR 团队都在踩、但很少有人正面测量的失败模式**。★ 独立执行一（GitHub API 核验，实测）：github.com/ziqipang/rl_meta_thinking **真实存在**（created 2026-01-14，pushed **2026-11-03**，即论文发布后第二天仍在更新，Apache-2.0），仓库结构实测完整且是**可训练的真实工程**而非玩具：含 verl/（protocol.py 31883 B、trainer/、models/、single_controller/、third_party/，即在 verl 训练框架上做的）、examples/grpo_trainer、examples/sft、projects/（atomic_functions.py 21267 B、generators/、pipelines/）、scripts/merge_sft_data.py、scripts/model_merger.py、setup.py、pyproject.toml。README 的 TL;DR 与论文摘要口径一致。★ 独立执行二（论文全文核对，抓到摘要里没有的实验设定细节）：README 中读到完整实验规格——24 个非双射函数（18 训练 / 6 held-out）+ 24 个双射函数用于 co-training，基座 Qwen2.5-7B-Instruct，GRPO + DAPO 式零方差组过滤，评分用 min(#correct unique, k)/max(k, #submitted) **通过实际执行 f 来验证**。★ 独立执行三（核心发现的准确表述，必须写准）：**这不是 RLVR 无效也不是 reward hacking**——论文的论证是：模型在分布内用正确的推导策略（derivation）拿到高精度，OOD 时**放弃推导、退化为暴力枚举**，准确率断崖式下跌（论文明确排除基座模型能力不足和 reward hacking 两种解释）。**修复手段是间接的**：与双射反演任务 co-training，双射任务实际并不更难、甚至离评测分布更远，却能把 OOD 上的推导使用率**大致翻倍**并显著恢复准确率。★ 独立执行四（可迁移的机制解释，这才是它真正的价值）：README 给出一个**每 token 信息量**视角——把推理看作收缩候选解空间，derivation 每 token 的信息比特数高于 enumeration；由此推出 **outcome-only 的 RLVR（actor-critic 与 GRPO）其实在隐式地为有效的推理策略记账**，所以那些能拉大比特率差距的任务（双射任务、更短 token 预算、更受约束的解空间）会偏好推导。→ **这直接改变了我们训 RL 时的数据配比思路：不该只堆难题，该主动混入能强化正确推理过程的任务，哪怕它们离最终评测更远。** ★ 证据边界：(1) **只有 2 位作者**（Ziqi Pang、Yu-Xiong Wang，UIUC），代码仓库 stars=0、forks=0，**目前没有任何外部关注或独立复现**；(2) 实验规模是**单模型单任务族**（Qwen2.5-7B + 一个自制的字符串函数反演框架），**结论是否能外推到代码、数学、工具调用类 RLVR 任务完全待验证**，论文自己也把范围限定在 case study；(3) 其分布外指标（更多解、更长 y、长度改变）是**人造的、可控的**，与真实世界的分布外不等价；(4) GitHub 仓库虽小但**结构完整且 Apache-2.0**，代码确实在，可以直接跑——但今天的机器没有 GPU，**没有实测跑通任何训练**。★ 为什么给趋势价值而不是即时价值：机制普适性目前只有单任务族证据，但它指向的是 RLVR 数据工程这个我们迟早要碰的问题，且代码可跑、有 Apache-2.0，值得纳入 7–30 天观察窗口。",
+      "id": "not-all-reasoning-generalizes-a-case-study-on-learning-generalizable-reasoning-strategies-in-rlvr",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.4,
+        "actionability": 6.1,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "D&A: Decoupling Description and Assessment Enables VLMs as Zero-Shot Robotic Reward Models",
+      "authors": [
+        "Marius Memmel",
+        "Shawn Yin",
+        "Urvi Rutia",
+        "Angad Wadhwa",
+        "Eldon Li"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03622v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03622v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/memmelma/dna",
+      "benchmark_url": "",
+      "project_url": "https://weirdlabuw.github.io/dna",
+      "abstract": "Vision-Language Models (VLMs) hold promise for zero-shot video task-progress estimation in robot learning, yet existing frameworks frequently suffer from confirmation bias, hallucinating progress in failed executions due to implicit success assumptions or relative temporal ranking designs. Naive prompting of frontier models collapses into a binary success detector that fails to capture nuanced, non-linear progress and failures. While post-training approaches can mitigate this through explicit tr",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "keywords": [
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 76.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03622v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03622v1"
+        }
+      ],
+      "llm_reason": "今日第三价值，**是唯一一篇今天就能在我们的系统里直接用起来、不需要 GPU 也不需要新数据的论文——它把 VLM 当成零训练的进度打分器**。★ 独立执行一（GitHub API 核验，实测）：github.com/memmelma/dna **真实存在**（created 2025-11-26，pushed **2026-11-03**，MIT，stars=5），目录结构实测完整：dna/classes/（main.py 14188 B、experimental.py 15406 B）、dna/functions/（description.py 11453 B、progress.py 20743 B、video_to_progress.py、viz.py、terminal_log.py）、dna/requests/（api.py、claude.py、gemini.py、gpt.py、meta.py、openrouter.py、qwen_hf.py 12839 B、_pool.py、_media.py）、example.py、uv.lock（570 KB，说明依赖已锁定）。★ 独立执行二（**今日最有价值的一次独立执行，抓出了一个真实的踩坑点**）：按惯例执行 pip download dna --no-deps，**下载成功**（dna-0.0.1-py3-none-any.whl）——但解包后 METADATA 显示这是**一个完全无关的 PyPI 模板包**（Author: HaveTwoBrush，Summary: project description，正文是中文的「Python Package Template」教程，只含 dna/shell/usage.py 与 package_name/ 目录）。继续查证 D&A 自己的 pyproject.toml，确认**项目名是 reward-vlm（version 0.1.0，build-backend=hatchling，packages 为 dna）**；但 pip index versions reward-vlm 与 pip download reward-vlm 均返回 **No matching distribution found**，PyPI API /pypi/reward-vlm/json 返回 **404** → **D&A 尚未发布到 PyPI，只能从 GitHub 仓库 pip install -e . 安装**。→ **这条必须写进日报：如果团队里有人按名字直觉执行 pip install dna，会静默装到一个无关的模板包上，而且 pip 不会报错。** ★ 独立执行三（README 全文，确认了它到底能做什么）：核心 API 是 DNA(model=...).compute_progress(video, task)，输入 (N,H,W,3) uint8 视频 + 任务描述，输出 (N,) 的 [0,1] 逐帧进度（0=未开始，1=完成）；提供同步与 compute_progress_async 异步两种形态，适配已有 async pipeline。支持的后端实测列出：Google Gemini（gemini-3-flash-preview）、OpenAI GPT（gpt-4o / o3）、Anthropic Claude（claude-sonnet-4-20250514）、OpenRouter（任意模型，前缀路由）、Meta Muse Spark、Qwen-VL 本地推理。**Gemini 与 Muse 接受原生视频，其余后端把视频拆成逐帧图像**（这决定了成本与信息损失的差别）。thinking 参数可调推理预算（LOW/MEDIUM/HIGH/OFF）。★ 独立执行四（方法本身的价值在解耦二字）：D&A = **Describe & Assess**，先让 VLM **在不看到任务目标的前提下客观描述场景发生了什么**，再用一个**显式的、任务无关的成功判据（rubric）**去评估进度。论文诊断的问题很实在：现有 VLM 进度估计因隐含成功假设和相对时间排序设计而产生**确认偏置**——在失败执行里幻觉出进度；朴素 prompt 会退化成二元成功检测器，无法刻画非线性进展与失败。**先描述后评估，把绝对成功标准锚定在外部全局判据上，而不是视频自身的时间轴上**，这是能迁移到我们任何让 LLM 判断一件事做得怎么样的场景里的通用模式（比如审代码、评作业、看 agent 轨迹）。★ 证据边界（必须写明）：(1) **README 明确标注 Qwen-VL 本地推理 is in development 且 not yet fully validated — use the hosted API backends for production**，所以零 GPU 成本这条路今天还不成立，实际调用需要 Gemini/GPT/Claude/OpenRouter 的 API key，**成本未核算**；(2) 论文声称的 matching or surpassing post-trained reward models 是**作者自述**，今日**未独立复现**；(3) **D&A-Bench 数据集（huggingface.co/datasets/memmelma/dnabench）今日无法核验**：hf-mirror 镜像 API 对该 id 返回 **404**，huggingface.co 直连超时；但用 api/datasets?author=memmelma 列该作者 41 个数据集，**其中不含 dnabench**，而作者同一批的 hamster_eval / libero_* / oxe_* 等均正常返回 200 → 判断是**数据集尚未对外发布或已改名**，标记**待核验**；(4) 论文无 arXiv HTML 全文之外的可读副本，所有结论来自摘要 + README；(5) stars=5、无 release、无 PyPI 包，**工程成熟度是能跑而非能依赖**。★ 为什么给即时价值：它不依赖任何新硬件、新数据或训练，方法模式可直接搬到我们的 agent 轨迹评估与 rubric 设计上，且代码 MIT 许可、目录结构清晰。",
+      "id": "d-a-decoupling-description-and-assessment-enables-vlms-as-zero-shot-robotic-reward-models",
+      "value_type": "immediate",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 6.2,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Pretraining Data Scale Reverses the Muon-AdamW Fine-Tuning Gap",
+      "authors": [
+        "Catherine Li",
+        "Jingchu Gai",
+        "Andrej Risteski",
+        "Jacob Mitchell Springer",
+        "Aditi Raghunathan"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03633v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03633v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Muon has recently emerged as a promising optimizer for pretraining large language models, offering a speedup over AdamW in minimizing pretraining loss. However, it remains unclear whether Muon's advantage persists after fine-tuning. In this paper, we study the downstream behavior of Muon and AdamW and uncover a surprising trend: beyond a sufficiently large pretraining data budget, AdamW outperforms Muon after fine-tuning. Moreover, as model size increases, AdamW overtakes Muon at progressively s",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "memory"
+      ],
+      "score": 71.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03633v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03633v1"
+        }
+      ],
+      "llm_reason": "今日第四价值，**是一篇会直接改变我们的预训练/微调用哪个优化器这条决策的论文，而且它的结论是反直觉的方向——对绝大多数做微调的团队，实际影响面比它看起来更大**。★ 核心发现（论文摘要口径，逐条转述不外推）：Muon 作为预训练优化器已在最小化预训练损失上展现速度优势，但**微调之后优势会反转**：**超过某个足够大的预训练数据预算后，AdamW 在微调上反超 Muon**；而且**模型越大，AdamW 反超所需的 token-参数比阈值越小**。→ **换成工程语言：在小模型/小数据预算下换 Muon 是赚的；一旦模型和数据都上规模，Muon 的预训练速度优势会在微调环节被吐回来。** ★ 机制解释（这是论文真正的贡献，因为它给出的是可迁移的量而不是经验曲线）：把微调看作对输出的**微扰**，定义 **margin-to-spread ratio**（正确 logit 相对错误 logit 高出多少，相对于错误 logit 散布得多开）——在语言模型上，**小数据预算时 Muon 的 margin-to-spread 更大，大数据预算时 AdamW 更大**，正好镜像微调结果；在**线性联想记忆**中作者**证明了**梯度下降在一次更新后 margin-to-spread 相对 Muon 随数据预算增长而占优，且模拟显示该趋势在长时间训练后仍持续。→ **这条机制量比换不换优化器更值得存下来**：它给出了一个可测量、可迁移的中间量，未来判断任何优化器组合时先看它。★ 独立执行（论文全文核对，抓到摘要没有的实验结构）：arXiv HTML 全文确认附录结构极其完整——A.1 优化器定义（AdamW / Muon）、A.2 学习率调度（WSD / cosine）、A.3 token-参数比定义、**B.3 Gaussian 扰动（作为微扰的替代度量）、B.4 评估 Losses / Frontiers / 微调差距与交叉点 / 退化**、C.1 预训练模型与数据（含最低预训练损失设定、Muon 的 AdamW 更新参数的学习率、最佳前沿设定）、C.2 微调、**C.3 微调正则化：Replay、EWC**、D.3 换微调优化器、D.4 微调正则化、E.1 margin-to-spread 在各数据预算下的曲线、F.1 两次单步迭代的证明。→ **论文在微调正则化（Replay / EWC）上做了专门实验，这是摘要完全没提但对我们最实用的一节**：它意味着 Muon vs AdamW 的差距可能有一部分是**微调遗忘**而非单纯优化能力差异。★ 证据边界（重要，不要过度相信）：(1) **全文未发现任何代码或实验仓库发布**（对 our code / code will be / available at / we release 的检索全部零命中，唯一命中的 github 链接是参考文献里的 stanford_alpaca）；**今日无可执行实现**；(2) 作者阵容强（Andrej Risteski、Jacob Mitchell Springer、Aditi Raghunathan 等），**但这是研究判断不是已验证事实**；(3) 论文的因果解释建立在线性联想记忆这一**简化模型**上，**能否外推到真实的 Transformer 规模仍待验证**（论文自己在 B 节做了 Gaussian 扰动与真实模型的实证对照，但今日未核对其数值）；(4) 全文检索到的 memory 出现在 **EWC（Elastic Weight Consolidation）** 这一词里，与论文主题无关——**这恰好暴露了 fetch_papers.py 关键词匹配的噪声问题**（见 note）。★ 为什么给趋势价值：如果结论成立，它影响的是所有做大模型微调团队的基础设施选型；但没有代码、需要多卡复现、且外推性未定，因此**纳入趋势雷达做 7–30 天观察，而不是今天就改我们的优化器配置**。",
+      "id": "pretraining-data-scale-reverses-the-muon-adamw-fine-tuning-gap",
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "FADE: Factored Ability--Difficulty Filtering for Online RLVR Scheduling",
+      "authors": [
+        "Tomas Duncun",
+        "Jonah Ellison",
+        "Mateo Ruiz",
+        "Hanae Fujita",
+        "Ingrid Solberg"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03625v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03625v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Group-based reinforcement learning with verifiable rewards (RLVR) learns only from prompts whose sampled completions disagree: all-pass and all-fail groups produce zero relative advantage and burn generation budget without moving the policy. Adaptive schedulers try to steer rollouts toward informative prompts, yet they rely on per-prompt pass-rate trackers that entangle two quantities evolving at very different speeds---the policy's shifting competence across reasoning skills and each prompt's i",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "memory",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03625v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03625v1"
+        }
+      ],
+      "llm_reason": "今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group-based RLVR 只从采样结果有分歧的 prompt 里学习，**全对（all-pass）和全错（all-fail）的组相对优势为零，白烧生成预算还不推进策略**。自适应调度器的做法是把 rollout 引向有信息量的 prompt，但这些调度器依赖**每 prompt 的 pass-rate 追踪器**，而 pass-rate 把**两个演化速度完全不同的量纠缠在一起**：(1) 策略在各推理技能上的**能力在漂移**（快），(2) 每个 prompt 的**内在难度**（慢）。用单一指数平均或 Beta 计数器同时跟踪两者时，**短记忆会打乱 prompt 的相对排序，长记忆则报告陈旧的通过率**。★ 方法（FADE = Factored Ability–Difficulty Estimation）：把每个 prompt 的成功 logit 表示为**白化后的 K 维技能载荷与快速漂移的策略能力向量的内积，减去一个缓慢收缩的标量 item 截距**——即用**双线性状态空间滤波**把能力与难度在两个时间尺度上分离。用 **Pólya–Gamma 增广**，每个 minibatch 的二元 rollout 结果通过 **rank-K Woodbury 步**闭式更新 K 维能力后验，**能力变化会立刻传导到所有共享这些技能的未观测 prompt，同时保持 item 截距稳定**；再由后验均值与方差导出**抽到非退化 rollout 组的概率的闭式 utility**。实测口径：**5 个推理 benchmark、2 个基座模型、4 种调度范式，在相同 rollout 预算下，FADE 持续提升下游准确率与校准，每步额外开销 < 0.6 ms**。★ 独立执行（论文全文核对，确认了它到底有多完整）：arXiv HTML 全文可读，结构包含 §4 理论分析（含 Minimax 时间尺度分离证明）、附录 A 数学推导与证明（**A.1 共轭 Pólya–Gamma 滤波步、A.2 零样本方差收缩、A.3 Minimax 时间尺度分离、A.4 方差感知组 utility 的推导**）、附录 B 实现与集成细节（**B.1 技能基构造与数值稳定性、B.2 与宿主 RLVR 调度器的集成**）、附录 C 附加实验（**C.1 与 VIP rollout 分配器的集成与多种子稳定性、C.2 跨模型规模 1B→7B 扩展、C.3 对技能维度 K、保留系数、编码器选择的敏感性**）、附录 D 扩展讨论（**为什么双线性分解优于图聚类与消息传递、何时 FADE 退化为更简单的估计器**）。→ **这份附录结构本身就是这方法被认真做过的证据**，也说明它不是拍脑袋的滤波器。★ 证据边界（今天的实际情况，必须诚实）：(1) **全文检索 code is available / code will be / available at 零命中，GitHub 上按 FADE ability difficulty RLVR 检索 total_count=0**；作者账户 duncun（public_repos=0）、ingridsolberg（public_repos=1，均非本仓库）**都没有对应的公开实现** → **今日无法执行、无法复现、无法核对任何一个数字**；(2) 论文**没有给出开源计划声明**（连 will release 这类措辞都没有），**代码状态标记为待核验/暂无**；(3) 5 benchmark / 2 模型 / 4 调度器的实验规模在论文里属中规中矩，**且全部是论文自述**；(4) 作者名单（Tomas Duncun、Jonah Ellison、Mateo Ruiz、Hanae Fujita、Ingrid Solberg）在 GitHub 上**均无关联公开仓库**，无法交叉验证。★ 为什么给长尾价值而不是忽略：它诊断的问题（**能力与难度的时间尺度纠缠导致调度器排序错乱**）是 RLVR 工程里的真问题，附录 B.2 与宿主 RLVR 调度器的集成说明它被设计成可插拔组件，**一旦开源就是可直接接入的**；而且其中的多时间尺度分离思路本身可以现在就用在我们的 RL 数据采样上。→ **存进长尾库，触发条件：出现公开实现 / 被其他 RLVR 调度论文引用 / 我们的调度器出现 pass-rate 排序错乱的实证。**",
+      "id": "fade-factored-ability-difficulty-filtering-for-online-rlvr-scheduling",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "From Natural Language to Exact Cover: A Neuro-Symbolic Approach to Zebra Puzzles",
+      "authors": [
+        "Paulius Skaisgiris",
+        "Thomas Pammer",
+        "Veronika Semmelrock",
+        "Mykyta Ielanskyi",
+        "Maximilian Heisinger"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03641v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03641v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://codeberg.org/bilai-ss25-booleguru-llm/zebrallm",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Chain-of-Thought (CoT) generation has substantially improved the performance of Large Language Models (LLMs) on complex reasoning tasks, including code generation, data analysis, and exam-style question answering. Despite these advances, purely neural LLMs continue to struggle with elementary logical reasoning problems and lack the determinism, soundness, and reliability characteristic of symbolic reasoning systems. Conversely, classical symbolic methods such as SAT solving and exact cover guara",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03641v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03641v1"
+        }
+      ],
+      "llm_reason": "今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 LLM 做初等逻辑推理时**缺少符号推理系统那种确定性、可靠性与完备性**；而 SAT 求解、exact cover 这类经典符号方法**保证正确性与完备性，却要求问题被写成高度专门的正式编码**，因此难以直接用于自然语言输入。本文的神经-符号框架把两者接起来：**LLM 先做语义解析**，把实体与约束翻译成构造 exact cover 实例的**结构化 tool call**，**符号求解器给出解并回传反馈**，以此**迭代修正非法、欠约束或过约束的编码**，并利用斑马谜题的**解唯一性**。实测口径：跨多个参数规模、多种后训练范式、多个 LLM 家族，混合方案**持续优于强纯神经基线（含 CoT prompting）以及近期神经-符号方法**。★ 独立执行一（**代码托管在 Codeberg 而不是 GitHub——这是今天少见的形态，必须点出来**）：arXiv HTML 全文脚注确认 Code is available at https://codeberg.org/bilai-ss25-booleguru-llm/zebrallm；Codeberg API 实测该仓库**真实存在**（描述为 Solving Zebra Logic Puzzles with LLMs endowed with an exact cover solver），目录内容实测完整且是**真能跑的评测工程**：eval_zebra_logic.py(32196 B)、solve_with_tool_calls.py(18256 B)、clients/、puzzle_classes/、tool_encodings/、utils/、environment.yaml、四个 eval 脚本（eval_miniexact_4k_output.sh / eval_miniexact_extreme_30k_output.sh / eval_miniexact_extreme_feedback_30k_output.sh / eval_miniexact_feedback_4k_output.sh）。**注意：这四个脚本名说明它的评测横跨 4k / 30k token 预算 × 有无 feedback 两档**——即它自己就在研究反馈回路对神经-符号框架的作用。★ 独立执行二（依赖的求解器）：仓库同时依赖 github.com/miniexact/miniexact（**实测存在**，exact cover 求解器，homepage=miniexact.github.io，2023-12 创建、2026-02 仍在推送，stars=7）——**这是一个现成的、可独立使用的 exact cover 求解器**，即使不做神经-符号，也可以拿来当 CSP 后端。★ 独立执行三（作者线索）：论文页引用 huggingface.co/blog/yuchenlin/zebra-logic，**huggingface.co 今日直连超时，该博客正文今日未读**（hf-mirror 镜像上也没有对应条目）→ 标记**待核验**。★ 证据边界：(1) 载体是**斑马谜题**——这是一个有人工构造、有唯一解保证的玩具式 CSP，**与代码、文档、需求等真实工程约束求解之间隔着很长一段路**，论文的持续优于 CoT 结论**不能直接搬到我们的任务上**；(2) **Codeberg 仓库 stars=0/forks=0，GitHub 上完全搜不到该仓库**（不在 GitHub 生态内，且 Codeberg 的可见度远低），**社区验证为零**；(3) 摘要**未给出具体分数或提升幅度**，只说 consistently outperforms——**没有可核对的量化结论**；(4) 依赖的 miniexact 是**外部第三方求解器**，混合方案的实际增益有多少来自求解器本身、多少来自 LLM 的解析，论文未做消融说明（今日未读附录，无法确认）。★ 为什么给长尾价值：**方法模式值得存——LLM 只做语义解析、确定性求解器负责正确性、解算反馈反过来修正 LLM 的编码**，这个神经负责理解、符号负责保证、解算反馈负责收敛的三段式，正是我们做需求约束、权限校验、配置合法性检查时想要的形态；而**斑马谜题作为载体**，恰恰说明它当前离工程还远，所以存而不投。",
+      "id": "from-natural-language-to-exact-cover-a-neuro-symbolic-approach-to-zebra-puzzles",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Pixel-UMI: Learning Environment-Aware Whole-Body Manipulation from Sensorized Human Demonstrations",
+      "authors": [
+        "Jason Jingzhou Liu",
+        "Tony Tao",
+        "Deepak Pathak",
+        "Ruslan Salakhutdinov"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03647v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03647v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://pixel-robot.com/pixel-umi",
+      "abstract": "Sensorized human demonstrations offer scalable data for mobile manipulation, but embodiment differences complicate policy learning. We present Pixel-UMI, a pipeline for learning environment-aware whole-body policies from human data. We first introduce Environment-Aware Retargeting (EAR), which combines reconstructed scene geometry with demonstrated head and gripper trajectories to determine robot posture and generate collision-aware joint and base targets. Delay-calibrated action assignment conv",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03647v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03647v1"
+        }
+      ],
+      "llm_reason": "今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投**。★ 方法三段式（论文摘要口径）：(1) **Environment-Aware Retargeting (EAR)**——把**重建的场景几何**与**演示中的头部和夹爪轨迹**结合起来，**决定机器人姿态**并生成**避碰的关节与基座目标**；(2) **Delay-calibrated action assignment**——把轨迹转成动作；(3) **Retargeting-Error-Aware Masking (REAM)**——运动学差异会留下**残余位姿误差**，在人类演示与机器人观测之间造成**视角错配**，REAM 在训练时利用这些误差**降低模型对错配视角的依赖**。此外因为估计的动作无法完全刻画**接触丰富的交互**，他们**用 DAgger 收集 on-policy 的人类纠正**。实测口径：5 类挑战任务（铰接物体操作、可变形物体处理、受限空间够取、全身避碰、接触丰富的双臂协同），**平均任务进度 87.0%**。★ 独立执行一（论文 HTML 全文核对）：确认无代码声明，github.com/ 的命中**全部是参考文献**（kevinzakka/mink 是 MuJoCo 逆运动学库、pink-kinematics/pink 是同类库），**不是本文实现**。★ 独立执行二（项目页实测）：https://pixel-robot.com/pixel-umi **可访问**，实测标题、作者（Jason Jingzhou Liu*、Tony Tao*、Deepak Pathak†、Ruslan Salakhutdinov†，Carnegie Mellon University，*共同一作 †共同指导）以及页面结构（Abstract / System Design / Autonomous Tasks / More Experiments / BibTeX）。→ **关键事实：页面上的链接是 arXiv、PDF、Twitter、Open Sourced、Soon!——Open Sourced 后面紧跟 Soon!，即官方明确标注代码尚未开源**，且页面上**没有任何 GitHub 链接**（实测 regex 扫描 github 链接集合为空）。★ 证据边界：(1) **代码明确即将开源但今日未开源**，因此**无任何可执行验证**，87.0% 完全是作者自述；(2) **无 benchmark 收录、无第三方复现**；(3) 项目页只有视频与 BibTeX，**无数据、无模型权重说明**；(4) 需要真实机器人 + 传感器化人类演示数据，**复现门槛在硬件而非软件**。★ 为什么给长尾价值：**它提出了一个我们迟早会遇到的工程问题——演示数据的形态与执行体的形态不一致**——并给出三个可迁移的机制（场景几何决定姿态、误差感知的掩码训练、用 on-policy 纠正补齐接触交互）。这套方法对任何用 A 的数据训 B 的策略的场景都有参考价值（人→机器人、视频→动作、文本→Agent 轨迹）。**触发条件：官方开源 / 被后续硬件论文大量引用 / 我们真的开始做人形或移动操作。**",
+      "id": "pixel-umi-learning-environment-aware-whole-body-manipulation-from-sensorized-human-demonstrations",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Pixel: A Co-Designed Full-Stack Robot System for Learning General-Purpose Mobile Manipulation",
+      "authors": [
+        "Tony Tao",
+        "Jason Jingzhou Liu",
+        "Ruslan Salakhutdinov",
+        "Deepak Pathak"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03648v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03648v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://pixel-robot.com/pixel",
+      "abstract": "General-purpose mobile manipulation requires a combination of capable robot hardware, scalable demonstration collection, expressive whole-body control, and effective policy learning. Yet these components are often developed independently, creating mismatches that limit the capabilities of the complete system. We present Pixel, a co-designed full-stack system for learning general-purpose mobile manipulation. Pixel combines a low-cost wheeled humanoid with human-aligned kinematics and compliant gr",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "keywords": [],
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03648v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03648v1"
+        }
+      ],
+      "llm_reason": "今日第八价值，**是今日第 7 篇（Pixel-UMI）的姊妹篇（同组作者：Tony Tao、Jason Jingzhou Liu、Ruslan Salakhutdinov、Deepak Pathak，同一 arXiv 批次 2611.03648 与 2611.03647 相邻），它提供的是系统观而非方法论，因此单独的信息增量小于 Pixel-UMI**。★ 核心主张（论文摘要口径）：通用移动操作需要硬件、可扩展演示采集、表达力足够的全身控制与有效的策略学习共同支撑，**但这些组件往往被独立开发，从而产生不匹配，限制整个系统的能力**。Pixel 是一个**协同设计的全栈系统**：低成本轮式人形 + 与人对齐的运动学 + 柔顺夹爪；多种遥操作与**免机器人**的人类数据采集接口；统一的全身控制器；**跨人类与机器人演示的通用策略学习流程**；再由**分层学习栈**实现语言条件化的视觉运动控制与长时程任务执行。实测口径：在硬件、数据采集、策略学习三个层面分别评测，并展示需要灵巧性、主动感知、导航与全身协调的移动操作行为。★ 独立执行一（论文 HTML 全文核对）：无代码声明，github.com/ 命中**全部是参考文献**（SIGRobotics-UIUC/LeKiwi 低成本移动操作臂、XLeRobot 等），**不是本文实现**。★ 独立执行二（项目页实测）：https://pixel-robot.com/pixel **可访问**，作者与机构同 Pixel-UMI，链接同样标注 **Open Sourced、Soon!**，同样**无任何 GitHub 链接**（实测扫描为空）。★ 证据边界：(1) **代码明确未开源**，无任何可执行工件；(2) 论文**没有给出统一的任务成功率数字**（不像 Pixel-UMI 有 87.0% 平均任务进度），只说 demonstrate behaviors——**没有可核对的量化结论**；(3) 这是**系统论文**，其主张（协同设计优于各自独立优化）本质上是**不可证伪的架构主张**，没有对照实验能证明如果分开做就会更差；(4) 与 Pixel-UMI 同组同批次，**合并信息增量有限**。★ 为什么给长尾价值：**硬件、数据、控制、学习要协同设计**这个判断本身是对的、也值得记——我们的 agent 平台同样存在模型、工具、上下文、评测各做各的导致不匹配的问题。但**今天没有可执行的工件，也没有量化结论**，所以存而不投。**触发条件：开源 / 给出可复现的任务成功率表 / 我们开始规划具身或硬件相关方向。**",
+      "id": "pixel-a-co-designed-full-stack-robot-system-for-learning-general-purpose-mobile-manipulation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 5.0,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Supporting Viewpoint Coordination for Compliance by Design with an Artifact Model for Regulatory Requirements Engineering",
+      "authors": [
+        "Oleksandr Kosenkov",
+        "Davide Fucci",
+        "Michael Unterkalmsteiner",
+        "Daniel Mendez"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03631v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03631v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Regulatory compliance has become an essential software requirement Legal demands for compliance by design CbD call for requirements engineering RE approaches that derive requirements and support compliance implementation in subsequent software engineering SE processes such as software design The complexity of the legal knowledge demanded in regulatory RE makes it important to involve legal experts and ensure the relevant specifications are valid and usable for them Regulatory requirements must s",
+      "categories": [
+        "cs.SE"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 48.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03631v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03631v1"
+        }
+      ],
+      "llm_reason": "今日暂缓，**不是因为做得差，而是因为它解决的是一个我们当前不碰的问题，且今天既无代码也无量化数字**。★ 核心内容（论文摘要口径，注意摘要因 PDF 文本抽取而丢失标点，读起来很吃力，内容本身是清楚的）：监管合规已成为软件的必要要求，**Compliance by Design (CbD)** 要求需求工程（RE）方法能**推导出需求**并**支持后续软件设计阶段的合规实现**；监管 RE 的法律知识复杂度要求**让法律专家参与**并确保规格对他们**有效且可用**；但**缺少能桥接法律与 SE 两种视角的方法**，两个群体之间的交互挑战持续存在。本文提出 **Artifact Model for Regulatory Requirements Engineering (AM4RRE)**，通过**模板**落地，用于协调监管 RE 中的视角。实测口径：**37 位从业者**中多数对 AM4RRE 在协调与需求质量上的作用给出正面评价；**34 人分 10 组的准实验**显示，**模板引导的协调若先执行，则平均规格总时间更短**，且在多数组中**需求质量更高**。★ 独立执行（论文 HTML 全文核对）：**未发现任何代码或工件发布**（code is available / code will be / available at 全部零命中），**无工具、无模板文件、无实验材料公开**。★ 证据边界（决定性因素）：(1) **AM4RRE 的模板本体——也就是这篇论文唯一真正的交付物——今天完全没有公开**，读者无法看到它长什么样、无法复用、无法评估，只能读到一个准实验的结论摘要；(2) 样本是 34 人 / 10 组的准实验，**外推到工业规模需求团队的效力未知**，且平均更短与多数组更高这类表述**统计口径未说明**；(3) 领域（法律监管合规需求工程）**与我们的主线（AI 系统与 agent 工程）几乎不交叉**；(4) 今天无任何可执行验证。★ 判断：保留最小索引即可。**触发条件：AM4RRE 模板公开 / 出现更多独立复现 / 我们真的进入受监管行业的需求工程**。",
+      "id": "supporting-viewpoint-coordination-for-compliance-by-design-with-an-artifact-model-for-regulatory-requirements-engineering",
+      "value_type": "ignore",
+      "matched_topics": [
+        "coding-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Thought-deciphering via hierarchical EEG-to-text alignment",
+      "authors": [
+        "Xiaopeng Mao",
+        "Morten Mørup",
+        "Xin Xu",
+        "Sang Wan Lee",
+        "Sadasivan Puthusserypady"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03623v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03623v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Communication is important for our well-being, but it can be impaired by disabilities, such as locked-in syndrome (LIS), cerebral palsy (CP), and dysarthria. Non-invasive brain-to-text brain-computer interfaces (BCIs) offer a promising solution by providing an alternative communication pathway for people with communication disabilities. However, most recent breakthroughs have relied on large, cumbersome, and costly neuroimaging modalities, such as functional magnetic resonance imaging (fMRI) and",
+      "categories": [
+        "cs.LG",
+        "eess.SP"
+      ],
+      "keywords": [],
+      "score": 45.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03623v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03623v1"
+        }
+      ],
+      "llm_reason": "今日暂缓，**方向有真实价值（无创 BCI 的句级解码是明确的应用缺口），但与我们的主线距离最远，且今天是 10 篇里证据最薄的一篇**。★ 核心内容（论文摘要口径）：非侵入式脑机接口（BCI）为沟通障碍者（闭锁综合征、脑瘫、构音障碍）提供替代沟通通路；但近期突破多依赖 fMRI、MEG 等**笨重昂贵**的模态，而更轻更便宜的 EEG 解码**结果仍逊于其他模态**；更关键的是，**人们并不理解这些模态在字母、词、句子及更高语义层级上究竟如何对应文本**。以往研究多聚焦于句以下的解码（音素、字母、词更好设计实验），但**沟通中句子远比词和字母重要**——句子携带的信息在高位，即使部分词与字母缺失也能被理解；而**句级分类相比句级生成研究更少**，导致难以判断在 EEG-to-text 中**该检索还是该生成**。本文用一个新的**分层对齐框架**研究**句级 EEG-to-text 分类**，目标是**用上下文与 EEG 作为输入检索出一句可读句子**。★ 独立执行（论文 HTML 全文核对）：**未发现任何代码或模型发布**（code is available 等零命中）；论文只声明**使用公开数据集 ChineseEEG 与 Chisco**，**未发布训练代码或模型权重**。★ 证据边界：(1) **无代码、无权重、无可复现产物**，摘要也**未给出任何准确率或 BLEU 等量化结果**——今天的证据强度低于同批其他论文；(2) 中文 EEG 数据集（ChineseEEG、Chisco）**受试者规模与采集条件苛刻**，我们无任何复现条件；(3) 神经科学方法论严谨，但**离 AI 系统工程极远**；(4) fetch_papers.py 给它打的 evaluation 标签来自 evaluation 一词在摘要中的普通语义用法，**与 LLM 评测无关**——再次暴露关键词匹配的噪声（见 note）。★ 判断：保留最小索引。**触发条件：作者开源 / 出现句级 EEG-to-text 的量化结果 / 我们进入 BCI 方向。**",
+      "id": "thought-deciphering-via-hierarchical-eeg-to-text-alignment",
+      "value_type": "ignore",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    }
+  ],
+  "scored_at": "2026-11-04"
+}

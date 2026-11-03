@@ -1,0 +1,134 @@
+{
+  "id": "pretraining-data-scale-reverses-the-muon-adamw-fine-tuning-gap",
+  "title": "Pretraining Data Scale Reverses the Muon-AdamW Fine-Tuning Gap",
+  "authors": [
+    "Catherine Li",
+    "Jingchu Gai",
+    "Andrej Risteski",
+    "Jacob Mitchell Springer",
+    "Aditi Raghunathan"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-02",
+  "url": "http://arxiv.org/abs/2611.03633v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.03633v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-04",
+  "first_deep_dive_daily": "2026-11-04",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 71.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日第四价值，**是一篇会直接改变我们的预训练/微调用哪个优化器这条决策的论文，而且它的结论是反直觉的方向——对绝大多数做微调的团队，实际影…",
+  "one_line_essence": "今日第四价值，**是一篇会直接改变我们的预训练/微调用哪个优化器这条决策的论文，而且它的结论是反直觉的方向——对绝大多数做微调的团队，实际影响面比它看起来更大**。★ 核心发现（论文摘要口径，逐条转述不外推）：Muon 作为预训练优化器已在最小化预训练损失上展现速度优势，但**微调之后优势会反转**：**超过某个足够大的预训练数据预算后，AdamW 在微调上反超 Muon**；而且**模型越大，AdamW 反超所需的 token-参数比阈值越小**。→ **换成工程语言：在小模型/小数据预算下换 Muon 是赚的；一旦模型和数据都上规模，Muon 的预训练速度优势会在微调环节被吐回来。** ★ 机制解释（这是论文真正的贡献，因为它给出的是可迁移的量而不是经验曲线）：把微调看作对输出的**微扰**，定义 **margin-to-spread ratio**（正确 logit 相对错误 logit 高出多少，相对于错误 logit 散布得多开）——在语言模型上，**小数据预算时 Muon 的 margin-to-spread 更大，大数据预算时 AdamW 更大**，正好镜像微调结果；在**线性联想记忆**中作者**证明了**梯度下降在一次更新后 margin-to-spread 相对 Muon 随数据预算增长而占优，且模拟显示该趋势在长时间训练后仍持续。→ **这条机制量比换不换优化器更值得存下来**：它给出了一个可测量、可迁移的中间量，未来判断任何优化器组合时先看它。★ 独立执行（论文全文核对，抓到摘要没有的实验结构）：arXiv HTML 全文确认附录结构极其完整——A.1 优化器定义（AdamW / Muon）、A.2 学习率调度（WSD / cosine）、A.3 token-参数比定义、**B.3 Gaussian 扰动（作为微扰的替代度量）、B.4 评估 Losses / Frontiers / 微调差距与交叉点 / 退化**、C.1 预训练模型与数据（含最低预训练损失设定、Muon 的 AdamW 更新参数的学习率、最佳前沿设定）、C.2 微调、**C.3 微调正则化：Replay、EWC**、D.3 换微调优化器、D.4 微调正则化、E.1 margin-to-spread 在各数据预算下的曲线、F.1 两次单步迭代的证明。→ **论文在微调正则化（Replay / EWC）上做了专门实验，这是摘要完全没提但对我们最实用的一节**：它意味着 Muon vs AdamW 的差距可能有一部分是**微调遗忘**而非单纯优化能力差异。★ 证据边界（重要，不要过度相信）：(1) **全文未发现任何代码或实验仓库发布**（对 our code / code will be / available at / we release 的检索全部零命中，唯一命中的 github 链接是参考文献里的 stanford_alpaca）；**今日无可执行实现**；(2) 作者阵容强（Andrej Risteski、Jacob Mitchell Springer、Aditi Raghunathan 等），**但这是研究判断不是已验证事实**；(3) 论文的因果解释建立在线性联想记忆这一**简化模型**上，**能否外推到真实的 Transformer 规模仍待验证**（论文自己在 B 节做了 Gaussian 扰动与真实模型的实证对照，但今日未核对其数值）；(4) 全文检索到的 memory 出现在 **EWC（Elastic Weight Consolidation）** 这一词里，与论文主题无关——**这恰好暴露了 fetch_papers.py 关键词匹配的噪声问题**（见 note）。★ 为什么给趋势价值：如果结论成立，它影响的是所有做大模型微调团队的基础设施选型；但没有代码、需要多卡复现、且外推性未定，因此**纳入趋势雷达做 7–30 天观察，而不是今天就改我们的优化器配置**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第四价值，**是一篇会直接改变我们的预训练/微调用哪个优化器这条决策的论文，而且它的结论是反直觉的方向——对绝大多数做微调的团队，实际影响面比它看起来更大**。★ 核心发现（论文摘要口径，逐条转述不外推）：Muon 作为预训练优化器已在最小化预训练损失上展现速度优势，但**微调之后优势会反转**：**超过某个足够大的预训练数据预算后，AdamW 在微调上",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第四价值，**是一篇会直接改变我们的预训练/微调用哪个优化器这条决策的论文，而且它的结论是反直觉的方向——对绝大多数做微调的团队，实际影响面比它看起来更大**。★ 核心发现（论文摘要口径，",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03633v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.03633v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=pretraining-data-scale-reverses-the-muon-adamw-fine-tuning-gap",
+  "daily_path": "daily-detail.html?date=2026-11-04",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

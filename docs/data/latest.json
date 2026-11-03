@@ -1,110 +1,140 @@
 {
-  "updated_at": "2026-11-02T04:51:17.591064",
+  "updated_at": "2026-11-04T05:02:33.200952",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-11-02",
-    "title": "论文价值发现日报 - 2026-11-02",
-    "deep_dive_title": "Elucidating the Design Space of LM Data Attribution",
-    "deep_dive_url": "http://arxiv.org/abs/2610.40655v1",
+    "date": "2026-11-04",
+    "title": "论文价值发现日报 - 2026-11-04",
+    "deep_dive_title": "WebHarbor: Docking Real Websites for Evolving GUI Agent Environments",
+    "deep_dive_url": "http://arxiv.org/abs/2611.03634v1",
     "decision": "重点学习",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "今天做三件事，前两件不依赖论文任何数字：(1) 把 CATT 的『评测变量解耦 + nlo 损失 + top-k 聚合』写成一条可执行的评测检查项，并在自有数据上试一次 nlo + top-k 聚合（对照均值聚合），**同时把两个修正的适用边界分开记**：nlo 管无干扰场景，top-k 管抗干扰场景；(2) 在 agent 防御方案清单里增加『显式决策 token span + 规则化自校验』这一选项，与『再训一次模型』『改架构』并列——ShallowDefend 的方法论今天就能用，不依赖它的代码（今日复核仍无官方实现）；(3) 读 logit-psv 今日新增的 `tests/` 与 `reproduce/` 目录，确认我们自托管的开放权重模型上能否挂 logits hook，并在 OLMo-3-7B-Instruct 或等效开放权重模型上做一次 MATH-500 的最小复现（63.3% → 81.3% 为作者自述，需自行验证），同时明确记录该路径对闭源 API 不可用这一前提。",
-    "max_uncertainty": "**边界声明（今日新增，必须先说清楚）**：本机无 CUDA（torch.cuda.is_available()=False）、无微调 checkpoint，**梯度计算本身一条都没跑**；今日所有复算都是『读作者已发布的分数/terms 文件 + 用作者自己的 metrics 与 aggregation 代码重算指标』，属**评测层独立复算**，不是端到端复现。CATT 的 35–72 个百分点增幅**未逐 cell 复算**（Table 44 是跨 N 与 |F| 的汇总口径，与 cell 级复算口径不同）——**待核验**。FTRACE-TREX 方面，论文 Table 16 的 **EK-FAC 4 行与 Grad-Dot 4 行完全没有发布**（发布物只有 trak / trak_nlo / layerwise_trak_top10 / bm25 / gt / full 六个 ranking），因此正文『EK-FAC 30%→46%』『Grad-Dot 7%→23%』**无法核验（缺档，非反例）**；论文称『mean over eight retrain seeds』而发布的 retrain_top1.npz **只有 seeds 2001/2002 两个**，其余 6 个 seed 未发布——**待核验**。论文正文的『8%→40%（4.9×）』与作者发布数据及发布物 README 的『9±3→47±1（5.22×）』**不一致**，今日按『可复算的一份』记录并明确标注该分歧；Grad-Dot 的 CE top-10 一臂**作者未发布**，今日由 per-token terms 重建得到 0.2976（与论文 0.30 吻合）。CATT 的模型权重（base 8GB / adapter 0.5GB）与轨迹（4GB/条）今日未下载，**待核验**。logit PSV 的 63.3%→81.3%、74.7%、85%、FMoW-OOD +6.2 等均为作者自述，GPU 生成路径（vLLM + CUDA 12.8）未跑；仓库 license 仍为 none；今日新增的 tests/ 与 reproduce/ 目录**未逐文件核对**是否覆盖论文数字。ShallowDefend 的 14 benchmark / 6 judge / KL 分析均为作者自述，今日 GitHub 检索仍**无官方实现**。WxCrop 的 AUC 0.98 / 0.99 / 0.76、Brier 0.177、rank correlation 0.63 均为作者自述，今日仍**无官方实现**。Probing Spatial State 的训练与评测代码快照未发布，MiniMax-H3 的 96 条 canonical + 16 条 C3 行无法从本仓库重跑，InsScene-15K revision 未固定，今日读到的 804 行数字是**作者自己发布的行**，非独立复现。world2vec 仓库今日复核**仍只有 README 与 assets**（pushed 2026-10-30 未再更新），代码为**待核验/暂无**。SpecSlot 的 2.84 / 3.9% / 0.69 / 38.2% / 1.06 / 40.6% 均为作者自述；HF 权重 Gokottaw434/SpecSlot **今日确认已放出**（含 3 个 checkpoint），但**权重本体未下载、能否加载待核验**；项目页 yangjiongfan.site/specslot/ 今日为**证书主机名不匹配**（curl 60），不可用。PFR 与 KL-DRO 均**确认无官方实现**；PFR 全文另载 AI 辅助写作（Codex / Claude 参与正文与证明起草）。",
-    "one_line_judgement": "它指出数据归因领域一个此前被默认掉的结构性缺陷：**归因方法的失败被评测设计掩盖了**——现有评测同时改变多个数据集属性，于是没人说得清\"到底是算法不行，还是评测把难度调乱了\"。作者提出 CATT：在完全虚构的知识上微调 LLM 给出无歧义 ground truth，再一次只改一个配置项。★ **今日用作者自己发布的分数文件 + 作者自己的 metrics 代码独立复算**：论文 Figure 4 的四臂**逐臂复现成功**——CE 全 token 0.0065（论文 0.01）、**CE top-10 0.2976（论文 0.30，这一臂作者根本没发布，今日用作者的 `token_aggregation` 从 472MB per-token terms 重建）**、nlo 全 token 0.3485（论文 0.35）、nlo+top-10 1.0000（论文 1.00）。",
-    "path": "daily-detail.html?date=2026-11-02"
+    "daily_action": "今天做四件事，按依赖顺序：(1) **零依赖、30 分钟——先立规则，不等任何下载。** 把两条硬约束写进我们的评测规范：① **WebHarbor 的绝对分比真实站点高 4.4–18.8 分，只能用于相对排序，不能当真实成绩汇报**（依据：项目页实测的 6/6 排名一致 + Spearman 1.00 + Pearson 0.80）；② **第三方论文代码安装前必须先核对 PyPI 项目名与作者**——今天实测 `pip install dna` 会静默装上一个无关的 PyPI 模板包（作者 HaveTwoBrush），而 D&A 的真实项目名 `reward-vlm` 在 PyPI 上 404，**pip 不会报错**。(2) **1–2 小时——量化我们自己的环境漂移。** 选一个我们已有稳定结论的 agent 评测任务，把它在「真实上游」和「固化镜像」两种环境各跑一次（先只固 2–3 个最常用的内部系统，不要一次铺开），比对逐条分数与任务级排序。**产出一个数字：我们自己的离线评测与真实环境差多少分、排序是否保持**——这是把 WebHarbor 的方法内化，而不是照抄它。(3) **2 小时——把 D&A 的「先描述后评估」模式抄成我们的 rubric 模板（不需要 GPU、不需要机器人）。** 拿一条现有的 agent 轨迹评测（或一次代码评审）做试点：第一步让模型在**不给出任务目标**的前提下客观描述发生了什么，第二步再对照一份显式判据打分，对比今天单步打分的分数差异。**这一步会直接暴露我们现有评审流程里有多少确认偏置。** 注意 D&A 的实际调用需要 Gemini/GPT/Claude/OpenRouter 的 API key（其本地 Qwen-VL 路径官方标注 in development、not fully validated），**先做小样本、核算 token 成本再放量**。(4) **今天不做的三件事（明确记下来，避免被带跑）：** ① 不下载 WebHarbor 的完整 20 GB 镜像（hub.docker.com 今日全程超时，体积与能否 build 尚未核实，且许可证状态待核验——**先解决许可问题再谈下载**）；② 不改我们的优化器配置（Muon-AdamW 反转那篇没有代码、需要多卡复现、外推性未定，**观察 7–30 天**）；③ 不投入 FADE 与斑马谜题（一个无代码、一个载体太玩具）。",
+    "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：** 一、**今天没有任何一个论文数字是本机跑出来的**——本机无 CUDA，任何需要训练的复现都做不了；今日真正执行成功的只有 5 类**轻量级独立核验**：(a) GitHub API 逐条核验 6 个仓库的存在性/星标/推送时间/许可证；(b) `sites/` 目录枚举复算 153 这个数字；(c) hf-mirror 镜像 API 确认 2 个 HF 工件存在且 2026-11-03 刚更新；(d) `pip download` 实测 PyPI 包的真身（并因此发现装错包的陷阱）；(e) arXiv HTML 全文逐篇核对代码声明。**这些都不是论文实验的复现。** 二、**今日最大的限制来自抓取口径本身，连续第二天成立：** `fetch_papers.py` 的 `max_results_per_category=10` + 只取前 5 个分类，在今日实测 200+ 篇同日期的批次里**只保留了 10 篇，丢掉 190/200**；被丢掉的里至少有 5 篇带已公开可验证的仓库，其中 3 篇（mcpvenom / axion1_0 / distdebug-bench）证据等级不低于今日入选论文，**《Axion 1.0》是一个完全开放的 4B agent 基座（Apache-2.0，created 2026-11-02 当天，stars=17），是今天 10 篇里没有任何一篇能提供的东西**。**所以今日的深挖选择是「在这 10 篇内的最优」，不等于「当日最优」。** 三、**逐篇标注的证据不足项**：WebHarbor —— 无 LICENSE（GitHub API /license 404）、hub.docker.com 今日全程超时故 20 GB 体积/镜像 tag/build 可行性均未核验、论文无 arXiv HTML 全文故所有数字为作者自述无第三方复现、许可待核验（**这一条直接卡住我们复用其环境代码**）；D&A —— D&A-Bench 数据集在 hf-mirror 上 404 且作者 41 个数据集中不含该项（判断为未发布或已改名，**待核验**）、README 明确标注本地 Qwen-VL 路径 not yet fully validated 故「零 GPU 成本」今天不成立且 API 成本未核算、无 PyPI 包（仅可 `pip install -e .`）、stars=5 无 release 故「能跑」不等于「能依赖」；RLVR 策略崩塌 —— **只有 2 位作者、stars=0、单模型单任务族（Qwen2.5-7B + 自制字符串反演框架）**，结论外推到代码/数学/工具调用类任务**完全待验证**，其 OOD 指标为人造可控、真实 OOD 不等价；Muon-AdamW —— **全文无代码无仓库**、结论建立在**线性联想记忆这一简化模型**上、对真实 Transformer 规模的外推**待验证**，且论文摘要未给出交叉点的具体数值；FADE —— **无代码、无开源计划声明**，GitHub 检索 total_count=0，5 benchmark/2 模型/4 调度器全部作者自述，今天无法核对任何一个数字；斑马谜题 —— **Codeberg 仓库 stars=0、GitHub 上搜不到**，摘要未给出任何具体分数或提升幅度，依赖第三方 miniexact 而增益归因无消融；Pixel-UMI / Pixel —— **官方明确标注「Open Sourced Soon!」，代码今日未开源**，页面上无任何 GitHub 链接，87.0% 完全作者自述，且复现门槛在硬件（真实机器人 + 传感器化人类演示数据）不在软件；Compliance-by-Design —— **AM4RRE 的模板本体今天完全没有公开**（这恰是它唯一的交付物），34 人/10 组准实验的统计口径未说明；EEG 句级解码 —— **无代码无权重无量化结果**，且我们无任何复现条件。四、**今日新查出的两个工具级缺陷（不是数据问题，是打分管线的问题）**：① **关键词匹配无词边界**，`extract_keywords()` 与 `score_papers.py` 的 rag-knowledge 主题实测把 **4/10 篇误标 RAG**（命中 average task p-rag / shorter total spe-cification / cou-rageous），会系统性抬高 RAG 相关性权重；② **摘要截断 500 字符**，今日真实摘要长度 1154–1858 字符，**丢失 55%–73% 的内容**，今日所有判断都必须靠重新拉全文才做得准。五、**网络与工具可用性**：arXiv（网页+API+HTML 全文）可用，GitHub API 与 CLI（aiutil 认证）可用，hf-mirror 镜像可用，codeberg API 可用；**huggingface.co 直连超时、hub.docker.com 全程超时**，这两个不可达直接导致 D&A-Bench 与 WebHarbor 镜像两项无法核验。六、**本条记录同时是昨日（2026-11-03）遗留工作的说明**：昨日的运行在 `git add -A` 之后、commit 之前中断，留下了 81 个已暂存但未提交的文件（含 2026-11-03 的 papers/analysis/daily 及全部 docs 索引）；今日的运行已把 2026-11-04 的数据一并纳入同一批提交，**即本次 commit 同时包含 11-03 与 11-04 两天的内容**。",
+    "one_line_judgement": "我用 GitHub API 逐条核实了它的工件，**不是转述摘要**：仓库 `aiming-lab/WebHarbor` 实测存在（pushed 2026-11-03，stars=42，forks=42），我用 API 列出 `sites/` 目录，**实测恰好 153 个站点子目录，与论文声称的数量完全一致**——这是今天唯一被独立复算过的工件数量。数据集（`ChilleD/WebHarbor`）与模型（`ChilleD/WebHarbor-4B`）在 hf-mirror 镜像上实测均存在且 2026-11-03 刚更新。README 与项目页给出论文摘要里没有的**对照基线**：同为 4B 的 OpenWebRL-4B 是基线，WebHarbor-4B 在 live-web 平均分 **+5.2（75.8 vs 70.6）**、比共同 SFT checkpoint 高 **+22.2**，且 **6/6 成对排名保持、Spearman 1.00**。",
+    "path": "daily-detail.html?date=2026-11-04"
   },
   "top_paper": {
-    "title": "Elucidating the Design Space of LM Data Attribution",
+    "title": "WebHarbor: Docking Real Websites for Evolving GUI Agent Environments",
     "authors": [
-      "Steven Yu",
-      "Sheng-Yu Wang",
-      "Kimia Hamidieh",
-      "Antonio Torralba",
-      "David Bau"
+      "Zhaoyang Wang",
+      "Qianhui Wu",
+      "Boyu Gou",
+      "Demi Wang",
+      "Jiacheng Zhang"
     ],
-    "published": "2026-10-29",
-    "updated": "2026-10-29",
+    "published": "2026-11-02",
+    "updated": "2026-11-02",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2610.40655v1",
-    "pdf_url": "https://arxiv.org/pdf/2610.40655v1",
+    "url": "http://arxiv.org/abs/2611.03634v1",
+    "pdf_url": "https://arxiv.org/pdf/2611.03634v1",
     "openreview_url": "",
     "paperswithcode_url": "",
-    "code_url": "https://github.com/Lamsheeper/catt",
-    "benchmark_url": "https://huggingface.co/datasets/catt-bench/vtok101-attribution-baselines",
-    "project_url": "https://catt.baulab.info/",
-    "abstract": "Data attribution methods for Language Models (LMs) are typically evaluated using downstream tasks like fact retrieval. However, existing evaluations vary multiple dataset properties simultaneously, making it impossible to isolate exactly why an attribution algorithm fails. To diagnose these failures, we explore the design space of LLM data attribution, with a primary focus on evaluation. We introduce the Controlled Attribution Benchmark (CATT) for fact tracing, in which we fine-tune LLMs on enti",
+    "code_url": "https://github.com/aiming-lab/WebHarbor",
+    "benchmark_url": "https://huggingface.co/datasets/ChilleD/WebHarbor",
+    "project_url": "https://aiming-lab.github.io/WebHarbor/",
+    "abstract": "GUI web agents require realistic and interactive environments that remain stable during both evaluation and training. Live website evaluation suffers from changing content, access restrictions, and limited coverage of authenticated workflows, while existing synthetic environments for training often lack functional depth and visual fidelity. We propose WebHarbor, a suite of 153 executable and dockerized website environments that faithfully reconstruct the visual interfaces, content, and functiona",
     "categories": [
-      "cs.CL"
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
     ],
     "keywords": [
+      "agent",
+      "coding agent",
       "evaluation",
       "benchmark",
       "RAG"
     ],
-    "score": 92.0,
+    "score": 90.0,
     "decision": "重点学习",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2610.40655v1"
+        "url": "http://arxiv.org/abs/2611.03634v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2610.40655v1"
+        "url": "https://arxiv.org/pdf/2611.03634v1"
       }
     ],
-    "llm_reason": "今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、轨迹与归因分数都在 HF Hub 的 catt-bench』，昨日因 huggingface.co 直连超时而标为『待核验/暂无』。**今日经 hf-mirror.com 镜像确认：该组织真实存在且已放出数据** —— 组织 catt-bench（fullname『CATT』，numDatasets=6、numModels=6、numSpaces=2、numFollowers=3），6 个数据集为 vtok101-attribution-baselines（downloads 5368）、vtok101-distr-attribution-baselines（10238）、route-attribution-baselines（6862）、catt-demo-data（213）、ftrace-trex-results（116）、ftrace-answer-only-query（4868）；6 个模型含 Qwen3.5-4B-d0-vtok101-base（380）、Qwen3.5-4B-d0-vtok101-distr-base（308）及各自 lora-seeds；Space catt-bench/catt-demo。**注意作者命名空间是组织 `catt-bench` 而不是个人 `Lamsheeper/catt-bench`**（昨日按后者查是 401，镜像对不存在的仓库同样返回 401，所以 401 本身不能作为『不存在』的判据——今日改用组织枚举得出结论）。★ 今日独立复算（一）：CATT 主表，用作者自己的 `catt.metrics.from_npz` 对**作者发布的分数文件**重算 AUC/Recall@N。任务 fb（Function Bindings，f50_10d_sd1001）Grad-Dot 各臂实测：CE 全 token 求和 Recall@N=0.0990/AUC=0.4475；CE 全 token 均值（ce_sum/n_sup）Recall@N=0.0935/AUC=0.4476；**nlo 全 token 均值 Recall@N=1.0000/AUC=1.0000**；nlo top-10 Recall@N=1.0000；nlo top-3 Recall@N=1.0000。任务 fb-distr（同 cell 加干扰项）Grad-Dot：CE 全 token 求和 0.0115/0.1039；CE 均值 0.0000/0.2815；**nlo 全 token 均值仅 0.0010/0.6270**；nlo top-3 0.9885/1.0000；nlo top-10 **0.9935/0.9999**。→ **今日新增的一条关键判断**：作者主张的『nlo + top-k 两个修正』**不是可互换的两件事**。在无干扰项数据上，nlo 单独就把 Recall@N 从 0.09 拉到 1.00（top-k 再无增益）；**但加入干扰项后，nlo 单独几乎归零（0.0010），必须配合 top-k 才能回到 0.9935**。也就是说，**『损失修正』负责无干扰场景，『top-k 聚合』才是抗干扰的那一半**——昨日报告把两者并列称为『两个修正』，今日的复算显示它们的**边际贡献高度依赖配置**。★ 今日独立复算（二）：论文 Figure 4（最常被引用的那组数字）在**正确 cell**（fb-distr，f50_50d_sd1001，N=50 篇/事实、|F|=50，Grad-Dot）上**完整复现成功，四臂全中** —— 作者称 CE 全 token 0.01、CE top-10 0.30、nlo 全 token 0.35、nlo+top-10 1.00；**今日实测：CE 全 token 均值 0.0065（对应 0.01）、CE top-10 0.2976（对应 0.30）、nlo 全 token 均值 0.3485（对应 0.35）、nlo top-10 1.0000（对应 1.00）**。★ 其中 **『CE top-10』一臂是作者根本没发布的**（Grad-Dot 的发布文件只有 ce / ce_sum，没有 ce_top10），但作者发布了 per-token terms 文件 `tokens.grad_dot.ce.npz`（472MB），今日用**作者自己的** `catt.attribution.token_aggregation.aggregate` 从原始 per-token terms **重建**了这一臂，得到 0.2976 —— 与论文的 0.30 吻合。同时用同一套重建逻辑做**内部一致性校验**：重建的 ce_sum = 0.1171 vs 作者发布的 ce 文件 0.1173（float32 精度差），ce_mean 重建 0.0065 vs 独立路径 0.0066，**说明我们的重建与作者的管线一致**。→ 这是本批次**唯一一个把论文头号数字逐臂复现到位**的证据链。同时实测到两个论文未单列的中间臂：nlo 全 token **求和** Recall@N=0.9609（几乎与 top-10 一样好），nlo mean×Q 0.0550 —— 说明 top-k 的价值主要来自**丢弃长尾噪声 token**，而『求和』也能达到类似效果。★ 今日独立复算（三）：**发现论文正文与作者发布数据不一致**（今日最重要的一条）。论文正文写『At the largest budget, the drop improves from 8% to 40% for TRAK (4.9x)』，论文 Table 16 对应 TRAK 行是 8±2 → 40±4。但作者发布的 `catt-bench/ftrace-trex-results`（含 retrain_top1.npz 原始 per-seed top-1 正确性矩阵，35 次重训 × 8437 个事实；cf50_facts.jsonl.gz 给出 50 个事实及其 proponent 行）今日用其原始矩阵**独立重算**，得到 **TRAK 9.0pp → TRAK(nlo) 47.0pp = 5.22×**，且与作者自己发布的 summaries/summary_b11522.json 的 drop_mean **逐条完全一致**（trak 9±3、trak_nlo 47±1、bm25 19±3、gt 6±0、layerwise_trak_top10 25±3）。**该发布物自己的 README 表格写的也是 9±3 → 47±1（5.22×），不是正文的 8%→40%（4.9×）。**→ 即**论文正文/Table 16 的数字与作者自己发布的数据集对不上**；发布数据更强，不是更弱。同时核到**发布覆盖不完整**：论文 Figure 7 题注与 Appendix E 均写『mean over **eight** retrain seeds』，但发布的 retrain_top1.npz **只有 seeds 2001 与 2002 两个**；且 Table 16 中 **EK-FAC 的 4 行与 Grad-Dot 的 4 行完全没有发布**（发布物只有 trak / trak_nlo / layerwise_trak_top10 / bm25 / gt / full 六个 ranking）。→ EK-FAC 30%→46%、Grad-Dot 7%→23% 这两条正文数字**无法核验**（缺档，非反例）。★ 结论修正：昨日把『4.9×』整条记为『作者自述、不可复现』，**今日必须更正为『可复现但与正文不一致』**。今日能确认的是：nlo 修正对 TRAK 的反事实重训确有大幅提升（复算 9→47pp），且**提升幅度高于正文所述**；但正文的具体百分比与倍数对不上发布数据，引用时应标注这一分歧。★ 另一处今日实测到的口径问题：昨日用仓库自带 bm25_scores 报出『fb 下 BM25 Recall@10 = 1.0000，fb-distr 下 0.8104/0.9164/0.9486』，今日用**作者发布的** bm25 分数文件重算，fb 任务确为 Recall@N=1.0000/AUC=1.0000（f=50, q=250），fb-distr 为 Recall@N=0.9852/AUC=0.9999，**decoy_auc=0.9916、decoy_top1=0.032** —— 即**词法基线在加干扰项后几乎不受损**（0.9852，远高于昨日自测的 0.81–0.95），且**几乎不会把干扰项文档排到第一（3.2%）**。结论不变但更强：**不能用『BM25 也做不到』来论证梯度方法的必要性**。★ 本地仍无法核验项：本机无 CUDA、无微调 checkpoint，**梯度计算本身一条都没跑**；上述全部是**评测层独立复算**（读作者发布的分数 + 作者自己的 metrics 代码重算指标），不是端到端复现；模型权重（Qwen3.5-4B base/adapter，8GB/0.5GB）与轨迹（4GB/条）今日未下载。论文的 35–72 个百分点增幅未在本次逐 cell 复算（Table 44 汇总值与 cell 级复算口径不同，标为**待核验**）。工程入口：uv sync + `catt attribute --task fb --facts 50 --docs 10 --seed 1001 --job ekfac`，要求 NVIDIA GPU，fast_jl 扩展需 CUDA 12.x 工具链。",
-    "id": "elucidating-the-design-space-of-lm-data-attribution",
+    "llm_reason": "今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重 + 已发布数据集 + Docker 镜像。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/aiming-lab/WebHarbor **真实存在**（created 2026-05-02，pushed 2026-11-03，stars=42，forks=42，homepage=https://aiming-lab.github.io/WebHarbor/，size=210254 KB）。仓库顶层结构实测完整：Dockerfile(31415 B)、requirements.lock、control_server.py(17541 B)、site_runner.py、websyn_start.sh、harbor/、sites/、agent_demo/、AGENTS.md(15297 B)、CONTRIBUTING.md(17191 B)、assets-manifest.json。★ 独立执行二（**数字逐个核对，不是转述摘要**）：用 GitHub API 列出 sites/ 目录，实测**恰好 153 个站点子目录**，与论文/README 声称的 153 个环境完全一致——这是今日唯一被独立复算的工件数量（抽查可见 amazon、airbnb、bbc_news、github、imdb、nvidia、google_maps 等真实站点镜像）。★ 独立执行三（数据集与权重）：hf-mirror.com 镜像 API 确认 huggingface.co/datasets/ChilleD/WebHarbor **存在**（lastModified 2026-11-03，tags 含 webharbor / web-agent / gui-agent / computer-use-agents / environments / reinforcement-learning / arxiv:2611.03634）；模型 huggingface.co/ChilleD/WebHarbor-4B **存在**（lastModified 2026-11-03，downloads=39，base_model=OpenWebRL/OpenWebRL-4B-SFT，backend=sglang，format=safetensors）。★ 独立执行四（README 全文读取，抓到了论文摘要里没有的关键细节）：README 明确写出 Trained solely in WebHarbor's synthetic environments and tasks, WebHarbor-4B reaches a **75.8** average on WebVoyager and Online-Mind2Web, **the best open-source GUI web agent at the 4B scale**；项目页 Results 段进一步给出**对比基线**：同为 4B、同一 SFT checkpoint、同一多模态 GRPO 目标的 OpenWebRL-4B 是基线，WebHarbor-4B **live-web 平均分 +5.2（75.8 vs 70.6）**，**比共同 SFT checkpoint 高 +22.2**，WebArena 上 28.8（4B 模型最佳），且 **6/6 成对排名保持、Spearman 秩相关 1.00、Pearson 分相关 0.80**（即代理环境分数排序与真实站点一致，但绝对分数高 4.4–18.8 分）。→ **这是今天工程上最可落地的一条判断：我们可以在 WebHarbor 里跑自己的 agent 评测，而不必被真实站点的内容漂移、登录墙和反爬干扰；但必须知道 WebHarbor 的绝对分比真实站点高 4.4–18.8 分，不能拿它当真实成绩汇报。** ★ 独立执行五（**合成环境的保真度是被实测过的，不是口号**）：项目页写明 6/6 排序保留、1.00 Spearman；并且 WebArena no-auto-login 变体上 WebHarbor-4B 只掉 -2.7 分，而 OpenWebRL 系列掉 -3.6 / -4.9。任务数 3,518（README 与项目页一致），其中测试集 306 个 verified tasks。★ 独立执行六（构建方式本身值得学）：README 写明用 **coding agent（Claude Code / CodeX）把真实站点镜像成本地 Docker**，每个站点占一个端口（40000+i），控制面在 :8101 用 token 保护并可把任一站点重置到种子状态，**153 个环境打包进一个约 20 GB 的镜像**。→ 这是一个用 agent 造评测环境的自我强化闭环，且它的贡献形式是**环境而非模型**，这在当前 agent 生态里稀缺。★ 证据边界（必须写明，不要拔高）：(1) 153 个环境全部镜像进**一个** 20 GB 镜像，**这意味着拉取成本不低**，本地可复现不等于轻量；(2) **hub.docker.com 今日全程超时**（两个 endpoint 均 timeout），所以 **20 GB 体积、镜像 tag 数、Dockerfile 能否真正 build 今日均未独立核验**，README 的 20 GB 与 wildawm/webharbor 镜像名来自作者自述；(3) WebHarbor **没有 LICENSE 文件**（GitHub API /license 返回 404，README 无 License 段），**许可状态待核验**——这直接影响我们能否在内部项目里复用其环境代码；(4) **论文无 arXiv HTML 全文**（arxiv.org/html/2611.03634 与 /v1 均返回 404），上述所有实验数字均来自 README 与项目页（作者自述），**没有第三方独立复现**；(5) 论文摘要说 31 pages，但正文表格不可读；(6) 论文作者列表长达 51 人（含多位知名研究者），**单篇归属判断的边际价值有限，真正的资产是环境集与 checkpoint**。★ 与今日被截断的 2611.03116《From Local Skills to Long-Horizon Web Tasks (SCOPE)》对照：两者同属 web agent 训练方向，SCOPE 讲的是渐进式技能探索的**训练方法**，WebHarbor 讲的是**评测与训练环境本身**——环境是更硬的资产，且 SCOPE 未找到公开仓库，**WebHarbor 的证据等级明确更高**。",
+    "id": "webharbor-docking-real-websites-for-evolving-gui-agent-environments",
     "value_type": "immediate",
     "matched_topics": [
+      "ai-agent",
       "llm-evaluation",
-      "rag-knowledge",
-      "data-engineering"
+      "coding-agent"
     ],
     "score_breakdown": {
       "novelty": 4.8,
-      "problem_importance": 5.8,
-      "relevance": 6.2,
-      "evidence_strength": 8.1,
-      "engineering_testability": 5.5,
-      "trend_signal": 6.8,
-      "long_tail_potential": 4.15,
-      "asset_convertibility": 5.6,
+      "problem_importance": 6.45,
+      "relevance": 7.4,
+      "evidence_strength": 7.65,
+      "engineering_testability": 6.05,
+      "trend_signal": 4.85,
+      "long_tail_potential": 3.5,
+      "asset_convertibility": 6.2,
       "actionability": 7.3,
       "noise_risk": 1.2,
       "weak_evidence_penalty": 2.0,
-      "low_relevance_penalty": 2.2,
+      "low_relevance_penalty": 0.8,
       "engineering_cost_penalty": 2.5,
       "reproducibility_risk": 2.0
     },
     "trend_status": "emerging",
-    "brief_cn": "LLM 评测：Data attribution methods for Language Models (LMs) are typically evaluated usi…",
-    "one_line_judgement": "今天值得试：今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、…",
-    "first_seen_date": "2026-11-02",
-    "first_deep_dive_daily": "2026-11-02",
+    "brief_cn": "AI Agent：GUI web agents require realistic and interactive environments that remain stab…",
+    "one_line_judgement": "今天值得试：今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重…",
+    "first_seen_date": "2026-11-04",
+    "first_deep_dive_daily": "2026-11-04",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、轨迹与归因分数都在 HF Hub 的 catt-be",
+    "long_tail_summary": "今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重 + 已发布数据集 + Docker 镜像。★ 独立",
     "related_trends": [
-      "coding-agent",
-      "context-engineering"
+      "agentic-world-modeling",
+      "coding-agent"
     ],
-    "detail_path": "paper-detail.html?id=elucidating-the-design-space-of-lm-data-attribution"
+    "detail_path": "paper-detail.html?id=webharbor-docking-real-websites-for-evolving-gui-agent-environments"
   },
-  "paper_count": 2063,
+  "paper_count": 2083,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 269,
+  "long_tail_count": 276,
   "value_distribution": {
-    "immediate": 166,
-    "trend": 264,
-    "long_tail": 269,
-    "ignore": 1364
+    "immediate": 171,
+    "trend": 270,
+    "long_tail": 276,
+    "ignore": 1366
   },
   "recent_dailies": [
+    {
+      "date": "2026-11-04",
+      "title": "论文价值发现日报 - 2026-11-04",
+      "deep_dive_title": "WebHarbor: Docking Real Websites for Evolving GUI Agent Environments",
+      "deep_dive_url": "http://arxiv.org/abs/2611.03634v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做四件事，按依赖顺序：(1) **零依赖、30 分钟——先立规则，不等任何下载。** 把两条硬约束写进我们的评测规范：① **WebHarbor 的绝对分比真实站点高 4.4–18.8 分，只能用于相对排序，不能当真实成绩汇报**（依据：项目页实测的 6/6 排名一致 + Spearman 1.00 + Pearson 0.80）；② **第三方论文代码安装前必须先核对 PyPI 项目名与作者**——今天实测 `pip install dna` 会静默装上一个无关的 PyPI 模板包（作者 HaveTwoBrush），而 D&A 的真实项目名 `reward-vlm` 在 PyPI 上 404，**pip 不会报错**。(2) **1–2 小时——量化我们自己的环境漂移。** 选一个我们已有稳定结论的 agent 评测任务，把它在「真实上游」和「固化镜像」两种环境各跑一次（先只固 2–3 个最常用的内部系统，不要一次铺开），比对逐条分数与任务级排序。**产出一个数字：我们自己的离线评测与真实环境差多少分、排序是否保持**——这是把 WebHarbor 的方法内化，而不是照抄它。(3) **2 小时——把 D&A 的「先描述后评估」模式抄成我们的 rubric 模板（不需要 GPU、不需要机器人）。** 拿一条现有的 agent 轨迹评测（或一次代码评审）做试点：第一步让模型在**不给出任务目标**的前提下客观描述发生了什么，第二步再对照一份显式判据打分，对比今天单步打分的分数差异。**这一步会直接暴露我们现有评审流程里有多少确认偏置。** 注意 D&A 的实际调用需要 Gemini/GPT/Claude/OpenRouter 的 API key（其本地 Qwen-VL 路径官方标注 in development、not fully validated），**先做小样本、核算 token 成本再放量**。(4) **今天不做的三件事（明确记下来，避免被带跑）：** ① 不下载 WebHarbor 的完整 20 GB 镜像（hub.docker.com 今日全程超时，体积与能否 build 尚未核实，且许可证状态待核验——**先解决许可问题再谈下载**）；② 不改我们的优化器配置（Muon-AdamW 反转那篇没有代码、需要多卡复现、外推性未定，**观察 7–30 天**）；③ 不投入 FADE 与斑马谜题（一个无代码、一个载体太玩具）。",
+      "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：** 一、**今天没有任何一个论文数字是本机跑出来的**——本机无 CUDA，任何需要训练的复现都做不了；今日真正执行成功的只有 5 类**轻量级独立核验**：(a) GitHub API 逐条核验 6 个仓库的存在性/星标/推送时间/许可证；(b) `sites/` 目录枚举复算 153 这个数字；(c) hf-mirror 镜像 API 确认 2 个 HF 工件存在且 2026-11-03 刚更新；(d) `pip download` 实测 PyPI 包的真身（并因此发现装错包的陷阱）；(e) arXiv HTML 全文逐篇核对代码声明。**这些都不是论文实验的复现。** 二、**今日最大的限制来自抓取口径本身，连续第二天成立：** `fetch_papers.py` 的 `max_results_per_category=10` + 只取前 5 个分类，在今日实测 200+ 篇同日期的批次里**只保留了 10 篇，丢掉 190/200**；被丢掉的里至少有 5 篇带已公开可验证的仓库，其中 3 篇（mcpvenom / axion1_0 / distdebug-bench）证据等级不低于今日入选论文，**《Axion 1.0》是一个完全开放的 4B agent 基座（Apache-2.0，created 2026-11-02 当天，stars=17），是今天 10 篇里没有任何一篇能提供的东西**。**所以今日的深挖选择是「在这 10 篇内的最优」，不等于「当日最优」。** 三、**逐篇标注的证据不足项**：WebHarbor —— 无 LICENSE（GitHub API /license 404）、hub.docker.com 今日全程超时故 20 GB 体积/镜像 tag/build 可行性均未核验、论文无 arXiv HTML 全文故所有数字为作者自述无第三方复现、许可待核验（**这一条直接卡住我们复用其环境代码**）；D&A —— D&A-Bench 数据集在 hf-mirror 上 404 且作者 41 个数据集中不含该项（判断为未发布或已改名，**待核验**）、README 明确标注本地 Qwen-VL 路径 not yet fully validated 故「零 GPU 成本」今天不成立且 API 成本未核算、无 PyPI 包（仅可 `pip install -e .`）、stars=5 无 release 故「能跑」不等于「能依赖」；RLVR 策略崩塌 —— **只有 2 位作者、stars=0、单模型单任务族（Qwen2.5-7B + 自制字符串反演框架）**，结论外推到代码/数学/工具调用类任务**完全待验证**，其 OOD 指标为人造可控、真实 OOD 不等价；Muon-AdamW —— **全文无代码无仓库**、结论建立在**线性联想记忆这一简化模型**上、对真实 Transformer 规模的外推**待验证**，且论文摘要未给出交叉点的具体数值；FADE —— **无代码、无开源计划声明**，GitHub 检索 total_count=0，5 benchmark/2 模型/4 调度器全部作者自述，今天无法核对任何一个数字；斑马谜题 —— **Codeberg 仓库 stars=0、GitHub 上搜不到**，摘要未给出任何具体分数或提升幅度，依赖第三方 miniexact 而增益归因无消融；Pixel-UMI / Pixel —— **官方明确标注「Open Sourced Soon!」，代码今日未开源**，页面上无任何 GitHub 链接，87.0% 完全作者自述，且复现门槛在硬件（真实机器人 + 传感器化人类演示数据）不在软件；Compliance-by-Design —— **AM4RRE 的模板本体今天完全没有公开**（这恰是它唯一的交付物），34 人/10 组准实验的统计口径未说明；EEG 句级解码 —— **无代码无权重无量化结果**，且我们无任何复现条件。四、**今日新查出的两个工具级缺陷（不是数据问题，是打分管线的问题）**：① **关键词匹配无词边界**，`extract_keywords()` 与 `score_papers.py` 的 rag-knowledge 主题实测把 **4/10 篇误标 RAG**（命中 average task p-rag / shorter total spe-cification / cou-rageous），会系统性抬高 RAG 相关性权重；② **摘要截断 500 字符**，今日真实摘要长度 1154–1858 字符，**丢失 55%–73% 的内容**，今日所有判断都必须靠重新拉全文才做得准。五、**网络与工具可用性**：arXiv（网页+API+HTML 全文）可用，GitHub API 与 CLI（aiutil 认证）可用，hf-mirror 镜像可用，codeberg API 可用；**huggingface.co 直连超时、hub.docker.com 全程超时**，这两个不可达直接导致 D&A-Bench 与 WebHarbor 镜像两项无法核验。六、**本条记录同时是昨日（2026-11-03）遗留工作的说明**：昨日的运行在 `git add -A` 之后、commit 之前中断，留下了 81 个已暂存但未提交的文件（含 2026-11-03 的 papers/analysis/daily 及全部 docs 索引）；今日的运行已把 2026-11-04 的数据一并纳入同一批提交，**即本次 commit 同时包含 11-03 与 11-04 两天的内容**。",
+      "one_line_judgement": "我用 GitHub API 逐条核实了它的工件，**不是转述摘要**：仓库 `aiming-lab/WebHarbor` 实测存在（pushed 2026-11-03，stars=42，forks=42），我用 API 列出 `sites/` 目录，**实测恰好 153 个站点子目录，与论文声称的数量完全一致**——这是今天唯一被独立复算过的工件数量。数据集（`ChilleD/WebHarbor`）与模型（`ChilleD/WebHarbor-4B`）在 hf-mirror 镜像上实测均存在且 2026-11-03 刚更新。README 与项目页给出论文摘要里没有的**对照基线**：同为 4B 的 OpenWebRL-4B 是基线，WebHarbor-4B 在 live-web 平均分 **+5.2（75.8 vs 70.6）**、比共同 SFT checkpoint 高 **+22.2**，且 **6/6 成对排名保持、Spearman 1.00**。",
+      "path": "daily-detail.html?date=2026-11-04"
+    },
+    {
+      "date": "2026-11-03",
+      "title": "论文价值发现日报 - 2026-11-03",
+      "deep_dive_title": "Flide: Accelerating Decision Inference with Exact State Forking",
+      "deep_dive_url": "http://arxiv.org/abs/2610.42148v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做四件事，按依赖顺序：(1) 立刻做，零依赖——检查我们自己的批量评测是否受批大小影响（论文实测：同一批请求从 1 client 变到 64 clients 时，Flide 最多改 0.2% 的答案，SGLang 最多 1.7%，vLLM 最多 3.2%）；在自有评测脚本里挑一个已有稳定结论的 benchmark，用两种不同 batch size / 不同批组成顺序各跑一次，比对逐条分数；若排序、名次、AUC 会动，说明部分历史结论其实来自批处理顺序，属于必须回溯的记账问题。(2) 2 小时内做完，零依赖——把今天三条工程结论写成可执行检查项：批大小与批组成顺序是评测的隐变量（必须固定并声明）、harness 演化的成本量级是 ≤5 轮迭代 / <6 小时 / 平均 <$150 且不改权重不采演示、agent 失败修复的第一步是标注哪些中间产物仍然有效（token 代价 +17.92%，相对 Reflexion −24.19%）。(3) 需要一张卡才能做，今天先立项——把『验证 Flide 的精确性』排进 GPU 资源申请（本机已查清前置条件：GPU-only，Triton kernel + 硬编码 cuda_graphs，无 CPU 回退）；在一张卡上跑 flide verify，重点看 (a) 多问题 vs 单问的概率最大偏差与 top answer 一致率、(b) 1/2/8/32 负载下的比特一致性，通过后才把 Flide 从『作者自述』升级为『已独立验证』。(4) 今天必须记录、并排进 7–30 天观察：LSA 要与同批次被漏掉的直接竞品 ZHA（2610.42112）成对评估，且注意 LSA 的 22.7×/72.4× 是『单层 attention 层』而非端到端加速；DP 那条线要连同同组作者的 PLD FFT（2610.42117）一起读。(5) 顺手记录一个流水线缺口：fetch_papers.py 的 max_results_per_category=10 使今日只覆盖了同日批次（实测 200+ 篇）中的 10 篇，且被丢掉的 50 篇里含 1 篇直接竞品与 1 篇同组姊妹篇，建议加『同批次覆盖度自检』而不是静默截断。",
+      "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：** 一、本机无 CUDA（torch.cuda.is_available()=False），今日没有任何一个论文数字是本机跑出来的；唯一实际执行成功的是 Flide 的安装与加载路径（pip install flide 成功，PyPI 最新 0.1.7；flide --help / formats / verify --help 三个子命令实测可用；flide formats 实测列出 16 个模型族；flide verify --device cpu 实际把 Qwen3.5-0.8B 完整拉起并读入 1.71 GB 权重（50.6s），但最终未产出验证结论——第一层 RMSNorm 处 RuntimeError: 0 active drivers，根因是 Triton CUDA kernel + 硬编码 cuda_graphs: True，无 CPU 回退路径）。→ Flide 的精确性主张今日仍是『作者自述 + 我们的代码层前置条件定位』，不是独立复现；这是环境不可达，不是结论被证伪。二、作者自述、本机无法复现的数字全部标为待核验：Flide 的 9.5×/9.4× 加速比与 TVD、within 1.1 points、批大小改变答案的 0.2%/1.7%/3.2%；LSA 的 22.7×(72.4×) prefill / 4.6×(42.5×) decode / 1.6× 训练加速（注意均为『单层 attention 层』口径，不是端到端，端到端数字论文未给）；RoboArchitect 的 9.7%→43.3%(4.5×)、12.7%→40.2%(3.2×) 与 6 小时/<$150 成本；DecisionRank 的 1.7B 超过 27B 教师与 24.5×/16.7× 加速（且部分基线经 Jev 专有 API 报告，第三方无法复现）；Dittany 的 88.28%/79.18%/84.76%/+26.74pp/+21.28pp/+17.92% token（语义评估依赖 DeepSeek V4 Flash 判官、未做人工双评，且排除了 164 个 ambiguous run 与 78 个 format-only discrepancy）；LARC 的 GenEval 7%p over BAGEL；critic-matters 的 joint scaling 与 STAC 结论；ID-WM 的 38.5%/135%；2610.42133 的 seven published sources 清单。三、今日唯一被独立复核的是 Flide 引用的 5 个上游 PR 状态（vllm #59299/#61192、sglang #33922/#41208 全部 merged=true，sglang #44793 仍 open），并用代码检索确认 vllm 主干确有 vllm/entrypoints/generate/structured_decisions/、sglang 主干确有 python/sglang/srt/entrypoints/systemone/；另记录一处口径不一致——论文摘要写 9.5×、官方 README 写 9.4×，正文对单问题场景只给 3.2× 且明说负载下可打平，不替作者选边。四、代码与资产缺口逐项确认（详见下方表格）：Dittany、DecisionRank、critic-matters、ID-WM、2610.42133 均暂无官方代码；LARC 仓库真实但只有 README（TODO 三项全未勾选，作者承诺 11/9 放推理代码）、权重数据已确认未发布；RoboArchitect 仓库完整但无 license、stars=0。五、最重要的系统性缺口：fetch_papers.py 的 max_results_per_category=10 使今日只覆盖了 arXiv 同日批次（published 2026-10-30，12 分类下实测 200+ 篇）中的 10 篇，被丢掉的 50 篇里含 1 篇直接竞品（ZHA）与 1 篇同组姊妹篇（PLD FFT），今日所有排序结论应视为在这一批内部的相对判断。六、口径提醒：huggingface.co 直连仍超时，全部 HF 查询经 hf-mirror.com 镜像；GitHub CLI 认证为 aiutil 账户，仓库检索/PR 状态/代码检索可用；Dittany 的工具名已从 arXiv 源码包确认（\\tool 即 Dittany 本身）；OpenReview / HuggingFace Papers / Papers with Code 三个子源仍未接入。",
+      "one_line_judgement": "它把「决策模型（Jev 一类，不生成 token、直接出分类/分数的模型）」的推理从「借用生成式引擎」改造成**一等公民**：把逻辑请求树与物理执行解耦，用 GPU 常驻索引做 ForkAttention，跨普通 attention 与 Gated DeltaNet 层保证**每个分支的输出等于它单独跑一次**。今日独立核到的最硬一条不是论文里的加速比，而是**生态已经动了**：vLLM 的 PR #59299 与 #61192、SGLang 的 PR #33922 与 #41208 **全部 merged=true**，vllm 主干已有 `vllm/entrypoints/generate/structured_decisions/`、sglang 主干已有 `python/sglang/srt/entrypoints/systemone/`——**这个范式已经不是一家公司的私有主张，而是正在进入推理框架主干**。",
+      "path": "daily-detail.html?date=2026-11-03"
+    },
     {
       "date": "2026-11-02",
       "title": "论文价值发现日报 - 2026-11-02",
@@ -169,235 +199,131 @@
       "max_uncertainty": "今日最大的风险是把「代码跑通」误当成「论文被复现」：Foyer 的仓库确实本地跑通，但作者那 722 封真实邮件与标签按其 README 明写不公开，所以 28%/58%、0.79/0.74/0.83/0.90、98.6%、18% vs 4% 全部只是作者自述，无法独立核验。其次环境已成硬约束：本机 J1900 无 AVX，MuJoCo 全版本 import 即 SIGILL，RobustRLlib 的 49 个失败经逐个归因全部且仅因缺 mujoco（25 passed / 42 skipped 均通过），任何需 MuJoCo/Isaac/GPU 的复现在当前机器不可行。第三，Flownomaly 明确要求 CUDA GPU（H100 实验环境），其 1-shot AUROC 与仓库权重/数据均无法复现。第四，Deco、Rounding-Location Alignment、HAD-VLM、Monetizing Intelligence、Language of Instruction 五篇至今无任何可核验实现（abs 页与 HTML 全文正则扫描无 github/gitlab 链接，GitHub 搜索亦零命中）。此外 Foyer 摘要的 739 与正文 722 存在样本量不一致，已按正文记录并保留待作者确认。",
       "one_line_judgement": "据 arXiv 2610.32955 摘要与 LaTeXML HTML 全文（今日回原文逐字复核）以及配套仓库 gitlab.com/federicolucca/foyer-measure 的本地实跑：这篇指出个人邮件 agent 的错误率几乎从未被测量，因为数据库里的标签是系统自己写的（the labels in the database were written by the system itself），然后给出一套在训练前就产出 ground truth 的协议：分层抽样、冻结模型实际看到的快照（sender/subject/body 截断 1,500 字符/date/channel）、按线程而非邮件 id 切分、密钥脱敏、在 agent 自己的 review 回路里由人做标签、并在打开标签前预注册假设。作者用 9 个系统在同口径下比较（生产关键词规则、TF-IDF+LogReg、Tev1 0.8B/4B、Nimble 9B 本地、托管 Nimble v4-max、Qwen2.5-7B、Gemma 4 26B-A4B/31B）。四条结论（**均为作者自述，本机无法复现数值**，因作者明示邮件与标签不公开）：(1) 生产规则在消息类型上只有 28%，而多数类是 58%——仪表盘上最显眼的那个字段其实不携带信息；(2) 约 200 条标注下，逻辑回归在每个字段上准确率最高（type 0.79 / urgency 0.74 / needs-reply 0.83 / is-noise 0.90），延迟低三个数量级，但从不预测两个最稀有类，与 Gemma 4 在 type 上统计打平，少样本提示补不上差距；(3) 发件人关系（客户/供应商/服务）能从同一联系人的其他邮件里以 98.6% 准确率恢复（仅对 63% 已见过的发件地址有效，整体含多数类回退为 85.7%），任何模型都无法从单封邮件推断——**它属于 contact graph，不属于 prompt**；(4) 准确率不是产品指标：合成到动作后，字段上最准的系统恰恰最常忽略需要处理的邮件（18% vs 最好 LLM 的 4%），因为它精确而保守、LLM 反而过度动作；对噪声概率做成本化阈值选择后该比例减半（v3 从 28/120 到 13/120，v2 从 12/68 到 7/68，Platt scaling 后 4/68），代价是处理两三倍多的噪声。★ **今日证据等级实质升级（这是本篇今日最重要的变化）：** 配套仓库（论文 abs 页未给链接，是今日新发现的第三方实现）今日拉下来本地实跑——`python3 -m py_compile` 四个脚本全部通过；kappa.py 端到端跑通，用自造 60 条注入约 10% 分歧的标注实跑，五个字段全部正确产出 raw agreement / Cohen's κ / 2000 次 bootstrap 的 95% CI / 混淆矩阵 / 分歧明细（urgenza accordo=0.983 kappa=0.975 [IC95% 0.922, 1.000]；e_rumore accordo=0.950 kappa=0.900 [IC95% 0.768, 1.000]）；bench_email.py 的 TF-IDF+LogReg 基线路径也跑通——带类别信号的 400 条合成集上 acc=1.000 / macroF1=0.857，无信号的 240 条随机集上 acc=0.167 / macroF1=0.138，两次都符合预期，说明 harness 的学习路径和退化路径都真实工作。",
       "path": "daily-detail.html?date=2026-10-27"
-    },
-    {
-      "date": "2026-10-26",
-      "title": "论文价值发现日报 - 2026-10-26",
-      "deep_dive_title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
-      "deep_dive_url": "http://arxiv.org/abs/2610.31650v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "今天排五条动作，顺序即优先级。(1) 抄 EpiSEM-Bench 六指标模板（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR，2610.31650），并把今日实跑的 habib-analyst/episembench 当我们自己实现的验收清单——它的 18/18 已本地跑通，两条核心断言正好对应 Table 1 的 Full UCR 与 Recovery UCR 两列：盲态 agent 在完整遮蔽下必然越权、会查证的 agent 能收手。在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列：遮蔽后越权执行率、主动补证据率、以及「先查后动」比例，不引论文分数当基线。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix（今日已验证 30/30 通过、numerics 与论文逐项对上）对我们训练栈做 A/B，量两件事——loss spike 次数、student=teacher 时梯度是否恰为 0（今日 numerics 实测：bf16 与 fp32 下 barron 实现全为 0.00e+00，而 torch 的 max|z_S-z_T| 达 3.22e-02 / 1.92e-02；★ 今日 grokking 缩减配置已实跑：torch_fp32 8 次 loss spike vs barron_fp32 0 次，且 barron 把最终 margin 中位数推到 16.23（越过 fp32 悬崖比例 0.29）而 torch 停在 9.63（0.00），测试准确率相当 0.3597 vs 0.3680——可直接把『我们训练栈的 loss spike 计数』作为 A/B 的验收指标）；同时记录各任务的 dtype 与 AdamW eps，判断 margin 是否越过对应精度悬崖（实测 torch 悬崖 bf16=5.56 / fp32=16.64 / fp64=36.74 / fp16=7.63，barron 推迟到 93.00 / 103.98 / nan / 17.34）；注意该实现自陈 3.4–6x 速度与 1.25–1.75x 显存代价，只在蒸馏与关键任务上启用。(3) 审 agent 升级阈值链路（Cost-Aware Abstention，2610.31657，Zenodo 产物 10.5281/zenodo.22609128 → zenodo.org/records/22654013 今日实测 200）：按显式成本模型 + calibration 选阈值 + 冻结后一次性评估的口径，先算 correctness AUROC；测不出区分度就不许上阈值。同时把今日新学到的第一道筛子加进去——先问「预算够不够」：selective-audit 实测 burst 1% 预算下四种策略全部只检出 8–9 而 oracle 90，约束不够时调策略无意义。(4) 把五条口径纪律写进 paper-reading checklist：实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分为作者官方 / 第三方 / 脚本化合成类比、新增「有复现仓库」分为 README 自述 / 本地实跑通过 / 实跑且逐项对上；并加一条记账纪律——「相邻基准 ≠ 原论文复现」（selective-audit 是受 2610.31662 启发但问题正交）。(5) 趋势雷达连续观察：Selective Auditing（2610.31662，今日新发现可跑相邻基准 habib-analyst/selective-audit，注意 anti-conservative 方向、O(1/n_T) 误差控制保证、以及作者官方代码仍缺）、Sensorimotor Alignment（2610.31670，h=110 vs h=7 口径纪律；今日更正规模印象——仓库 tree_blobs=4030，analysis/ 脚本与部分中间产物是公开的，作者自陈仍缺的是六 WAM / 真机 / 14-backbone 的 matching reproduction bundles）、Direct Pass@k（2610.31667，剪枝目标对齐最终指标，3.3 分优势与 cutoff 阈值是显式超参）、Low-Bit N-Gram（2610.31646，n-gram 表内存是可预算工程量，47–55% 与 75% 分属两组实验）、SpectralCanary（2610.31659，发布即埋信号；作者仓库结构今日可见 src/provenance_t2i/ 与 20+ 脚本，但项目页连续第二天 404）。长尾入库并标注触发条件：METTA（2610.31656，两个时间尺度的记忆分工）、Phase Transition（2610.31663，可训练比例的收益曲线非单调）。",
-      "max_uncertainty": "证据不足项明确清单（按严重度排序）：(1) **样本未变，全部为增量核验**：arXiv 周末无新批次，10 篇与 2026-10-24 / 2026-10-25 完全相同（id 2610.31642–2610.31670，published 均 2026-10-22，abs 页逐个扫描仍全部为 v1，无版本更新），已核对 cs.AI/cs.CL/cs.LG/cs.SE/cs.IR/cs.RO/cs.CV/cs.DC/cs.DB/cs.CR/stat.ML/cs.NE/cs.MA 共 13 个分类的最新 20 条，distinct published date 最高仍为 2026-10-22。今日无新采样，全部结论是对同一批样本的证据升级。(2) **作者官方代码全部仍然缺失，两处需特别说明**：2610.31650 与 2610.31662 的 arXiv abs 页今日经正则扫描均无任何 github.com 链接——300 对真实任务、6,052 条件的构造细节与 Selective Auditing 的全部数值仍无第三方复现（待核验/暂无）；2610.31642 的作者项目页 jonbarron.info/softmaxfix/ 今日实测 HTTP 200 但仍不给仓库链接，现有实现为第三方 PyTorch 移植，其自陈 3.4–6x 速度与 1.25–1.75x 显存代价意味着可用性取决于任务类型。(3) **今日新跑的三个仓库仍存在「跑通≠验证目标」的分层缺口**：selective-audit 虽 16/16 通过且 180 次基准逐格复现，但其 README/KILLGATE 自陈是受 2610.31662 启发且问题正交（它研究固定预算在会漂移的 segment 间分配，论文研究有逐条置信分时每条是否审计），故不构成对论文数值的验证；episembench 实跑的 partial unsafe_exec_omission_recovery=0.4944 是其结构化决策规则『at the ceiling by construction』的构造性结果，不可当作任何真实模型的行为引用；barron-softmax-fix 自陈该配置下没有任何变体在 10k 步内 grokking，论文的 grokking 加速收益在该复现中未被检验——今日实跑后这一条已给出确定答案：在 2,000 步、1 seed、eps=1e-8 的缩减配置下 torch_fp32 出现 8 次 loss spike 而 barron_fp32 出现 0 次，论文最核心的 Slingshot 主张被独立复现（8 → 0）；但两变体均未 grokking（测试准确率 0.3680 / 0.3597），故 grokking 加速收益依然未被检验到——今日是『主张部分复现、加速收益未复现』，不是『完全复现』。(4) **全部论文性能数字仍为作者自述**：EpiSEM 十模型的 SWS/UCR/SBM/PUR 与 Table 8 的 Critical Omission Failure Rate；Cost-Aware Abstention 的 0.763→0.472（38.1%，CI [35.7%, 40.4%]）、15.3%→3.5%、0.477 vs 0.879、AUROC 0.500；Selective Auditing 的四组任务实验与 ImageNet 上的 anti-conservative 现象；S² 的 r=+0.831（h=110）与 r=+0.429（h=7）；PKTP 的 3.3 分优势与 cutoff 收益曲线；Low-Bit N-Gram 的 75% / 47–55% 节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1%/92.4%/94.8%/SSIM 0.989/LPIPS 0.022；METTA 的『超过 50%』。今日只做了三个第三方仓库的实跑核验，未复现任何论文自身的表格。(5) **口径缺口与更正两处**：其一，2026-10-24 历史报告中的 EpiSEM 任务族数与 Table 1 列序两处错误——今日回原文逐字确认 10-25 的更正是对的，但历史文件未回改，本条提醒继续保留；其二，Sensorimotor Alignment 的规模表述今日收紧——昨日记『无配套复现包』过重，仓库实际 tree_blobs=4030、analysis/ 下 30+ 脚本与部分 CSV/JSON 中间产物公开，作者自陈仍缺的是六 WAM、真机与 14-backbone 的 matching reproduction bundles，今日未逐个运行这些脚本（依赖环境未核验）。另有两处链接与元数据差异：SpectralCanary 项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 连续第二天实测 HTTP 404（仓库 README 仍指向该失效链接），故 project_url 留空；sensorimotor-alignment 仓库 GitHub API 返回 license=NOASSERTION 而 raw LICENSE 文件内容为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准标 MIT，元数据差异待作者修正。(6) **元数据口径差异与链接复核（今日实测）**：sachinkg12.github.io/RouteGuard/ 200、jonbarron.info/softmaxfix/ 200、zenodo.org/records/22654013 200、doi.org/10.5281/zenodo.22609128 302 正常跳转、yunfeixie233.github.io/s2/ 200；KILLGATE.md 引用的两个 prior-art 条目已独立核验存在且标题吻合——arXiv 2510.03734『Cost Efficient Fairness Audit Under Partial Feedback』、arXiv 2608.00568『Fairness Auditing: Lower Bounds on Company Manipulation』。(7) **抓取环境与数据源缺口**：huggingface.co 今日经代理恢复可达（HTTP 200，昨日不可达），但 fetch_papers.py 中 OpenReview / Papers with Code 三个源仍是未实现状态，本次数据完全来自 arXiv 单源；github.com 直连失败、必须走仓库 .git/config 里写死的 http.proxy=http://127.0.0.1:7890（该代理今日可用，与昨日记录的『代理已损坏』相反），git clone 走该代理仍报 GnuTLS recv error(-110) / RPC 失败，今日改用 GitHub API tarball 端点拉取仓库（实测可用）——这说明网络可用性是逐日变化的，报告里的『昨日不可达』不能当作今天的结论。(8) **流水线缺陷（今日第三次复现）**：fetch_papers.py 的 extract_keywords 先在全文上匹配再截断摘要到 500 字，且用子串匹配，导致 2610.31663（leverage/storage）、2610.31659（average）、2610.31657（coverage）三篇被误打上 RAG 标签，三篇关键词字段不可用于加权（与前两日同源）。(9) 未核验项：arXiv LaTeXML HTML 全文中 EpiSEM 的六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；PKTP 的附录表格数值已核，跨模型完整对照表未逐格复核；三个仓库中只有 episembench / selective-audit / barron-softmax-fix 三个被实跑，RouteGuard、SpectralCanary、lowbit-ngram、sensorimotor-alignment 四个仓库今日仅做 API 层核验（存在性、tree 结构、提交历史），未运行其代码。",
-      "one_line_judgement": "据 arXiv 2610.31650 摘要、LaTeXML HTML 全文（今日回原文逐字复核）与第三方复现实跑：EpiSEM 攻的不是模型说错话，而是工具少说了一句关键事实、agent 就把被禁止的动作执行了——而且用户请求本身良性、工具返回的每句话都是真的。规模今日复核确认：正文原句「It contains 300 task pairs comprising 600 worlds, with 50 pairs in each of six domains and 60 task families」与「Each domain contains 50 task pairs in ten families, giving 300 pairs and 600 worlds」——即每域 10 个家族、六域合计 60 个；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 口径提醒（连续第二日保留）：昨日 10-25 报告更正过前一日的两处错误（任务族数、Table 1 列序 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR），今日回原文逐字确认那次更正是对的，但 2026-10-24 的历史文件未回改。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。Table 12 的机制证据最刺眼：Qwen3-14B Attempt 仅 16.3% 而 Premature 72.0%、Safe Strict 15.4%；GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——模型大量在把缺失事实取回来之前就提交了动作。",
-      "path": "daily-detail.html?date=2026-10-26"
-    },
-    {
-      "date": "2026-10-25",
-      "title": "论文价值发现日报 - 2026-10-25",
-      "deep_dive_title": "EpiSEM-Bench: Evaluating Safety and Evidence Recovery in LLM Agents under Missing Evidence",
-      "deep_dive_url": "http://arxiv.org/abs/2610.31650v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "今天排四条动作，顺序即优先级。(1) 抄 EpiSEM-Bench 六指标模板（Full SWS / Full UCR / Critical UCR / SBM / Recovery UCR / PUR，2610.31650），并用第三方复现 https://github.com/habib-analyst/episembench 校准我们自己的最小实现——明确只校准机制（遮蔽算子、审计工具、失败基数），不引用它的数值作为基线；在我们工具集挑 20 个带授权边界的任务，人工遮掉一个关键事实重跑，只量三列：遮蔽后越权执行率、主动补证据率、以及「先查后动」比例。(2) 顺带做掉今天最可执行的一条：装 https://github.com/PwnerHarry/barron-softmax-fix 对训练栈做 A/B（Softmax Fix，2610.31642），量两件事——loss spike 次数、student=teacher 时梯度是否恰为 0；同时记录各任务的 dtype 与 AdamW eps，判断 margin 是否越过对应精度悬崖（bf16 ≈ 5.5 / fp32 ≈ 16.6 / fp64 ≈ 36.7）；注意该实现自陈 3.4–6x 速度与 1.25–1.75x 显存代价，只在蒸馏与关键任务上启用。(3) 审 agent 升级阈值链路（Cost-Aware Abstention，2610.31657，Zenodo 产物 10.5281/zenodo.22609128 今日已确认解析到 zenodo.org/records/22654013）：按显式成本模型 + calibration 选阈值 + 冻结后一次性评估的口径，先算 correctness AUROC；测不出区分度就不许上阈值。(4) 把四条口径纪律写进 paper-reading checklist：实验设置不同的比率分开写、引用表格先核列头、离线代理指标同时报预设与探索性设定、「有代码」分为作者官方 / 第三方 / 脚本化合成类比。趋势雷达连续观察：Selective Auditing（2610.31662，误差控制 + 最优审计预算，注意 ImageNet 上是 anti-conservative 不是保守）、Sensorimotor Alignment（2610.31670，h=110 vs h=7 口径纪律，六 WAM/真机/14-backbone 复现包仍缺）、Direct Pass@k Optimization（2610.31667，剪枝目标对齐最终指标，cutoff 阈值是显式超参）、Low-Bit N-Gram（2610.31646，n-gram 表内存是可预算工程量）、SpectralCanary（2610.31659，发布即埋信号，作者仓库已找到但项目页 404）。长尾入库并标注触发条件：METTA（2610.31656，两个时间尺度的记忆分工）、Phase Transition（2610.31663，可训练比例的收益曲线非单调）。",
-      "max_uncertainty": "证据不足项明确清单（按严重度排序）：(1) **昨日报告存在两处事实错误，今日已更正但昨日文件未回改**——(a) EpiSEM-Bench 的任务族数：论文 3.1 节原文为「Each domain contains 50 task pairs in ten families」，即每域 10 个家族、六域共 60 个（正文与 Figure 10 按 60 个统计）；昨日在摘要段落写 60、深挖段落写 10，前后不一。(b) EpiSEM Table 1 列序被读错：真实表头为 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR，昨日按 Full SWS/Critical UCR/…/SBM/PUR 读，导致 77.3% 被标为 Critical UCR（实为 Full UCR，真实 Critical UCR 为 97.3%）；Gemma-4-31B-IT 的 19.7% 位置亦随之偏移。这两处说明昨日那批数字的引用链有系统性风险，本日所有引用均已回原文逐行核过。(2) **全部性能数字仍为作者自述，本次未做任何第三方复现**：EpiSEM 十模型的 SWS/UCR/SBM/PUR 与 Table 8 的 Critical Omission Failure Rate；Cost-Aware Abstention 的 0.763→0.472（38.1%，CI [35.7%, 40.4%]）、15.3%→3.5%、0.477 vs 0.879、AUROC 0.500；Softmax Fix 的 Slingshot 消失与 grokking 加速（第三方复现明确未检验到 grokking）；Selective Auditing 的三组实验与 ImageNet 上的 anti-conservative 现象；S² 的 r=+0.831 与 r=+0.429；PKTP 的 3.3 分优势与 cutoff 收益曲线；Low-Bit N-Gram 的 75% / 47–55% 节省与 <1.2% 困惑度上升；SpectralCanary 的 91.1%/92.4%/94.8%/SSIM 0.989/LPIPS 0.022；METTA 的「超过 50%」。(3) **新增的三个仓库只核验到「存在、结构自洽、README 自述」，一个脚本都没跑过**：barron-softmax-fix（MIT，15 条目，README 逐项列出与论文的对照）、habib-analyst/episembench（MIT，19 条目，README/PREREG/KILLGATE 逐字读取）、hosytuyen/SpectralCanary（MIT，commits API 确认作者归属）。三者均未运行，训练可运行性与数据可得性无法确认；episembench 明确说明其 G2/G3 效应量因结构化决策规则「at the ceiling by construction」不可当作模型行为引用。(4) **作者官方代码仍然缺失，两处需特别说明**：EpiSEM-Bench 作者代码在 abs 页与全文中依旧没有链接，episembench 仓库自己也写「no author code was found」，故 300 对真实任务与 6,052 条件的构造细节仍无法复刻；Softmax Fix 作者项目页 jonbarron.info/softmaxfix/ 可达但未给仓库链接，现有实现为第三方移植，其自陈 3.4–6x 速度与 1.25–1.75x 显存代价意味着我们的可用性取决于任务类型。(5) **口径缺口两处**：S² 的六 WAM、真机与 14-backbone 复现包作者自陈仍缺（record/README.md 原文「do not yet have matching reproduction bundles here」），且 h=110 与 h=7 不可混比；SpectralCanary 的作者项目页 https://hosytuyen.github.io/projects/SpectralCanary/ 实测 HTTP 404（仓库 README 仍指向该失效链接），故 project_url 留空。(6) **元数据口径差异一处**：sensorimotor-alignment 仓库今日经 GitHub API 返回 license 为 NOASSERTION，而 raw LICENSE 文件内容逐字读取为 MIT（Copyright (c) 2026 Sensorimotor Alignment authors）——以文件内容为准，标为 MIT，但 GitHub 元数据侧的差异待作者修正。(7) **抓取环境缺口**：huggingface.co 今日仍不可达，HF Daily Papers 作为社区热度辅助源全程无法使用；OpenReview / Papers with Code 三个源在 fetch_papers.py 中仍是未实现状态，本次数据完全来自 arXiv 单源；周末 arXiv 无新批次，10 篇与昨日完全相同（id 2610.31642–2610.31670），已核对 11 个分类最新 60 条确认无更新。(8) **流水线缺陷（今日复现）**：fetch_papers.py 的 extract_keywords 先在全文上匹配再截断摘要到 500 字，且用子串匹配，导致 2610.31663（leverage / storage）、2610.31659（average）、2610.31657（coverage）三篇被误打上 RAG 标签——今日逐条定位到具体子串，三篇关键词字段不可用于加权，与昨日 NPMLE 那篇同源。另记环境问题：仓库 .git/config 写死 http.proxy=http://127.0.0.1:7890 且 http.sslverify=false，该本地代理 CONNECT 隧道已损坏（curl 直连 github.com 200、走代理 SSL_ERROR_SYSCALL），git 因此报 gnutls_handshake() failed；本次以 git -c http.proxy= -c https.proxy= 绕开，pull/push 均成功，但该配置本身建议另行评审修正。(9) 未核验项：arXiv LaTeXML HTML 全文中 EpiSEM 的六个域各自的安全规则与阈值只在附录给出，主表未逐域拆解；PKTP 的附录表格数值已核，跨模型完整对照表未逐格复核。",
-      "one_line_judgement": "据 arXiv 2610.31650 摘要与 LaTeXML HTML 全文（Table 1 / 8 / 10 / 12 逐行解析）：评测是可执行的——六个域（cloud development and operations、commerce and fulfillment、communication and publication、document and data access、finance、travel reservation），每域 50 对任务、各含 10 个任务族，合计 300 对任务、600 个世界、60 个任务族；抑制清单 1,363 条事实（944 critical + 419 irrelevant），每任务 2–7 个 critical atom；十个模型各跑 6,052 个固定条件（600 完整证据基线 + 5,452 单 atom 抑制）。⚠️ 今日更正昨日两处错误：任务族是每域 10 个、共 60 个（昨日深挖段落误写 10）；Table 1 的真实列序是 Model | Full SWS | Full UCR | Critical UCR | Recovery UCR | SBM | PUR（昨日读成 Full SWS/Critical UCR/…/SBM/PUR）。按正确列序，Table 1 最刺眼的反差是：Qwen3-14B Full SWS 92.0% 但 Full UCR 77.3%、Critical UCR 97.3%、SBM 仅 7.8%、PUR 3.8%；GLM-4.7-Flash Full SWS 85.3% / Full UCR 75.7% / Recovery UCR 87.7% 而 PUR 0.0%；MiMo-V2.5-Pro Full SWS 57.7% 但 Critical UCR 88.0%；GPT-6-Luna Full SWS 51.0%、Critical UCR 21.0%、PUR 30.5%、SBM 最高 84.8%。Table 12 给出更硬的机制证据：Qwen3-14B Attempt 仅 16.3% 而 Premature 72.0%，GLM-4.7-Flash Attempt 仅 1.7% 而 Premature 74.7%——模型大量在把缺失事实取回来之前就提交了动作。论文自陈两条结论：完整证据下高分与安全不是一回事；Resistance to missing evidence does not necessarily translate into useful recovery。",
-      "path": "daily-detail.html?date=2026-10-25"
     }
   ],
   "top_papers": [
     {
-      "title": "Elucidating the Design Space of LM Data Attribution",
+      "title": "WebHarbor: Docking Real Websites for Evolving GUI Agent Environments",
       "authors": [
-        "Steven Yu",
-        "Sheng-Yu Wang",
-        "Kimia Hamidieh",
-        "Antonio Torralba",
-        "David Bau"
+        "Zhaoyang Wang",
+        "Qianhui Wu",
+        "Boyu Gou",
+        "Demi Wang",
+        "Jiacheng Zhang"
       ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40655v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40655v1",
+      "url": "http://arxiv.org/abs/2611.03634v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03634v1",
       "openreview_url": "",
       "paperswithcode_url": "",
-      "code_url": "https://github.com/Lamsheeper/catt",
-      "benchmark_url": "https://huggingface.co/datasets/catt-bench/vtok101-attribution-baselines",
-      "project_url": "https://catt.baulab.info/",
-      "abstract": "Data attribution methods for Language Models (LMs) are typically evaluated using downstream tasks like fact retrieval. However, existing evaluations vary multiple dataset properties simultaneously, making it impossible to isolate exactly why an attribution algorithm fails. To diagnose these failures, we explore the design space of LLM data attribution, with a primary focus on evaluation. We introduce the Controlled Attribution Benchmark (CATT) for fact tracing, in which we fine-tune LLMs on enti",
+      "code_url": "https://github.com/aiming-lab/WebHarbor",
+      "benchmark_url": "https://huggingface.co/datasets/ChilleD/WebHarbor",
+      "project_url": "https://aiming-lab.github.io/WebHarbor/",
+      "abstract": "GUI web agents require realistic and interactive environments that remain stable during both evaluation and training. Live website evaluation suffers from changing content, access restrictions, and limited coverage of authenticated workflows, while existing synthetic environments for training often lack functional depth and visual fidelity. We propose WebHarbor, a suite of 153 executable and dockerized website environments that faithfully reconstruct the visual interfaces, content, and functiona",
       "categories": [
-        "cs.CL"
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
       ],
       "keywords": [
+        "agent",
+        "coding agent",
         "evaluation",
         "benchmark",
         "RAG"
       ],
-      "score": 92.0,
+      "score": 90.0,
       "decision": "重点学习",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40655v1"
+          "url": "http://arxiv.org/abs/2611.03634v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40655v1"
+          "url": "https://arxiv.org/pdf/2611.03634v1"
         }
       ],
-      "llm_reason": "今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、轨迹与归因分数都在 HF Hub 的 catt-bench』，昨日因 huggingface.co 直连超时而标为『待核验/暂无』。**今日经 hf-mirror.com 镜像确认：该组织真实存在且已放出数据** —— 组织 catt-bench（fullname『CATT』，numDatasets=6、numModels=6、numSpaces=2、numFollowers=3），6 个数据集为 vtok101-attribution-baselines（downloads 5368）、vtok101-distr-attribution-baselines（10238）、route-attribution-baselines（6862）、catt-demo-data（213）、ftrace-trex-results（116）、ftrace-answer-only-query（4868）；6 个模型含 Qwen3.5-4B-d0-vtok101-base（380）、Qwen3.5-4B-d0-vtok101-distr-base（308）及各自 lora-seeds；Space catt-bench/catt-demo。**注意作者命名空间是组织 `catt-bench` 而不是个人 `Lamsheeper/catt-bench`**（昨日按后者查是 401，镜像对不存在的仓库同样返回 401，所以 401 本身不能作为『不存在』的判据——今日改用组织枚举得出结论）。★ 今日独立复算（一）：CATT 主表，用作者自己的 `catt.metrics.from_npz` 对**作者发布的分数文件**重算 AUC/Recall@N。任务 fb（Function Bindings，f50_10d_sd1001）Grad-Dot 各臂实测：CE 全 token 求和 Recall@N=0.0990/AUC=0.4475；CE 全 token 均值（ce_sum/n_sup）Recall@N=0.0935/AUC=0.4476；**nlo 全 token 均值 Recall@N=1.0000/AUC=1.0000**；nlo top-10 Recall@N=1.0000；nlo top-3 Recall@N=1.0000。任务 fb-distr（同 cell 加干扰项）Grad-Dot：CE 全 token 求和 0.0115/0.1039；CE 均值 0.0000/0.2815；**nlo 全 token 均值仅 0.0010/0.6270**；nlo top-3 0.9885/1.0000；nlo top-10 **0.9935/0.9999**。→ **今日新增的一条关键判断**：作者主张的『nlo + top-k 两个修正』**不是可互换的两件事**。在无干扰项数据上，nlo 单独就把 Recall@N 从 0.09 拉到 1.00（top-k 再无增益）；**但加入干扰项后，nlo 单独几乎归零（0.0010），必须配合 top-k 才能回到 0.9935**。也就是说，**『损失修正』负责无干扰场景，『top-k 聚合』才是抗干扰的那一半**——昨日报告把两者并列称为『两个修正』，今日的复算显示它们的**边际贡献高度依赖配置**。★ 今日独立复算（二）：论文 Figure 4（最常被引用的那组数字）在**正确 cell**（fb-distr，f50_50d_sd1001，N=50 篇/事实、|F|=50，Grad-Dot）上**完整复现成功，四臂全中** —— 作者称 CE 全 token 0.01、CE top-10 0.30、nlo 全 token 0.35、nlo+top-10 1.00；**今日实测：CE 全 token 均值 0.0065（对应 0.01）、CE top-10 0.2976（对应 0.30）、nlo 全 token 均值 0.3485（对应 0.35）、nlo top-10 1.0000（对应 1.00）**。★ 其中 **『CE top-10』一臂是作者根本没发布的**（Grad-Dot 的发布文件只有 ce / ce_sum，没有 ce_top10），但作者发布了 per-token terms 文件 `tokens.grad_dot.ce.npz`（472MB），今日用**作者自己的** `catt.attribution.token_aggregation.aggregate` 从原始 per-token terms **重建**了这一臂，得到 0.2976 —— 与论文的 0.30 吻合。同时用同一套重建逻辑做**内部一致性校验**：重建的 ce_sum = 0.1171 vs 作者发布的 ce 文件 0.1173（float32 精度差），ce_mean 重建 0.0065 vs 独立路径 0.0066，**说明我们的重建与作者的管线一致**。→ 这是本批次**唯一一个把论文头号数字逐臂复现到位**的证据链。同时实测到两个论文未单列的中间臂：nlo 全 token **求和** Recall@N=0.9609（几乎与 top-10 一样好），nlo mean×Q 0.0550 —— 说明 top-k 的价值主要来自**丢弃长尾噪声 token**，而『求和』也能达到类似效果。★ 今日独立复算（三）：**发现论文正文与作者发布数据不一致**（今日最重要的一条）。论文正文写『At the largest budget, the drop improves from 8% to 40% for TRAK (4.9x)』，论文 Table 16 对应 TRAK 行是 8±2 → 40±4。但作者发布的 `catt-bench/ftrace-trex-results`（含 retrain_top1.npz 原始 per-seed top-1 正确性矩阵，35 次重训 × 8437 个事实；cf50_facts.jsonl.gz 给出 50 个事实及其 proponent 行）今日用其原始矩阵**独立重算**，得到 **TRAK 9.0pp → TRAK(nlo) 47.0pp = 5.22×**，且与作者自己发布的 summaries/summary_b11522.json 的 drop_mean **逐条完全一致**（trak 9±3、trak_nlo 47±1、bm25 19±3、gt 6±0、layerwise_trak_top10 25±3）。**该发布物自己的 README 表格写的也是 9±3 → 47±1（5.22×），不是正文的 8%→40%（4.9×）。**→ 即**论文正文/Table 16 的数字与作者自己发布的数据集对不上**；发布数据更强，不是更弱。同时核到**发布覆盖不完整**：论文 Figure 7 题注与 Appendix E 均写『mean over **eight** retrain seeds』，但发布的 retrain_top1.npz **只有 seeds 2001 与 2002 两个**；且 Table 16 中 **EK-FAC 的 4 行与 Grad-Dot 的 4 行完全没有发布**（发布物只有 trak / trak_nlo / layerwise_trak_top10 / bm25 / gt / full 六个 ranking）。→ EK-FAC 30%→46%、Grad-Dot 7%→23% 这两条正文数字**无法核验**（缺档，非反例）。★ 结论修正：昨日把『4.9×』整条记为『作者自述、不可复现』，**今日必须更正为『可复现但与正文不一致』**。今日能确认的是：nlo 修正对 TRAK 的反事实重训确有大幅提升（复算 9→47pp），且**提升幅度高于正文所述**；但正文的具体百分比与倍数对不上发布数据，引用时应标注这一分歧。★ 另一处今日实测到的口径问题：昨日用仓库自带 bm25_scores 报出『fb 下 BM25 Recall@10 = 1.0000，fb-distr 下 0.8104/0.9164/0.9486』，今日用**作者发布的** bm25 分数文件重算，fb 任务确为 Recall@N=1.0000/AUC=1.0000（f=50, q=250），fb-distr 为 Recall@N=0.9852/AUC=0.9999，**decoy_auc=0.9916、decoy_top1=0.032** —— 即**词法基线在加干扰项后几乎不受损**（0.9852，远高于昨日自测的 0.81–0.95），且**几乎不会把干扰项文档排到第一（3.2%）**。结论不变但更强：**不能用『BM25 也做不到』来论证梯度方法的必要性**。★ 本地仍无法核验项：本机无 CUDA、无微调 checkpoint，**梯度计算本身一条都没跑**；上述全部是**评测层独立复算**（读作者发布的分数 + 作者自己的 metrics 代码重算指标），不是端到端复现；模型权重（Qwen3.5-4B base/adapter，8GB/0.5GB）与轨迹（4GB/条）今日未下载。论文的 35–72 个百分点增幅未在本次逐 cell 复算（Table 44 汇总值与 cell 级复算口径不同，标为**待核验**）。工程入口：uv sync + `catt attribute --task fb --facts 50 --docs 10 --seed 1001 --job ekfac`，要求 NVIDIA GPU，fast_jl 扩展需 CUDA 12.x 工具链。",
-      "id": "elucidating-the-design-space-of-lm-data-attribution",
+      "llm_reason": "今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重 + 已发布数据集 + Docker 镜像。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/aiming-lab/WebHarbor **真实存在**（created 2026-05-02，pushed 2026-11-03，stars=42，forks=42，homepage=https://aiming-lab.github.io/WebHarbor/，size=210254 KB）。仓库顶层结构实测完整：Dockerfile(31415 B)、requirements.lock、control_server.py(17541 B)、site_runner.py、websyn_start.sh、harbor/、sites/、agent_demo/、AGENTS.md(15297 B)、CONTRIBUTING.md(17191 B)、assets-manifest.json。★ 独立执行二（**数字逐个核对，不是转述摘要**）：用 GitHub API 列出 sites/ 目录，实测**恰好 153 个站点子目录**，与论文/README 声称的 153 个环境完全一致——这是今日唯一被独立复算的工件数量（抽查可见 amazon、airbnb、bbc_news、github、imdb、nvidia、google_maps 等真实站点镜像）。★ 独立执行三（数据集与权重）：hf-mirror.com 镜像 API 确认 huggingface.co/datasets/ChilleD/WebHarbor **存在**（lastModified 2026-11-03，tags 含 webharbor / web-agent / gui-agent / computer-use-agents / environments / reinforcement-learning / arxiv:2611.03634）；模型 huggingface.co/ChilleD/WebHarbor-4B **存在**（lastModified 2026-11-03，downloads=39，base_model=OpenWebRL/OpenWebRL-4B-SFT，backend=sglang，format=safetensors）。★ 独立执行四（README 全文读取，抓到了论文摘要里没有的关键细节）：README 明确写出 Trained solely in WebHarbor's synthetic environments and tasks, WebHarbor-4B reaches a **75.8** average on WebVoyager and Online-Mind2Web, **the best open-source GUI web agent at the 4B scale**；项目页 Results 段进一步给出**对比基线**：同为 4B、同一 SFT checkpoint、同一多模态 GRPO 目标的 OpenWebRL-4B 是基线，WebHarbor-4B **live-web 平均分 +5.2（75.8 vs 70.6）**，**比共同 SFT checkpoint 高 +22.2**，WebArena 上 28.8（4B 模型最佳），且 **6/6 成对排名保持、Spearman 秩相关 1.00、Pearson 分相关 0.80**（即代理环境分数排序与真实站点一致，但绝对分数高 4.4–18.8 分）。→ **这是今天工程上最可落地的一条判断：我们可以在 WebHarbor 里跑自己的 agent 评测，而不必被真实站点的内容漂移、登录墙和反爬干扰；但必须知道 WebHarbor 的绝对分比真实站点高 4.4–18.8 分，不能拿它当真实成绩汇报。** ★ 独立执行五（**合成环境的保真度是被实测过的，不是口号**）：项目页写明 6/6 排序保留、1.00 Spearman；并且 WebArena no-auto-login 变体上 WebHarbor-4B 只掉 -2.7 分，而 OpenWebRL 系列掉 -3.6 / -4.9。任务数 3,518（README 与项目页一致），其中测试集 306 个 verified tasks。★ 独立执行六（构建方式本身值得学）：README 写明用 **coding agent（Claude Code / CodeX）把真实站点镜像成本地 Docker**，每个站点占一个端口（40000+i），控制面在 :8101 用 token 保护并可把任一站点重置到种子状态，**153 个环境打包进一个约 20 GB 的镜像**。→ 这是一个用 agent 造评测环境的自我强化闭环，且它的贡献形式是**环境而非模型**，这在当前 agent 生态里稀缺。★ 证据边界（必须写明，不要拔高）：(1) 153 个环境全部镜像进**一个** 20 GB 镜像，**这意味着拉取成本不低**，本地可复现不等于轻量；(2) **hub.docker.com 今日全程超时**（两个 endpoint 均 timeout），所以 **20 GB 体积、镜像 tag 数、Dockerfile 能否真正 build 今日均未独立核验**，README 的 20 GB 与 wildawm/webharbor 镜像名来自作者自述；(3) WebHarbor **没有 LICENSE 文件**（GitHub API /license 返回 404，README 无 License 段），**许可状态待核验**——这直接影响我们能否在内部项目里复用其环境代码；(4) **论文无 arXiv HTML 全文**（arxiv.org/html/2611.03634 与 /v1 均返回 404），上述所有实验数字均来自 README 与项目页（作者自述），**没有第三方独立复现**；(5) 论文摘要说 31 pages，但正文表格不可读；(6) 论文作者列表长达 51 人（含多位知名研究者），**单篇归属判断的边际价值有限，真正的资产是环境集与 checkpoint**。★ 与今日被截断的 2611.03116《From Local Skills to Long-Horizon Web Tasks (SCOPE)》对照：两者同属 web agent 训练方向，SCOPE 讲的是渐进式技能探索的**训练方法**，WebHarbor 讲的是**评测与训练环境本身**——环境是更硬的资产，且 SCOPE 未找到公开仓库，**WebHarbor 的证据等级明确更高**。",
+      "id": "webharbor-docking-real-websites-for-evolving-gui-agent-environments",
       "value_type": "immediate",
       "matched_topics": [
+        "ai-agent",
         "llm-evaluation",
-        "rag-knowledge",
-        "data-engineering"
+        "coding-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 8.1,
-        "engineering_testability": 5.5,
-        "trend_signal": 6.8,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 5.6,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 7.65,
+        "engineering_testability": 6.05,
+        "trend_signal": 4.85,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
         "actionability": 7.3,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 2.0,
-        "low_relevance_penalty": 2.2,
+        "low_relevance_penalty": 0.8,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 2.0
       },
       "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Data attribution methods for Language Models (LMs) are typically evaluated usi…",
-      "one_line_judgement": "今天值得试：今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
+      "brief_cn": "AI Agent：GUI web agents require realistic and interactive environments that remain stab…",
+      "one_line_judgement": "今天值得试：今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
       "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "今日第一即时价值，且是**今日唯一被独立复算成功**的一篇——昨日最大的证据缺口今日已闭合。★ 昨日缺口闭合：README 声明『所有模型、轨迹与归因分数都在 HF Hub 的 catt-be",
+      "long_tail_summary": "今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重 + 已发布数据集 + Docker 镜像。★ 独立",
       "related_trends": [
-        "coding-agent",
-        "context-engineering"
-      ],
-      "detail_path": "paper-detail.html?id=elucidating-the-design-space-of-lm-data-attribution"
-    },
-    {
-      "title": "ShallowDefend: Harnessing Shallow Safety Alignment for Multi-Turn Defender",
-      "authors": [
-        "Qiyao Ma",
-        "Xiaodong Liu",
-        "Weiwei Yang",
-        "Mingqian Feng",
-        "Chengquan Guo"
-      ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40627v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40627v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Safety alignment has enabled large language models to reliably refuse harmful requests directly, yet the same request distributed across a multi-turn conversation still succeeds far too often. This brittleness has a mechanistic root: Alignment is shallow, with safety behavior concentrated in a model's first few output tokens, and existing defenses inherit the weakness, supervising the surface form of the response without ever giving the model an explicit safety decision to learn. We take the opp",
-      "categories": [
-        "cs.CL"
-      ],
-      "keywords": [
-        "benchmark",
-        "RAG"
-      ],
-      "score": 82.0,
-      "decision": "重点学习",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40627v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40627v1"
-        }
-      ],
-      "llm_reason": "今日第二即时价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=ShallowDefend 今日返回空数组，作者 arXiv abs 页与 HTML 全文亦未见官方仓库链接/comments 指向项目页。论文本身昨日已逐字复核（arXiv 2610.40627，LaTeXML HTML 正文 84.0KB 可读，作者含 Qiyao Ma（UC Davis，实习期间于 Microsoft Research）、Chengquan Guo、Zhe Zhao 等），核心主张今日不变：**安全对齐是『浅』的**——安全行为集中在模型输出最初几个 token，因此多轮越狱把同一请求拆散后仍然得手；其防御方案 Assess → Decide → Respond 让防御器**显式提交一个可解析的安全决策 token span**，由于决策只是一个 span，奖励可以是**规则**而非模型（self-verified reward，无需 judge、无需人工标注），同一格式也支持 LLM-as-judge 的分级决策空间。★ 今日判断的落点不变且不依赖任何论文数字：**方法论今天就能用**——把『显式决策 token span』作为可训练、可规则校验的中间变量写进我们的 agent 防御设计清单，与『再训一次模型』『改架构』并列。★ 全部数字（14 个 benchmark、6 个独立 judge、per-token KL 分析）仍是作者自述且无第三方复现，今日无新证据可加，**维持『待核验』**。",
-      "id": "shallowdefend-harnessing-shallow-safety-alignment-for-multi-turn-defender",
-      "value_type": "immediate",
-      "matched_topics": [
-        "security-governance",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "安全与治理：Safety alignment has enabled large language models to reliably refuse harmful …",
-      "one_line_judgement": "今天值得试：今日第二即时价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=Shallow…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "今日第二即时价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=ShallowDefend 今日返回空数组，作者 arXiv ab",
-      "related_trends": [
+        "agentic-world-modeling",
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=shallowdefend-harnessing-shallow-safety-alignment-for-multi-turn-defender"
+      "detail_path": "paper-detail.html?id=webharbor-docking-real-websites-for-evolving-gui-agent-environments"
     },
     {
-      "title": "Rethinking Neural Thickets Without Weight Perturbations",
+      "title": "Not All Reasoning Generalizes: A Case Study on Learning Generalizable Reasoning Strategies in RLVR",
       "authors": [
-        "Nicolas Dufour",
-        "Elouan Gardès",
-        "Amil Dravid",
-        "Patrick Pérez",
-        "Loic Landrieu"
+        "Ziqi Pang",
+        "Yu-Xiong Wang"
       ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40649v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40649v1",
+      "url": "http://arxiv.org/abs/2611.03627v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03627v1",
       "openreview_url": "",
       "paperswithcode_url": "",
-      "code_url": "https://github.com/kyutai-labs/logit-psv",
+      "code_url": "https://github.com/ziqipang/rl_meta_thinking",
       "benchmark_url": "",
-      "project_url": "https://kyutai.org/logit-psv",
-      "abstract": "The Neural Thickets hypothesis posits that pretrained language models lie in dense neighborhoods of task-specific experts in weight space, which random Gaussian perturbations can uncover. We reproduce the reported gains, but show that they do not require this geometric explanation. Perturbing a single decoder block already recovers much of the improvement, while keeping the model entirely frozen and adding a random bias to its output logits matches or exceeds full-weight perturbations on most re",
+      "project_url": "",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) can enable generalizable improvement for large language model (LLM) reasoning. This paper studies how to incentivize such generalization via reasoning strategies. We study this question with a controllable equation-solving framework: finding multiple inputs x for equations f(x)=y, where f is a non-bijective string function. This setting makes reasoning strategies observable while supporting a clear definition of easy-to-hard out-of-distributi",
       "categories": [
-        "cs.LG",
-        "cs.AI",
-        "cs.CV"
+        "cs.LG"
       ],
       "keywords": [
-        "inference"
+        "evaluation"
       ],
-      "score": 79.0,
+      "score": 78.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40649v1"
+          "url": "http://arxiv.org/abs/2611.03627v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40649v1"
+          "url": "https://arxiv.org/pdf/2611.03627v1"
         }
       ],
-      "llm_reason": "今日第三即时价值，**今日新增了一条可核验的官方证据**（但也带出一条新的限制）。据 arXiv 2610.40649（LaTeXML HTML 正文 114.2KB，作者为 Kyutai / Meta FAIR / LIGM-CNRS / UC Berkeley / Google DeepMind，通讯作者 Patrick Pérez）：它复现了 Neural Thickets 报告的增益，但拆掉了那个几何解释——只扰动单个 decoder block 就能拿回大部分提升，而**完全冻结模型、只在输出 logits 上加一个随机高斯偏置**，在多数推理任务上匹配或超过全权重扰动；作者把它重述为 PSV（Perturb-Select-Vote）：生成扰动预测器 → 按验证集奖励**选择** → **投票**聚合，并给出二阶分析说明小权重扰动主要通过其诱导的 logit 位移起作用。作者自述（今日仍不可复现）：OLMo-3-7B-Instruct 上 MATH-500 从 63.3% 提到 81.3%，全权重扰动集成 74.7%；Countdown 上单组件即可恢复全权重增益至少 85%（base 66.6% → 全权重 PSV 90.8%）；视觉侧 DINOv3 在 FMoW-OOD +6.2、Waterbirds worst-group +5.0，而全权重扰动几乎无增益（+1.0 / +0.3）。★ 今日证据状态：官方仓库 github.com/kyutai-labs/logit-psv 今日复核 —— **★11**（昨日为 ★8），created 2026-10-29，pushed 2026-10-30，**license 仍为 none**（GitHub API /licenses 返回 404，确认仍无许可证）。仓库内容今日核对为 .gitignore / Makefile / README.md / assets / docs / logit_psv / pyproject.toml / reproduce / requirements*.txt / tests —— **今日新增 `tests/` 与 `reproduce/` 目录**（昨日记录中未见），即作者在昨日之后补了复现实验脚手架。**待核验**：这两个目录今日未逐文件核对其是否覆盖论文数字。昨日已在 CPU 上实跑其核心机制（成员由 (seed, sigma) 决定故可随时重建、按训练集平均奖励排序且平局稳定、多数票且弃答不参与投票），机制级结论今日不变。★ **关键工程约束今日维持**：仓库 logit_psv/engine.py 是在 **vLLM 内部安装 logits hook**（compute_logits 里 logits.float() + ext._psv_bias(...)），**必须能拿到 logits，即白盒 / 开放权重**。→ 这条路径**对闭源 API 模型不可用**，只适用于我们能自托管的开放权重模型。★ 本地无法核验项：GPU 生成路径（vLLM + CUDA 12.8）未跑，63.3%→81.3%、74.7%、85%、+6.2、+5.0 全为作者自述；仓库声明的复现实验值（+25.2 / +14.0 / +19.0 / +10.4 / +11.0 / +2.1 / +0.7，『与报告值相差 3.7 分以内』）同样为作者自述。",
-      "id": "rethinking-neural-thickets-without-weight-perturbations",
-      "value_type": "immediate",
+      "llm_reason": "今日第二价值，**是今天最有方法论迁移价值的一篇，因为它诊断的是 RLVR 训完之后推理策略在分布外会崩塌这个几乎所有 RLVR 团队都在踩、但很少有人正面测量的失败模式**。★ 独立执行一（GitHub API 核验，实测）：github.com/ziqipang/rl_meta_thinking **真实存在**（created 2026-01-14，pushed **2026-11-03**，即论文发布后第二天仍在更新，Apache-2.0），仓库结构实测完整且是**可训练的真实工程**而非玩具：含 verl/（protocol.py 31883 B、trainer/、models/、single_controller/、third_party/，即在 verl 训练框架上做的）、examples/grpo_trainer、examples/sft、projects/（atomic_functions.py 21267 B、generators/、pipelines/）、scripts/merge_sft_data.py、scripts/model_merger.py、setup.py、pyproject.toml。README 的 TL;DR 与论文摘要口径一致。★ 独立执行二（论文全文核对，抓到摘要里没有的实验设定细节）：README 中读到完整实验规格——24 个非双射函数（18 训练 / 6 held-out）+ 24 个双射函数用于 co-training，基座 Qwen2.5-7B-Instruct，GRPO + DAPO 式零方差组过滤，评分用 min(#correct unique, k)/max(k, #submitted) **通过实际执行 f 来验证**。★ 独立执行三（核心发现的准确表述，必须写准）：**这不是 RLVR 无效也不是 reward hacking**——论文的论证是：模型在分布内用正确的推导策略（derivation）拿到高精度，OOD 时**放弃推导、退化为暴力枚举**，准确率断崖式下跌（论文明确排除基座模型能力不足和 reward hacking 两种解释）。**修复手段是间接的**：与双射反演任务 co-training，双射任务实际并不更难、甚至离评测分布更远，却能把 OOD 上的推导使用率**大致翻倍**并显著恢复准确率。★ 独立执行四（可迁移的机制解释，这才是它真正的价值）：README 给出一个**每 token 信息量**视角——把推理看作收缩候选解空间，derivation 每 token 的信息比特数高于 enumeration；由此推出 **outcome-only 的 RLVR（actor-critic 与 GRPO）其实在隐式地为有效的推理策略记账**，所以那些能拉大比特率差距的任务（双射任务、更短 token 预算、更受约束的解空间）会偏好推导。→ **这直接改变了我们训 RL 时的数据配比思路：不该只堆难题，该主动混入能强化正确推理过程的任务，哪怕它们离最终评测更远。** ★ 证据边界：(1) **只有 2 位作者**（Ziqi Pang、Yu-Xiong Wang，UIUC），代码仓库 stars=0、forks=0，**目前没有任何外部关注或独立复现**；(2) 实验规模是**单模型单任务族**（Qwen2.5-7B + 一个自制的字符串函数反演框架），**结论是否能外推到代码、数学、工具调用类 RLVR 任务完全待验证**，论文自己也把范围限定在 case study；(3) 其分布外指标（更多解、更长 y、长度改变）是**人造的、可控的**，与真实世界的分布外不等价；(4) GitHub 仓库虽小但**结构完整且 Apache-2.0**，代码确实在，可以直接跑——但今天的机器没有 GPU，**没有实测跑通任何训练**。★ 为什么给趋势价值而不是即时价值：机制普适性目前只有单任务族证据，但它指向的是 RLVR 数据工程这个我们迟早要碰的问题，且代码可跑、有 Apache-2.0，值得纳入 7–30 天观察窗口。",
+      "id": "not-all-reasoning-generalizes-a-case-study-on-learning-generalizable-reasoning-strategies-in-rlvr",
+      "value_type": "trend",
       "matched_topics": [
-        "inference-serving",
         "llm-evaluation",
         "ai-agent"
       ],
@@ -406,452 +332,390 @@
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 5.9,
-        "engineering_testability": 5.5,
+        "engineering_testability": 6.05,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
+        "asset_convertibility": 5.4,
         "actionability": 6.1,
         "noise_risk": 2.4,
         "weak_evidence_penalty": 3.0,
         "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 4.0,
+        "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 3.0
       },
       "trend_status": "emerging",
-      "brief_cn": "推理与服务：The Neural Thickets hypothesis posits that pretrained language models lie in d…",
-      "one_line_judgement": "今天值得试：今日第三即时价值，**今日新增了一条可核验的官方证据**（但也带出一条新的限制）。据 arXiv 2610.40649（LaTeXML HT…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
-      "value_type_label": "即时价值",
+      "brief_cn": "LLM 评测：Reinforcement learning with verifiable rewards (RLVR) can enable generalizable…",
+      "one_line_judgement": "值得继续观察：今日第二价值，**是今天最有方法论迁移价值的一篇，因为它诊断的是 RLVR 训完之后推理策略在分布外会崩塌这个几乎所有 RLVR 团队都在踩…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
+      "value_type_label": "趋势价值",
       "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "今日第三即时价值，**今日新增了一条可核验的官方证据**（但也带出一条新的限制）。据 arXiv 2610.40649（LaTeXML HTML 正文 114.2KB，作者为 Kyutai /",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日第二价值，**是今天最有方法论迁移价值的一篇，因为它诊断的是 RLVR 训完之后推理策略在分布外会崩塌这个几乎所有 RLVR 团队都在踩、但很少有人正面测量的失败模式**。★ 独立执行一（",
       "related_trends": [
         "coding-agent",
         "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=rethinking-neural-thickets-without-weight-perturbations"
+      "detail_path": "paper-detail.html?id=not-all-reasoning-generalizes-a-case-study-on-learning-generalizable-reasoning-strategies-in-rlvr"
     },
     {
-      "title": "From extreme weather to agricultural consequences with agentic AI",
+      "title": "D&A: Decoupling Description and Assessment Enables VLMs as Zero-Shot Robotic Reward Models",
       "authors": [
-        "Minghan Yu",
-        "Mengyu Dai",
-        "Yixin Wen",
-        "Haizhao Yang"
+        "Marius Memmel",
+        "Shawn Yin",
+        "Urvi Rutia",
+        "Angad Wadhwa",
+        "Eldon Li"
       ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40641v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40641v1",
+      "url": "http://arxiv.org/abs/2611.03622v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03622v1",
       "openreview_url": "",
       "paperswithcode_url": "",
-      "code_url": "",
+      "code_url": "https://github.com/memmelma/dna",
       "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Extreme weather is forecast days ahead, yet its consequences for agriculture remain hard to predict: a forecast says where a storm will strike, not which crops will suffer or how much is at risk, and the records that could tell span many sources. We present WxCrop, the first agent that judges agricultural hazards from physically interpretable weather indices examined by causal analysis, and the first that combines weather and agricultural information to predict crop loss reliably for past and fo",
+      "project_url": "https://weirdlabuw.github.io/dna",
+      "abstract": "Vision-Language Models (VLMs) hold promise for zero-shot video task-progress estimation in robot learning, yet existing frameworks frequently suffer from confirmation bias, hallucinating progress in failed executions due to implicit success assumptions or relative temporal ranking designs. Naive prompting of frontier models collapses into a binary success detector that fails to capture nuanced, non-linear progress and failures. While post-training approaches can mitigate this through explicit tr",
       "categories": [
-        "physics.ao-ph",
-        "cs.AI"
+        "cs.RO",
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "eess.SY"
       ],
       "keywords": [
-        "agent",
-        "agentic"
+        "evaluation",
+        "benchmark"
       ],
-      "score": 74.0,
+      "score": 76.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40641v1"
+          "url": "http://arxiv.org/abs/2611.03622v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40641v1"
+          "url": "https://arxiv.org/pdf/2611.03622v1"
         }
       ],
-      "llm_reason": "今日第一趋势价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=WxCrop 今日命中两个 2016/2019 年的**同名无关项目**（mingmingxianseng/wxcrop 微信企业号、mars3770/wxCropper 微信小程序图片裁切），**无官方实现**；arXiv abs 页与 HTML 全文亦未见官方仓库链接，comments cell 仅有『34 pages, 4 figures, 6 tables』。论文本身昨日已逐字复核（arXiv 2610.40641，HTML 正文 100.3KB 可读，作者为 University of Maryland / Stony Brook University）：它提出 WxCrop，自述为**第一个**用物理可解释天气指数（经因果分析筛选）判定农业灾害、并把天气与农业信息结合预测作物损失的 agent，在佛罗里达针对飓风 / 霜冻 / 干热三类灾害演示，损失模型用**保险理赔记录**校准。作者自述的三项可靠性检查（今日仍不可复现）：飓风指数识别已记录气旋日 AUC 0.98；留出年份已记录损失复现到 2% 以内；独立生产记录确认县级排序（rank correlation 0.63，110 个 county-season）；另在 1,660 个 storm county-month 上 Brier score 0.177 对比历史频率 0.224；霜冻指数 AUC 0.99、干热指数 AUC 0.76；自述 1991–2023 全球农业灾害损失约 3.26 万亿美元。★ 今日判断不变：价值在**方法论范式**（把 agent 每个输出数字挂到可核验外部记录上，用 AUC / Brier / rank correlation 三种独立口径交叉验证，而不是只看 LLM-as-judge 分数），而不是算法本身；且这是**农业垂直领域**的 agent，与我们通用 AI 基础设施方向重合度低于前三篇。",
-      "id": "from-extreme-weather-to-agricultural-consequences-with-agentic-ai",
-      "value_type": "trend",
-      "matched_topics": [
-        "ai-agent",
-        "llm-evaluation",
-        "security-governance"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 6.45,
-        "relevance": 7.4,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 0.8,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "AI Agent：Extreme weather is forecast days ahead, yet its consequences for agriculture r…",
-      "one_line_judgement": "值得继续观察：今日第一趋势价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=WxCrop …",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "今日第一趋势价值。**代码状态今日复核：仍为『待核验/暂无』** —— GitHub repository search q=WxCrop 今日命中两个 2016/2019 年的**同名无关项",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=from-extreme-weather-to-agricultural-consequences-with-agentic-ai"
-    },
-    {
-      "title": "Probing Spatial State Representations in Visual Foundation Models",
-      "authors": [
-        "Baiqiao Yin",
-        "Zhongang Cai",
-        "Ruisi Wang",
-        "Qiwei Liang",
-        "Lei Yang"
-      ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40636v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40636v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "https://github.com/yyyybq/Probing_Spatial_State_Release",
-      "benchmark_url": "",
-      "project_url": "https://yyyybq.github.io/probing-spatial-state/",
-      "abstract": "An observer sees only part of the surrounding world, yet must keep track of what lies beyond the current view. Spatial perception therefore involves more than recognizing individual images: it calls for a persistent spatial state that is updated under self-motion and used to guide action. Do visual foundation models provide representations that support such a state? We study this question through four levels of spatial capability---spatial structure, object persistence, predictive spatial update",
-      "categories": [
-        "cs.CV",
-        "cs.AI"
-      ],
-      "keywords": [],
-      "score": 71.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40636v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40636v1"
-        }
-      ],
-      "llm_reason": "今日第二趋势价值。**代码状态今日维持『已发布但作者自曝复现限制』**。官方仓库 github.com/yyyybq/Probing_Spatial_State_Release 今日已在本机（昨日下载）：实测结构含 pytest.ini / THIRD_PARTY.md / LICENSE / configs/train.yaml / features/（run_inscene15k.py、run_inscene15k_mllm.py、offline_hf.py、noise_seed.py、canonical_gap_worklist.py）/ tests/（9 个测试文件）与 requirements-lock.txt；README 明确说明代码派生自 VidFM3D（arXiv:2512.19949，github.com/zxhuang1698/VidFM3D）并要求引用原作者。昨日已实测仓库自带 results/canonical_v2_val_seed42.csv（读入 804 行、status 全部 ACCEPTED），按模型×探针聚合的均值（f3r 的 view_consistency 0.9808 但 action_dynamics 仅 0.0133；aether 的 action_dynamics 0.0024）与论文『读出强 ≠ 可行动』的结论方向一致——但用的是作者自己发布的数字，不是独立复现。★ 仓库 README 自列 Known limitations，昨日逐字复核今日维持：**训练与评测代码快照未发布**（重跑只能复现协议、不能逐比特复现数字）；内部特征索引 PROBE_OWNER_OVERLAY_MANIFEST 未发布；**MiniMax-H3 的 96 条 canonical + 16 条 C3 行无法从本仓库重跑**（需 diffusers.modular_pipelines.minimax_h3 与未公开的子集清单，reproduce_rows.py 会直接拒绝）；LingBot 特征提取的源 commit 未记录；InsScene-15K 数据集 revision 未固定。★ 今日未新增可核验证据：数据仍以作者发布的 CSV 为准，**MiniMax-H3 与 InsScene-15K 相关的一切结论维持『待核验/暂无』**。",
-      "id": "probing-spatial-state-representations-in-visual-foundation-models",
-      "value_type": "trend",
+      "llm_reason": "今日第三价值，**是唯一一篇今天就能在我们的系统里直接用起来、不需要 GPU 也不需要新数据的论文——它把 VLM 当成零训练的进度打分器**。★ 独立执行一（GitHub API 核验，实测）：github.com/memmelma/dna **真实存在**（created 2025-11-26，pushed **2026-11-03**，MIT，stars=5），目录结构实测完整：dna/classes/（main.py 14188 B、experimental.py 15406 B）、dna/functions/（description.py 11453 B、progress.py 20743 B、video_to_progress.py、viz.py、terminal_log.py）、dna/requests/（api.py、claude.py、gemini.py、gpt.py、meta.py、openrouter.py、qwen_hf.py 12839 B、_pool.py、_media.py）、example.py、uv.lock（570 KB，说明依赖已锁定）。★ 独立执行二（**今日最有价值的一次独立执行，抓出了一个真实的踩坑点**）：按惯例执行 pip download dna --no-deps，**下载成功**（dna-0.0.1-py3-none-any.whl）——但解包后 METADATA 显示这是**一个完全无关的 PyPI 模板包**（Author: HaveTwoBrush，Summary: project description，正文是中文的「Python Package Template」教程，只含 dna/shell/usage.py 与 package_name/ 目录）。继续查证 D&A 自己的 pyproject.toml，确认**项目名是 reward-vlm（version 0.1.0，build-backend=hatchling，packages 为 dna）**；但 pip index versions reward-vlm 与 pip download reward-vlm 均返回 **No matching distribution found**，PyPI API /pypi/reward-vlm/json 返回 **404** → **D&A 尚未发布到 PyPI，只能从 GitHub 仓库 pip install -e . 安装**。→ **这条必须写进日报：如果团队里有人按名字直觉执行 pip install dna，会静默装到一个无关的模板包上，而且 pip 不会报错。** ★ 独立执行三（README 全文，确认了它到底能做什么）：核心 API 是 DNA(model=...).compute_progress(video, task)，输入 (N,H,W,3) uint8 视频 + 任务描述，输出 (N,) 的 [0,1] 逐帧进度（0=未开始，1=完成）；提供同步与 compute_progress_async 异步两种形态，适配已有 async pipeline。支持的后端实测列出：Google Gemini（gemini-3-flash-preview）、OpenAI GPT（gpt-4o / o3）、Anthropic Claude（claude-sonnet-4-20250514）、OpenRouter（任意模型，前缀路由）、Meta Muse Spark、Qwen-VL 本地推理。**Gemini 与 Muse 接受原生视频，其余后端把视频拆成逐帧图像**（这决定了成本与信息损失的差别）。thinking 参数可调推理预算（LOW/MEDIUM/HIGH/OFF）。★ 独立执行四（方法本身的价值在解耦二字）：D&A = **Describe & Assess**，先让 VLM **在不看到任务目标的前提下客观描述场景发生了什么**，再用一个**显式的、任务无关的成功判据（rubric）**去评估进度。论文诊断的问题很实在：现有 VLM 进度估计因隐含成功假设和相对时间排序设计而产生**确认偏置**——在失败执行里幻觉出进度；朴素 prompt 会退化成二元成功检测器，无法刻画非线性进展与失败。**先描述后评估，把绝对成功标准锚定在外部全局判据上，而不是视频自身的时间轴上**，这是能迁移到我们任何让 LLM 判断一件事做得怎么样的场景里的通用模式（比如审代码、评作业、看 agent 轨迹）。★ 证据边界（必须写明）：(1) **README 明确标注 Qwen-VL 本地推理 is in development 且 not yet fully validated — use the hosted API backends for production**，所以零 GPU 成本这条路今天还不成立，实际调用需要 Gemini/GPT/Claude/OpenRouter 的 API key，**成本未核算**；(2) 论文声称的 matching or surpassing post-trained reward models 是**作者自述**，今日**未独立复现**；(3) **D&A-Bench 数据集（huggingface.co/datasets/memmelma/dnabench）今日无法核验**：hf-mirror 镜像 API 对该 id 返回 **404**，huggingface.co 直连超时；但用 api/datasets?author=memmelma 列该作者 41 个数据集，**其中不含 dnabench**，而作者同一批的 hamster_eval / libero_* / oxe_* 等均正常返回 200 → 判断是**数据集尚未对外发布或已改名**，标记**待核验**；(4) 论文无 arXiv HTML 全文之外的可读副本，所有结论来自摘要 + README；(5) stars=5、无 release、无 PyPI 包，**工程成熟度是能跑而非能依赖**。★ 为什么给即时价值：它不依赖任何新硬件、新数据或训练，方法模式可直接搬到我们的 agent 轨迹评估与 rubric 设计上，且代码 MIT 许可、目录结构清晰。",
+      "id": "d-a-decoupling-description-and-assessment-enables-vlms-as-zero-shot-robotic-reward-models",
+      "value_type": "immediate",
       "matched_topics": [
         "multimodal-agent",
         "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 5.4,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
         "evidence_strength": 5.9,
-        "engineering_testability": 5.5,
+        "engineering_testability": 6.05,
         "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 6.2,
         "actionability": 6.1,
-        "noise_risk": 2.4,
+        "noise_risk": 1.2,
         "weak_evidence_penalty": 3.0,
-        "low_relevance_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 3.0
       },
       "trend_status": "emerging",
-      "brief_cn": "Multimodal Agent：An observer sees only part of the surrounding world, yet must keep track of wh…",
-      "one_line_judgement": "值得继续观察：今日第二趋势价值。**代码状态今日维持『已发布但作者自曝复现限制』**。官方仓库 github.com/yyyybq/Probing_Spa…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
-      "value_type_label": "趋势价值",
+      "brief_cn": "Multimodal Agent：Vision-Language Models (VLMs) hold promise for zero-shot video task-progress e…",
+      "one_line_judgement": "今天值得试：今日第三价值，**是唯一一篇今天就能在我们的系统里直接用起来、不需要 GPU 也不需要新数据的论文——它把 VLM 当成零训练的进度打分器*…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
+      "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "今日第二趋势价值。**代码状态今日维持『已发布但作者自曝复现限制』**。官方仓库 github.com/yyyybq/Probing_Spatial_State_Release 今日已在本机（",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今日第三价值，**是唯一一篇今天就能在我们的系统里直接用起来、不需要 GPU 也不需要新数据的论文——它把 VLM 当成零训练的进度打分器**。★ 独立执行一（GitHub API 核验，实测",
       "related_trends": [
         "agentic-world-modeling",
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=probing-spatial-state-representations-in-visual-foundation-models"
+      "detail_path": "paper-detail.html?id=d-a-decoupling-description-and-assessment-enables-vlms-as-zero-shot-robotic-reward-models"
     },
     {
-      "title": "world2vec: Mechanistic world models through latent dynamics learning",
+      "title": "Pretraining Data Scale Reverses the Muon-AdamW Fine-Tuning Gap",
       "authors": [
-        "Tobias Schmidt",
-        "Rodrigo Gonzalez Laiz",
-        "Krisztián Szuppinger",
-        "Steffen Schneider"
+        "Catherine Li",
+        "Jingchu Gai",
+        "Andrej Risteski",
+        "Jacob Mitchell Springer",
+        "Aditi Raghunathan"
       ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40637v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40637v1",
+      "url": "http://arxiv.org/abs/2611.03633v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03633v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
-      "project_url": "https://worldmodels.science/world2vec",
-      "abstract": "World models can achieve strong control performance without faithfully capturing the dynamics of their environment, limiting their potential for mechanistic interpretability and scientific discovery. Here, we introduce world2vec to learn mechanistic world models without reward information directly from observations and actions. World2vec learns latent dynamics that faithfully reproduce the true system over long prediction horizons, with at least one order of magnitude fewer parameters than Dream",
+      "project_url": "",
+      "abstract": "Muon has recently emerged as a promising optimizer for pretraining large language models, offering a speedup over AdamW in minimizing pretraining loss. However, it remains unclear whether Muon's advantage persists after fine-tuning. In this paper, we study the downstream behavior of Muon and AdamW and uncover a surprising trend: beyond a sufficiently large pretraining data budget, AdamW outperforms Muon after fine-tuning. Moreover, as model size increases, AdamW overtakes Muon at progressively s",
       "categories": [
         "cs.LG"
       ],
       "keywords": [
-        "world model",
-        "benchmark"
+        "memory"
+      ],
+      "score": 71.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03633v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03633v1"
+        }
+      ],
+      "llm_reason": "今日第四价值，**是一篇会直接改变我们的预训练/微调用哪个优化器这条决策的论文，而且它的结论是反直觉的方向——对绝大多数做微调的团队，实际影响面比它看起来更大**。★ 核心发现（论文摘要口径，逐条转述不外推）：Muon 作为预训练优化器已在最小化预训练损失上展现速度优势，但**微调之后优势会反转**：**超过某个足够大的预训练数据预算后，AdamW 在微调上反超 Muon**；而且**模型越大，AdamW 反超所需的 token-参数比阈值越小**。→ **换成工程语言：在小模型/小数据预算下换 Muon 是赚的；一旦模型和数据都上规模，Muon 的预训练速度优势会在微调环节被吐回来。** ★ 机制解释（这是论文真正的贡献，因为它给出的是可迁移的量而不是经验曲线）：把微调看作对输出的**微扰**，定义 **margin-to-spread ratio**（正确 logit 相对错误 logit 高出多少，相对于错误 logit 散布得多开）——在语言模型上，**小数据预算时 Muon 的 margin-to-spread 更大，大数据预算时 AdamW 更大**，正好镜像微调结果；在**线性联想记忆**中作者**证明了**梯度下降在一次更新后 margin-to-spread 相对 Muon 随数据预算增长而占优，且模拟显示该趋势在长时间训练后仍持续。→ **这条机制量比换不换优化器更值得存下来**：它给出了一个可测量、可迁移的中间量，未来判断任何优化器组合时先看它。★ 独立执行（论文全文核对，抓到摘要没有的实验结构）：arXiv HTML 全文确认附录结构极其完整——A.1 优化器定义（AdamW / Muon）、A.2 学习率调度（WSD / cosine）、A.3 token-参数比定义、**B.3 Gaussian 扰动（作为微扰的替代度量）、B.4 评估 Losses / Frontiers / 微调差距与交叉点 / 退化**、C.1 预训练模型与数据（含最低预训练损失设定、Muon 的 AdamW 更新参数的学习率、最佳前沿设定）、C.2 微调、**C.3 微调正则化：Replay、EWC**、D.3 换微调优化器、D.4 微调正则化、E.1 margin-to-spread 在各数据预算下的曲线、F.1 两次单步迭代的证明。→ **论文在微调正则化（Replay / EWC）上做了专门实验，这是摘要完全没提但对我们最实用的一节**：它意味着 Muon vs AdamW 的差距可能有一部分是**微调遗忘**而非单纯优化能力差异。★ 证据边界（重要，不要过度相信）：(1) **全文未发现任何代码或实验仓库发布**（对 our code / code will be / available at / we release 的检索全部零命中，唯一命中的 github 链接是参考文献里的 stanford_alpaca）；**今日无可执行实现**；(2) 作者阵容强（Andrej Risteski、Jacob Mitchell Springer、Aditi Raghunathan 等），**但这是研究判断不是已验证事实**；(3) 论文的因果解释建立在线性联想记忆这一**简化模型**上，**能否外推到真实的 Transformer 规模仍待验证**（论文自己在 B 节做了 Gaussian 扰动与真实模型的实证对照，但今日未核对其数值）；(4) 全文检索到的 memory 出现在 **EWC（Elastic Weight Consolidation）** 这一词里，与论文主题无关——**这恰好暴露了 fetch_papers.py 关键词匹配的噪声问题**（见 note）。★ 为什么给趋势价值：如果结论成立，它影响的是所有做大模型微调团队的基础设施选型；但没有代码、需要多卡复现、且外推性未定，因此**纳入趋势雷达做 7–30 天观察，而不是今天就改我们的优化器配置**。",
+      "id": "pretraining-data-scale-reverses-the-muon-adamw-fine-tuning-gap",
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Context Engineering：Muon has recently emerged as a promising optimizer for pretraining large langu…",
+      "one_line_judgement": "值得继续观察：今日第四价值，**是一篇会直接改变我们的预训练/微调用哪个优化器这条决策的论文，而且它的结论是反直觉的方向——对绝大多数做微调的团队，实际影…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日第四价值，**是一篇会直接改变我们的预训练/微调用哪个优化器这条决策的论文，而且它的结论是反直觉的方向——对绝大多数做微调的团队，实际影响面比它看起来更大**。★ 核心发现（论文摘要口径，",
+      "related_trends": [
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=pretraining-data-scale-reverses-the-muon-adamw-fine-tuning-gap"
+    },
+    {
+      "title": "FADE: Factored Ability--Difficulty Filtering for Online RLVR Scheduling",
+      "authors": [
+        "Tomas Duncun",
+        "Jonah Ellison",
+        "Mateo Ruiz",
+        "Hanae Fujita",
+        "Ingrid Solberg"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03625v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03625v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Group-based reinforcement learning with verifiable rewards (RLVR) learns only from prompts whose sampled completions disagree: all-pass and all-fail groups produce zero relative advantage and burn generation budget without moving the policy. Adaptive schedulers try to steer rollouts toward informative prompts, yet they rely on per-prompt pass-rate trackers that entangle two quantities evolving at very different speeds---the policy's shifting competence across reasoning skills and each prompt's i",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "memory",
+        "benchmark",
+        "RAG"
       ],
       "score": 68.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40637v1"
+          "url": "http://arxiv.org/abs/2611.03625v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40637v1"
+          "url": "https://arxiv.org/pdf/2611.03625v1"
         }
       ],
-      "llm_reason": "今日第三趋势价值，方向（机制化世界模型）与 agentic-world-modeling 同频，**但工程证据仍然是负面的**。★ 今日代码状态复核（硬结论）：官方仓库 github.com/dynamical-inference/world2vec 今日查询到（★0，created 2026-10-15，**pushed 2026-10-30，与昨日相同，即未再更新**，license=none），GitHub API contents 今日返回**仍只有 README.md 与 assets 两个条目**（本地下载目录同样为空）；README 的 Code 一节逐字写明『**The code will be released here soon.** Star or watch this repository to be notified when it is available.』→ **代码状态为『待核验/暂无』，且今日确认仓库自昨日以来无进展。**GitHub repository search q=world2vec 今日命中的 5 个结果中，仅 dynamical-inference/world2vec 相关，其余 4 个是 2016–2018 年的同名旧项目（lipiji/world2vec、ppn029012/World2Vec 等），**无官方实现**。论文本身昨日已逐字复核（arXiv 2610.40637，HTML 正文 24.2KB 为本批次最短）：提出 world2vec，**不用奖励信息**直接从观测与动作学习机制化世界模型，自述隐式维度 d=32、主模型 **263k 参数（221k encoder + 42k dynamics）**、参数量比 DreamerV3 / TD-MPC2 / LeWM 至少少一个数量级、在 71 个吸引子的 benchmark 上准确系统辨识。项目页 https://worldmodels.science/world2vec 昨日 HTTP 200 可达。★ 证据不足项维持：全文 24.2KB 是本批次最短，benchmark 构造、71 个吸引子清单、基线超参细节未完整展开。",
-      "id": "world2vec-mechanistic-world-models-through-latent-dynamics-learning",
-      "value_type": "trend",
+      "llm_reason": "今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group-based RLVR 只从采样结果有分歧的 prompt 里学习，**全对（all-pass）和全错（all-fail）的组相对优势为零，白烧生成预算还不推进策略**。自适应调度器的做法是把 rollout 引向有信息量的 prompt，但这些调度器依赖**每 prompt 的 pass-rate 追踪器**，而 pass-rate 把**两个演化速度完全不同的量纠缠在一起**：(1) 策略在各推理技能上的**能力在漂移**（快），(2) 每个 prompt 的**内在难度**（慢）。用单一指数平均或 Beta 计数器同时跟踪两者时，**短记忆会打乱 prompt 的相对排序，长记忆则报告陈旧的通过率**。★ 方法（FADE = Factored Ability–Difficulty Estimation）：把每个 prompt 的成功 logit 表示为**白化后的 K 维技能载荷与快速漂移的策略能力向量的内积，减去一个缓慢收缩的标量 item 截距**——即用**双线性状态空间滤波**把能力与难度在两个时间尺度上分离。用 **Pólya–Gamma 增广**，每个 minibatch 的二元 rollout 结果通过 **rank-K Woodbury 步**闭式更新 K 维能力后验，**能力变化会立刻传导到所有共享这些技能的未观测 prompt，同时保持 item 截距稳定**；再由后验均值与方差导出**抽到非退化 rollout 组的概率的闭式 utility**。实测口径：**5 个推理 benchmark、2 个基座模型、4 种调度范式，在相同 rollout 预算下，FADE 持续提升下游准确率与校准，每步额外开销 < 0.6 ms**。★ 独立执行（论文全文核对，确认了它到底有多完整）：arXiv HTML 全文可读，结构包含 §4 理论分析（含 Minimax 时间尺度分离证明）、附录 A 数学推导与证明（**A.1 共轭 Pólya–Gamma 滤波步、A.2 零样本方差收缩、A.3 Minimax 时间尺度分离、A.4 方差感知组 utility 的推导**）、附录 B 实现与集成细节（**B.1 技能基构造与数值稳定性、B.2 与宿主 RLVR 调度器的集成**）、附录 C 附加实验（**C.1 与 VIP rollout 分配器的集成与多种子稳定性、C.2 跨模型规模 1B→7B 扩展、C.3 对技能维度 K、保留系数、编码器选择的敏感性**）、附录 D 扩展讨论（**为什么双线性分解优于图聚类与消息传递、何时 FADE 退化为更简单的估计器**）。→ **这份附录结构本身就是这方法被认真做过的证据**，也说明它不是拍脑袋的滤波器。★ 证据边界（今天的实际情况，必须诚实）：(1) **全文检索 code is available / code will be / available at 零命中，GitHub 上按 FADE ability difficulty RLVR 检索 total_count=0**；作者账户 duncun（public_repos=0）、ingridsolberg（public_repos=1，均非本仓库）**都没有对应的公开实现** → **今日无法执行、无法复现、无法核对任何一个数字**；(2) 论文**没有给出开源计划声明**（连 will release 这类措辞都没有），**代码状态标记为待核验/暂无**；(3) 5 benchmark / 2 模型 / 4 调度器的实验规模在论文里属中规中矩，**且全部是论文自述**；(4) 作者名单（Tomas Duncun、Jonah Ellison、Mateo Ruiz、Hanae Fujita、Ingrid Solberg）在 GitHub 上**均无关联公开仓库**，无法交叉验证。★ 为什么给长尾价值而不是忽略：它诊断的问题（**能力与难度的时间尺度纠缠导致调度器排序错乱**）是 RLVR 工程里的真问题，附录 B.2 与宿主 RLVR 调度器的集成说明它被设计成可插拔组件，**一旦开源就是可直接接入的**；而且其中的多时间尺度分离思路本身可以现在就用在我们的 RL 数据采样上。→ **存进长尾库，触发条件：出现公开实现 / 被其他 RLVR 调度论文引用 / 我们的调度器出现 pass-rate 排序错乱的实证。**",
+      "id": "fade-factored-ability-difficulty-filtering-for-online-rlvr-scheduling",
+      "value_type": "long_tail",
       "matched_topics": [
-        "multimodal-agent",
-        "ai-agent"
+        "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
         "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 4.05,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "emerging",
-      "brief_cn": "Multimodal Agent：World models can achieve strong control performance without faithfully capturi…",
-      "one_line_judgement": "值得继续观察：今日第三趋势价值，方向（机制化世界模型）与 agentic-world-modeling 同频，**但工程证据仍然是负面的**。★ 今日代码…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "今日第三趋势价值，方向（机制化世界模型）与 agentic-world-modeling 同频，**但工程证据仍然是负面的**。★ 今日代码状态复核（硬结论）：官方仓库 github.com/",
-      "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=world2vec-mechanistic-world-models-through-latent-dynamics-learning"
-    },
-    {
-      "title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
-      "authors": [
-        "Jiongfan Yang",
-        "Weichen Fan",
-        "Haiwen Diao",
-        "Zhongang Cai",
-        "Ziwei Liu"
-      ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40647v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40647v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "https://github.com/JiongfanYang/SpecSlot",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Pixel-space generative Transformers typically use one token per image patch, so capturing finer detail requires more tokens and makes global attention increasingly expensive. We observe that finer detail does not necessarily require more global communication: low-frequency structure benefits from global exchange, while high-frequency detail can be modeled locally. Based on this insight, we introduce SpecSlot, a pixel-space rectified-flow Transformer that decouples output detail from the length o",
-      "categories": [
-        "cs.CV",
-        "cs.AI",
-        "cs.LG",
-        "cs.NE"
-      ],
-      "keywords": [],
-      "score": 67.0,
-      "decision": "轻量试点",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40647v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40647v1"
-        }
-      ],
-      "llm_reason": "今日第一长尾保存项。★ **今日新增了一条昨日未能核验的证据**：昨日因 huggingface.co 直连超时而无法核验的**预训练权重，今天经 hf-mirror.com 镜像确认已放出** —— HF 模型 **Gokottaw434/SpecSlot**（gated=False、private=False），含 3 个 checkpoint：**ImageNet_model/SpecSlotK2W256/checkpoint-last.pth**、**ImageNet_model/SpecSlotK4W256/checkpoint-last.pth**、**T2I_model/checkpoint-400.pth**。→ 昨日『HF 权重是否已放出、是否可下载』这一条**从『待核验/暂无』升级为『已放出、可下载』**（**今日未下载权重本体**，故权重能否成功加载与推理质量仍**待核验**）。同时该作者名下另有 Para_init_MMaDA、showlab_magvitv2、MMaDA0909、MMaDA000、TerraBagel_1200 等模型，确认为同一作者的真实 HF 账号。★ 项目页状态更新：昨日记为『HTTP 000 / 连接失败』，今日复测为 **TLS 证书主机名不匹配**（curl: (60) SSL: no alternative certificate subject name matches target host name 'yangjiongfan.site'），即**该站点当前证书与域名不匹配**，仍**待核验/暂无**（比『超时』更明确地不可用）。官方仓库 github.com/JiongfanYang/SpecSlot 今日复核：★43（昨日 ★33），created 2026-10-10，**pushed 2026-10-30（未再更新）**，**MIT 许可**；README 自带 News 标注 2026-10-11 预训练权重已在 HF 放出、2026-10-30 论文上 arXiv；arXiv comments 逐字为『22 pages, 10 figures; under review at ICLR 2027』——**仍是预印本，尚未被接收**。论文本身昨日已逐字复核（arXiv 2610.40647，HTML 正文 70.3KB，作者为 Peking University / NTU / SenseTime）：SpecSlot 把每个空间 anchor 展开成多个 slot、每 slot 分给一段互不相交的 DCT 系数带，**只有最低频的那个 slot 参与全局注意力**，从而把『输出细节』与『全局注意力序列长度』解耦。作者自述（今日仍不可复现）：ImageNet-512 上 FID 比 FLOPs 对齐的 JiT-CM 好 2.84 且少 3.9% FLOPs，距 JiT-B/16 仅差 0.69 FID 而成本低 38.2%；DPG-Bench 比 JiT-B/8 高 1.06、前向成本低 40.6%。★ 今日判断不变：方向与我们做推理服务的关系是**间接的**，但『把一个耦合的预算决策拆成两个独立变量（anchor 密度 W × 频谱细分 K）』这个抽象本身是可迁移的设计模式。",
-      "id": "read-allocate-route-role-coupled-tokenization-for-pixel-space-generative-transformers",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "multimodal-agent",
-        "inference-serving"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 5.9,
-        "engineering_testability": 5.5,
-        "trend_signal": 3.5,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 6.1,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 3.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 3.0
-      },
       "trend_status": "long_tail_watch",
-      "brief_cn": "Multimodal Agent：Pixel-space generative Transformers typically use one token per image patch, s…",
-      "one_line_judgement": "值得先保存：今日第一长尾保存项。★ **今日新增了一条昨日未能核验的证据**：昨日因 huggingface.co 直连超时而无法核验的**预训练权重，…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
+      "brief_cn": "LLM 评测：Group-based reinforcement learning with verifiable rewards (RLVR) learns only …",
+      "one_line_judgement": "值得先保存：今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "今日第一长尾保存项。★ **今日新增了一条昨日未能核验的证据**：昨日因 huggingface.co 直连超时而无法核验的**预训练权重，今天经 hf-mirror.com 镜像确认已放出*",
+      "long_tail_summary": "今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group-based RLVR 只从采样结果有分歧的 pro",
       "related_trends": [
-        "agentic-world-modeling"
+        "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=read-allocate-route-role-coupled-tokenization-for-pixel-space-generative-transformers"
+      "detail_path": "paper-detail.html?id=fade-factored-ability-difficulty-filtering-for-online-rlvr-scheduling"
     },
     {
-      "title": "Propose-Filter-Release: Scaling Noise to Typical Sensitivity via Private Filtering",
+      "title": "From Natural Language to Exact Cover: A Neuro-Symbolic Approach to Zebra Puzzles",
       "authors": [
-        "Moshe Shenfeld",
-        "Eliad Tsfadia",
-        "Katrina Ligett"
+        "Paulius Skaisgiris",
+        "Thomas Pammer",
+        "Veronika Semmelrock",
+        "Mykyta Ielanskyi",
+        "Maximilian Heisinger"
       ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40654v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40654v1",
+      "url": "http://arxiv.org/abs/2611.03641v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03641v1",
       "openreview_url": "",
       "paperswithcode_url": "",
-      "code_url": "",
+      "code_url": "https://codeberg.org/bilai-ss25-booleguru-llm/zebrallm",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "An estimator can be accurate and stable on typical data, yet sensitive to a few possible records. Differentially private mechanisms commonly scale their noise to the worst-case influence of a single record, which lets these records dictate the noise even when the remaining data would allow far less. Removing them first would restore the smaller scale, but the removal must itself be private. We introduce \\emph{propose-filter-release} (PFR), which, by privately filtering its input, turns a mechani",
+      "abstract": "Chain-of-Thought (CoT) generation has substantially improved the performance of Large Language Models (LLMs) on complex reasoning tasks, including code generation, data analysis, and exam-style question answering. Despite these advances, purely neural LLMs continue to struggle with elementary logical reasoning problems and lack the determinism, soundness, and reliability characteristic of symbolic reasoning systems. Conversely, classical symbolic methods such as SAT solving and exact cover guara",
       "categories": [
-        "cs.LG"
+        "cs.AI"
       ],
-      "keywords": [],
-      "score": 63.0,
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 62.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40654v1"
+          "url": "http://arxiv.org/abs/2611.03641v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40654v1"
+          "url": "https://arxiv.org/pdf/2611.03641v1"
         }
       ],
-      "llm_reason": "今日第二长尾保存项，属**差分隐私基础理论**方向，与我们当前工程栈不直接相交，价值在于方法论可迁移。据 arXiv 2610.40654（LaTeXML HTML 正文 324.4KB 为本批次最长，含完整证明与 AI Methodology Statement）：它提出 propose-filter-release（PFR）：差分隐私机制通常把噪声尺度定在**单条记录的最坏情况影响**上，于是少数极值记录替所有数据决定噪声大小；作者的做法是**先私下过滤掉这些记录**再发布，从而在『典型数据下拟合得更好』与标准意义的差分隐私之间搭桥。PFR 只需要一个**凹的 friendliness 分数**和一个 **friendly-DP** 的发布机制，就能在关于记录数的公开条件下保证差分隐私；作者自述 PFR 是**通用隐私原语**，与 propose-test-release 可比。★ 今日证据状态（**论文级已核验，代码级仍为『暂无』**）：arXiv abs 页与 HTML 全文未见官方仓库链接，comments cell 为空；作者之一 moshenfeld 的 GitHub 账号存在（moshenfeld / moshenfeld-mobileye），其公开仓库为 differential-privacy、PLD_accounting、Privacy-Fairness-Workshop、random_allocation，**均与 PFR 无直接关系**。★ 全文另载 AI Methodology Statement：作者使用 OpenAI Codex 与 Anthropic Claude 协助文献综述与起草修订正文及证明，主要研究思路由作者独立完成，全部内容经作者检查编辑并承担责任——这意味着**正文包含 AI 辅助产出的数学论证**，评审时应额外谨慎。今日定位长尾不变：若我们未来做训练数据隐私治理（尤其是『少数异常记录主导整体噪声预算』这类工程问题）它值得回看；但今天没有可直接落地的工程入口。",
-      "id": "propose-filter-release-scaling-noise-to-typical-sensitivity-via-private-filtering",
+      "llm_reason": "今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 LLM 做初等逻辑推理时**缺少符号推理系统那种确定性、可靠性与完备性**；而 SAT 求解、exact cover 这类经典符号方法**保证正确性与完备性，却要求问题被写成高度专门的正式编码**，因此难以直接用于自然语言输入。本文的神经-符号框架把两者接起来：**LLM 先做语义解析**，把实体与约束翻译成构造 exact cover 实例的**结构化 tool call**，**符号求解器给出解并回传反馈**，以此**迭代修正非法、欠约束或过约束的编码**，并利用斑马谜题的**解唯一性**。实测口径：跨多个参数规模、多种后训练范式、多个 LLM 家族，混合方案**持续优于强纯神经基线（含 CoT prompting）以及近期神经-符号方法**。★ 独立执行一（**代码托管在 Codeberg 而不是 GitHub——这是今天少见的形态，必须点出来**）：arXiv HTML 全文脚注确认 Code is available at https://codeberg.org/bilai-ss25-booleguru-llm/zebrallm；Codeberg API 实测该仓库**真实存在**（描述为 Solving Zebra Logic Puzzles with LLMs endowed with an exact cover solver），目录内容实测完整且是**真能跑的评测工程**：eval_zebra_logic.py(32196 B)、solve_with_tool_calls.py(18256 B)、clients/、puzzle_classes/、tool_encodings/、utils/、environment.yaml、四个 eval 脚本（eval_miniexact_4k_output.sh / eval_miniexact_extreme_30k_output.sh / eval_miniexact_extreme_feedback_30k_output.sh / eval_miniexact_feedback_4k_output.sh）。**注意：这四个脚本名说明它的评测横跨 4k / 30k token 预算 × 有无 feedback 两档**——即它自己就在研究反馈回路对神经-符号框架的作用。★ 独立执行二（依赖的求解器）：仓库同时依赖 github.com/miniexact/miniexact（**实测存在**，exact cover 求解器，homepage=miniexact.github.io，2023-12 创建、2026-02 仍在推送，stars=7）——**这是一个现成的、可独立使用的 exact cover 求解器**，即使不做神经-符号，也可以拿来当 CSP 后端。★ 独立执行三（作者线索）：论文页引用 huggingface.co/blog/yuchenlin/zebra-logic，**huggingface.co 今日直连超时，该博客正文今日未读**（hf-mirror 镜像上也没有对应条目）→ 标记**待核验**。★ 证据边界：(1) 载体是**斑马谜题**——这是一个有人工构造、有唯一解保证的玩具式 CSP，**与代码、文档、需求等真实工程约束求解之间隔着很长一段路**，论文的持续优于 CoT 结论**不能直接搬到我们的任务上**；(2) **Codeberg 仓库 stars=0/forks=0，GitHub 上完全搜不到该仓库**（不在 GitHub 生态内，且 Codeberg 的可见度远低），**社区验证为零**；(3) 摘要**未给出具体分数或提升幅度**，只说 consistently outperforms——**没有可核对的量化结论**；(4) 依赖的 miniexact 是**外部第三方求解器**，混合方案的实际增益有多少来自求解器本身、多少来自 LLM 的解析，论文未做消融说明（今日未读附录，无法确认）。★ 为什么给长尾价值：**方法模式值得存——LLM 只做语义解析、确定性求解器负责正确性、解算反馈反过来修正 LLM 的编码**，这个神经负责理解、符号负责保证、解算反馈负责收敛的三段式，正是我们做需求约束、权限校验、配置合法性检查时想要的形态；而**斑马谜题作为载体**，恰恰说明它当前离工程还远，所以存而不投。",
+      "id": "from-natural-language-to-exact-cover-a-neuro-symbolic-approach-to-zebra-puzzles",
       "value_type": "long_tail",
       "matched_topics": [
-        "security-governance",
-        "data-engineering"
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Chain-of-Thought (CoT) generation has substantially improved the performance o…",
+      "one_line_judgement": "值得先保存：今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 L…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 LLM 做初等逻辑推理时**缺少符号推理系统那种确定性",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=from-natural-language-to-exact-cover-a-neuro-symbolic-approach-to-zebra-puzzles"
+    },
+    {
+      "title": "Pixel-UMI: Learning Environment-Aware Whole-Body Manipulation from Sensorized Human Demonstrations",
+      "authors": [
+        "Jason Jingzhou Liu",
+        "Tony Tao",
+        "Deepak Pathak",
+        "Ruslan Salakhutdinov"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03647v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03647v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://pixel-robot.com/pixel-umi",
+      "abstract": "Sensorized human demonstrations offer scalable data for mobile manipulation, but embodiment differences complicate policy learning. We present Pixel-UMI, a pipeline for learning environment-aware whole-body policies from human data. We first introduce Environment-Aware Retargeting (EAR), which combines reconstructed scene geometry with demonstrated head and gripper trajectories to determine robot posture and generate collision-aware joint and base targets. Delay-calibrated action assignment conv",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03647v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03647v1"
+        }
+      ],
+      "llm_reason": "今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投**。★ 方法三段式（论文摘要口径）：(1) **Environment-Aware Retargeting (EAR)**——把**重建的场景几何**与**演示中的头部和夹爪轨迹**结合起来，**决定机器人姿态**并生成**避碰的关节与基座目标**；(2) **Delay-calibrated action assignment**——把轨迹转成动作；(3) **Retargeting-Error-Aware Masking (REAM)**——运动学差异会留下**残余位姿误差**，在人类演示与机器人观测之间造成**视角错配**，REAM 在训练时利用这些误差**降低模型对错配视角的依赖**。此外因为估计的动作无法完全刻画**接触丰富的交互**，他们**用 DAgger 收集 on-policy 的人类纠正**。实测口径：5 类挑战任务（铰接物体操作、可变形物体处理、受限空间够取、全身避碰、接触丰富的双臂协同），**平均任务进度 87.0%**。★ 独立执行一（论文 HTML 全文核对）：确认无代码声明，github.com/ 的命中**全部是参考文献**（kevinzakka/mink 是 MuJoCo 逆运动学库、pink-kinematics/pink 是同类库），**不是本文实现**。★ 独立执行二（项目页实测）：https://pixel-robot.com/pixel-umi **可访问**，实测标题、作者（Jason Jingzhou Liu*、Tony Tao*、Deepak Pathak†、Ruslan Salakhutdinov†，Carnegie Mellon University，*共同一作 †共同指导）以及页面结构（Abstract / System Design / Autonomous Tasks / More Experiments / BibTeX）。→ **关键事实：页面上的链接是 arXiv、PDF、Twitter、Open Sourced、Soon!——Open Sourced 后面紧跟 Soon!，即官方明确标注代码尚未开源**，且页面上**没有任何 GitHub 链接**（实测 regex 扫描 github 链接集合为空）。★ 证据边界：(1) **代码明确即将开源但今日未开源**，因此**无任何可执行验证**，87.0% 完全是作者自述；(2) **无 benchmark 收录、无第三方复现**；(3) 项目页只有视频与 BibTeX，**无数据、无模型权重说明**；(4) 需要真实机器人 + 传感器化人类演示数据，**复现门槛在硬件而非软件**。★ 为什么给长尾价值：**它提出了一个我们迟早会遇到的工程问题——演示数据的形态与执行体的形态不一致**——并给出三个可迁移的机制（场景几何决定姿态、误差感知的掩码训练、用 on-policy 纠正补齐接触交互）。这套方法对任何用 A 的数据训 B 的策略的场景都有参考价值（人→机器人、视频→动作、文本→Agent 轨迹）。**触发条件：官方开源 / 被后续硬件论文大量引用 / 我们真的开始做人形或移动操作。**",
+      "id": "pixel-umi-learning-environment-aware-whole-body-manipulation-from-sensorized-human-demonstrations",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
       ],
       "score_breakdown": {
         "novelty": 5.4,
         "problem_importance": 4.5,
         "relevance": 3.8,
         "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.0,
-        "actionability": 3.8,
-        "noise_risk": 2.4,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 5.0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：An estimator can be accurate and stable on typical data, yet sensitive to a fe…",
-      "one_line_judgement": "值得先保存：今日第二长尾保存项，属**差分隐私基础理论**方向，与我们当前工程栈不直接相交，价值在于方法论可迁移。据 arXiv 2610.40654（…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "今日第二长尾保存项，属**差分隐私基础理论**方向，与我们当前工程栈不直接相交，价值在于方法论可迁移。据 arXiv 2610.40654（LaTeXML HTML 正文 324.4KB 为本",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=propose-filter-release-scaling-noise-to-typical-sensitivity-via-private-filtering"
-    },
-    {
-      "title": "Adaptive Scenario Generation for KL-DRO Around a Learned Density Model",
-      "authors": [
-        "Aron Brenner",
-        "Saurabh Amin"
-      ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40644v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40644v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Distributionally robust optimization (DRO) hedges data-driven two-stage stochastic programs against error in the distribution estimated from a finite record, and standard ambiguity sets differ in how they treat realizations absent from that record. A divergence ball around the empirical distribution contains only reweightings of the record, whereas a transport ball also contains distributions supported off the record, including on realizations the data-generating process cannot produce, against ",
-      "categories": [
-        "eess.SY",
-        "cs.LG"
-      ],
-      "keywords": [],
-      "score": 58.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40644v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40644v1"
-        }
-      ],
-      "llm_reason": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644（LaTeXML HTML 正文 116.3KB，作者为 MIT 系 eess.SY / cs.LG 交叉）：它指出标准 DRO 的歧义集对『记录里没有出现的实现』处理方式不同——散度球只含对记录的**重加权**，而输运球还含有记录支撑之外的分布，甚至含**数据生成过程根本产生不出来的实现**；作者改为提出一个**以拟合到记录的密度模型为中心（learned nominal）的 KL 球**，并给出自适应场景集构造：在解有限问题与从 learned nominal 抽取新实现之间交替，用重要性权重把抽样纠回模型。作者自述（今日仍不可复现）：在多商品 newsvendor 与真实电网容量扩张问题上，当**记录稀缺且模型类能捕捉到足以外推的结构**时，把球中心放在 learned nominal 可在分布漂移下降低成本；**随着记录变多或漂移偏离模型已学到的结构，优势消失**。★ 今日证据状态（**论文级已核验，代码级仍为『暂无』**）：arXiv abs 页与 HTML 全文未见官方仓库链接，comments cell 为空；HTML 全文命中的 2 个 openreview 链接经昨日逐条核对，**全部是参考文献条目**，**不是本论文的 OpenReview 页**。今日定位长尾并明确其适用边界不变：这是一个**小样本 + 有强模型先验**场景下的决策方法，与我们当前做的大样本工程系统方向不重合；值得留存的抽象是『**对抗集应该围绕学到的模型而不是围绕有限样本来构造**』，以及作者自己给出的失败条件——这条自我限定比结论本身更有工程参考价值。",
-      "id": "adaptive-scenario-generation-for-kl-dro-around-a-learned-density-model",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-k8s-platform",
-        "data-engineering"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 4.5,
-        "relevance": 3.8,
-        "evidence_strength": 4.95,
-        "engineering_testability": 3.5,
+        "engineering_testability": 4.05,
         "trend_signal": 3.5,
         "long_tail_potential": 3.5,
         "asset_convertibility": 4.0,
@@ -863,65 +727,141 @@
         "reproducibility_risk": 5.0
       },
       "trend_status": "long_tail_watch",
-      "brief_cn": "AI 平台工程：Distributionally robust optimization (DRO) hedges data-driven two-stage stocha…",
-      "one_line_judgement": "值得先保存：今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
+      "brief_cn": "Multimodal Agent：Sensorized human demonstrations offer scalable data for mobile manipulation, b…",
+      "one_line_judgement": "值得先保存：今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
       "value_type_label": "长尾价值",
       "trend_stage_label": "长尾观察",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644（LaTeXML HTML 正文 116.",
-      "related_trends": [],
-      "detail_path": "paper-detail.html?id=adaptive-scenario-generation-for-kl-dro-around-a-learned-density-model"
+      "long_tail_summary": "今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投**。★ 方法三段式（论文摘要口径）：(1) **E",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=pixel-umi-learning-environment-aware-whole-body-manipulation-from-sensorized-human-demonstrations"
     },
     {
-      "title": "Luggage re-identification: A study of strategies towards a real-world application",
+      "title": "Pixel: A Co-Designed Full-Stack Robot System for Learning General-Purpose Mobile Manipulation",
       "authors": [
-        "Quentin Dhôte",
-        "Romaric Audigier"
+        "Tony Tao",
+        "Jason Jingzhou Liu",
+        "Ruslan Salakhutdinov",
+        "Deepak Pathak"
       ],
-      "published": "2026-10-29",
-      "updated": "2026-10-29",
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2610.40643v1",
-      "pdf_url": "https://arxiv.org/pdf/2610.40643v1",
+      "url": "http://arxiv.org/abs/2611.03648v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03648v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://pixel-robot.com/pixel",
+      "abstract": "General-purpose mobile manipulation requires a combination of capable robot hardware, scalable demonstration collection, expressive whole-body control, and effective policy learning. Yet these components are often developed independently, creating mismatches that limit the capabilities of the complete system. We present Pixel, a co-designed full-stack system for learning general-purpose mobile manipulation. Pixel combines a low-cost wheeled humanoid with human-aligned kinematics and compliant gr",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG",
+        "eess.SY"
+      ],
+      "keywords": [],
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03648v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03648v1"
+        }
+      ],
+      "llm_reason": "今日第八价值，**是今日第 7 篇（Pixel-UMI）的姊妹篇（同组作者：Tony Tao、Jason Jingzhou Liu、Ruslan Salakhutdinov、Deepak Pathak，同一 arXiv 批次 2611.03648 与 2611.03647 相邻），它提供的是系统观而非方法论，因此单独的信息增量小于 Pixel-UMI**。★ 核心主张（论文摘要口径）：通用移动操作需要硬件、可扩展演示采集、表达力足够的全身控制与有效的策略学习共同支撑，**但这些组件往往被独立开发，从而产生不匹配，限制整个系统的能力**。Pixel 是一个**协同设计的全栈系统**：低成本轮式人形 + 与人对齐的运动学 + 柔顺夹爪；多种遥操作与**免机器人**的人类数据采集接口；统一的全身控制器；**跨人类与机器人演示的通用策略学习流程**；再由**分层学习栈**实现语言条件化的视觉运动控制与长时程任务执行。实测口径：在硬件、数据采集、策略学习三个层面分别评测，并展示需要灵巧性、主动感知、导航与全身协调的移动操作行为。★ 独立执行一（论文 HTML 全文核对）：无代码声明，github.com/ 命中**全部是参考文献**（SIGRobotics-UIUC/LeKiwi 低成本移动操作臂、XLeRobot 等），**不是本文实现**。★ 独立执行二（项目页实测）：https://pixel-robot.com/pixel **可访问**，作者与机构同 Pixel-UMI，链接同样标注 **Open Sourced、Soon!**，同样**无任何 GitHub 链接**（实测扫描为空）。★ 证据边界：(1) **代码明确未开源**，无任何可执行工件；(2) 论文**没有给出统一的任务成功率数字**（不像 Pixel-UMI 有 87.0% 平均任务进度），只说 demonstrate behaviors——**没有可核对的量化结论**；(3) 这是**系统论文**，其主张（协同设计优于各自独立优化）本质上是**不可证伪的架构主张**，没有对照实验能证明如果分开做就会更差；(4) 与 Pixel-UMI 同组同批次，**合并信息增量有限**。★ 为什么给长尾价值：**硬件、数据、控制、学习要协同设计**这个判断本身是对的、也值得记——我们的 agent 平台同样存在模型、工具、上下文、评测各做各的导致不匹配的问题。但**今天没有可执行的工件，也没有量化结论**，所以存而不投。**触发条件：开源 / 给出可复现的任务成功率表 / 我们开始规划具身或硬件相关方向。**",
+      "id": "pixel-a-co-designed-full-stack-robot-system-for-learning-general-purpose-mobile-manipulation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 5.0,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：General-purpose mobile manipulation requires a combination of capable robot ha…",
+      "one_line_judgement": "值得先保存：今日第八价值，**是今日第 7 篇（Pixel-UMI）的姊妹篇（同组作者：Tony Tao、Jason Jingzhou Liu、Rusl…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日第八价值，**是今日第 7 篇（Pixel-UMI）的姊妹篇（同组作者：Tony Tao、Jason Jingzhou Liu、Ruslan Salakhutdinov、Deepak Pa",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=pixel-a-co-designed-full-stack-robot-system-for-learning-general-purpose-mobile-manipulation"
+    },
+    {
+      "title": "Supporting Viewpoint Coordination for Compliance by Design with an Artifact Model for Regulatory Requirements Engineering",
+      "authors": [
+        "Oleksandr Kosenkov",
+        "Davide Fucci",
+        "Michael Unterkalmsteiner",
+        "Daniel Mendez"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03631v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03631v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Luggage re-identification (ReID) is a critical task in video surveillance for forensics, security or border management (suspicious or abandoned luggage recognition), as well as luggage management (lost luggage recovery). It enables the association of observations of the same luggage across disjoint camera views in complex environments such as airports, train stations and border crossing. While existing approaches primarily focus on appearance-based cropped image matching under relatively clean c",
+      "abstract": "Regulatory compliance has become an essential software requirement Legal demands for compliance by design CbD call for requirements engineering RE approaches that derive requirements and support compliance implementation in subsequent software engineering SE processes such as software design The complexity of the legal knowledge demanded in regulatory RE makes it important to involve legal experts and ensure the relevant specifications are valid and usable for them Regulatory requirements must s",
       "categories": [
-        "cs.CV",
-        "cs.AI"
+        "cs.SE"
       ],
       "keywords": [
-        "benchmark",
         "RAG"
       ],
-      "score": 44.0,
+      "score": 48.0,
       "decision": "暂时忽略",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2610.40643v1"
+          "url": "http://arxiv.org/abs/2611.03631v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2610.40643v1"
+          "url": "https://arxiv.org/pdf/2611.03631v1"
         }
       ],
-      "llm_reason": "今日忽略项。据 arXiv 2610.40643（LaTeXML HTML 正文 43.1KB，作者为法国研究机构 Quentin Dhôte、Romaric Audigier）：研究行李重识别（ReID）在真实机场/车站/边境场景下的端到端多路视频流策略，评估在真实环境采集的 benchmark 数据集上做视图与镜头选择合并、以及在不同环境数据集上训练以提升实际 ReID 性能；arXiv comments 逐字为『7 pages, 4 figures, 5 tables. Accepted at The 2026 IEEE International Conference on Content-Based Multimedia Indexing (IEEE CBMI)』——**已录用为会议论文**（但是 7 页短文）。作者自述其实现细节包含使用公开预训练权重的 CoDETR 检测器、每相机取一个代表帧构成 5 图多视角表示等。今日忽略理由（与昨日一致）：(1) **与我们的方向基本不相关**——视频监控行李检索属于公共安全视觉垂直领域；(2) 今日仍未见官方仓库链接，用已认证的 GitHub CLI 检索（luggage+re-identification）**未找到官方实现**，代码状态**待核验/暂无**；(3) 7 页篇幅 + 5 表的体量意味着方法增量有限。保留最小索引即可，除非我们将来进入视频安防方向。",
-      "id": "luggage-re-identification-a-study-of-strategies-towards-a-real-world-application",
+      "llm_reason": "今日暂缓，**不是因为做得差，而是因为它解决的是一个我们当前不碰的问题，且今天既无代码也无量化数字**。★ 核心内容（论文摘要口径，注意摘要因 PDF 文本抽取而丢失标点，读起来很吃力，内容本身是清楚的）：监管合规已成为软件的必要要求，**Compliance by Design (CbD)** 要求需求工程（RE）方法能**推导出需求**并**支持后续软件设计阶段的合规实现**；监管 RE 的法律知识复杂度要求**让法律专家参与**并确保规格对他们**有效且可用**；但**缺少能桥接法律与 SE 两种视角的方法**，两个群体之间的交互挑战持续存在。本文提出 **Artifact Model for Regulatory Requirements Engineering (AM4RRE)**，通过**模板**落地，用于协调监管 RE 中的视角。实测口径：**37 位从业者**中多数对 AM4RRE 在协调与需求质量上的作用给出正面评价；**34 人分 10 组的准实验**显示，**模板引导的协调若先执行，则平均规格总时间更短**，且在多数组中**需求质量更高**。★ 独立执行（论文 HTML 全文核对）：**未发现任何代码或工件发布**（code is available / code will be / available at 全部零命中），**无工具、无模板文件、无实验材料公开**。★ 证据边界（决定性因素）：(1) **AM4RRE 的模板本体——也就是这篇论文唯一真正的交付物——今天完全没有公开**，读者无法看到它长什么样、无法复用、无法评估，只能读到一个准实验的结论摘要；(2) 样本是 34 人 / 10 组的准实验，**外推到工业规模需求团队的效力未知**，且平均更短与多数组更高这类表述**统计口径未说明**；(3) 领域（法律监管合规需求工程）**与我们的主线（AI 系统与 agent 工程）几乎不交叉**；(4) 今天无任何可执行验证。★ 判断：保留最小索引即可。**触发条件：AM4RRE 模板公开 / 出现更多独立复现 / 我们真的进入受监管行业的需求工程**。",
+      "id": "supporting-viewpoint-coordination-for-compliance-by-design-with-an-artifact-model-for-regulatory-requirements-engineering",
       "value_type": "ignore",
       "matched_topics": [
-        "security-governance",
-        "multimodal-agent"
+        "coding-agent"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 5.15,
-        "relevance": 5.0,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
         "evidence_strength": 4.5,
         "engineering_testability": 3.5,
         "trend_signal": 3.5,
@@ -930,70 +870,143 @@
         "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 3.6,
+        "low_relevance_penalty": 2.2,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "noise",
-      "brief_cn": "安全与治理：Luggage re-identification (ReID) is a critical task in video surveillance for …",
-      "one_line_judgement": "当前可忽略：今日忽略项。据 arXiv 2610.40643（LaTeXML HTML 正文 43.1KB，作者为法国研究机构 Quentin Dhôt…",
-      "first_seen_date": "2026-11-02",
-      "first_deep_dive_daily": "2026-11-02",
+      "brief_cn": "Coding Agent：Regulatory compliance has become an essential software requirement Legal deman…",
+      "one_line_judgement": "当前可忽略：今日暂缓，**不是因为做得差，而是因为它解决的是一个我们当前不碰的问题，且今天既无代码也无量化数字**。★ 核心内容（论文摘要口径，注意摘要…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
       "value_type_label": "暂时忽略",
       "trend_stage_label": "噪声",
       "future_trigger": "待更多证据",
-      "long_tail_summary": "今日忽略项。据 arXiv 2610.40643（LaTeXML HTML 正文 43.1KB，作者为法国研究机构 Quentin Dhôte、Romaric Audigier）：研究行李重识",
+      "long_tail_summary": "今日暂缓，**不是因为做得差，而是因为它解决的是一个我们当前不碰的问题，且今天既无代码也无量化数字**。★ 核心内容（论文摘要口径，注意摘要因 PDF 文本抽取而丢失标点，读起来很吃力，内容本",
       "related_trends": [
-        "agentic-world-modeling"
+        "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=luggage-re-identification-a-study-of-strategies-towards-a-real-world-application"
+      "detail_path": "paper-detail.html?id=supporting-viewpoint-coordination-for-compliance-by-design-with-an-artifact-model-for-regulatory-requirements-engineering"
+    },
+    {
+      "title": "Thought-deciphering via hierarchical EEG-to-text alignment",
+      "authors": [
+        "Xiaopeng Mao",
+        "Morten Mørup",
+        "Xin Xu",
+        "Sang Wan Lee",
+        "Sadasivan Puthusserypady"
+      ],
+      "published": "2026-11-02",
+      "updated": "2026-11-02",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03623v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.03623v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Communication is important for our well-being, but it can be impaired by disabilities, such as locked-in syndrome (LIS), cerebral palsy (CP), and dysarthria. Non-invasive brain-to-text brain-computer interfaces (BCIs) offer a promising solution by providing an alternative communication pathway for people with communication disabilities. However, most recent breakthroughs have relied on large, cumbersome, and costly neuroimaging modalities, such as functional magnetic resonance imaging (fMRI) and",
+      "categories": [
+        "cs.LG",
+        "eess.SP"
+      ],
+      "keywords": [],
+      "score": 45.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.03623v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.03623v1"
+        }
+      ],
+      "llm_reason": "今日暂缓，**方向有真实价值（无创 BCI 的句级解码是明确的应用缺口），但与我们的主线距离最远，且今天是 10 篇里证据最薄的一篇**。★ 核心内容（论文摘要口径）：非侵入式脑机接口（BCI）为沟通障碍者（闭锁综合征、脑瘫、构音障碍）提供替代沟通通路；但近期突破多依赖 fMRI、MEG 等**笨重昂贵**的模态，而更轻更便宜的 EEG 解码**结果仍逊于其他模态**；更关键的是，**人们并不理解这些模态在字母、词、句子及更高语义层级上究竟如何对应文本**。以往研究多聚焦于句以下的解码（音素、字母、词更好设计实验），但**沟通中句子远比词和字母重要**——句子携带的信息在高位，即使部分词与字母缺失也能被理解；而**句级分类相比句级生成研究更少**，导致难以判断在 EEG-to-text 中**该检索还是该生成**。本文用一个新的**分层对齐框架**研究**句级 EEG-to-text 分类**，目标是**用上下文与 EEG 作为输入检索出一句可读句子**。★ 独立执行（论文 HTML 全文核对）：**未发现任何代码或模型发布**（code is available 等零命中）；论文只声明**使用公开数据集 ChineseEEG 与 Chisco**，**未发布训练代码或模型权重**。★ 证据边界：(1) **无代码、无权重、无可复现产物**，摘要也**未给出任何准确率或 BLEU 等量化结果**——今天的证据强度低于同批其他论文；(2) 中文 EEG 数据集（ChineseEEG、Chisco）**受试者规模与采集条件苛刻**，我们无任何复现条件；(3) 神经科学方法论严谨，但**离 AI 系统工程极远**；(4) fetch_papers.py 给它打的 evaluation 标签来自 evaluation 一词在摘要中的普通语义用法，**与 LLM 评测无关**——再次暴露关键词匹配的噪声（见 note）。★ 判断：保留最小索引。**触发条件：作者开源 / 出现句级 EEG-to-text 的量化结果 / 我们进入 BCI 方向。**",
+      "id": "thought-deciphering-via-hierarchical-eeg-to-text-alignment",
+      "value_type": "ignore",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "LLM 评测：Communication is important for our well-being, but it can be impaired by disab…",
+      "one_line_judgement": "当前可忽略：今日暂缓，**方向有真实价值（无创 BCI 的句级解码是明确的应用缺口），但与我们的主线距离最远，且今天是 10 篇里证据最薄的一篇**。★…",
+      "first_seen_date": "2026-11-04",
+      "first_deep_dive_daily": "2026-11-04",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今日暂缓，**方向有真实价值（无创 BCI 的句级解码是明确的应用缺口），但与我们的主线距离最远，且今天是 10 篇里证据最薄的一篇**。★ 核心内容（论文摘要口径）：非侵入式脑机接口（BCI",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=thought-deciphering-via-hierarchical-eeg-to-text-alignment"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "read-allocate-route-role-coupled-tokenization-for-pixel-space-generative-transformers",
-      "title": "Read, Allocate, Route: Role-Coupled Tokenization for Pixel-Space Generative Transformers",
-      "direction": "Multimodal Agent / 推理与服务",
+      "id": "fade-factored-ability-difficulty-filtering-for-online-rlvr-scheduling",
+      "title": "FADE: Factored Ability--Difficulty Filtering for Online RLVR Scheduling",
+      "direction": "LLM 评测",
       "long_tail_type": "工程抽象",
-      "why_save": "今日第一长尾保存项。★ **今日新增了一条昨日未能核验的证据**：昨日因 huggingface.co 直连超时而无法核验的**预训练权重，今天经 hf-mirror.com 镜像确认已放出*",
+      "why_save": "今日第五价值，**技术密度最高但今天完全无法验证的一篇——它的数学很扎实，可它连一行代码都没放**。★ 核心问题（论文摘要口径）：group-based RLVR 只从采样结果有分歧的 pro",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-11-23",
-      "detail_path": "paper-detail.html?id=read-allocate-route-role-coupled-tokenization-for-pixel-space-generative-transformers"
+      "revisit_date": "2026-11-25",
+      "detail_path": "paper-detail.html?id=fade-factored-ability-difficulty-filtering-for-online-rlvr-scheduling"
     },
     {
-      "id": "propose-filter-release-scaling-noise-to-typical-sensitivity-via-private-filtering",
-      "title": "Propose-Filter-Release: Scaling Noise to Typical Sensitivity via Private Filtering",
-      "direction": "安全与治理 / 数据工程",
-      "long_tail_type": "工程抽象",
-      "why_save": "今日第二长尾保存项，属**差分隐私基础理论**方向，与我们当前工程栈不直接相交，价值在于方法论可迁移。据 arXiv 2610.40654（LaTeXML HTML 正文 324.4KB 为本",
+      "id": "from-natural-language-to-exact-cover-a-neuro-symbolic-approach-to-zebra-puzzles",
+      "title": "From Natural Language to Exact Cover: A Neuro-Symbolic Approach to Zebra Puzzles",
+      "direction": "LLM 评测",
+      "long_tail_type": "可迁移方法",
+      "why_save": "今日第六价值，**方法论方向对但今天的任务载体（斑马谜题）离我们的工程太远，方法本身值得存下来**。★ 核心主张（论文摘要口径）：纯神经 LLM 做初等逻辑推理时**缺少符号推理系统那种确定性",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-11-23",
-      "detail_path": "paper-detail.html?id=propose-filter-release-scaling-noise-to-typical-sensitivity-via-private-filtering"
+      "revisit_date": "2026-11-25",
+      "detail_path": "paper-detail.html?id=from-natural-language-to-exact-cover-a-neuro-symbolic-approach-to-zebra-puzzles"
     },
     {
-      "id": "adaptive-scenario-generation-for-kl-dro-around-a-learned-density-model",
-      "title": "Adaptive Scenario Generation for KL-DRO Around a Learned Density Model",
-      "direction": "AI 平台工程 / 数据工程",
+      "id": "pixel-umi-learning-environment-aware-whole-body-manipulation-from-sensorized-human-demonstrations",
+      "title": "Pixel-UMI: Learning Environment-Aware Whole-Body Manipulation from Sensorized Human Demonstrations",
+      "direction": "Multimodal Agent",
       "long_tail_type": "工程抽象",
-      "why_save": "今日第三长尾保存项，属**分布鲁棒优化（DRO）**方向，与我们的工程栈距离最远，但方法论抽象有一条可迁移的启发。据 arXiv 2610.40644（LaTeXML HTML 正文 116.",
+      "why_save": "今日第七价值，**方法链条清晰、来源可靠（CMU，Pathak + Salakhutdinov），但今天没有任何可执行工件，所以只能存不能投**。★ 方法三段式（论文摘要口径）：(1) **E",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-11-23",
-      "detail_path": "paper-detail.html?id=adaptive-scenario-generation-for-kl-dro-around-a-learned-density-model"
+      "revisit_date": "2026-11-25",
+      "detail_path": "paper-detail.html?id=pixel-umi-learning-environment-aware-whole-body-manipulation-from-sensorized-human-demonstrations"
     }
   ],
   "common_research_path": [

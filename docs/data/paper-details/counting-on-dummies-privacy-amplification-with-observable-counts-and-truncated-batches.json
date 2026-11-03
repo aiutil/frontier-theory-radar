@@ -1,0 +1,128 @@
+{
+  "id": "counting-on-dummies-privacy-amplification-with-observable-counts-and-truncated-batches",
+  "title": "Counting on Dummies: Privacy Amplification with Observable Counts and Truncated Batches",
+  "authors": [
+    "Vitaly Feldman",
+    "Audra McMillan",
+    "Kunal Talwar"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-30",
+  "url": "http://arxiv.org/abs/2610.42139v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.42139v1",
+  "code_url": "https://github.com/moshenfeld/PLD_accounting",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-03",
+  "first_deep_dive_daily": "2026-11-03",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 5.9,
+    "engineering_testability": 6.6,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日第四趋势价值：**它解决的是一个『工程上天天遇到、但理论分析长期回避』的缺口——DP-SGD 的批大小能被观察到。**★ 独立执行一：*…",
+  "one_line_essence": "今日第四趋势价值：**它解决的是一个『工程上天天遇到、但理论分析长期回避』的缺口——DP-SGD 的批大小能被观察到。**★ 独立执行一：**机制已核实到正文原句**——标准做法（Poisson sampling / random allocation）依赖隐私放大，而**批大小不能被泄露**；但分布式场景里服务端或任何看到通信流量的一方**可能推断出批大小**；同时内存/算力限制要求批大小有上界 s，**截断会显著抬高隐私损失**。本工作用一个「**随机数量的 dummy points**」同时解决两件事：掩蔽真实批大小，**并且让截断后的批仍保有隐私保证**。正文特别指出：「count masking also makes truncation possible under **random allocation**, for which **no alternative truncation analysis exists**」。★ 独立执行二：**作者机构已核实**——三位作者 Vitaly Feldman / Audra McMillan / Kunal Talwar **全部来自 Apple**。★ 独立执行三：**关键的可工程化结论**——「the expected number of dummy points is **asymptotically smaller** than what is needed to directly privatize the (sensitivity-one) batch sizes with non-negative noise」；并且「our mechanism achieves better privacy–efficiency tradeoffs than the direct accounting for truncation recently given by (Ganesh, 2025)」」。→ **这一条对做 DP-SGD 的人是可直接决策的：dummy points 的期望开销低于直接对计数加非负噪声的经典做法**，且在 Poisson + 截断场景下实测更优。★ 独立执行四：**仓库与算法规格已核实**——正文外链指向 github.com/moshenfeld/PLD_accounting（真实存在，MIT，今日实测 stars=1、pushed 2026-10-24）与 PyPI 的 `PLD-accounting`（**今日实测 PyPI 版本 2.0**，summary 为「Numerical privacy accounting for random allocation and subsampling using PLDs.」），另有 Google 的 dp_accounting（github.com/google/differential-privacy/tree/main/python/dp_accounting）作为对照。→ **但要说清楚：这个仓库是作者的 PLD 会计工具，不是本论文 dummy-points 机制的实现**。本论文的机制**代码今日未找到——暂无**（arXiv 页与 HTML 正文除上述两个外部工具外无仓库链接）。★ 今日发现的一条重要上下文（同一批次被丢掉的相关论文）：**2610.42117《Fast Privacy Loss Accounting for Random Allocation via Multiscale FFT》**（作者 Vitaly Feldman + Moshe Shenfeld）**与本篇同组作者**，其摘要明确写「The existing privacy loss distribution (PLD) accountant for this scheme runs in time quadratic in the inverse of the accuracy parameter α (**Feldman and Shenfeld, 2026**)」——**即本篇依赖的 PLD accountant 的前作就是同组 2026 年的工作，而 42117 是它的加速版（把 α 依赖从 O(α^-2) 降到 O(α^-1 log(1/α))）**。→ **两篇必须一起读**：只读 42139 会用到那个「quadratic in 1/α」的慢会计器，而 42117 正是它的加速替代品。**但 42117 被 daily fetch 丢掉了（今日新发现的抓取缺口，见 note）**——这直接说明 10 篇上限是有代价的。★ 证据边界：论文的实证部分在 Section 8，**本机无法复现（无 CUDA，且需要真实 DP-SGD 训练负载）**；数值结论（优于 Ganesh 2025）**待核验**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第四趋势价值：**它解决的是一个『工程上天天遇到、但理论分析长期回避』的缺口——DP-SGD 的批大小能被观察到。**★ 独立执行一：**机制已核实到正文原句**——标准做法（Poisson sampling / random allocation）依赖隐私放大，而**批大小不能被泄露**；但分布式场景里服务端或任何看到通信流量的一方**可能推断出批大小",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第四趋势价值：**它解决的是一个『工程上天天遇到、但理论分析长期回避』的缺口——DP-SGD 的批大小能被观察到。**★ 独立执行一：**机制已核实到正文原句**——标准做法（Poisso",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.42139v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.42139v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=counting-on-dummies-privacy-amplification-with-observable-counts-and-truncated-batches",
+  "daily_path": "daily-detail.html?date=2026-11-03",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

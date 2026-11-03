@@ -1,0 +1,136 @@
+{
+  "id": "latent-sparse-attention-towards-subquadratic-ultra-long-context-attention",
+  "title": "Latent Sparse Attention: Towards Subquadratic Ultra-Long Context Attention",
+  "authors": [
+    "Ales Kubicek",
+    "Andrea Caciolai",
+    "Liangzu Peng",
+    "Sukrit Sumant",
+    "Benjamin Hoover"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-30",
+  "url": "http://arxiv.org/abs/2610.42147v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.42147v1",
+  "code_url": "https://github.com/Prefrontal-AI/latent-sparse-attention",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-03",
+  "first_deep_dive_daily": "2026-11-03",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 82.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第二即时价值：**唯一一篇官方代码不仅开源、而且已经做成可部署形态（含 SGLang fork 分支与 Docker 镜像）** 的论文…",
+  "one_line_essence": "今日第二即时价值：**唯一一篇官方代码不仅开源、而且已经做成可部署形态（含 SGLang fork 分支与 Docker 镜像）** 的论文，工程可用性最高。★ 独立执行一：官方仓库 github.com/Prefrontal-AI/latent-sparse-attention 真实存在（Apache-2.0，created 2026-10-27，今日实测 stars=12、forks=1），顶层目录含 src/ configs/ models/ tools/ tests/ docs/ data/ 与 uv.lock，**src/lsa/evaluation/ 下有完整的 accuracy / performance / adapter / publish 子模块**——说明这不是『放个 README 就算开源』，而是带完整评测流水线的工程仓库。★ 独立执行二：README 明确给出部署形态——**SGLang fork 分支 `lsa-v0.1.0`（Prefrontal-AI/sglang 仓库，实测分支名含 `lsa`）与 Docker 镜像 `ghcr.io/sglang:lsa-v0.1.0`**，一条命令 `uv run lsa --help` 即可运行；README 的 Contents 表把方法谱系写得很清楚：D-LSA(Flat) / D-LSA(Tree) / D-LSA(Training-Free) / D-LSA 蒸馏 / N-LSA 原生训练 / 基线（Block Sparse Attention Flat & Tree）/ 精度 / kernel / 端到端评测，**全部在同一个 `lsa` 命令下**。数据侧 `data/` 目录含 longdocs/ 与 papertrail/（论文结果轨迹）两个子目录，N-LSA 的训练数据说明为 「100B tokens FineWeb-Edu (4k) → 12B tokens LongDocs (128k)，WSD 学习率调度」。★ 论文数字核对（今日逐条在 HTML 正文中定位到原句）：「On GLM-5.3-Flash (Qwen-3.8-27B) at 10M tokens, D-LSA speeds up one attention layer by **22.7× (72.4×) in prefill** and **4.6× (42.5×) in decode** over its original sparse attention (full attention)」；「N-LSA matches the accuracy of full attention with a training speedup of **1.6×** per layer at 128k tokens」。两个评测底座在 hf-mirror 上核实为**真实存在的公开权重**：zai-org/GLM-5.3-Flash（downloads 6,313,299）与 Qwen/Qwen3.8-27B（downloads 7,915,637）。★ 关键口径提醒（今日读正文时发现，容易被标题党误读）：**22.7×/72.4× 是『单层 attention 层』的加速，不是端到端模型加速**；括号里的 72.4× 是相对 full attention 的对比，而 22.7× 是相对该模型自带的 sparse attention。论文原句就是 \"speeds up **one attention layer**\"。**端到端收益没有给出对应数字——待核验**。同样，N-LSA 的 1.6× 也只是『per layer at 128k tokens』的**训练**加速，不是推理加速。★ 今日最大的竞争性发现（这一条改变了今天的选题判断）：**同一批次里存在一篇与 LSA 直接竞品的论文，被 daily fetch 丢掉了**——2610.42112《Subquadratic Attention with a Hierarchical Tree-Structured Indexer》（Zyphra Hierarchical Attention, ZHA，作者含 Leon Lufkin / Cutter Dawes / Alexander Speicher / Kamesh Krishnamurthy / Tomás Figliolia）。它的摘要开门见山：稀疏注意力方法『whose indexers themselves scale quadratically』，而 ZHA 用**层次化树结构 indexer** 构造递归压缩的 key summary 树，查询自顶向下检索稀疏 key 子集，声称 **asymptotically subquadratic**。→ **LSA 与 ZHA 是同一个问题的两条解法（层次化索引 + 稀疏注意力），必须成对看**，只看 LSA 会高估『层次化 indexer 已被解决』的程度。今日已用 GitHub 检索核过 Zyphra 组织（Zyphra/Zonos、Zyphra/zuna、Zyphra/tree_attention 等真实存在），**但 ZHA 本身的代码仓库今日未检索到——暂无**。★ 工程落点最清楚的一篇：**LSA 不改 attention kernel，只改『读哪些 key』**（README 原话：「The attention kernel is unchanged. LSA only decides which keys it reads.」）——这个改动面小到可以先在现有 SGLang 上试，不必换模型架构；且 D-LSA 是**蒸馏**路线，可以作用于已有预训练模型，不需要重训。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第二即时价值：**唯一一篇官方代码不仅开源、而且已经做成可部署形态（含 SGLang fork 分支与 Docker 镜像）** 的论文，工程可用性最高。★ 独立执行一：官方仓库 github.com/Prefrontal-AI/latent-sparse-attention 真实存在（Apache-2.0，created 2026-10-27，今日实测",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第二即时价值：**唯一一篇官方代码不仅开源、而且已经做成可部署形态（含 SGLang fork 分支与 Docker 镜像）** 的论文，工程可用性最高。★ 独立执行一：官方仓库 gith",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.42147v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.42147v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=latent-sparse-attention-towards-subquadratic-ultra-long-context-attention",
+  "daily_path": "daily-detail.html?date=2026-11-03",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

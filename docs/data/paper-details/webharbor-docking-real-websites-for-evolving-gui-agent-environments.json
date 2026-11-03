@@ -1,0 +1,136 @@
+{
+  "id": "webharbor-docking-real-websites-for-evolving-gui-agent-environments",
+  "title": "WebHarbor: Docking Real Websites for Evolving GUI Agent Environments",
+  "authors": [
+    "Zhaoyang Wang",
+    "Qianhui Wu",
+    "Boyu Gou",
+    "Demi Wang",
+    "Jiacheng Zhang"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-02",
+  "url": "http://arxiv.org/abs/2611.03634v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.03634v1",
+  "code_url": "https://github.com/aiming-lab/WebHarbor",
+  "benchmark_url": "https://huggingface.co/datasets/ChilleD/WebHarbor",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-04",
+  "first_deep_dive_daily": "2026-11-04",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 7.65,
+    "engineering_testability": 6.05,
+    "trend_signal": 4.85,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 90.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重…",
+  "one_line_essence": "今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重 + 已发布数据集 + Docker 镜像。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/aiming-lab/WebHarbor **真实存在**（created 2026-05-02，pushed 2026-11-03，stars=42，forks=42，homepage=https://aiming-lab.github.io/WebHarbor/，size=210254 KB）。仓库顶层结构实测完整：Dockerfile(31415 B)、requirements.lock、control_server.py(17541 B)、site_runner.py、websyn_start.sh、harbor/、sites/、agent_demo/、AGENTS.md(15297 B)、CONTRIBUTING.md(17191 B)、assets-manifest.json。★ 独立执行二（**数字逐个核对，不是转述摘要**）：用 GitHub API 列出 sites/ 目录，实测**恰好 153 个站点子目录**，与论文/README 声称的 153 个环境完全一致——这是今日唯一被独立复算的工件数量（抽查可见 amazon、airbnb、bbc_news、github、imdb、nvidia、google_maps 等真实站点镜像）。★ 独立执行三（数据集与权重）：hf-mirror.com 镜像 API 确认 huggingface.co/datasets/ChilleD/WebHarbor **存在**（lastModified 2026-11-03，tags 含 webharbor / web-agent / gui-agent / computer-use-agents / environments / reinforcement-learning / arxiv:2611.03634）；模型 huggingface.co/ChilleD/WebHarbor-4B **存在**（lastModified 2026-11-03，downloads=39，base_model=OpenWebRL/OpenWebRL-4B-SFT，backend=sglang，format=safetensors）。★ 独立执行四（README 全文读取，抓到了论文摘要里没有的关键细节）：README 明确写出 Trained solely in WebHarbor's synthetic environments and tasks, WebHarbor-4B reaches a **75.8** average on WebVoyager and Online-Mind2Web, **the best open-source GUI web agent at the 4B scale**；项目页 Results 段进一步给出**对比基线**：同为 4B、同一 SFT checkpoint、同一多模态 GRPO 目标的 OpenWebRL-4B 是基线，WebHarbor-4B **live-web 平均分 +5.2（75.8 vs 70.6）**，**比共同 SFT checkpoint 高 +22.2**，WebArena 上 28.8（4B 模型最佳），且 **6/6 成对排名保持、Spearman 秩相关 1.00、Pearson 分相关 0.80**（即代理环境分数排序与真实站点一致，但绝对分数高 4.4–18.8 分）。→ **这是今天工程上最可落地的一条判断：我们可以在 WebHarbor 里跑自己的 agent 评测，而不必被真实站点的内容漂移、登录墙和反爬干扰；但必须知道 WebHarbor 的绝对分比真实站点高 4.4–18.8 分，不能拿它当真实成绩汇报。** ★ 独立执行五（**合成环境的保真度是被实测过的，不是口号**）：项目页写明 6/6 排序保留、1.00 Spearman；并且 WebArena no-auto-login 变体上 WebHarbor-4B 只掉 -2.7 分，而 OpenWebRL 系列掉 -3.6 / -4.9。任务数 3,518（README 与项目页一致），其中测试集 306 个 verified tasks。★ 独立执行六（构建方式本身值得学）：README 写明用 **coding agent（Claude Code / CodeX）把真实站点镜像成本地 Docker**，每个站点占一个端口（40000+i），控制面在 :8101 用 token 保护并可把任一站点重置到种子状态，**153 个环境打包进一个约 20 GB 的镜像**。→ 这是一个用 agent 造评测环境的自我强化闭环，且它的贡献形式是**环境而非模型**，这在当前 agent 生态里稀缺。★ 证据边界（必须写明，不要拔高）：(1) 153 个环境全部镜像进**一个** 20 GB 镜像，**这意味着拉取成本不低**，本地可复现不等于轻量；(2) **hub.docker.com 今日全程超时**（两个 endpoint 均 timeout），所以 **20 GB 体积、镜像 tag 数、Dockerfile 能否真正 build 今日均未独立核验**，README 的 20 GB 与 wildawm/webharbor 镜像名来自作者自述；(3) WebHarbor **没有 LICENSE 文件**（GitHub API /license 返回 404，README 无 License 段），**许可状态待核验**——这直接影响我们能否在内部项目里复用其环境代码；(4) **论文无 arXiv HTML 全文**（arxiv.org/html/2611.03634 与 /v1 均返回 404），上述所有实验数字均来自 README 与项目页（作者自述），**没有第三方独立复现**；(5) 论文摘要说 31 pages，但正文表格不可读；(6) 论文作者列表长达 51 人（含多位知名研究者），**单篇归属判断的边际价值有限，真正的资产是环境集与 checkpoint**。★ 与今日被截断的 2611.03116《From Local Skills to Long-Horizon Web Tasks (SCOPE)》对照：两者同属 web agent 训练方向，SCOPE 讲的是渐进式技能探索的**训练方法**，WebHarbor 讲的是**评测与训练环境本身**——环境是更硬的资产，且 SCOPE 未找到公开仓库，**WebHarbor 的证据等级明确更高**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重 + 已发布数据集 + Docker 镜像。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/aiming-lab/WebHarbor **真实存在**（created 2026-05-02，",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": true,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一即时价值，**证据链最完整、且是唯一一篇四类工件全部齐备且今天就能动手的论文**：论文 + 官方代码 + 项目页 + 已发布模型权重 + 已发布数据集 + Docker 镜像。★ 独立",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03634v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.03634v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=webharbor-docking-real-websites-for-evolving-gui-agent-environments",
+  "daily_path": "daily-detail.html?date=2026-11-04",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

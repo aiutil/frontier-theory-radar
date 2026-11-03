@@ -1,0 +1,136 @@
+{
+  "id": "d-a-decoupling-description-and-assessment-enables-vlms-as-zero-shot-robotic-reward-models",
+  "title": "D&A: Decoupling Description and Assessment Enables VLMs as Zero-Shot Robotic Reward Models",
+  "authors": [
+    "Marius Memmel",
+    "Shawn Yin",
+    "Urvi Rutia",
+    "Angad Wadhwa",
+    "Eldon Li"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-02",
+  "url": "http://arxiv.org/abs/2611.03622v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.03622v1",
+  "code_url": "https://github.com/memmelma/dna",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-04",
+  "first_deep_dive_daily": "2026-11-04",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 4.15,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 76.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：今日第三价值，**是唯一一篇今天就能在我们的系统里直接用起来、不需要 GPU 也不需要新数据的论文——它把 VLM 当成零训练的进度打分器*…",
+  "one_line_essence": "今日第三价值，**是唯一一篇今天就能在我们的系统里直接用起来、不需要 GPU 也不需要新数据的论文——它把 VLM 当成零训练的进度打分器**。★ 独立执行一（GitHub API 核验，实测）：github.com/memmelma/dna **真实存在**（created 2025-11-26，pushed **2026-11-03**，MIT，stars=5），目录结构实测完整：dna/classes/（main.py 14188 B、experimental.py 15406 B）、dna/functions/（description.py 11453 B、progress.py 20743 B、video_to_progress.py、viz.py、terminal_log.py）、dna/requests/（api.py、claude.py、gemini.py、gpt.py、meta.py、openrouter.py、qwen_hf.py 12839 B、_pool.py、_media.py）、example.py、uv.lock（570 KB，说明依赖已锁定）。★ 独立执行二（**今日最有价值的一次独立执行，抓出了一个真实的踩坑点**）：按惯例执行 pip download dna --no-deps，**下载成功**（dna-0.0.1-py3-none-any.whl）——但解包后 METADATA 显示这是**一个完全无关的 PyPI 模板包**（Author: HaveTwoBrush，Summary: project description，正文是中文的「Python Package Template」教程，只含 dna/shell/usage.py 与 package_name/ 目录）。继续查证 D&A 自己的 pyproject.toml，确认**项目名是 reward-vlm（version 0.1.0，build-backend=hatchling，packages 为 dna）**；但 pip index versions reward-vlm 与 pip download reward-vlm 均返回 **No matching distribution found**，PyPI API /pypi/reward-vlm/json 返回 **404** → **D&A 尚未发布到 PyPI，只能从 GitHub 仓库 pip install -e . 安装**。→ **这条必须写进日报：如果团队里有人按名字直觉执行 pip install dna，会静默装到一个无关的模板包上，而且 pip 不会报错。** ★ 独立执行三（README 全文，确认了它到底能做什么）：核心 API 是 DNA(model=...).compute_progress(video, task)，输入 (N,H,W,3) uint8 视频 + 任务描述，输出 (N,) 的 [0,1] 逐帧进度（0=未开始，1=完成）；提供同步与 compute_progress_async 异步两种形态，适配已有 async pipeline。支持的后端实测列出：Google Gemini（gemini-3-flash-preview）、OpenAI GPT（gpt-4o / o3）、Anthropic Claude（claude-sonnet-4-20250514）、OpenRouter（任意模型，前缀路由）、Meta Muse Spark、Qwen-VL 本地推理。**Gemini 与 Muse 接受原生视频，其余后端把视频拆成逐帧图像**（这决定了成本与信息损失的差别）。thinking 参数可调推理预算（LOW/MEDIUM/HIGH/OFF）。★ 独立执行四（方法本身的价值在解耦二字）：D&A = **Describe & Assess**，先让 VLM **在不看到任务目标的前提下客观描述场景发生了什么**，再用一个**显式的、任务无关的成功判据（rubric）**去评估进度。论文诊断的问题很实在：现有 VLM 进度估计因隐含成功假设和相对时间排序设计而产生**确认偏置**——在失败执行里幻觉出进度；朴素 prompt 会退化成二元成功检测器，无法刻画非线性进展与失败。**先描述后评估，把绝对成功标准锚定在外部全局判据上，而不是视频自身的时间轴上**，这是能迁移到我们任何让 LLM 判断一件事做得怎么样的场景里的通用模式（比如审代码、评作业、看 agent 轨迹）。★ 证据边界（必须写明）：(1) **README 明确标注 Qwen-VL 本地推理 is in development 且 not yet fully validated — use the hosted API backends for production**，所以零 GPU 成本这条路今天还不成立，实际调用需要 Gemini/GPT/Claude/OpenRouter 的 API key，**成本未核算**；(2) 论文声称的 matching or surpassing post-trained reward models 是**作者自述**，今日**未独立复现**；(3) **D&A-Bench 数据集（huggingface.co/datasets/memmelma/dnabench）今日无法核验**：hf-mirror 镜像 API 对该 id 返回 **404**，huggingface.co 直连超时；但用 api/datasets?author=memmelma 列该作者 41 个数据集，**其中不含 dnabench**，而作者同一批的 hamster_eval / libero_* / oxe_* 等均正常返回 200 → 判断是**数据集尚未对外发布或已改名**，标记**待核验**；(4) 论文无 arXiv HTML 全文之外的可读副本，所有结论来自摘要 + README；(5) stars=5、无 release、无 PyPI 包，**工程成熟度是能跑而非能依赖**。★ 为什么给即时价值：它不依赖任何新硬件、新数据或训练，方法模式可直接搬到我们的 agent 轨迹评估与 rubric 设计上，且代码 MIT 许可、目录结构清晰。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第三价值，**是唯一一篇今天就能在我们的系统里直接用起来、不需要 GPU 也不需要新数据的论文——它把 VLM 当成零训练的进度打分器**。★ 独立执行一（GitHub API 核验，实测）：github.com/memmelma/dna **真实存在**（created 2025-11-26，pushed **2026-11-03**，MIT，star",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第三价值，**是唯一一篇今天就能在我们的系统里直接用起来、不需要 GPU 也不需要新数据的论文——它把 VLM 当成零训练的进度打分器**。★ 独立执行一（GitHub API 核验，实测",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.03622v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.03622v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=d-a-decoupling-description-and-assessment-enables-vlms-as-zero-shot-robotic-reward-models",
+  "daily_path": "daily-detail.html?date=2026-11-04",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

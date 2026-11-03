@@ -1,7 +1,33 @@
 {
-  "updated_at": "2026-11-02T04:51:17.597898",
+  "updated_at": "2026-11-04T05:02:33.207786",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-11-04",
+      "title": "论文价值发现日报 - 2026-11-04",
+      "deep_dive_title": "WebHarbor: Docking Real Websites for Evolving GUI Agent Environments",
+      "deep_dive_url": "http://arxiv.org/abs/2611.03634v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做四件事，按依赖顺序：(1) **零依赖、30 分钟——先立规则，不等任何下载。** 把两条硬约束写进我们的评测规范：① **WebHarbor 的绝对分比真实站点高 4.4–18.8 分，只能用于相对排序，不能当真实成绩汇报**（依据：项目页实测的 6/6 排名一致 + Spearman 1.00 + Pearson 0.80）；② **第三方论文代码安装前必须先核对 PyPI 项目名与作者**——今天实测 `pip install dna` 会静默装上一个无关的 PyPI 模板包（作者 HaveTwoBrush），而 D&A 的真实项目名 `reward-vlm` 在 PyPI 上 404，**pip 不会报错**。(2) **1–2 小时——量化我们自己的环境漂移。** 选一个我们已有稳定结论的 agent 评测任务，把它在「真实上游」和「固化镜像」两种环境各跑一次（先只固 2–3 个最常用的内部系统，不要一次铺开），比对逐条分数与任务级排序。**产出一个数字：我们自己的离线评测与真实环境差多少分、排序是否保持**——这是把 WebHarbor 的方法内化，而不是照抄它。(3) **2 小时——把 D&A 的「先描述后评估」模式抄成我们的 rubric 模板（不需要 GPU、不需要机器人）。** 拿一条现有的 agent 轨迹评测（或一次代码评审）做试点：第一步让模型在**不给出任务目标**的前提下客观描述发生了什么，第二步再对照一份显式判据打分，对比今天单步打分的分数差异。**这一步会直接暴露我们现有评审流程里有多少确认偏置。** 注意 D&A 的实际调用需要 Gemini/GPT/Claude/OpenRouter 的 API key（其本地 Qwen-VL 路径官方标注 in development、not fully validated），**先做小样本、核算 token 成本再放量**。(4) **今天不做的三件事（明确记下来，避免被带跑）：** ① 不下载 WebHarbor 的完整 20 GB 镜像（hub.docker.com 今日全程超时，体积与能否 build 尚未核实，且许可证状态待核验——**先解决许可问题再谈下载**）；② 不改我们的优化器配置（Muon-AdamW 反转那篇没有代码、需要多卡复现、外推性未定，**观察 7–30 天**）；③ 不投入 FADE 与斑马谜题（一个无代码、一个载体太玩具）。",
+      "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：** 一、**今天没有任何一个论文数字是本机跑出来的**——本机无 CUDA，任何需要训练的复现都做不了；今日真正执行成功的只有 5 类**轻量级独立核验**：(a) GitHub API 逐条核验 6 个仓库的存在性/星标/推送时间/许可证；(b) `sites/` 目录枚举复算 153 这个数字；(c) hf-mirror 镜像 API 确认 2 个 HF 工件存在且 2026-11-03 刚更新；(d) `pip download` 实测 PyPI 包的真身（并因此发现装错包的陷阱）；(e) arXiv HTML 全文逐篇核对代码声明。**这些都不是论文实验的复现。** 二、**今日最大的限制来自抓取口径本身，连续第二天成立：** `fetch_papers.py` 的 `max_results_per_category=10` + 只取前 5 个分类，在今日实测 200+ 篇同日期的批次里**只保留了 10 篇，丢掉 190/200**；被丢掉的里至少有 5 篇带已公开可验证的仓库，其中 3 篇（mcpvenom / axion1_0 / distdebug-bench）证据等级不低于今日入选论文，**《Axion 1.0》是一个完全开放的 4B agent 基座（Apache-2.0，created 2026-11-02 当天，stars=17），是今天 10 篇里没有任何一篇能提供的东西**。**所以今日的深挖选择是「在这 10 篇内的最优」，不等于「当日最优」。** 三、**逐篇标注的证据不足项**：WebHarbor —— 无 LICENSE（GitHub API /license 404）、hub.docker.com 今日全程超时故 20 GB 体积/镜像 tag/build 可行性均未核验、论文无 arXiv HTML 全文故所有数字为作者自述无第三方复现、许可待核验（**这一条直接卡住我们复用其环境代码**）；D&A —— D&A-Bench 数据集在 hf-mirror 上 404 且作者 41 个数据集中不含该项（判断为未发布或已改名，**待核验**）、README 明确标注本地 Qwen-VL 路径 not yet fully validated 故「零 GPU 成本」今天不成立且 API 成本未核算、无 PyPI 包（仅可 `pip install -e .`）、stars=5 无 release 故「能跑」不等于「能依赖」；RLVR 策略崩塌 —— **只有 2 位作者、stars=0、单模型单任务族（Qwen2.5-7B + 自制字符串反演框架）**，结论外推到代码/数学/工具调用类任务**完全待验证**，其 OOD 指标为人造可控、真实 OOD 不等价；Muon-AdamW —— **全文无代码无仓库**、结论建立在**线性联想记忆这一简化模型**上、对真实 Transformer 规模的外推**待验证**，且论文摘要未给出交叉点的具体数值；FADE —— **无代码、无开源计划声明**，GitHub 检索 total_count=0，5 benchmark/2 模型/4 调度器全部作者自述，今天无法核对任何一个数字；斑马谜题 —— **Codeberg 仓库 stars=0、GitHub 上搜不到**，摘要未给出任何具体分数或提升幅度，依赖第三方 miniexact 而增益归因无消融；Pixel-UMI / Pixel —— **官方明确标注「Open Sourced Soon!」，代码今日未开源**，页面上无任何 GitHub 链接，87.0% 完全作者自述，且复现门槛在硬件（真实机器人 + 传感器化人类演示数据）不在软件；Compliance-by-Design —— **AM4RRE 的模板本体今天完全没有公开**（这恰是它唯一的交付物），34 人/10 组准实验的统计口径未说明；EEG 句级解码 —— **无代码无权重无量化结果**，且我们无任何复现条件。四、**今日新查出的两个工具级缺陷（不是数据问题，是打分管线的问题）**：① **关键词匹配无词边界**，`extract_keywords()` 与 `score_papers.py` 的 rag-knowledge 主题实测把 **4/10 篇误标 RAG**（命中 average task p-rag / shorter total spe-cification / cou-rageous），会系统性抬高 RAG 相关性权重；② **摘要截断 500 字符**，今日真实摘要长度 1154–1858 字符，**丢失 55%–73% 的内容**，今日所有判断都必须靠重新拉全文才做得准。五、**网络与工具可用性**：arXiv（网页+API+HTML 全文）可用，GitHub API 与 CLI（aiutil 认证）可用，hf-mirror 镜像可用，codeberg API 可用；**huggingface.co 直连超时、hub.docker.com 全程超时**，这两个不可达直接导致 D&A-Bench 与 WebHarbor 镜像两项无法核验。六、**本条记录同时是昨日（2026-11-03）遗留工作的说明**：昨日的运行在 `git add -A` 之后、commit 之前中断，留下了 81 个已暂存但未提交的文件（含 2026-11-03 的 papers/analysis/daily 及全部 docs 索引）；今日的运行已把 2026-11-04 的数据一并纳入同一批提交，**即本次 commit 同时包含 11-03 与 11-04 两天的内容**。",
+      "one_line_judgement": "我用 GitHub API 逐条核实了它的工件，**不是转述摘要**：仓库 `aiming-lab/WebHarbor` 实测存在（pushed 2026-11-03，stars=42，forks=42），我用 API 列出 `sites/` 目录，**实测恰好 153 个站点子目录，与论文声称的数量完全一致**——这是今天唯一被独立复算过的工件数量。数据集（`ChilleD/WebHarbor`）与模型（`ChilleD/WebHarbor-4B`）在 hf-mirror 镜像上实测均存在且 2026-11-03 刚更新。README 与项目页给出论文摘要里没有的**对照基线**：同为 4B 的 OpenWebRL-4B 是基线，WebHarbor-4B 在 live-web 平均分 **+5.2（75.8 vs 70.6）**、比共同 SFT checkpoint 高 **+22.2**，且 **6/6 成对排名保持、Spearman 1.00**。",
+      "path": "daily-detail.html?date=2026-11-04"
+    },
+    {
+      "date": "2026-11-03",
+      "title": "论文价值发现日报 - 2026-11-03",
+      "deep_dive_title": "Flide: Accelerating Decision Inference with Exact State Forking",
+      "deep_dive_url": "http://arxiv.org/abs/2610.42148v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做四件事，按依赖顺序：(1) 立刻做，零依赖——检查我们自己的批量评测是否受批大小影响（论文实测：同一批请求从 1 client 变到 64 clients 时，Flide 最多改 0.2% 的答案，SGLang 最多 1.7%，vLLM 最多 3.2%）；在自有评测脚本里挑一个已有稳定结论的 benchmark，用两种不同 batch size / 不同批组成顺序各跑一次，比对逐条分数；若排序、名次、AUC 会动，说明部分历史结论其实来自批处理顺序，属于必须回溯的记账问题。(2) 2 小时内做完，零依赖——把今天三条工程结论写成可执行检查项：批大小与批组成顺序是评测的隐变量（必须固定并声明）、harness 演化的成本量级是 ≤5 轮迭代 / <6 小时 / 平均 <$150 且不改权重不采演示、agent 失败修复的第一步是标注哪些中间产物仍然有效（token 代价 +17.92%，相对 Reflexion −24.19%）。(3) 需要一张卡才能做，今天先立项——把『验证 Flide 的精确性』排进 GPU 资源申请（本机已查清前置条件：GPU-only，Triton kernel + 硬编码 cuda_graphs，无 CPU 回退）；在一张卡上跑 flide verify，重点看 (a) 多问题 vs 单问的概率最大偏差与 top answer 一致率、(b) 1/2/8/32 负载下的比特一致性，通过后才把 Flide 从『作者自述』升级为『已独立验证』。(4) 今天必须记录、并排进 7–30 天观察：LSA 要与同批次被漏掉的直接竞品 ZHA（2610.42112）成对评估，且注意 LSA 的 22.7×/72.4× 是『单层 attention 层』而非端到端加速；DP 那条线要连同同组作者的 PLD FFT（2610.42117）一起读。(5) 顺手记录一个流水线缺口：fetch_papers.py 的 max_results_per_category=10 使今日只覆盖了同日批次（实测 200+ 篇）中的 10 篇，且被丢掉的 50 篇里含 1 篇直接竞品与 1 篇同组姊妹篇，建议加『同批次覆盖度自检』而不是静默截断。",
+      "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：** 一、本机无 CUDA（torch.cuda.is_available()=False），今日没有任何一个论文数字是本机跑出来的；唯一实际执行成功的是 Flide 的安装与加载路径（pip install flide 成功，PyPI 最新 0.1.7；flide --help / formats / verify --help 三个子命令实测可用；flide formats 实测列出 16 个模型族；flide verify --device cpu 实际把 Qwen3.5-0.8B 完整拉起并读入 1.71 GB 权重（50.6s），但最终未产出验证结论——第一层 RMSNorm 处 RuntimeError: 0 active drivers，根因是 Triton CUDA kernel + 硬编码 cuda_graphs: True，无 CPU 回退路径）。→ Flide 的精确性主张今日仍是『作者自述 + 我们的代码层前置条件定位』，不是独立复现；这是环境不可达，不是结论被证伪。二、作者自述、本机无法复现的数字全部标为待核验：Flide 的 9.5×/9.4× 加速比与 TVD、within 1.1 points、批大小改变答案的 0.2%/1.7%/3.2%；LSA 的 22.7×(72.4×) prefill / 4.6×(42.5×) decode / 1.6× 训练加速（注意均为『单层 attention 层』口径，不是端到端，端到端数字论文未给）；RoboArchitect 的 9.7%→43.3%(4.5×)、12.7%→40.2%(3.2×) 与 6 小时/<$150 成本；DecisionRank 的 1.7B 超过 27B 教师与 24.5×/16.7× 加速（且部分基线经 Jev 专有 API 报告，第三方无法复现）；Dittany 的 88.28%/79.18%/84.76%/+26.74pp/+21.28pp/+17.92% token（语义评估依赖 DeepSeek V4 Flash 判官、未做人工双评，且排除了 164 个 ambiguous run 与 78 个 format-only discrepancy）；LARC 的 GenEval 7%p over BAGEL；critic-matters 的 joint scaling 与 STAC 结论；ID-WM 的 38.5%/135%；2610.42133 的 seven published sources 清单。三、今日唯一被独立复核的是 Flide 引用的 5 个上游 PR 状态（vllm #59299/#61192、sglang #33922/#41208 全部 merged=true，sglang #44793 仍 open），并用代码检索确认 vllm 主干确有 vllm/entrypoints/generate/structured_decisions/、sglang 主干确有 python/sglang/srt/entrypoints/systemone/；另记录一处口径不一致——论文摘要写 9.5×、官方 README 写 9.4×，正文对单问题场景只给 3.2× 且明说负载下可打平，不替作者选边。四、代码与资产缺口逐项确认（详见下方表格）：Dittany、DecisionRank、critic-matters、ID-WM、2610.42133 均暂无官方代码；LARC 仓库真实但只有 README（TODO 三项全未勾选，作者承诺 11/9 放推理代码）、权重数据已确认未发布；RoboArchitect 仓库完整但无 license、stars=0。五、最重要的系统性缺口：fetch_papers.py 的 max_results_per_category=10 使今日只覆盖了 arXiv 同日批次（published 2026-10-30，12 分类下实测 200+ 篇）中的 10 篇，被丢掉的 50 篇里含 1 篇直接竞品（ZHA）与 1 篇同组姊妹篇（PLD FFT），今日所有排序结论应视为在这一批内部的相对判断。六、口径提醒：huggingface.co 直连仍超时，全部 HF 查询经 hf-mirror.com 镜像；GitHub CLI 认证为 aiutil 账户，仓库检索/PR 状态/代码检索可用；Dittany 的工具名已从 arXiv 源码包确认（\\tool 即 Dittany 本身）；OpenReview / HuggingFace Papers / Papers with Code 三个子源仍未接入。",
+      "one_line_judgement": "它把「决策模型（Jev 一类，不生成 token、直接出分类/分数的模型）」的推理从「借用生成式引擎」改造成**一等公民**：把逻辑请求树与物理执行解耦，用 GPU 常驻索引做 ForkAttention，跨普通 attention 与 Gated DeltaNet 层保证**每个分支的输出等于它单独跑一次**。今日独立核到的最硬一条不是论文里的加速比，而是**生态已经动了**：vLLM 的 PR #59299 与 #61192、SGLang 的 PR #33922 与 #41208 **全部 merged=true**，vllm 主干已有 `vllm/entrypoints/generate/structured_decisions/`、sglang 主干已有 `python/sglang/srt/entrypoints/systemone/`——**这个范式已经不是一家公司的私有主张，而是正在进入推理框架主干**。",
+      "path": "daily-detail.html?date=2026-11-03"
+    },
     {
       "date": "2026-11-02",
       "title": "论文价值发现日报 - 2026-11-02",
@@ -365,32 +391,6 @@
       "max_uncertainty": "缺少多源工程证据",
       "one_line_judgement": "它同时具备问题重要性、工程可验证性和研究资产转化价值。",
       "path": "daily-detail.html?date=2026-10-03"
-    },
-    {
-      "date": "2026-10-02",
-      "title": "论文价值发现日报 - 2026-10-02",
-      "deep_dive_title": "Turbo Harness: Instance-Adaptive Harness Optimization",
-      "deep_dive_url": "http://arxiv.org/abs/2609.40330v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "完成摘要精读与最小实验设计",
-      "max_uncertainty": "缺少多源工程证据",
-      "one_line_judgement": "据摘要（arXiv 2609.40330）：Turbo Harness 把 agent harness optimization 从'single global harness uniformly applied'推到'instance-adaptive'——认识到'a harness that works well on average may not be optimal for every instance'。复用优化过程生成的信息（按 instance 调整 harness）为每个 task instance 优化，是 ai-agent × inference-serving 的'per-instance harness self-improvement'工程化资产——把'harness'从全局静态配置变成 instance-level 动态资产；与昨日 35760 TokenCast 'agent cost governance' 同属'agent production 治理'主线（前者 cost、本次 harness），今日 40360 Semifactual RLVR 在'decoding-time robustness' 互补。代码/benchmark/项目页：暂无，需打开 PDF 看 reused-information 形式化、per-instance adaptation cost、benchmark 是否覆盖多 agent framework。今日动作：即时试点方向，写'turbo-harness instance-adaptive' checklist 草稿。",
-      "path": "daily-detail.html?date=2026-10-02"
-    },
-    {
-      "date": "2026-10-01",
-      "title": "论文价值发现日报 - 2026-10-01",
-      "deep_dive_title": "LeapQuant: Efficient Linear Attention with Accurate Recurrent State Quantization",
-      "deep_dive_url": "http://arxiv.org/abs/2609.38166v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 [38166](http://arxiv.org/abs/2609.38166v1) LeapQuant 列为即时试点方向，写'leapquant recurrent-state quantization' checklist 草稿；把 [38169](http://arxiv.org/abs/2609.38169v1) STEPQuant 同步列为即时路线资产（分析方法），写'stepquant error-when-where' checklist 草稿；为 [38155](http://arxiv.org/abs/2609.38155v1) Beyond the Timeline 'grounded entity memory'、38149 Feedback Transformer'打破 Transformer 单向信息流'维持趋势卡片；为 [38177](http://arxiv.org/abs/2609.38177v1) Imagine3D-LLM、38161 Spectral Theory of Distortion、38176 Speciation/Nonlocality、38178 Skill-Space Shooting 维持长尾卡片；忽略 [38157](http://arxiv.org/abs/2609.38157v1) EmoRES-TTS 情绪语音、[38165](http://arxiv.org/abs/2609.38165v1) Cropland PAtteRNS 农业遥感。⚠️ 持续观察 38166 / 38169 / 38155 / 38149 / 38177 / 38161 / 38176 / 38178 是否开源 code / benchmark / project page。",
-      "max_uncertainty": "LeapQuant（[38166](http://arxiv.org/abs/2609.38166v1)）quantization scheme 形式化、与 GDN/KDA 原生实现（DeepSeek / Kimi 等）兼容性、quantization-error accumulation 抑制细节、与 KV-cache quantization 的工程差异是否公开；STEPQuant（[38169](http://arxiv.org/abs/2609.38169v1)）error propagation 分析框架、temporal/spatial 量化策略的实证、与 KV-cache quantization 分析对照是否公开；Beyond the Timeline（[38155](http://arxiv.org/abs/2609.38155v1)）entity grounding 协议、biography 更新机制、长视频 QA 评测设置、跨事件实体一致性是否公开；Pretraining Latent Information Feedback Transformers（[38149](http://arxiv.org/abs/2609.38149v1)）feedback 形式化、teacher supervision 设计、pretraining cost vs quality 曲线、与推理时 feedback transformer 的关系是否公开；Imagine3D-LLM（[38177](http://arxiv.org/abs/2609.38177v1)）imagine 阶段 representation 设计、benchmark 规模、3D 推理 baseline、与 3D foundation model 的融合方式是否公开；Spectral Theory of Distortion（[38161](http://arxiv.org/abs/2609.38161v1)）sharp bound 推导、empirical characterization 协议、与现有 graph reconstruction benchmark 对照是否公开；Breakdown of Local Denoising（[38176](http://arxiv.org/abs/2609.38176v1)）'common cause'假设形式化、跨生成模型验证、cs.LG × cond-mat.stat-mech 跨界可比性是否公开；Skill-Space Shooting（[38178](http://arxiv.org/abs/2609.38178v1)）skill space 定义、shooting 算法、跨任务迁移验证、cs.RO 标准 benchmark 对照、是否能迁移到非物理机器人 agent 是否公开；EmoRES-TTS（[38157](http://arxiv.org/abs/2609.38157v1)）当前相关性有限；Cropland PAtteRNS（[38165](http://arxiv.org/abs/2609.38165v1)）当前相关性有限。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason。",
-      "one_line_judgement": "据摘要（arXiv [2609.38166](http://arxiv.org/abs/2609.38166v1)），LeapQuant 解决 hybrid linear-attention LLM（明确点名 Gated DeltaNet / Kimi Delta Attention）部署时的核心 inference 瓶颈——recurrent state 反复读写的高代价与量化导致的模型质量退化。这是 inference-serving × context-engineering × memory 的'recurrent state quantization for linear-attention LLMs'工程化资产——直接把'linear-attention recurrent state'从内存瓶颈变成可量化的工程对象；与同批 [38169](http://arxiv.org/abs/2609.38169v1) STEPQuant（'when and where errors matter'的分析资产）形成'方法 × 分析'双联；与昨日 [35769](http://arxiv.org/abs/2609.35769v1) Telescopic LM 'one-model-many-budgets'、[35768](http://arxiv.org/abs/2609.35768v1) PDMD'扩散蒸馏稳定性'共同加固'inference efficiency'主线，但今日整体重心从'diffusion 蒸馏 / 多模态反思'转到'linear-attention recurrent state 量化'这条更贴近 production LLM serving 实际的子主线。",
-      "path": "daily-detail.html?date=2026-10-01"
     }
   ]
 }

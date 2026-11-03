@@ -1,0 +1,136 @@
+{
+  "id": "flide-accelerating-decision-inference-with-exact-state-forking",
+  "title": "Flide: Accelerating Decision Inference with Exact State Forking",
+  "authors": [
+    "Bobo Li",
+    "Jiajia Song",
+    "Hao Fei",
+    "Wynne Hsu",
+    "Mong Li Lee"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-30",
+  "url": "http://arxiv.org/abs/2610.42148v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.42148v1",
+  "code_url": "https://github.com/OmniJev/Flide",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-03",
+  "first_deep_dive_daily": "2026-11-03",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 91.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第一即时价值，也是**今日证据链最完整的一篇**：论文 + 官方代码 + **可 pip 安装的发行版 + 上游推理框架已合入** 四项…",
+  "one_line_essence": "今日第一即时价值，也是**今日证据链最完整的一篇**：论文 + 官方代码 + **可 pip 安装的发行版 + 上游推理框架已合入** 四项齐备。★ 独立执行一：PyPI 上 `flide` **安装成功，版本 0.1.7**（今日实测 `pip install flide` 成功，`import flide; flide.__version__` → 0.1.7；PyPI 发行历史为 0.0.1 / 0.1.0 / 0.1.1 / 0.1.2 / 0.1.3 / 0.1.4 / 0.1.5 / 0.1.6 / 0.1.7，**0.1.7 为当前最新**）。官方仓库 github.com/OmniJev/Flide 真实存在（Apache-2.0，created 2026-10-24，今日实测 stars=8、forks=2），含 flide/ plugins/ tests/ pyproject.toml。★ 独立执行二：`flide --help` 实测可用，子命令为 {run, serve, kernels, verify, formats}；`flide formats` 实测列出 **16 个已安装模型族**（drex / intern_decision / jeffan / jevany / kev / knowline / next_token / onejev / open_jev / pplx / startlux / template / torchcast / wald / xor），覆盖 qwen3_5、qwen3_5_moe、gemma4、gemma4_unified 等 backbone。★ 独立执行三：`flide verify --model Qwen/Qwen3.5-0.8B --device cpu` **实际跑起来了**，模型从 hf-mirror 完整下载（safetensors 已在 HF cache），flide.load INFO 报告 `read 1.71 GB of weights in 50.6s (0 checkpoint tensors unused)`——**权重加载与格式检测这一段是通的**，**但最终未能跑出验证结论**：在第一层 RMSNorm 处抛 `RuntimeError: 0 active drivers ([]). There should only be one.`。根因已定位到代码层：flide/kernels/pointwise.py 直接 `import triton` 并用 `@triton.jit` 写死 rms_norm / swiglu 等 kernel，且 flide/verify.py 内部硬编码 `backbone_options={\"cuda_graphs\": True}`，**没有 CPU 回退路径**。→ 结论边界：**Flide 的『精确分叉』主张今日无法在本机独立复算**，属环境不可达（无 CUDA），**不是被证伪**。→ **这条不可复算本身就是今天最有价值的工程判断**：想验证 Flide 的 exactness，**必须有一张 H200 级别的卡**，不是一块 CPU 就够。这条已写进今日行动项。★ 独立执行四（本机可独立确认的最硬证据）：Flide 论文正文引用的 5 个上游 PR，**今日逐条用 GitHub API 核实状态，结果是『这个范式已经被主流推理框架接受』**：vllm-project/vllm PR #59299『[Feat] Structured decisions endpoint (/v1/systemone)』**merged=true**（2026-09-29）；vllm-project/vllm PR #61192『[Frontend] systemone: prefill the shared prefix once before the reads on hybrid models』**merged=true**（2026-10-12）；sgl-project/sglang PR #33922『Fix Qwen3.5 GDN multi-item scoring』**merged=true**（2026-08-07）；sgl-project/sglang PR #41208『[Feature] Add a System One compatible /v1/systemone route』**merged=true**（2026-09-25）；sgl-project/sglang PR #44793『[Feat] decisions: Support cold shared-prefix prefill with MIS』**仍为 open**。进一步用 GitHub 代码检索**实测确认代码确实落在上游主干**：vllm 仓库存在 `vllm/entrypoints/generate/structured_decisions/` 目录（api_router.py / protocol.py / serving.py / __init__.py）与 `docs/models/structured_decisions_models.md`；sglang 仓库存在 `python/sglang/srt/entrypoints/systemone/` 目录（serving.py / protocol.py / kev.py / joint_schema.py）。→ **这是本篇最强的证据等级**：不仅作者开源，而且**两个主流推理框架的 `/v1/systemone` 路径已经合入主干**。★ 证据边界的诚实标注（今日核对出一处口径不一致，必须写明）：论文摘要写『up to **9.5 times** faster than vLLM and SGLang』，**官方仓库 README 写的是『up to 9.4 times』**，且 README 补充『QuALITY 上比 vLLM 快 14 倍』。论文正文 §4 的措辞也比摘要保守：单问题场景 Flide『cuts the latency of a lone request by up to 3.2 times』，且明确写『**Under load, where model computation dominates, Flide matches the best baseline**』——**只有在『一个 state 带多个问题』时优势才显著放大**（正文：up to 9.5× lower latency、8.5× higher throughput）。→ **不能把 9.5× 当成普适加速比**：它成立的前提是『多问题共享同一 state』。对做 agent 路由的团队，这条前提恰好就是常态；但对单请求场景，收益要按 3.2× 甚至『打平』来预期。★ 精确性一侧的可核验数据（论文 Table 4 与 README）：Flide 的 top answer 与 float32 参考的吻合率「averaged over the four sizes, Flide's top answer agrees with the float32 reference most often on every workload」，且『Flide's accuracy stays within **1.2 points** of vLLM's in every cell』；批大小改变答案的比例：Flide 最多 0.2%，SGLang 最多 1.7%，vLLM 最多 3.2%；另有 `--batch-invariant` 模式可保证「same bits however it is batched」（论文 §3）。→ **可落地的判断：把『批大小会改变答案』当成默认会发生的事来设计。** 凡是把同一个 state 的多个问题分批打分的服务，都要意识到 batch composition 会改结果；我们自己的批量评测脚本如果把同一 passage 的多个问题拆到不同 batch，**分数是会被悄悄改掉的**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一即时价值，也是**今日证据链最完整的一篇**：论文 + 官方代码 + **可 pip 安装的发行版 + 上游推理框架已合入** 四项齐备。★ 独立执行一：PyPI 上 `flide` **安装成功，版本 0.1.7**（今日实测 `pip install flide` 成功，`import flide; flide.__version__` → 0.",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一即时价值，也是**今日证据链最完整的一篇**：论文 + 官方代码 + **可 pip 安装的发行版 + 上游推理框架已合入** 四项齐备。★ 独立执行一：PyPI 上 `flide` ",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.42148v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.42148v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=flide-accelerating-decision-inference-with-exact-state-forking",
+  "daily_path": "daily-detail.html?date=2026-11-03",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

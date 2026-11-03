@@ -1,0 +1,136 @@
+{
+  "id": "latent-reasoning-in-continuous-space-for-unified-multimodal-models",
+  "title": "Latent Reasoning in Continuous Space for Unified Multimodal Models",
+  "authors": [
+    "Byungwoo Jeon",
+    "Yoonwoo Jeong",
+    "Hyunseok Lee",
+    "Minsu Cho",
+    "Jinwoo Shin"
+  ],
+  "source": "arXiv",
+  "published": "2026-10-30",
+  "url": "http://arxiv.org/abs/2610.42149v1",
+  "pdf_url": "https://arxiv.org/pdf/2610.42149v1",
+  "code_url": "https://github.com/rootyJeon/LARC",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-03",
+  "first_deep_dive_daily": "2026-11-03",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 4.15,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 52.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日第三长尾保存：**概念漂亮、已中 NeurIPS 2026，但代码仓库今天只有一个 README，实质未发布。**★ 独立执行一：**论…",
+  "one_line_essence": "今日第三长尾保存：**概念漂亮、已中 NeurIPS 2026，但代码仓库今天只有一个 README，实质未发布。**★ 独立执行一：**论文级别最高**——arXiv comment 明确写「**Published as conference proceeding for NeurIPS 2026.**」，是本批次唯一一篇已确认进入顶会的论文。作者为 KAIST / POSTECH / RLWRLD：Byungwoo Jeon、Yoonwoo Jeong、Hyunseok Lee、Minsu Cho、Jinwoo Shin（后两位等额指导）。★ 独立执行二：**官方代码仓库真实存在但基本是空的**——github.com/rootyJeon/LARC 真实存在（今日实测 stars=3、pushed 2026-11-02、**无 license**），**顶层只有 README.md 一个文件**，README 的 TODO 明确写着：「[ ] Release inference code (**expected: 11/9**)」/「[ ] Release training code and data」/「[ ] Release evaluation code」——**三项全部未勾选**。→ **这是今日最明确的『有承诺、有日期、但尚未兑现』条目**：作者承诺 11/9 放出推理代码，今天（11/03）尚未到期，**应列入 7–30 天滚动观察，而不是今天投入**。★ 独立执行三：**核心主张已核对到正文原句**——「reasoning is performed in a discrete token space, whereas image generation operates in a **continuous space**」；LARC「alleviates the token-level bottleneck by **reasoning over continuous hidden states**」；两阶段训练：「(i) **curriculum supervised fine-tuning (SFT)**」把 token-level reasoning 逐步转成 latent reasoning，「(ii) **information-gain reinforcement learning (RL)**」在没有 ground truth 监督的情况下自演化 latent reasoning；「LARC achieves state-of-the-art performance on **GenEval with a 7%p gain over BAGEL**」并展现出清晰的 test-time scaling 行为。★ 独立执行四：**项目页真实可访问**（rootyjeon.github.io/larc-umm/，HTTP 200，21,371 bytes，链接指向 GitHub 仓库与作者主页），**但项目页同样没有指向任何权重或数据发布**。今日在 hf-mirror 上核过作者账号 rooty2020：现有条目**全部是机器人/视觉方向的历史资产**（rooty2020/VPM-Data dl=3,930、rooty2020/VP-WorldBench dl=4,959、rooty2020/DROID-VP dl=620、rooty2020/LIBERO-VP dl=378、rooty2020/RoboCasa-VP dl=320，以及 llava-7b-* / clip-* 系列权重），**没有 LARC 相关的权重或数据集——确认『尚未发布』**。★ 证据边界：**权重与数据均未发布**（今日已确认），『7%p over BAGEL』为作者自述的 GenEval 数字，**本机无法复现（无 CUDA，且需训 UMM）——待核验**；另外今天的抓取漏掉了同批次的 **2610.42152 等 50 篇**，若其中有更强的多模态推理工作，排序结论可能需要修正。→ **保留它的理由是方法论可迁移**：『把推理从离散 token 空间搬到连续隐空间』这个思路，在文本 agent 领域还没有对应物，值得在连续潜空间推理出现时第一时间想起它。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第三长尾保存：**概念漂亮、已中 NeurIPS 2026，但代码仓库今天只有一个 README，实质未发布。**★ 独立执行一：**论文级别最高**——arXiv comment 明确写「**Published as conference proceeding for NeurIPS 2026.**」，是本批次唯一一篇已确认进入顶会的论文。作者为 KA",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第三长尾保存：**概念漂亮、已中 NeurIPS 2026，但代码仓库今天只有一个 README，实质未发布。**★ 独立执行一：**论文级别最高**——arXiv comment 明确写",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-24"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2610.42149v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2610.42149v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=latent-reasoning-in-continuous-space-for-unified-multimodal-models",
+  "daily_path": "daily-detail.html?date=2026-11-03",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
