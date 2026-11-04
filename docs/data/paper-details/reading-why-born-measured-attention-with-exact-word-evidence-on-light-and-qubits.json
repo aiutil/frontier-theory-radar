@@ -1,0 +1,132 @@
+{
+  "id": "reading-why-born-measured-attention-with-exact-word-evidence-on-light-and-qubits",
+  "title": "Reading Why: Born-Measured Attention with Exact Word Evidence on Light and Qubits",
+  "authors": [
+    "Teerawat Tongloy",
+    "Jiraporn Pongsopa",
+    "Rangsan Jomtarak"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-03",
+  "url": "http://arxiv.org/abs/2611.05355v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.05355v1",
+  "code_url": "https://github.com/stein-research/reading-why",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-05",
+  "first_deep_dive_daily": "2026-11-05",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 2.4
+  },
+  "score": 67.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得先保存：今日第五价值，**是今天 10 篇里「可核验性」最高的一篇——它把每一个数字、每一个模型权重、每一次 IBM 量子作业记录都公开了，包括 9…",
+  "one_line_essence": "今日第五价值，**是今天 10 篇里「可核验性」最高的一篇——它把每一个数字、每一个模型权重、每一次 IBM 量子作业记录都公开了，包括 9 个训练好的模型与 IBM job 目录下的完整电路转储；但它的载体（e-SNLI 自然语言推理 + 光量子硬件）离我们的工程极远，所以存而不投**。★ 核心洞见（论文全文口径）：作者构造了一个**每一步都是 Born 测量**的 transformer——注意力是 $|<q|k>|^4$ 按行归一化、前馈用测量乘积替代非线性、读出用 Born 规则。关键性质：**当分母固定在输入值上时，每个类概率都是词幅度的多项式，因此它的 integrated-gradient 证据可以用有限求积算出且没有求积误差——各词的贡献精确加总到类别概率超出无信息份额的部分，精度到 10^-11 或更好**。★ 实测口径（README 与论文口径一致，README 用表格给出）：e-SNLI 上**约 98k 非嵌入参数**，Born Transformer **76.98 ± 0.17%** 测试准确率 vs softmax transformer **76.62 ± 0.36%**（持平）；**删除证据排名第一的词在 45% 的测试对上改变答案**（任一单词删除的上限是 53%），而 **softmax 模型用同样方法解释只有 32%**，attention × gradient 是 40%；**attention 看起来最像标注者高亮的词（0.50 vs 证据 0.51，随机 0.35），却对答案的解释力更差**（attention 排名第一的词删除只改变 32%）；同一套权重**精确编译到光学与量子**——一个连贯注意力层就是与模型等价的单个电路（brickwall 映射下 **23 qubits 上 852 个 CNOT**）；在 IBM **ibm_kingston** 上用 Hadamard test 读取注意力重叠，**设备给出了模型的答案**且在预先选定的两个测试对上每个词的证据跟随精确值（相关 0.997 与 0.932，符号全对），**但证据本身尚未在设备上存活**。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/stein-research/reading-why **真实存在**（created 2026-11-03，pushed **2026-11-04**，MIT，**stars=0、forks=0**，size 74,568 KB）。目录结构实测完整且罕见地诚实：demo/（reading_why.py、ui.py 9,737 B、demo.ipynb、train.ipynb）、examples/（quickstart.py、explain.py）、docs/（run-locally.md **9,352 B**、check-and-repeat-ibm.md **9,929 B**）、src/（**models.py 37,442 B**、evidence.py、evidence_bootstrap.py、gradinput.py、**hw_attention.py 25,132 B**、hw_plan.py、hw_recal.py、qubit_resources.py、**ibm_jobs.py 27,957 B**、compile_hw.py、fairness.py、faithfulness.py、two_level.py、attention_agreement.py、synth.py、train.py、data.py、esnli.py、bow_baseline.py）、**results/（9 个训练好的模型：Born-p2-ap 的 3 个种子各 6,130,853 B、Softmax 的 3 个种子、Poly-sim-born 的 3 个种子、Coherent-attn 单种子 5,750,592 B，外加 esnli_vocab.json 245,345 B）**、**ibm_jobs/（15 个作业目录，每个含 circuits.qpy、circuits.txt、counts.json、properties.json、record.json、transpiled.qpy，即每一次 IBM 作业的完整记录）**、data/（e-SNLI 的 LICENSE、README、SHA256SUMS）。★ 独立执行二（**读 results/README.md 抓到论文表格里没有的一组数字，这是今天最有价值的独立发现**）：**Poly-sim-born（多项式但不加测量约束的变体）测试准确率 78.98 ± 0.31%，高于 Born Transformer 的 76.98 ± 0.17%**；Coherent-attn-b12-24 为 67.04 ± 0.12%（3 种子）。→ **也就是说：拿掉「Born 测量」这个物理约束、只保留多项式结构的那个变体，在同一 e-SNLI 任务上比 Born Transformer 高约 2 个点。** 这对「Born 变换器的优势来自物理可实现性而非来自那个特定的注意力/读出形式」是一个**作者自己文档里给出的、可被独立读到的限定**——论文主线（可精确归因 + 可编译到硬件）依然成立，但「这个架构更好」不成立。**这条限定在论文正文里没有以这种方式并置。** ★ 独立执行三（DOI 核验，实测）：README 声明的归档副本 doi:10.5281/zenodo.23938333，**Zenodo API 实测返回 200**，标题为 Reading Why: Born-Measured Attention with Exact Word Evidence on Light and Qubits，conceptrecid 23938333（当前版本 doi 10.5281/zenodo.23955881，created 2026-11-04）；同作者的前作 Seeing Why（arXiv:2611.01993）仓库 github.com/stein-research/seeing-why **实测存在**（MIT，pushed 2026-11-04），说明这是持续的工作而非一次性投稿。★ 证据边界（必须写明）：(1) **载体是 e-SNLI（一个小型英文 NLI 任务）与一个 98k 参数模型**，**与我们的场景无关**；准确率 76.98% 在 NLI 上只是平凡水平，论文的价值在归因方法而非任务成绩；(2) **今天的本机无 GPU**（torch+cpu），**没有跑通任何训练或推理**，所有数字来自作者提交的权重与结果文件；(3) **IBM 硬件结果只覆盖 2 个测试对，论文自己写明「the evidence itself did not yet survive the device」**——**证据归因在真机上尚未跑通**，这是论文自称的未完成部分；(4) **stars=0、forks=0、零外部关注、零独立复现**；(5) 需要 IBM Quantum 账号与硬件排队才能完成硬件部分。★ 为什么给长尾价值：**「把模型的类概率表达成词幅度的多项式，于是证据可以有限求积精确算出、且各词贡献精确加总」这个思想是可迁移的**——它给出了一条「可证明正确」的归因路径，而不是像 integrated gradients 那样只在数值上近似；只要我们未来需要给 LLM 的决策做**可审计的逐 token 归因**（合规、审计、解释），这就是一条值得存下来的路。**触发条件：出现第三方复现 / 我们需要逐 token 精确归因 / 出现同类「精确可加总归因」的后续工作。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第五价值，**是今天 10 篇里「可核验性」最高的一篇——它把每一个数字、每一个模型权重、每一次 IBM 量子作业记录都公开了，包括 9 个训练好的模型与 IBM job 目录下的完整电路转储；但它的载体（e-SNLI 自然语言推理 + 光量子硬件）离我们的工程极远，所以存而不投**。★ 核心洞见（论文全文口径）：作者构造了一个**每一步都是 Born ",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第五价值，**是今天 10 篇里「可核验性」最高的一篇——它把每一个数字、每一个模型权重、每一次 IBM 量子作业记录都公开了，包括 9 个训练好的模型与 IBM job 目录下的完整电路",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-26"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05355v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.05355v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=reading-why-born-measured-attention-with-exact-word-evidence-on-light-and-qubits",
+  "daily_path": "daily-detail.html?date=2026-11-05",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

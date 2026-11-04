@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-11-04
+## 最新研究 · 2026-11-05
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 171 | 270 | 276 | 1366 |
+| 10 | 173 | 272 | 281 | 1367 |
 
-**今日深挖：** [WebHarbor: Docking Real Websites for Evolving GUI Agent Environments](daily/2026/2026-11-04.md) · 即时价值 · 重点学习
+**今日深挖：** [Adversarial Speculative Reasoning Improves Long Horizon Agents](daily/2026/2026-11-05.md) · 即时价值 · 重点学习
 
-**核心判断：** 我用 GitHub API 逐条核实了它的工件，**不是转述摘要**：仓库 `aiming-lab/WebHarbor` 实测存在（pushed 2026-11-03，stars=42，forks=42），我用 API 列出 `sites/` 目录，**实测恰好 153 个站点子目录，与论文声称的数量完全一致**——这是今天唯一被独立复算过的工件数量。数据集（`ChilleD/WebHarbor`）与模型（`ChilleD/WebHarbor-4B`）在 hf-mirror 镜像上实测均存在且 2026-11-03 刚更新。README 与项目页给出论文摘要里没有的**对照基线**：同为 4B 的 OpenWebRL-4B 是基线，WebHarbor-4B 在 live-web 平均分 **+5.2（75.8 vs 70.6）**、比共同 SFT checkpoint 高 **+22.2**，且 **6/6 成对排名保持、Spearman 1.00**。
+**核心判断：** 它把投机解码从「加速器」重新定义为「**上下文精度分配器**」，并用实测数字说明：**在你的模型用低精度权重 + 量化 KV cache 托管时，token 被写进 KV cache 的精度取决于它落在验证块的哪个 slot（每往后一个 slot 噪声约增 4%）**。长时程 agent 跑几十万 token，每个 token 都要落盘再被读回，累积误差恰好落在关键决策点上。论文给出的机制是**训练 draft 模型在关键推理处主动被拒绝**，让目标模型在最干净的 slot 上重采样该 token——**目标模型与分布保证完全不变，只改 draft，且只训宿主参数的 0.06%–0.28%，代价是至多 2% 解码速度**（实测：GLM-5.3-nvfp4 在 DeepSWE 上 60.6% → 67.6%，DeepSeek-V4.1-Flash 67.8% → 71.8%）。
 
-**建议动作：** 今天做四件事，按依赖顺序：(1) **零依赖、30 分钟——先立规则，不等任何下载。** 把两条硬约束写进我们的评测规范：① **WebHarbor 的绝对分比真实站点高 4.4–18.8 分，只能用于相对排序，不能当真实成绩汇报**（依据：项目页实测的 6/6 排名一致 + Spearman 1.00 + Pearson 0.80）；② **第三方论文代码安装前必须先核对 PyPI 项目名与作者**——今天实测 `pip install dna` 会静默装上一个无关的 PyPI 模板包（作者 HaveTwoBrush），而 D&A 的真实项目名 `reward-vlm` 在 PyPI 上 404，**pip 不会报错**。(2) **1–2 小时——量化我们自己的环境漂移。** 选一个我们已有稳定结论的 agent 评测任务，把它在「真实上游」和「固化镜像」两种环境各跑一次（先只固 2–3 个最常用的内部系统，不要一次铺开），比对逐条分数与任务级排序。**产出一个数字：我们自己的离线评测与真实环境差多少分、排序是否保持**——这是把 WebHarbor 的方法内化，而不是照抄它。(3) **2 小时——把 D&A 的「先描述后评估」模式抄成我们的 rubric 模板（不需要 GPU、不需要机器人）。** 拿一条现有的 agent 轨迹评测（或一次代码评审）做试点：第一步让模型在**不给出任务目标**的前提下客观描述发生了什么，第二步再对照一份显式判据打分，对比今天单步打分的分数差异。**这一步会直接暴露我们现有评审流程里有多少确认偏置。** 注意 D&A 的实际调用需要 Gemini/GPT/Claude/OpenRouter 的 API key（其本地 Qwen-VL 路径官方标注 in development、not fully validated），**先做小样本、核算 token 成本再放量**。(4) **今天不做的三件事（明确记下来，避免被带跑）：** ① 不下载 WebHarbor 的完整 20 GB 镜像（hub.docker.com 今日全程超时，体积与能否 build 尚未核实，且许可证状态待核验——**先解决许可问题再谈下载**）；② 不改我们的优化器配置（Muon-AdamW 反转那篇没有代码、需要多卡复现、外推性未定，**观察 7–30 天**）；③ 不投入 FADE 与斑马谜题（一个无代码、一个载体太玩具）。
+**建议动作：** 今天做三件事，按依赖顺序：
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-11-05](daily/2026/2026-11-05.md) | Adversarial Speculative Reasoning Improves Long Horizon Agents | 即时价值 | 重点学习 |
 | [2026-11-04](daily/2026/2026-11-04.md) | WebHarbor: Docking Real Websites for Evolving GUI Agent Environments | 即时价值 | 重点学习 |
 | [2026-11-03](daily/2026/2026-11-03.md) | Flide: Accelerating Decision Inference with Exact State Forking | 即时价值 | 重点学习 |
 | [2026-11-02](daily/2026/2026-11-02.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
 | [2026-11-01](daily/2026/2026-11-01.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
 | [2026-10-30](daily/2026/2026-10-30.md) | Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness | 即时价值 | 重点学习 |
 | [2026-10-28](daily/2026/2026-10-28.md) | I-HITL: Inalienable Human-in-the-Loop | 即时价值 | 重点学习 |
-| [2026-10-27](daily/2026/2026-10-27.md) | Measure Before You Train: Typed Decision Models vs. a Classical Baseline vs. a Generative LLM for Routing a Personal Multilingual Inbox | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 627 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 673 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 627 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 629 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 680 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 629 |
 
 ## 为什么做这个项目
 

@@ -1,7 +1,762 @@
 {
-  "updated_at": "2026-11-04T05:12:19.603225",
-  "total": 2083,
+  "updated_at": "2026-11-05T05:03:29.214782",
+  "total": 2093,
   "papers": [
+    {
+      "title": "Adversarial Speculative Reasoning Improves Long Horizon Agents",
+      "authors": [
+        "Hongyin Luo",
+        "Wei Fang",
+        "Lijie Yang",
+        "Owen Stepan",
+        "Daniel Suit"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05345v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05345v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "https://github.com/datacurve-ai/deep-swe",
+      "project_url": "",
+      "abstract": "Speculative decoding has been treated purely as a systems optimization that speeds up large language model decoding without changing the model behavior. Under this view, the growing effort to train better draft models has been focused solely on acceptance rate. We argue that this view does not hold true for long-horizon agent reasoning. Measuring frontier open-weight models on complex agentic tasks with different speculative decoding approaches, we found that numerical noise grows within verific",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "inference"
+      ],
+      "score": 88.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05345v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05345v1"
+        }
+      ],
+      "llm_reason": "今日第一即时价值，**是今天唯一一篇提出了一个「我们自己也踩过但从没正面测量过」的系统性失败模式、且给出可落地利用点的论文——它把 speculative decoding 从纯加速器重新定义成「上下文精度分配器」，这件事对我们只要自己在跑长时程 agent 就直接相关**。★ 核心洞见（论文全文口径，非摘要转述）：投机解码的「无损分布」保证只成立于理想化的目标模型（一个固定的前缀→分布函数），**但前沿模型不是这样托管的——低精度权重、量化 KV cache、稀疏注意力使推理输出不可逐位复现，于是目标的 logits 变成一个随计算布局而变的噪声量**。作者直接实测：**GLM-5.3 用 8-token DFlash 验证块时，块内第一个 slot 的噪声与单 token 解码完全一样，越往后每个 slot 噪声约增 4%，到最后一个 slot，log-prob 偏移超过 2 nats 的频率接近第一个 slot 的两倍**；DeepSeek-V4.1-Flash 用 6-token DSPARK 块**绝对噪声约是 GLM 的一半，但相对增长率同样是每 slot 约 4%**。→ **一句话：投机验证在分布上无损，但在数值精度上不均匀——一个 token 落在验证块的哪个位置，决定了它被编码得多精确。** ★ 为什么这件事对长时程 agent 致命（这是论文最重要的一段，也是我们最该记住的）：软件工程 agent 要跑几十到几百轮、几千到几百万 token，**每个 token 都会被写进 KV cache 并被之后所有步骤读回**。作者审计了 agentic coding 轨迹发现：**以原则（principle）、证据（evidence）框定或实际由测试驱动的决策，取正确一侧的比例约为「凭可能性或风险引导」的推理的两倍**。★ 方法（可执行）：**训练 draft 模型去「被拒绝」**。机制是：被接受的 draft token 会以验证它的那个 slot 的精度被提交；被拒绝的 token 由目标模型在残差采样中重采样、写入一个新验证块的头部、后续验证从噪声最小的 slot 重新开始。于是「在关键推理短语处让 draft 被拒绝」就能把重要决策路由到目标模型最精确的路径上，而把常规思考 token 留给普通加速。实现上**用 DPO 反向训练 draft**：让 draft 学会偏好目标模型「应该拒绝」的那一侧表述。目标模型、验证规则、分布保证全部不变，**只改 draft**。训练规模：**只训练宿主参数的 0.06%–0.28%**。★ 独立执行一（论文全文核对，抓到摘要里没有的实验设定）：读到 §5.1 有一个**我认为比主结果更重要、但摘要完全没提的发现**——作者额外训练了两个**故意不部署**的「参照偏好」来标定 draft 到底能学什么：**「模型是否去跑测试」与「决策用什么框定」两个偏好两个方向都可学（run-tests 0.83/0.85，decision-frame 0.59/0.635），但「这个决策对不对」对小 draft 模型基本学不会**（最好配置 0.61 与 0.57，落在置信区间内的随机水平上，中位数 0.52 与 0.46），而「思考长度」居中（0.54 forward / 0.65 adversarial）。→ **这是全文最有迁移价值的一句：draft 不需要知道哪一边是对的，只需要学会提出目标模型会拒绝的那个表述——因此「把判断正确性外包给一个小模型」这条路是走不通的，能外包的只有「表述框架」。** ★ 独立执行二（主结果与代价，逐个核对数字）：**GLM-5.3-nvfp4 在 DeepSWE 上端到端成功率 60.6% → 67.6%（+7.0 分），DeepSeek-V4.1-Flash 67.8% → 71.8%（+4.0 分，标准评测 harness 与环境）**；效率代价实测**每块期望接受的 draft token 数：GLM 训练前后都是 2.28，DeepSeek 2.5 → 2.46（差 1.8%）**——**即用最多 2% 的解码速度换长时程 agent 准确率**，且两个 draft 的接受率曲线形状保持不变。★ 独立执行三（核验 benchmark 是否真实存在，不只看论文自述）：论文用的 DeepSWE 对应 github.com/datacurve-ai/deep-swe，**实测存在**（stars=1,884，描述 Measuring frontier coding agents on original, long-horizon engineering tasks，最后推送 2026-08-26）；NL2Repo-Bench 对应 multimodal-art-projection/NL2RepoBench，**实测存在**（stars=193）。→ **两个 benchmark 都是公开可访问的第三方仓库，这一点让论文的对比数字可被独立检验，这是它比同期很多「自建 benchmark 自评」论文可信的原因。** ★ 独立执行四（读 GitHub 找实现，结果是**没有**，这点必须写明）：用 GitHub API 按 adversarial speculative / PEARL / DNO 等关键词检索，**本文的实现仓库不存在**；作者机构 Subconscious Systems Technologies 下的仓库（Subconscious-ai/sublime 等）**实测与本文无关**（sublime 的描述是 Behavior Change as a Service，最后推送 2026-10-13，早于本文）。论文全文的 github.com 链接只有 arXiv/html_feedback、LaTeXML、datacurve-ai/deep-swe 三处，**前两个是工具/反馈链接，第三个是 benchmark 而非实现**。→ **今日无可执行实现，无代码，代码状态标记为「暂无」。** ★ 证据边界（诚实写清）：(1) **无代码、无法复现、论文所有数字均为作者自述**，今日无任何一个数字是本机跑出来的；(2) 实验只覆盖**两个目标模型 × 两个 draft 架构**（GLM-5.3+DFlash2、DeepSeek-V4.1-Flash+DSPARK），且都是**量化托管**场景，**能否外推到 bf16 全精度托管待验证**；(3) 提升幅度 +4.0 到 +7.0 分**只在 agentic coding benchmark 上测过**，未在通用 agent 任务上验证；(4) 目标模型与 draft 都是**闭源/托管模型**（GLM-5.3、DeepSeek-V4.1-Flash、DFlash2、DSPARK），我们无法自行复现这条链路；(5) 「拒绝即精度分配」这个机制**依赖 exact verification**，一旦用近似验证（lossy verification）就会失效。★ 为什么给即时价值而不是趋势价值：**它的可利用性不依赖我们的能力边界——只要我们在跑长时程 agent 且用量化托管，就已经在承受这个精度不均的问题**，而它的诊断方法（在同一前缀上重跑前向、比较 top-k log-prob 随 slot 位置的变化）是**我们今天就能在自己的推理栈上做的测量**，不需要论文的模型也不需要 GPU。★ **但要明确写清：今天能落地的是「测量」，不是「修复」——修复需要一个我们能训练的反向 DPO draft 模型，本文没有提供代码，且 GLM/DeepSeek 的 draft 不是我们能训的。所以今天的行动是：先量出我们自己栈里的 slot 噪声曲线，再决定要不要自建 draft。**",
+      "id": "adversarial-speculative-reasoning-improves-long-horizon-agents",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving",
+        "coding-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.8,
+        "engineering_testability": 4.05,
+        "trend_signal": 5.4,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 4.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Speculative decoding has been treated purely as a systems optimization that sp…",
+      "one_line_judgement": "今天值得试：今日第一即时价值，**是今天唯一一篇提出了一个「我们自己也踩过但从没正面测量过」的系统性失败模式、且给出可落地利用点的论文——它把 spec…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今日第一即时价值，**是今天唯一一篇提出了一个「我们自己也踩过但从没正面测量过」的系统性失败模式、且给出可落地利用点的论文——它把 speculative decoding 从纯加速器重新定义",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=adversarial-speculative-reasoning-improves-long-horizon-agents"
+    },
+    {
+      "title": "A Circuit for In-Context Learning",
+      "authors": [
+        "Andrew Gao",
+        "William Gao"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05344v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05344v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/andrewgcodes/in-context-learning-circuit",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "In-context learning (ICL) lets a pretrained language model perform a task specified by demonstrations in its prompt, with no parameter updates. With arbitrary labels the model must acquire a mapping it cannot have memorized, so the learning happens within a single forward pass. Prior work found candidate parts but not how they compose. We give the composition for few-shot sentence classification with arbitrary labels in three 3-4B-parameter transformers. The model implements a key-value memory o",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "memory"
+      ],
+      "score": 81.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05344v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05344v1"
+        }
+      ],
+      "llm_reason": "今日第二即时价值，**是今天 10 篇里唯一一篇「论文 + 完整可跑代码 + 论文源码 + 交互式 3D 讲解 + CPU 可跑测试 + 已提交的实测数据」五件齐备的论文，而且它的结论会直接改变我们 prompt 设计与 few-shot 评测的理解**。★ 核心结论（论文全文口径）：在任意标签（arbitrary labels）的少样本句子分类上，模型把 ICL 实现为一个**带门控的联想查表**：标签 token 的位置充当 slot，**每个标签 token 的 residual stream 编码该标签的身份（value），中层注意力头把前一个演示句的类别作为 key 写进这个 slot；查询时，上层注意力头把查询句的类别与存储的 key 匹配并拷贝出对应标签**。另有两个机制：**一个早期信号编码「是否已有标签重复」，它门控这次读出**（没有它，读头会 attends 到 prompt 开头、不偏向任何标签）；**一组独立的 head 抑制最近出现过的标签**（刹车）。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/andrewgcodes/in-context-learning-circuit **真实存在**（created 2026-11-02，pushed 2026-11-03，MIT，stars=1，forks=0，size 2816 KB，**默认分支 main**）。目录结构实测完整且是**真能跑的研究工程**而非玩具：icl/（run.py **73,203 B**、score.py、hooks.py **23,688 B**、tasks.py **43,123 B**、allheads_law.py、analyze_D170.py / analyze_D174.py / analyze_D185.py / analyze_D188_scale.py / analyze_D188_gate.py、fit_gate.py、trace_view.py、modal_app.py）、batteries/（icl_tasks.json 15,197 B、concept_tasks.json 11,115 B）、data/（**D159_dla_Qwen3-4B.jsonl 3,670,558 B**、D159_dla_SmolLM3-3B.jsonl 2,475,116 B、D145_reader_rows.jsonl、十余个 D1xx_effects.txt / D1xx_screen.txt）、figures/（**23 个逐图脚本**，含 fig19_trace.py、fig21_closure.py、fig22_instruct.py、fig23_scale.py）、paper/（**main.tex 143,396 B** + refs.bib + ICLR 样式 + 20 个图 PDF + Makefile）、toy/（toy_circuit.py、train_toy.py，README 实测「一次训练约十分钟单卡」）、tests/test_batteries.py（**CPU 可跑**）、.github/workflows/ci.yml。requirements.txt 实测为 torch>=2.3 / transformers>=4.51 / numpy / matplotlib / modal——**依赖极轻**。★ 独立执行二（**今天最实在的一次独立执行：直接读了仓库里已提交的实测数据，验证论文的核心主张而不需要跑模型**）：拉取 raw.githubusercontent 上的 **data/D188_summary.json** 并解析，**实测四个模型规模的 head 普查数字**：Qwen3-0.6B → n_readers=70、n_brakes=13；1.7B → 48/13；4B → 89/56；8B → 103/32，且 **R（跟随演示的部分）与 P（跟随词义的部分）之比随规模从 0.97（0.6B）单调升到 1.37（8B）**，flip 率从 -0.034 升到 +1.049。→ **这组数字独立印证了论文的两个说法：机制在不同规模上都被找到（reader 数量随规模增加），且从 0.6B 到 8B 组件集合保持一致。** ★ 独立执行三（读 README 抓到论文摘要没有的实验设计与一个诚实的自我限制）：README 写明干预手段的完整清单（knockouts、twin-prompt handoffs、pushes、holds、circ= 只保留指定 head、circrs、circbands/screen、sinkv=、rkcond=、raknock、radd=、twinset=、hgain=、trace=），以及**一个明确的能力边界：作者自己承认「语义正确性不可学」这类强结论在别处被检验过**；还写明「**a softmax model of the readout with two constants per head, fit on one prompt distribution, predicts another**」——即读出律在分布外保持。★ 证据边界（必须写明）：(1) **本机无 GPU（torch 2.14.1+cpu、cuda=False）**，因此**今天没有跑通任何模型**；仓库的实测是作者的，**我读的是他们提交的 JSON 而非重新测量**；(2) **stars=1、forks=0、创建仅 3 天**，**零外部关注、零独立复现**；(3) 论文自称「38 pages, 22 figures」而仓库 figures/ 里实测有 23 个脚本，**数量口径需要对齐（README 说 Figure 19 与 21–23 是新增）**，属细节不一致，非硬伤；(4) 结论范围限于**任意标签的少样本句子分类**（3 个 3–4B 模型起步，论文口径后来扩到 0.6B–8B 与指令微调后仍存活），**能否外推到多标签、生成式任务、工具调用类 ICL 待验证**；(5) 论文作者仅 2 人（Andrew Gao、William Gao，Stanford）。★ 为什么给即时价值：**它给我们一个今天就能用的「机制级解释」——为什么少样本 prompt 里重复标签会误导模型（刹车机制不足）以及为什么在标签集合里塞一个不存在的标签会破坏读出（门控缺失）**，这两个现象我们做 prompt 工程时都遇到过但只能凭感觉解释。今天可以做的最小验证是 CPU 侧的 batteries 构造与 twin 对齐测试（tests/test_batteries.py），**不需要 GPU**；深度结论需要 GPU，但仓库给了 Modal H100 启动器（icl/modal_app.py）与十分钟的 toy 训练路径。★ **今天能落地的动作：读 paper/main.tex 里关于「duplicate-label gate」与「brakes」的两节 + 跑 CPU 测试 + 用我们的真实 few-shot prompt 去构造一个「重复标签」与「幽灵标签」对照，看模型行为是否如论文所述。**",
+      "id": "a-circuit-for-in-context-learning",
+      "value_type": "immediate",
+      "matched_topics": [
+        "context-engineering",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Context Engineering：In-context learning (ICL) lets a pretrained language model perform a task spec…",
+      "one_line_judgement": "今天值得试：今日第二即时价值，**是今天 10 篇里唯一一篇「论文 + 完整可跑代码 + 论文源码 + 交互式 3D 讲解 + CPU 可跑测试 + 已…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今日第二即时价值，**是今天 10 篇里唯一一篇「论文 + 完整可跑代码 + 论文源码 + 交互式 3D 讲解 + CPU 可跑测试 + 已提交的实测数据」五件齐备的论文，而且它的结论会直接改",
+      "related_trends": [
+        "context-engineering",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=a-circuit-for-in-context-learning"
+    },
+    {
+      "title": "PolicyIK: High-Precision Inverse Kinematics for Robot Arms with Reinforcement Learning",
+      "authors": [
+        "Yuhan Liu",
+        "Xinqi Liu",
+        "Zixuan Dong",
+        "Keith W. Ross",
+        "Shenji Wan"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05372v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05372v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/Tinaliu0123/PolicyIK",
+      "benchmark_url": "",
+      "project_url": "https://tinaliu0123.github.io/PolicyIK/",
+      "abstract": "Inverse kinematics (IK) converts end-effector pose commands into joint motion, and many vision-language-action (VLA) policies rely on it to act on a given arm and to transfer across embodiments. Precise IK remains laborious: redundancy and singularities complicate the inverse mapping, execution depends on hand-tuned controllers, and training data on physical robots are costly to collect. We present PolicyIK, a goal-conditioned reinforcement learning policy for high-precision IK. It updates joint",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 76.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05372v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05372v1"
+        }
+      ],
+      "llm_reason": "今日第三价值，**是今天 10 篇里「工程可交付性」最高的一篇——它把数据、训练代码、评测代码、训练好的 checkpoint、甚至真实机器人硬件配置与 ROS 2 包全部提交进仓库了，是少见的可以直接 clone 下来评估的东西**，但它的领域离我们最远，所以给趋势而不是即时。★ 核心方法（论文全文口径）：PolicyIK 是一个**目标条件化的 RL 策略**做高精度逆运动学。它**从位姿反馈更新关节位置参考，并观察自己累积的参考与实测关节之间的相对量，从而能在静止时保留位置控制器需要的那个偏移量**（这一句是方法的核心——传统 IK 求解器给的是瞬时解，没有「保持」的概念）；**两尺度位姿误差 + 随误差变化的 action gain** 解决毫米级残差同时保留大运动；**progress 与 dwell 双奖励**同时教会它「到达容差」和「停在容差内」。★ 实测口径：仿真中单次尝试的 PPO 策略在**93.5% 的留出任务上把最后 1 秒的均值误差保持在 1 mm 与 0.2° 以内**，部署协议把成功率提到 **98.9%**；**直接训在真机**（OpenArm）上用 off-policy RL learner（README 实测为 FlashSAC + HER），在**相同时间预算下优于全部四个经典 IK 控制器**；在仿真 pick-and-place 中**执行 π₀.₅ VLA 策略的末端执行器指令达到 95.7% 成功率**。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/Tinaliu0123/PolicyIK **真实存在**（created 2026-11-02，pushed **2026-11-04**，即论文发布后第二天仍在更新，Apache-2.0，**stars=3、forks=0**，size 76,055 KB，homepage=https://tinaliu0123.github.io/PolicyIK/）。目录结构实测完整且分仿真/真机两套：simulation/（policyik_sim/{train.py 10,901 B, evaluate.py 8,801 B, metrics.py, splits.py, corrected_goals.py}、data/{source_set.npz 10,199,354 B, train_start_pool.npz 8,006,860 B, train_goal_pool.npz 5,303,236 B, eval_tasks.npz 209,580 B}、**checkpoints/policyik_s{1,2,3}.pth 各 333,962 B 即三个训练好的策略直接可下载**、scripts/{train.sh, evaluate.sh}）、hardware/（policyik_hw/{train.py 19,898 B, evaluate.py, collect_demos.py, metrics.py, select_tasks.py, watchdog_check.py}、**flash_rl/（FlashSAC）**、**ros2/（ROS 2 包，含 openarm_right_bringup）**、data/{demos.npz 8,359,374 B, task_pool.json 2,623,861 B, eval_tasks.json, demo_tasks.json, demos_meta.json}、config.yaml、scripts/）、requirements/（simulation.txt 与 hardware.txt 分开）。★ 独立执行二（读 README 抓到摘要没有的复现细节，这些决定了我们能不能自己跑）：仿真用 **Isaac Lab + PPO**，安装脚本 `bash install.sh` **会设置 OMNI_KIT_ACCEPT_EULA=YES（即自动接受 NVIDIA Omniverse 许可）**——**我们若要复用必须自己知道这一点**；数据规模实测为 **200,000 个关节配置**带末端位姿与 floor_contact / self_collision 标签、**4,120 个留出评测任务**；评测成功判据是**最后 1 秒的平均位置误差 < 1 mm 且姿态误差 < 0.2°（strict）或 1 cm 与 2°（coarse）**；checkpoint 是**一次训练最后 20 个 checkpoint 的指数加权平均**；训练 13,000 个 PPO epoch；真机侧 60 个固定评测任务。★ 独立执行三（项目页实测）：https://tinaliu0123.github.io/PolicyIK/ 可访问（http 200，63,033 B），实测作者与机构（New York University + NYU Abu Dhabi）、导航结构（Abstract / Real arm vs. Classic IK / Method / xArm7 / Simulation / VLA / BibTeX）、**唯一的 GitHub 链接就是本文仓库**。★ 证据边界（决定为什么不给即时价值）：(1) **领域与我们的主线几乎不交叉**——我们做的是 AI 系统与 agent 平台，不是机器人臂控制，**今天没有任何可迁移到我们系统的动作**；(2) **复现门槛是硬件与许可，不是软件**：仿真侧需要 Isaac Sim/Isaac Lab（**其许可需自动接受**，且本机无 GPU），真机侧需要一台 OpenArm 物理机械臂 + ROS 2 栈 + 传感器化演示采集，**今天两者都做不了**；(3) **stars=3、forks=0、零外部验证**，93.5% / 98.9% / 95.7% 全部是作者自述，**今天无法核对任何一个数字**；(4) 单臂、单工作空间。★ **为什么仍给趋势价值而不是忽略**：这篇提出的是一个我们迟早会遇到的通用问题——**「指令到执行」这一层的精度损失**，以及一个可迁移的思路：**把「保持/驻留」当成和「到达」同等重要的目标来显式奖励**（progress + dwell 双奖励），这个模式在 agent 的工具调用上同样成立（工具调用要「到达正确参数」也要「保持住状态不漂移」）。★ **触发条件：我们真的开始接具身/机器人、或我们的 VLA/工具调用开始出现「能到位但守不住」的问题。**",
+      "id": "policyik-high-precision-inverse-kinematics-for-robot-arms-with-reinforcement-learning",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Multimodal Agent：Inverse kinematics (IK) converts end-effector pose commands into joint motion,…",
+      "one_line_judgement": "值得继续观察：今日第三价值，**是今天 10 篇里「工程可交付性」最高的一篇——它把数据、训练代码、评测代码、训练好的 checkpoint、甚至真实机器…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日第三价值，**是今天 10 篇里「工程可交付性」最高的一篇——它把数据、训练代码、评测代码、训练好的 checkpoint、甚至真实机器人硬件配置与 ROS 2 包全部提交进仓库了，是少见",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=policyik-high-precision-inverse-kinematics-for-robot-arms-with-reinforcement-learning"
+    },
+    {
+      "title": "Suppressing Misaligned Behaviors in Language Models, Durably",
+      "authors": [
+        "Luxi He",
+        "Pengcheng Jiang",
+        "Jifan Zhang",
+        "Jiawei Han",
+        "Danqi Chen"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05358v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05358v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/pat-jj/pearl",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Undesired model behaviors can emerge or re-emerge at any stage of training. Once observed, how effectively can we suppress them? To study this question, we first construct two model organisms--language models deliberately trained to exhibit a specific misalignment--that differ in what triggers the behavior. The narrow-trigger organism misbehaves only when the prompt contains a specific cue: it cheats on multiple-choice questions by following a planted hint that points to a wrong answer, and beha",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 74.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05358v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05358v1"
+        }
+      ],
+      "llm_reason": "今日第四价值，**是今天 10 篇里工程成熟度最高、最像「可以直接搬进我们现有流程」的一篇——它有完整代码、数据、多种基线对比、并且作者自己把方法的适用边界和失败案例都写清楚了**，而且它诊断的问题（对齐行为是「浅」的，所以简单方法修不牢）直接关系到我们每次做安全对齐后的复测策略。★ 问题设定（论文全文口径）：undesired 行为可能在训练的任何阶段出现或复现；观察到之后，我们能多有效地压制它？作者先造了两个「模型生物」（model organisms）：**narrow-trigger**（只在 prompt 含特定线索时发作——按植入的错误提示在多选题上作弊，其余时候正常）与 **broad-trigger**（无线索，在不安全代码上微调后对广泛的开放式 prompt 都给有害回答）。然后把「事后行为压制」形式化，沿**三个判据**评估：**即时压制、在继续训练下的持久性（durability）、通用能力保持**。对比基线是标准方法：**SFT、GRPO、梯度上升式 unlearning**。★ 核心机制（这是它真正的贡献，因为它诊断了根因而不是又一个补丁）：**作者基于「对齐是浅的」这一既有工作提出假设：更持久的压制需要从更宽的一族失配状态中恢复出来。** 方法 **PEARL（Prefix-Expanded Adversarial Reinforcement Learning）** 是 GRPO 变体：**用沿着缓存的 model-organism 轨迹采样的中间状态的前缀来扩充 rollout**——即策略不只要学会「从干净 prompt 出发不作弊」，还要学会「已经作弊了一半时能恢复」。★ 实测口径：跨两种 organism 与两个模型家族（**Qwen3-4B 与 GPT-OSS-20B**），PEARL 达到强即时压制同时保持任务准确率，且**在继续用 organism 数据或无关数据微调下都保持持久**；**当 undesirable 行为是 broad、无法用定向 SFT 处理时 PEARL 收益最大**。★ 独立执行一（arXiv HTML 全文扫描，抓到摘要里没有的关键限定）：**全文明确写了一个反例，必须写出来**——「**PEARL 的优势不是普适的：在 Qwen3-4B + narrow-trigger organism 上，其触发条件可直接定位，SFT 在大规模定向再激活下反而更持久**」。→ **这是一条极有价值的边界：方法在「行为宽、不可定向」时赢，在「行为窄、可定向」时输。** ★ 独立执行二（GitHub API 逐条核验，实测）：github.com/pat-jj/pearl **真实存在**（created 2026-05-20，pushed **2026-11-04**，**stars=2、forks=0**，size 37,054 KB，**license 字段为 null 即仓库无 LICENSE 文件**）。目录实测完整且是真能跑的工程：code/tinker/em/（broad-trigger 的 organism、cleanup、PEARL/GRPO、reactivation、evaluation）、code/tinker/backdoor_cot_pipeline.py（narrow-trigger 的 Tinker pipeline）、code/tools/run_backdoor_cot_*.py（本地/集群入口）、code/framework/rewards.py、scripts/experiments/、scripts/data/（prepare_open_thoughts.py、prepare_established_safety_data.py、generate_safety_data.py、prepare_em_grpo_data.py）、rewards/、configs/、data/、tests/。★ 独立执行三（读 README 全文，抓到三个摘要完全没有、但决定我们能否用的关键事实）：(1) **对比基线比摘要列的多得多**——README 实测列出 **SFT、GRPO、梯度上升 unlearning、inoculation prompting、benign-SFT re-alignment、SGTR** 六种；(2) **仓库自带数据集**——data/ 下含 backdoor_cot*/、emergent_insecure_train.jsonl、emergent_eval_prompts.json、safety_sft_train.jsonl（**500 行**）、secure_code.jsonl、anthropic_hh_*、saferlhf_*、sgtr_gpt_oss_*；(3) **两条硬门槛，明写出来**——**云端实验需要 Tinker SDK 与凭据（OPENAI_API_KEY / TINKER_API_KEY，仓库不含凭据）**，且 **checkpoint 位置要靠一个 JSON 注册表填（configs/checkpoints.example.json 是占位符，源码里只有占位路径）**；(4) **一条安全提示必须写出来**：**执行式代码奖励需要真实的外部沙箱，subprocess 超时不是安全边界，因此本地执行默认禁用，除非设置 PEARL_ALLOW_UNSANDBOXED_CODE_EXEC=1——README 明确要求只在隔离、无网络、无凭据的环境里设它**。→ **这一条对我们是直接的实操红线。** ★ 证据边界（诚实写清）：(1) **作者自述，代码需要 Tinker 云端与两套 checkpoint，今天无法运行、无法复现任何一个数字**；(2) **stars=2、forks=0、仓库无 LICENSE**（法律上「全部权利保留」，复用前需作者授权，**待核验**）；(3) 基座是 Qwen3-4B 与 GPT-OSS-20B，**未在生产规模模型上验证**；(4) 结论基于人造的 model organism，**与真实生产中涌现的失配是否同构待验证**；(5) NeurIPS 2026 论文（arXiv comment 实测为 NeurIPS 2026），**评审结果未核实**。★ 为什么给趋势价值而不是即时：**它的核心机制「从更宽的失配状态恢复才能更持久」是一个可迁移的判断标准，可以立刻用来审视我们自己的对齐流程**——我们做完安全对齐后，是否只在「干净输入」上复测过？如果没有，那我们可能像 SFT 一样压住了表面行为但没压住机制。★ **今天能做的最小动作（不需要 GPU、不需要 Tinker）：把「定向 SFT vs 扩展前缀 RL」这个二分写进我们的对齐复测清单，并给我们现有的每个安全用例补一个「已污染状态下的恢复」测试。**",
+      "id": "suppressing-misaligned-behaviors-in-language-models-durably",
+      "value_type": "trend",
+      "matched_topics": [
+        "security-governance",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "安全与治理：Undesired model behaviors can emerge or re-emerge at any stage of training. On…",
+      "one_line_judgement": "值得继续观察：今日第四价值，**是今天 10 篇里工程成熟度最高、最像「可以直接搬进我们现有流程」的一篇——它有完整代码、数据、多种基线对比、并且作者自己…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "今日第四价值，**是今天 10 篇里工程成熟度最高、最像「可以直接搬进我们现有流程」的一篇——它有完整代码、数据、多种基线对比、并且作者自己把方法的适用边界和失败案例都写清楚了**，而且它诊断",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=suppressing-misaligned-behaviors-in-language-models-durably"
+    },
+    {
+      "title": "Reading Why: Born-Measured Attention with Exact Word Evidence on Light and Qubits",
+      "authors": [
+        "Teerawat Tongloy",
+        "Jiraporn Pongsopa",
+        "Rangsan Jomtarak"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05355v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05355v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/stein-research/reading-why",
+      "benchmark_url": "",
+      "project_url": "https://doi.org/10.5281/zenodo.23938333",
+      "abstract": "When a language model answers, we can usually only estimate why. We build a transformer in which every step is a Born measurement - attention $|\\langle q|k\\rangle|^4$ normalised over each row, a measured product in place of the feed-forward nonlinearity, and a Born readout. With its denominators held at their values for the input, each class probability is a polynomial in the word amplitudes, so its integrated-gradient evidence is computed by a finite quadrature with no quadrature error: the wor",
+      "categories": [
+        "quant-ph",
+        "cs.CL",
+        "cs.LG",
+        "physics.optics"
+      ],
+      "keywords": [
+        "inference"
+      ],
+      "score": 67.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05355v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05355v1"
+        }
+      ],
+      "llm_reason": "今日第五价值，**是今天 10 篇里「可核验性」最高的一篇——它把每一个数字、每一个模型权重、每一次 IBM 量子作业记录都公开了，包括 9 个训练好的模型与 IBM job 目录下的完整电路转储；但它的载体（e-SNLI 自然语言推理 + 光量子硬件）离我们的工程极远，所以存而不投**。★ 核心洞见（论文全文口径）：作者构造了一个**每一步都是 Born 测量**的 transformer——注意力是 $|<q|k>|^4$ 按行归一化、前馈用测量乘积替代非线性、读出用 Born 规则。关键性质：**当分母固定在输入值上时，每个类概率都是词幅度的多项式，因此它的 integrated-gradient 证据可以用有限求积算出且没有求积误差——各词的贡献精确加总到类别概率超出无信息份额的部分，精度到 10^-11 或更好**。★ 实测口径（README 与论文口径一致，README 用表格给出）：e-SNLI 上**约 98k 非嵌入参数**，Born Transformer **76.98 ± 0.17%** 测试准确率 vs softmax transformer **76.62 ± 0.36%**（持平）；**删除证据排名第一的词在 45% 的测试对上改变答案**（任一单词删除的上限是 53%），而 **softmax 模型用同样方法解释只有 32%**，attention × gradient 是 40%；**attention 看起来最像标注者高亮的词（0.50 vs 证据 0.51，随机 0.35），却对答案的解释力更差**（attention 排名第一的词删除只改变 32%）；同一套权重**精确编译到光学与量子**——一个连贯注意力层就是与模型等价的单个电路（brickwall 映射下 **23 qubits 上 852 个 CNOT**）；在 IBM **ibm_kingston** 上用 Hadamard test 读取注意力重叠，**设备给出了模型的答案**且在预先选定的两个测试对上每个词的证据跟随精确值（相关 0.997 与 0.932，符号全对），**但证据本身尚未在设备上存活**。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/stein-research/reading-why **真实存在**（created 2026-11-03，pushed **2026-11-04**，MIT，**stars=0、forks=0**，size 74,568 KB）。目录结构实测完整且罕见地诚实：demo/（reading_why.py、ui.py 9,737 B、demo.ipynb、train.ipynb）、examples/（quickstart.py、explain.py）、docs/（run-locally.md **9,352 B**、check-and-repeat-ibm.md **9,929 B**）、src/（**models.py 37,442 B**、evidence.py、evidence_bootstrap.py、gradinput.py、**hw_attention.py 25,132 B**、hw_plan.py、hw_recal.py、qubit_resources.py、**ibm_jobs.py 27,957 B**、compile_hw.py、fairness.py、faithfulness.py、two_level.py、attention_agreement.py、synth.py、train.py、data.py、esnli.py、bow_baseline.py）、**results/（9 个训练好的模型：Born-p2-ap 的 3 个种子各 6,130,853 B、Softmax 的 3 个种子、Poly-sim-born 的 3 个种子、Coherent-attn 单种子 5,750,592 B，外加 esnli_vocab.json 245,345 B）**、**ibm_jobs/（15 个作业目录，每个含 circuits.qpy、circuits.txt、counts.json、properties.json、record.json、transpiled.qpy，即每一次 IBM 作业的完整记录）**、data/（e-SNLI 的 LICENSE、README、SHA256SUMS）。★ 独立执行二（**读 results/README.md 抓到论文表格里没有的一组数字，这是今天最有价值的独立发现**）：**Poly-sim-born（多项式但不加测量约束的变体）测试准确率 78.98 ± 0.31%，高于 Born Transformer 的 76.98 ± 0.17%**；Coherent-attn-b12-24 为 67.04 ± 0.12%（3 种子）。→ **也就是说：拿掉「Born 测量」这个物理约束、只保留多项式结构的那个变体，在同一 e-SNLI 任务上比 Born Transformer 高约 2 个点。** 这对「Born 变换器的优势来自物理可实现性而非来自那个特定的注意力/读出形式」是一个**作者自己文档里给出的、可被独立读到的限定**——论文主线（可精确归因 + 可编译到硬件）依然成立，但「这个架构更好」不成立。**这条限定在论文正文里没有以这种方式并置。** ★ 独立执行三（DOI 核验，实测）：README 声明的归档副本 doi:10.5281/zenodo.23938333，**Zenodo API 实测返回 200**，标题为 Reading Why: Born-Measured Attention with Exact Word Evidence on Light and Qubits，conceptrecid 23938333（当前版本 doi 10.5281/zenodo.23955881，created 2026-11-04）；同作者的前作 Seeing Why（arXiv:2611.01993）仓库 github.com/stein-research/seeing-why **实测存在**（MIT，pushed 2026-11-04），说明这是持续的工作而非一次性投稿。★ 证据边界（必须写明）：(1) **载体是 e-SNLI（一个小型英文 NLI 任务）与一个 98k 参数模型**，**与我们的场景无关**；准确率 76.98% 在 NLI 上只是平凡水平，论文的价值在归因方法而非任务成绩；(2) **今天的本机无 GPU**（torch+cpu），**没有跑通任何训练或推理**，所有数字来自作者提交的权重与结果文件；(3) **IBM 硬件结果只覆盖 2 个测试对，论文自己写明「the evidence itself did not yet survive the device」**——**证据归因在真机上尚未跑通**，这是论文自称的未完成部分；(4) **stars=0、forks=0、零外部关注、零独立复现**；(5) 需要 IBM Quantum 账号与硬件排队才能完成硬件部分。★ 为什么给长尾价值：**「把模型的类概率表达成词幅度的多项式，于是证据可以有限求积精确算出、且各词贡献精确加总」这个思想是可迁移的**——它给出了一条「可证明正确」的归因路径，而不是像 integrated gradients 那样只在数值上近似；只要我们未来需要给 LLM 的决策做**可审计的逐 token 归因**（合规、审计、解释），这就是一条值得存下来的路。**触发条件：出现第三方复现 / 我们需要逐 token 精确归因 / 出现同类「精确可加总归因」的后续工作。**",
+      "id": "reading-why-born-measured-attention-with-exact-word-evidence-on-light-and-qubits",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 6.1,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：When a language model answers, we can usually only estimate why. We build a tr…",
+      "one_line_judgement": "值得先保存：今日第五价值，**是今天 10 篇里「可核验性」最高的一篇——它把每一个数字、每一个模型权重、每一次 IBM 量子作业记录都公开了，包括 9…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日第五价值，**是今天 10 篇里「可核验性」最高的一篇——它把每一个数字、每一个模型权重、每一次 IBM 量子作业记录都公开了，包括 9 个训练好的模型与 IBM job 目录下的完整电路",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=reading-why-born-measured-attention-with-exact-word-evidence-on-light-and-qubits"
+    },
+    {
+      "title": "GUILD: Guided Iterative Data Collection for Imitation Learning",
+      "authors": [
+        "Shivin Dass",
+        "Kevin Nguyen",
+        "Rohan Yelandur",
+        "Junhong Xu",
+        "Roberto Martín-Martín"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05368v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05368v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://robin-lab.cs.utexas.edu/guild2026/",
+      "abstract": "Imitation learning policies in robotics are trained on datasets collected through costly real-world teleoperation. Often, the data-collection process is unguided, relying on the teleoperator's intuition, resulting in data that contributes little to overall policy performance. Recent work has shown that curating such unguided datasets can substantially improve policy performance, but these approaches operate by filtering existing datasets after collection and therefore do not prevent the acquisit",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG"
+      ],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05368v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05368v1"
+        }
+      ],
+      "llm_reason": "今日第六价值，**是一个判断很干净、机制很值得抄的方法，但今天有一个必须写明的实操陷阱：它的项目页「Code」链接是一个占位符，指向 github.com/XXXX**。★ 核心问题（论文全文口径）：模仿学习的机器人策略靠昂贵的真机遥操作数据训练，**而数据采集过程是无引导的**——遥操作员凭直觉采集，**很多数据对策略性能贡献极小**。已有的「精选数据集」方法都是**事后过滤**（采集完再筛），**成本已经付掉了**。GUILD 把它变成闭环：**(1) 任务提议与数据采集**（用 VLM 的语义先验识别相关的环境、物体配置与目标）+ **(2) 数据评估**（用**预测性数据归因**近似所采集轨迹如何影响目标部署场景下的策略性能），评估信号回喂给下一轮采集。★ 实测口径（项目页口径，逐条转述）：在仿真（LIBERO）与真机两种设置下，**同等数据预算下 GUILD 匹配或击败所有基线**；**在真机上它甚至超过了用上全部可得数据（含目标环境数据）训练的结果**；**在分配数据采集预算这件事上，它在仿真中胜过 8 位机器人专家、在真机上胜过 2 位资深专家**；**在 VLM 任务提议之上叠加基于归因的评估，使真机开放世界成功率提升约 25%**。★ 独立执行一（**今天最要紧的一次核验，抓到一个实操陷阱**）：项目页 https://robin-lab.cs.utexas.edu/guild2026/ **实测可访问（http 200，45,310 B）**，我逐条解析了页面里的全部链接——**「Code」链接的 href 实测就是字面量 github.com/XXXX，即官方自己还没填真实仓库地址**（同页其它链接：静态 PDF、arXiv、5 位作者主页、Videos、nerfies.github.io）。★ 独立执行二（用 GitHub 搜索反查是否已有真实实现）：按 guided data collection imitation learning / roboticist data budget attribution / GUILD robot policy data attribution 三组关键词检索，**唯一命中的是 UT-Austin-RobIn/guild2026**——GitHub API 实测该仓库 **真实存在**（created 2026-10-12，pushed **2026-11-04**，**stars=0**，size 26,094 KB，无 license），但**其描述明写为 \"Website for GUILD\"，顶层结构实测只有 .DS_Store、index.html 与 static/（css、images、js、pdfs、videos）——即它是项目页的源码仓库，不是方法实现**。→ **结论：今天 GUILD 的方法实现没有公开，代码状态为「暂无」；GitHub 上那个同名仓库是网站仓库，不要误当成代码仓库去 clone。** ★ 证据边界：(1) **无公开实现、无 checkpoint、无数据集**，所有数字（+25%、胜过 8 位专家、胜过 2 位专家）**全部是作者自述**，今天无法核对任何一个；(2) **论文正文未给出任何量化表格**（arXiv HTML 全文扫描：github.com 链接零命中，仅命中 arXiv/html_feedback 与 LaTeXML 工具链接），我们只拿到项目页的叙述性数字，**没有置信区间、没有样本量、没有对照组定义**；(3) 「胜过专家」的比较设计（专家人数、任务预算是否匹配、是否单盲）**从公开材料里看不出来，待核验**；(4) 真机结果绑定特定机器人与任务，**外推性未知**；(5) CoRL 2026 论文（项目页标注），**评审结果未核实**。★ 为什么给长尾价值（方法本身值得抄）：**「采集前先算这笔数据的边际价值」这个回路对我们有直接映射**——我们每天也在决定「今天该抓哪些论文、该对哪个方向投人工」，而我们目前的做法本质上是**先抓后筛（即时价值 10 篇是在 400 篇里事后挑的）**；GUILD 的可迁移结构是「**提议 → 采集 → 归因评估 → 回喂**」，其中最可抄的是**用预测性归因代替人肉判断边际价值**。★ **触发条件：作者公开实现 / 我们开始认真做「雷达自身的采集预算分配」/ 出现第三方在 LIBERO 上的复现。**",
+      "id": "guild-guided-iterative-data-collection-for-imitation-learning",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Imitation learning policies in robotics are trained on datasets collected thro…",
+      "one_line_judgement": "值得先保存：今日第六价值，**是一个判断很干净、机制很值得抄的方法，但今天有一个必须写明的实操陷阱：它的项目页「Code」链接是一个占位符，指向 git…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日第六价值，**是一个判断很干净、机制很值得抄的方法，但今天有一个必须写明的实操陷阱：它的项目页「Code」链接是一个占位符，指向 github.com/XXXX**。★ 核心问题（论文全文",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=guild-guided-iterative-data-collection-for-imitation-learning"
+    },
+    {
+      "title": "Aligning Language Models with General Preferences: An Empirical Study of Direct Nash Optimization",
+      "authors": [
+        "Austin Tsai",
+        "Saurav Nanda",
+        "Ganapathy Parthasarathy",
+        "Bhuvnesh Kumar",
+        "Parivesh Choudhary"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05373v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05373v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Direct Nash Optimization (DNO) aligns a language model to a general preference function by approximating the Nash equilibrium of a two-player preference game. Its practical variant, DNO-Prct, iterates on-policy sampling, LLM-based rating of the samples together with a teacher's gold response, large-margin preference-pair selection and a DPO-style contrastive update. We re-implement DNO-Prct independently and study it on two open-weight instruct models, Llama 3.1 8B Instruct and Mistral 7B Instru",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05373v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05373v1"
+        }
+      ],
+      "llm_reason": "今日第七价值，**是一篇「作者把自己的结论削弱了」的论文——它的自我披露比它的结论更有价值，因为那套披露清单可以直接搬来做我们自己的对齐评测规范；今天无代码、无 release**。★ 做了什么（论文全文口径）：DNO（Direct Nash Optimization）把语言模型对齐到一个**通用偏好函数**，通过近似一个双人偏好博弈的 Nash 均衡；实用变体 **DNO-Prct** 迭代执行 on-policy 采样 → **LLM 对样本与教师金标准回答一起打分** → 大间隔偏好对选择 → DPO 式对比更新。作者**独立重新实现了 DNO-Prct**，并在两个开放权重指令模型上研究：**Llama 3.1 8B Instruct 与 Mistral 7B Instruct v0.1**，评分者用 GPT-4o 或同族更大的开放权重模型。★ 实测口径（逐条转述）：AlpacaEval 2.0 上以 GPT-4o 为 judge，**三轮迭代把长度控制（LC）胜率从 31.7% 提到 45.3%（Llama）、从 6.8% 提到 18.4%（Mistral）**，且**调优后的 8B 模型在所有报告的胜率上都高于 Llama 3.1 70B Instruct**；**用同族开放权重评分者时，保留 62%（Llama）与 82%（Mistral）的 LC 增益——即评分这一步不需要专有模型**；消融中**去掉金标准回答、去掉数据回看、或只接受教师偏好的对，都比完整流程低 6–10 个 LC 点**，而**每 prompt 的 on-policy 样本数从 1 到 7 只让 LC 胜率变动至多 2.1 点、间隔扫描从 1 到 5 至多 2.4 点**。★ 独立执行一（**今天对这篇最有价值的动作是读它的自我披露，而不是它的数字**）：论文明确写出**四个必须记录的限定**——(1) **所有结果都是单次运行（single runs）**，作者自己说「against GPT-4o they keep rising; **whether it is saturation or run noise cannot be determined from single runs**」；(2) **GPT-4o 同时是教师和评测 judge**，作者自己指出一个未检验的假设：**GPT-4o 的金标准回答可能把学生拉向 GPT-4o 式输出，而当对手就是 GPT-4o 时 judge 对这些输出的打分可能与其它对手不同**；(3) 消融在**独立的一套配置（separate configuration）**里跑，**因此消融的差距与实现差异、单次运行波动三者无法分离**，作者明说只能把 margin 扫描彼此比较；(4) 论文**明确承认实用算法与它所近似的理论有多处偏离**（§6.6 单列）。★ 独立执行二（成本信息存在但摘要没提）：论文 §7 报告流水线的成本，附录 A 给出**逐字复现的评分 prompt**（要求评分者输出固定 JSON 格式，形如 id0_score / id1_score / id2_score 的分数对象），附录 B 有完整超参表（表 9）。★ 独立执行三（代码核验，结论是「没有」）：arXiv HTML 全文扫描，**本文自身没有任何 github.com 链接**，命中的三个仓库全是引用（tatsu-lab/alpaca_eval、meta-llama/llama-recipes、huggingface/trl）；GitHub 按 Direct Nash Optimization 及相关关键词检索 **total_count=0**；作者 Austin-Tsai 的公开仓库实测 7 个，**全部与本论文无关**（gnostic-extension、gnostic-website、javadoc-scraper、pix-art、PromoScope、Rock-Paper-Scissors、video-time-machine），另两位作者 Saurav-Nanda 与 PariveshC **公开仓库为空**。→ **今日无代码、无 release 声明（全文检索 we release 零命中）、代码状态「暂无」。** ★ 证据边界：(1) **无代码、无法复现、所有数字为作者自述**；(2) **单次运行**，作者自己说无法区分饱和与运行噪声；(3) **GPT-4o 同时是 teacher 与 judge**，**存在自偏好偏置，作者已自行披露**；(4) **arXiv comment 实测写明「Experiments were run in 2024 with the models and APIs available then」**——**即这些数字用的是 2024 年的模型与 API，不是今天的模型**，这一点非常关键：**不要把这套 LC 胜率数字当成 2026 年的现状**；(5) 实验只覆盖两个 7–8B 指令模型。★ 为什么给长尾价值：**它最值得存的是那份「自我披露清单」本身**——「单次运行 vs 多种子」「teacher 与 judge 同源」「消融是否与主实验同配置」这三条，正是我们做 LLM-as-judge 评测时最容易糊弄过去的地方；这篇等于示范了正确的写法。**触发条件：作者开源实现 / 我们要给自己的偏好优化流程定评测规范 / 出现同族的第三方复现。**",
+      "id": "aligning-language-models-with-general-preferences-an-empirical-study-of-direct-nash-optimization",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 5.0,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Direct Nash Optimization (DNO) aligns a language model to a general preference…",
+      "one_line_judgement": "值得先保存：今日第七价值，**是一篇「作者把自己的结论削弱了」的论文——它的自我披露比它的结论更有价值，因为那套披露清单可以直接搬来做我们自己的对齐评测…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日第七价值，**是一篇「作者把自己的结论削弱了」的论文——它的自我披露比它的结论更有价值，因为那套披露清单可以直接搬来做我们自己的对齐评测规范；今天无代码、无 release**。★ 做了什",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=aligning-language-models-with-general-preferences-an-empirical-study-of-direct-nash-optimization"
+    },
+    {
+      "title": "DreamX: Video Diffusion Model is a Universal Latent Action Learner",
+      "authors": [
+        "Jisoo Kim",
+        "Chaehyun Kim",
+        "Junsu Kim",
+        "Jiho Park",
+        "Seongchan Kim"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05377v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05377v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://cvlab-kaist.github.io/DreamX/",
+      "abstract": "Learning a universal action representation from video requires modeling dynamics that are consistent across different executions of the same action yet invariant to changes in embodiment and appearance. Existing latent action models infer actions from visual transitions, but their representations often entangle the underlying action with irrelevant visual variations, limiting transfer across embodiments. We introduce DreamX, which repurposes a pretrained video diffusion model as a universal late",
+      "categories": [
+        "cs.CV",
+        "cs.AI",
+        "cs.RO"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05377v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05377v1"
+        }
+      ],
+      "llm_reason": "今日第八价值，**方法链条干净、团队可靠（KAIST + NVIDIA），但今天明确「代码即将公开」却未公开，所以只能存不能投**。★ 核心主张（论文全文口径）：**用一个预训练的视频扩散模型当作通用潜在动作学习器**——从视频模型的时空特征里抽出紧凑的潜在动作，**每帧把潜在视频从 1,200 个 token 压缩到 4 个（约 300×）**；借视频模型的生成先验，这些潜在动作**捕捉与外观解耦的动作相关动力学**；由此得到的潜在空间成为**跨具身（人与机器人）、跨环境、跨动作参数化的共享动作接口**。实测口径：**在 LARY-Bench 上取得潜在动作模型中的 SOTA**；动作在一种设定下编码后**仍能在另一种设定下有效**（支持任意到任意的视频迁移与跨具身零样本动作迁移）；该共享接口还支持在紧凑潜在动作空间里做策略学习，**降低基于视频扩散的策略的计算成本**。★ 独立执行一（项目页实测，逐个数字核对）：https://cvlab-kaist.github.io/DreamX/ **可访问（http 200，90,325 B）**；实测作者与机构（**KAIST + NVIDIA**，Jisoo Kim / Chaehyun Kim / Junsu Kim / Jiho Park / Seongchan Kim / Eunbeen Hong / Soowon Son / Fu-En Yang / Seungryong Kim，前两位为共同一作）；实测项目页给出的三个头条数字：**LARYBench 动作 MSE 0.17（最佳基线 0.38）**、**零样本人→机器人 FVD 57.4（最佳基线 170.2）**、**预训练数据 2.19k 小时的人+机器人视频、来自 6 个数据集**；方法页实测描述「learnable queries 读出视频特征：**每帧 4 个 token，约 300× 压缩**」，且**解码器从第一帧 + 潜在动作重建未来，从而使潜在动作承载运动而非外观**。★ 独立执行二（**代码状态的实测结论：未公开**）：项目页导航实测为 Paper / **Code soon** / arXiv / 各作者主页，**页面上没有任何 github.com 链接（实测 regex 扫描 github 链接集合为空）**；arXiv comment 只给出项目页地址，**无代码链接**；GitHub 按 DreamX latent action / DreamX latent action video diffusion 检索 **total_count=0**；cvlab-kaist 组织在 GitHub 上 **404（该组织不存在）**。→ **代码状态：暂无（官方标注 soon）。** ★ 证据边界：(1) **代码明确未开源**，无 checkpoint、无 dataset、无 benchmark 收录，**所有数字（0.17 / 57.4 / 170.2 / 300×）完全作者自述，今天无法核对任何一个**；(2) 项目页未给出论文的完整实验表（定量页只有三个数字），**基线选择与评测细节看不到**；(3) 依赖 Cosmos Predict 2.5（项目页实测点名）与视频扩散骨干，**复现成本高**；(4) 需要人 + 机器人视频数据与 GPU 训练资源，**本机无 GPU，今天零验证**；(5) 无第三方复现。★ 为什么给长尾价值：**「用预训练视频扩散模型的无监督视频预测先验充当跨具身的动作表示」这个思路是干净的、可迁移的**——它和 2026 年被丢弃论文里的 PyRUA-DataFarm（2611.05320，用视频模型把仿真 rollout 渲染成照片级视频以生成真机可用数据）**在同一个方向上**：都在说「视频生成模型蕴含了从像素到动作的强先验」。**这两篇今天都没进 10 篇（后者被 400 篇的截断挡掉了），但合起来看是一个值得单独跟踪的方向：用视频/图像生成模型作为机器人数据与动作表示的来源。** **触发条件：官方开源 / 与 PyRUA-DataFarm 的方向合流被更多工作确认 / 我们开始做具身方向。**",
+      "id": "dreamx-video-diffusion-model-is-a-universal-latent-action-learner",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Learning a universal action representation from video requires modeling dynami…",
+      "one_line_judgement": "值得先保存：今日第八价值，**方法链条干净、团队可靠（KAIST + NVIDIA），但今天明确「代码即将公开」却未公开，所以只能存不能投**。★ 核心…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日第八价值，**方法链条干净、团队可靠（KAIST + NVIDIA），但今天明确「代码即将公开」却未公开，所以只能存不能投**。★ 核心主张（论文全文口径）：**用一个预训练的视频扩散模型",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=dreamx-video-diffusion-model-is-a-universal-latent-action-learner"
+    },
+    {
+      "title": "From Autonomous Agents to Cognitive Symbionts: Toward AI-Augmented Human Intelligence",
+      "authors": [
+        "Hao Fei"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05376v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05376v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://cognitive-symbiont.github.io",
+      "abstract": "For a decade, progress in artificial intelligence has been measured by how much a machine can do on its own. Large foundation models now write code and run multistep tasks, and personal agents act on a person's behalf. Yet people still forget what they once knew, miss what they are not looking at, fail to find the right words, and face hard choices without the benefit of their own history, because the machine that could help stands outside the situation. As AI moves into the physical world, atte",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory"
+      ],
+      "score": 50.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05376v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05376v1"
+        }
+      ],
+      "llm_reason": "今日第九价值，**是一份立场鲜明、设计空间写得相当完整的纲领性论文（59 页、21 图、18 表），它提出的核心概念和我们做的「agent 平台 + 记忆 + 工具」有交集；但它没有任何实现、没有任何实验、没有任何可核验数字，所以它今天只能是观点而不是证据**。★ 核心主张（论文全文口径，逐条转述）：过去十年 AI 的进步都是按「机器自己能做多少」来衡量；作者认为**随着 AI 进入物理世界，注意力集中在具身机器人这一种智能个体上，而他们主张还有第二种同等重要的智能个体——被 AI 增强的人（AI-augmented human intelligence, AHI）**；实现它需要一种新系统——**cognitive symbiont（认知共生体）：一个终身的、嵌入式的、实时的、私密的、低摩擦且主动的伙伴**，它**通过外部设备感知人所感知的东西、跨年保持其上下文、建模其处境与其心智、在恰当时刻参与其思考、带着其上下文执行日常任务、并随人与 AI 共同变化而持续学习**。设计空间被组织成一个**共生回路**：感知（sensing）、保持（keeping）、理解（understanding）、并行生活（living alongside）、为人而行动（acting for）、与人同思（thinking with）、成长（growing），**外封以个人运行时（personal runtime）与信任**。论文给这个范式一个概念内核：**认知差距（cognitive gap）——一个人本可以带到某个情境中的东西，与他实际能在工作记忆中持有的东西之间的落差**。论文还把治理纳入范式本身（隐蔽代考、以及所有人被迫采用的压力）。★ 独立执行（项目页实测）：https://cognitive-symbiont.github.io **可访问（http 200，22,731 B）**；实测导航结构（Video / Perspective / Paper / AI-augmented human / AI as individual / A perspective on future physical AI）、以及页面上对两种智能个体的对照表述（\"An AI that lives with one person. Senses through what she wears. Keeps her life, and models her world and her mind. Speaks only to her, at the right moment. Most of the time, says nothing.\" vs \"An AI with a body and goals of its own\"）。★ 证据边界（决定性的）：(1) **无代码、无 checkpoint、无实验、无 benchmark、无量化结论**——arXiv HTML 全文扫描，**本文自身没有任何 github.com 链接（实测 github 链接集合为空）**，comment 只给项目页；项目页**也没有任何 GitHub 链接**；(2) **59 页的纲领，没有一个数字可核对**，它是立场与设计空间，不是实验；(3) **单一作者（Hao Fei）**，无独立验证；(4) 大量主张是规范性的、不可证伪的（「AI 增强的人」比机器人更重要——这是论证立场）；(5) 与我们主线的距离：**它谈的是消费级个人 AI 伴生体，而我们的工作是内部 agent 平台与研究雷达**。★ 为什么仍给长尾价值而不是忽略：**「认知差距」这个定义可以借——它把「上下文工程」从「怎么塞更多 token」重新表述为「一个人（或一个 agent）在某个情境下真正能持有多少」**，这个视角对我们的 context engineering 与记忆设计有直接启发；**「共生回路」的七段划分**也可以当作我们设计 agent 记忆生命周期时的一个检查清单。★ **触发条件：出现实现 / 出现同主题的实证研究 / 我们真的开始做个人助手型产品。**",
+      "id": "from-autonomous-agents-to-cognitive-symbionts-toward-ai-augmented-human-intelligence",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "context-engineering",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Context Engineering：For a decade, progress in artificial intelligence has been measured by how muc…",
+      "one_line_judgement": "值得先保存：今日第九价值，**是一份立场鲜明、设计空间写得相当完整的纲领性论文（59 页、21 图、18 表），它提出的核心概念和我们做的「agent …",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "今日第九价值，**是一份立场鲜明、设计空间写得相当完整的纲领性论文（59 页、21 图、18 表），它提出的核心概念和我们做的「agent 平台 + 记忆 + 工具」有交集；但它没有任何实现、",
+      "related_trends": [
+        "context-engineering",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=from-autonomous-agents-to-cognitive-symbionts-toward-ai-augmented-human-intelligence"
+    },
+    {
+      "title": "Agnostic Learning by Imitating",
+      "authors": [
+        "Sílvia Casacuberta",
+        "Parikshit Gopalan",
+        "Varun Kanade",
+        "Omer Reingold",
+        "Konstantinos Stavropoulos"
+      ],
+      "published": "2026-11-03",
+      "updated": "2026-11-03",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05346v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.05346v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Given a class of machine learning models and sample access to a data distribution with binary labels, which computational task is harder: training a discriminative model that distinguishes positive and negative labels as well as the best member of the class, or training a generative model whose outputs are indistinguishable from real data by all members of the class? We prove that these two fundamental tasks in computational learning theory are not just closely related, but actually equivalent t",
+      "categories": [
+        "cs.LG",
+        "cs.CC",
+        "cs.DS"
+      ],
+      "keywords": [],
+      "score": 45.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.05346v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.05346v1"
+        }
+      ],
+      "llm_reason": "今日暂缓，**方向是真理论（计算学习理论里一个漂亮的新等价性），但它今天与我们零交集：没有代码、没有工程出口、没有实验、且主题是判别学习 vs 生成学习的复杂度等价**。★ 内容（论文全文口径）：给定一个机器学习模型类与二元标签数据分布的采样访问权，问哪个计算任务更难——**训练一个判别模型把正负标签分得和类中最好的成员一样好**，还是**训练一个生成模型使所有类成员都无法区分其输出与真实数据**？作者**证明这两个计算学习论的基本任务在复杂度上完全等价**；一个方向此前已知（**正则性引理**给出从不可区分性任务（multiaccuracy）到判别任务（agnostic learning）的高效 oracle 归约，形式上是 boosting 算法的风格），**本文的主要贡献是另一个方向的高效 oracle 归约**；进一步地，多accuracy oracle 是一个**异常强的原语**，通过高效直接的构造同时达成范围广泛的学习目标；结果关键地依赖**对 oracle 做自适应查询**的能力，与先前「后处理单个 multiaccurate 预测器甚至不足以实现弱形式学习」的工作形成鲜明对比；技术层面连接到离线问题与在线设定下一个 no-regret 学习版本的联系，从而可用 follow-the-leader 类算法修改标签分布并聚合 oracle 的预测。★ 证据边界：(1) **无代码**——arXiv HTML 全文扫描无任何 github.com 链接命中本文实现；(2) **纯理论论文，无实验、无 benchmark、无数字可核对**，今天连一个可验证的量都没有；(3) **与我们的工程实践零交集**：我们不做学习理论证明，这个结果对我们唯一可能的用处是「多accuracy oracle 是强原语」这一句在理论上解释了为什么评测/标注可以替代部分训练信号——但这属于旁注，不构成行动项；(4) 主题是 cs.LG + cs.CC + cs.DS，纯理论。★ 判断：**保留最小索引。** **触发条件：出现实现 / 该等价性被某个 agentic 评测方法引用 / 我们自己开始设计「用评测信号替代训练信号」的方案。**",
+      "id": "agnostic-learning-by-imitating",
+      "value_type": "ignore",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "brief_cn": "LLM 评测：Given a class of machine learning models and sample access to a data distribut…",
+      "one_line_judgement": "当前可忽略：今日暂缓，**方向是真理论（计算学习理论里一个漂亮的新等价性），但它今天与我们零交集：没有代码、没有工程出口、没有实验、且主题是判别学习 v…",
+      "first_seen_date": "2026-11-05",
+      "first_deep_dive_daily": "2026-11-05",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今日暂缓，**方向是真理论（计算学习理论里一个漂亮的新等价性），但它今天与我们零交集：没有代码、没有工程出口、没有实验、且主题是判别学习 vs 生成学习的复杂度等价**。★ 内容（论文全文口径",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=agnostic-learning-by-imitating"
+    },
     {
       "title": "WebHarbor: Docking Real Websites for Evolving GUI Agent Environments",
       "authors": [

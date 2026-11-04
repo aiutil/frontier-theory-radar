@@ -1,0 +1,134 @@
+{
+  "id": "dreamx-video-diffusion-model-is-a-universal-latent-action-learner",
+  "title": "DreamX: Video Diffusion Model is a Universal Latent Action Learner",
+  "authors": [
+    "Jisoo Kim",
+    "Chaehyun Kim",
+    "Junsu Kim",
+    "Jiho Park",
+    "Seongchan Kim"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-03",
+  "url": "http://arxiv.org/abs/2611.05377v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.05377v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-05",
+  "first_deep_dive_daily": "2026-11-05",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 55.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日第八价值，**方法链条干净、团队可靠（KAIST + NVIDIA），但今天明确「代码即将公开」却未公开，所以只能存不能投**。★ 核心…",
+  "one_line_essence": "今日第八价值，**方法链条干净、团队可靠（KAIST + NVIDIA），但今天明确「代码即将公开」却未公开，所以只能存不能投**。★ 核心主张（论文全文口径）：**用一个预训练的视频扩散模型当作通用潜在动作学习器**——从视频模型的时空特征里抽出紧凑的潜在动作，**每帧把潜在视频从 1,200 个 token 压缩到 4 个（约 300×）**；借视频模型的生成先验，这些潜在动作**捕捉与外观解耦的动作相关动力学**；由此得到的潜在空间成为**跨具身（人与机器人）、跨环境、跨动作参数化的共享动作接口**。实测口径：**在 LARY-Bench 上取得潜在动作模型中的 SOTA**；动作在一种设定下编码后**仍能在另一种设定下有效**（支持任意到任意的视频迁移与跨具身零样本动作迁移）；该共享接口还支持在紧凑潜在动作空间里做策略学习，**降低基于视频扩散的策略的计算成本**。★ 独立执行一（项目页实测，逐个数字核对）：https://cvlab-kaist.github.io/DreamX/ **可访问（http 200，90,325 B）**；实测作者与机构（**KAIST + NVIDIA**，Jisoo Kim / Chaehyun Kim / Junsu Kim / Jiho Park / Seongchan Kim / Eunbeen Hong / Soowon Son / Fu-En Yang / Seungryong Kim，前两位为共同一作）；实测项目页给出的三个头条数字：**LARYBench 动作 MSE 0.17（最佳基线 0.38）**、**零样本人→机器人 FVD 57.4（最佳基线 170.2）**、**预训练数据 2.19k 小时的人+机器人视频、来自 6 个数据集**；方法页实测描述「learnable queries 读出视频特征：**每帧 4 个 token，约 300× 压缩**」，且**解码器从第一帧 + 潜在动作重建未来，从而使潜在动作承载运动而非外观**。★ 独立执行二（**代码状态的实测结论：未公开**）：项目页导航实测为 Paper / **Code soon** / arXiv / 各作者主页，**页面上没有任何 github.com 链接（实测 regex 扫描 github 链接集合为空）**；arXiv comment 只给出项目页地址，**无代码链接**；GitHub 按 DreamX latent action / DreamX latent action video diffusion 检索 **total_count=0**；cvlab-kaist 组织在 GitHub 上 **404（该组织不存在）**。→ **代码状态：暂无（官方标注 soon）。** ★ 证据边界：(1) **代码明确未开源**，无 checkpoint、无 dataset、无 benchmark 收录，**所有数字（0.17 / 57.4 / 170.2 / 300×）完全作者自述，今天无法核对任何一个**；(2) 项目页未给出论文的完整实验表（定量页只有三个数字），**基线选择与评测细节看不到**；(3) 依赖 Cosmos Predict 2.5（项目页实测点名）与视频扩散骨干，**复现成本高**；(4) 需要人 + 机器人视频数据与 GPU 训练资源，**本机无 GPU，今天零验证**；(5) 无第三方复现。★ 为什么给长尾价值：**「用预训练视频扩散模型的无监督视频预测先验充当跨具身的动作表示」这个思路是干净的、可迁移的**——它和 2026 年被丢弃论文里的 PyRUA-DataFarm（2611.05320，用视频模型把仿真 rollout 渲染成照片级视频以生成真机可用数据）**在同一个方向上**：都在说「视频生成模型蕴含了从像素到动作的强先验」。**这两篇今天都没进 10 篇（后者被 400 篇的截断挡掉了），但合起来看是一个值得单独跟踪的方向：用视频/图像生成模型作为机器人数据与动作表示的来源。** **触发条件：官方开源 / 与 PyRUA-DataFarm 的方向合流被更多工作确认 / 我们开始做具身方向。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第八价值，**方法链条干净、团队可靠（KAIST + NVIDIA），但今天明确「代码即将公开」却未公开，所以只能存不能投**。★ 核心主张（论文全文口径）：**用一个预训练的视频扩散模型当作通用潜在动作学习器**——从视频模型的时空特征里抽出紧凑的潜在动作，**每帧把潜在视频从 1,200 个 token 压缩到 4 个（约 300×）**；借视频模型",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第八价值，**方法链条干净、团队可靠（KAIST + NVIDIA），但今天明确「代码即将公开」却未公开，所以只能存不能投**。★ 核心主张（论文全文口径）：**用一个预训练的视频扩散模型",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-26"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05377v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.05377v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=dreamx-video-diffusion-model-is-a-universal-latent-action-learner",
+  "daily_path": "daily-detail.html?date=2026-11-05",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

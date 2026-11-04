@@ -1,0 +1,136 @@
+{
+  "id": "adversarial-speculative-reasoning-improves-long-horizon-agents",
+  "title": "Adversarial Speculative Reasoning Improves Long Horizon Agents",
+  "authors": [
+    "Hongyin Luo",
+    "Wei Fang",
+    "Lijie Yang",
+    "Owen Stepan",
+    "Daniel Suit"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-03",
+  "url": "http://arxiv.org/abs/2611.05345v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.05345v1",
+  "code_url": "",
+  "benchmark_url": "https://github.com/datacurve-ai/deep-swe",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-05",
+  "first_deep_dive_daily": "2026-11-05",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 6.2,
+    "evidence": 5.8,
+    "engineering_testability": 4.05,
+    "trend_signal": 5.4,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 88.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第一即时价值，**是今天唯一一篇提出了一个「我们自己也踩过但从没正面测量过」的系统性失败模式、且给出可落地利用点的论文——它把 spec…",
+  "one_line_essence": "今日第一即时价值，**是今天唯一一篇提出了一个「我们自己也踩过但从没正面测量过」的系统性失败模式、且给出可落地利用点的论文——它把 speculative decoding 从纯加速器重新定义成「上下文精度分配器」，这件事对我们只要自己在跑长时程 agent 就直接相关**。★ 核心洞见（论文全文口径，非摘要转述）：投机解码的「无损分布」保证只成立于理想化的目标模型（一个固定的前缀→分布函数），**但前沿模型不是这样托管的——低精度权重、量化 KV cache、稀疏注意力使推理输出不可逐位复现，于是目标的 logits 变成一个随计算布局而变的噪声量**。作者直接实测：**GLM-5.3 用 8-token DFlash 验证块时，块内第一个 slot 的噪声与单 token 解码完全一样，越往后每个 slot 噪声约增 4%，到最后一个 slot，log-prob 偏移超过 2 nats 的频率接近第一个 slot 的两倍**；DeepSeek-V4.1-Flash 用 6-token DSPARK 块**绝对噪声约是 GLM 的一半，但相对增长率同样是每 slot 约 4%**。→ **一句话：投机验证在分布上无损，但在数值精度上不均匀——一个 token 落在验证块的哪个位置，决定了它被编码得多精确。** ★ 为什么这件事对长时程 agent 致命（这是论文最重要的一段，也是我们最该记住的）：软件工程 agent 要跑几十到几百轮、几千到几百万 token，**每个 token 都会被写进 KV cache 并被之后所有步骤读回**。作者审计了 agentic coding 轨迹发现：**以原则（principle）、证据（evidence）框定或实际由测试驱动的决策，取正确一侧的比例约为「凭可能性或风险引导」的推理的两倍**。★ 方法（可执行）：**训练 draft 模型去「被拒绝」**。机制是：被接受的 draft token 会以验证它的那个 slot 的精度被提交；被拒绝的 token 由目标模型在残差采样中重采样、写入一个新验证块的头部、后续验证从噪声最小的 slot 重新开始。于是「在关键推理短语处让 draft 被拒绝」就能把重要决策路由到目标模型最精确的路径上，而把常规思考 token 留给普通加速。实现上**用 DPO 反向训练 draft**：让 draft 学会偏好目标模型「应该拒绝」的那一侧表述。目标模型、验证规则、分布保证全部不变，**只改 draft**。训练规模：**只训练宿主参数的 0.06%–0.28%**。★ 独立执行一（论文全文核对，抓到摘要里没有的实验设定）：读到 §5.1 有一个**我认为比主结果更重要、但摘要完全没提的发现**——作者额外训练了两个**故意不部署**的「参照偏好」来标定 draft 到底能学什么：**「模型是否去跑测试」与「决策用什么框定」两个偏好两个方向都可学（run-tests 0.83/0.85，decision-frame 0.59/0.635），但「这个决策对不对」对小 draft 模型基本学不会**（最好配置 0.61 与 0.57，落在置信区间内的随机水平上，中位数 0.52 与 0.46），而「思考长度」居中（0.54 forward / 0.65 adversarial）。→ **这是全文最有迁移价值的一句：draft 不需要知道哪一边是对的，只需要学会提出目标模型会拒绝的那个表述——因此「把判断正确性外包给一个小模型」这条路是走不通的，能外包的只有「表述框架」。** ★ 独立执行二（主结果与代价，逐个核对数字）：**GLM-5.3-nvfp4 在 DeepSWE 上端到端成功率 60.6% → 67.6%（+7.0 分），DeepSeek-V4.1-Flash 67.8% → 71.8%（+4.0 分，标准评测 harness 与环境）**；效率代价实测**每块期望接受的 draft token 数：GLM 训练前后都是 2.28，DeepSeek 2.5 → 2.46（差 1.8%）**——**即用最多 2% 的解码速度换长时程 agent 准确率**，且两个 draft 的接受率曲线形状保持不变。★ 独立执行三（核验 benchmark 是否真实存在，不只看论文自述）：论文用的 DeepSWE 对应 github.com/datacurve-ai/deep-swe，**实测存在**（stars=1,884，描述 Measuring frontier coding agents on original, long-horizon engineering tasks，最后推送 2026-08-26）；NL2Repo-Bench 对应 multimodal-art-projection/NL2RepoBench，**实测存在**（stars=193）。→ **两个 benchmark 都是公开可访问的第三方仓库，这一点让论文的对比数字可被独立检验，这是它比同期很多「自建 benchmark 自评」论文可信的原因。** ★ 独立执行四（读 GitHub 找实现，结果是**没有**，这点必须写明）：用 GitHub API 按 adversarial speculative / PEARL / DNO 等关键词检索，**本文的实现仓库不存在**；作者机构 Subconscious Systems Technologies 下的仓库（Subconscious-ai/sublime 等）**实测与本文无关**（sublime 的描述是 Behavior Change as a Service，最后推送 2026-10-13，早于本文）。论文全文的 github.com 链接只有 arXiv/html_feedback、LaTeXML、datacurve-ai/deep-swe 三处，**前两个是工具/反馈链接，第三个是 benchmark 而非实现**。→ **今日无可执行实现，无代码，代码状态标记为「暂无」。** ★ 证据边界（诚实写清）：(1) **无代码、无法复现、论文所有数字均为作者自述**，今日无任何一个数字是本机跑出来的；(2) 实验只覆盖**两个目标模型 × 两个 draft 架构**（GLM-5.3+DFlash2、DeepSeek-V4.1-Flash+DSPARK），且都是**量化托管**场景，**能否外推到 bf16 全精度托管待验证**；(3) 提升幅度 +4.0 到 +7.0 分**只在 agentic coding benchmark 上测过**，未在通用 agent 任务上验证；(4) 目标模型与 draft 都是**闭源/托管模型**（GLM-5.3、DeepSeek-V4.1-Flash、DFlash2、DSPARK），我们无法自行复现这条链路；(5) 「拒绝即精度分配」这个机制**依赖 exact verification**，一旦用近似验证（lossy verification）就会失效。★ 为什么给即时价值而不是趋势价值：**它的可利用性不依赖我们的能力边界——只要我们在跑长时程 agent 且用量化托管，就已经在承受这个精度不均的问题**，而它的诊断方法（在同一前缀上重跑前向、比较 top-k log-prob 随 slot 位置的变化）是**我们今天就能在自己的推理栈上做的测量**，不需要论文的模型也不需要 GPU。★ **但要明确写清：今天能落地的是「测量」，不是「修复」——修复需要一个我们能训练的反向 DPO draft 模型，本文没有提供代码，且 GLM/DeepSeek 的 draft 不是我们能训的。所以今天的行动是：先量出我们自己栈里的 slot 噪声曲线，再决定要不要自建 draft。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第一即时价值，**是今天唯一一篇提出了一个「我们自己也踩过但从没正面测量过」的系统性失败模式、且给出可落地利用点的论文——它把 speculative decoding 从纯加速器重新定义成「上下文精度分配器」，这件事对我们只要自己在跑长时程 agent 就直接相关**。★ 核心洞见（论文全文口径，非摘要转述）：投机解码的「无损分布」保证只成立于理想化的",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": true,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第一即时价值，**是今天唯一一篇提出了一个「我们自己也踩过但从没正面测量过」的系统性失败模式、且给出可落地利用点的论文——它把 speculative decoding 从纯加速器重新定义",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05345v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.05345v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=adversarial-speculative-reasoning-improves-long-horizon-agents",
+  "daily_path": "daily-detail.html?date=2026-11-05",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

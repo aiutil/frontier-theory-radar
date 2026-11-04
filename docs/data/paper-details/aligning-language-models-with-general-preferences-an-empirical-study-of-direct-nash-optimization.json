@@ -1,0 +1,134 @@
+{
+  "id": "aligning-language-models-with-general-preferences-an-empirical-study-of-direct-nash-optimization",
+  "title": "Aligning Language Models with General Preferences: An Empirical Study of Direct Nash Optimization",
+  "authors": [
+    "Austin Tsai",
+    "Saurav Nanda",
+    "Ganapathy Parthasarathy",
+    "Bhuvnesh Kumar",
+    "Parivesh Choudhary"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-03",
+  "url": "http://arxiv.org/abs/2611.05373v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.05373v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-05",
+  "first_deep_dive_daily": "2026-11-05",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.95,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 2.4
+  },
+  "score": 58.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日第七价值，**是一篇「作者把自己的结论削弱了」的论文——它的自我披露比它的结论更有价值，因为那套披露清单可以直接搬来做我们自己的对齐评测…",
+  "one_line_essence": "今日第七价值，**是一篇「作者把自己的结论削弱了」的论文——它的自我披露比它的结论更有价值，因为那套披露清单可以直接搬来做我们自己的对齐评测规范；今天无代码、无 release**。★ 做了什么（论文全文口径）：DNO（Direct Nash Optimization）把语言模型对齐到一个**通用偏好函数**，通过近似一个双人偏好博弈的 Nash 均衡；实用变体 **DNO-Prct** 迭代执行 on-policy 采样 → **LLM 对样本与教师金标准回答一起打分** → 大间隔偏好对选择 → DPO 式对比更新。作者**独立重新实现了 DNO-Prct**，并在两个开放权重指令模型上研究：**Llama 3.1 8B Instruct 与 Mistral 7B Instruct v0.1**，评分者用 GPT-4o 或同族更大的开放权重模型。★ 实测口径（逐条转述）：AlpacaEval 2.0 上以 GPT-4o 为 judge，**三轮迭代把长度控制（LC）胜率从 31.7% 提到 45.3%（Llama）、从 6.8% 提到 18.4%（Mistral）**，且**调优后的 8B 模型在所有报告的胜率上都高于 Llama 3.1 70B Instruct**；**用同族开放权重评分者时，保留 62%（Llama）与 82%（Mistral）的 LC 增益——即评分这一步不需要专有模型**；消融中**去掉金标准回答、去掉数据回看、或只接受教师偏好的对，都比完整流程低 6–10 个 LC 点**，而**每 prompt 的 on-policy 样本数从 1 到 7 只让 LC 胜率变动至多 2.1 点、间隔扫描从 1 到 5 至多 2.4 点**。★ 独立执行一（**今天对这篇最有价值的动作是读它的自我披露，而不是它的数字**）：论文明确写出**四个必须记录的限定**——(1) **所有结果都是单次运行（single runs）**，作者自己说「against GPT-4o they keep rising; **whether it is saturation or run noise cannot be determined from single runs**」；(2) **GPT-4o 同时是教师和评测 judge**，作者自己指出一个未检验的假设：**GPT-4o 的金标准回答可能把学生拉向 GPT-4o 式输出，而当对手就是 GPT-4o 时 judge 对这些输出的打分可能与其它对手不同**；(3) 消融在**独立的一套配置（separate configuration）**里跑，**因此消融的差距与实现差异、单次运行波动三者无法分离**，作者明说只能把 margin 扫描彼此比较；(4) 论文**明确承认实用算法与它所近似的理论有多处偏离**（§6.6 单列）。★ 独立执行二（成本信息存在但摘要没提）：论文 §7 报告流水线的成本，附录 A 给出**逐字复现的评分 prompt**（要求评分者输出固定 JSON 格式，形如 id0_score / id1_score / id2_score 的分数对象），附录 B 有完整超参表（表 9）。★ 独立执行三（代码核验，结论是「没有」）：arXiv HTML 全文扫描，**本文自身没有任何 github.com 链接**，命中的三个仓库全是引用（tatsu-lab/alpaca_eval、meta-llama/llama-recipes、huggingface/trl）；GitHub 按 Direct Nash Optimization 及相关关键词检索 **total_count=0**；作者 Austin-Tsai 的公开仓库实测 7 个，**全部与本论文无关**（gnostic-extension、gnostic-website、javadoc-scraper、pix-art、PromoScope、Rock-Paper-Scissors、video-time-machine），另两位作者 Saurav-Nanda 与 PariveshC **公开仓库为空**。→ **今日无代码、无 release 声明（全文检索 we release 零命中）、代码状态「暂无」。** ★ 证据边界：(1) **无代码、无法复现、所有数字为作者自述**；(2) **单次运行**，作者自己说无法区分饱和与运行噪声；(3) **GPT-4o 同时是 teacher 与 judge**，**存在自偏好偏置，作者已自行披露**；(4) **arXiv comment 实测写明「Experiments were run in 2024 with the models and APIs available then」**——**即这些数字用的是 2024 年的模型与 API，不是今天的模型**，这一点非常关键：**不要把这套 LC 胜率数字当成 2026 年的现状**；(5) 实验只覆盖两个 7–8B 指令模型。★ 为什么给长尾价值：**它最值得存的是那份「自我披露清单」本身**——「单次运行 vs 多种子」「teacher 与 judge 同源」「消融是否与主实验同配置」这三条，正是我们做 LLM-as-judge 评测时最容易糊弄过去的地方；这篇等于示范了正确的写法。**触发条件：作者开源实现 / 我们要给自己的偏好优化流程定评测规范 / 出现同族的第三方复现。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第七价值，**是一篇「作者把自己的结论削弱了」的论文——它的自我披露比它的结论更有价值，因为那套披露清单可以直接搬来做我们自己的对齐评测规范；今天无代码、无 release**。★ 做了什么（论文全文口径）：DNO（Direct Nash Optimization）把语言模型对齐到一个**通用偏好函数**，通过近似一个双人偏好博弈的 Nash 均衡；实用",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第七价值，**是一篇「作者把自己的结论削弱了」的论文——它的自我披露比它的结论更有价值，因为那套披露清单可以直接搬来做我们自己的对齐评测规范；今天无代码、无 release**。★ 做了什",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-26"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05373v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.05373v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=aligning-language-models-with-general-preferences-an-empirical-study-of-direct-nash-optimization",
+  "daily_path": "daily-detail.html?date=2026-11-05",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

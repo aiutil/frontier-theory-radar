@@ -1,0 +1,133 @@
+{
+  "id": "a-circuit-for-in-context-learning",
+  "title": "A Circuit for In-Context Learning",
+  "authors": [
+    "Andrew Gao",
+    "William Gao"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-03",
+  "url": "http://arxiv.org/abs/2611.05344v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.05344v1",
+  "code_url": "https://github.com/andrewgcodes/in-context-learning-circuit",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-05",
+  "first_deep_dive_daily": "2026-11-05",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 81.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第二即时价值，**是今天 10 篇里唯一一篇「论文 + 完整可跑代码 + 论文源码 + 交互式 3D 讲解 + CPU 可跑测试 + 已…",
+  "one_line_essence": "今日第二即时价值，**是今天 10 篇里唯一一篇「论文 + 完整可跑代码 + 论文源码 + 交互式 3D 讲解 + CPU 可跑测试 + 已提交的实测数据」五件齐备的论文，而且它的结论会直接改变我们 prompt 设计与 few-shot 评测的理解**。★ 核心结论（论文全文口径）：在任意标签（arbitrary labels）的少样本句子分类上，模型把 ICL 实现为一个**带门控的联想查表**：标签 token 的位置充当 slot，**每个标签 token 的 residual stream 编码该标签的身份（value），中层注意力头把前一个演示句的类别作为 key 写进这个 slot；查询时，上层注意力头把查询句的类别与存储的 key 匹配并拷贝出对应标签**。另有两个机制：**一个早期信号编码「是否已有标签重复」，它门控这次读出**（没有它，读头会 attends 到 prompt 开头、不偏向任何标签）；**一组独立的 head 抑制最近出现过的标签**（刹车）。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/andrewgcodes/in-context-learning-circuit **真实存在**（created 2026-11-02，pushed 2026-11-03，MIT，stars=1，forks=0，size 2816 KB，**默认分支 main**）。目录结构实测完整且是**真能跑的研究工程**而非玩具：icl/（run.py **73,203 B**、score.py、hooks.py **23,688 B**、tasks.py **43,123 B**、allheads_law.py、analyze_D170.py / analyze_D174.py / analyze_D185.py / analyze_D188_scale.py / analyze_D188_gate.py、fit_gate.py、trace_view.py、modal_app.py）、batteries/（icl_tasks.json 15,197 B、concept_tasks.json 11,115 B）、data/（**D159_dla_Qwen3-4B.jsonl 3,670,558 B**、D159_dla_SmolLM3-3B.jsonl 2,475,116 B、D145_reader_rows.jsonl、十余个 D1xx_effects.txt / D1xx_screen.txt）、figures/（**23 个逐图脚本**，含 fig19_trace.py、fig21_closure.py、fig22_instruct.py、fig23_scale.py）、paper/（**main.tex 143,396 B** + refs.bib + ICLR 样式 + 20 个图 PDF + Makefile）、toy/（toy_circuit.py、train_toy.py，README 实测「一次训练约十分钟单卡」）、tests/test_batteries.py（**CPU 可跑**）、.github/workflows/ci.yml。requirements.txt 实测为 torch>=2.3 / transformers>=4.51 / numpy / matplotlib / modal——**依赖极轻**。★ 独立执行二（**今天最实在的一次独立执行：直接读了仓库里已提交的实测数据，验证论文的核心主张而不需要跑模型**）：拉取 raw.githubusercontent 上的 **data/D188_summary.json** 并解析，**实测四个模型规模的 head 普查数字**：Qwen3-0.6B → n_readers=70、n_brakes=13；1.7B → 48/13；4B → 89/56；8B → 103/32，且 **R（跟随演示的部分）与 P（跟随词义的部分）之比随规模从 0.97（0.6B）单调升到 1.37（8B）**，flip 率从 -0.034 升到 +1.049。→ **这组数字独立印证了论文的两个说法：机制在不同规模上都被找到（reader 数量随规模增加），且从 0.6B 到 8B 组件集合保持一致。** ★ 独立执行三（读 README 抓到论文摘要没有的实验设计与一个诚实的自我限制）：README 写明干预手段的完整清单（knockouts、twin-prompt handoffs、pushes、holds、circ= 只保留指定 head、circrs、circbands/screen、sinkv=、rkcond=、raknock、radd=、twinset=、hgain=、trace=），以及**一个明确的能力边界：作者自己承认「语义正确性不可学」这类强结论在别处被检验过**；还写明「**a softmax model of the readout with two constants per head, fit on one prompt distribution, predicts another**」——即读出律在分布外保持。★ 证据边界（必须写明）：(1) **本机无 GPU（torch 2.14.1+cpu、cuda=False）**，因此**今天没有跑通任何模型**；仓库的实测是作者的，**我读的是他们提交的 JSON 而非重新测量**；(2) **stars=1、forks=0、创建仅 3 天**，**零外部关注、零独立复现**；(3) 论文自称「38 pages, 22 figures」而仓库 figures/ 里实测有 23 个脚本，**数量口径需要对齐（README 说 Figure 19 与 21–23 是新增）**，属细节不一致，非硬伤；(4) 结论范围限于**任意标签的少样本句子分类**（3 个 3–4B 模型起步，论文口径后来扩到 0.6B–8B 与指令微调后仍存活），**能否外推到多标签、生成式任务、工具调用类 ICL 待验证**；(5) 论文作者仅 2 人（Andrew Gao、William Gao，Stanford）。★ 为什么给即时价值：**它给我们一个今天就能用的「机制级解释」——为什么少样本 prompt 里重复标签会误导模型（刹车机制不足）以及为什么在标签集合里塞一个不存在的标签会破坏读出（门控缺失）**，这两个现象我们做 prompt 工程时都遇到过但只能凭感觉解释。今天可以做的最小验证是 CPU 侧的 batteries 构造与 twin 对齐测试（tests/test_batteries.py），**不需要 GPU**；深度结论需要 GPU，但仓库给了 Modal H100 启动器（icl/modal_app.py）与十分钟的 toy 训练路径。★ **今天能落地的动作：读 paper/main.tex 里关于「duplicate-label gate」与「brakes」的两节 + 跑 CPU 测试 + 用我们的真实 few-shot prompt 去构造一个「重复标签」与「幽灵标签」对照，看模型行为是否如论文所述。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第二即时价值，**是今天 10 篇里唯一一篇「论文 + 完整可跑代码 + 论文源码 + 交互式 3D 讲解 + CPU 可跑测试 + 已提交的实测数据」五件齐备的论文，而且它的结论会直接改变我们 prompt 设计与 few-shot 评测的理解**。★ 核心结论（论文全文口径）：在任意标签（arbitrary labels）的少样本句子分类上，模型把 ",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第二即时价值，**是今天 10 篇里唯一一篇「论文 + 完整可跑代码 + 论文源码 + 交互式 3D 讲解 + CPU 可跑测试 + 已提交的实测数据」五件齐备的论文，而且它的结论会直接改",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05344v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.05344v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=a-circuit-for-in-context-learning",
+  "daily_path": "daily-detail.html?date=2026-11-05",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

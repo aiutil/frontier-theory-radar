@@ -1,0 +1,130 @@
+{
+  "id": "agnostic-learning-by-imitating",
+  "title": "Agnostic Learning by Imitating",
+  "authors": [
+    "Sílvia Casacuberta",
+    "Parikshit Gopalan",
+    "Varun Kanade",
+    "Omer Reingold",
+    "Konstantinos Stavropoulos"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-03",
+  "url": "http://arxiv.org/abs/2611.05346v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.05346v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-05",
+  "first_deep_dive_daily": "2026-11-05",
+  "value_type": "ignore",
+  "value_type_label": "暂时忽略",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 4.15,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 45.0,
+  "decision": "暂时忽略",
+  "one_line_judgement": "当前可忽略：今日暂缓，**方向是真理论（计算学习理论里一个漂亮的新等价性），但它今天与我们零交集：没有代码、没有工程出口、没有实验、且主题是判别学习 v…",
+  "one_line_essence": "今日暂缓，**方向是真理论（计算学习理论里一个漂亮的新等价性），但它今天与我们零交集：没有代码、没有工程出口、没有实验、且主题是判别学习 vs 生成学习的复杂度等价**。★ 内容（论文全文口径）：给定一个机器学习模型类与二元标签数据分布的采样访问权，问哪个计算任务更难——**训练一个判别模型把正负标签分得和类中最好的成员一样好**，还是**训练一个生成模型使所有类成员都无法区分其输出与真实数据**？作者**证明这两个计算学习论的基本任务在复杂度上完全等价**；一个方向此前已知（**正则性引理**给出从不可区分性任务（multiaccuracy）到判别任务（agnostic learning）的高效 oracle 归约，形式上是 boosting 算法的风格），**本文的主要贡献是另一个方向的高效 oracle 归约**；进一步地，多accuracy oracle 是一个**异常强的原语**，通过高效直接的构造同时达成范围广泛的学习目标；结果关键地依赖**对 oracle 做自适应查询**的能力，与先前「后处理单个 multiaccurate 预测器甚至不足以实现弱形式学习」的工作形成鲜明对比；技术层面连接到离线问题与在线设定下一个 no-regret 学习版本的联系，从而可用 follow-the-leader 类算法修改标签分布并聚合 oracle 的预测。★ 证据边界：(1) **无代码**——arXiv HTML 全文扫描无任何 github.com 链接命中本文实现；(2) **纯理论论文，无实验、无 benchmark、无数字可核对**，今天连一个可验证的量都没有；(3) **与我们的工程实践零交集**：我们不做学习理论证明，这个结果对我们唯一可能的用处是「多accuracy oracle 是强原语」这一句在理论上解释了为什么评测/标注可以替代部分训练信号——但这属于旁注，不构成行动项；(4) 主题是 cs.LG + cs.CC + cs.DS，纯理论。★ 判断：**保留最小索引。** **触发条件：出现实现 / 该等价性被某个 agentic 评测方法引用 / 我们自己开始设计「用评测信号替代训练信号」的方案。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日暂缓，**方向是真理论（计算学习理论里一个漂亮的新等价性），但它今天与我们零交集：没有代码、没有工程出口、没有实验、且主题是判别学习 vs 生成学习的复杂度等价**。★ 内容（论文全文口径）：给定一个机器学习模型类与二元标签数据分布的采样访问权，问哪个计算任务更难——**训练一个判别模型把正负标签分得和类中最好的成员一样好**，还是**训练一个生成模型使",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "noise",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日暂缓，**方向是真理论（计算学习理论里一个漂亮的新等价性），但它今天与我们零交集：没有代码、没有工程出口、没有实验、且主题是判别学习 vs 生成学习的复杂度等价**。★ 内容（论文全文口径",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.05346v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.05346v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=agnostic-learning-by-imitating",
+  "daily_path": "daily-detail.html?date=2026-11-05",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
