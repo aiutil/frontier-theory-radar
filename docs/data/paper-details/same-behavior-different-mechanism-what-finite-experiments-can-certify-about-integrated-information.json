@@ -1,0 +1,131 @@
+{
+  "id": "same-behavior-different-mechanism-what-finite-experiments-can-certify-about-integrated-information",
+  "title": "Same Behavior, Different Mechanism: What Finite Experiments Can Certify About Integrated Information",
+  "authors": [
+    "Linqian Wu",
+    "Diaoxuan He"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-05",
+  "url": "http://arxiv.org/abs/2611.08469v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.08469v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-08",
+  "first_deep_dive_daily": "2026-11-08",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.95,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 54.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日第九价值，**是一篇非常硬、但与我们几乎零交集的理论工作——它的价值在于给「机制级评测」划了一条可证伪的边界线**。★ 核心设定（论文全…",
+  "one_line_essence": "今日第九价值，**是一篇非常硬、但与我们几乎零交集的理论工作——它的价值在于给「机制级评测」划了一条可证伪的边界线**。★ 核心设定（论文全文口径）：可解释性、AI 审计与机器意识评估越来越依赖**机制级量（mechanism-level quantities）**——即系统因果转移律的泛函，描述它「怎么算」而不只是「输出什么」；而实验只能通过**有限的、部分的、带噪的干预**看到这条律。作者问：一个这样的量在什么条件下**可从实验的访问方式识别（identifiable）、对机制连续、且能从有限数据认证（certifiable）**，并**对整合信息 φ 精确作答**（在四单元与五单元的随机网络、已知 ground truth）。★ 实测口径（论文全文口径，逐条回指核对，**这组数字全部在原文定位到**）：**行为可以是沉默的——一个循环网络与一个前馈网络在响应延迟处的输入-输出律完全相同，分别携带 0.28 与 0 bits，而内部记录只需 4–53 次试验就能把它们分开**；**部分访问同样可能是盲的——未纳入一步记录的单元会施加 0.30–1.02 bits 的精度下限，且没有任何样本量能降低它**；在 all-but-self 奇偶网络中，任意长度的记录都只能通过各隐藏单元保真度之积来看见它们（**一个干预打破了这个对称性**）；**度量有锋利的边——因为 φ 选一个划分、并用某一个准则指定因果与效应却报告另一个，跨越边的无穷小机制改动在我们于随机网络中找到的 99% 的边上导致 25–100% 的变化，而约 1% 几乎完美拟合干预数据的代理模型把它误报超过 20%**；**单边论断仍然成立——同样的数据可以认证边的两侧各自的一个下界，作者证明在机制空间的一个 64 维区域内 φ > 1.004 bits，并以约 10^7 次受控转移、伪证书概率至多 α 予以认证**。结论原话：**「可测性因此是一个设计问题，且有可计算的答案。」** ★ 独立执行一（工件状态核验，**结论是「暂无」**）：arXiv HTML 全文（574,810 B）扫描，**本文自身没有任何 github.com 链接**（仅命中 html_feedback、LaTeXML 与 openreview.net/forum 模板占位），无 huggingface、无项目页。→ **今日无代码，纯理论论文。** ★ 独立执行二（相关性判断，**这是给它长尾而不是忽略的唯一理由**）：它的主题是**机制级量在有限实验下的可识别性**——而我们每天都在做「只看输出、不看机制」的评测（judge 打分、成功率、pass rate）。**它给了一条具体的警告：某些机制级差异在行为上完全不可见（0.28 vs 0 bits），且部分访问会带来无法用更多样本消除的精度下限（0.30–1.02 bits）；同时约有 1% 的好拟合代理模型会误报该量超过 20%。** → **这直接影响我们「用 LLM judge + 行为指标代替机制核验」的合理性论证**——不是说不该用，而是说**这类代理评测本身也有可识别性边界**。★ 证据边界：(1) **无代码、无实验产物、纯理论**，所有结论为理论推导，本机零验证；(2) **结论只在「四单元与五单元的随机网络」上精确成立**，**外推到真实大模型完全没有论证**；(3) 「99% 的边上导致 25–100% 变化」这类统计依赖随机网络采样，**没有置信区间与样本量说明**；(4) 「约 1% 的代理模型误报超过 20%」——**这 1% 是相对什么基线、在什么网络族上测的，正文未给细节**，这是一个被广泛引用时会失真的数字；(5) q-bio.NC + cs.LG + cs.AI，**与我们的工程主线距离最远**；(6) 无第三方复现。★ 为什么给长尾：**「行为相同 ≠ 机制相同」这个结论，以及「部分访问会设下无法用采样消除的精度下限」，是我们在设计评测时应该记住的一句边界**；其余对我们没有行动项。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第九价值，**是一篇非常硬、但与我们几乎零交集的理论工作——它的价值在于给「机制级评测」划了一条可证伪的边界线**。★ 核心设定（论文全文口径）：可解释性、AI 审计与机器意识评估越来越依赖**机制级量（mechanism-level quantities）**——即系统因果转移律的泛函，描述它「怎么算」而不只是「输出什么」；而实验只能通过**有限的、部",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第九价值，**是一篇非常硬、但与我们几乎零交集的理论工作——它的价值在于给「机制级评测」划了一条可证伪的边界线**。★ 核心设定（论文全文口径）：可解释性、AI 审计与机器意识评估越来越依",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-29"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08469v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.08469v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=same-behavior-different-mechanism-what-finite-experiments-can-certify-about-integrated-information",
+  "daily_path": "daily-detail.html?date=2026-11-08",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

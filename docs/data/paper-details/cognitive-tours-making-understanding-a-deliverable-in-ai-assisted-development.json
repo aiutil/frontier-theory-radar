@@ -1,0 +1,132 @@
+{
+  "id": "cognitive-tours-making-understanding-a-deliverable-in-ai-assisted-development",
+  "title": "Cognitive Tours: Making Understanding a Deliverable in AI-Assisted Development",
+  "authors": [
+    "Margaret-Anne Storey"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-05",
+  "url": "http://arxiv.org/abs/2611.08456v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.08456v1",
+  "code_url": "https://github.com/margaretstorey/cognitive-tours",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-08",
+  "first_deep_dive_daily": "2026-11-08",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 4.6,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日第六价值，**是一篇立场清楚、有真实可运行原型、而且正好命中我们工程痛点（agent 写代码越来越多，但没人说得清系统怎么工作）的论文—…",
+  "one_line_essence": "今日第六价值，**是一篇立场清楚、有真实可运行原型、而且正好命中我们工程痛点（agent 写代码越来越多，但没人说得清系统怎么工作）的论文——它的价值不在算法，而在它提出了一组可抄的文档资产结构**。★ 核心框架（论文全文口径）：生成式 AI 与 agentic coding 正在加速软件开发，带来技术债的担忧，但**有两种更隐蔽的债正在成为软件健康的关键风险**：**认知债（cognitive debt）——团队共享理解的缺失或侵蚀，没有人能有信心地解释系统怎么工作、或预测一次改动的影响；意图债（intent debt）——缺少清晰表述的目标、约束与理由，解释系统是为什么而存在、以及它应当如何演进**。★ 方法：论文提出 **Cognitive Tours**——一个 web 原型，用于创建与跟随**精选路径（curated paths）**，把**用户需求、设计决策、代码、测试与开放问题**串起来；**AI 辅助的 skills 负责审计既有 waypoint 与 tour 的问题与陈旧、并建议新的候选；人决定什么重要、验证关系、构造叙事**。论文明确说这种分工**刻意保留了「有生产力的摩擦」（productive friction）**——**因为选择、解释与修订 tour 所涉及的 sensemaking 过程本身就是为了培育和分享理解**。★ 实测口径（诚实地说：**这是今天证据最弱的一篇**）：论文自述「本演示用 Cognitive Tours 自身的一条 tour 来介绍该工具并说明其设计决策与交互机制」，并**以「一份拟议的评估议程」收尾**——**即论文本身没有给出评测结果，它交付的是一个工具与一份评估计划**。★ 独立执行一（GitHub API 逐条核验，实测）：**github.com/margaretstorey/cognitive-tours 真实存在**（created 2026-05-21，pushed **2026-11-06T05:24:01Z**，**MIT，stars=0、forks=0**，size 11,373 KB），**仓库描述字段是 new verison of shrimp（一句与论文无关的残留文本，作者未更新）**。目录实测：**.claude/skills/ 下有 audit-tours/SKILL.md、audit-waypoints/SKILL.md、first-tours/SKILL.md、suggest-tour/SKILL.md、suggest-waypoint/SKILL.md 五个作者自写的 Claude Skill**，另有 **spec-kit 全套**（speckit-constitution / speckit-specify / speckit-plan / speckit-tasks / speckit-implement / speckit-checklist / speckit-analyze / speckit-clarify / speckit-git-* 等 10 个 SKILL.md，合计约 12.5 万字符量级）与 .specify/ 扩展、.claude-plugin/marketplace.json。★ 独立执行二（读 SKILL 实测，这是今天最可抄的一份东西）：`.claude/skills/audit-tours/SKILL.md` **实测全文可读**，它的 front matter 与正文把这个 skill 写得非常可执行——**「检查 tour 与当前代码和地图的一致性：哪些近期改动的文件没有 waypoint 也没有 tour、陈旧或不衔接的 stop narrative、冗余边、以及可能缺失的 stop。读取站点的 /api/data；只报告，绝不写入地图。」** 明确 disable-model-invocation: false、user-invocable: true，支持 /audit-tours [since YYYY-MM-DD] [site <url>]。→ **这份 skill 描述实际上就是一份「AI 辅助开发的文档漂移检测」规格书**，我们的 repo 完全可以照抄这个形态：让 agent 定期比对「代码改了什么」与「tour/waypoint 覆盖了什么」，只报告不自动改。**这是今天最容易被我们直接拿走的一个资产。** ★ 独立执行三（README 实测拿到的与论文相关的信息）：README 实测写明「**A research prototype, built by its author with AI assistance (Claude Code), and used on itself: the map and tours describe how it was built**」；**「understanding cannot be outsourced or automated. Tours you create yourself repair your own cognitive debt, tours you create for others are sharing some of your understanding with others. AI is a scaffold, an amplifier, not a substitute.」**；并给出**研究基础是另一篇论文《From Technical Debt to Cognitive and Intent Debt》（arXiv 2603.22106，Storey, 2026）——注意那是今年 3 月的另一篇**；README 指向 demo https://cognitive-tours-demo.vercel.app（a copy of the self-documenting Cognitive Tours map, reset nightly）与两个域名 cognitive.tours / cognitivetours.dev。★ 独立执行四（demo 可达性实测，**结论是「待核验」**）：https://cognitive-tours-demo.vercel.app/ **今日 4 次尝试全部未取回内容**（curl 无输出文件、无状态码），**因此 demo 今天不可达，状态写「待核验」而不是「已上线可用」**；其余交付物（仓库、skill、论文）均已核验为真实存在。★ 证据边界：(1) **论文无评测结果**，只有工具与一份「拟议的评估议程」，**这是全文最关键的定性**；(2) 「认知债 / 意图债」两个概念**尚无操作化度量**，论文也没给；(3) demo 今日不可达（4/4 次失败），**无法核对产品形态**；(4) 仓库 stars=0、无第三方使用记录；(5) **仓库描述残留 new verison of shrimp，说明仓库卫生不佳**；(6) 论文提到的「生产性摩擦」是作者的设计主张，**没有任何用户研究或对照实验支持**；(7) 论文未给出与 GitHub Wiki / ADR / code-wiki 等既有做法的对比。★ 为什么给趋势价值：**「认知债」与「意图债」这两个词，以及「waypoint → tour → docent narrative」这套结构，是我们做 AI 辅助开发时天天遇到但从没有词汇描述的东西**；而它交付的**五个 Claude Skill（尤其 audit-tours）是可以直接借用的工程资产**——我们不必等它的评测，可以先在自己 repo 上试跑一遍「tour 漂移审计」。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第六价值，**是一篇立场清楚、有真实可运行原型、而且正好命中我们工程痛点（agent 写代码越来越多，但没人说得清系统怎么工作）的论文——它的价值不在算法，而在它提出了一组可抄的文档资产结构**。★ 核心框架（论文全文口径）：生成式 AI 与 agentic coding 正在加速软件开发，带来技术债的担忧，但**有两种更隐蔽的债正在成为软件健康的关键风",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第六价值，**是一篇立场清楚、有真实可运行原型、而且正好命中我们工程痛点（agent 写代码越来越多，但没人说得清系统怎么工作）的论文——它的价值不在算法，而在它提出了一组可抄的文档资产结",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08456v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.08456v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=cognitive-tours-making-understanding-a-deliverable-in-ai-assisted-development",
+  "daily_path": "daily-detail.html?date=2026-11-08",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

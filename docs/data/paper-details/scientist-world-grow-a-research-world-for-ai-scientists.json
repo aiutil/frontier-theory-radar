@@ -1,0 +1,136 @@
+{
+  "id": "scientist-world-grow-a-research-world-for-ai-scientists",
+  "title": "Scientist World: Grow a Research World for AI-Scientists",
+  "authors": [
+    "Taiming Lu",
+    "Sachin Konan",
+    "Zhuang Liu"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-05",
+  "url": "http://arxiv.org/abs/2611.08478v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.08478v1",
+  "code_url": "https://github.com/zlab-princeton/scientist_world",
+  "benchmark_url": "https://github.com/zlab-princeton/scientist_world_cli",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-08",
+  "first_deep_dive_daily": "2026-11-08",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 7.2,
+    "engineering_testability": 6.05,
+    "trend_signal": 4.3,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 81.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今日第三即时价值，**是今天 10 篇里工程可交付性最强的一篇——它不是「一篇论文 + 一个仓库」，而是一整套已经装好、已经跑起来、有网站、…",
+  "one_line_essence": "今日第三即时价值，**是今天 10 篇里工程可交付性最强的一篇——它不是「一篇论文 + 一个仓库」，而是一整套已经装好、已经跑起来、有网站、有命令行、有 pip 包、有评测流水线的系统，今天就能装到我们机器上跑起来**。★ 核心洞见（论文全文口径）：**「AI-Scientists 来了，但它们长大的世界没有来。」** 人类科学家的世界是几个世纪的开放问题 + 共享想法 + 科学文献；对 AI-Scientist 来说这个世界 **readable but not runnable（可读但不可运行）**。Scientist World 的做法是：**每一篇研究论文都变成一个可执行环境**——自动流水线从每篇论文里抽出开放式研究问题，并把论文提出的方法复现成 baseline；进入该环境的 AI-Scientist **以「作者本人做到什么程度」为被评测对象**。★ 实测口径（论文全文口径，逐条核对）：**发布首批 1,000 个已验证环境**；**用这个世界当评测，前沿 AI-Scientist 已能在 74% 的时间里超过人类研究者**；**包含 6,400 小时研究轨迹（每一个想法、实验、失败与成功）**；**作为训练场，能把一个小模型提升 +158% 使其在研究构想能力上追平前沿模型**。全文 §F.1 与 Figure 35 进一步拆开：**在 improve 模式下 84% 的尝试击败了复现出的论文方法，在 innovate 模式下 74% 击败**——**innovate 的左尾更重（全新设计更容易彻底失败），但即使如此典型尝试仍能推动指标**。全文还实测点名了 leaderboard 格局：**Claude Fable 5.1 与 Fable 5 在「从零设计新方法」上占据前两名；开源模型中 GLM 5.2 最接近前沿、innovate 排第三**。★ 独立执行一（GitHub API 逐条核验，实测）：**github.com/zlab-princeton/scientist_world 真实存在**（created 2026-11-05T05:08:08Z，pushed 2026-11-06T07:09:46Z，**MIT，stars=6、forks=0**，size 1,864 KB），**且 README 实测是一份完整系统说明**（不是 coming soon）：目录含 evaluation/（dataset_builder/ 下 build_dataset.py 11,311 B、consolidate.py、grade_axes.py、grade_grounded.py、push_to_hf.py 等一整套构建与评分流水线；evaluation/ 下 agent.py **41,450 B**、cache.py、cli.py；evaluation/docs/scoring.md **15,598 B**；evaluation/dataset_builder/DATASET_CARD.md 5,622 B），另有 **.github/workflows/tests.yml（2,287 B）即自带 CI**。**github.com/zlab-princeton/scientist_world_cli 也真实存在**（独立仓库，pip 包名 sciworld，含 sciworld/cli.py、_api.py、cache.py、QUICKSTART.md、CHANGELOG.md、pyproject.toml、.github/workflows/containers.yml）。★ 独立执行二（**今天最实用的一次核验：它可以直接装、直接跑**）：README 实测给出完整命令行——pip install sciworld，然后 sw init --data-dir ~/sciworld-data --backend venv，sw list，sw research 2502.13759 --mode innovate --agent claude-code，sw status，sw evaluate 2502.13759；并且**明确说明「你不需要这个仓库，环境通过 sciworld 命令行使用」**。→ **这意味着今天我们就可以在一个 venv 里装它、列出可用环境、对一篇论文跑一次 research——这是今天 10 篇里唯一一篇本机零 GPU 也能启动的**（跑起来要花 API 费与算力，但入口是真的）。★ 独立执行三（项目站实测，http 200，3,343,890 B）：https://ai-scientist.world 可访问，导航实测为 Home / Leaderboard / Environments / Envs / Our World / World / Usage，页面实测写「**Agents read 9,000 new arXiv papers a month. Reproduce. The paper's method, rebuilt until it runs. Design. Turned into a task with scored targets. Package. Sealed into a runnable container. Verify. Audited before it joins the world.**」——**这条把环境构建流水线写成了六个动作：读 → 复现 → 设计 → 打包成容器 → 验证 → 审计后才进世界**，对我们自己设计「论文转可执行环境」的流程有直接参考价值。★ 独立执行四（**今天必须写出来的一处跨资产不一致**）：项目站落地页写的是 beat the paper's own method **76%** of the time，**而论文摘要与全文（§F.1、Figure 35）一致写 74%**（84% improve / 74% innovate 分开统计，74% 对应 innovate）。**官网与论文给出两个不同的数字且未标注口径差异**——本条不做调和，原样记录，并注明「论文口径 74% / 官网口径 76%，差异原因待核验」。★ 独立执行五（**三处资产状态必须区分对待，不能一概说「已开源」**）：(1) 代码：**已开源且有 CI**（scientist_world 仓库 + scientist_world_cli）；(2) 环境本体：README 徽章指向 github.com/orgs/ScientistWorld/repositories，但 **该 GitHub 组织经 API 实测返回 404 Not Found——即 1,000 个环境的容器仓库当前无法访问**；(3) 轨迹数据集：README 徽章指向 huggingface.co/datasets/zlab-princeton/scientist-world-traces，**经 hf-mirror 实测同样为 404 Repository not found**（对照组 hf-mirror 对 Qwen/Qwen3-8B 返回 200 正常）。→ **准确表述是：主代码已开源，环境容器与轨迹数据集的链接已写但当前 404，「首批 1,000 个已验证环境」今天无法下载核验。** ★ 证据边界：(1) **74% / 84% / 6,400 小时 / +158% 全部为作者自述，本机零复现**；(2) **评测基准是「AI-Scientist 相对论文自己复现出的 baseline 提升多少」，而这个 baseline 由作者的自动流水线复现——若 baseline 复现得偏弱，74% 会被高估**，论文未报告 baseline 复现的成功率，**这是这套数字最关键的未说明前提**；(3) 「1,000 个已验证环境」的验证强度取决于作者自述的审计流程，**环境的容器仓库与轨迹数据当前都 404，无法抽查任何一个环境**；(4) 「9,000 篇 arXiv 论文/月」是站点的采集速率口径，未说明去重与筛选规则；(5) 6,400 小时轨迹的**标注质量与可训练性未评估**，而 +158% 是「小模型在研究构想能力上追平前沿」，**具体是哪个小模型、哪种构想能力评测，未在摘要给出**；(6) 仓库 stars=6、公开仅 1 天，**无第三方复现**。★ 为什么给即时价值：**它把「让 agent 自己做研究」这件事从「我们讨论该不该做」推进到了「今天就能装上跑一个 case」**，而且它同时给我们两个可抄的东西：**（a）一个可运行的研究 agent 的入口形态（sw research <arxiv_id> --mode innovate/inprove）；（b）把论文变成可执行环境的六步流水线（读→复现→设计→打包→验证→审计）**——第二条正是我们雷达自身想做的事（论文→判断→资产）的放大版。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第三即时价值，**是今天 10 篇里工程可交付性最强的一篇——它不是「一篇论文 + 一个仓库」，而是一整套已经装好、已经跑起来、有网站、有命令行、有 pip 包、有评测流水线的系统，今天就能装到我们机器上跑起来**。★ 核心洞见（论文全文口径）：**「AI-Scientists 来了，但它们长大的世界没有来。」** 人类科学家的世界是几个世纪的开放问题 ",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": true,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第三即时价值，**是今天 10 篇里工程可交付性最强的一篇——它不是「一篇论文 + 一个仓库」，而是一整套已经装好、已经跑起来、有网站、有命令行、有 pip 包、有评测流水线的系统，今天就",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08478v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.08478v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=scientist-world-grow-a-research-world-for-ai-scientists",
+  "daily_path": "daily-detail.html?date=2026-11-08",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

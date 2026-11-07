@@ -1,0 +1,130 @@
+{
+  "id": "unpacking-the-compute-efficiency-of-strong-to-weak-opd-against-grpo",
+  "title": "Unpacking the Compute Efficiency of Strong-to-Weak OPD against GRPO",
+  "authors": [
+    "Zeyu Leo Liu",
+    "Yang Li",
+    "Bo Pang",
+    "Emre Can Acikgoz",
+    "Xuan-Phi Nguyen"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-05",
+  "url": "http://arxiv.org/abs/2611.08453v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.08453v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-08",
+  "first_deep_dive_daily": "2026-11-08",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 62.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：今日第七价值，**是一篇「把一个被广泛引用的结论当默认前提，然后实测推翻它」的论文——对我们正在做的模型蒸馏/训练成本决策直接相关，且它的方…",
+  "one_line_essence": "今日第七价值，**是一篇「把一个被广泛引用的结论当默认前提，然后实测推翻它」的论文——对我们正在做的模型蒸馏/训练成本决策直接相关，且它的方法论（把 FLOPs 摆到同一把尺子上）值得长期沿用**。★ 核心问题（论文全文口径）：on-policy distillation（OPD）在冻结教师下用学生自己的 rollout 训练、逐 token 接受教师监督；**「这份稠密信号是否真的降低了达到目标精度所需的训练 FLOPs 相比强化学习？」** ★ 实测口径（论文全文口径，逐条核对，**关键在于结论是分情况的**）：**用外部后训练教师时，OPD 在同等设置下的「每训练 FLOP 准确率」通常输给 GRPO，即使该教师本身是用 GRPO 进一步训练的，而且常常伴随回答长度膨胀（response-length inflation）**；**但换成另一种教师，结论反转：当教师就是学生自己的 GRPO checkpoint 时，OPD 能以少 50 倍的蒸馏 FLOPs 恢复出该 checkpoint 在数学上的精度**（论文正文另注：在默认 8-rollout-per-prompt 设置下为 6 倍），**且在同一教师设定下，这个高效率在更大的学生、代码任务、以及第二个模型家族上都稳定复现**；**但在单一领域上，GRPO checkpoint 本身就是我们想要的模型，蒸馏它反而增加总计算**。多教师部分：**multi-teacher OPD（引 DeepSeek-AI, 2026）把各领域的 GRPO 专家合并进单个学生并达到每个专家的精度，蒸馏阶段只花专家训练 FLOPs 的 5.2%（2 个领域）与 8.0%（4 个领域）；把专家训练与蒸馏一起算，这条流水线在 2 领域混合上达到 joint GRPO 性能但总 FLOPs 少 42.0%**。★ 独立执行一（全文逐条回指核对，**每一个数字都在原文中找到**）：5.2% / 8.0% / 42.0% 与 50× / 6× 均在 arXiv HTML 全文中定位到原句（含 LaTeXML 渲染残留这类标记）。★ 独立执行二（**工件状态核验，结论是「暂无」**）：arXiv HTML 全文（783,753 B）扫描，**本文自身没有任何 github.com 链接**，唯一的 huggingface 命中是 **huggingface.co/deepseek-ai（即被引用的 DeepSeek-AI 2026 那一组发布的模型，不是本文代码）**。→ **今日无代码、无 release、无可下载工件。** ★ 独立执行三（读摘要与正文抓到的方法论要点）：论文开篇即指出「**近期的 OPD 工作在宣称优于 GRPO 时很少把 FLOPs 算进去**」，并说「**已有的并发 OPD 分析同样遗漏了与 GRPO 的计算效率对比**」——**即这篇的贡献主要是把一个大家默认的结论摆正，而不是提出新方法**；多教师部分也明说「**近期开源模型（Yang et al. 2026d、Team et al. 2026、DeepSeek-AI 2026、Kimi Team 2026）用的就是这个配方，但都没有测量整条流水线的对比**」。★ 证据边界：(1) **无代码、无工件、数字全为作者自述**，本机零验证；(2) **结论高度依赖「教师是谁」**——外部教师下 OPD 输给自己学生的 GRPO checkpoint 教师；**任何把 OPD 当成通用省钱手段的决策都必须先确认教师来源**；(3) 「50× / 6×」是**蒸馏阶段** FLOPs 的比值，**不包含教师本身的训练成本**——论文在多教师部分才做完整口径（42.0%），**单教师那组没有给出端到端口径，这是一个容易误读的地方**；(4) 任务范围有限（数学、代码、第二模型家族），**未见生产规模（>70B）验证**；(5) 回答长度膨胀这一负面现象只在「外部教师」设定下报告，**机制未解释**；(6) 无第三方复现。★ 为什么给长尾：**它的价值是「纠正一个默认假设 + 提供一把尺子（把 FLOPs 摆到同一口径）」**——我们如果在做任何「蒸馏比 RL 省」的技术决策，应该拿它的口径去重算一次；但它没有代码、结论条件性强，今天不值得投入深读。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第七价值，**是一篇「把一个被广泛引用的结论当默认前提，然后实测推翻它」的论文——对我们正在做的模型蒸馏/训练成本决策直接相关，且它的方法论（把 FLOPs 摆到同一把尺子上）值得长期沿用**。★ 核心问题（论文全文口径）：on-policy distillation（OPD）在冻结教师下用学生自己的 rollout 训练、逐 token 接受教师监督；",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第七价值，**是一篇「把一个被广泛引用的结论当默认前提，然后实测推翻它」的论文——对我们正在做的模型蒸馏/训练成本决策直接相关，且它的方法论（把 FLOPs 摆到同一把尺子上）值得长期沿用",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-11-29"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08453v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.08453v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=unpacking-the-compute-efficiency-of-strong-to-weak-opd-against-grpo",
+  "daily_path": "daily-detail.html?date=2026-11-08",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

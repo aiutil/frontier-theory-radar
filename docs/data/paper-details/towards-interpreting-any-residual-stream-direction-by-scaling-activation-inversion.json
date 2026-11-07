@@ -1,0 +1,136 @@
+{
+  "id": "towards-interpreting-any-residual-stream-direction-by-scaling-activation-inversion",
+  "title": "Towards interpreting any residual stream direction by scaling activation inversion",
+  "authors": [
+    "Celeste De Schamphelaere",
+    "Juan J. Vazquez",
+    "Ari Spiesberger",
+    "Tomáš Gavenčiak",
+    "Gavin Leech"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-05",
+  "url": "http://arxiv.org/abs/2611.08465v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.08465v1",
+  "code_url": "https://github.com/ceselder/maem",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-08",
+  "first_deep_dive_daily": "2026-11-08",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 2.4
+  },
+  "score": 72.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」…",
+  "one_line_essence": "今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」升级为「训练一个能把任意方向反演成文本的模型」，而且这个反演结果是可以用一次前向验证的**。★ 核心问题（论文全文口径）：解释残差流的一个方向，传统做法是**扫描语料找能强烈激活它的文本——但这样找到的文本受限于语料里有什么**。MAEM（Maximally-Activating Example Metamodels）**把「残差流方向 → 文本样本」做成一个学习到的映射**：目标是**最大化给定方向与 MAEM 生成文本在目标模型上激活的余弦相似度**；这是一个 **label-free 的 RL 目标**，正是它让 MAEM 可以扩展到多样化的方向来源（SAE 特征、probe 方向、原始激活）。★ 实测口径（论文全文口径，逐条核对）：**一个 Qwen3.6-27B 的 MAEM 在 held-out 激活上的反演优于语料搜索与自然语言自编码器（NLA）**；**在多数 held-out 语言/领域上超过语料搜索（语料扩到 10M token 时）**；**能激活 89% 的 held-out SAE 特征**；**识别 steering vector 背后的概念与 NLA 相当**；**恢复 LoRA 后门 payload 的频率高于语料搜索**；**甚至能 verbalise 一些模型 workspace 的 inner monologue**。★ 关键的方法论优势（论文自己强调，也是今天最值得抄的一点）：**「不同于其它 metamodel（例如 NLA）产出的解释，MAEM 的样本可以用目标模型的一次前向验证」**——**即 MAEM 的输出是可证伪的：拿它去跑一遍，如果那个方向真的被激活，相似度就高**。→ **这解决了自然语言解释最大的软肋：一个听起来很合理的解释无法被独立检验。** ★ 独立执行一（GitHub API 逐条核验，实测）：github.com/ceselder/maem **真实存在**（created 2026-08-26，pushed 2026-09-26，**MIT，stars=0、forks=0**，size 1,625 KB）。目录实测完整且是真研究工程：mxf/（core library：config / injection hooks / prompts / SAE loader / MFU）、data/（**collect_acts.py、collect_acts27b_worker.py、collect_acts_longctx.py、build_universal_bank.py 33,383 B、build_big_sft_bank.py、build_rl_bank.py** 等一整套激活采集与方向库构建，含多个 Modal 启动器）、sft/（match-activation SFT，LoRA + torchrun）、rl/（**GRPO，actor + vLLM 每 rank，rl_disagg.py 即 X 台 vLLM rollout GPU + Y 台 trainer GPU 的快路径，rl_ddp.sh，modal_rl_disagg.py 生产启动器，含 test_rl_disagg_queue.py / test_rl_disagg_scalerl.py 两个 CPU 测试**）、eval/（**eval_universal.py（held-out family cosine + mean_all、SAE norm_act / rank / cos / %unverbalized、random control、ctx-bucket 与 in-distribution families）、snippet_locality.py、autointerp_detection.py**）。★ 独立执行二（**今天最有价值的独立发现：仓库里有一份逐次实验的训练台账 TRAINING_LEDGER.md，实测 6,225 B**）：读它拿到摘要完全没有的复现细节——**基座 Qwen/Qwen3.6-27B，inject L1 / read L42，rsLoRA r64/α16 all-linear，steer-coeff 1.0**；**SFT 阶段 big_sft 用了 1,000,000 条样本（50 万 realact 短上下文 ≤512 + 50 万 probes），lr 3e-5、batch 16、2 个 epoch 共 25,000 步，多卡 gloo DDP on 5×B300（作者明写 NCCL 在这台机器上会死锁），loss 4.15 → ~1.8**；**RL 阶段全部从 big_sft/final 初始化，pool_rl_mix 是三分之三配比（⅓ realact + ⅓ probes + ⅓ realact_long），长上下文激活（realact_long，位置均匀取 1–8192）只进 RL 不进 SFT**；**Dr.GRPO（adv = r − group_mean，不除 std）、lr 1e-5、reward = max-over-token cos × 1000、KL 系数 0.03（上限 10，ref = SFT init）、diversity 系数 40（激活正交，按 token 平均池化）**；**并且台账明确记录了被砍掉的分支：Arm SHORT 与 Arm LONG 都标注 exploratory, KILLED 2026-08-27，并留下每 25→50 步的 eval 曲线（early 0.519→0.527 / mid 0.465→0.473 / long 0.408→0.414 等）**；最终选定 **LONG-HORIZON**（= LONG 配置 + LP per-tok 1.0，约 3–8% reward 方差）。→ **这份台账本身就是今天最值钱的东西之一：它示范了「把每次 RL 尝试连同它为什么被砍掉一起记下来」的研究记录方式，我们自己的实验记录应该照这个格式来。** ★ 独立执行三（模型权重实测，经 hf-mirror 逐条核验）：**ceselder/maemm-27b-rl-last16-lr5e-7 真实存在**（created 2026-09-18，downloads=40，likes=0，**未 gated**）；**ceselder/qwen36-27b-sae-l42-1b 存在**（created 2026-08-22，downloads=0）；**ceselder/qwen3.6-27b-nla-av 存在**（created 2026-07-14，**downloads=219**，即 NLA 基线权重是最被下载的那个）；对照组 **m-a-p/MATH-lighteval 在 hf-mirror 实测 404**，证明该通道能正确区分存在与不存在。→ **三份权重均可下载，训练好的反演器与两个基线都在，可以直接做对比实验。** ★ 独立执行四（方法细节实测）：README 实测写明反演是**两层**——**SFT（match-activation）：对每个方向，目标是那段真实语料 span（其激活即产生它的那个）；RL（Dr. GRPO）：reward = max-over-rollout 余弦，优化反演器去「主动唤起」该方向**；**README 还给了一条经验结论：真实激活与 probe 的均衡配比对 held-out family 泛化最好，而把长上下文激活加进 RL 混合是覆盖「只在长程才触发」特征的便宜办法**；评分方式为**在干净（adapter 关闭）的前向上重读 READ_LAYER 的激活，取 max-over-token 余弦**——**注意这个设计本身就是「可验证性」的实现细节，也是我们想借的核心**。★ 证据边界：(1) **本机零复现**（无 GPU；即便有 GPU，复现需 5×B300 级别的训练量，远超本机）；(2) **仓库 stars=0、fork=0，无第三方复现**；(3) 论文里的 **89% SAE 特征激活率**等数字全为作者自述；(4) **「verbalise inner monologue」这类结论的评测方式在摘要里没给全**，需要读全文附录才能判断强度，**今日未逐条核对，标为待核验**；(5) MAEM 需要目标模型前向 + 注入 hook，**我们若要在生产系统里用它，需要目标模型的访问权**；(6) **TRAINING_LEDGER 中的 eval 数字是该仓库作者自己的内部指标**，未与论文主表逐项对齐，**我们不把它们当作论文结论**。★ 为什么给趋势而不是即时：**它的价值在「可验证的解释」这个范式，而不在今天就能拿到的业务收益**——我们要先在自己的一两个内部模型上试一次「能否给一个已知方向生成可验证的反演样本」，再决定是否值得投入。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」升级为「训练一个能把任意方向反演成文本的模型」，而且这个反演结果是可以用一次前向验证的**。★ 核心问题（论文全文口径）：解释残差流的一个方向，传统做法是**扫描语料找能强烈激活它的文本——但这样找到的文本受限于语料里有",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」升级为「训练一个能把任意方向反演成文本的模型」，而且",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08465v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.08465v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=towards-interpreting-any-residual-stream-direction-by-scaling-activation-inversion",
+  "daily_path": "daily-detail.html?date=2026-11-08",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

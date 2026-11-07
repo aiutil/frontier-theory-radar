@@ -1,0 +1,628 @@
+{
+  "date": "2026-11-08",
+  "total": 10,
+  "generated_at": "2026-11-08T04:32:30.349175",
+  "papers": [
+    {
+      "title": "XStack: A Benchmark for ML Repo Migration",
+      "authors": [
+        "Linrong Cai",
+        "Taiming Lu",
+        "Haozhe Chen",
+        "Zhuang Liu"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08472v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08472v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/zlab-princeton/XStack",
+      "benchmark_url": "https://github.com/zlab-princeton/XStack",
+      "project_url": "https://github.io/XStack/",
+      "abstract": "ML code should run where researchers choose, not where it was first written. Today, machine learning code mainly lives in two ecosystems, PyTorch on NVIDIA GPUs and JAX on Google TPUs. Migrating repositories between them means building and testing across frameworks and hardware. This migration is (1) a practical need, since it unlocks different hardware for researchers, and (2) a natural benchmark: it involves different frameworks and hardware, covers whole repositories, and is long-horizon and ",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "benchmark"
+      ],
+      "score": 88.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08472v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08472v1"
+        }
+      ],
+      "id": "xstack-a-benchmark-for-ml-repo-migration",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 7.65,
+        "engineering_testability": 7.15,
+        "trend_signal": 6.25,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "今日第一即时价值，**是今天 10 篇里唯一一篇「论文 + 完整可跑评测 harness + 20 个真实任务的完整判分标准 + 已公开的 agent 轨迹 + 一个已上线网站」四件齐备、且作者是我们自己每天在用的那类 agent（coding agent）的论文——它把「agent 到底能不能做对工程」这件事变成了可复算的数字**。★ 核心设定（论文全文口径）：**每个任务是一个真实的 PyTorch 仓库（固定 commit），agent 拿到源码、一台干净的 TPU 机器和一个 prompt，必须交回一个 JAX 仓库，且不许知道评测指标、分数线和数据集**。评测分四层：**① 全量跑一遍（fresh machine full scale），headline 数字与源仓库论文自报的 published result 对比，阈值由作者在 pinned commit 上认证校准；② 导出的权重必须能加载回源模型（check_weight_load.py 51,756 B 专门做这件事）；③ 两个 judge 各读 transcript 与 diff，一个查 recipe、一个查作弊，各跑 3 次，一次 fail 即判 fail；④ Phase 2：blind 轮失败后给一次冻结代码的补救轮（只有 run_train.py 可改，且 recipe 已明确给出）**。★ 实测口径（论文 + README 逐条核对）：**20 个任务、7 个 coding agent 在真实 TPU 上跑，Claude Opus 5 通过率 75%、GPT-5.6-sol 45%、其余 agent 全部 ≤40%**；论文另给出**通过率随 agent 成本的 log 线性增长**；README 实测写明 agents can complete these migrations but still struggle to verify that what they built is faithful, complete and works end to end——**这句话是今天最该记住的一句：迁移能做对，难的是自己验证做对了**。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/zlab-princeton/XStack **真实存在**（created 2026-11-05T15:37:10Z，pushed 2026-11-06T15:49:35Z，**stars=1、forks=0**，size 2,380 KB，license 字段 NOASSERTION 但 **LICENSE 文件实测为 Apache License 2.0 全文**）。提交历史实测仅 2 条（2026-11-06 01:05 Initial commit、2026-11-06 15:49 add arXiv link）——**即这是一个刚公开一天的新仓库，今天的可核验面很小**。★ 独立执行二（目录结构实测，是真能跑的工程而非玩具）：harness/ 下 phase1.sh / phase2.sh / run_cell.sh（34,724 B）/ grade.sh（12,353 B）/ tpu_env.sh / tpu_ssh.sh / tpu_reset.sh / render_prompts.py / check_weight_load.py（29,302 B）/ compare_metric.py / freeze_check.py / weight_load_registry.py（51,756 B）/ shim_park_pending.py / parse_rollout.py / parse_claude_trace.py，agents/ 下 claude.sh（13,552 B）与 codex.sh，judges/ 下 bundle.py / judge_verdict.py / judge_run.py / failure_judge.py，prompts/ 下 cheat_judge.md 与 correctness_judge.md（各 8,687 B）以及 README 实测提到的**三个 judge prompt 与一份 failure taxonomy**；tasks/ 下 **20 个任务目录实测齐全**（airbench / ast / deepspeech / generative_recommenders / llama2c / lora / makemore / mingpt / modded_nanogpt / nanochat_core / nanogpt / nanovlm / patchtst / s4 / simcse / tabr / tdmpc2 / tensorf / tgn / x_transformers），每个含 task.yaml、criteria.json（**README 明写 hidden、agent 看不到**）、prompt.md、phase2.md，**每个源仓库都钉在具体 commit 上**（minGPT@37baab7、nanogpt@3adf61e、simcse@49fa580、tabr@17baa90、deepspeech@b88a631、tgn@d55bbe6、patchtst@204c21e、s4@e757cef、tdmpc2@e9f5932、tensorf@6a1e23b、nanovlm@6ba9082、nanochat@dc54a1a、x_transformers@dfd829b、llama2c@350e04f、modded_nanogpt@1b51e26、makemore@988aa59、lora@c4593f0 即 microsoft/LoRA、ast@31088be、airbench@4c1b6d1 即 cifar10-airbench、generative_recommenders@fb0ba64 即 meta-recsys 的 HSTU）。★ 独立执行三（**今天最有价值的一次反证式核验，必须写出来**）：README 顶部有一个 Dataset 徽章指向 huggingface.co/datasets/zlab-princeton/XStack，**但该数据集在 hf-mirror 实测为 404 Repository not found**；对照组 hf-mirror 对 Qwen/Qwen3-8B 返回 200 且元数据正确，说明不是通道问题。→ **结论：数据集链接已写在 README 上，但数据尚未真正上线，状态为「待上线」而非「已发布」；今天无法下载任何一条 agent 轨迹或判分结果。** 项目页 github.io/XStack/ 实测 3 次均连接被重置（curl 35），**可达性待核验**。★ 独立执行四（读 README 抓到三个摘要没有、但决定我们能不能用的实操事实）：(1) **每个并发 cell 需要一台 TPU VM，机器在 agent 开始前擦一次、判分前再擦一次**——**我们今天零 TPU 资源，这篇论文今天无法复现任何数字**；(2) agent CLI 跑在 **read-masking sandbox（bwrap）** 里，agent 只能看到自己的 workspace 和机器，别的一律看不到；(3) README 明写可用**任何 Anthropic 兼容端点**（GLM、DeepSeek、Muse、Kimi），只需设 XSTACK_AGENT_TOKEN / XSTACK_AGENT_BASE_URL / XSTACK_AGENT_MODEL，**这意味着我们的 harness 可以用国产模型跑同一套判分标准**。★ 证据边界：(1) **全部数字为作者自述，本机零验证**（无 TPU）；(2) **判分依赖 LLM judge**（correctness_judge + cheat_judge，各 3 票一票否决），**judge 自身的可靠性没有被独立评估**，且 judge 跑在 gpt-5.6-sol medium 上——**即「agent 迁移做得好不好」这件事，最终由一个前沿模型判定**；(3) 20 个任务是 PyTorch→JAX **单向**迁移，**反向与 JAX→PyTorch 未覆盖**，外推性未知；(4) 仓库刚公开 1 天、stars=1，**无第三方复现**；(5) README 实测提到数据集将含 every run with its transcript and verdicts，但**数据集尚未上线**；(6) 论文写的是 15 个仓库的 grading target 用 README/论文自报数字，README 写的是 20 个任务——**两个数字口径不同（作者在正文与 README 里的表述有差异），需要作者澄清**。★ 为什么给即时价值：**这套 harness 的形状和我们每天用的 agent 评测几乎同构，而它最难的部分（判分、作弊检测、盲测、冻结补救轮）已经被写成了可抄的代码——我们今天可以直接借它的 judge prompt 与 failure taxonomy 改造我们自己的 agent 验收流程**，这比读 20 篇论文方法更有用。"
+    },
+    {
+      "title": "ReproBridge: Building Reproducibility into ML Research Artifacts",
+      "authors": [
+        "Yubo Wang",
+        "Rui Meng",
+        "Jaehyun Nam",
+        "Tomas Pfister",
+        "Jinsung Yoon"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08452v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08452v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://wyyyb.github.io/reprobridge_website/",
+      "abstract": "Reproducing machine learning experiments requires reconstructing procedures from information scattered across papers, released code, and supporting artifacts. For coding agents, reproduction success can therefore depend on their ability to fill in missing details, rather than on the released artifacts alone. We ask whether preserving recovered procedures and decisions improves subsequent independent reproduction. We define a standardized artifact design comprising a refined codebase, environment",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "RAG"
+      ],
+      "score": 84.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08452v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08452v1"
+        }
+      ],
+      "id": "reprobridge-building-reproducibility-into-ml-research-artifacts",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "今日第二即时价值，**是一篇「问题设定正好戳在我们系统最痛的地方」的论文——它问的不是一个新模型，而是一个我们每天都在踩的坑：coding agent 复现实验时，成功率不只取决于模型能力，还取决于我们交付给它的 artifact 里有没有保留住「执行知识」**。★ 核心问题（论文全文口径）：复现 ML 实验需要从论文、已发布代码和零散工件里重建过程，**因此对 coding agent 而言，复现成败可能取决于它自己补全缺失细节的能力，而不只取决于已发布的工件**。作者问：**把重建出来的过程与决策保留下来，是否能提升后续的独立复现**。方法 ReproBridge 定义了标准化工件四件套：**refined codebase（精炼代码库）+ environment setup（环境配置）+ experiment launchers（实验启动器）+ reproduction guide（复现指南）**，并实现为一个 agent workflow。★ 实测口径（论文全文口径，逐条核对）：ReproBridge-Bench 含 **1,029 个任务、来自 36 篇论文的 387 个实验，每个任务锚定 5 个人工核验的参考分数**；**四个模型在 fresh session 里分别用原始代码或精炼工件尝试，独立 Auditor 检查执行证据**；结果：**精炼工件把平均复现成功率从 76.4% 提到 92.6%**，**并把下游 API 花费平均降低 19.7%**；**跨模型成功率离散度从 21.6 个百分点收窄到 3.9 个百分点，四个模型平均成功率全部超过 90%**；**消融显示去掉任一组件都会掉成功率，其中去掉代码与环境损失最大**。★ 独立执行一（项目页实测，这是今天最扎实的一次核验）：https://wyyyb.github.io/reprobridge_website/ **实测可访问（http 200，248,017 B）**。页面实测结构为 Paper / Code / **In review** / Dataset **In review** / Walkthrough / Overview / Artifact / Benchmark / Results / Cases / Cite，**并明确写着一句关键的话：Code and data are going through internal review and will be open-sourced once approved.** → **代码与数据集状态必须写「待核验/暂无」：作者自己声明尚未开源，页面上的 Code / Dataset 两个入口都是 In review**。★ 独立执行二（GitHub API 核验，实测）：GitHub 上唯一命中的是 **Wyyyb/reprobridge_website**（created 2026-10-16，pushed **2026-11-06T19:37:47Z**，stars=0、forks=0，size 2,689 KB，**license 字段为 null 即无 LICENSE**），其描述明写 Project page for ReproBridge: Building Reproducibility into ML Research Artifacts——**即它是项目页源码仓库，不是方法实现仓库**。按 reprobridge 关键词搜索 GitHub 仅命中此一个。→ **今日无实现代码、无 ReproBridge-Bench 数据集可下载。** ★ 独立执行三（从项目页正文读到摘要和论文都没有的三组硬信息，价值很高）：(1) **36 篇测试论文全部取自 ICML 2026 Spotlights，横跨 8 个主题族与 22 个子领域**——这是一个很强的取样说服力信号（**能进 ICML 2026 Spotlight 的论文，其复现流程本身就是有价值的**）；(2) 页面实测给出**第一轮评测的 144 个 paper–model 对**，四个模型分别是 **Sonnet 4.6、Sonnet 5、Opus 5、Gemini 3.8 Flash**，并按论文逐条标注增益（Decrease 18 / Unchanged 37 / 0–10pp 19 / 10–25pp 26 / 25–50pp 24 / >50pp 20）——**即增益不是均匀的，有 18 个格子是负的**，这个诚实披露很关键；(3) 页面实测有独立的 **Audit / Validation** 板块与 Cases 板块（从 artifact.css / cases.css / audit_validation-2400.webp 等资源实测确认存在）。★ 独立执行四（论文全文扫描工件声明）：arXiv HTML 全文（560,995 B）扫描，**本文自身没有任何 github.com 链接**（仅命中的 github 字样是 arXiv 页脚的 html_feedback 与 LaTeXML），唯一的项目链接就是 wyyyb.github.io/reprobridge_website/。★ 证据边界：(1) **无代码、无数据集**，全部数字为作者自述，**本机零验证**；(2) **成功率的判定依赖 LLM Auditor**（作者自述 a separate Auditor checks execution evidence），**Auditor 本身的误判率没有报告**，而 92.6% 与 76.4% 这两个数都经它判定；(3) 36 篇论文来自 ICML 2026 Spotlight，**样本偏向被会议认可的工作**，未必代表工业界真实仓库的复现难度；(4) 增益分布显示 **18/144 为负**，说明精炼工件**不是稳定增益**，而摘要只给了均值，**没有点名哪些场景会变差**（这是今天读全文最想要但没找到的信息）；(5) 增益与论文新旧、artifact 完整度等因素的相关性未做控制；(6) 作者单位为 University of Waterloo + Google，**代码走内部评审（internal review）这一条本身意味着短期内不会有可下载工件**。★ 为什么给即时价值：**「我们交付给 agent 的东西，决定了 agent 能不能做对」——这件事我们每天都在做却没有量化过**。论文给的四件套（refined codebase / environment setup / experiment launchers / reproduction guide）**今天就可以当成我们内部 repo 的交付清单自查表**，而「精炼工件让复现成功率 76.4%→92.6%、API 花费 −19.7%、跨模型离散度 21.6→3.9pp」这三条数字，虽然是作者自述，但**方向与我们自己的体感一致，值得当作假设写进我们的工程规范**。**不需要等代码上线就能开始用的，是那份四件套清单本身。**"
+    },
+    {
+      "title": "Scientist World: Grow a Research World for AI-Scientists",
+      "authors": [
+        "Taiming Lu",
+        "Sachin Konan",
+        "Zhuang Liu"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08478v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08478v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/zlab-princeton/scientist_world",
+      "benchmark_url": "https://github.com/zlab-princeton/scientist_world_cli",
+      "project_url": "https://ai-scientist.world",
+      "abstract": "AI-Scientists arrived, but a world for them to grow in did not. Human scientists take theirs for granted $-$ centuries of open problems and shared ideas, waiting in the scientific literature. To AI-Scientists, that world is readable but not runnable, so we build Scientist World for them: every research paper becomes an executable environment. Our autonomous pipeline extracts each paper's open-ended research question and reproduces its proposed method as the baseline; an AI-Scientist entering the",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 81.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08478v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08478v1"
+        }
+      ],
+      "id": "scientist-world-grow-a-research-world-for-ai-scientists",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 7.2,
+        "engineering_testability": 6.05,
+        "trend_signal": 4.3,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "今日第三即时价值，**是今天 10 篇里工程可交付性最强的一篇——它不是「一篇论文 + 一个仓库」，而是一整套已经装好、已经跑起来、有网站、有命令行、有 pip 包、有评测流水线的系统，今天就能装到我们机器上跑起来**。★ 核心洞见（论文全文口径）：**「AI-Scientists 来了，但它们长大的世界没有来。」** 人类科学家的世界是几个世纪的开放问题 + 共享想法 + 科学文献；对 AI-Scientist 来说这个世界 **readable but not runnable（可读但不可运行）**。Scientist World 的做法是：**每一篇研究论文都变成一个可执行环境**——自动流水线从每篇论文里抽出开放式研究问题，并把论文提出的方法复现成 baseline；进入该环境的 AI-Scientist **以「作者本人做到什么程度」为被评测对象**。★ 实测口径（论文全文口径，逐条核对）：**发布首批 1,000 个已验证环境**；**用这个世界当评测，前沿 AI-Scientist 已能在 74% 的时间里超过人类研究者**；**包含 6,400 小时研究轨迹（每一个想法、实验、失败与成功）**；**作为训练场，能把一个小模型提升 +158% 使其在研究构想能力上追平前沿模型**。全文 §F.1 与 Figure 35 进一步拆开：**在 improve 模式下 84% 的尝试击败了复现出的论文方法，在 innovate 模式下 74% 击败**——**innovate 的左尾更重（全新设计更容易彻底失败），但即使如此典型尝试仍能推动指标**。全文还实测点名了 leaderboard 格局：**Claude Fable 5.1 与 Fable 5 在「从零设计新方法」上占据前两名；开源模型中 GLM 5.2 最接近前沿、innovate 排第三**。★ 独立执行一（GitHub API 逐条核验，实测）：**github.com/zlab-princeton/scientist_world 真实存在**（created 2026-11-05T05:08:08Z，pushed 2026-11-06T07:09:46Z，**MIT，stars=6、forks=0**，size 1,864 KB），**且 README 实测是一份完整系统说明**（不是 coming soon）：目录含 evaluation/（dataset_builder/ 下 build_dataset.py 11,311 B、consolidate.py、grade_axes.py、grade_grounded.py、push_to_hf.py 等一整套构建与评分流水线；evaluation/ 下 agent.py **41,450 B**、cache.py、cli.py；evaluation/docs/scoring.md **15,598 B**；evaluation/dataset_builder/DATASET_CARD.md 5,622 B），另有 **.github/workflows/tests.yml（2,287 B）即自带 CI**。**github.com/zlab-princeton/scientist_world_cli 也真实存在**（独立仓库，pip 包名 sciworld，含 sciworld/cli.py、_api.py、cache.py、QUICKSTART.md、CHANGELOG.md、pyproject.toml、.github/workflows/containers.yml）。★ 独立执行二（**今天最实用的一次核验：它可以直接装、直接跑**）：README 实测给出完整命令行——pip install sciworld，然后 sw init --data-dir ~/sciworld-data --backend venv，sw list，sw research 2502.13759 --mode innovate --agent claude-code，sw status，sw evaluate 2502.13759；并且**明确说明「你不需要这个仓库，环境通过 sciworld 命令行使用」**。→ **这意味着今天我们就可以在一个 venv 里装它、列出可用环境、对一篇论文跑一次 research——这是今天 10 篇里唯一一篇本机零 GPU 也能启动的**（跑起来要花 API 费与算力，但入口是真的）。★ 独立执行三（项目站实测，http 200，3,343,890 B）：https://ai-scientist.world 可访问，导航实测为 Home / Leaderboard / Environments / Envs / Our World / World / Usage，页面实测写「**Agents read 9,000 new arXiv papers a month. Reproduce. The paper's method, rebuilt until it runs. Design. Turned into a task with scored targets. Package. Sealed into a runnable container. Verify. Audited before it joins the world.**」——**这条把环境构建流水线写成了六个动作：读 → 复现 → 设计 → 打包成容器 → 验证 → 审计后才进世界**，对我们自己设计「论文转可执行环境」的流程有直接参考价值。★ 独立执行四（**今天必须写出来的一处跨资产不一致**）：项目站落地页写的是 beat the paper's own method **76%** of the time，**而论文摘要与全文（§F.1、Figure 35）一致写 74%**（84% improve / 74% innovate 分开统计，74% 对应 innovate）。**官网与论文给出两个不同的数字且未标注口径差异**——本条不做调和，原样记录，并注明「论文口径 74% / 官网口径 76%，差异原因待核验」。★ 独立执行五（**三处资产状态必须区分对待，不能一概说「已开源」**）：(1) 代码：**已开源且有 CI**（scientist_world 仓库 + scientist_world_cli）；(2) 环境本体：README 徽章指向 github.com/orgs/ScientistWorld/repositories，但 **该 GitHub 组织经 API 实测返回 404 Not Found——即 1,000 个环境的容器仓库当前无法访问**；(3) 轨迹数据集：README 徽章指向 huggingface.co/datasets/zlab-princeton/scientist-world-traces，**经 hf-mirror 实测同样为 404 Repository not found**（对照组 hf-mirror 对 Qwen/Qwen3-8B 返回 200 正常）。→ **准确表述是：主代码已开源，环境容器与轨迹数据集的链接已写但当前 404，「首批 1,000 个已验证环境」今天无法下载核验。** ★ 证据边界：(1) **74% / 84% / 6,400 小时 / +158% 全部为作者自述，本机零复现**；(2) **评测基准是「AI-Scientist 相对论文自己复现出的 baseline 提升多少」，而这个 baseline 由作者的自动流水线复现——若 baseline 复现得偏弱，74% 会被高估**，论文未报告 baseline 复现的成功率，**这是这套数字最关键的未说明前提**；(3) 「1,000 个已验证环境」的验证强度取决于作者自述的审计流程，**环境的容器仓库与轨迹数据当前都 404，无法抽查任何一个环境**；(4) 「9,000 篇 arXiv 论文/月」是站点的采集速率口径，未说明去重与筛选规则；(5) 6,400 小时轨迹的**标注质量与可训练性未评估**，而 +158% 是「小模型在研究构想能力上追平前沿」，**具体是哪个小模型、哪种构想能力评测，未在摘要给出**；(6) 仓库 stars=6、公开仅 1 天，**无第三方复现**。★ 为什么给即时价值：**它把「让 agent 自己做研究」这件事从「我们讨论该不该做」推进到了「今天就能装上跑一个 case」**，而且它同时给我们两个可抄的东西：**（a）一个可运行的研究 agent 的入口形态（sw research <arxiv_id> --mode innovate/inprove）；（b）把论文变成可执行环境的六步流水线（读→复现→设计→打包→验证→审计）**——第二条正是我们雷达自身想做的事（论文→判断→资产）的放大版。"
+    },
+    {
+      "title": "Towards interpreting any residual stream direction by scaling activation inversion",
+      "authors": [
+        "Celeste De Schamphelaere",
+        "Juan J. Vazquez",
+        "Ari Spiesberger",
+        "Tomáš Gavenčiak",
+        "Gavin Leech"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08465v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08465v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/ceselder/maem",
+      "benchmark_url": "",
+      "project_url": "https://huggingface.co/ceselder/maemm-27b-rl-last16-lr5e-7",
+      "abstract": "To interpret a direction in a language model's residual stream, we can look for text that strongly activates it. But when such text is found by scanning a corpus, it is limited to what that corpus contains. We develop Maximally-Activating Example Metamodels (MAEMs), language models which map residual stream directions from a subject model to text exemplars that strongly activate those directions. Our objective is to maximise the cosine similarity of a supplied residual stream direction with the ",
+      "categories": [
+        "cs.LG",
+        "cs.AI"
+      ],
+      "keywords": [],
+      "score": 72.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08465v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08465v1"
+        }
+      ],
+      "id": "towards-interpreting-any-residual-stream-direction-by-scaling-activation-inversion",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 6.1,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」升级为「训练一个能把任意方向反演成文本的模型」，而且这个反演结果是可以用一次前向验证的**。★ 核心问题（论文全文口径）：解释残差流的一个方向，传统做法是**扫描语料找能强烈激活它的文本——但这样找到的文本受限于语料里有什么**。MAEM（Maximally-Activating Example Metamodels）**把「残差流方向 → 文本样本」做成一个学习到的映射**：目标是**最大化给定方向与 MAEM 生成文本在目标模型上激活的余弦相似度**；这是一个 **label-free 的 RL 目标**，正是它让 MAEM 可以扩展到多样化的方向来源（SAE 特征、probe 方向、原始激活）。★ 实测口径（论文全文口径，逐条核对）：**一个 Qwen3.6-27B 的 MAEM 在 held-out 激活上的反演优于语料搜索与自然语言自编码器（NLA）**；**在多数 held-out 语言/领域上超过语料搜索（语料扩到 10M token 时）**；**能激活 89% 的 held-out SAE 特征**；**识别 steering vector 背后的概念与 NLA 相当**；**恢复 LoRA 后门 payload 的频率高于语料搜索**；**甚至能 verbalise 一些模型 workspace 的 inner monologue**。★ 关键的方法论优势（论文自己强调，也是今天最值得抄的一点）：**「不同于其它 metamodel（例如 NLA）产出的解释，MAEM 的样本可以用目标模型的一次前向验证」**——**即 MAEM 的输出是可证伪的：拿它去跑一遍，如果那个方向真的被激活，相似度就高**。→ **这解决了自然语言解释最大的软肋：一个听起来很合理的解释无法被独立检验。** ★ 独立执行一（GitHub API 逐条核验，实测）：github.com/ceselder/maem **真实存在**（created 2026-08-26，pushed 2026-09-26，**MIT，stars=0、forks=0**，size 1,625 KB）。目录实测完整且是真研究工程：mxf/（core library：config / injection hooks / prompts / SAE loader / MFU）、data/（**collect_acts.py、collect_acts27b_worker.py、collect_acts_longctx.py、build_universal_bank.py 33,383 B、build_big_sft_bank.py、build_rl_bank.py** 等一整套激活采集与方向库构建，含多个 Modal 启动器）、sft/（match-activation SFT，LoRA + torchrun）、rl/（**GRPO，actor + vLLM 每 rank，rl_disagg.py 即 X 台 vLLM rollout GPU + Y 台 trainer GPU 的快路径，rl_ddp.sh，modal_rl_disagg.py 生产启动器，含 test_rl_disagg_queue.py / test_rl_disagg_scalerl.py 两个 CPU 测试**）、eval/（**eval_universal.py（held-out family cosine + mean_all、SAE norm_act / rank / cos / %unverbalized、random control、ctx-bucket 与 in-distribution families）、snippet_locality.py、autointerp_detection.py**）。★ 独立执行二（**今天最有价值的独立发现：仓库里有一份逐次实验的训练台账 TRAINING_LEDGER.md，实测 6,225 B**）：读它拿到摘要完全没有的复现细节——**基座 Qwen/Qwen3.6-27B，inject L1 / read L42，rsLoRA r64/α16 all-linear，steer-coeff 1.0**；**SFT 阶段 big_sft 用了 1,000,000 条样本（50 万 realact 短上下文 ≤512 + 50 万 probes），lr 3e-5、batch 16、2 个 epoch 共 25,000 步，多卡 gloo DDP on 5×B300（作者明写 NCCL 在这台机器上会死锁），loss 4.15 → ~1.8**；**RL 阶段全部从 big_sft/final 初始化，pool_rl_mix 是三分之三配比（⅓ realact + ⅓ probes + ⅓ realact_long），长上下文激活（realact_long，位置均匀取 1–8192）只进 RL 不进 SFT**；**Dr.GRPO（adv = r − group_mean，不除 std）、lr 1e-5、reward = max-over-token cos × 1000、KL 系数 0.03（上限 10，ref = SFT init）、diversity 系数 40（激活正交，按 token 平均池化）**；**并且台账明确记录了被砍掉的分支：Arm SHORT 与 Arm LONG 都标注 exploratory, KILLED 2026-08-27，并留下每 25→50 步的 eval 曲线（early 0.519→0.527 / mid 0.465→0.473 / long 0.408→0.414 等）**；最终选定 **LONG-HORIZON**（= LONG 配置 + LP per-tok 1.0，约 3–8% reward 方差）。→ **这份台账本身就是今天最值钱的东西之一：它示范了「把每次 RL 尝试连同它为什么被砍掉一起记下来」的研究记录方式，我们自己的实验记录应该照这个格式来。** ★ 独立执行三（模型权重实测，经 hf-mirror 逐条核验）：**ceselder/maemm-27b-rl-last16-lr5e-7 真实存在**（created 2026-09-18，downloads=40，likes=0，**未 gated**）；**ceselder/qwen36-27b-sae-l42-1b 存在**（created 2026-08-22，downloads=0）；**ceselder/qwen3.6-27b-nla-av 存在**（created 2026-07-14，**downloads=219**，即 NLA 基线权重是最被下载的那个）；对照组 **m-a-p/MATH-lighteval 在 hf-mirror 实测 404**，证明该通道能正确区分存在与不存在。→ **三份权重均可下载，训练好的反演器与两个基线都在，可以直接做对比实验。** ★ 独立执行四（方法细节实测）：README 实测写明反演是**两层**——**SFT（match-activation）：对每个方向，目标是那段真实语料 span（其激活即产生它的那个）；RL（Dr. GRPO）：reward = max-over-rollout 余弦，优化反演器去「主动唤起」该方向**；**README 还给了一条经验结论：真实激活与 probe 的均衡配比对 held-out family 泛化最好，而把长上下文激活加进 RL 混合是覆盖「只在长程才触发」特征的便宜办法**；评分方式为**在干净（adapter 关闭）的前向上重读 READ_LAYER 的激活，取 max-over-token 余弦**——**注意这个设计本身就是「可验证性」的实现细节，也是我们想借的核心**。★ 证据边界：(1) **本机零复现**（无 GPU；即便有 GPU，复现需 5×B300 级别的训练量，远超本机）；(2) **仓库 stars=0、fork=0，无第三方复现**；(3) 论文里的 **89% SAE 特征激活率**等数字全为作者自述；(4) **「verbalise inner monologue」这类结论的评测方式在摘要里没给全**，需要读全文附录才能判断强度，**今日未逐条核对，标为待核验**；(5) MAEM 需要目标模型前向 + 注入 hook，**我们若要在生产系统里用它，需要目标模型的访问权**；(6) **TRAINING_LEDGER 中的 eval 数字是该仓库作者自己的内部指标**，未与论文主表逐项对齐，**我们不把它们当作论文结论**。★ 为什么给趋势而不是即时：**它的价值在「可验证的解释」这个范式，而不在今天就能拿到的业务收益**——我们要先在自己的一两个内部模型上试一次「能否给一个已知方向生成可验证的反演样本」，再决定是否值得投入。"
+    },
+    {
+      "title": "SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization",
+      "authors": [
+        "Qile Jiang",
+        "George Em Karniadakis"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08483v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08483v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/Qile-J/SwarmEvolve",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM-guided evolutionary search uses AI agents to improve programs for mathematical and computational problems by iteratively refining solutions and combining high-scoring methods. However, the process is often slow because the LLM generates a long textual chain of thought for each round and must repeat this generation many times to maintain population diversity. We present SwarmEvolve, a framework in which hundreds of low-cost agents per round work in swarms, reason in latent space without decod",
+      "categories": [
+        "cs.AI",
+        "cs.NE"
+      ],
+      "keywords": [
+        "agent",
+        "RAG"
+      ],
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08483v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08483v1"
+        }
+      ],
+      "id": "swarmevolve-latent-agent-swarms-for-evolutionary-discovery-and-optimization",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "今日第五价值，**机制很干净、结论很硬，但仓库里今天没有实现——这一点必须原样写出来，否则今天读它的人会以为可以 clone 下来跑**。★ 核心机制（论文全文口径）：LLM 引导的进化搜索用 AI agent 迭代改进程序，但**慢的原因是 LLM 每轮要生成很长的文本思维链，且为了维持种群多样性必须反复生成**。SwarmEvolve 的做法是：**每一轮派出成百个低成本 agent，以群（swarm）形式在隐空间（latent space）里推理——不把隐状态解码成文本——并通过直接传递 KV cache 来交换信息**；每个 swarm 从不同角度研究问题；**新颖性过滤器直接测量 agent 之间隐状态向量的距离来保留最互异的想法**；**想法的交叉（crossover）自然发生在隐空间里，因为汇总 agent 接收的是所有 swarm 成员的合并 KV cache**。★ 实测口径（论文全文口径，逐条核对）：**在 21 个数学发现与科学计算问题上，SwarmEvolve 取得最高平均分，且只需中位 3 到 8 分钟就能达到其他 SOTA 框架 60 分钟才达到的最好分数**；**在若干问题上，用 Qwen3 8B 的 SwarmEvolve 改进出了 AlphaEvolve 用前沿 LLM 首次找到的解**。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/Qile-J/SwarmEvolve **真实存在**（created 2026-10-27，pushed **2026-11-06T18:06:26Z**，即论文发布后仍在更新，**stars=9、forks=0**，size 36,850 KB，**license 字段为 null 即无 LICENSE**），仓库描述实为「SwarmEvolve: Latent Agent Swarms for Rapid Evolutionary Search **(code coming soon)**」。★ 独立执行二（**今天最重要的一次反证式核验——目录树实测推翻了「仓库里有代码」的直觉**）：实测顶层只有 5 项：**.gitignore、README.md、analysis/、assets/、baselines/**——**没有 swarm/、没有 src/、没有 agent 实现**。逐文件枚举后确认：analysis/ 下**只有一个 .gitkeep（0 B）**；baselines/ 下是 **CodeEvolve 的完整第三方快照**（含其 .github/workflows/ci.yml、problems/ 下 alphaevolve_math_problems 的 autocorrelation_problems / heilbronn_problems / heilbronn_triangle / kissing_number 等任务目录，每个含 evaluate.py 与 init_program.py）；benchmarks/ 下是 **21 个问题所需的 task.md / initial_program.py / evaluator.py 与共享评测 benchmarks/evaluation.py、benchmarks/run_evaluator.py、benchmarks/scientific_cases.py、以及 calibration/ 下 7 个专家参考解（burgers_1d_cole_hopf、burgers_1d_spectral、convection_diffusion_2d_expert、helmholtz_2d_expert、make_pde_references.py、nonnormal_eigenvalues_expert、sparse_linear_systems_expert / sparse_linear_systems_splu）**。→ **准确表述：仓库当前提供的是「基准 + 基线 + 校准参考解 + 结果图」，SwarmEvolve 方法本身的实现尚未发布；README 末段实测原话 The SwarmEvolve code will be released soon. For questions and early access, please reach out to the authors.** ★ 独立执行三（README 实测拿到的、摘要没有的对比与配置细节）：三个开源对比框架分别是 **OpenEvolve（algorithmicsuperintelligence/openevolve）、ShinkaEvolve（SakanaAI/ShinkaEvolve）、CodeEvolve（inter-co/science-codeevolve）**，且**基线脚本与它们在论文中所用 commit 一并冻结在仓库里（setup_baselines.sh / run_baseline.sh <framework> <problem> <model>）**；**实验配置为 Qwen3 8B / 14B / 32B、单 GPU、每次运行 60 分钟**；结果图为「60 分钟内评测的程序数」「15 分钟后的平均最好分」「达到 OpenEvolve 60 分钟分数所需分钟数的中位数」三联图，并注明每个模型跑 3 次取平均。★ 独立执行四（论文全文扫描工件声明）：arXiv HTML 中除本文自己的仓库外，另有三个引用仓库（apoorvumang/prompt-lookup-decoding、codelion/openevolve、google-deepmind/alphaevolve_results）与 openevolve/ShinkaEvolve/CodeEvolve 的对比链接。★ 证据边界：(1) **方法实现今日不可用**（无 swarm/ 无 src/，README 明写 coming soon），**所有数字为作者自述，本机零验证**；(2) **「3–8 分钟达到别人 60 分钟的分数」是同等墙钟预算下的对比，但前提是「单 GPU + Qwen3 8B」**——**在更大模型或更难的搜索空间上是否保持，我们不知道**；(3) 论文声称在若干问题上**用 Qwen3 8B 改进出了 AlphaEvolve 用前沿 LLM 首次找到的解**——这是很强的论断，但**基准里只有作者自己选的 21 个问题，且基线快照是作者选定的 commit**，第三方复现难度不低；(4) **隐空间交叉依赖 KV cache 的合并**，这对不同模型、不同位置编码、可并行批处理的开销影响很大，**论文未报告工程开销口径**（实测 README 未给 token/显存成本数字）；(5) 仓库 stars=9、无 LICENSE、无第三方复现。★ 为什么给趋势：**「不把隐状态解码成文本、直接用 KV cache 交换信息」是今天唯一一个新机制的 agent 协作范式，它对「agent 编排成本」的影响是结构性的，值得跟踪 7–30 天**；但今天**没有实现可跑**，所以只能进趋势雷达，不能进今天的实践清单。"
+    },
+    {
+      "title": "Cognitive Tours: Making Understanding a Deliverable in AI-Assisted Development",
+      "authors": [
+        "Margaret-Anne Storey"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08456v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08456v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/margaretstorey/cognitive-tours",
+      "benchmark_url": "",
+      "project_url": "https://cognitive-tours-demo.vercel.app",
+      "abstract": "Generative AI and agentic coding are accelerating software development, leading to concerns about technical debt. But two less visible forms of debt, cognitive debt and intent debt, are emerging as key risks to software health. Cognitive debt is the absence or erosion of a team's shared understanding where no one can confidently explain how a system works or predict the impact of a change. Intent debt is the lack of clearly articulated goals, constraints, and rationale that explain what the syst",
+      "categories": [
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "evaluation"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08456v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08456v1"
+        }
+      ],
+      "id": "cognitive-tours-making-understanding-a-deliverable-in-ai-assisted-development",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "llm_reason": "今日第六价值，**是一篇立场清楚、有真实可运行原型、而且正好命中我们工程痛点（agent 写代码越来越多，但没人说得清系统怎么工作）的论文——它的价值不在算法，而在它提出了一组可抄的文档资产结构**。★ 核心框架（论文全文口径）：生成式 AI 与 agentic coding 正在加速软件开发，带来技术债的担忧，但**有两种更隐蔽的债正在成为软件健康的关键风险**：**认知债（cognitive debt）——团队共享理解的缺失或侵蚀，没有人能有信心地解释系统怎么工作、或预测一次改动的影响；意图债（intent debt）——缺少清晰表述的目标、约束与理由，解释系统是为什么而存在、以及它应当如何演进**。★ 方法：论文提出 **Cognitive Tours**——一个 web 原型，用于创建与跟随**精选路径（curated paths）**，把**用户需求、设计决策、代码、测试与开放问题**串起来；**AI 辅助的 skills 负责审计既有 waypoint 与 tour 的问题与陈旧、并建议新的候选；人决定什么重要、验证关系、构造叙事**。论文明确说这种分工**刻意保留了「有生产力的摩擦」（productive friction）**——**因为选择、解释与修订 tour 所涉及的 sensemaking 过程本身就是为了培育和分享理解**。★ 实测口径（诚实地说：**这是今天证据最弱的一篇**）：论文自述「本演示用 Cognitive Tours 自身的一条 tour 来介绍该工具并说明其设计决策与交互机制」，并**以「一份拟议的评估议程」收尾**——**即论文本身没有给出评测结果，它交付的是一个工具与一份评估计划**。★ 独立执行一（GitHub API 逐条核验，实测）：**github.com/margaretstorey/cognitive-tours 真实存在**（created 2026-05-21，pushed **2026-11-06T05:24:01Z**，**MIT，stars=0、forks=0**，size 11,373 KB），**仓库描述字段是 new verison of shrimp（一句与论文无关的残留文本，作者未更新）**。目录实测：**.claude/skills/ 下有 audit-tours/SKILL.md、audit-waypoints/SKILL.md、first-tours/SKILL.md、suggest-tour/SKILL.md、suggest-waypoint/SKILL.md 五个作者自写的 Claude Skill**，另有 **spec-kit 全套**（speckit-constitution / speckit-specify / speckit-plan / speckit-tasks / speckit-implement / speckit-checklist / speckit-analyze / speckit-clarify / speckit-git-* 等 10 个 SKILL.md，合计约 12.5 万字符量级）与 .specify/ 扩展、.claude-plugin/marketplace.json。★ 独立执行二（读 SKILL 实测，这是今天最可抄的一份东西）：`.claude/skills/audit-tours/SKILL.md` **实测全文可读**，它的 front matter 与正文把这个 skill 写得非常可执行——**「检查 tour 与当前代码和地图的一致性：哪些近期改动的文件没有 waypoint 也没有 tour、陈旧或不衔接的 stop narrative、冗余边、以及可能缺失的 stop。读取站点的 /api/data；只报告，绝不写入地图。」** 明确 disable-model-invocation: false、user-invocable: true，支持 /audit-tours [since YYYY-MM-DD] [site <url>]。→ **这份 skill 描述实际上就是一份「AI 辅助开发的文档漂移检测」规格书**，我们的 repo 完全可以照抄这个形态：让 agent 定期比对「代码改了什么」与「tour/waypoint 覆盖了什么」，只报告不自动改。**这是今天最容易被我们直接拿走的一个资产。** ★ 独立执行三（README 实测拿到的与论文相关的信息）：README 实测写明「**A research prototype, built by its author with AI assistance (Claude Code), and used on itself: the map and tours describe how it was built**」；**「understanding cannot be outsourced or automated. Tours you create yourself repair your own cognitive debt, tours you create for others are sharing some of your understanding with others. AI is a scaffold, an amplifier, not a substitute.」**；并给出**研究基础是另一篇论文《From Technical Debt to Cognitive and Intent Debt》（arXiv 2603.22106，Storey, 2026）——注意那是今年 3 月的另一篇**；README 指向 demo https://cognitive-tours-demo.vercel.app（a copy of the self-documenting Cognitive Tours map, reset nightly）与两个域名 cognitive.tours / cognitivetours.dev。★ 独立执行四（demo 可达性实测，**结论是「待核验」**）：https://cognitive-tours-demo.vercel.app/ **今日 4 次尝试全部未取回内容**（curl 无输出文件、无状态码），**因此 demo 今天不可达，状态写「待核验」而不是「已上线可用」**；其余交付物（仓库、skill、论文）均已核验为真实存在。★ 证据边界：(1) **论文无评测结果**，只有工具与一份「拟议的评估议程」，**这是全文最关键的定性**；(2) 「认知债 / 意图债」两个概念**尚无操作化度量**，论文也没给；(3) demo 今日不可达（4/4 次失败），**无法核对产品形态**；(4) 仓库 stars=0、无第三方使用记录；(5) **仓库描述残留 new verison of shrimp，说明仓库卫生不佳**；(6) 论文提到的「生产性摩擦」是作者的设计主张，**没有任何用户研究或对照实验支持**；(7) 论文未给出与 GitHub Wiki / ADR / code-wiki 等既有做法的对比。★ 为什么给趋势价值：**「认知债」与「意图债」这两个词，以及「waypoint → tour → docent narrative」这套结构，是我们做 AI 辅助开发时天天遇到但从没有词汇描述的东西**；而它交付的**五个 Claude Skill（尤其 audit-tours）是可以直接借用的工程资产**——我们不必等它的评测，可以先在自己 repo 上试跑一遍「tour 漂移审计」。"
+    },
+    {
+      "title": "Unpacking the Compute Efficiency of Strong-to-Weak OPD against GRPO",
+      "authors": [
+        "Zeyu Leo Liu",
+        "Yang Li",
+        "Bo Pang",
+        "Emre Can Acikgoz",
+        "Xuan-Phi Nguyen"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08453v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08453v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "On-policy distillation (OPD) trains a student on its own rollouts under a frozen teacher's per-token supervision. Does this dense signal reduce the training FLOPs needed to reach a target accuracy compared with reinforcement learning? We systematically compare vanilla reverse-KL OPD with Group Relative Policy Optimization (GRPO) across task difficulty, student and teacher size, domain, and optimization choices, measuring held-out accuracy against training FLOPs. With an external post-trained tea",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "keywords": [],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08453v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08453v1"
+        }
+      ],
+      "id": "unpacking-the-compute-efficiency-of-strong-to-weak-opd-against-grpo",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "llm_reason": "今日第七价值，**是一篇「把一个被广泛引用的结论当默认前提，然后实测推翻它」的论文——对我们正在做的模型蒸馏/训练成本决策直接相关，且它的方法论（把 FLOPs 摆到同一把尺子上）值得长期沿用**。★ 核心问题（论文全文口径）：on-policy distillation（OPD）在冻结教师下用学生自己的 rollout 训练、逐 token 接受教师监督；**「这份稠密信号是否真的降低了达到目标精度所需的训练 FLOPs 相比强化学习？」** ★ 实测口径（论文全文口径，逐条核对，**关键在于结论是分情况的**）：**用外部后训练教师时，OPD 在同等设置下的「每训练 FLOP 准确率」通常输给 GRPO，即使该教师本身是用 GRPO 进一步训练的，而且常常伴随回答长度膨胀（response-length inflation）**；**但换成另一种教师，结论反转：当教师就是学生自己的 GRPO checkpoint 时，OPD 能以少 50 倍的蒸馏 FLOPs 恢复出该 checkpoint 在数学上的精度**（论文正文另注：在默认 8-rollout-per-prompt 设置下为 6 倍），**且在同一教师设定下，这个高效率在更大的学生、代码任务、以及第二个模型家族上都稳定复现**；**但在单一领域上，GRPO checkpoint 本身就是我们想要的模型，蒸馏它反而增加总计算**。多教师部分：**multi-teacher OPD（引 DeepSeek-AI, 2026）把各领域的 GRPO 专家合并进单个学生并达到每个专家的精度，蒸馏阶段只花专家训练 FLOPs 的 5.2%（2 个领域）与 8.0%（4 个领域）；把专家训练与蒸馏一起算，这条流水线在 2 领域混合上达到 joint GRPO 性能但总 FLOPs 少 42.0%**。★ 独立执行一（全文逐条回指核对，**每一个数字都在原文中找到**）：5.2% / 8.0% / 42.0% 与 50× / 6× 均在 arXiv HTML 全文中定位到原句（含 LaTeXML 渲染残留这类标记）。★ 独立执行二（**工件状态核验，结论是「暂无」**）：arXiv HTML 全文（783,753 B）扫描，**本文自身没有任何 github.com 链接**，唯一的 huggingface 命中是 **huggingface.co/deepseek-ai（即被引用的 DeepSeek-AI 2026 那一组发布的模型，不是本文代码）**。→ **今日无代码、无 release、无可下载工件。** ★ 独立执行三（读摘要与正文抓到的方法论要点）：论文开篇即指出「**近期的 OPD 工作在宣称优于 GRPO 时很少把 FLOPs 算进去**」，并说「**已有的并发 OPD 分析同样遗漏了与 GRPO 的计算效率对比**」——**即这篇的贡献主要是把一个大家默认的结论摆正，而不是提出新方法**；多教师部分也明说「**近期开源模型（Yang et al. 2026d、Team et al. 2026、DeepSeek-AI 2026、Kimi Team 2026）用的就是这个配方，但都没有测量整条流水线的对比**」。★ 证据边界：(1) **无代码、无工件、数字全为作者自述**，本机零验证；(2) **结论高度依赖「教师是谁」**——外部教师下 OPD 输给自己学生的 GRPO checkpoint 教师；**任何把 OPD 当成通用省钱手段的决策都必须先确认教师来源**；(3) 「50× / 6×」是**蒸馏阶段** FLOPs 的比值，**不包含教师本身的训练成本**——论文在多教师部分才做完整口径（42.0%），**单教师那组没有给出端到端口径，这是一个容易误读的地方**；(4) 任务范围有限（数学、代码、第二模型家族），**未见生产规模（>70B）验证**；(5) 回答长度膨胀这一负面现象只在「外部教师」设定下报告，**机制未解释**；(6) 无第三方复现。★ 为什么给长尾：**它的价值是「纠正一个默认假设 + 提供一把尺子（把 FLOPs 摆到同一口径）」**——我们如果在做任何「蒸馏比 RL 省」的技术决策，应该拿它的口径去重算一次；但它没有代码、结论条件性强，今天不值得投入深读。"
+    },
+    {
+      "title": "User Embeddings are Superpositions of Interpretable Behavioral Modes",
+      "authors": [
+        "Jonathan Kozaczuk",
+        "Zheng Dong",
+        "Noyan Evirgen",
+        "Keivan Majidi",
+        "Eddie K. H. Ng"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08487v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08487v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "User embeddings are central components of modern recommendation, personalization, and behavioral modeling systems. Though these embeddings can compactly encode rich behavioral information, they are inherently dense and opaque, limiting interpretability. To address this gap, we argue that user embeddings can be understood as sparse superpositions of interpretable behavioral modes. This structure is directly predicted by generative models of user behavior for linear embeddings and extends approxim",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08487v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08487v1"
+        }
+      ],
+      "id": "user-embeddings-are-superpositions-of-interpretable-behavioral-modes",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 5.0,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "llm_reason": "今日第八价值，**是一个与我们业务结构高度重合（推荐/用户画像）但证据最薄的一篇——它提出了一个干净的机制主张，可是今天我们拿不到任何可核验的产物**。★ 核心主张（论文全文口径）：**用户 embedding 是可解释行为模式的稀疏叠加（sparse superpositions of interpretable behavioral modes）**。论证链条是：**对线性 embedding，这个结构直接由用户行为的生成模型预测；对深度学习表示，则借「叠加假设（superposition hypothesis）」近似成立**；**叠加的模式可以用稀疏字典学习方法（如稀疏自编码器 SAE）恢复，恢复出来的模式可以被自动命名并用自然语言查询**。★ 实测口径（论文全文口径）：**在合成数据上用已知 ground truth 验证模式恢复，SAE 恢复模式的效果优于经典稀疏基线，包括在 transformer 编码的 embedding 上**；随后**应用到两个真实数据集的经典与 transformer 用户 embedding**；并展示**自然语言标签支持零样本的受众检索与画像刻画，且作用于从未在文本上训练过的 embedding**；**框架是 post-hoc 且模型无关的，不要求修改上游 embedding 系统**。★ 独立执行一（作者与机构实测）：**作者来自 Amazon**（页面实测署名含 Chris Porter、Qi Zhao、Jia Geng、Changmao Li、Brandon R. Feng，Affiliation: Amazon），另有 Jonathan Kozaczuk、Zheng Dong、Noyan Evirgen、Keivan Majidi、Eddie K. H. Ng。★ 独立执行二（工件状态核验，**结论是「暂无」**）：arXiv HTML 全文（523,542 B）扫描，**本文自身没有任何 github.com 链接**（仅命中 arXiv 页脚的 html_feedback 与 LaTeXML、以及一个 openreview.net/forum 模板占位），**无 huggingface 链接、无项目页**。→ **今日无代码、无 checkpoint、无数据集，所有数字为作者自述。** ★ 独立执行三（章节结构实测，便于判断证据密度）：arXiv HTML 目录实测为 1 Introduction / 2 Background（3 Superposition Hypothesis、4 Experiments on Synthetic Data、5 Behavioral Modes in Real World Data，含 5.1 Open e-commerce、5.2 MovieLens 1M、5.3 Audience characterization）/ 6 Conclusion / References / 附录（Synthetic data experiments、SAE and other baselines、Mode recovery…）。→ **即两个真实数据集具体是 Open e-commerce 与 MovieLens 1M，且有独立的合成数据章节做 ground truth 校验——方法学上是干净的**；但**没有可下载工件，所以我们连一个数字都核对不了**。★ 证据边界：(1) **无代码、无数据、无 checkpoint，零可核验产物**；(2) **「叠加假设」本身是有争议的强假设**，论文对深度模型用的是 extends approximately（近似成立）的措辞，**不是证明**；(3) 「两个真实数据集」是 Open e-commerce 与 MovieLens 1M，**MovieLens 1M 已是 2003 年的老数据集，其 embedding 分布与今天的工业推荐系统差异很大**；(4) 「零样本受众检索」在**从未在文本上训练过的 embedding** 上做的，**这类「用 SAE 命名再反查 embedding」的闭环评估容易被高估**，论文未做人工评估（无相关性标注、无人类判分）；(5) Amazon 的真实数据不可能开源，**因此这条线对我们来说几乎无法直接复现，只能借方法**；(6) 无第三方复现。★ 为什么给长尾：**「把用户 embedding 拆成可命名的行为模式」这件事，如果成立，对我们的个性化/意图识别是直接可用的**——而且它的框架 post-hoc、模型 agnostic，不动上游系统，**迁移成本低**；但今天零证据，只能存。"
+    },
+    {
+      "title": "Same Behavior, Different Mechanism: What Finite Experiments Can Certify About Integrated Information",
+      "authors": [
+        "Linqian Wu",
+        "Diaoxuan He"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08469v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08469v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Interpretability, AI auditing and assessments of machine consciousness increasingly rest on mechanism-level quantities: functionals of a system's causal transition law that describe how it computes, not what it outputs. Experiments see that law only through finite, partial and noisy interventions. We ask when such a quantity is identifiable from an experiment's access, continuous in the mechanism and certifiable from finite data, and answer exactly for a deliberately demanding case - the integra",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "q-bio.NC"
+      ],
+      "keywords": [],
+      "score": 54.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08469v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08469v1"
+        }
+      ],
+      "id": "same-behavior-different-mechanism-what-finite-experiments-can-certify-about-integrated-information",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "llm_reason": "今日第九价值，**是一篇非常硬、但与我们几乎零交集的理论工作——它的价值在于给「机制级评测」划了一条可证伪的边界线**。★ 核心设定（论文全文口径）：可解释性、AI 审计与机器意识评估越来越依赖**机制级量（mechanism-level quantities）**——即系统因果转移律的泛函，描述它「怎么算」而不只是「输出什么」；而实验只能通过**有限的、部分的、带噪的干预**看到这条律。作者问：一个这样的量在什么条件下**可从实验的访问方式识别（identifiable）、对机制连续、且能从有限数据认证（certifiable）**，并**对整合信息 φ 精确作答**（在四单元与五单元的随机网络、已知 ground truth）。★ 实测口径（论文全文口径，逐条回指核对，**这组数字全部在原文定位到**）：**行为可以是沉默的——一个循环网络与一个前馈网络在响应延迟处的输入-输出律完全相同，分别携带 0.28 与 0 bits，而内部记录只需 4–53 次试验就能把它们分开**；**部分访问同样可能是盲的——未纳入一步记录的单元会施加 0.30–1.02 bits 的精度下限，且没有任何样本量能降低它**；在 all-but-self 奇偶网络中，任意长度的记录都只能通过各隐藏单元保真度之积来看见它们（**一个干预打破了这个对称性**）；**度量有锋利的边——因为 φ 选一个划分、并用某一个准则指定因果与效应却报告另一个，跨越边的无穷小机制改动在我们于随机网络中找到的 99% 的边上导致 25–100% 的变化，而约 1% 几乎完美拟合干预数据的代理模型把它误报超过 20%**；**单边论断仍然成立——同样的数据可以认证边的两侧各自的一个下界，作者证明在机制空间的一个 64 维区域内 φ > 1.004 bits，并以约 10^7 次受控转移、伪证书概率至多 α 予以认证**。结论原话：**「可测性因此是一个设计问题，且有可计算的答案。」** ★ 独立执行一（工件状态核验，**结论是「暂无」**）：arXiv HTML 全文（574,810 B）扫描，**本文自身没有任何 github.com 链接**（仅命中 html_feedback、LaTeXML 与 openreview.net/forum 模板占位），无 huggingface、无项目页。→ **今日无代码，纯理论论文。** ★ 独立执行二（相关性判断，**这是给它长尾而不是忽略的唯一理由**）：它的主题是**机制级量在有限实验下的可识别性**——而我们每天都在做「只看输出、不看机制」的评测（judge 打分、成功率、pass rate）。**它给了一条具体的警告：某些机制级差异在行为上完全不可见（0.28 vs 0 bits），且部分访问会带来无法用更多样本消除的精度下限（0.30–1.02 bits）；同时约有 1% 的好拟合代理模型会误报该量超过 20%。** → **这直接影响我们「用 LLM judge + 行为指标代替机制核验」的合理性论证**——不是说不该用，而是说**这类代理评测本身也有可识别性边界**。★ 证据边界：(1) **无代码、无实验产物、纯理论**，所有结论为理论推导，本机零验证；(2) **结论只在「四单元与五单元的随机网络」上精确成立**，**外推到真实大模型完全没有论证**；(3) 「99% 的边上导致 25–100% 变化」这类统计依赖随机网络采样，**没有置信区间与样本量说明**；(4) 「约 1% 的代理模型误报超过 20%」——**这 1% 是相对什么基线、在什么网络族上测的，正文未给细节**，这是一个被广泛引用时会失真的数字；(5) q-bio.NC + cs.LG + cs.AI，**与我们的工程主线距离最远**；(6) 无第三方复现。★ 为什么给长尾：**「行为相同 ≠ 机制相同」这个结论，以及「部分访问会设下无法用采样消除的精度下限」，是我们在设计评测时应该记住的一句边界**；其余对我们没有行动项。"
+    },
+    {
+      "title": "Adversarial Training with Large Step Sizes: Implicit Bias, Optimization, and Sharpness",
+      "authors": [
+        "Yi Feng",
+        "Andrea Paudice"
+      ],
+      "published": "2026-11-05",
+      "updated": "2026-11-05",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.08457v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.08457v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Adversarial Training (AT) is an important method for improving model robustness. We study the dynamics of deterministic Gradient Descent (GD) in AT. Most existing works in this direction focus on the small or vanishing step sizes regime, where GD resembles a continuous-time flow. However, such step sizes can make training inefficient and are rarely used in practice. In this paper, we study the AT dynamics of GD with large constant step sizes. We first study GD in adversarial linear logistic regr",
+      "categories": [
+        "cs.LG",
+        "math.OC"
+      ],
+      "keywords": [],
+      "score": 46.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.08457v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.08457v1"
+        }
+      ],
+      "id": "adversarial-training-with-large-step-sizes-implicit-bias-optimization-and-sharpness",
+      "value_type": "ignore",
+      "matched_topics": [
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise",
+      "llm_reason": "今日暂缓，**是一篇扎实的对抗训练优化理论，但它与我们的系统没有交集，且今天没有任何可核验产物**。★ 内容（论文全文口径）：对抗训练（AT）是提升模型鲁棒性的重要方法；论文研究**确定性梯度下降在 AT 下的动力学**，并明确指出**既有工作大多聚焦小步长或趋零步长（此时 GD 类似连续时间流），但这种步长使训练低效、实践中很少使用**；本文研究**大步长常数步长**下的 AT 动力学：先在**对抗线性逻辑回归**上研究参数收敛到哪（implicit bias）与损失下降多快（optimization），再转到**神经网络**上研究**训练中损失锐度（sharpness）如何演化**。三条主要结论（逐条回指原文）：**(i) AT 与标准训练（ST）之间的隐式偏置差距（此前仅在小步长下建立）在任意大的常数步长下依然存在**；**(ii) 与 ST 不同，AT 中优化误差不存在统一的收敛速率**；**(iii) 锐度可以表现出两阶段（two-stage）动力学，且与 ST 中观察到的 Edge-of-Stability 行为不同**。★ 独立执行一（工件状态核验，**结论是「暂无」**）：arXiv HTML 全文（1,434,370 B）扫描，**本文自身没有任何 github.com 链接**（仅命中 html_feedback 与 LaTeXML），无 huggingface、无项目页。→ **今日无代码、无实验产物，数字全为作者自述。** ★ 证据边界：(1) **无代码、纯理论（cs.LG + math.OC）**，本机零验证；(2) 结论限定在**确定性 GD**、**线性逻辑回归 + 神经网络锐度演化**，**没有覆盖 PGD/自适应步长/随机性**，而实践中 AT 基本都用这些；(3) 「不存在统一收敛速率」是一个**否定性结论**，其强度取决于「统一」的定义范围，正文未给可操作的工程含义；(4) 「两阶段锐度动力学」在摘要里只有一句话，**判据与观测条件需要读全文，今天未逐条核对，标为待核验**；(5) **与我们的 agent 平台、上下文工程、评测流程无直接交集**——AT 的鲁棒性不是我们当前的工程问题。★ 判断：**保留最小索引。** **触发条件：我们开始做模型/agent 的对抗鲁棒性工作，或有人要求解释「为什么大步长 AT 与标准训练收敛行为不同」。**"
+    }
+  ],
+  "scored_at": "2026-11-08"
+}

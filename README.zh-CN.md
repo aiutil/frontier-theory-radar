@@ -21,15 +21,15 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-11-05
+## 最新研究 · 2026-11-08
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 173 | 272 | 281 | 1367 |
+| 10 | 176 | 275 | 284 | 1368 |
 
-**今日深挖：** [Adversarial Speculative Reasoning Improves Long Horizon Agents](daily/2026/2026-11-05.md) · 即时价值 · 重点学习
+**今日深挖：** [XStack: A Benchmark for ML Repo Migration](daily/2026/2026-11-08.md) · 即时价值 · 重点学习
 
-**核心判断：** 它把投机解码从「加速器」重新定义为「**上下文精度分配器**」，并用实测数字说明：**在你的模型用低精度权重 + 量化 KV cache 托管时，token 被写进 KV cache 的精度取决于它落在验证块的哪个 slot（每往后一个 slot 噪声约增 4%）**。长时程 agent 跑几十万 token，每个 token 都要落盘再被读回，累积误差恰好落在关键决策点上。论文给出的机制是**训练 draft 模型在关键推理处主动被拒绝**，让目标模型在最干净的 slot 上重采样该 token——**目标模型与分布保证完全不变，只改 draft，且只训宿主参数的 0.06%–0.28%，代价是至多 2% 解码速度**（实测：GLM-5.3-nvfp4 在 DeepSWE 上 60.6% → 67.6%，DeepSeek-V4.1-Flash 67.8% → 71.8%）。
+**核心判断：** 设定极硬：**每个任务是一个真实 PyTorch 仓库（钉在具体 commit），agent 拿到源码、一台干净 TPU 机器和一个 prompt，必须交回一个 JAX 仓库，且不许知道指标、分数线和数据集**。评测四层：全量跑一遍与源论文自报数字对比（阈值由作者在 pinned commit 上认证校准）→ 导出权重必须能加载回源模型 → 两个 judge 各读 transcript 与 diff（一个查 recipe、一个查作弊，各 3 票、一次 fail 即判 fail）→ blind 轮失败给一次冻结代码的补救轮（只有 run_train.py 可改）。**实测：20 个任务、7 个 coding agent 在真实 TPU 上，Claude Opus 5 通过率 75%、GPT-5.6-sol 45%、其余全部 ≤40%；论文并给出通过率随 agent 成本的 log 线性增长。** README 里那句最该记住：**「agents can complete these migrations but still struggle to verify that what they built is faithful, complete and works end to end」——迁移能做对，难的是自己验证做对了。** 我们的抄法很明确：**它的 judge prompt、failure taxonomy、盲测与冻结补救轮的机制，就是我们 agent 验收流程缺的那一层**。
 
 **建议动作：** 今天做三件事，按依赖顺序：
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-11-08](daily/2026/2026-11-08.md) | XStack: A Benchmark for ML Repo Migration | 即时价值 | 重点学习 |
 | [2026-11-05](daily/2026/2026-11-05.md) | Adversarial Speculative Reasoning Improves Long Horizon Agents | 即时价值 | 重点学习 |
 | [2026-11-04](daily/2026/2026-11-04.md) | WebHarbor: Docking Real Websites for Evolving GUI Agent Environments | 即时价值 | 重点学习 |
 | [2026-11-03](daily/2026/2026-11-03.md) | Flide: Accelerating Decision Inference with Exact State Forking | 即时价值 | 重点学习 |
 | [2026-11-02](daily/2026/2026-11-02.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
 | [2026-11-01](daily/2026/2026-11-01.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
 | [2026-10-30](daily/2026/2026-10-30.md) | Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness | 即时价值 | 重点学习 |
-| [2026-10-28](daily/2026/2026-10-28.md) | I-HITL: Inalienable Human-in-the-Loop | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 629 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 680 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 629 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 633 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 686 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 633 |
 
 ## 为什么做这个项目
 
