@@ -16,8 +16,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-08",
-  "first_deep_dive_daily": "2026-11-08",
+  "first_seen_date": "2026-11-09",
+  "first_deep_dive_daily": "2026-11-09",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -32,10 +32,10 @@
   },
   "score": 72.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得继续观察：今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」…",
-  "one_line_essence": "今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」升级为「训练一个能把任意方向反演成文本的模型」，而且这个反演结果是可以用一次前向验证的**。★ 核心问题（论文全文口径）：解释残差流的一个方向，传统做法是**扫描语料找能强烈激活它的文本——但这样找到的文本受限于语料里有什么**。MAEM（Maximally-Activating Example Metamodels）**把「残差流方向 → 文本样本」做成一个学习到的映射**：目标是**最大化给定方向与 MAEM 生成文本在目标模型上激活的余弦相似度**；这是一个 **label-free 的 RL 目标**，正是它让 MAEM 可以扩展到多样化的方向来源（SAE 特征、probe 方向、原始激活）。★ 实测口径（论文全文口径，逐条核对）：**一个 Qwen3.6-27B 的 MAEM 在 held-out 激活上的反演优于语料搜索与自然语言自编码器（NLA）**；**在多数 held-out 语言/领域上超过语料搜索（语料扩到 10M token 时）**；**能激活 89% 的 held-out SAE 特征**；**识别 steering vector 背后的概念与 NLA 相当**；**恢复 LoRA 后门 payload 的频率高于语料搜索**；**甚至能 verbalise 一些模型 workspace 的 inner monologue**。★ 关键的方法论优势（论文自己强调，也是今天最值得抄的一点）：**「不同于其它 metamodel（例如 NLA）产出的解释，MAEM 的样本可以用目标模型的一次前向验证」**——**即 MAEM 的输出是可证伪的：拿它去跑一遍，如果那个方向真的被激活，相似度就高**。→ **这解决了自然语言解释最大的软肋：一个听起来很合理的解释无法被独立检验。** ★ 独立执行一（GitHub API 逐条核验，实测）：github.com/ceselder/maem **真实存在**（created 2026-08-26，pushed 2026-09-26，**MIT，stars=0、forks=0**，size 1,625 KB）。目录实测完整且是真研究工程：mxf/（core library：config / injection hooks / prompts / SAE loader / MFU）、data/（**collect_acts.py、collect_acts27b_worker.py、collect_acts_longctx.py、build_universal_bank.py 33,383 B、build_big_sft_bank.py、build_rl_bank.py** 等一整套激活采集与方向库构建，含多个 Modal 启动器）、sft/（match-activation SFT，LoRA + torchrun）、rl/（**GRPO，actor + vLLM 每 rank，rl_disagg.py 即 X 台 vLLM rollout GPU + Y 台 trainer GPU 的快路径，rl_ddp.sh，modal_rl_disagg.py 生产启动器，含 test_rl_disagg_queue.py / test_rl_disagg_scalerl.py 两个 CPU 测试**）、eval/（**eval_universal.py（held-out family cosine + mean_all、SAE norm_act / rank / cos / %unverbalized、random control、ctx-bucket 与 in-distribution families）、snippet_locality.py、autointerp_detection.py**）。★ 独立执行二（**今天最有价值的独立发现：仓库里有一份逐次实验的训练台账 TRAINING_LEDGER.md，实测 6,225 B**）：读它拿到摘要完全没有的复现细节——**基座 Qwen/Qwen3.6-27B，inject L1 / read L42，rsLoRA r64/α16 all-linear，steer-coeff 1.0**；**SFT 阶段 big_sft 用了 1,000,000 条样本（50 万 realact 短上下文 ≤512 + 50 万 probes），lr 3e-5、batch 16、2 个 epoch 共 25,000 步，多卡 gloo DDP on 5×B300（作者明写 NCCL 在这台机器上会死锁），loss 4.15 → ~1.8**；**RL 阶段全部从 big_sft/final 初始化，pool_rl_mix 是三分之三配比（⅓ realact + ⅓ probes + ⅓ realact_long），长上下文激活（realact_long，位置均匀取 1–8192）只进 RL 不进 SFT**；**Dr.GRPO（adv = r − group_mean，不除 std）、lr 1e-5、reward = max-over-token cos × 1000、KL 系数 0.03（上限 10，ref = SFT init）、diversity 系数 40（激活正交，按 token 平均池化）**；**并且台账明确记录了被砍掉的分支：Arm SHORT 与 Arm LONG 都标注 exploratory, KILLED 2026-08-27，并留下每 25→50 步的 eval 曲线（early 0.519→0.527 / mid 0.465→0.473 / long 0.408→0.414 等）**；最终选定 **LONG-HORIZON**（= LONG 配置 + LP per-tok 1.0，约 3–8% reward 方差）。→ **这份台账本身就是今天最值钱的东西之一：它示范了「把每次 RL 尝试连同它为什么被砍掉一起记下来」的研究记录方式，我们自己的实验记录应该照这个格式来。** ★ 独立执行三（模型权重实测，经 hf-mirror 逐条核验）：**ceselder/maemm-27b-rl-last16-lr5e-7 真实存在**（created 2026-09-18，downloads=40，likes=0，**未 gated**）；**ceselder/qwen36-27b-sae-l42-1b 存在**（created 2026-08-22，downloads=0）；**ceselder/qwen3.6-27b-nla-av 存在**（created 2026-07-14，**downloads=219**，即 NLA 基线权重是最被下载的那个）；对照组 **m-a-p/MATH-lighteval 在 hf-mirror 实测 404**，证明该通道能正确区分存在与不存在。→ **三份权重均可下载，训练好的反演器与两个基线都在，可以直接做对比实验。** ★ 独立执行四（方法细节实测）：README 实测写明反演是**两层**——**SFT（match-activation）：对每个方向，目标是那段真实语料 span（其激活即产生它的那个）；RL（Dr. GRPO）：reward = max-over-rollout 余弦，优化反演器去「主动唤起」该方向**；**README 还给了一条经验结论：真实激活与 probe 的均衡配比对 held-out family 泛化最好，而把长上下文激活加进 RL 混合是覆盖「只在长程才触发」特征的便宜办法**；评分方式为**在干净（adapter 关闭）的前向上重读 READ_LAYER 的激活，取 max-over-token 余弦**——**注意这个设计本身就是「可验证性」的实现细节，也是我们想借的核心**。★ 证据边界：(1) **本机零复现**（无 GPU；即便有 GPU，复现需 5×B300 级别的训练量，远超本机）；(2) **仓库 stars=0、fork=0，无第三方复现**；(3) 论文里的 **89% SAE 特征激活率**等数字全为作者自述；(4) **「verbalise inner monologue」这类结论的评测方式在摘要里没给全**，需要读全文附录才能判断强度，**今日未逐条核对，标为待核验**；(5) MAEM 需要目标模型前向 + 注入 hook，**我们若要在生产系统里用它，需要目标模型的访问权**；(6) **TRAINING_LEDGER 中的 eval 数字是该仓库作者自己的内部指标**，未与论文主表逐项对齐，**我们不把它们当作论文结论**。★ 为什么给趋势而不是即时：**它的价值在「可验证的解释」这个范式，而不在今天就能拿到的业务收益**——我们要先在自己的一两个内部模型上试一次「能否给一个已知方向生成可验证的反演样本」，再决定是否值得投入。",
+  "one_line_judgement": "值得继续观察：★ **今日第六价值。**（arXiv 2611.08465《Towards interpreting any residual strea…",
+  "one_line_essence": "★ **今日第六价值。**（arXiv 2611.08465《Towards interpreting any residual stream direction by scaling activation inversion》）★ 核心问题（论文全文口径）：解释残差流的一个方向，传统做法是**扫描语料找能强烈激活它的文本——但这样找到的文本受限于语料里有什么**。MAEM / MAEMM（Maximally-Activating Example Metamodels）**把「残差流方向 → 文本样本」做成一个学习到的映射**：目标是**最大化给定方向与 MAEM 生成文本在目标模型上激活的余弦相似度**；这是一个 **label-free 的 RL 目标**，正是它让 MAEM 可以扩展到多样化的方向来源（SAE 特征、probe 方向、原始激活）。★ 实测口径（论文全文口径，逐条核对）：**一个 Qwen3.6-27B 的 MAEM 在 held-out 激活上的反演优于语料搜索与自然语言自编码器（NLA）**；**在多数 held-out 语言/领域上超过语料搜索（语料扩到 10M token 时）**；**能激活 89% 的 held-out SAE 特征**；**识别 steering vector 背后的概念与 NLA 相当**；**恢复 LoRA 后门 payload 的频率高于语料搜索**。★ 关键的方法论优势（论文自己强调，也是最值得抄的一点）：**「不同于其它 metamodel（例如 NLA）产出的解释，MAEM 的样本可以用目标模型的一次前向验证」**——**即 MAEM 的输出是可证伪的：拿它去跑一遍，如果那个方向真的被激活，相似度就高。这解决了自然语言解释最大的软肋：一个听起来很合理的解释无法被独立检验。**★ 独立执行一（**今日的一条硬纠正：仓库默认分支不是 main**）：今日实测 **raw.githubusercontent.com/ceselder/maem/main/README.md 返回 404，master 返回 200（11,043 B）**，即 **ceselder/maem 的默认分支是 master**。昨日用 main 拉树会拿到空/过期结果。→ **今日新增一条核验纪律：凡按 main 取树为空，必须回退试 master。**★ 独立执行二（README@master 实测全文，摘要与论文都没有的细节）：仓库实测是 **MAEMM**（论文标题用 MAEM，仓库用 MAEMM），目标是把**激活方向反演成文本**，方法三步：**① 在 INJECT_LAYER 注入一个单位方向 v（在 marker token 上做 norm-matched：h ← h + ‖h‖·v）；② 生成一段短续写；③ 在干净的 forward pass 上重新读 READ_LAYER 的激活，取 max-over-token 的余弦相似度**。**训练两阶段：SFT（match-activation，每个方向的目标文本就是产生它的真实语料片段）与 RL（Dr. GRPO，reward = max-over-rollout cosine × 一个 scale）**；README 实测明确 '**RL does most of the heavy lifting; SFT gives it a running start**'。**方向族（README 实测列的 5 类）：realact（raw real activations unit(h−μ)）/ probe 与 cluster（线性探针、簇心）/ bsf（block-sparse subspace-featurizer SASA 投影）/ sae（SAE encoder columns）/ jlens（J-lens pullback 向量）**；README 实测的结论是 '**a balanced mix of real-activations + probes generalizes best across held-out families**，**adding long-context activations to the RL mix is a cheap way to cover features that only fire at long range**'。★ 独立执行三（**TRAINING_LEDGER.md 实测，这是全批次最有价值的「训练台账」**）：今日实测 TRAINING_LEDGER.md（**6,117 B**，master 分支）逐字给出全套复现参数：**基座 Qwen/Qwen3.6-27B、inject L1 / read L42、rsLoRA r64/α16 all-linear、steer-coeff 1.0**；**SFT：pool_big_sft = 1,000,000 条（500k realact 短上下文 ≤512 + 500k probes）、lr 3e-5、batch 16、2 epochs 共 25,000 步、多卡 gloo DDP on 5×B300（作者明写 'NCCL deadlocks on this box'）、Loss 4.15 → ~1.8**；**RL（全部从 big_sft/final 初始化，pool_rl_mix = ⅓ realact + ⅓ probes + ⅓ realact_long 共 750k，长上下文激活 pos 1–8192 只进 RL 不进 SFT——作者注 'per fjiahai: long-ctx features differ; RL-only'）**：**Dr.GRPO（adv = r − group_mean，不除 std）、lr 1e-5、reward = max-over-token cos × 1000、KL-coef 0.03（上限 10，ref = SFT init）、diversity div-coef 40（激活正交，mean-pooled over tokens ≤ 峰值 token）、每 25 步存一次**；**三个 arm 的命运实测记录在案**：SHORT（max-new-tokens 32、LP off、groups 64×16）与 LONG（max-new-tokens 96、LP start 16 per-tok 0.5）**均标记 'KILLED 2026-08-27'**，只有 **LONG-HORIZON（LP per-tok 1.0、groups 32×16、micro 8 / score 16、400 步）被选中**；并实测记录了 LP（length penalty）per-token 权重对 reward 方差的影响（0.5 约 1%、1.0 约 3–8%）。→ **这份台账的价值在于：它把『哪些配置被试过并被杀掉』也写下来了——这是论文永远不会写的部分，却是复现时最省时间的部分。**★ 独立执行四（工件状态实测）：arXiv HTML 全文（924,891 B）实测含 github.com/ceselder/maem 与四个 HF 资源（ceselder/maemm-27b-rl-last16-lr5e-7、ceselder/qwen3.6-27b-nla-av、ceselder/qwen36-27b-sae2m-l42、ceselder/qwen36-27b-sae-l42-1b、Qwen/Qwen3.6-27B、m-a-p/FineFineWeb）。**今日用 hf-mirror /api/models 端点逐条实测**：maemm-27b-rl-last16-lr5e-7 **HTTP 200、downloads=42、lastModified 2026-09-25**；qwen3.6-27b-nla-av **HTTP 200、downloads=214**；qwen36-27b-sae2m-l42 **HTTP 200、downloads=0**（权重存在但**没人下载过**）；Qwen/Qwen3.6-27B 对照组 **HTTP 200、downloads=2,339,012**；阴性对照（不存在的模型）**HTTP 404**。→ **三个 checkpoint 全部真实存在。**★ 证据边界：(1) **本机无 GPU，训练与评测一条都没跑**，89% / 10M token / 「优于 NLA」全部作者自述；(2) 仓库最后推送停在 **2026-09-26**，**距论文发布（11-05）已 40 天没有更新**，**且仓库里没有论文的复现脚本入口的明确说明**（README 主线是训练流程）；(3) sae2m-l42 的 **downloads=0** 说明这个权重虽然放了但基本无人使用，**不能拿它当「社区已验证」的信号**；(4) 基座是 Qwen3.6-27B，**需要 5×B300 级别的多卡 gloo DDP**，我们本机完全不具备；(5) 无第三方复现。★ 为什么它排第六（它的价值到底在哪）：**它的核心贡献不是『又一个解释方法』，而是『解释必须可被一次前向证伪』这条工程纪律**——**以及那份把失败配置也记下来的 TRAINING_LEDGER。** 我们如果要做任何『让 agent 解释自己在干什么』的能力，**『解释要能被机器验证』这条比具体模型重要得多。**",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」升级为「训练一个能把任意方向反演成文本的模型」，而且这个反演结果是可以用一次前向验证的**。★ 核心问题（论文全文口径）：解释残差流的一个方向，传统做法是**扫描语料找能强烈激活它的文本——但这样找到的文本受限于语料里有",
+  "new_claim_or_method": "★ **今日第六价值。**（arXiv 2611.08465《Towards interpreting any residual stream direction by scaling activation inversion》）★ 核心问题（论文全文口径）：解释残差流的一个方向，传统做法是**扫描语料找能强烈激活它的文本——但这样找到的文本受限于语料里有什",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": true,
@@ -52,7 +52,7 @@
     "status": "emerging",
     "related_trends": [
       "coding-agent",
-      "context-engineering"
+      "agentic-world-modeling"
     ],
     "evidence": [
       "论文主题匹配固定研究方向"
@@ -62,7 +62,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第四价值，**是今天 10 篇里「方法论最干净、最容易被我们借走」的一篇——它把「怎么解释一个残差流方向」这件事，从「扫语料找激活文本」升级为「训练一个能把任意方向反演成文本的模型」，而且",
+    "why_save": "★ **今日第六价值。**（arXiv 2611.08465《Towards interpreting any residual stream direction by scaling act",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -122,10 +122,10 @@
     }
   ],
   "detail_path": "paper-detail.html?id=towards-interpreting-any-residual-stream-direction-by-scaling-activation-inversion",
-  "daily_path": "daily-detail.html?date=2026-11-08",
+  "daily_path": "daily-detail.html?date=2026-11-09",
   "trend_paths": [
     "trend-detail.html?id=coding-agent",
-    "trend-detail.html?id=context-engineering"
+    "trend-detail.html?id=agentic-world-modeling"
   ],
   "long_tail_path": "long-tail.html",
   "mermaid": {

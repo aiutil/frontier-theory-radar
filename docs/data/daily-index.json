@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-11-08T05:32:44.073819",
+  "updated_at": "2026-11-09T05:22:14.815955",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-11-09",
+      "title": "论文价值发现日报 - 2026-11-09",
+      "deep_dive_title": "XStack: A Benchmark for ML Repo Migration",
+      "deep_dive_url": "http://arxiv.org/abs/2611.08472v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做三件事，全部零依赖或低成本，按依赖顺序：",
+      "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：**",
+      "one_line_judgement": "理由有三条，每条都有今天的实测支撑。**其一，它是今天唯一一篇被本机真正装起来、跑起来、跑出数字的论文**——今日实测把它的 tarball（1,805,733 B）下载到本机、建 venv、`pip install -e` 成功装出 skillware-0.6.1，CLI 全部 rc=0，**自带测试套件实测 522 passed / 15 failed**（失败项全部是缺 pytest-asyncio，与核心机制无关），`skillware test finance/wallet_screening` **实测 21 passed**，`skillware doctor` 实测逐 skill 给出 SCHEMA/DEPS/LOAD/ENVS 四列体检并精确报出 `missing: AGENT_WALLET_PRIVATE_KEY`。**其二，它是本批唯一有『失败门禁』这一层的论文**——每个能力自带离线单测，**不通过就不许进 registry**，而我们今天的 skill 只有描述层（描述不会自己失败，也永远不会被发现过时）。**其三，它的作者群把主张写在标题里（『Don't Prompt Your Agents. Equip Them』），但真正让它成立的不是那句话，是那个会失败的单测。**",
+      "path": "daily-detail.html?date=2026-11-09"
+    },
     {
       "date": "2026-11-08",
       "title": "论文价值发现日报 - 2026-11-08",
@@ -378,19 +391,6 @@
       "max_uncertainty": "LESSER（[2610.03702](http://arxiv.org/abs/2610.03702v1)）output-layer gradient 形式化、跨 AdamW / LoRA / full-finetune baseline、跨 LLM 规模验证、与 influence-function / TracIn 等近似 ranking baseline 对照是否公开；4DCodeBench（[2610.03715](http://arxiv.org/abs/2610.03715v1)）code execution runtime、physical simulation abstraction 集合、跨 LLM baseline、'compact representation' 度量是否公开；EyeRobot 2.0（[2610.03710](http://arxiv.org/abs/2610.03710v1)）fixation point 选择策略、gaze-action 协调、token budget 与 uniform baseline 对照是否公开；Stratified Retention（[2610.03713](http://arxiv.org/abs/2610.03713v1)）stratified retention 形式化、forget/schedule 协议、跨 world-model 验证、与 stationary continual learning baseline 对照是否公开；Queen（[2610.03695](http://arxiv.org/abs/2610.03695v1)）complementation 框架、跨 chess engine baseline（Stockfish / Leela）、explanation 评测协议、与现有 chess-LM 对照是否公开；Less Decoder More Encoder（[2610.03717](http://arxiv.org/abs/2610.03717v1)）encoder/decoder architecture、跨 NVS baseline 对照、transferability to downstream 3D task 是否公开；RNADyn（[2610.03712](http://arxiv.org/abs/2610.03712v1)）leakage 控制协议、轨迹质量度量、generation model baseline、跨 trajectory length 验证是否公开；Graph Decomposition（[2610.03709](http://arxiv.org/abs/2610.03709v1)）message passing 算法、graph decomposition 形式化、跨 graph topology 验证、与 gossip baseline 对照是否公开；Simulation-Free Lagrangian（[2610.03679](http://arxiv.org/abs/2610.03679v1)）residual 形式化、simulation-free 收敛保证、跨 dynamics benchmark、与 simulation-based baseline 对照是否公开；Transcriptome AI（[2610.03693](http://arxiv.org/abs/2610.03693v1)）cross-modal 监督协议、pCR 评测指标、跨 cancer type 验证、与现有 pCR baseline 对照是否公开。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
       "one_line_judgement": "据摘要（arXiv [2610.03702](http://arxiv.org/abs/2610.03702v1)），LESSER 把 LLM post-training data selection 的 ranking signal 从'full-parameter backward pass per sample'推到'output-layer gradients'——明确给出 fractional-cost 近似路径，在保留近似 full-gradient 信号的同时把 per-sample 算力压到常数倍。这是 inference-serving × llm-evaluation × memory 的 'output-layer gradient ranking' 即时价值资产 ——把'数据选择 ranking signal'从'full backward pass'拉到'output-layer as governance surface'，与昨日 / 上周 TACO（optimizer state memory compression）在'把训练时 memory/compute 维度变成可量化工程对象'层面同源，与 aiutil 长期关注的 inference-serving × memory × llm-evaluation 主线在'低成本 ranking signal for data curation'层面同源。",
       "path": "daily-detail.html?date=2026-10-06"
-    },
-    {
-      "date": "2026-10-05",
-      "title": "论文价值发现日报 - 2026-10-05",
-      "deep_dive_title": "VISTA: A Visual Harness for Reasoning in an Interactive World",
-      "deep_dive_url": "http://arxiv.org/abs/2610.02200v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 [2610.02200](http://arxiv.org/abs/2610.02200v1) VISTA 列为即时试点方向，写 'vista long-horizon visual memory' checklist 草稿；把 [2610.02199](http://arxiv.org/abs/2610.02199v1) TACO 同步列为即时路线资产，写 'taco ternary-optimizer-state' checklist 草稿；为 [2610.02206](http://arxiv.org/abs/2610.02206v1) KaliBench 'strict-syntax tool-use benchmark'、[2610.02204](http://arxiv.org/abs/2610.02204v1) RPG 'embodied self-improvement without weight update'、[2610.02203](http://arxiv.org/abs/2610.02203v1) NEPA 'next-embedding diffusion condition' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.02202](http://arxiv.org/abs/2610.02202v1) ScholarCatalyst 'inspiration benchmark'、2610.02201 SILSA 'sliding-window 3D latent'、2610.02198 FERPO 'forward entropy RL'、2610.02195 Schrödinger bridges 'Feynman-Kac tilt'、2610.02207 GALA 'Gaussian avatar linear-blend' 维持长尾卡片；忽略无（今日 10 篇全部进入 value routing）。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 VISTA 是否 plug-in 到 production multimodal model 而不破坏 native capability。",
-      "max_uncertainty": "VISTA（[2610.02200](http://arxiv.org/abs/2610.02200v1)）active retrieval protocol、lossless visual memory 实现细节（raw frame store vs compressed vs hierarchical）、跨 multimodal model 兼容（GPT-4V / Gemini / Qwen-VL 等）、与现有 agent harness 集成、跨 interactive environment 评测是否公开；TACO（[2610.02199](http://arxiv.org/abs/2610.02199v1)）ternary quantization scheme 形式化、column-wise one-sparse 实现、跨 AdamW / Muon baseline、跨 LLM 规模验证是否公开；KaliBench（[2610.02206](http://arxiv.org/abs/2610.02206v1)）CLI 覆盖范围、runtime-free verifiable reward 形式化、跨 LLM baseline 是否公开；RPG（[2610.02204](http://arxiv.org/abs/2610.02204v1)）practice task 构造协议、privileged state 设计、sim-to-real transfer 细节是否公开；NEPA（[2610.02203](http://arxiv.org/abs/2610.02203v1)）next-embedding prediction 架构、跨 diffusion backbone 验证、inference cost 对照是否公开；ScholarCatalyst（[2610.02202](http://arxiv.org/abs/2610.02202v1)）author annotation 协议、IR system baseline、与现有 citation graph benchmark 差异是否公开；SILSA（[2610.02201](http://arxiv.org/abs/2610.02201v1)）sliding-window slice 协议、topology consistency metric、与现有 voxel latent baseline 对照是否公开；FERPO（[2610.02198](http://arxiv.org/abs/2610.02198v1)）forward entropy 形式化、on-policy 收敛保证、actor-only baseline 对照是否公开；Schrödinger bridges（[2610.02195](http://arxiv.org/abs/2610.02195v1)）Feynman-Kac tilt 形式化、alternation 算法、跨 graph size 验证是否公开；GALA（[2610.02207](http://arxiv.org/abs/2610.02207v1)）blendshape 数量、coefficient predictor 协议、与现有 real-time avatar baseline 对照是否公开。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写 '待核验/暂无'，不补写不存在的事实。",
-      "one_line_judgement": "据摘要（arXiv [2610.02200](http://arxiv.org/abs/2610.02200v1)），VISTA 把'visual harness'作为 first-class 概念 ——给 general-purpose multimodal model 配备 long-horizon vision，让它直接通过 visual observation 感知 environment，并用 lossless visual memory 保留 past observations 的原始形态（preserves past observations in their original form），同时允许模型主动 retrieve 过去 observation。这是 ai-agent × multimodal-agent × context-engineering 的 'long-horizon visual memory harness' 即时价值资产 ——把'视觉感知'从 'static prompt' 拉到 'first-class memory asset + active retrieval'；与昨日 / 上周 multimodal-agent 主线在 'visual memory as first-class asset' 层面同源；与 aiutil 长期关注的 context-engineering × memory 主线在 'long-horizon lossless memory' 层面同源（视觉分支）。",
-      "path": "daily-detail.html?date=2026-10-05"
     }
   ]
 }

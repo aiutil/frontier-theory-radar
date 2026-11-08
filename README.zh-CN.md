@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-11-08
+## 最新研究 · 2026-11-09
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 176 | 275 | 284 | 1368 |
 
-**今日深挖：** [XStack: A Benchmark for ML Repo Migration](daily/2026/2026-11-08.md) · 即时价值 · 重点学习
+**今日深挖：** [XStack: A Benchmark for ML Repo Migration](daily/2026/2026-11-09.md) · 即时价值 · 重点学习
 
-**核心判断：** 设定极硬：**每个任务是一个真实 PyTorch 仓库（钉在具体 commit），agent 拿到源码、一台干净 TPU 机器和一个 prompt，必须交回一个 JAX 仓库，且不许知道指标、分数线和数据集**。评测四层：全量跑一遍与源论文自报数字对比（阈值由作者在 pinned commit 上认证校准）→ 导出权重必须能加载回源模型 → 两个 judge 各读 transcript 与 diff（一个查 recipe、一个查作弊，各 3 票、一次 fail 即判 fail）→ blind 轮失败给一次冻结代码的补救轮（只有 run_train.py 可改）。**实测：20 个任务、7 个 coding agent 在真实 TPU 上，Claude Opus 5 通过率 75%、GPT-5.6-sol 45%、其余全部 ≤40%；论文并给出通过率随 agent 成本的 log 线性增长。** README 里那句最该记住：**「agents can complete these migrations but still struggle to verify that what they built is faithful, complete and works end to end」——迁移能做对，难的是自己验证做对了。** 我们的抄法很明确：**它的 judge prompt、failure taxonomy、盲测与冻结补救轮的机制，就是我们 agent 验收流程缺的那一层**。
+**核心判断：** 理由有三条，每条都有今天的实测支撑。**其一，它是今天唯一一篇被本机真正装起来、跑起来、跑出数字的论文**——今日实测把它的 tarball（1,805,733 B）下载到本机、建 venv、`pip install -e` 成功装出 skillware-0.6.1，CLI 全部 rc=0，**自带测试套件实测 522 passed / 15 failed**（失败项全部是缺 pytest-asyncio，与核心机制无关），`skillware test finance/wallet_screening` **实测 21 passed**，`skillware doctor` 实测逐 skill 给出 SCHEMA/DEPS/LOAD/ENVS 四列体检并精确报出 `missing: AGENT_WALLET_PRIVATE_KEY`。**其二，它是本批唯一有『失败门禁』这一层的论文**——每个能力自带离线单测，**不通过就不许进 registry**，而我们今天的 skill 只有描述层（描述不会自己失败，也永远不会被发现过时）。**其三，它的作者群把主张写在标题里（『Don't Prompt Your Agents. Equip Them』），但真正让它成立的不是那句话，是那个会失败的单测。**
 
-**建议动作：** 今天做三件事，按依赖顺序：
+**建议动作：** 今天做三件事，全部零依赖或低成本，按依赖顺序：
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-11-09](daily/2026/2026-11-09.md) | XStack: A Benchmark for ML Repo Migration | 即时价值 | 重点学习 |
 | [2026-11-08](daily/2026/2026-11-08.md) | XStack: A Benchmark for ML Repo Migration | 即时价值 | 重点学习 |
 | [2026-11-05](daily/2026/2026-11-05.md) | Adversarial Speculative Reasoning Improves Long Horizon Agents | 即时价值 | 重点学习 |
 | [2026-11-04](daily/2026/2026-11-04.md) | WebHarbor: Docking Real Websites for Evolving GUI Agent Environments | 即时价值 | 重点学习 |
 | [2026-11-03](daily/2026/2026-11-03.md) | Flide: Accelerating Decision Inference with Exact State Forking | 即时价值 | 重点学习 |
 | [2026-11-02](daily/2026/2026-11-02.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
 | [2026-11-01](daily/2026/2026-11-01.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
-| [2026-10-30](daily/2026/2026-10-30.md) | Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 633 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 686 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 633 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 630 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 689 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 630 |
 
 ## 为什么做这个项目
 

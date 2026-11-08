@@ -16,8 +16,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-08",
-  "first_deep_dive_daily": "2026-11-08",
+  "first_seen_date": "2026-11-09",
+  "first_deep_dive_daily": "2026-11-09",
   "value_type": "immediate",
   "value_type_label": "即时价值",
   "value_scores": {
@@ -32,10 +32,10 @@
   },
   "score": 84.0,
   "decision": "重点学习",
-  "one_line_judgement": "今天值得试：今日第二即时价值，**是一篇「问题设定正好戳在我们系统最痛的地方」的论文——它问的不是一个新模型，而是一个我们每天都在踩的坑：coding …",
-  "one_line_essence": "今日第二即时价值，**是一篇「问题设定正好戳在我们系统最痛的地方」的论文——它问的不是一个新模型，而是一个我们每天都在踩的坑：coding agent 复现实验时，成功率不只取决于模型能力，还取决于我们交付给它的 artifact 里有没有保留住「执行知识」**。★ 核心问题（论文全文口径）：复现 ML 实验需要从论文、已发布代码和零散工件里重建过程，**因此对 coding agent 而言，复现成败可能取决于它自己补全缺失细节的能力，而不只取决于已发布的工件**。作者问：**把重建出来的过程与决策保留下来，是否能提升后续的独立复现**。方法 ReproBridge 定义了标准化工件四件套：**refined codebase（精炼代码库）+ environment setup（环境配置）+ experiment launchers（实验启动器）+ reproduction guide（复现指南）**，并实现为一个 agent workflow。★ 实测口径（论文全文口径，逐条核对）：ReproBridge-Bench 含 **1,029 个任务、来自 36 篇论文的 387 个实验，每个任务锚定 5 个人工核验的参考分数**；**四个模型在 fresh session 里分别用原始代码或精炼工件尝试，独立 Auditor 检查执行证据**；结果：**精炼工件把平均复现成功率从 76.4% 提到 92.6%**，**并把下游 API 花费平均降低 19.7%**；**跨模型成功率离散度从 21.6 个百分点收窄到 3.9 个百分点，四个模型平均成功率全部超过 90%**；**消融显示去掉任一组件都会掉成功率，其中去掉代码与环境损失最大**。★ 独立执行一（项目页实测，这是今天最扎实的一次核验）：https://wyyyb.github.io/reprobridge_website/ **实测可访问（http 200，248,017 B）**。页面实测结构为 Paper / Code / **In review** / Dataset **In review** / Walkthrough / Overview / Artifact / Benchmark / Results / Cases / Cite，**并明确写着一句关键的话：Code and data are going through internal review and will be open-sourced once approved.** → **代码与数据集状态必须写「待核验/暂无」：作者自己声明尚未开源，页面上的 Code / Dataset 两个入口都是 In review**。★ 独立执行二（GitHub API 核验，实测）：GitHub 上唯一命中的是 **Wyyyb/reprobridge_website**（created 2026-10-16，pushed **2026-11-06T19:37:47Z**，stars=0、forks=0，size 2,689 KB，**license 字段为 null 即无 LICENSE**），其描述明写 Project page for ReproBridge: Building Reproducibility into ML Research Artifacts——**即它是项目页源码仓库，不是方法实现仓库**。按 reprobridge 关键词搜索 GitHub 仅命中此一个。→ **今日无实现代码、无 ReproBridge-Bench 数据集可下载。** ★ 独立执行三（从项目页正文读到摘要和论文都没有的三组硬信息，价值很高）：(1) **36 篇测试论文全部取自 ICML 2026 Spotlights，横跨 8 个主题族与 22 个子领域**——这是一个很强的取样说服力信号（**能进 ICML 2026 Spotlight 的论文，其复现流程本身就是有价值的**）；(2) 页面实测给出**第一轮评测的 144 个 paper–model 对**，四个模型分别是 **Sonnet 4.6、Sonnet 5、Opus 5、Gemini 3.8 Flash**，并按论文逐条标注增益（Decrease 18 / Unchanged 37 / 0–10pp 19 / 10–25pp 26 / 25–50pp 24 / >50pp 20）——**即增益不是均匀的，有 18 个格子是负的**，这个诚实披露很关键；(3) 页面实测有独立的 **Audit / Validation** 板块与 Cases 板块（从 artifact.css / cases.css / audit_validation-2400.webp 等资源实测确认存在）。★ 独立执行四（论文全文扫描工件声明）：arXiv HTML 全文（560,995 B）扫描，**本文自身没有任何 github.com 链接**（仅命中的 github 字样是 arXiv 页脚的 html_feedback 与 LaTeXML），唯一的项目链接就是 wyyyb.github.io/reprobridge_website/。★ 证据边界：(1) **无代码、无数据集**，全部数字为作者自述，**本机零验证**；(2) **成功率的判定依赖 LLM Auditor**（作者自述 a separate Auditor checks execution evidence），**Auditor 本身的误判率没有报告**，而 92.6% 与 76.4% 这两个数都经它判定；(3) 36 篇论文来自 ICML 2026 Spotlight，**样本偏向被会议认可的工作**，未必代表工业界真实仓库的复现难度；(4) 增益分布显示 **18/144 为负**，说明精炼工件**不是稳定增益**，而摘要只给了均值，**没有点名哪些场景会变差**（这是今天读全文最想要但没找到的信息）；(5) 增益与论文新旧、artifact 完整度等因素的相关性未做控制；(6) 作者单位为 University of Waterloo + Google，**代码走内部评审（internal review）这一条本身意味着短期内不会有可下载工件**。★ 为什么给即时价值：**「我们交付给 agent 的东西，决定了 agent 能不能做对」——这件事我们每天都在做却没有量化过**。论文给的四件套（refined codebase / environment setup / experiment launchers / reproduction guide）**今天就可以当成我们内部 repo 的交付清单自查表**，而「精炼工件让复现成功率 76.4%→92.6%、API 花费 −19.7%、跨模型离散度 21.6→3.9pp」这三条数字，虽然是作者自述，但**方向与我们自己的体感一致，值得当作假设写进我们的工程规范**。**不需要等代码上线就能开始用的，是那份四件套清单本身。**",
+  "one_line_judgement": "今天值得试：★ **今日第四即时价值。**（arXiv 2611.08452《ReproBridge: Building Reproducibility…",
+  "one_line_essence": "★ **今日第四即时价值。**（arXiv 2611.08452《ReproBridge: Building Reproducibility into ML Research Artifacts》）★ 核心问题（论文全文口径）：复现 ML 实验需要从论文、已发布代码和零散工件里重建过程，**因此对 coding agent 而言，复现成败可能取决于它自己补全缺失细节的能力，而不只取决于已发布的工件**。作者问：**把重建出来的过程与决策保留下来，是否能提升后续的独立复现**。方法 ReproBridge 定义了标准化工件四件套：**refined codebase（精炼代码库）+ environment setup（环境配置）+ experiment launchers（实验启动器）+ reproduction guide（复现指南）**，并实现为一个 agent workflow。★ 实测口径（论文 + 项目页逐条核对）：ReproBridge-Bench 含 **1,029 个任务、来自 36 篇论文的 387 个实验，每个任务锚定 5 个人工核验的参考分数**；**四个模型在 fresh session 里分别用原始代码或精炼工件尝试，独立 Auditor 检查执行证据**；**精炼工件把平均复现成功率从 76.4% 提到 92.6%**，**并把下游 API 花费平均降低 19.7%**；**跨模型成功率离散度从 21.6 个百分点收窄到 3.9 个百分点，四个模型平均成功率全部超过 90%**；**消融显示去掉任一组件都会掉成功率，其中去掉代码与环境损失最大**。★ 独立执行一（**项目页今日实测逐字复核，结论与昨日一致**）：https://wyyyb.github.io/reprobridge_website/ 今日实测 **HTTP 200、248,017 B**，可见文本实测 74,647 字符；实测逐字包含 'Across four coding agents on 1,029 tasks, refined artifacts raise mean reproduction success from 76.4% to 92.6% and reduce downstream API spending by 19.7% on average.'、'ReproBridge-Bench draws its 36 test papers from ICML 2026 Spotlights across eight topic families and 22 subdomains.'、'Paper · Coverage ▸ Walkthrough · Overview 01 Artifact 02 Benchmark 03 Results 04 Papers 05 Cases 06 Scope · Release & cite 36 papers · 1,029 tasks · four coding agents'。★ 独立执行二（**代码与数据集状态今日仍未开放，原样保留**）：项目页实测逐字写 '**Code In review**'、'**Dataset In review**'，以及 '**Code and data are going through internal review and will be open-sourced once approved.**'→ **代码与数据集状态为「待核验/暂无」，今日仍然不可下载。** GitHub 侧昨日实测仅命中项目页源码仓库 Wyyyb/reprobridge_website（★0、forks=0、license 字段为 null 即无 LICENSE）；**今日实测该项目仓库 pushed 仍是 2026-11-06T19:37:47Z、提交仍是 5 条，最新一条是 'Link the arXiv paper and note that code and data are...（在审）'——即作者在 11-06 之后没有再动过它，两天过去仍未开源。**★ 证据边界：(1) **无代码、无数据集，76.4%→92.6% / 19.7% / 3.9pp 全部是作者自述**，本机零验证；(2) 样本取自 **ICML 2026 Spotlights**——这是很强的取样说服力信号（能进 Spotlight 的论文其复现流程本身有研究价值），但**也意味着结论未必适用于非 Spotlight 论文**；(3) 四个模型是 Sonnet 4.6 / Sonnet 5 / Opus 5 / Gemini 3.8 Flash（昨日实测项目页逐条标注），**均为闭源 API 模型**，**我们若换成本地开源模型，92.6% 这个数字不可迁移**；(4) 项目页实测披露第一轮 144 个 paper–model 对里有 **18 个格子是负增益**（Decrease 18 / Unchanged 37 / 0–10pp 19 / 10–25pp 26 / 25–50pp 24 / >50pp 20）——**这个诚实披露很关键，也说明 92.6% 是均值，尾部有 12.5% 的格子是倒退的**；(5) 无第三方复现。★ 为什么它仍然排第四（而不是被今日的新发现挤掉）：**它的「四件套」是今天唯一一条我们今天就能直接抄进交付规范的清单**，而且它与今日第二名 Terminal-Bench 2.1 恰好构成一对：**ReproBridge 管『工件怎么做对』，Terminal-Bench 管『评测本身怎么维护』。**→ **今天最该做的组合动作：把 ReproBridge 的四件套写成交付自查表，同时把 Terminal-Bench 的『评测也要有回归』加进去——我们的 agent harness 应该像产品代码一样被维护。**",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第二即时价值，**是一篇「问题设定正好戳在我们系统最痛的地方」的论文——它问的不是一个新模型，而是一个我们每天都在踩的坑：coding agent 复现实验时，成功率不只取决于模型能力，还取决于我们交付给它的 artifact 里有没有保留住「执行知识」**。★ 核心问题（论文全文口径）：复现 ML 实验需要从论文、已发布代码和零散工件里重建过程，**因",
+  "new_claim_or_method": "★ **今日第四即时价值。**（arXiv 2611.08452《ReproBridge: Building Reproducibility into ML Research Artifacts》）★ 核心问题（论文全文口径）：复现 ML 实验需要从论文、已发布代码和零散工件里重建过程，**因此对 coding agent 而言，复现成败可能取决于它自己补全",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
@@ -62,7 +62,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第二即时价值，**是一篇「问题设定正好戳在我们系统最痛的地方」的论文——它问的不是一个新模型，而是一个我们每天都在踩的坑：coding agent 复现实验时，成功率不只取决于模型能力，还",
+    "why_save": "★ **今日第四即时价值。**（arXiv 2611.08452《ReproBridge: Building Reproducibility into ML Research Artifact",
     "future_trigger": [
       "待更多证据"
     ],
@@ -122,7 +122,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=reprobridge-building-reproducibility-into-ml-research-artifacts",
-  "daily_path": "daily-detail.html?date=2026-11-08",
+  "daily_path": "daily-detail.html?date=2026-11-09",
   "trend_paths": [
     "trend-detail.html?id=coding-agent",
     "trend-detail.html?id=agentic-world-modeling"

@@ -13,8 +13,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-08",
-  "first_deep_dive_daily": "2026-11-08",
+  "first_seen_date": "2026-11-09",
+  "first_deep_dive_daily": "2026-11-09",
   "value_type": "trend",
   "value_type_label": "趋势价值",
   "value_scores": {
@@ -29,10 +29,10 @@
   },
   "score": 68.0,
   "decision": "轻量试点",
-  "one_line_judgement": "值得继续观察：今日第五价值，**机制很干净、结论很硬，但仓库里今天没有实现——这一点必须原样写出来，否则今天读它的人会以为可以 clone 下来跑**。★…",
-  "one_line_essence": "今日第五价值，**机制很干净、结论很硬，但仓库里今天没有实现——这一点必须原样写出来，否则今天读它的人会以为可以 clone 下来跑**。★ 核心机制（论文全文口径）：LLM 引导的进化搜索用 AI agent 迭代改进程序，但**慢的原因是 LLM 每轮要生成很长的文本思维链，且为了维持种群多样性必须反复生成**。SwarmEvolve 的做法是：**每一轮派出成百个低成本 agent，以群（swarm）形式在隐空间（latent space）里推理——不把隐状态解码成文本——并通过直接传递 KV cache 来交换信息**；每个 swarm 从不同角度研究问题；**新颖性过滤器直接测量 agent 之间隐状态向量的距离来保留最互异的想法**；**想法的交叉（crossover）自然发生在隐空间里，因为汇总 agent 接收的是所有 swarm 成员的合并 KV cache**。★ 实测口径（论文全文口径，逐条核对）：**在 21 个数学发现与科学计算问题上，SwarmEvolve 取得最高平均分，且只需中位 3 到 8 分钟就能达到其他 SOTA 框架 60 分钟才达到的最好分数**；**在若干问题上，用 Qwen3 8B 的 SwarmEvolve 改进出了 AlphaEvolve 用前沿 LLM 首次找到的解**。★ 独立执行一（GitHub API 逐条核验，实测）：github.com/Qile-J/SwarmEvolve **真实存在**（created 2026-10-27，pushed **2026-11-06T18:06:26Z**，即论文发布后仍在更新，**stars=9、forks=0**，size 36,850 KB，**license 字段为 null 即无 LICENSE**），仓库描述实为「SwarmEvolve: Latent Agent Swarms for Rapid Evolutionary Search **(code coming soon)**」。★ 独立执行二（**今天最重要的一次反证式核验——目录树实测推翻了「仓库里有代码」的直觉**）：实测顶层只有 5 项：**.gitignore、README.md、analysis/、assets/、baselines/**——**没有 swarm/、没有 src/、没有 agent 实现**。逐文件枚举后确认：analysis/ 下**只有一个 .gitkeep（0 B）**；baselines/ 下是 **CodeEvolve 的完整第三方快照**（含其 .github/workflows/ci.yml、problems/ 下 alphaevolve_math_problems 的 autocorrelation_problems / heilbronn_problems / heilbronn_triangle / kissing_number 等任务目录，每个含 evaluate.py 与 init_program.py）；benchmarks/ 下是 **21 个问题所需的 task.md / initial_program.py / evaluator.py 与共享评测 benchmarks/evaluation.py、benchmarks/run_evaluator.py、benchmarks/scientific_cases.py、以及 calibration/ 下 7 个专家参考解（burgers_1d_cole_hopf、burgers_1d_spectral、convection_diffusion_2d_expert、helmholtz_2d_expert、make_pde_references.py、nonnormal_eigenvalues_expert、sparse_linear_systems_expert / sparse_linear_systems_splu）**。→ **准确表述：仓库当前提供的是「基准 + 基线 + 校准参考解 + 结果图」，SwarmEvolve 方法本身的实现尚未发布；README 末段实测原话 The SwarmEvolve code will be released soon. For questions and early access, please reach out to the authors.** ★ 独立执行三（README 实测拿到的、摘要没有的对比与配置细节）：三个开源对比框架分别是 **OpenEvolve（algorithmicsuperintelligence/openevolve）、ShinkaEvolve（SakanaAI/ShinkaEvolve）、CodeEvolve（inter-co/science-codeevolve）**，且**基线脚本与它们在论文中所用 commit 一并冻结在仓库里（setup_baselines.sh / run_baseline.sh <framework> <problem> <model>）**；**实验配置为 Qwen3 8B / 14B / 32B、单 GPU、每次运行 60 分钟**；结果图为「60 分钟内评测的程序数」「15 分钟后的平均最好分」「达到 OpenEvolve 60 分钟分数所需分钟数的中位数」三联图，并注明每个模型跑 3 次取平均。★ 独立执行四（论文全文扫描工件声明）：arXiv HTML 中除本文自己的仓库外，另有三个引用仓库（apoorvumang/prompt-lookup-decoding、codelion/openevolve、google-deepmind/alphaevolve_results）与 openevolve/ShinkaEvolve/CodeEvolve 的对比链接。★ 证据边界：(1) **方法实现今日不可用**（无 swarm/ 无 src/，README 明写 coming soon），**所有数字为作者自述，本机零验证**；(2) **「3–8 分钟达到别人 60 分钟的分数」是同等墙钟预算下的对比，但前提是「单 GPU + Qwen3 8B」**——**在更大模型或更难的搜索空间上是否保持，我们不知道**；(3) 论文声称在若干问题上**用 Qwen3 8B 改进出了 AlphaEvolve 用前沿 LLM 首次找到的解**——这是很强的论断，但**基准里只有作者自己选的 21 个问题，且基线快照是作者选定的 commit**，第三方复现难度不低；(4) **隐空间交叉依赖 KV cache 的合并**，这对不同模型、不同位置编码、可并行批处理的开销影响很大，**论文未报告工程开销口径**（实测 README 未给 token/显存成本数字）；(5) 仓库 stars=9、无 LICENSE、无第三方复现。★ 为什么给趋势：**「不把隐状态解码成文本、直接用 KV cache 交换信息」是今天唯一一个新机制的 agent 协作范式，它对「agent 编排成本」的影响是结构性的，值得跟踪 7–30 天**；但今天**没有实现可跑**，所以只能进趋势雷达，不能进今天的实践清单。",
+  "one_line_judgement": "值得继续观察：★ **今日第七价值。**（arXiv 2611.08483《SwarmEvolve: Latent Agent Swarms for Ev…",
+  "one_line_essence": "★ **今日第七价值。**（arXiv 2611.08483《SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization》）★ 核心机制（论文全文口径）：LLM 引导的进化搜索用 AI agent 迭代改进程序，**但慢的原因是 LLM 每轮要生成很长的文本思维链，且为了维持种群多样性必须反复生成**。SwarmEvolve 的做法是：**每一轮派出成百个低成本 agent，以群（swarm）形式在隐空间（latent space）里推理——不把隐状态解码成文本——并通过直接传递 KV cache 来交换信息**；每个 swarm 从不同角度研究问题；**新颖性过滤器直接测量 agent 之间隐状态向量的距离来保留最互异的想法**；**想法的交叉（crossover）自然发生在隐空间里，因为汇总 agent 接收的是所有 swarm 成员的合并 KV cache**。★ 实测口径（论文全文口径，逐条核对）：**在 21 个数学发现与科学计算问题上，SwarmEvolve 取得最高平均分，且只需中位 3 到 8 分钟就能达到其他 SOTA 框架 60 分钟才达到的最好分数**；**在若干问题上，用 Qwen3 8B 的 SwarmEvolve 改进出了 AlphaEvolve 用前沿 LLM 首次找到的解**。★ 独立执行一（**今日的核心结论与昨日一致：仓库里仍然没有 SwarmEvolve 的实现**）：github.com/Qile-J/SwarmEvolve 实测存在（created 2026-10-27、pushed 2026-11-06T18:06:26Z、**★12、forks=0、license 字段为 null 即无 LICENSE**、size 36,850 KB 级）。**今日实测 main 分支完整 tree：1,147 个 blob，顶层仅 .gitignore / README.md / analysis / assets / baselines / benchmarks 六项**；**analysis/ 下实测只有一个 .gitkeep（0 B）**；**baselines/ 下 1,038 个 blob 全是 CodeEvolve 的第三方快照**（含其 .github/workflows/ci.yml、AGENTS.md、configs/templates/config_{gemini,mock,qwen}.yaml、problems/alphaevolve_math_problems 下的 autocorrelation_problems / heilbronn_convex / heilbronn_triangle / kissing_number / minimizing_max_min_dist / packing_problems 等，每个含 evaluate.py 与 init_program.py）；**benchmarks/ 下 101 个 blob 是 21 个问题的 task.md / initial_program.py / evaluator.py + 共享评测 + calibration/ 下 7 个专家参考解**。→ **准确表述（今日实测复核，结论与昨日一致）：仓库当前提供的是「基准 + 基线 + 校准参考解 + 结果图」，SwarmEvolve 方法本身的实现仍未发布。**★ 独立执行二（**今日的新增量：star 数从 9 涨到 12，且第三方已把它写进自己的 README**）：昨日实测 ★9，今日实测 **★12**——**论文发布后 3 天涨 3 star，且没有任何实现可用，说明关注度来自论文本身而非可跑代码**。同时实测到 **algorithmicsuperintelligence/openevolve（OpenEvolve，★7,737、Apache-2.0、pushed 2026-11-07T19:40:27Z）的最新提交里有一条 'Add SwarmEvolve to Used In Research (#591)'**——**即 SwarmEvolve 已经被写进另一个框架的『被使用过』名单里，但那是引用，不是复现。**★ 证据边界：(1) **无实现代码、无可运行工件，21 个问题的最高平均分与「3–8 分钟达到别人 60 分钟」全部作者自述**；(2) 仓库 README 自述 'The SwarmEvolve code will be released soon. For questions and early access, please reach out to the authors.'——**至今已 3 天未兑现**；(3) 基准里嵌的是 **CodeEvolve 的快照**，**这意味着基线实现会随 CodeEvolve 变化而漂移，不利于长期复现**（论文没讨论这一点）；(4) **「用 Qwen3 8B 找到 AlphaEvolve 用前沿 LLM 首次找到的解」这个说法今日无法核验**（既没有实现，也没有可下载的解）；(5) 无第三方复现。★ 为什么它仍然保留在雷达里：**隐空间协作（不把隐状态解码成文本、直接传 KV cache、用隐状态距离做新颖性过滤）是一个我们今天就能借的机制设计**——它把『种群多样性』这件事从 prompt 层的措辞变到了表征层的度量。但**因为没有实现，今天它的地位是『设计模式可抄，代码不可用』。**",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日第五价值，**机制很干净、结论很硬，但仓库里今天没有实现——这一点必须原样写出来，否则今天读它的人会以为可以 clone 下来跑**。★ 核心机制（论文全文口径）：LLM 引导的进化搜索用 AI agent 迭代改进程序，但**慢的原因是 LLM 每轮要生成很长的文本思维链，且为了维持种群多样性必须反复生成**。SwarmEvolve 的做法是：**每一",
+  "new_claim_or_method": "★ **今日第七价值。**（arXiv 2611.08483《SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and Optimization》）★ 核心机制（论文全文口径）：LLM 引导的进化搜索用 AI agent 迭代改进程序，**但慢的原因是 LLM 每轮要生成很长的文本思维链，",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": true,
@@ -48,7 +48,8 @@
   "trend_relation": {
     "status": "emerging",
     "related_trends": [
-      "agentic-world-modeling"
+      "agentic-world-modeling",
+      "coding-agent"
     ],
     "evidence": [
       "论文主题匹配固定研究方向"
@@ -58,7 +59,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日第五价值，**机制很干净、结论很硬，但仓库里今天没有实现——这一点必须原样写出来，否则今天读它的人会以为可以 clone 下来跑**。★ 核心机制（论文全文口径）：LLM 引导的进化搜索用",
+    "why_save": "★ **今日第七价值。**（arXiv 2611.08483《SwarmEvolve: Latent Agent Swarms for Evolutionary Discovery and O",
     "future_trigger": [
       "出现多篇跟进论文、开源项目和工程博客共振"
     ],
@@ -118,9 +119,10 @@
     }
   ],
   "detail_path": "paper-detail.html?id=swarmevolve-latent-agent-swarms-for-evolutionary-discovery-and-optimization",
-  "daily_path": "daily-detail.html?date=2026-11-08",
+  "daily_path": "daily-detail.html?date=2026-11-09",
   "trend_paths": [
-    "trend-detail.html?id=agentic-world-modeling"
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
   ],
   "long_tail_path": "long-tail.html",
   "mermaid": {

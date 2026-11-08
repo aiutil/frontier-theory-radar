@@ -13,8 +13,8 @@
   "benchmark_url": "",
   "paperswithcode_url": "",
   "openreview_url": "",
-  "first_seen_date": "2026-11-08",
-  "first_deep_dive_daily": "2026-11-08",
+  "first_seen_date": "2026-11-09",
+  "first_deep_dive_daily": "2026-11-09",
   "value_type": "ignore",
   "value_type_label": "暂时忽略",
   "value_scores": {
@@ -29,10 +29,10 @@
   },
   "score": 46.0,
   "decision": "暂时忽略",
-  "one_line_judgement": "当前可忽略：今日暂缓，**是一篇扎实的对抗训练优化理论，但它与我们的系统没有交集，且今天没有任何可核验产物**。★ 内容（论文全文口径）：对抗训练（AT…",
-  "one_line_essence": "今日暂缓，**是一篇扎实的对抗训练优化理论，但它与我们的系统没有交集，且今天没有任何可核验产物**。★ 内容（论文全文口径）：对抗训练（AT）是提升模型鲁棒性的重要方法；论文研究**确定性梯度下降在 AT 下的动力学**，并明确指出**既有工作大多聚焦小步长或趋零步长（此时 GD 类似连续时间流），但这种步长使训练低效、实践中很少使用**；本文研究**大步长常数步长**下的 AT 动力学：先在**对抗线性逻辑回归**上研究参数收敛到哪（implicit bias）与损失下降多快（optimization），再转到**神经网络**上研究**训练中损失锐度（sharpness）如何演化**。三条主要结论（逐条回指原文）：**(i) AT 与标准训练（ST）之间的隐式偏置差距（此前仅在小步长下建立）在任意大的常数步长下依然存在**；**(ii) 与 ST 不同，AT 中优化误差不存在统一的收敛速率**；**(iii) 锐度可以表现出两阶段（two-stage）动力学，且与 ST 中观察到的 Edge-of-Stability 行为不同**。★ 独立执行一（工件状态核验，**结论是「暂无」**）：arXiv HTML 全文（1,434,370 B）扫描，**本文自身没有任何 github.com 链接**（仅命中 html_feedback 与 LaTeXML），无 huggingface、无项目页。→ **今日无代码、无实验产物，数字全为作者自述。** ★ 证据边界：(1) **无代码、纯理论（cs.LG + math.OC）**，本机零验证；(2) 结论限定在**确定性 GD**、**线性逻辑回归 + 神经网络锐度演化**，**没有覆盖 PGD/自适应步长/随机性**，而实践中 AT 基本都用这些；(3) 「不存在统一收敛速率」是一个**否定性结论**，其强度取决于「统一」的定义范围，正文未给可操作的工程含义；(4) 「两阶段锐度动力学」在摘要里只有一句话，**判据与观测条件需要读全文，今天未逐条核对，标为待核验**；(5) **与我们的 agent 平台、上下文工程、评测流程无直接交集**——AT 的鲁棒性不是我们当前的工程问题。★ 判断：**保留最小索引。** **触发条件：我们开始做模型/agent 的对抗鲁棒性工作，或有人要求解释「为什么大步长 AT 与标准训练收敛行为不同」。**",
+  "one_line_judgement": "当前可忽略：★ **今日第十二价值（忽略）。**（arXiv 2611.08457《Adversarial Training with Large St…",
+  "one_line_essence": "★ **今日第十二价值（忽略）。**（arXiv 2611.08457《Adversarial Training with Large Step Sizes: Implicit Bias, Optimization, and Sharpness》）★ 内容（论文全文口径）：对抗训练（AT）是提升模型鲁棒性的重要方法；论文研究**确定性梯度下降在 AT 下的动力学**，并明确指出**既有工作大多聚焦小步长或趋零步长（此时 GD 类似连续时间流），但这种步长使训练低效、实践中很少使用**；本文研究**大步长常数步长**下的 AT 动力学：先在**对抗线性逻辑回归**上研究参数收敛到哪（implicit bias）与损失下降多快（optimization），再转到**神经网络**上研究**训练中损失锐度（sharpness）如何演化**。三条主要结论（逐条回指原文）：**(i) AT 与标准训练（ST）之间的隐式偏置差距（此前仅在小步长下建立）在任意大的常数步长下依然存在**；**(ii) 与 ST 不同，AT 中优化误差不存在统一的收敛速率**；**(iii) 锐度可以表现出两阶段（two-stage）动力学，且与 ST 中观察到的 Edge-of-Stability 行为不同**。★ 独立执行一（工件状态实测，**结论是「暂无」**）：arXiv HTML 全文（**1,417,272 B，为本批最长**）实测扫描，**本文自身没有任何 github.com 链接**（仅命中 html_feedback 与 LaTeXML），无 huggingface、无项目页。→ **今日无代码、无实验产物，数字全为作者自述。**★ 证据边界：(1) **无代码、纯理论（cs.LG + math.OC）**，本机零验证；(2) 结论限定在**确定性 GD**、**线性逻辑回归 + 神经网络锐度演化**，**没有覆盖 PGD / 自适应步长 / 随机性**，而实践中 AT 基本都用这些；(3) 「不存在统一收敛速率」是一个**否定性结论**，其强度取决于「统一」的定义范围，正文未给可操作的工程含义；(4) 「两阶段锐度动力学」在摘要里只有一句话，**判据与观测条件需要读全文，今日未逐条核对，标为待核验**；(5) **与我们的 agent 平台、上下文工程、评测流程无直接交集**——AT 的鲁棒性不是我们当前的工程问题。★ 判断：**保留最小索引。** **触发条件：我们开始做模型/agent 的对抗鲁棒性工作，或有人要求解释「为什么大步长 AT 与标准训练收敛行为不同」。**",
   "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
-  "new_claim_or_method": "今日暂缓，**是一篇扎实的对抗训练优化理论，但它与我们的系统没有交集，且今天没有任何可核验产物**。★ 内容（论文全文口径）：对抗训练（AT）是提升模型鲁棒性的重要方法；论文研究**确定性梯度下降在 AT 下的动力学**，并明确指出**既有工作大多聚焦小步长或趋零步长（此时 GD 类似连续时间流），但这种步长使训练低效、实践中很少使用**；本文研究**大步长",
+  "new_claim_or_method": "★ **今日第十二价值（忽略）。**（arXiv 2611.08457《Adversarial Training with Large Step Sizes: Implicit Bias, Optimization, and Sharpness》）★ 内容（论文全文口径）：对抗训练（AT）是提升模型鲁棒性的重要方法；论文研究**确定性梯度下降在 AT 下的动",
   "research_position": "source_paper",
   "engineering_testability": {
     "has_code": false,
@@ -56,7 +56,7 @@
     ]
   },
   "long_tail": {
-    "why_save": "今日暂缓，**是一篇扎实的对抗训练优化理论，但它与我们的系统没有交集，且今天没有任何可核验产物**。★ 内容（论文全文口径）：对抗训练（AT）是提升模型鲁棒性的重要方法；论文研究**确定性梯度",
+    "why_save": "★ **今日第十二价值（忽略）。**（arXiv 2611.08457《Adversarial Training with Large Step Sizes: Implicit Bias, O",
     "future_trigger": [
       "待更多证据"
     ],
@@ -112,7 +112,7 @@
     }
   ],
   "detail_path": "paper-detail.html?id=adversarial-training-with-large-step-sizes-implicit-bias-optimization-and-sharpness",
-  "daily_path": "daily-detail.html?date=2026-11-08",
+  "daily_path": "daily-detail.html?date=2026-11-09",
   "trend_paths": [],
   "long_tail_path": "long-tail.html",
   "mermaid": {

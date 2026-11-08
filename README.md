@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-11-08
+## Latest research run · 2026-11-09
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
 | 10 | 176 | 275 | 284 | 1368 |
 
-**Deep dive:** [XStack: A Benchmark for ML Repo Migration](daily/2026/2026-11-08.md) · Immediate · 重点学习
+**Deep dive:** [XStack: A Benchmark for ML Repo Migration](daily/2026/2026-11-09.md) · Immediate · 重点学习
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,21 +35,21 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-11-09](daily/2026/2026-11-09.md) | XStack: A Benchmark for ML Repo Migration | Immediate | 重点学习 |
 | [2026-11-08](daily/2026/2026-11-08.md) | XStack: A Benchmark for ML Repo Migration | Immediate | 重点学习 |
 | [2026-11-05](daily/2026/2026-11-05.md) | Adversarial Speculative Reasoning Improves Long Horizon Agents | Immediate | 重点学习 |
 | [2026-11-04](daily/2026/2026-11-04.md) | WebHarbor: Docking Real Websites for Evolving GUI Agent Environments | Immediate | 重点学习 |
 | [2026-11-03](daily/2026/2026-11-03.md) | Flide: Accelerating Decision Inference with Exact State Forking | Immediate | 重点学习 |
 | [2026-11-02](daily/2026/2026-11-02.md) | Elucidating the Design Space of LM Data Attribution | Immediate | 重点学习 |
 | [2026-11-01](daily/2026/2026-11-01.md) | Elucidating the Design Space of LM Data Attribution | Immediate | 重点学习 |
-| [2026-10-30](daily/2026/2026-10-30.md) | Heads of Security: Learned Attention Gates Improve Prompt Injection Robustness | Immediate | 重点学习 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 633 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 686 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 633 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 630 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 689 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 630 |
 
 ## Why this repository exists
 
