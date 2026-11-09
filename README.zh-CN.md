@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-11-09
+## 最新研究 · 2026-11-10
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 10 | 176 | 275 | 284 | 1368 |
+| 10 | 177 | 278 | 289 | 1369 |
 
-**今日深挖：** [XStack: A Benchmark for ML Repo Migration](daily/2026/2026-11-09.md) · 即时价值 · 重点学习
+**今日深挖：** [On Agentic Manipulation Policies](daily/2026/2026-11-10.md) · 即时价值 · 重点学习
 
-**核心判断：** 理由有三条，每条都有今天的实测支撑。**其一，它是今天唯一一篇被本机真正装起来、跑起来、跑出数字的论文**——今日实测把它的 tarball（1,805,733 B）下载到本机、建 venv、`pip install -e` 成功装出 skillware-0.6.1，CLI 全部 rc=0，**自带测试套件实测 522 passed / 15 failed**（失败项全部是缺 pytest-asyncio，与核心机制无关），`skillware test finance/wallet_screening` **实测 21 passed**，`skillware doctor` 实测逐 skill 给出 SCHEMA/DEPS/LOAD/ENVS 四列体检并精确报出 `missing: AGENT_WALLET_PRIVATE_KEY`。**其二，它是本批唯一有『失败门禁』这一层的论文**——每个能力自带离线单测，**不通过就不许进 registry**，而我们今天的 skill 只有描述层（描述不会自己失败，也永远不会被发现过时）。**其三，它的作者群把主张写在标题里（『Don't Prompt Your Agents. Equip Them』），但真正让它成立的不是那句话，是那个会失败的单测。**
+**核心判断：** 理由有三条，每条都有今天的实测支撑。
 
-**建议动作：** 今天做三件事，全部零依赖或低成本，按依赖顺序：
+**建议动作：** 今天做四件事，全部零依赖、不需要 GPU、不需要 API key，按依赖顺序：
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-11-10](daily/2026/2026-11-10.md) | On Agentic Manipulation Policies | 即时价值 | 重点学习 |
 | [2026-11-09](daily/2026/2026-11-09.md) | XStack: A Benchmark for ML Repo Migration | 即时价值 | 重点学习 |
 | [2026-11-08](daily/2026/2026-11-08.md) | XStack: A Benchmark for ML Repo Migration | 即时价值 | 重点学习 |
 | [2026-11-05](daily/2026/2026-11-05.md) | Adversarial Speculative Reasoning Improves Long Horizon Agents | 即时价值 | 重点学习 |
 | [2026-11-04](daily/2026/2026-11-04.md) | WebHarbor: Docking Real Websites for Evolving GUI Agent Environments | 即时价值 | 重点学习 |
 | [2026-11-03](daily/2026/2026-11-03.md) | Flide: Accelerating Decision Inference with Exact State Forking | 即时价值 | 重点学习 |
 | [2026-11-02](daily/2026/2026-11-02.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
-| [2026-11-01](daily/2026/2026-11-01.md) | Elucidating the Design Space of LM Data Attribution | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 630 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 689 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 630 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 632 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 695 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 632 |
 
 ## 为什么做这个项目
 

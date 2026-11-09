@@ -1,0 +1,638 @@
+{
+  "date": "2026-11-10",
+  "total": 10,
+  "generated_at": "2026-11-10T04:31:33.062028",
+  "papers": [
+    {
+      "title": "On Agentic Manipulation Policies",
+      "authors": [
+        "Chen Chen",
+        "Omid Bagherieh",
+        "Naveen Nikamanth Appiah Balaji",
+        "Jesse T. Gonzalez",
+        "Negin Heravi"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09892v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09892v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/apple-aiml-research/ml-amp",
+      "benchmark_url": "https://github.com/NVlabs/RoboLab",
+      "project_url": "https://apple-aiml-research.github.io/ml-amp/",
+      "abstract": "Recent work on robot manipulation has focused on specialist policies trained on demonstrations. We show that generalist AI models can control manipulators more reliably than specialist policies such as vision-language-action models (VLAs) and world-action models (WAMs). We systematically analyze agentic manipulation policies (AMPs), in which a generalist AI model commands the manipulator directly, adapting its actions as the task unfolds. We present AMP1, a reference harness that runs unchanged ",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "memory",
+        "benchmark"
+      ],
+      "score": 91.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09892v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09892v1"
+        }
+      ],
+      "llm_reason": "★ **今日第一即时价值，也是今日证据等级最高的一篇。**（arXiv 2611.09892《On Agentic Manipulation Policies》，Apple AI/ML Research）★ 核心主张：过去机器人操作的主流是「在示教上训练的专家策略」（VLA、WAM），本文反过来主张**通用大模型直接指挥机械臂更可靠**，并把这一类命名为 **agentic manipulation policies (AMPs)**。★ 实测口径（论文全文 + README + 项目页三方对照）：**RoboLab-120 零样本 85.6%**，对照领先 VLA **49.2%**、WAM **42.9%**；**真实世界 104/108 次成功**（12 个任务、3 台机器人实例），相对强 VLA / WAM 基线**失败率分别降低 20x 与 15x**；**加持久记忆后，RoboDojo 双臂任务的失败率相对零样本部署再降 4.6x**。项目页实测另给四个数：RoboLab-120 **86%（#1 on leaderboard）**、LIBERO-PRO **95.2%（Best zero-shot）**、robosuite **100%**、BEHAVIOR-1K **96.0%（Mobile manipulation）**、RoboDojo **84.1%（Best public number after practice）**。★ 今日实测的工件（这是它排第一的真正原因，不是主张新）：`github.com/apple-aiml-research/ml-amp` **实测存在**——created 2026-11-07T00:59:03Z、pushed 2026-11-09T04:28:32Z、**★14**、forks=0、has_pages=true、**209,070 KB、1341 个文件 / 292 个目录**；README 实测 3,899 B 逐字写 'This repository contains AMP1, the agentic manipulation policy from the paper, and the code to reproduce the paper's results on RoboLab-120, on CaP-Gym's LIBERO-PRO, robosuite and BEHAVIOR-1K suites, and on RoboDojo'。**更关键的是它的复现纪律**：docs/reproducibility.md 实测 3,180 B 把三个第三方 benchmark **钉死在具体 commit**（RoboLab `9db0aaf09d9fe5d4f37b168320788c7012463` / v0.3.1、CaP-X `53e9966d7a8e2fa7494676772bccc35280f5c0ed`、RoboDojo `09bd5f5e762b949f5858ece31347ce62057b3a5e`），并要求 `amp --version` 打印 commit 与「tracked files 是否被改动」，每次 episode 的记录里存下它用的 commit，跑偏了会警告；docs/reproducing-the-paper.md 实测 12,407 B 给出**逐图对应的一条命令**；`src/amp/doctor.py` 实测 20,317 B 存在。★ **它最值钱的一层设计，实测在代码里，不在摘要里**：论文里那个「memory」的真实形态**不是向量库、不是 KV cache**，docs/practice.md 实测 9,656 B 写明是**一个装笔记 / 代码 / 数据的文件夹**——AMP1+ 在练习后的 debrief 里往里写，之后的 episode 在 `./workspace` 找到它；CLI 给了 `--workspace DIR` / `--workspace-sha SHA`（目录里是别的版本就拒绝）/ `--workspace-notebook N`（告诉 agent 它这次 episode 的编辑不会被保留）/ `--workspace-max-bytes N`（每个任务 60,000–131,072 字节）/ `--shared-workspace`（所有任务共享，上限 256,000 字节）/ `--workspaces FILE`；`src/amp/practice/` 实测 **408 个文件**，其中 notebooks/ 下有 continual_chain00 的 ck10/ck20/ck30/ck42 四个 checkpoint 目录，**每个 checkpoint 是一个 NOTES.md + helpers.py**——**即「学习」的产物是笔记和代码，不是权重**。★ 边界（必须写清楚，一条都不能省）：① **本机无 GPU / 无 CUDA / 无 Isaac Sim，论文的任何数字本机一个都没跑出来**；论文自述需要 H100 80GB + driver 580.159.03 + Debian 13 + 约 9 GB 显存 / 15 GB 内存 / 40 GB 磁盘，且**结果依赖 GPU、驱动与系统版本**；② **LICENSE 是 Apple 的专有许可（API 实测 license NOASSERTION），不是 OSI 开源许可**——「有代码」不等于「可商用」，复用前必须走法务；③ **仓库上没有可下载的模型权重**——docs/models.md 实测写明模型全部走各家 API（Claude 走 Anthropic Messages、Gemini 走 generateContent、open-weights 走 sglang/vLLM），**需要自己的 API key 才能跑**，本机无 key；④ **三个 benchmark 都是第三方、需自行 clone 并接受各自的许可**（ACKNOWLEDGEMENTS 实测 20,683 B 逐条列出）；⑤ 「真实世界 104/108」是 **12 个任务、3 台机器人**上的样本，**外推到别的机器人/任务没有依据**。★ 为什么它对我们直接有用：**它把「通用模型 + 薄的确定性 harness」这套组合，实测做成了可复现的工程件**——而我们最关心的恰恰是 harness 而非模型；而且它的 memory 形态（一个文件夹 + SHA 锁 + 字节上限 + checkpoint 目录）**可以几乎原样搬进我们自己的 agent 上下文管理**，这与昨日结论「给 skill 补一层会失败的东西」是同一条线，只是 AMP1 给的是**会积累的**那一层。",
+      "id": "on-agentic-manipulation-policies",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 7.2,
+        "engineering_testability": 6.05,
+        "trend_signal": 4.85,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "CPU-ARC: Agentic Reasoning Caching for on-CPU Reasoning Reuse",
+      "authors": [
+        "Peter Belcak",
+        "Greg Heinrich",
+        "Saurav Muralidharan",
+        "Shizhe Diao",
+        "Pavlo Molchanov"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09891v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09891v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://research.nvidia.com/labs/lpr/lfi/",
+      "abstract": "Large language models reinvent the wheel all the time. They conflate task-solving with the execution of the solutions, which forces them to solve every problem from scratch. We show that once a task has been reasoned through, the application of its solution to a new problem instance can be done very efficiently and with little involvement from language models. We introduce agentic reasoning caching, a method for constructing robust CPU-executable agentic reasoning caches (ARCs) from LLM reasonin",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic"
+      ],
+      "score": 82.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09891v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09891v1"
+        }
+      ],
+      "llm_reason": "★ **今日第二价值，方向极对但证据链缺了最关键的一环——所以是趋势价值而不是即时价值。**（arXiv 2611.09891《CPU-ARC: Agentic Reasoning Caching for on-CPU Reasoning Reuse》，NVIDIA LFI）★ 核心命题：**「解一遍题」和「把这个解法用到一个新实例上」是两件事**，后者完全可以交给 CPU 上可执行的确定性代码，LLM 几乎不参与。主张 ARCs（agentic reasoning caches）**与前沿 LLM 在困难数学与科学任务上打平**、**完全可解释**、**可持续再训练**、**对输入扰动鲁棒**、**比源模型便宜 16–291 倍**，绝对成本 **每次调用 $0.0004–$0.0019**（作者注明这是因为用了一个小的 finetuned open-source 目标模型）；论文还给了盈亏平衡公式：B/(S−C) 次调用后回本。★ **实测到的证据**：(a) 项目页 `research.nvidia.com/labs/lpr/lfi/` 实测 **HTTP 200、32,323 B**，标题逐字 'Moonshot: Local Frontier Intelligence (LFI)'，正文逐字 'The moonshot effort to run frontier-level intelligence locally, privately, and efficiently under the user\\'s full control'，页面把路线写成四步，其中第 1 步逐字 'Formalize the form of cached intelligence. Define the format in which solutions can be stored so that they are reliably reusable when appropriate'、第 2 步逐字 'Repurpose cloud intelligence from \"does it all\" to \"does problem-solving only\"'——**与本文的命题同源**；(b) 论文页 `Links: Lab | Project Moonshot` 两个链接实测都能解析，分别指向作者 lab 主页 `nv-dler.github.io`（实测 HTTP 200、68,315 B，列出 Belcak / Muralidharan / Molchanov 等人的其他工作如 MaskLLM、Hymba、Star Elastic）与 NVIDIA 的 LFI 页面；(c) 作者与机构可信度可查（论文作者含 Peter Belcak、Greg Heinrich、Saurav Muralidharan、Shizhe Diao、Pavlo Molchanov）。★ **证据不足项（必须原样写出，不补写不存在的事实）**：① **ARC 的实现代码今日不可核验**——实测 5 个候选仓库名（peterbelcak/ARC、peterbelcak/agentic-reasoning-cache、belcak/ARC、peterbelcak/cpu-arc、arc-reasoning-cache/ARC）**全部 404**，GitHub 代码搜索 API 实测 401（需鉴权），GitHub 仓库搜索 'agentic reasoning cache' 返回的 77 条里**没有一条是本文的**；② **HuggingFace API 本环境今日全程超时**（连阴性对照一起超时），所以论文用到的 finetuned 小模型**是否有公开权重今日无法确认**；③ 论文是 **28 页 tech report**，arXiv comment 实测逐字 'Tech report. 28 pages, 9 figures, 11 tables'，**没有同行评审状态**；④ '16–291x' 与 '$0.0004–$0.0019' **全部是作者自报**，今日无任何第三方复现。★ 为什么仍然值得看：**它把「缓存」从「复用 prompt」升级成了「复用解题程序」**——这是比 KV cache / 语义缓存高一个抽象层的东西，且它明确要求缓存**可解释、可再训练、可扰动鲁棒**，这三条正好对应我们评测缓存时最缺的三个判据。**今天的定位是纳入趋势雷达 + 每天查一次代码是否放出来**，而不是今天就抄。",
+      "id": "cpu-arc-agentic-reasoning-caching-for-on-cpu-reasoning-reuse",
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering",
+        "ai-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Grasp-TAGS: Task-Aware Grasp Selection via Critic Distillation for Prehensile Loco-Manipulation",
+      "authors": [
+        "Xun Tu",
+        "Minghao Zou",
+        "Karthik Desingh"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09864v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09864v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/TuXun1999/Grasp-TAGS-real-world-deployment",
+      "benchmark_url": "",
+      "project_url": "https://rpm-lab-umn.github.io/Grasp-TAGS-web-page/",
+      "abstract": "Loco-manipulation, which requires mobile manipulators to coordinate locomotion and manipulation over long horizons, is a key capability for large-object rearrangement in applications such as service robotics and warehouse automation. Despite recent progress, reliably executing these tasks remains challenging because performance depends on complex robot-object and object-environment interaction dynamics. Existing approaches address this challenge either through model-based methods, which often re",
+      "categories": [
+        "cs.RO",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "RAG",
+        "inference"
+      ],
+      "score": 74.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09864v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09864v1"
+        }
+      ],
+      "llm_reason": "★ **今日第三价值：一个「把专家策略的隐式判断蒸馏成一个轻量选择器」的做法，机制值得抄，但证据以作者自述为主。**（arXiv 2611.09864《Grasp-TAGS: Task-Aware Grasp Selection via Critic Distillation for Prehensile Loco-Manipulation》）★ 核心机制：已有方法要么依赖准确动力学模型，要么假设初始抓取是固定的；**本文指出不同的几何稳定抓取会导致下游操作性能显著不同**，于是把 PPO 策略学到的 **critic 蒸馏成一个轻量的 grasp utility network**，推理时**在还没接触物体之前**就用「候选抓取构型 + 目标」排出最优抓取。★ 实测口径（论文自述）：平均成功率 **89.84%**，对照最好的单抓取策略 **79.87%**，**提升 9.97 个百分点**，并在所有评测物体上降低了最终姿态误差。★ **今日实测的工件**：项目页 `rpm-lab-umn.github.io/Grasp-TAGS-web-page/` 实测 **HTTP 200、34,279 B**，标记词 'Grasp-TAGS' / 'PPO' / 'critic' / 'success rate' 全部命中；**作者自有的真实部署仓库 `TuXun1999/Grasp-TAGS-real-world-deployment` 实测存在、2,860 个文件**（含 `.vscode/settings.json`、THIRD_CAMERA.md、相机标定与 goal server 等实际部署代码，README 实测 25,853 B 写到相机电源管理、内网 IP `10.0.0.51`/`10.0.0.52` 等**真实运维细节**）；姊妹仓库 `TuXun1999/Grasp-TAGS-web-page` 实测 404 个文件（全是 media/ 下的 gif / png / pdf / mp4 与结果 csv）。★ **证据不足项（必须写清楚）**：① **两个仓库都没有 LICENSE**（API 实测 license=null），项目页只有 CC BY-SA 4.0 的**网页模板**许可；② **项目页正文里没有出现 '89.8' 这个数字**（今日实测该标记词 MISS），即 **论文的 89.84% 未在项目页复现**，其一致性无独立佐证；③ 论文的 arXiv comment 实测为空，**未见会议接收信息**；④ 论文未给出可下载的模型权重或训练数据。★ 为什么仍值得跟踪：**「把专家策略的内部价值信号抽出来当一个便宜的前置选择器」是一个可迁移的架构模式**——它与我们讨论过的「先路由再执行」是同一件事在机器人上的版本，且它给了**一个可量化的接口**：选择器只看「候选构型 + 目标」，不需要环境模型。放进趋势雷达连续观察。",
+      "id": "grasp-tags-task-aware-grasp-selection-via-critic-distillation-for-prehensile-loco-manipulation",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "CodeQuant2: Enhanced Outlier Mitigation and Adaptive Clustering for Low-Precision LRMs",
+      "authors": [
+        "Xingyu Liu",
+        "Xiangyang Yin",
+        "Tianhua Xia",
+        "Haiyu Wang",
+        "Sai Qian Zhang"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09868v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09868v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/SAI-Lab-NYU/CodeQuant2",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large reasoning models (LRMs) improve task performance by generating longer intermediate reasoning traces, but this substantially increases inference costs and makes low-precision quantization increasingly important. However, aggressively quantized models often perform poorly on reasoning tasks. We observe larger activation fluctuations during the first decoding steps of reasoning. Calibration that omits these early states may miss their activation fluctuations. To address these reasoning-specif",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "benchmark",
+        "inference"
+      ],
+      "score": 72.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09868v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09868v1"
+        }
+      ],
+      "llm_reason": "★ **今日第四价值：一篇「把推理模型独有的现象当成一等公民」的量化工程论文，代码是真的，但开箱即用还差一步。**（arXiv 2611.09868《CodeQuant2: Enhanced Outlier Mitigation and Adaptive Clustering for Low-Precision LRMs》）★ 核心观察：**推理模型在前几个解码步的激活波动更大**，而**只按常规文本做校准会漏掉这段早期状态**，于是提出 **reasoning-aware calibration (RAC)**——把普通文本与全精度模型生成的**早期推理 token 混在一起**做校准；再加**微调过的 rotation + scaling** 平滑离群值、**adaptive cluster allocation (ACA)** 给每个目标权重矩阵分配 8/16/32 个质心、**learnable clustering** 用局部重建损失微调质心值与 LoRA 参数化的分配；配套自研 **LUT CUDA kernel**（打包 A4 激活 + 4-bit 权重索引 + 每输出通道码本 + shared-memory 查表 + split-K 归约）。★ 实测口径（作者自述）：**相对 BF16 最高 2.85x 加速**，且在推理 benchmark 上有实质精度提升。★ **今日实测的工件**：`github.com/SAI-Lab-NYU/CodeQuant2` **实测存在**，但**默认分支是 `camera-ready` 而非 main**（pushed 2026-10-26T02:59:57Z、★0、forks=0、54 KB、**31 个文件 / 7 个目录**）；README 实测 **11,081 B**，逐字写 'Conference on Neural Information Processing Systems (NeurIPS), 2026' 与 'This repository provides the official implementation of CodeQuant2'；**`kernel/lut_kernel.py` 实测 10,028 B 且是真 CUDA 代码**（`load_inline` + `constexpr int COLS = 32` + `row_lut_kernel` 模板）；requirements.txt 实测钉死 **torch==2.10.0 / transformers==4.57.1 / vllm==0.19.0 / evalscope==1.5.2.post1 / wandb==0.25.1**；config/qwen3_8b_a4w4.yaml 实测给出 A4W4 配置。★ **证据不足项（必须写清楚）**：① **仓库无 LICENSE 文件**（API 实测 license=null），复用要先解决授权；② **配置里的路径全是占位符**——实测 `config/qwen3_8b_a4w4.yaml` 逐字 `rotation: /path/to/outputs/rotation_qwen3_8b`、`clustering: /path/to/outputs/clustering_qwen3_8b`，即**必须先自己训出旋转与聚类产物**才能跑通量化流程，README 里的 2.85x 需要完整 pipeline 才能复现；③ 论文 arXiv comment 实测为空（会议信息来自 README 而非 arXiv 元数据，两处口径不同，需以论文为准）；④ **无官方模型权重或下载脚本**，本机无 GPU 也无法编译该 kernel。★ 判断：**机制值得跟踪（推理模型必须用推理态校准，这是一条可直接抄进我们评测 checklist 的结论），但今天不能作为「可立即跑」的资产**。",
+      "id": "codequant2-enhanced-outlier-mitigation-and-adaptive-clustering-for-low-precision-lrms",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "FlowMoP: Stochastic Multi-Person Motion Prediction",
+      "authors": [
+        "Aadya Agrawal",
+        "Ho Kei Cheng",
+        "Alexander Schwing"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09882v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09882v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/aadya-agrawal/FlowMoP",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Predicting the future motion of multiple people is inherently stochastic: the same observed history admits many plausible continuations depending on intent, coordination, and social context. Yet the dominant paradigm in multi-person 3D motion prediction remains deterministic, with existing methods producing a fixed number of outputs per agent. In contrast, we present a conditional flow matching framework that jointly generates diverse future motions for multiple agents, modeling both global traj",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09882v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09882v1"
+        }
+      ],
+      "llm_reason": "★ **今日第五价值：方向不在我们的主线上，但「把确定性预测改成概率预测」这件事的论证方式值得存下来。**（arXiv 2611.09882《FlowMoP: Stochastic Multi-Person Motion Prediction》）★ 核心主张：多人体动预测本质是**随机的**（同一段历史对应许多合理的后续，取决于意图、协作与社会情境），但主流范式仍是确定性的、对每个 agent 产出固定数量的结果；本文用**条件 flow matching** 联合生成多样未来运动，**同时建模全局轨迹与根相对姿态**，用 **B-spline 重参数化**压缩生成状态空间并强制时间平滑，再用 **dual-stream transformer** 让每个 agent 预测都条件于邻居的观测运动。★ 实测口径（作者自述）：在 **CMU-Mocap (UMPM) 与 3DPW** 上取得 SOTA，**尽管产出的是完整预测分布，在联合位置误差、姿态误差、最终位移误差上仍优于确定性基线**；并**首次在 WorldPose（大规模职业足球数据集）上建立运动预测基线**，实测社会条件化会**把预测不确定性集中到受交互约束的方向上**。★ **今日实测的工件**：`github.com/aadya-agrawal/FlowMoP` **实测存在**（MIT 许可、created 2026-10-18、pushed **2026-10-18T03:18:13Z**、★0、15 个文件 / 3 个目录）；README 实测 4,352 B，**明确给出可执行的命令**——`python train.py --dataset mocap_umpm --data-dir ... --output-dir outputs/umpm`、`python evaluate_selection.py --checkpoint outputs/umpm/checkpoints/best.pt ...`、`python evaluate_likelihood.py ...`、`python run_representation_ablation.py --data-dir ... --gpus 0 1 2`（raw / DCT / linear / cubic splines 四种时序表示的消融），并说明数据需预处理好成 `mocap_UMPM_input25_v2/{train,val}/*.pt` 与 `3dpw_input10_v2/{train,val}/*.pt`（PyTorch Geometric `Data` 对象，`body_xyz` 形状 `[people, frames, joints, 3]`）；论文 comment 实测逐字 'Accepted at NeurIPS 2026. 22 pages, including references and appendix'。★ **证据不足项（必须写清楚）**：① **仓库最后 commit 停在 2026-10-18，而论文是 2026-11-06 发的——仓库 19 天未更新**，论文里的 WorldPose 结果在仓库里**看不到对应脚本之外的东西**（WorldPose 目录只有 data.py / infer.py / preprocess.py / train.py），**没有 checkpoint、没有预训练权重、没有下载链接**；② 仓库**无预训练模型与预处理好数据的发布**，数据需要自己预处理（UMPM / 3DPW 各自有许可）；③ 'Social conditioning demonstrably concentrates predictive uncertainty' 这条结论在 README 里没有对应复现脚本说明；④ 论文 arXiv 声明的 NeurIPS 2026 接收状态今日无法与官方接收列表交叉核验。★ 判断：**长尾保存**——「当确定性范式掩盖了固有的多解性时，把输出改成分布」的论证方式对我们做 agent 的多路径决策有启发，但本体是计算机视觉人体预测，与我们的主线距离远，今天不投入。",
+      "id": "flowmop-stochastic-multi-person-motion-prediction",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Graded convolutional networks: scale invariance without the scale and robustness to unknown blur",
+      "authors": [
+        "Tanush Shaska"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09878v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09878v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "https://doi.org/10.5281/zenodo.23997172",
+      "project_url": "",
+      "abstract": "The Gaussian jet of an image is a graded vector space: a dilation by $λ$ multiplies derivatives of order $k$ by $λ^{-k}$. Local graded convolutions are exactly homogeneous differential operators, and a local feature is dilation-invariant if and only if it factors through the scale-normalized jet or, without the scale, through the retraction onto the weighted sphere of the grading. Under unknown Gaussian blur the retraction changes only by a change of scale, whereas the scale-normalized jet acqui",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09878v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09878v1"
+        }
+      ],
+      "llm_reason": "★ **今日第六价值：一篇纯理论 + 数值实验的论文，它的「尺度不变性」论证有一条我们做数据增强时能直接借的判据。**（arXiv 2611.09878《Graded convolutional networks: scale invariance without the scale and robustness to unknown blur》）★ 核心：把图像的高斯 jet 看成**分次向量空间**（尺度 λ 会把 k 阶导数乘 λ^{-k}），证明**局部 graded 卷积恰好就是齐次微分算子**，且一个局部特征对膨胀不变**当且仅当**它经由「尺度归一化的 jet」或「投影到分级加权球面的 retraction」因子化；**在未知高斯模糊下，retraction 只改变尺度，而尺度归一化的 jet 会获得一个任何径向归一化都消不掉的分级因子**；在零 jet 处，retraction 能区分那些径向归一化与连续分类器都区分不了的图像族；基于 retraction 构建的网络对不变特征是**普适的**。★ 实测口径（作者自述）：MNIST 上**两像素模糊下保持 88.4% 准确率**，对照「同一网络跑在尺度归一化导数上」为 **66.2%**；在 Lindeberg 的高斯导数网络里，retraction 把该模糊下的准确率**从 91.5% 提到 95.1%**。★ **今日实测的工件**：论文 HTML 全文实测写明 'The code, the trained networks and the result files from which every table and figure is generated are deposited on Zenodo'；arXiv comment 实测逐字 '26 pages, 2 figures, 7 tables. Code, trained networks and results: https://doi.org/10.5281/zenodo.23997172'；**该 DOI 经 api.datacite.org 实测 HTTP 200，标题逐字 'Code and results for \"Graded convolutional networks: scale invariance without the scale and robustness to unknown blur\"'**，出版者 Zenodo、年份 2026 → **记录确实存在**。★ **证据不足项（必须写清楚）**：① **zenodo.org 在本环境 SSL 层不可达**（实测 `<urlopen error [SSL] record layer failure>`，record / api / doi 三条通道一致失败），**所以文件清单、体积与是否含训练好的权重今日无法核验**——只能确认「记录存在且标题对应」，不能确认「能下什么」；② 论文**无 arXiv comment 里的会议接收信息**（实测 comment 仅含页数/图数与 Zenodo 链接）；③ 论文自陈其 MNIST-Scale 复现**故意不遵循该 benchmark 的协议**（缩放因子在 [0.3,1] 均匀、验证集顺序改变、测试集缩放依赖训练规模），**故不可与他人 MNIST-Scale 数字直接比较**；④ 无第三方复现。★ 判断：**长尾保存**——「一个不变性到底是「尺度归一化」还是「球面 retraction」」这个区分，对我们判断数据增强/输入归一化是否真的带来鲁棒性，有一条可借的判据；但本体是理论 CV，不进主线。",
+      "id": "graded-convolutional-networks-scale-invariance-without-the-scale-and-robustness-to-unknown-blur",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.8,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.3,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 4.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "On the Reliability of Majority-Vote Pseudo-Labels in Test-Time Reinforcement Learning",
+      "authors": [
+        "Haoyu Wang",
+        "Ru Wang",
+        "Yuanyuan Wang",
+        "Jiaxian Guo",
+        "Mingming Gong"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09872v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09872v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Test-time reinforcement learning (TTRL) adapts pretrained language models to unlabeled target-domain data using self-generated pseudo-labels, whose reliability remains poorly understood. We analyze majority-vote supervision for TTRL with online Direct Preference Optimization (DPO) and decompose its error into population-majority bias and prompt-dependent finite-rollout variation. Because population-majority bias is generally unidentifiable without external supervision, we focus on mitigating the",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09872v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09872v1"
+        }
+      ],
+      "llm_reason": "★ **今日第七价值：一篇「把 TTRL 的误差分解清楚」的论文，它的问题设定对我们设计在线评测有直接参考。**（arXiv 2611.09872《On the Reliability of Majority-Vote Pseudo-Labels in Test-Time Reinforcement Learning》）★ 核心：TTRL 用自生成伪标签把预训练模型适配到无标注目标域，而**伪标签的可靠性一直没被理解清楚**；本文分析 online DPO 下的多数票监督，**把误差分解成「population-majority bias」与「prompt 相关的有限 rollout 波动」**，并指出**前者一般无法在没有外部监督的情况下被识别**——所以转而缓解后者，提出 **PC-Dr.DPO（Prompt-Conditional Distributionally Robust DPO）**：按观测到的投票可靠性**在 prompt 内部做条件化鲁棒重加权**，让**对采样敏感的 prompt 产生的更新更保守**；另引入**基于缓存的机制来减少在线适配中的自监督遗忘**。★ 实测口径（作者自述）：在 **6 个数学与知识密集型推理 benchmark、5 个模型骨干**上，PC-Dr.DPO **在 30 个设定中的 24 个**匹配或超过最强 TTRL 基线。★ **证据不足项（必须写清楚，不补写不存在的事实）**：① **纯论文，实测无代码链接、无官方仓库、无项目页**——arXiv HTML 全文实测扫描出的外链全是模型卡与参考文献（openai.com 的 gpt-5-6、qwen.ai 的 qwen3.7、kimi.com 的 kimi-k3、deepseek 的模型卡、ericmitchell.ai 的 cdpo.pdf 等），**没有一条是本文的实现**；② arXiv comment 实测为空，**无会议接收信息**；③ **24/30 里的另外 6 个设定是输还是平、差距多大，摘要未给**，无法判断整体稳健性；④ 「多数票」的多数票数量与投票模型未在摘要给出，需读正文；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——「population-majority bias 一般不可识别」这句话本身就是一条值得存下来的评测学边界：**用自生成标签做在线评测时，我们可能在一个不可识别的偏差上做优化**。这对我们的 agent 自评设计是一条必须写进 caveat 的提醒。",
+      "id": "on-the-reliability-of-majority-vote-pseudo-labels-in-test-time-reinforcement-learning",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "An Empirical Study on Clustering-based Quantum Approximate Optimization Algorithm for Regression Test Case Selection",
+      "authors": [
+        "Antonio Trovato",
+        "Martin Beseda",
+        "Dario Di Nucci"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09869v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09869v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "https://doi.org/10.5281/zenodo.20668761",
+      "project_url": "",
+      "abstract": "Regression testing assesses whether software components that have already been developed and tested continue to work correctly after modifications. Ideally, regression testing re-executes the entire test suite after each modification, but this is infeasible in real-world scenarios because of the computational burden; therefore, optimized approaches, such as Test Case Selection, have been developed. The state of the art in regression testing optimization includes both classical approaches, such a",
+      "categories": [
+        "cs.SE"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 56.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09869v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09869v1"
+        }
+      ],
+      "llm_reason": "★ **今日第八价值：一篇诚实的「量子方法 vs 经典方法」实测对比，结论对我们今天要做的事有反面的参考价值。**（arXiv 2611.09869《An Empirical Study on Clustering-based Quantum Approximate Optimization Algorithm for Regression Test Case Selection》）★ 设定：回归测试要重跑整个测试套件代价不可承受，故有 Test Case Selection；经典方法（Additional Greedy、DIV-GA）计算代价高，量子方法（SelectQA、BootQA、IGDec-QAOA）受限于当前量子机的物理限制；本文扩展评估作者自己的 **QAOA-TCS**，与 SOTA 经典/量子方法对比，并**评估其对量子噪声的鲁棒性**。★ 实测口径（作者自述）：QAOA-TCS **在多数情形下优于 SOTA 多目标方法**，且**在高噪声下仍保持稳定**；单目标情形下 QAOA 类方法表现相当；效率上**量子退火方法 SelectQA 在大规模多目标问题上最高效**，而 **QAOA-TCS 在「现实的有噪模拟器」上于单目标 formulation 里给出效果与效率的最佳折中**。★ **今日实测的工件**：arXiv comment 实测逐字 'Manuscript under review at Empirical Software Engineering (EMSE)'（**明确是在审，不是已接收**）；论文 HTML 全文实测引用 `github.com/AsmarMuqeet/BootQA`（他人仓库，非本文实现）；**Zenodo 记录经 api.datacite.org 实测 HTTP 200**，标题逐字 'An Empirical Study on Clustering-based Quantum Approximate Optimization Algorithm for Regression Test Case Selection'，出版者 Zenodo、年份 2026 → **记录确实存在**。★ **证据不足项（必须写清楚）**：① **zenodo.org 在本环境 SSL 不可达**，**文件清单与体积今日无法核验**；② **作者自陈其效率分析「受不同计算环境约束」**（原文：'such analysis is constrained by the different computational environments used to run the algorithms'）——**这是作者自己标注的方法学限制，必须保留，不能当结论用**；③ 论文**未给出本文 QAOA-TCS 的独立代码仓库**（HTML 里出现的 GitHub 链接是 BootQA，即别人的实现）；④ '在多数情形下优于' 里的「多数」未给具体比例。★ 判断：**长尾保存**——但它对我们的真正价值是**反面的**：它示范了「在一台机器上跑出来的对比，要说清楚这台机器是谁」。这条纪律应该抄进我们的评测报告规范。",
+      "id": "an-empirical-study-on-clustering-based-quantum-approximate-optimization-algorithm-for-regression-test-case-selection",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 6.25,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.3,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 4.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "On the (non-)closedness of the set of ReLU networks",
+      "authors": [
+        "Eloi Martinet",
+        "Leon Bungert"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09887v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09887v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We prove that the set $\\mathcal{N}_N$ of ReLU networks with one hidden layer and at most $N\\in\\mathbb N$ neurons is weakly closed in $W^{1,p}(Ω)$, for a bounded connected open set $Ω\\subset\\mathbb R^d$. Consequently, every coercive, weakly lower semicontinuous energy on this space attains its minimum over $\\mathcal{N}_N$. This covers the Deep Ritz method with convex integrands, Sobolev training and Lipschitz learning. Moreover, as the weight decay parameter tends to zero, minimizers of the regul",
+      "categories": [
+        "cs.LG",
+        "math.CA",
+        "math.FA",
+        "math.NA",
+        "math.OC"
+      ],
+      "keywords": [],
+      "score": 54.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09887v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09887v1"
+        }
+      ],
+      "llm_reason": "★ **今日第九价值：纯理论，但它是今天唯一一篇「证伪了一个既有猜想」的论文，方法学价值高于工程价值。**（arXiv 2611.09887《On the (non-)closedness of the set of ReLU networks》）★ 结论：证明**单隐层、至多 N 个神经元的 ReLU 网络集合在 W^{1,p}(Ω) 下是弱闭的**（Ω 为有界连通开集），因此该空间上**每个强制、弱下半连续的能量都取得最小值**；这覆盖了**凸被积函数的 Deep Ritz 方法、Sobolev training 与 Lipschitz learning**；并证明**当权重衰减参数趋于 0 时，正则化问题的极小点（取子列）收敛到最小参数范数的极小点**。★ **另一半更重要**：证明**两层有界宽度的 ReLU 网络集合在 W^{1,p}(Ω) 与 C(Ω̄) 上都不闭**——**这证伪了 Petersen、Raslan 与 Voigtlaender 的一个猜想**。★ **证据不足项（必须写清楚）**：① **纯理论论文，实测无代码链接、无官方仓库、无项目页**（arXiv HTML 全文实测扫描外链，无任何实现）；② arXiv comment 实测逐字 '27 pages, 6 figures'，**无会议接收信息**；③ 证伪的是「一个数学猜想」，**不是任何一条工程结论**——不能直接推出「深度模型训练会不收敛」这类结论；④ 无第三方复现，**证伪本身今日只核验了论文的自述内容，未做数学复核**。★ 判断：**长尾保存**——但要记住它的**可迁移价值在方法学而非结论**：**「某个集合在什么空间下闭」这个问题的问法，本身就是判断「某个极小值存在性论证能不能用」的工具**。对我们做训练稳定性类判断时，这是一个可以借的提问模板。",
+      "id": "on-the-non-closedness-of-the-set-of-relu-networks",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "GRAC: Graph-Based Retrieval-Augmented Captioning for Surgical Scene Description",
+      "authors": [
+        "Rochak Dhakal",
+        "Chen Zhao",
+        "Soup Cobb",
+        "Xin Qian",
+        "Xiaofeng Yang"
+      ],
+      "published": "2026-11-06",
+      "updated": "2026-11-06",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09866v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.09866v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Purpose: Surgical operative reports support procedural documentation, surgical training, performance assessment, and workflow review. However, extracting meaningful information often requires extensive manual review and clinical expertise. Automated surgical scene descriptions could reduce this burden by leveraging recurring surgical activities and prior knowledge. Methods: We propose GRAC (Graph-Based Retrieval-Augmented Captioning), a framework that represents surgical scenes as graphs capturi",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 48.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.09866v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.09866v1"
+        }
+      ],
+      "llm_reason": "★ **今日第十价值：今天这条是「有官方链接但链接是空的」的教科书案例，保留它是为了留一个反面样本。**（arXiv 2611.09866《GRAC: Graph-Based Retrieval-Augmented Captioning for Surgical Scene Description》）★ 论文本身：把手术场景表示成图（器械、动作、解剖结构之间的关系），再从训练数据里检索相关的「图-描述」对，比较检索样本与输入场景的器械-组织交互，用比较特征来条件化检索到的描述表示。实测口径（作者自述）：**EndoVis-18 benchmark 上 CIDEr-D 5.88**，对照 SGT **4.23**、最强常规 Transformer 基线 **3.36**；**器械-动作-目标三元组集合精确匹配准确率 52.6%**，对照 SGT 32.7%、最强常规基线 26.2%；**TORS 上 CIDEr-D 5.06**，对照最强基线 3.80。★ **今日实测到的关键否定证据**：论文 HTML 全文实测引用 `github.com/MIILab-MTU/SurgicalVideoCaptioningByGRAC`，**该仓库实测是空仓库**——tree API 实测 **HTTP 409**（GitHub 对空仓库的返回）、contents API 实测 **404**、branches API 实测返回**空数组**、仓库 size 实测 **0 KB**、raw README 实测 **404**、仓库网页实测 HTTP 200 但无任何文件、created 2026-11-05T23:26:30Z、pushed 2026-11-05T23:26:32Z（**创建后 2 秒即停**）、license 实测 null、★0。→ **即「论文给出了官方 GitHub 链接」与「那个链接里有东西」今天被实测证明是两件事。**★ 其他证据不足项：① arXiv comment 实测逐字 '20 Pages and 4 Figures'，**无会议接收信息、无权重、无数据发布**；② 论文无第三方复现，且方向（手术场景描述）与我们的主线距离远；③ 「最强常规 Transformer 基线」的具体配置未在摘要给出。★ 判断：**暂时忽略**（保留最小索引 + 一条反面教训：任何「官方实现」链接，入库前必须打一次 tree API，空仓库要显式标成「代码未发布」）。",
+      "id": "grac-graph-based-retrieval-augmented-captioning-for-surgical-scene-description",
+      "value_type": "ignore",
+      "matched_topics": [
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    }
+  ],
+  "scored_at": "2026-11-10"
+}

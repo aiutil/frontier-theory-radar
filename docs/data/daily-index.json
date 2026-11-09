@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-11-09T05:22:14.815955",
+  "updated_at": "2026-11-10T05:17:26.822457",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-11-10",
+      "title": "论文价值发现日报 - 2026-11-10",
+      "deep_dive_title": "On Agentic Manipulation Policies",
+      "deep_dive_url": "http://arxiv.org/abs/2611.09892v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做四件事，全部零依赖、不需要 GPU、不需要 API key，按依赖顺序：",
+      "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：**",
+      "one_line_judgement": "理由有三条，每条都有今天的实测支撑。",
+      "path": "daily-detail.html?date=2026-11-10"
+    },
     {
       "date": "2026-11-09",
       "title": "论文价值发现日报 - 2026-11-09",
@@ -378,19 +391,6 @@
       "max_uncertainty": "Base Models + Cue（[2610.06851](http://arxiv.org/abs/2610.06851v1)）cue 形式化（哪些 cue 对哪些 task 有效 / cue 是否可学）、跨 base model 家族（Olmo / Qwen / Llama）验证、跨 RL 范式（RLHF / DPO / GRPO）对照、是否存在 adversarial cue selection、cue 是否仅在特定 tokenizer 下有效、cue 与 few-shot example 的交互是否公开；CLIFT（[2610.06829](http://arxiv.org/abs/2610.06829v1)）conformal 形式化（miscoverage guarantee / non-conformity score 设计）、跨 web agent baseline（WebArena / Mind2Web）、test-time scaling 协议、与 frontier-judge baseline 对照是否公开；MemPilot（[2610.06830](http://arxiv.org/abs/2610.06830v1)）on-demand 触发协议、multimodal memory 形式化、跨 agent task 验证、与 query-agnostic memory baseline 对照是否公开；Recursive Video ICL（[2610.06843](http://arxiv.org/abs/2610.06843v1)）recursive 触发协议、frame-level rollout 形式化、跨 robot task 验证、与 fixed-keyframe baseline 对照是否公开；Looped Models Part II（[2610.06833](http://arxiv.org/abs/2610.06833v1)）fixed-point 收敛保证、truncated BP 形式化、跨 looped LM baseline 对照、RL save-state 协议是否公开；Contextual Tokens Projection（[2610.06844](http://arxiv.org/abs/2610.06844v1)）bottleneck architecture、跨 MM-DiT 任务验证、与 linear-probe baseline 对照是否公开；BiasFlow（[2610.06846](http://arxiv.org/abs/2610.06846v1)）hook 实现、跨 backbone 验证、与 WGA baseline 对照是否公开；Tilted Diffusion Bridge（[2610.06834](http://arxiv.org/abs/2610.06834v1)）Gaussian bridge 形式化、跨 tilted sampler baseline 对照是否公开；One Figure（[2610.06852](http://arxiv.org/abs/2610.06852v1)）relayout 形式化、跨 aspect ratio 验证、与 fixed-layout baseline 对照是否公开；UniSlider（[2610.06831](http://arxiv.org/abs/2610.06831v1)）remapping 形式化、跨生成模型 baseline 对照是否公开。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
       "one_line_judgement": "据摘要（arXiv [2610.06851](http://arxiv.org/abs/2610.06851v1)），论文把'base model 不会 reasoning / 必须 RL 后才能在 math/coding 上跑出来'拉到'在 base model 开头固定特定 starting-token cue（如 '.\\n\\nOkay' / 'Alright,'）就能让 base model 与 RL-trained counterpart 在 math/coding 上 competitive'——Olmo-3-7B MATH-500 pass@1 从 42% 拉到 78%、Qwen3-14B 从 72% 拉到更高。这是 inference-serving × llm-evaluation × context-engineering 的 'starting-token cue as RL replacement' 即时价值资产——把'是否需要 RL'从'必须 / 不必须'二值拉到'cue engineering 能替代大量 RL'，与昨日 / 上周 LESSER（output-layer gradient ranking）在'用 surface-level signal 把 RL training'层面同源，与 aiutil 长期关注的 inference-serving × memory × llm-evaluation 主线在'低成本 reasoning enablement'层面同源。",
       "path": "daily-detail.html?date=2026-10-07"
-    },
-    {
-      "date": "2026-10-06",
-      "title": "论文价值发现日报 - 2026-10-06",
-      "deep_dive_title": "LESSER: Post-Training Data Selection with Output-Layer Gradients",
-      "deep_dive_url": "http://arxiv.org/abs/2610.03702v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 [2610.03702](http://arxiv.org/abs/2610.03702v1) LESSER 列为即时试点方向，写 'lesser output-layer data-selection' checklist 草稿；把 [2610.03715](http://arxiv.org/abs/2610.03715v1) 4DCodeBench 'physics-grounded 4D code agent' 同步列为即时路线资产，写 '4d-code-agent bench' checklist 草稿；为 [2610.03710](http://arxiv.org/abs/2610.03710v1) EyeRobot 2.0 'active foveal sensing'、[2610.03713](http://arxiv.org/abs/2610.03713v1) Stratified Retention 'world-model forgetting as feature'、[2610.03695](http://arxiv.org/abs/2610.03695v1) Queen chess-LM 'explainable domain-LM' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.03717](http://arxiv.org/abs/2610.03717v1) Less Decoder More Encoder / 2610.03712 RNADyn / 2610.03709 Graph Decomposition / 2610.03679 Simulation-Free Lagrangian / 2610.03693 Transcriptome AI 维持长尾卡片；忽略无（今日 10 篇全部进入 value routing）。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 LESSER 是否公开 output-layer gradient 形式化、4DCodeBench 是否公开 physics simulation abstraction 集合。",
-      "max_uncertainty": "LESSER（[2610.03702](http://arxiv.org/abs/2610.03702v1)）output-layer gradient 形式化、跨 AdamW / LoRA / full-finetune baseline、跨 LLM 规模验证、与 influence-function / TracIn 等近似 ranking baseline 对照是否公开；4DCodeBench（[2610.03715](http://arxiv.org/abs/2610.03715v1)）code execution runtime、physical simulation abstraction 集合、跨 LLM baseline、'compact representation' 度量是否公开；EyeRobot 2.0（[2610.03710](http://arxiv.org/abs/2610.03710v1)）fixation point 选择策略、gaze-action 协调、token budget 与 uniform baseline 对照是否公开；Stratified Retention（[2610.03713](http://arxiv.org/abs/2610.03713v1)）stratified retention 形式化、forget/schedule 协议、跨 world-model 验证、与 stationary continual learning baseline 对照是否公开；Queen（[2610.03695](http://arxiv.org/abs/2610.03695v1)）complementation 框架、跨 chess engine baseline（Stockfish / Leela）、explanation 评测协议、与现有 chess-LM 对照是否公开；Less Decoder More Encoder（[2610.03717](http://arxiv.org/abs/2610.03717v1)）encoder/decoder architecture、跨 NVS baseline 对照、transferability to downstream 3D task 是否公开；RNADyn（[2610.03712](http://arxiv.org/abs/2610.03712v1)）leakage 控制协议、轨迹质量度量、generation model baseline、跨 trajectory length 验证是否公开；Graph Decomposition（[2610.03709](http://arxiv.org/abs/2610.03709v1)）message passing 算法、graph decomposition 形式化、跨 graph topology 验证、与 gossip baseline 对照是否公开；Simulation-Free Lagrangian（[2610.03679](http://arxiv.org/abs/2610.03679v1)）residual 形式化、simulation-free 收敛保证、跨 dynamics benchmark、与 simulation-based baseline 对照是否公开；Transcriptome AI（[2610.03693](http://arxiv.org/abs/2610.03693v1)）cross-modal 监督协议、pCR 评测指标、跨 cancer type 验证、与现有 pCR baseline 对照是否公开。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
-      "one_line_judgement": "据摘要（arXiv [2610.03702](http://arxiv.org/abs/2610.03702v1)），LESSER 把 LLM post-training data selection 的 ranking signal 从'full-parameter backward pass per sample'推到'output-layer gradients'——明确给出 fractional-cost 近似路径，在保留近似 full-gradient 信号的同时把 per-sample 算力压到常数倍。这是 inference-serving × llm-evaluation × memory 的 'output-layer gradient ranking' 即时价值资产 ——把'数据选择 ranking signal'从'full backward pass'拉到'output-layer as governance surface'，与昨日 / 上周 TACO（optimizer state memory compression）在'把训练时 memory/compute 维度变成可量化工程对象'层面同源，与 aiutil 长期关注的 inference-serving × memory × llm-evaluation 主线在'低成本 ranking signal for data curation'层面同源。",
-      "path": "daily-detail.html?date=2026-10-06"
     }
   ]
 }

@@ -1,0 +1,132 @@
+{
+  "id": "grasp-tags-task-aware-grasp-selection-via-critic-distillation-for-prehensile-loco-manipulation",
+  "title": "Grasp-TAGS: Task-Aware Grasp Selection via Critic Distillation for Prehensile Loco-Manipulation",
+  "authors": [
+    "Xun Tu",
+    "Minghao Zou",
+    "Karthik Desingh"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-06",
+  "url": "http://arxiv.org/abs/2611.09864v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.09864v1",
+  "code_url": "https://github.com/TuXun1999/Grasp-TAGS-real-world-deployment",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-10",
+  "first_deep_dive_daily": "2026-11-10",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 74.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：★ **今日第三价值：一个「把专家策略的隐式判断蒸馏成一个轻量选择器」的做法，机制值得抄，但证据以作者自述为主。**（arXiv 2611.…",
+  "one_line_essence": "★ **今日第三价值：一个「把专家策略的隐式判断蒸馏成一个轻量选择器」的做法，机制值得抄，但证据以作者自述为主。**（arXiv 2611.09864《Grasp-TAGS: Task-Aware Grasp Selection via Critic Distillation for Prehensile Loco-Manipulation》）★ 核心机制：已有方法要么依赖准确动力学模型，要么假设初始抓取是固定的；**本文指出不同的几何稳定抓取会导致下游操作性能显著不同**，于是把 PPO 策略学到的 **critic 蒸馏成一个轻量的 grasp utility network**，推理时**在还没接触物体之前**就用「候选抓取构型 + 目标」排出最优抓取。★ 实测口径（论文自述）：平均成功率 **89.84%**，对照最好的单抓取策略 **79.87%**，**提升 9.97 个百分点**，并在所有评测物体上降低了最终姿态误差。★ **今日实测的工件**：项目页 `rpm-lab-umn.github.io/Grasp-TAGS-web-page/` 实测 **HTTP 200、34,279 B**，标记词 'Grasp-TAGS' / 'PPO' / 'critic' / 'success rate' 全部命中；**作者自有的真实部署仓库 `TuXun1999/Grasp-TAGS-real-world-deployment` 实测存在、2,860 个文件**（含 `.vscode/settings.json`、THIRD_CAMERA.md、相机标定与 goal server 等实际部署代码，README 实测 25,853 B 写到相机电源管理、内网 IP `10.0.0.51`/`10.0.0.52` 等**真实运维细节**）；姊妹仓库 `TuXun1999/Grasp-TAGS-web-page` 实测 404 个文件（全是 media/ 下的 gif / png / pdf / mp4 与结果 csv）。★ **证据不足项（必须写清楚）**：① **两个仓库都没有 LICENSE**（API 实测 license=null），项目页只有 CC BY-SA 4.0 的**网页模板**许可；② **项目页正文里没有出现 '89.8' 这个数字**（今日实测该标记词 MISS），即 **论文的 89.84% 未在项目页复现**，其一致性无独立佐证；③ 论文的 arXiv comment 实测为空，**未见会议接收信息**；④ 论文未给出可下载的模型权重或训练数据。★ 为什么仍值得跟踪：**「把专家策略的内部价值信号抽出来当一个便宜的前置选择器」是一个可迁移的架构模式**——它与我们讨论过的「先路由再执行」是同一件事在机器人上的版本，且它给了**一个可量化的接口**：选择器只看「候选构型 + 目标」，不需要环境模型。放进趋势雷达连续观察。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第三价值：一个「把专家策略的隐式判断蒸馏成一个轻量选择器」的做法，机制值得抄，但证据以作者自述为主。**（arXiv 2611.09864《Grasp-TAGS: Task-Aware Grasp Selection via Critic Distillation for Prehensile Loco-Manipulation》）★ 核心机制：",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第三价值：一个「把专家策略的隐式判断蒸馏成一个轻量选择器」的做法，机制值得抄，但证据以作者自述为主。**（arXiv 2611.09864《Grasp-TAGS: Task-Awa",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09864v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.09864v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=grasp-tags-task-aware-grasp-selection-via-critic-distillation-for-prehensile-loco-manipulation",
+  "daily_path": "daily-detail.html?date=2026-11-10",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

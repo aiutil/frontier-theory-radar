@@ -1,0 +1,136 @@
+{
+  "id": "on-the-reliability-of-majority-vote-pseudo-labels-in-test-time-reinforcement-learning",
+  "title": "On the Reliability of Majority-Vote Pseudo-Labels in Test-Time Reinforcement Learning",
+  "authors": [
+    "Haoyu Wang",
+    "Ru Wang",
+    "Yuanyuan Wang",
+    "Jiaxian Guo",
+    "Mingming Gong"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-06",
+  "url": "http://arxiv.org/abs/2611.09872v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.09872v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-10",
+  "first_deep_dive_daily": "2026-11-10",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 58.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第七价值：一篇「把 TTRL 的误差分解清楚」的论文，它的问题设定对我们设计在线评测有直接参考。**（arXiv 2611.09…",
+  "one_line_essence": "★ **今日第七价值：一篇「把 TTRL 的误差分解清楚」的论文，它的问题设定对我们设计在线评测有直接参考。**（arXiv 2611.09872《On the Reliability of Majority-Vote Pseudo-Labels in Test-Time Reinforcement Learning》）★ 核心：TTRL 用自生成伪标签把预训练模型适配到无标注目标域，而**伪标签的可靠性一直没被理解清楚**；本文分析 online DPO 下的多数票监督，**把误差分解成「population-majority bias」与「prompt 相关的有限 rollout 波动」**，并指出**前者一般无法在没有外部监督的情况下被识别**——所以转而缓解后者，提出 **PC-Dr.DPO（Prompt-Conditional Distributionally Robust DPO）**：按观测到的投票可靠性**在 prompt 内部做条件化鲁棒重加权**，让**对采样敏感的 prompt 产生的更新更保守**；另引入**基于缓存的机制来减少在线适配中的自监督遗忘**。★ 实测口径（作者自述）：在 **6 个数学与知识密集型推理 benchmark、5 个模型骨干**上，PC-Dr.DPO **在 30 个设定中的 24 个**匹配或超过最强 TTRL 基线。★ **证据不足项（必须写清楚，不补写不存在的事实）**：① **纯论文，实测无代码链接、无官方仓库、无项目页**——arXiv HTML 全文实测扫描出的外链全是模型卡与参考文献（openai.com 的 gpt-5-6、qwen.ai 的 qwen3.7、kimi.com 的 kimi-k3、deepseek 的模型卡、ericmitchell.ai 的 cdpo.pdf 等），**没有一条是本文的实现**；② arXiv comment 实测为空，**无会议接收信息**；③ **24/30 里的另外 6 个设定是输还是平、差距多大，摘要未给**，无法判断整体稳健性；④ 「多数票」的多数票数量与投票模型未在摘要给出，需读正文；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——「population-majority bias 一般不可识别」这句话本身就是一条值得存下来的评测学边界：**用自生成标签做在线评测时，我们可能在一个不可识别的偏差上做优化**。这对我们的 agent 自评设计是一条必须写进 caveat 的提醒。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第七价值：一篇「把 TTRL 的误差分解清楚」的论文，它的问题设定对我们设计在线评测有直接参考。**（arXiv 2611.09872《On the Reliability of Majority-Vote Pseudo-Labels in Test-Time Reinforcement Learning》）★ 核心：TTRL 用自生成伪标签把预",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第七价值：一篇「把 TTRL 的误差分解清楚」的论文，它的问题设定对我们设计在线评测有直接参考。**（arXiv 2611.09872《On the Reliability of ",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-01"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09872v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.09872v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=on-the-reliability-of-majority-vote-pseudo-labels-in-test-time-reinforcement-learning",
+  "daily_path": "daily-detail.html?date=2026-11-10",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

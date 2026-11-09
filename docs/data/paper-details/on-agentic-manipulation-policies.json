@@ -1,0 +1,136 @@
+{
+  "id": "on-agentic-manipulation-policies",
+  "title": "On Agentic Manipulation Policies",
+  "authors": [
+    "Chen Chen",
+    "Omid Bagherieh",
+    "Naveen Nikamanth Appiah Balaji",
+    "Jesse T. Gonzalez",
+    "Negin Heravi"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-06",
+  "url": "http://arxiv.org/abs/2611.09892v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.09892v1",
+  "code_url": "https://github.com/apple-aiml-research/ml-amp",
+  "benchmark_url": "https://github.com/NVlabs/RoboLab",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-10",
+  "first_deep_dive_daily": "2026-11-10",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 7.2,
+    "engineering_testability": 6.05,
+    "trend_signal": 4.85,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 91.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：★ **今日第一即时价值，也是今日证据等级最高的一篇。**（arXiv 2611.09892《On Agentic Manipulation…",
+  "one_line_essence": "★ **今日第一即时价值，也是今日证据等级最高的一篇。**（arXiv 2611.09892《On Agentic Manipulation Policies》，Apple AI/ML Research）★ 核心主张：过去机器人操作的主流是「在示教上训练的专家策略」（VLA、WAM），本文反过来主张**通用大模型直接指挥机械臂更可靠**，并把这一类命名为 **agentic manipulation policies (AMPs)**。★ 实测口径（论文全文 + README + 项目页三方对照）：**RoboLab-120 零样本 85.6%**，对照领先 VLA **49.2%**、WAM **42.9%**；**真实世界 104/108 次成功**（12 个任务、3 台机器人实例），相对强 VLA / WAM 基线**失败率分别降低 20x 与 15x**；**加持久记忆后，RoboDojo 双臂任务的失败率相对零样本部署再降 4.6x**。项目页实测另给四个数：RoboLab-120 **86%（#1 on leaderboard）**、LIBERO-PRO **95.2%（Best zero-shot）**、robosuite **100%**、BEHAVIOR-1K **96.0%（Mobile manipulation）**、RoboDojo **84.1%（Best public number after practice）**。★ 今日实测的工件（这是它排第一的真正原因，不是主张新）：`github.com/apple-aiml-research/ml-amp` **实测存在**——created 2026-11-07T00:59:03Z、pushed 2026-11-09T04:28:32Z、**★14**、forks=0、has_pages=true、**209,070 KB、1341 个文件 / 292 个目录**；README 实测 3,899 B 逐字写 'This repository contains AMP1, the agentic manipulation policy from the paper, and the code to reproduce the paper's results on RoboLab-120, on CaP-Gym's LIBERO-PRO, robosuite and BEHAVIOR-1K suites, and on RoboDojo'。**更关键的是它的复现纪律**：docs/reproducibility.md 实测 3,180 B 把三个第三方 benchmark **钉死在具体 commit**（RoboLab `9db0aaf09d9fe5d4f37b168320788c7012463` / v0.3.1、CaP-X `53e9966d7a8e2fa7494676772bccc35280f5c0ed`、RoboDojo `09bd5f5e762b949f5858ece31347ce62057b3a5e`），并要求 `amp --version` 打印 commit 与「tracked files 是否被改动」，每次 episode 的记录里存下它用的 commit，跑偏了会警告；docs/reproducing-the-paper.md 实测 12,407 B 给出**逐图对应的一条命令**；`src/amp/doctor.py` 实测 20,317 B 存在。★ **它最值钱的一层设计，实测在代码里，不在摘要里**：论文里那个「memory」的真实形态**不是向量库、不是 KV cache**，docs/practice.md 实测 9,656 B 写明是**一个装笔记 / 代码 / 数据的文件夹**——AMP1+ 在练习后的 debrief 里往里写，之后的 episode 在 `./workspace` 找到它；CLI 给了 `--workspace DIR` / `--workspace-sha SHA`（目录里是别的版本就拒绝）/ `--workspace-notebook N`（告诉 agent 它这次 episode 的编辑不会被保留）/ `--workspace-max-bytes N`（每个任务 60,000–131,072 字节）/ `--shared-workspace`（所有任务共享，上限 256,000 字节）/ `--workspaces FILE`；`src/amp/practice/` 实测 **408 个文件**，其中 notebooks/ 下有 continual_chain00 的 ck10/ck20/ck30/ck42 四个 checkpoint 目录，**每个 checkpoint 是一个 NOTES.md + helpers.py**——**即「学习」的产物是笔记和代码，不是权重**。★ 边界（必须写清楚，一条都不能省）：① **本机无 GPU / 无 CUDA / 无 Isaac Sim，论文的任何数字本机一个都没跑出来**；论文自述需要 H100 80GB + driver 580.159.03 + Debian 13 + 约 9 GB 显存 / 15 GB 内存 / 40 GB 磁盘，且**结果依赖 GPU、驱动与系统版本**；② **LICENSE 是 Apple 的专有许可（API 实测 license NOASSERTION），不是 OSI 开源许可**——「有代码」不等于「可商用」，复用前必须走法务；③ **仓库上没有可下载的模型权重**——docs/models.md 实测写明模型全部走各家 API（Claude 走 Anthropic Messages、Gemini 走 generateContent、open-weights 走 sglang/vLLM），**需要自己的 API key 才能跑**，本机无 key；④ **三个 benchmark 都是第三方、需自行 clone 并接受各自的许可**（ACKNOWLEDGEMENTS 实测 20,683 B 逐条列出）；⑤ 「真实世界 104/108」是 **12 个任务、3 台机器人**上的样本，**外推到别的机器人/任务没有依据**。★ 为什么它对我们直接有用：**它把「通用模型 + 薄的确定性 harness」这套组合，实测做成了可复现的工程件**——而我们最关心的恰恰是 harness 而非模型；而且它的 memory 形态（一个文件夹 + SHA 锁 + 字节上限 + checkpoint 目录）**可以几乎原样搬进我们自己的 agent 上下文管理**，这与昨日结论「给 skill 补一层会失败的东西」是同一条线，只是 AMP1 给的是**会积累的**那一层。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第一即时价值，也是今日证据等级最高的一篇。**（arXiv 2611.09892《On Agentic Manipulation Policies》，Apple AI/ML Research）★ 核心主张：过去机器人操作的主流是「在示教上训练的专家策略」（VLA、WAM），本文反过来主张**通用大模型直接指挥机械臂更可靠**，并把这一类命名为 *",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": true,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第一即时价值，也是今日证据等级最高的一篇。**（arXiv 2611.09892《On Agentic Manipulation Policies》，Apple AI/ML Res",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09892v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.09892v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=on-agentic-manipulation-policies",
+  "daily_path": "daily-detail.html?date=2026-11-10",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

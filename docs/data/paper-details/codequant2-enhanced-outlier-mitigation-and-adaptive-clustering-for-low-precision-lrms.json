@@ -1,0 +1,134 @@
+{
+  "id": "codequant2-enhanced-outlier-mitigation-and-adaptive-clustering-for-low-precision-lrms",
+  "title": "CodeQuant2: Enhanced Outlier Mitigation and Adaptive Clustering for Low-Precision LRMs",
+  "authors": [
+    "Xingyu Liu",
+    "Xiangyang Yin",
+    "Tianhua Xia",
+    "Haiyu Wang",
+    "Sai Qian Zhang"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-06",
+  "url": "http://arxiv.org/abs/2611.09868v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.09868v1",
+  "code_url": "https://github.com/SAI-Lab-NYU/CodeQuant2",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-10",
+  "first_deep_dive_daily": "2026-11-10",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 5.0,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 72.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：★ **今日第四价值：一篇「把推理模型独有的现象当成一等公民」的量化工程论文，代码是真的，但开箱即用还差一步。**（arXiv 2611.0…",
+  "one_line_essence": "★ **今日第四价值：一篇「把推理模型独有的现象当成一等公民」的量化工程论文，代码是真的，但开箱即用还差一步。**（arXiv 2611.09868《CodeQuant2: Enhanced Outlier Mitigation and Adaptive Clustering for Low-Precision LRMs》）★ 核心观察：**推理模型在前几个解码步的激活波动更大**，而**只按常规文本做校准会漏掉这段早期状态**，于是提出 **reasoning-aware calibration (RAC)**——把普通文本与全精度模型生成的**早期推理 token 混在一起**做校准；再加**微调过的 rotation + scaling** 平滑离群值、**adaptive cluster allocation (ACA)** 给每个目标权重矩阵分配 8/16/32 个质心、**learnable clustering** 用局部重建损失微调质心值与 LoRA 参数化的分配；配套自研 **LUT CUDA kernel**（打包 A4 激活 + 4-bit 权重索引 + 每输出通道码本 + shared-memory 查表 + split-K 归约）。★ 实测口径（作者自述）：**相对 BF16 最高 2.85x 加速**，且在推理 benchmark 上有实质精度提升。★ **今日实测的工件**：`github.com/SAI-Lab-NYU/CodeQuant2` **实测存在**，但**默认分支是 `camera-ready` 而非 main**（pushed 2026-10-26T02:59:57Z、★0、forks=0、54 KB、**31 个文件 / 7 个目录**）；README 实测 **11,081 B**，逐字写 'Conference on Neural Information Processing Systems (NeurIPS), 2026' 与 'This repository provides the official implementation of CodeQuant2'；**`kernel/lut_kernel.py` 实测 10,028 B 且是真 CUDA 代码**（`load_inline` + `constexpr int COLS = 32` + `row_lut_kernel` 模板）；requirements.txt 实测钉死 **torch==2.10.0 / transformers==4.57.1 / vllm==0.19.0 / evalscope==1.5.2.post1 / wandb==0.25.1**；config/qwen3_8b_a4w4.yaml 实测给出 A4W4 配置。★ **证据不足项（必须写清楚）**：① **仓库无 LICENSE 文件**（API 实测 license=null），复用要先解决授权；② **配置里的路径全是占位符**——实测 `config/qwen3_8b_a4w4.yaml` 逐字 `rotation: /path/to/outputs/rotation_qwen3_8b`、`clustering: /path/to/outputs/clustering_qwen3_8b`，即**必须先自己训出旋转与聚类产物**才能跑通量化流程，README 里的 2.85x 需要完整 pipeline 才能复现；③ 论文 arXiv comment 实测为空（会议信息来自 README 而非 arXiv 元数据，两处口径不同，需以论文为准）；④ **无官方模型权重或下载脚本**，本机无 GPU 也无法编译该 kernel。★ 判断：**机制值得跟踪（推理模型必须用推理态校准，这是一条可直接抄进我们评测 checklist 的结论），但今天不能作为「可立即跑」的资产**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第四价值：一篇「把推理模型独有的现象当成一等公民」的量化工程论文，代码是真的，但开箱即用还差一步。**（arXiv 2611.09868《CodeQuant2: Enhanced Outlier Mitigation and Adaptive Clustering for Low-Precision LRMs》）★ 核心观察：**推理模型在前几个",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第四价值：一篇「把推理模型独有的现象当成一等公民」的量化工程论文，代码是真的，但开箱即用还差一步。**（arXiv 2611.09868《CodeQuant2: Enhanced ",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09868v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.09868v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=codequant2-enhanced-outlier-mitigation-and-adaptive-clustering-for-low-precision-lrms",
+  "daily_path": "daily-detail.html?date=2026-11-10",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

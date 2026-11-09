@@ -1,0 +1,132 @@
+{
+  "id": "flowmop-stochastic-multi-person-motion-prediction",
+  "title": "FlowMoP: Stochastic Multi-Person Motion Prediction",
+  "authors": [
+    "Aadya Agrawal",
+    "Ho Kei Cheng",
+    "Alexander Schwing"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-06",
+  "url": "http://arxiv.org/abs/2611.09882v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.09882v1",
+  "code_url": "https://github.com/aadya-agrawal/FlowMoP",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-10",
+  "first_deep_dive_daily": "2026-11-10",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得先保存：★ **今日第五价值：方向不在我们的主线上，但「把确定性预测改成概率预测」这件事的论证方式值得存下来。**（arXiv 2611.09882…",
+  "one_line_essence": "★ **今日第五价值：方向不在我们的主线上，但「把确定性预测改成概率预测」这件事的论证方式值得存下来。**（arXiv 2611.09882《FlowMoP: Stochastic Multi-Person Motion Prediction》）★ 核心主张：多人体动预测本质是**随机的**（同一段历史对应许多合理的后续，取决于意图、协作与社会情境），但主流范式仍是确定性的、对每个 agent 产出固定数量的结果；本文用**条件 flow matching** 联合生成多样未来运动，**同时建模全局轨迹与根相对姿态**，用 **B-spline 重参数化**压缩生成状态空间并强制时间平滑，再用 **dual-stream transformer** 让每个 agent 预测都条件于邻居的观测运动。★ 实测口径（作者自述）：在 **CMU-Mocap (UMPM) 与 3DPW** 上取得 SOTA，**尽管产出的是完整预测分布，在联合位置误差、姿态误差、最终位移误差上仍优于确定性基线**；并**首次在 WorldPose（大规模职业足球数据集）上建立运动预测基线**，实测社会条件化会**把预测不确定性集中到受交互约束的方向上**。★ **今日实测的工件**：`github.com/aadya-agrawal/FlowMoP` **实测存在**（MIT 许可、created 2026-10-18、pushed **2026-10-18T03:18:13Z**、★0、15 个文件 / 3 个目录）；README 实测 4,352 B，**明确给出可执行的命令**——`python train.py --dataset mocap_umpm --data-dir ... --output-dir outputs/umpm`、`python evaluate_selection.py --checkpoint outputs/umpm/checkpoints/best.pt ...`、`python evaluate_likelihood.py ...`、`python run_representation_ablation.py --data-dir ... --gpus 0 1 2`（raw / DCT / linear / cubic splines 四种时序表示的消融），并说明数据需预处理好成 `mocap_UMPM_input25_v2/{train,val}/*.pt` 与 `3dpw_input10_v2/{train,val}/*.pt`（PyTorch Geometric `Data` 对象，`body_xyz` 形状 `[people, frames, joints, 3]`）；论文 comment 实测逐字 'Accepted at NeurIPS 2026. 22 pages, including references and appendix'。★ **证据不足项（必须写清楚）**：① **仓库最后 commit 停在 2026-10-18，而论文是 2026-11-06 发的——仓库 19 天未更新**，论文里的 WorldPose 结果在仓库里**看不到对应脚本之外的东西**（WorldPose 目录只有 data.py / infer.py / preprocess.py / train.py），**没有 checkpoint、没有预训练权重、没有下载链接**；② 仓库**无预训练模型与预处理好数据的发布**，数据需要自己预处理（UMPM / 3DPW 各自有许可）；③ 'Social conditioning demonstrably concentrates predictive uncertainty' 这条结论在 README 里没有对应复现脚本说明；④ 论文 arXiv 声明的 NeurIPS 2026 接收状态今日无法与官方接收列表交叉核验。★ 判断：**长尾保存**——「当确定性范式掩盖了固有的多解性时，把输出改成分布」的论证方式对我们做 agent 的多路径决策有启发，但本体是计算机视觉人体预测，与我们的主线距离远，今天不投入。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第五价值：方向不在我们的主线上，但「把确定性预测改成概率预测」这件事的论证方式值得存下来。**（arXiv 2611.09882《FlowMoP: Stochastic Multi-Person Motion Prediction》）★ 核心主张：多人体动预测本质是**随机的**（同一段历史对应许多合理的后续，取决于意图、协作与社会情境），但主流",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第五价值：方向不在我们的主线上，但「把确定性预测改成概率预测」这件事的论证方式值得存下来。**（arXiv 2611.09882《FlowMoP: Stochastic Multi",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-01"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.09882v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.09882v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=flowmop-stochastic-multi-person-motion-prediction",
+  "daily_path": "daily-detail.html?date=2026-11-10",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
