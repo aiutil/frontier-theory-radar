@@ -1,0 +1,135 @@
+{
+  "id": "where-does-alignment-emerge-and-what-does-it-mean-a-closer-look-at-the-platonic-representation-hypothesis",
+  "title": "Where Does Alignment Emerge and What Does It Mean? A Closer Look at the Platonic Representation Hypothesis",
+  "authors": [
+    "Julia Herbst",
+    "Simon Roschmann",
+    "Quentin Bouniot",
+    "Zeynep Akata"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12869v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12869v1",
+  "code_url": "https://github.com/ExplainableML/prh-closer-look",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 6.0,
+    "relevance": 3.8,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 2.4
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：★ **今日第五价值：一篇「先给结论设好基线、再下判断」的方法学论文；它同时是今日最值得记的链接误判样本。**（arXiv 2611.128…",
+  "one_line_essence": "★ **今日第五价值：一篇「先给结论设好基线、再下判断」的方法学论文；它同时是今日最值得记的链接误判样本。**（arXiv 2611.12869《Where Does Alignment Emerge and What Does It Mean? A Closer Look at the Platonic Representation Hypothesis》，Julia Herbst、Simon Roschmann、Quentin Bouniot、Zeynep Akata；**arXiv comment 逐字 'NeurIPS 2026 Workshop on Neural Network Artifacts as a New Data Modality (Spotlight)'**）★ 核心：Platonic Representation Hypothesis (PRH) 说神经网络正在收敛到相似的表征空间；但近期工作质疑这一趋势在更新的语言模型上是否延续，且**已有工作指出表征相似度指标会被模型深度与宽度混淆，需要恰当基线才能解读**。本文先定位「对齐在**哪一层、哪一个表征维度**出现」，再发现**只要 caption 足够干净且信息充分，PRH 的能力对齐趋势在更新模型上依然成立**，最后引入单模态与多模态基线做语境化——**结论是「单模态模型之间的跨模态表征对齐可以超过显式对齐的视觉语言模型，但仍显著落后于同模态模型之间的对齐」**。★ 今日实测的工件：`github.com/ExplainableML/prh-closer-look` 实测存在——**37 文件 / 6 目录 / 917 KB、★1、MIT、pushed 2026-11-10**；README 实测 13,174 B，**给出了真实可跑的三步 pipeline**（`tools/extract_features.py` → `tools/reduce_features.py` → `tools/measure_alignment.py`），并明确 `--depth_calibration` 会额外保存**Gröger et al. 的 calibrated mutual k-NN 分数**（即那条「必须设基线」的方法学要求被写成了开关）；数据集侧 README 逐字给出 WIT 1024（自动从 HF `minhuh/prh` 下载）、COCO 2017、CC3M（DreamLIP caption）、DOCCI（用 Qwen3-8B 生成 10/25/50/75% 摘要）；`requirements.txt` 实测钉 numpy==2.2.1 并含 `calibrated-similarity`；仓库还带 `slurm/benchmark_llm.sbatch` 等集群脚本；README 逐字写明「All experiments can be run on a single NVIDIA A100 GPU with 80 GB memory」。★ 证据不足项（必须写清）：① **PDF 里出现的 `zenodo.org/records/12608602` 不是本文工件**——**经 api.datacite.org 实测该记录标题逐字为 'EleutherAI/lm-evaluation-harness: v0.4.3'、出版者 Zenodo、年份 2024、类型 Software**，且在 PDF 中的上下文确认为**参考文献条目**（Gao et al., 'The language model evaluation harness'）——**朴素的外链扫描会把它误判成本文的复现包，这是今日最值得固化的核验动作**；② **仓库无发布权重**，需自提特征（至少 1 张 A100 80GB）；③ **DOCCI 摘要需自行用 Qwen3-8B 生成**（README 给的命令与论文 Appendix H 的 prompt），而 **HF 今日不可达**，连自动下载 WIT 的那一步今日都跑不通；④ **GitHub Pages 不存在**（实测 `ExplainableML.github.io/prh-closer-look/` → 404），无项目页；⑤ **workshop Spotlight，非主会论文**；⑥ 全部结论为作者自述，无第三方复现。★ 判断：**趋势价值**——本体是表征分析（离主线偏远），但「**先证明指标本身会被深度宽度混淆，再给基线，最后下结论**」这套顺序，正是我们做评测时最常跳过的一步，值得抄进评测规范。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第五价值：一篇「先给结论设好基线、再下判断」的方法学论文；它同时是今日最值得记的链接误判样本。**（arXiv 2611.12869《Where Does Alignment Emerge and What Does It Mean? A Closer Look at the Platonic Representation Hypothesis》",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第五价值：一篇「先给结论设好基线、再下判断」的方法学论文；它同时是今日最值得记的链接误判样本。**（arXiv 2611.12869《Where Does Alignment Em",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12869v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12869v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=where-does-alignment-emerge-and-what-does-it-mean-a-closer-look-at-the-platonic-representation-hypothesis",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

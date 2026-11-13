@@ -1,0 +1,127 @@
+{
+  "id": "quantifying-structural-stability-of-transparent-models-for-general-insurance-pricing",
+  "title": "Quantifying structural stability of transparent models for general insurance pricing",
+  "authors": [
+    "Félix Côté",
+    "Marie-Pier Côté"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.17308v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.17308v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-14",
+  "first_deep_dive_daily": "2026-11-14",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 50.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第十价值（今日最低分）：一篇讲保险模型「结构稳定性」的论文——它的指标定义有点意思，但今天离我们最远。**（arXiv 2611…",
+  "one_line_essence": "★ **今日第十价值（今日最低分）：一篇讲保险模型「结构稳定性」的论文——它的指标定义有点意思，但今天离我们最远。**（arXiv 2611.17308《Quantifying structural stability of transparent models for general insurance pricing》，Félix Côté、Marie-Pier Côté；**École d'actuariat, Université Laval**；arXiv comment 逐字 '16 tables and 9 figures'）★ 核心：保险合同期短 → 数据分布快速漂移 → 模型需要频繁重训；重训后模型**在预测与结构上都可能大幅改变**，而**结构稳定性是预测稳定性的上游**（先变结构，才会变预测）；但现有结构稳定性指标**大多局限于决策树**。本文：① 引入**「功能透明性」（functional transparency）**——预测函数可写成**主效应的一元函数之和 + 交互的二元函数之和**的模型；② 提出 **Mean Squared Shape function distance（MSSFD）** 度量这类模型的结构稳定性；③ 在**三个公开汽车保险数据集**上做基准研究。★ 实测口径（作者自述）：**以数值协变量中心化的 GLM 是稳定的，EBM（explainable boosting machine）在稳定性与性能之间提供折中**；**序贯建模与固定超参这类稳定化策略，能显著提升 EBM 与 XGBoost 的稳定性，且对性能影响可忽略**。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链数为 0**，无 GitHub、无项目页、无数据集；② **arXiv comment 只说明图表数量**（16 表 9 图），**无会议接收信息**；③ 全文 27 页、**16 张表 9 张图**，**今日未逐表复核**「稳定化策略对性能影响可忽略」这一关键结论；④ **三个保险数据集今日无法获取**（论文未给出链接），且领域特殊性（精算）使结论外推性存疑；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「结构稳定性是预测稳定性的上游」这个排序**对我们有一点点用（我们做模型更新时通常只看预测漂移，不看结构漂移）；但今天离主线最远、零工件，只存索引。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第十价值（今日最低分）：一篇讲保险模型「结构稳定性」的论文——它的指标定义有点意思，但今天离我们最远。**（arXiv 2611.17308《Quantifying structural stability of transparent models for general insurance pricing》，Félix Côté、Marie-",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第十价值（今日最低分）：一篇讲保险模型「结构稳定性」的论文——它的指标定义有点意思，但今天离我们最远。**（arXiv 2611.17308《Quantifying structu",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-05"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17308v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.17308v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=quantifying-structural-stability-of-transparent-models-for-general-insurance-pricing",
+  "daily_path": "daily-detail.html?date=2026-11-14",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

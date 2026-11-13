@@ -1,0 +1,132 @@
+{
+  "id": "classical-energies-learn-to-reason-1-000x-faster-than-looped-models",
+  "title": "Classical Energies Learn to Reason 1,000x Faster than Looped Models",
+  "authors": [
+    "Benjamin Hoover",
+    "Hugh Blayney",
+    "James C. R. Whittington"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.17309v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.17309v1",
+  "code_url": "https://github.com/Prefrontal-AI/CRAM",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-14",
+  "first_deep_dive_daily": "2026-11-14",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 2.4
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得先保存：★ **今日第六价值：一篇把「推理模型」拉回 1980 年代 Hopfield 能量的论文，它最有价值的其实不是 1,000× 这个数字，而…",
+  "one_line_essence": "★ **今日第六价值：一篇把「推理模型」拉回 1980 年代 Hopfield 能量的论文，它最有价值的其实不是 1,000× 这个数字，而是末尾那句「别用数独和迷宫测可扩展性」的警告。**（arXiv 2611.17309《Classical Energies Learn to Reason 1,000× Faster than Looped Models》，Benjamin Hoover、Hugh Blayney、James C. R. Whittington；**Prefrontal**；arXiv comment 为空）★ 核心：把 Hopfield & Tank 的能量函数学习成版本（**CRAM, Compact Reasoning Associative Memory**），**推理 = 在能量上做下降**，而**能量本身告诉你何时该停**；由此得到内建的早停、**算力随题目难度自适应**、**不需要对求解器反向传播的训练**、以及**可解释的权重**。★ 实测口径（论文摘要 + Table + README 三方对照）：**Sudoku-Extreme 99.996% 解出率、Maze-Unique 100%，训练分别只要 42 ms 与 132 ms（单张 H200），至少比 looped 模型快 1,000×**；**参数量 Sudoku-Extreme 263,169（非零约 7,700）、Maze-Unique 仅 18 个**；在 Sudoku-Extreme 上**用至少少 282× 的推理 FLOPs** 追平 looped 模型的最高精度；论文的停止规则对照表实测显示 **CRAM（能量阈值）的 Wrong halts 为 0.00%，而 HRM 0.62%、TRM 2.37%、EqR 1.61%、TRMP 0.05%、EBR 0.21%**——**即能量阈值是唯一「几乎不误停」的停止规则**。★ 今日实测的工件：`github.com/Prefrontal-AI/CRAM` **实测存在**——**★3、forks=1、Apache-2.0、352 blobs / 55 目录 / 15,999,089 B、默认分支 main、created 2026-11-12、pushed 2026-11-13**；README 实测 3,887 B，逐字给出 Quickstart（`uv sync` → `prepare_data.py sudoku` → `checkpoints/evaluate.py --tasks sudoku-extreme maze-unique`）、**每个模型的训练权重在 `checkpoints/`**、**每张表每张图的命令在 `REPRODUCING.md`（21,237 B）**、**专门写了 `AGENTS.md`（2,587 B）给 coding agent**；仓库结构 `cram/`（20）、`baselines/`（183，含 ebr/eqr/dynamics/flops 四个子目录与 39 个 .sbatch 集群脚本）、`experiments/`（36）、`checkpoints/`（50，含 15 个 .pt）、`results/`（28）、`tests/`（10）；`https://prefrontal.ai/news/cram/` **实测 HTTP 200、235,284 B**（工程博客）。★ 证据不足项（必须写清）：① **arXiv comment 为空**，无会议接收信息；② **论文自己就警告了 benchmark 的无效性**——摘要逐字 'a caution against using trivially solvable benchmarks like Sudoku and Maze to test the scalability of looped reasoning techniques'，**即 1,000× 这个数字是在作者自己认为「平凡」的题上测的**；③ 需单张 H200 与 `uv`，本机无 GPU；④ **论文自陈计时噪声**——附录 B 逐字 'Training jobs used GPUs on unreserved nodes of a shared cluster, so other jobs could use a node's other GPUs and CPU cores which could affect reproducibility of timing a fit'（**这是作者主动披露的复现风险，很少见，值得记**）；⑤ **停止规则对照表里的 baseline 全是作者复现的**，公平性依赖实现；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——「**推理 = 能量下降，能量自带停止信号**」这个框架对**任何需要 agent 自己决定何时停止的场景**（我们的 agent 现在靠 token 上限和超时硬停）有直接启发；而且**「零误停」这个指标（Wrong halts 0.00%）比「准确率」更值得抄进我们的评测表**。但今天不值得深挖——本体是解谜推理，离主线远。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第六价值：一篇把「推理模型」拉回 1980 年代 Hopfield 能量的论文，它最有价值的其实不是 1,000× 这个数字，而是末尾那句「别用数独和迷宫测可扩展性」的警告。**（arXiv 2611.17309《Classical Energies Learn to Reason 1,000× Faster than Looped Models",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第六价值：一篇把「推理模型」拉回 1980 年代 Hopfield 能量的论文，它最有价值的其实不是 1,000× 这个数字，而是末尾那句「别用数独和迷宫测可扩展性」的警告。**（",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-05"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17309v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.17309v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=classical-energies-learn-to-reason-1-000x-faster-than-looped-models",
+  "daily_path": "daily-detail.html?date=2026-11-14",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

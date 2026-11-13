@@ -1,0 +1,138 @@
+{
+  "id": "coremem-cost-internalizing-memory-for-successive-coding-tasks-with-prospective-valuation",
+  "title": "CoReMem: Cost-Internalizing Memory for Successive Coding Tasks with Prospective Valuation",
+  "authors": [
+    "Peiwen Li",
+    "Harshit Verma",
+    "Sophia Zhou",
+    "Haiwen Wang",
+    "Ngoc Bui"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.17316v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.17316v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-14",
+  "first_deep_dive_daily": "2026-11-14",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 4.5,
+    "engineering_testability": 4.05,
+    "trend_signal": 4.6,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 82.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：★ **今日第二即时价值：它问的是我们 coding agent 每天都在做、却几乎从不量化的那个问题——「记忆到底是在省事，还是在添乱」。…",
+  "one_line_essence": "★ **今日第二即时价值：它问的是我们 coding agent 每天都在做、却几乎从不量化的那个问题——「记忆到底是在省事，还是在添乱」。**（arXiv 2611.17316《CoReMem: Cost-Internalizing Memory for Successive Coding Tasks with Prospective Valuation》，Peiwen Li、Harshit Verma（共同一作）、Sophia Zhou（共同一作）、Haiwen Wang、Ngoc Bui、Heng Chang、Fei Fei、David van Dijk、Rex Ying；Yale University / Tsinghua University / Goodvision AI）★ 核心设定：**连续任务（successive tasks）**——coding agent 在一个**持续演进的仓库**上接一个又一个任务，**在下一个任务还没出现时就必须决定写什么记忆**；而现有记忆方法多为「任务内压缩上下文」，**目标已知**，对「未知下一个任务」完全无效。CoReMem 的两个机制：**① 溯源门控价值信用（provenance-gated value credit）**——只有被判定「确实用了记忆锚点」的步骤才拿到额外价值信用，但**每一步仍保留结果信用**（即不因走捷径而免除交付责任）；**② on-policy 记忆使用适配**——在同一 rollout group 内对比「有记忆 / 无记忆」来估记忆价值，奖励优先看 resolve（解决率）并惩罚成功运行的步数。★ 实测口径（论文 Table 1 逐行核对，三个开源 actor 模型 × 六种记忆层）：**Qwen3.8-27B-FP8 上 resolve rate 21.0% → 25.7%（+22%），步数 −17%，cache-aware 总 token −11%**，而**对照的 ReasoningBank 只有 +20% resolve 但 token +110%**、Mem0 是 +2% resolve 且 token +113%、MemOp +12% resolve 但 token +57%——**即 CoReMem 是唯一同时做到「解决率最高 + token 最省」的**；**Qwen3.5-9B 上 14.0% → 17.7%（+27%），步数 −26%，token −19%**；**Gemma-4-31B 上 11.5% → 14.2%（+24%），token −9%**。论文摘要另给出跨三个 actor 模型的平均口径：**resolve per token 相对无记忆提升 41%**；**Full history（把全部历史塞进上下文）只有 +2%~+7% resolve 且 token 反而 +5%~+21%——即「无脑塞全量历史」是纯亏**。★ 证据不足项（必须写清）：① **官方代码今日不可公开访问**——PDF 脚注 1 与 arXiv HTML 均写明 'Code is available at an anonymous link'，**经 HTML 链接注释提取出真实地址 `https://anonymous.4open.science/r/CoReMem-F728/`，实测返回 HTTP 401**（匿名评审页），**今日无法核验任何代码**；② 论文中另出现 3 个 openreview.net pdf id（4jdIxXBNve / 8yjWLJy2eX / jL7fwchScm），**今日未取其正文，审稿状态无法核验**；③ arXiv comment 为空，**无会议接收信息**；④ 需 GPU（Qwen3.8-27B-FP8 级模型），本机无 GPU；⑤ ChainSWE 100 条任务链、训练/测试按仓库不相交切半，**样本量偏小**；⑥ 表格中 `Full history` 的 token 上涨与 `CoReMem w/o training` 的下降方向相反，**说明「省 token」这个结论依赖 post-training，是耦合结果而非独立结论**；⑦ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——它的**结论形状**今天就能用：**「记忆的价值 = 它在下一个未知任务上省下的步数 − 写读它的成本」**，而且它把「无脑塞全量历史」明确量化为净亏；**但它今天一行业代码都跑不了**（401），所以**只取方法论，不取实现**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第二即时价值：它问的是我们 coding agent 每天都在做、却几乎从不量化的那个问题——「记忆到底是在省事，还是在添乱」。**（arXiv 2611.17316《CoReMem: Cost-Internalizing Memory for Successive Coding Tasks with Prospective Valuation》",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "context-engineering",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第二即时价值：它问的是我们 coding agent 每天都在做、却几乎从不量化的那个问题——「记忆到底是在省事，还是在添乱」。**（arXiv 2611.17316《CoReMe",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17316v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.17316v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=coremem-cost-internalizing-memory-for-successive-coding-tasks-with-prospective-valuation",
+  "daily_path": "daily-detail.html?date=2026-11-14",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "id": "agentssl-can-mle-agents-leverage-unlabeled-data",
+  "title": "AgentSSL: Can MLE Agents Leverage Unlabeled Data?",
+  "authors": [
+    "Ethan Lin",
+    "Akanksha Sarkar",
+    "Ziang Liu",
+    "Kristin Branson",
+    "Jennifer J. Sun"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.17323v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.17323v1",
+  "code_url": "https://github.com/akanksha-sarkar/AgentSSL",
+  "benchmark_url": "https://huggingface.co/datasets/ethan-y-lin/ProgramSelectBench",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-14",
+  "first_deep_dive_daily": "2026-11-14",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 6.2,
+    "evidence": 7.2,
+    "engineering_testability": 6.6,
+    "trend_signal": 4.85,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 89.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：★ **今日第一即时价值，也是今日唯一一篇「正面结论和负面结论同样重要」的论文——它把 agent 搜索的瓶颈从「能不能造出来」精确地挪到了…",
+  "one_line_essence": "★ **今日第一即时价值，也是今日唯一一篇「正面结论和负面结论同样重要」的论文——它把 agent 搜索的瓶颈从「能不能造出来」精确地挪到了「能不能挑出来」。**（arXiv 2611.17323《AgentSSL: Can MLE Agents Leverage Unlabeled Data?》，Ethan Lin、Akanksha Sarkar（共同一作）、Ziang Liu、Kristin Branson、Jennifer J. Sun；Cornell University + Howard Hughes Medical Institute；**arXiv comment 逐字 'NeurIPS 2026. Project Website: https://codiscovery.ai/AgentSSL'**）★ 核心设定：把半监督学习（SSL）形式化为**程序搜索问题**，拆成两个挑战——**程序发现（program discovery）**与**程序选择（program selection）**；agent 写可执行 SSL 程序，用无监督指标或带噪验证做 fitness 反馈。★ 实测口径（论文 Table 1/2/3 逐格核对 + 项目页 HTML 双向对照，两边数字完全一致）：**① 正面**：在 6 个 SSL 基准 × 2 个 shot 设置 = 12 个设定中，最优 agent 程序（A_best）**在 8/12 个设定上超过最强的人工 SSL 基线（H_best）**，最大优势 **RETINO 40-shot +21.81 个百分点**（73.47 vs 51.60）、RETINO 80-shot +19.10、CLEVR 10-shot +5.09、KITTI 5-shot +8.20、KITTI 10-shot +7.78、DTD 3-shot +2.91；对照基线是 Supervised / FixMatch / SoftMatch / FineSSL / PET / V-PET 六种。**② 负面（今日最值钱的一半）**：**用 agent 自己的反馈指标做选择，选择损失（selection regret）最高达 −47.29 个百分点**（RETINO 80-shot，AgentSSL_N 行），无监督指标版为 −18.62；**最坏情况下「用无标签反馈挑程序」比「oracle 挑选」差 47 个点**——而 Table 1 里那个 +21.81 的漂亮数字，前提是**用测试集做 oracle 挑选**。**③ 第三层**：当无监督指标失效时，**把标签预算对半分给「训练」和「主动选择」反而更好**——ActiveTesting/VMA/IID 在 RETINO 上 +25.59/+26.07/+26.07，KITTI 上 CODA +14.63，但**在无监督指标本来就管用的数据集上会倒退**（CODA 在 CLEVR 20-shot 是 −29.09）。★ 今日实测的工件（它排第一的真正原因，不是主张新）：`github.com/akanksha-sarkar/AgentSSL` **实测存在**——**5,364 blobs / 2,866 目录 / 665,761,812 B ≈ 666 MB**、★0、forks=0、默认分支 main、created 2026-03-27、**pushed 2026-10-04**、**license=null（无 LICENSE 文件）**；README 实测 3,806 B，逐字给出目录规范（`metrics/` / `pytorch_adapt/` / `domainX/setSL|setC|k{1,5,10,20}/seed{0,26,42}/`）与 **Apptainer 容器内文件布局约定**；**实读了关键源码 `eval/evaluate_program.py`（7,989 B）**——它是真代码不是描述：开头就把 `OMP_NUM_THREADS/MKL_NUM_THREADS/OPENBLAS_NUM_THREADS/NUMEXPR_NUM_THREADS` 全部钉为 1（注释逐字 'avoid OpenBLAS/MKL threading segfaults on some clusters'）、`sys.path.insert(0, '/work')` 绑定容器挂载点、`faulthandler.enable()`、`get_num_classes()` 从 `dataset.json` 读并在数据集名未知时**显式 `raise KeyError` 并列出已知数据集**、用 `importlib.util.spec_from_file_location` 动态加载 agent 写的 program；`eval/dataset.json`（4,556 B）、`eval/nets/vit_petl/`（含 adapter/attention/block/fact/lora/mlp/patch_embed/repadapter/ssf/vpt 共 13 个 py 文件）、`metrics/metrics.py`（6,899 B）齐全；顶层 `archive/`（2,731 blobs）、`dtd/`（929）、`retino/`（268）、`kitti/`（242）、`inat/`（189）、`clevr_count/`（180）、`sun397/`（72）、`resisc45/`（61）逐数据集各含 `description.md`（3,391–10,440 B，逐设定任务描述）、`annotations/`（train.json / unlabeled.json）与 `featcache_*` 特征缓存。★ 证据不足项（必须写清）：① **HuggingFace 全站今日不可达**（实测 4 次请求全部超时，含 90s 超时的一次），因此 **ProgramSelectBench 数据集本体（16,977 个 program、35 个任务、>10,000 GPU 小时）今日完全无法核验**——这是本文最重要的资产，却是唯一没验到的；② **仓库无 LICENSE**（API 实测 license=null），且 ★0 / forks=0 / **pushed 停在 2026-10-04**（比论文 11-12 的 arXiv 日期早 5 周），**活跃度存疑**；③ 仓库 666 MB 且含大量 `featcache_*.bin`（单文件最大 33,802,621 B），**clone 成本高、克隆后是否直接可跑未知**；④ README 逐字 'Data Storage (Not sure how this looks right now?)'——**作者自己标注了这块不确定**；⑤ 需 Apptainer + GPU（实测 DTD/RESISC45/KITTI 8 小时 RTX 6000 Ada，SUN397/RETINO/CLEVR 15 小时 H100 或 RTX 6000 Blackwell Max-Q），本机无 GPU；⑥ 真实生态学任务（WildFin / BuckTales）上**作者自陈 AgentSL 与纯监督 AgentSL 打平**，即真实场景收益未兑现；⑦ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——不放进深挖第一顺位只有一个理由：**它的核心资产（16,977 个 program）今天打不开**；但它的**结论形状**今天就可以直接用在我们自己的系统上：**「先搜出一堆候选程序，再用 agent 自己的反馈挑一个」这个流程，在无标签场景下会系统性选错最多 47 个点**——**我们的多方案/多 prompt A/B 流程正是这个形状**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第一即时价值，也是今日唯一一篇「正面结论和负面结论同样重要」的论文——它把 agent 搜索的瓶颈从「能不能造出来」精确地挪到了「能不能挑出来」。**（arXiv 2611.17323《AgentSSL: Can MLE Agents Leverage Unlabeled Data?》，Ethan Lin、Akanksha Sarkar（共同一作",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": true,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第一即时价值，也是今日唯一一篇「正面结论和负面结论同样重要」的论文——它把 agent 搜索的瓶颈从「能不能造出来」精确地挪到了「能不能挑出来」。**（arXiv 2611.173",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17323v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.17323v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=agentssl-can-mle-agents-leverage-unlabeled-data",
+  "daily_path": "daily-detail.html?date=2026-11-14",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

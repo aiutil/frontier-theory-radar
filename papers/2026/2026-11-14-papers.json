@@ -1,0 +1,650 @@
+{
+  "date": "2026-11-14",
+  "total": 10,
+  "generated_at": "2026-11-14T04:35:50.023425",
+  "papers": [
+    {
+      "title": "AgentSSL: Can MLE Agents Leverage Unlabeled Data?",
+      "authors": [
+        "Ethan Lin",
+        "Akanksha Sarkar",
+        "Ziang Liu",
+        "Kristin Branson",
+        "Jennifer J. Sun"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17323v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17323v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/akanksha-sarkar/AgentSSL",
+      "benchmark_url": "https://huggingface.co/datasets/ethan-y-lin/ProgramSelectBench",
+      "project_url": "https://codiscovery.ai/AgentSSL",
+      "abstract": "Applying machine learning systems to new domains introduces bottlenecks in both labeled data acquisition and manual pipeline engineering. While recent MLE agents show promise in automating pipeline design, they have been studied almost exclusively in fully supervised settings, leaving them untested in realistic regimes where labeled data is scarce but unlabeled data is abundant. In this work, we introduce Agentic Semi-Supervised Learning (AgentSSL), framing SSL as a program search problem and st",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 89.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17323v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17323v1"
+        }
+      ],
+      "llm_reason": "★ **今日第一即时价值，也是今日唯一一篇「正面结论和负面结论同样重要」的论文——它把 agent 搜索的瓶颈从「能不能造出来」精确地挪到了「能不能挑出来」。**（arXiv 2611.17323《AgentSSL: Can MLE Agents Leverage Unlabeled Data?》，Ethan Lin、Akanksha Sarkar（共同一作）、Ziang Liu、Kristin Branson、Jennifer J. Sun；Cornell University + Howard Hughes Medical Institute；**arXiv comment 逐字 'NeurIPS 2026. Project Website: https://codiscovery.ai/AgentSSL'**）★ 核心设定：把半监督学习（SSL）形式化为**程序搜索问题**，拆成两个挑战——**程序发现（program discovery）**与**程序选择（program selection）**；agent 写可执行 SSL 程序，用无监督指标或带噪验证做 fitness 反馈。★ 实测口径（论文 Table 1/2/3 逐格核对 + 项目页 HTML 双向对照，两边数字完全一致）：**① 正面**：在 6 个 SSL 基准 × 2 个 shot 设置 = 12 个设定中，最优 agent 程序（A_best）**在 8/12 个设定上超过最强的人工 SSL 基线（H_best）**，最大优势 **RETINO 40-shot +21.81 个百分点**（73.47 vs 51.60）、RETINO 80-shot +19.10、CLEVR 10-shot +5.09、KITTI 5-shot +8.20、KITTI 10-shot +7.78、DTD 3-shot +2.91；对照基线是 Supervised / FixMatch / SoftMatch / FineSSL / PET / V-PET 六种。**② 负面（今日最值钱的一半）**：**用 agent 自己的反馈指标做选择，选择损失（selection regret）最高达 −47.29 个百分点**（RETINO 80-shot，AgentSSL_N 行），无监督指标版为 −18.62；**最坏情况下「用无标签反馈挑程序」比「oracle 挑选」差 47 个点**——而 Table 1 里那个 +21.81 的漂亮数字，前提是**用测试集做 oracle 挑选**。**③ 第三层**：当无监督指标失效时，**把标签预算对半分给「训练」和「主动选择」反而更好**——ActiveTesting/VMA/IID 在 RETINO 上 +25.59/+26.07/+26.07，KITTI 上 CODA +14.63，但**在无监督指标本来就管用的数据集上会倒退**（CODA 在 CLEVR 20-shot 是 −29.09）。★ 今日实测的工件（它排第一的真正原因，不是主张新）：`github.com/akanksha-sarkar/AgentSSL` **实测存在**——**5,364 blobs / 2,866 目录 / 665,761,812 B ≈ 666 MB**、★0、forks=0、默认分支 main、created 2026-03-27、**pushed 2026-10-04**、**license=null（无 LICENSE 文件）**；README 实测 3,806 B，逐字给出目录规范（`metrics/` / `pytorch_adapt/` / `domainX/setSL|setC|k{1,5,10,20}/seed{0,26,42}/`）与 **Apptainer 容器内文件布局约定**；**实读了关键源码 `eval/evaluate_program.py`（7,989 B）**——它是真代码不是描述：开头就把 `OMP_NUM_THREADS/MKL_NUM_THREADS/OPENBLAS_NUM_THREADS/NUMEXPR_NUM_THREADS` 全部钉为 1（注释逐字 'avoid OpenBLAS/MKL threading segfaults on some clusters'）、`sys.path.insert(0, '/work')` 绑定容器挂载点、`faulthandler.enable()`、`get_num_classes()` 从 `dataset.json` 读并在数据集名未知时**显式 `raise KeyError` 并列出已知数据集**、用 `importlib.util.spec_from_file_location` 动态加载 agent 写的 program；`eval/dataset.json`（4,556 B）、`eval/nets/vit_petl/`（含 adapter/attention/block/fact/lora/mlp/patch_embed/repadapter/ssf/vpt 共 13 个 py 文件）、`metrics/metrics.py`（6,899 B）齐全；顶层 `archive/`（2,731 blobs）、`dtd/`（929）、`retino/`（268）、`kitti/`（242）、`inat/`（189）、`clevr_count/`（180）、`sun397/`（72）、`resisc45/`（61）逐数据集各含 `description.md`（3,391–10,440 B，逐设定任务描述）、`annotations/`（train.json / unlabeled.json）与 `featcache_*` 特征缓存。★ 证据不足项（必须写清）：① **HuggingFace 全站今日不可达**（实测 4 次请求全部超时，含 90s 超时的一次），因此 **ProgramSelectBench 数据集本体（16,977 个 program、35 个任务、>10,000 GPU 小时）今日完全无法核验**——这是本文最重要的资产，却是唯一没验到的；② **仓库无 LICENSE**（API 实测 license=null），且 ★0 / forks=0 / **pushed 停在 2026-10-04**（比论文 11-12 的 arXiv 日期早 5 周），**活跃度存疑**；③ 仓库 666 MB 且含大量 `featcache_*.bin`（单文件最大 33,802,621 B），**clone 成本高、克隆后是否直接可跑未知**；④ README 逐字 'Data Storage (Not sure how this looks right now?)'——**作者自己标注了这块不确定**；⑤ 需 Apptainer + GPU（实测 DTD/RESISC45/KITTI 8 小时 RTX 6000 Ada，SUN397/RETINO/CLEVR 15 小时 H100 或 RTX 6000 Blackwell Max-Q），本机无 GPU；⑥ 真实生态学任务（WildFin / BuckTales）上**作者自陈 AgentSL 与纯监督 AgentSL 打平**，即真实场景收益未兑现；⑦ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——不放进深挖第一顺位只有一个理由：**它的核心资产（16,977 个 program）今天打不开**；但它的**结论形状**今天就可以直接用在我们自己的系统上：**「先搜出一堆候选程序，再用 agent 自己的反馈挑一个」这个流程，在无标签场景下会系统性选错最多 47 个点**——**我们的多方案/多 prompt A/B 流程正是这个形状**。",
+      "id": "agentssl-can-mle-agents-leverage-unlabeled-data",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "coding-agent",
+        "data-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 7.2,
+        "engineering_testability": 6.6,
+        "trend_signal": 4.85,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "CoReMem: Cost-Internalizing Memory for Successive Coding Tasks with Prospective Valuation",
+      "authors": [
+        "Peiwen Li",
+        "Harshit Verma",
+        "Sophia Zhou",
+        "Haiwen Wang",
+        "Ngoc Bui"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17316v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17316v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Coding agents tackle successive tasks on an evolving repository, carrying forward edits and writing memory before the next task is known. Selecting memory for unknown next tasks requires balancing future usefulness against the costs of writing and reading it. The actor must also decide when acting on available memory saves effort as the task unfolds. We introduce Coding-Repository Memory (CoReMem), a cost-internalizing framework that guides memory design and actor adaptation through measured mem",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "coding agent"
+      ],
+      "score": 82.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17316v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17316v1"
+        }
+      ],
+      "llm_reason": "★ **今日第二即时价值：它问的是我们 coding agent 每天都在做、却几乎从不量化的那个问题——「记忆到底是在省事，还是在添乱」。**（arXiv 2611.17316《CoReMem: Cost-Internalizing Memory for Successive Coding Tasks with Prospective Valuation》，Peiwen Li、Harshit Verma（共同一作）、Sophia Zhou（共同一作）、Haiwen Wang、Ngoc Bui、Heng Chang、Fei Fei、David van Dijk、Rex Ying；Yale University / Tsinghua University / Goodvision AI）★ 核心设定：**连续任务（successive tasks）**——coding agent 在一个**持续演进的仓库**上接一个又一个任务，**在下一个任务还没出现时就必须决定写什么记忆**；而现有记忆方法多为「任务内压缩上下文」，**目标已知**，对「未知下一个任务」完全无效。CoReMem 的两个机制：**① 溯源门控价值信用（provenance-gated value credit）**——只有被判定「确实用了记忆锚点」的步骤才拿到额外价值信用，但**每一步仍保留结果信用**（即不因走捷径而免除交付责任）；**② on-policy 记忆使用适配**——在同一 rollout group 内对比「有记忆 / 无记忆」来估记忆价值，奖励优先看 resolve（解决率）并惩罚成功运行的步数。★ 实测口径（论文 Table 1 逐行核对，三个开源 actor 模型 × 六种记忆层）：**Qwen3.8-27B-FP8 上 resolve rate 21.0% → 25.7%（+22%），步数 −17%，cache-aware 总 token −11%**，而**对照的 ReasoningBank 只有 +20% resolve 但 token +110%**、Mem0 是 +2% resolve 且 token +113%、MemOp +12% resolve 但 token +57%——**即 CoReMem 是唯一同时做到「解决率最高 + token 最省」的**；**Qwen3.5-9B 上 14.0% → 17.7%（+27%），步数 −26%，token −19%**；**Gemma-4-31B 上 11.5% → 14.2%（+24%），token −9%**。论文摘要另给出跨三个 actor 模型的平均口径：**resolve per token 相对无记忆提升 41%**；**Full history（把全部历史塞进上下文）只有 +2%~+7% resolve 且 token 反而 +5%~+21%——即「无脑塞全量历史」是纯亏**。★ 证据不足项（必须写清）：① **官方代码今日不可公开访问**——PDF 脚注 1 与 arXiv HTML 均写明 'Code is available at an anonymous link'，**经 HTML 链接注释提取出真实地址 `https://anonymous.4open.science/r/CoReMem-F728/`，实测返回 HTTP 401**（匿名评审页），**今日无法核验任何代码**；② 论文中另出现 3 个 openreview.net pdf id（4jdIxXBNve / 8yjWLJy2eX / jL7fwchScm），**今日未取其正文，审稿状态无法核验**；③ arXiv comment 为空，**无会议接收信息**；④ 需 GPU（Qwen3.8-27B-FP8 级模型），本机无 GPU；⑤ ChainSWE 100 条任务链、训练/测试按仓库不相交切半，**样本量偏小**；⑥ 表格中 `Full history` 的 token 上涨与 `CoReMem w/o training` 的下降方向相反，**说明「省 token」这个结论依赖 post-training，是耦合结果而非独立结论**；⑦ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——它的**结论形状**今天就能用：**「记忆的价值 = 它在下一个未知任务上省下的步数 − 写读它的成本」**，而且它把「无脑塞全量历史」明确量化为净亏；**但它今天一行业代码都跑不了**（401），所以**只取方法论，不取实现**。",
+      "id": "coremem-cost-internalizing-memory-for-successive-coding-tasks-with-prospective-valuation",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "context-engineering",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Unbundling Multimodal Vision Encoding",
+      "authors": [
+        "Ellis Brown",
+        "Chris Hoang",
+        "Shengyi Qian",
+        "Shang-Wen Li",
+        "Mike Lewis"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17334v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17334v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://unbundling.github.io",
+      "abstract": "How multimodal language models should encode visual input remains up for debate. Most models use a pretrained vision encoder, while some recent recipes train the encoder from scratch with the language model or remove it entirely. Vision encoders bundle together three design choices: a visual prior from upstream pretraining, dedicated vision capacity, and pre-fusion placement of that capacity (i.e., before the multimodal backbone). Because published models also differ in data, architecture, and c",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark",
+        "multimodal"
+      ],
+      "score": 76.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17334v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17334v1"
+        }
+      ],
+      "llm_reason": "★ **今日第三价值：它把「视觉编码器」这个黑箱拆成了三个可以分别做实验的选择，并且给出了一个反直觉的结论——真正重要的不是「有没有预训练先验」，而是「有没有专属的视觉容量」。**（arXiv 2611.17334《Unbundling Multimodal Vision Encoding》，Ellis Brown、Chris Hoang（共同一作）、Shengyi Qian、Shang-Wen Li、Mike Lewis 等 14 人；**Meta FAIR + New York University**；arXiv comment 逐字 'Project page: https://unbundling.github.io'）★ 核心：vision encoder 其实捆了**三个设计选择**——**① 视觉先验（visual prior，来自上游预训练）**、**② 专属视觉容量（dedicated vision capacity）**、**③ 前置融合位置（pre-fusion placement）**；已发布模型在数据、架构、算力上全都不同，**所以「比较已发布模型」根本无法隔离任一选择**。本文**从随机初始化开始自己跑每一个训练阶段**，只让视觉编码这一项不同，并在**匹配生命周期算力（matched lifetime compute）**下比较。★ 实测口径（论文 §3–§6 + 项目页逐条对照，两边一致）：**① 视觉先验是可选的**——从零联合训练的 encoder 与「在同样数据上预训练过」的 encoder 打平，且**更多 encoder 预训练提升的是 ImageNet 精度而不是 VQA**（**即预训练视觉先验买到的是特征质量，不是多模态理解**）；**② 专属视觉容量才是关键**——**encoder-free 模型即使把 backbone 撑大到 encoder 的参数量，视觉理解仍然落后**，从 1.7B 到 6.4B 的 backbone 阶梯上，**encoder-free 需要约 3 倍算力才能追平 encoder 的 Avg. VQA**（论文正文实测 '≈3× the compute'）；**③ 视觉容量不必前置**——把 vision-only 模块**放进 backbone 早期层（in-fusion）**与前置 encoder 表现相当，**并且能降低 time to first token**（因为不需要先跑 encoder）；**④ 结论在生命周期算力之外仍成立**——从预训练 1.7B 语言模型出发，in-fusion 仍与从零 encoder 相当，encoder-free 进一步落后。★ 今日实测的工件（**注意：今天它没有官方代码仓库**）：`https://unbundling.github.io` **实测 HTTP 200、48,415 B**，页面逐字给出四配方对照表（Prior/Capacity/Pre-fusion 三列的 ✓/✗ 组合）、§2–§6 分节结论与 'Only the vision encoding differs' 的受控协议说明；论文正文 PDF 实测 53 页、354,424 字符，含完整 scaling law 阶梯（0.6B–6.4B）与 Figure 1 的三段式设计图。★ 证据不足项（必须写清）：① **今日确认无官方代码仓库**——项目页全文**只含 arxiv.org / 作者个人主页 / unbundling.github.io 三类链接**（ellisbrown.github.io、howardhsu.github.io、jasonqsy.github.io），**无 GitHub、无 HuggingFace 权重、无数据集**；② 全文 53 页、训练规模从 0.6B 到 6.4B backbone，**复现成本极高（数千 GPU 小时量级）**，本机无 GPU；③ 论文里唯一被引用的非 arXiv 链接是 `kellerjordan.github.io/posts/muon/`（优化器博客，**经上下文核验是参考文献 [12]**，非本文工件）；④ 全部数字为作者自述，无第三方复现；⑤ 结论绑定在**特定 backbone 架构与数据配方**上（论文自述 'every model from scratch with the same data, backbone architecture, and training recipe'），**跨架构泛化性未验证**。★ 判断：**趋势价值**——本体是 VLM 预训练配方，离我们的主线偏远；**但它那条「预训练先验买到的是特征质量，不是多模态理解」的结论，对任何做多模态接入的团队都直接有用**——它意味着**「换一个更强的视觉 encoder」未必改善 VQA 效果，而「给 backbone 塞专属视觉容量」才是**。今天没有代码，所以只做趋势观察。",
+      "id": "unbundling-multimodal-vision-encoding",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "ArchSpace: Recording, Reviewing, and Referencing LLM Architecture Research",
+      "authors": [
+        "Jie Wang",
+        "Tong Zhu",
+        "JiaHao Kuang",
+        "Zhe Xu",
+        "Yunkai Chai"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17332v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17332v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/InternLM/archspace",
+      "benchmark_url": "",
+      "project_url": "https://www.archspace.live/",
+      "abstract": "Model architecture shapes the scaling behavior, training efficiency, and inference cost of LLMs, making it a central focus of both industry and academia. In industry, teams such as those behind DeepSeek, Qwen, and Kimi routinely introduce architectural innovations, yet public reports rarely document which ideas succeeded, which were abandoned, and why. In academia, limited compute and inconsistent baselines often restrict evaluations to small-scale, single-point comparisons, making it difficult ",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG",
+        "inference"
+      ],
+      "score": 73.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17332v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17332v1"
+        }
+      ],
+      "llm_reason": "★ **今日第四价值：它要解决的是一个我们内部天天抱怨、却从没外部化过的问题——「架构创新到底哪些成功了、哪些被放弃了、为什么」。**（arXiv 2611.17332《ArchSpace: Recording, Reviewing, and Referencing LLM Architecture Research》，Jie Wang、Tong Zhu、Jiahao Kuang、Zhe Xu、Yunkai Chai 等 11 人；**上海人工智能实验室 + 复旦大学 + 上海交通大学 + 华东师范大学**；论文内标注日期 2026-11-13）★ 核心主张：DeepSeek / Qwen / Kimi 等工业团队持续引入架构创新，但**公开报告几乎从不记录「哪些想法成功了、哪些被放弃了、为什么」**；学界则因算力受限与基线不一致，只能做小规模单点比较。ArchSpace 要建一个**公开平台**：提案 → 同行评审 → 统一流水线验证 → **无论正负结果都公开** → 被后续工作引用。★ 实测口径（论文正文）：**用 scaling law 从小实验外推大模型的 loss**（工业界常用做法），并**先提供初始参考系**——**Qwen3.5 与 OLMo3 基线、拟合好的 scaling law、可复用的训练配方**；验证流水线对齐**全开源的 Olmo 3**，覆盖 **1B / 3B / 8B 三个尺寸、预训练+中期训练+指令微调三个阶段、全流程约 6.2T tokens**；论文实测在训练所用的 LR/BS 下，**冻结的 scaling law 对外推 loss 的预测误差在 0.5% 以内，MAPE 0.32%**；论文还统计了**论文总数与工业界参与比例**（图示 2020→2026 年区间内工业界占比在 57.7%–77.5% 之间波动）。★ 今日实测的工件（**重要：官方仓库并不在论文里**）：`github.com/InternLM/archspace` **实测存在**——**★89、forks=9、Apache-2.0、watchers=2、12 blobs / 4 目录 / 4,946,575 B、默认分支 main、created 2026-07-21、pushed 2026-08-27、open_issues=19、topic=llm-architecture、homepage=https://www.archspace.live/**；README 实测 4,403 B（另有中文版 README_ZH.md 3,854 B），逐字给出「Open proposals / Peer review / Full validation / Open records / Shared knowledge」五段机制，并**明确写 'We value negative results'**；仓库带 `.github/ISSUE_TEMPLATE/architecture-proposal.yml`（2,851 B）与 `.github/pull_request_template.md`（1,746 B）；`https://www.archspace.live/` **实测 HTTP 200、5,154 B**，页面逐字渲染 'Under review / In progress / Declined / Verified' 四态模型谱系视图；**但 `archs/` 目录只有一个 0 字节的 `.gitkeep`**——即**平台本身上线了、被验证的架构实例一个都没有**。★ 证据不足项（必须写清）：① **仓库与论文的绑定只能靠标题+作者名+主题反查**——**论文 PDF 全文实测外链只有 3 个**（www.archspace.live、github.com/allenai/olmes、huggingface.co/），**`InternLM/archspace` 这个仓库在论文里从未出现**，官方性弱于「论文里写明」；② **W&B 日志今日不可核验**——`wandb.ai/archspace/reports` 重定向到 `forge.coreweave.com/wandb/archspace/reports` 后**实测 HTTP 403**；③ **HuggingFace 全站今日不可达**（4 次请求全部超时），README 徽章指向的 `huggingface.co/ArchSpace-Collection`（Qwen3.5/OLMo3 baseline collection）**今日无法核验**；④ **平台是空的**——`archs/` 只有 .gitkeep，19 个 open issue 说明**流程在跑但产出没落库**；⑤ 论文实测**无 arXiv comment、无 OpenReview 链接**（仅 2 个 openreview id：3X2L2TFr0f / kIoBbc76Sy，**经上下文核验为参考文献**），今日无法核验审稿状态；⑥ **pushed 停在 2026-08-27**（距论文 3.5 个月），活跃度存疑；⑦ 全部数字为作者自述。★ 判断：**趋势价值**——它的**机制**（把「被放弃的架构尝试」也公开记录并引用）**恰好命中我们最缺的东西**；但**今天它是空壳**，所以只做趋势观察，不投入。",
+      "id": "archspace-recording-reviewing-and-referencing-llm-architecture-research",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "data-engineering",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 6.35,
+        "engineering_testability": 5.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising"
+    },
+    {
+      "title": "Learning When Diffusion Language Models Should Regenerate",
+      "authors": [
+        "Minhae Oh",
+        "Jeonghye Kim",
+        "Jinwoo Koo",
+        "Yeongoon Kim",
+        "Jimin Seo"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17320v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17320v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/minhaeoh/DiVR",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Remasking allows diffusion language models to revisit generated text, but effective correction requires knowing when and what to revise. Our diagnosis on Sudoku reveals two gaps. Hidden states contain error information that token confidence does not reliably expose, and remasking an isolated error usually reproduces it when the surrounding context remains fixed. These findings motivate DiVR , a verifier that predicts whether a partially generated sequence will reach a correct answer. Trained on ",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 71.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17320v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17320v1"
+        }
+      ],
+      "llm_reason": "★ **今日第五价值：它给「自检 / 自我验证」这件事找出了一个具体的失败原因，并给出了一个成本远低于搜索的替代方案——但它的领域是扩散语言模型，离我们主线有距离。**（arXiv 2611.17320《Learning When Diffusion Language Models Should Regenerate》，Minhae Oh、Jeonghye Kim、Jinwoo Koo、Yeongoon Kim、Jimin Seo、Minsik Seol、Jungwoo Lee（通讯）；**首尔国立大学 + KAIST**；arXiv comment 为空）★ 核心诊断（在 Sudoku 上做，因为唯一解能标注每个格子）：**缺口一：隐藏状态里有错误信息，但 token 置信度不可靠地暴露它**——最终层线性探针区分错/对格子的 **AUROC 0.838**，而置信度只有 **0.685**（remask 后逐步升到 0.838，置信度从 0.713 到 0.802）；**缺口二：单独 remask 一个错误格子通常会把它重现出来**，因为周围上下文没变。→ **DiVR（Diffusion Verifier for Regeneration）**：一个**结果监督（outcome-supervised）**的 verifier，预测「一个部分生成的序列最终会不会答对」；**生成器本身完全不变**，verifier 只决定「要不要重生成这一块」和「保留哪个替代方案」。★ 实测口径（论文 Table 1 逐行核对）：**LLaDA-8B-Base + SFT 的五基准平均准确率 35.3% → 43.4%，代价是 greedy 解码的 1.9–3.5×**；对照 **SR-SMC 39.1%（4.8–5.1×）与 Prism 41.5%（5.0–5.6×）——即 DiVR 在更便宜的档位上赢了**；逐项看 GSM8K 68.7→78.8（×2.1）、MATH-500 24.6→33.8（×1.9）、Countdown 35.6→47.2（×3.5）、HumanEval 23.2→23.8（×2.9）、MBPP 24.2→33.6（×3.3）；oracle pass@4 为 85.4/43.4/49.8。★ 今日实测的工件：`github.com/minhaeoh/DiVR` **实测存在**——**★2、forks=0、MIT、29 blobs / 4 目录 / 131,209 B、默认分支 main、created 2026-11-11（论文前一天）、pushed 2026-11-13**；README 实测 7,095 B，逐字给出完整流水线（`scripts/01_sft_llada.sh` → `03_train_verifier.sh` → `04_guided.sh` → `05_best_of_4.sh` → `06_baselines.sh`）与全部超参（**verifier = LoRA r32/alpha64 + 4096-1024-1 SiLU head，lr 1e-4/1e-3，2 epochs；guided decoding theta=0.5、K=4、最多 3 次重生成**）；**实读 `divr/guided_decode.py`（11,760 B）**——是真实现：docstring 逐字说明 'the verifier LoRA is disabled for every decoding forward'（**生成器不变**）、成本核算逐字定义 'greedy_forwards and guided_forwards count decoding forwards weighted by batch rows; the summary adds one verifier read per decoded block and K reads per regeneration'（**成本口径写得比多数论文清楚**）；代码结构 `divr/{guided_decode,train_verifier,sample,score,baselines,grade,math_equiv}.py` 与 `sft/{llada_sft,dream_sft,sft_common}.py` 对应论文各节。★ 证据不足项（必须写清）：① **arXiv comment 为空**，无会议接收信息；② **需 48 GB GPU**（README 逐字 'One 48 GB GPU is enough for every step'），本机无 GPU；③ **基线为作者自行复现**——SR-SMC 与 Prism 是在同一 decoder/prompt/grader 上重写的（README 逐字 'both reimplemented on the same decoder, prompts and grader'），**基线公平性依赖作者实现**；④ GSM8K SFT 配方**改写了 d1 的正确性奖励**（README 逐字换成自己的 numeric grader，见 `scripts/d1_lenient_reward.py`），**这改变了被评的生成器本身**，与原版 d1 结果不可直接比较；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——本体是 MDLM（扩散语言模型）解码策略，离我们主线远；**但「错误信息在隐藏状态里、不在置信度里」这条诊断（0.838 vs 0.685）是可以直接借的**——它说明**我们现有 agent 的 self-check 用的是置信度，而置信度可能并不暴露真正的错误**。",
+      "id": "learning-when-diffusion-language-models-should-regenerate",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 7.3,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Classical Energies Learn to Reason 1,000x Faster than Looped Models",
+      "authors": [
+        "Benjamin Hoover",
+        "Hugh Blayney",
+        "James C. R. Whittington"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17309v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17309v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/Prefrontal-AI/CRAM",
+      "benchmark_url": "",
+      "project_url": "https://prefrontal.ai/news/cram/",
+      "abstract": "Looped models have emerged as a prominent paradigm for reasoning, with successes on simple reasoning puzzles such as Sudoku-Extreme and Maze-Unique. However, these models can be unstable, slow to train, and use many parameters and FLOPs to solve simple puzzles. Descent on an energy not only mitigates these issues but also offers advantages: built-in early stopping, compute that adapts to problem difficulty, fast training without differentiating through a solver, and interpretable weights that le",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark",
+        "inference"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17309v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17309v1"
+        }
+      ],
+      "llm_reason": "★ **今日第六价值：一篇把「推理模型」拉回 1980 年代 Hopfield 能量的论文，它最有价值的其实不是 1,000× 这个数字，而是末尾那句「别用数独和迷宫测可扩展性」的警告。**（arXiv 2611.17309《Classical Energies Learn to Reason 1,000× Faster than Looped Models》，Benjamin Hoover、Hugh Blayney、James C. R. Whittington；**Prefrontal**；arXiv comment 为空）★ 核心：把 Hopfield & Tank 的能量函数学习成版本（**CRAM, Compact Reasoning Associative Memory**），**推理 = 在能量上做下降**，而**能量本身告诉你何时该停**；由此得到内建的早停、**算力随题目难度自适应**、**不需要对求解器反向传播的训练**、以及**可解释的权重**。★ 实测口径（论文摘要 + Table + README 三方对照）：**Sudoku-Extreme 99.996% 解出率、Maze-Unique 100%，训练分别只要 42 ms 与 132 ms（单张 H200），至少比 looped 模型快 1,000×**；**参数量 Sudoku-Extreme 263,169（非零约 7,700）、Maze-Unique 仅 18 个**；在 Sudoku-Extreme 上**用至少少 282× 的推理 FLOPs** 追平 looped 模型的最高精度；论文的停止规则对照表实测显示 **CRAM（能量阈值）的 Wrong halts 为 0.00%，而 HRM 0.62%、TRM 2.37%、EqR 1.61%、TRMP 0.05%、EBR 0.21%**——**即能量阈值是唯一「几乎不误停」的停止规则**。★ 今日实测的工件：`github.com/Prefrontal-AI/CRAM` **实测存在**——**★3、forks=1、Apache-2.0、352 blobs / 55 目录 / 15,999,089 B、默认分支 main、created 2026-11-12、pushed 2026-11-13**；README 实测 3,887 B，逐字给出 Quickstart（`uv sync` → `prepare_data.py sudoku` → `checkpoints/evaluate.py --tasks sudoku-extreme maze-unique`）、**每个模型的训练权重在 `checkpoints/`**、**每张表每张图的命令在 `REPRODUCING.md`（21,237 B）**、**专门写了 `AGENTS.md`（2,587 B）给 coding agent**；仓库结构 `cram/`（20）、`baselines/`（183，含 ebr/eqr/dynamics/flops 四个子目录与 39 个 .sbatch 集群脚本）、`experiments/`（36）、`checkpoints/`（50，含 15 个 .pt）、`results/`（28）、`tests/`（10）；`https://prefrontal.ai/news/cram/` **实测 HTTP 200、235,284 B**（工程博客）。★ 证据不足项（必须写清）：① **arXiv comment 为空**，无会议接收信息；② **论文自己就警告了 benchmark 的无效性**——摘要逐字 'a caution against using trivially solvable benchmarks like Sudoku and Maze to test the scalability of looped reasoning techniques'，**即 1,000× 这个数字是在作者自己认为「平凡」的题上测的**；③ 需单张 H200 与 `uv`，本机无 GPU；④ **论文自陈计时噪声**——附录 B 逐字 'Training jobs used GPUs on unreserved nodes of a shared cluster, so other jobs could use a node's other GPUs and CPU cores which could affect reproducibility of timing a fit'（**这是作者主动披露的复现风险，很少见，值得记**）；⑤ **停止规则对照表里的 baseline 全是作者复现的**，公平性依赖实现；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——「**推理 = 能量下降，能量自带停止信号**」这个框架对**任何需要 agent 自己决定何时停止的场景**（我们的 agent 现在靠 token 上限和超时硬停）有直接启发；而且**「零误停」这个指标（Wrong halts 0.00%）比「准确率」更值得抄进我们的评测表**。但今天不值得深挖——本体是解谜推理，离主线远。",
+      "id": "classical-energies-learn-to-reason-1-000x-faster-than-looped-models",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 6.1,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Sketching Language Models for Context Attribution",
+      "authors": [
+        "Christopher Liaw",
+        "Aranyak Mehta",
+        "Grigoris Velegkas",
+        "Felix Zhou"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17313v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17313v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Context attribution asks how removing parts of a prompt changes a language model's output. We study leave-one-out (LOO) attribution for a prompt of $n$ tokens and a fixed measurement function. Computing all LOO values directly requires $n$ model evaluations. Under a stability assumption, our algorithm estimates all LOO values to error proportional to $\\varepsilon$ with constant probability using $O(\\sqrt{\\log(1/\\varepsilon)}/\\varepsilon)$ evaluation calls. To complement our upper bound, we prove",
+      "categories": [
+        "cs.DS",
+        "cs.AI",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17313v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17313v1"
+        }
+      ],
+      "llm_reason": "★ **今日第七价值：一篇把「上下文归因」的成本从 O(n) 压到 O(√log(1/ε)/ε) 的纯理论工作——它省的不是 token，而是「调 prompt 时的来回试错次数」。**（arXiv 2611.17313《Sketching Language Models for Context Attribution》，Christopher Liaw、Aranyak Mehta、Grigoris Velegkas、Felix Zhou；**Google Research + Yale University**；arXiv comment 为空，**分类 cs.DS（不是 cs.CL）**）★ 核心设定：上下文归因问的是「**去掉 prompt 的一部分，模型输出会怎么变**」；对 n 个 token 的 prompt 做 leave-one-out (LOO) 归因，**直接算需要 n 次模型评估**。本文给出一个**在稳定性假设下**的算法，用 **O(√(log(1/ε)/ε))** 次评估调用就能以常数概率把所有 LOO 值估到误差正比于 ε；**并且证明了一个匹配的 Ω(√(log(1/ε)/ε)) 下界**（在 oracle 模型上），**即这个复杂度是紧的**。技术关键：对算术电路做 sketching，**把前向微分作用到反向传播电路上**，相对同 Taylor 阶的前向 sketch 只有常数开销——**这降低了 sketch 方差，是改进界的关键**。经验部分实测：在 **Llama-3.2-1B-Instruct**（64-bit）的一个「答案在 prompt 某处」的检索任务上验证了系数衰减与算法表现。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链仅 1 个**（`https://huggingface.co/unsloth/llama-3.2-1b-instruct`，即评测用的基座模型），**无 GitHub、无项目页、无数据集**；② **arXiv comment 为空**，无会议接收信息；③ **经验验证极小**——只有**一个 1B 模型、一个检索任务**，论文自述 'a small language-model retrieval task'；④ **结论依赖「稳定性假设」**（Taylor 系数满足 Gunn [Gun26] 引入的条件），**该假设在真实 LLM 上今日无法核验**；⑤ 全文 39 页，**主要是理论**，无第三方复现。★ 判断：**长尾保存**——**它的应用场景对我们是新的**：我们做 prompt 归因（哪一段上下文真正起作用）现在只能靠人工删改试错，**这篇给出的是「用 √n 级别的调用次数把 n 个 LOO 值全估出来」的路径**；但**今天无代码、且只在 1B 模型上验证过**，所以只存结论。",
+      "id": "sketching-language-models-for-context-attribution",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Linking Rapid Learning to Compositional Structure in Neural Networks: Evidence from Additive Analogies in Meta-Learned Parameter Spaces",
+      "authors": [
+        "Abigail L. Tenenbaum",
+        "R. Thomas McCoy"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17314v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17314v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Humans can learn rapidly from limited experience, while neural networks typically require extensive training. In this work, we investigate what properties of a neural network can enable it to learn rapidly. We study neural networks that have been optimized via meta-learning, a technique that exposes a network to many related functions to facilitate its subsequent learning of similar functions. Prior work has shown that these meta-learned networks can learn new functions rapidly, but how they do ",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "keywords": [],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17314v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17314v1"
+        }
+      ],
+      "llm_reason": "★ **今日第八价值：一篇把「类比」搬进元学习参数空间的解释性工作——它问的是「快速学习到底沿什么样的轨迹发生」。**（arXiv 2611.17314《Linking Rapid Learning to Compositional Structure in Neural Networks: Evidence from Additive Analogies in Meta-Learned Parameter Spaces》，Abigail L. Tenenbaum、R. Thomas McCoy；**Yale University  linguistics + Wu Tsai Institute**；arXiv comment 逐字 '24 pages plus references and appendices'）★ 核心：借经典词向量加法关系（king − man + woman ≈ queen）的思路，**把元学习网络对不同函数的「表征」定义为它适配后参数向量的拼接**，然后寻找这些参数向量之间的加法关系；发现**这些参数向量可以按函数间的符号关系相加减，得到的新参数向量确实实现了符号操作所预测的函数——即人工重组出的向量，真的实现了目标函数，而且没有在这些函数上直接训练过**；且这种「加法类比」**跨神经网络架构与函数域出现**，且**对元学习网络显著强于随机初始化或预训练网络**。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链数为 0**，无 GitHub、无项目页、无数据集、无权重；② **arXiv comment 只说明篇幅**（24 页 + 参考文献 + 附录），**无会议接收信息**；③ 全文 35 页，**今日只做了关键词与摘要级抽取，未逐图复核**「跨架构跨域」这一最强主张；④ 「重组出的参数向量确实实现了目标函数」的具体评测协议与任务集今日未核验；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——它的**提问方式**对我们有用（**「快速学习是沿一条线移动，还是换了一条线？」与 2026-11-11 那天的 Persona Generalization 是同一个提问家族**），**但今天既无代码也无数据可核**，不值得投入。",
+      "id": "linking-rapid-learning-to-compositional-structure-in-neural-networks-evidence-from-additive-analogies-in-meta-learned-parameter-spaces",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Internalizing Investment Mandates: A Neurosymbolic RL Approach to Portfolio Allocation",
+      "authors": [
+        "Zeynep Yıldız",
+        "Satchit Chatterji",
+        "Ercan Atam",
+        "Erman Acar"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17329v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17329v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Institutional portfolios operate under investment policy statements that specify asset allocation constraints, often conditioned on market regime information. Deep reinforcement learning has been shown to optimize financial performance but typically does not enforce rule compliance, making it unsuitable for real-world deployment. Existing neurosymbolic methods such as Probabilistic Logic Policy Gradient (PLPG) offer constraint-satisfying reinforcement learning (RL) via differentiable symbolic su",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "inference"
+      ],
+      "score": 56.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17329v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17329v1"
+        }
+      ],
+      "llm_reason": "★ **今日第九价值：一篇把「合规」从奖励惩罚改成「策略内化」的论文——它的设定离金融很远，但那个「没有事后拦截器」的论证方式对我们做 agent 约束直接有用。**（arXiv 2611.17329《Internalizing Investment Mandates: A Neurosymbolic RL Approach to Portfolio Allocation》，Zeynep Yıldız、Satchit Chatterji、Ercan Atam、Erman Acar；**Boğaziçi University + University of Amsterdam (Finesse Lab)**；**arXiv comment 逐字 'Accepted at ICAIF '26'**）★ 核心：机构投资受**投资政策声明（IPS）**约束——可投资产类别与每个类别周围的配置带，且**约束随市场状态（regime）变化**；纯最大化风险调整收益的 RL **没有内生的合规机制**，而受限 MDP 只约束**期望成本**、**等价于允许用高收益「兑换」违规**（**但真实 mandate 是每天的硬性 yes/no，合规是一种必须直接度量的属性**）。本文提出 PLPG 启发的连续分配方法：用**重参数化蒙特卡洛采样估计「策略自己执行的动作满足 mandate 的概率」**，把它加进训练目标；**推理时没有任何事后强制机制，合规是被学进策略里的**。★ 实测口径（作者自述，论文摘要逐字）：**在确定性的均值动作上直接审计、无任何修正**，策略把六条 regime-conditional mandate 的违规率**从无约束 RL 的 96–98%、奖励惩罚基线的 33.4%，降到 4.8%**。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**无 GitHub 链接**，无项目页、无数据集、无权重；② **PDF 中的 2 个 openreview.net id（pjhjksflbg / skfrvsa9fx）经逐条上下文核验均为参考文献引用**，**不是本文投稿链接**；③ **「Accepted at ICAIF '26」无法与 ICAIF 官方接收列表交叉核验**；④ 全文仅 9 页，**今日只做了摘要与关键数字抽取，未逐表复核**；⑤ 合规性完全依赖**在训练分布上定义的规则族**，**规则外的行为无保证**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「合规必须是一个可以被直接度量的属性，而不是可以被高收益兑换的期望成本」这个论证，对我们做 agent 安全约束有直接启发**（我们的 agent 约束现在多是「违规扣分」式）；但今天既无代码又无外部核验，不投入。",
+      "id": "internalizing-investment-mandates-a-neurosymbolic-rl-approach-to-portfolio-allocation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "security-governance",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Quantifying structural stability of transparent models for general insurance pricing",
+      "authors": [
+        "Félix Côté",
+        "Marie-Pier Côté"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17308v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17308v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The short duration of general insurance contracts leads to rapid distributional shifts in the data, warranting regular model updates. This process may yield a post-update model that differs considerably from the pre-update model in both predictions and structure. Structural stability is upstream of predictive stability, yet existing structural stability metrics are mostly restricted to simple decision trees. Thus, we first introduce the notion of functional transparency, characterising models wi",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 50.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17308v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17308v1"
+        }
+      ],
+      "llm_reason": "★ **今日第十价值（今日最低分）：一篇讲保险模型「结构稳定性」的论文——它的指标定义有点意思，但今天离我们最远。**（arXiv 2611.17308《Quantifying structural stability of transparent models for general insurance pricing》，Félix Côté、Marie-Pier Côté；**École d'actuariat, Université Laval**；arXiv comment 逐字 '16 tables and 9 figures'）★ 核心：保险合同期短 → 数据分布快速漂移 → 模型需要频繁重训；重训后模型**在预测与结构上都可能大幅改变**，而**结构稳定性是预测稳定性的上游**（先变结构，才会变预测）；但现有结构稳定性指标**大多局限于决策树**。本文：① 引入**「功能透明性」（functional transparency）**——预测函数可写成**主效应的一元函数之和 + 交互的二元函数之和**的模型；② 提出 **Mean Squared Shape function distance（MSSFD）** 度量这类模型的结构稳定性；③ 在**三个公开汽车保险数据集**上做基准研究。★ 实测口径（作者自述）：**以数值协变量中心化的 GLM 是稳定的，EBM（explainable boosting machine）在稳定性与性能之间提供折中**；**序贯建模与固定超参这类稳定化策略，能显著提升 EBM 与 XGBoost 的稳定性，且对性能影响可忽略**。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链数为 0**，无 GitHub、无项目页、无数据集；② **arXiv comment 只说明图表数量**（16 表 9 图），**无会议接收信息**；③ 全文 27 页、**16 张表 9 张图**，**今日未逐表复核**「稳定化策略对性能影响可忽略」这一关键结论；④ **三个保险数据集今日无法获取**（论文未给出链接），且领域特殊性（精算）使结论外推性存疑；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「结构稳定性是预测稳定性的上游」这个排序**对我们有一点点用（我们做模型更新时通常只看预测漂移，不看结构漂移）；但今天离主线最远、零工件，只存索引。",
+      "id": "quantifying-structural-stability-of-transparent-models-for-general-insurance-pricing",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    }
+  ],
+  "scored_at": "2026-11-14"
+}

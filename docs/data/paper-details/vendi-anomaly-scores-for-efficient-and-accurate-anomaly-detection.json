@@ -1,0 +1,133 @@
+{
+  "id": "vendi-anomaly-scores-for-efficient-and-accurate-anomaly-detection",
+  "title": "Vendi Anomaly Scores for Efficient and Accurate Anomaly Detection",
+  "authors": [
+    "Amey Pasarkar",
+    "Adji Bousso Dieng"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12871v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12871v1",
+  "code_url": "https://github.com/vertaix/vendi-anomaly-scores",
+  "benchmark_url": "https://github.com/vertaix/vendi-anomaly-scores",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 3.8,
+    "evidence": 7.2,
+    "engineering_testability": 5.5,
+    "trend_signal": 4.3,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 2.4
+  },
+  "score": 68.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：★ **今日第四价值：一个「换个角度看异常」的框架，它的实现今天被完整实读到了。**（arXiv 2611.12871《Vendi Anom…",
+  "one_line_essence": "★ **今日第四价值：一个「换个角度看异常」的框架，它的实现今天被完整实读到了。**（arXiv 2611.12871《Vendi Anomaly Scores for Efficient and Accurate Anomaly Detection》，Amey Pasarkar、Adji Bousso Dieng，**arXiv comment 逐字 'Accepted to the NeurIPS 2026 Main Track'**）★ 核心主张：现有异常检测用局部密度、孤立启发或与拟合分布的距离来定义异常，因而**对邻域尺度、划分方式与分布假设敏感**；本文改从**多样性**视角定义——**Vendi Anomaly Score (VAS) = 把某个样本从数据集中拿掉之后，Vendi score 变化了多少**；作者自述它同时捕获**局部冗余**与**全局数据结构**，**不需要任何超参调参**（自动适配数据的谱结构）、**非参数**且**随数据集规模线性扩展**；实测口径（作者自述）：在 **10 个源数据集 × 4 种 embedding 架构导出的 148 个 benchmark embedding 数据集**上达到 SOTA，并在 ImageNet 大规模实验上随污染率与数据规模上升仍保持稳健。★ 今日实测的工件：`github.com/vertaix/vendi-anomaly-scores` 实测存在——**27 文件 / 10 目录 / 407 KB、★0、**license=null（无 LICENSE）**、pushed 2026-11-10**；README 实测 4,450 B；**实读 `methods/vas.py` 3,866 B**——这不是壳：`_resolve_device` 会真的探测 CUDA、`_adaptive_q_from_lambda1_features` **由特征密度的最大特征值 λ1 自适应定 q**（`adaptive_q_floor=0.1`）、`_resolve_rank` 支持全秩或截断秩、并把状态交给 `_vendi_lowrank.build_lowrank_rff_removal_state`（**低秩随机特征近似下的「移除一点后多样性变化」**）；仓库实测含 **8 个可对比方法**（VAS / TorchGMM / KNN / ADERH / LOF / LODA / IForest / SLAD）、`scripts/run_adbench_embeddings.py`、`scripts/run_imagenet_fixed_samples.py`、`scripts/embed_imagenet_dinov3.py`，以及 **`scripts/smoke_test_public_repo.py`**——**自带冒烟测试并明确要「数据缺失时清晰失败」**，这条工程纪律值得抄。★ 证据不足项（必须写清）：① **该仓库未出现在 arXiv 的 comment 或摘要里**——今日是**通过 GitHub 仓库搜索**找到的，论文与仓库的绑定**只能靠作者名与主题对上**，官方性弱于「论文里写明」；② **仓库无 LICENSE 文件**（API 实测 license=null）；③ **需要外部预计算 embedding**：ADBENCH 的 `.npz`（4 个 embedding 目录）与 ImageNet-1K + DINOv3 嵌入**均未随仓库提供**，今日 HF 不可达也无法替代获取；④ README 逐字 'Citation: Coming soon!'，**引用信息尚未补全**；⑤ arXiv comment 逐字 'Accepted to the NeurIPS 2026 Main Track'，**今日无法与 NeurIPS 官方接收列表交叉核验**；⑥ 「148 个数据集 SOTA」与「ImageNet 稳健」全部为作者自述，无第三方复现。★ 判断：**趋势价值**——它本体是异常检测（离我们主线有距离），但**「用「移除一点后数据多样性的变化」来定义「这一点有多异常」这个换视角的框架，是可以直接借的**；而且它是今日第二个「论文没写代码地址、但代码真实存在」的样本，**再次证明「论文没写」≠「没有」**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第四价值：一个「换个角度看异常」的框架，它的实现今天被完整实读到了。**（arXiv 2611.12871《Vendi Anomaly Scores for Efficient and Accurate Anomaly Detection》，Amey Pasarkar、Adji Bousso Dieng，**arXiv comment 逐字 'A",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": true,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "rising",
+    "related_trends": [
+      "coding-agent",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第四价值：一个「换个角度看异常」的框架，它的实现今天被完整实读到了。**（arXiv 2611.12871《Vendi Anomaly Scores for Efficient a",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12871v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12871v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=vendi-anomaly-scores-for-efficient-and-accurate-anomaly-detection",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

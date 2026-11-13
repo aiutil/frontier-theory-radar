@@ -1,0 +1,134 @@
+{
+  "id": "learning-when-diffusion-language-models-should-regenerate",
+  "title": "Learning When Diffusion Language Models Should Regenerate",
+  "authors": [
+    "Minhae Oh",
+    "Jeonghye Kim",
+    "Jinwoo Koo",
+    "Yeongoon Kim",
+    "Jimin Seo"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.17320v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.17320v1",
+  "code_url": "https://github.com/minhaeoh/DiVR",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-14",
+  "first_deep_dive_daily": "2026-11-14",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 3.8,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 2.4
+  },
+  "score": 71.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：★ **今日第五价值：它给「自检 / 自我验证」这件事找出了一个具体的失败原因，并给出了一个成本远低于搜索的替代方案——但它的领域是扩散语言…",
+  "one_line_essence": "★ **今日第五价值：它给「自检 / 自我验证」这件事找出了一个具体的失败原因，并给出了一个成本远低于搜索的替代方案——但它的领域是扩散语言模型，离我们主线有距离。**（arXiv 2611.17320《Learning When Diffusion Language Models Should Regenerate》，Minhae Oh、Jeonghye Kim、Jinwoo Koo、Yeongoon Kim、Jimin Seo、Minsik Seol、Jungwoo Lee（通讯）；**首尔国立大学 + KAIST**；arXiv comment 为空）★ 核心诊断（在 Sudoku 上做，因为唯一解能标注每个格子）：**缺口一：隐藏状态里有错误信息，但 token 置信度不可靠地暴露它**——最终层线性探针区分错/对格子的 **AUROC 0.838**，而置信度只有 **0.685**（remask 后逐步升到 0.838，置信度从 0.713 到 0.802）；**缺口二：单独 remask 一个错误格子通常会把它重现出来**，因为周围上下文没变。→ **DiVR（Diffusion Verifier for Regeneration）**：一个**结果监督（outcome-supervised）**的 verifier，预测「一个部分生成的序列最终会不会答对」；**生成器本身完全不变**，verifier 只决定「要不要重生成这一块」和「保留哪个替代方案」。★ 实测口径（论文 Table 1 逐行核对）：**LLaDA-8B-Base + SFT 的五基准平均准确率 35.3% → 43.4%，代价是 greedy 解码的 1.9–3.5×**；对照 **SR-SMC 39.1%（4.8–5.1×）与 Prism 41.5%（5.0–5.6×）——即 DiVR 在更便宜的档位上赢了**；逐项看 GSM8K 68.7→78.8（×2.1）、MATH-500 24.6→33.8（×1.9）、Countdown 35.6→47.2（×3.5）、HumanEval 23.2→23.8（×2.9）、MBPP 24.2→33.6（×3.3）；oracle pass@4 为 85.4/43.4/49.8。★ 今日实测的工件：`github.com/minhaeoh/DiVR` **实测存在**——**★2、forks=0、MIT、29 blobs / 4 目录 / 131,209 B、默认分支 main、created 2026-11-11（论文前一天）、pushed 2026-11-13**；README 实测 7,095 B，逐字给出完整流水线（`scripts/01_sft_llada.sh` → `03_train_verifier.sh` → `04_guided.sh` → `05_best_of_4.sh` → `06_baselines.sh`）与全部超参（**verifier = LoRA r32/alpha64 + 4096-1024-1 SiLU head，lr 1e-4/1e-3，2 epochs；guided decoding theta=0.5、K=4、最多 3 次重生成**）；**实读 `divr/guided_decode.py`（11,760 B）**——是真实现：docstring 逐字说明 'the verifier LoRA is disabled for every decoding forward'（**生成器不变**）、成本核算逐字定义 'greedy_forwards and guided_forwards count decoding forwards weighted by batch rows; the summary adds one verifier read per decoded block and K reads per regeneration'（**成本口径写得比多数论文清楚**）；代码结构 `divr/{guided_decode,train_verifier,sample,score,baselines,grade,math_equiv}.py` 与 `sft/{llada_sft,dream_sft,sft_common}.py` 对应论文各节。★ 证据不足项（必须写清）：① **arXiv comment 为空**，无会议接收信息；② **需 48 GB GPU**（README 逐字 'One 48 GB GPU is enough for every step'），本机无 GPU；③ **基线为作者自行复现**——SR-SMC 与 Prism 是在同一 decoder/prompt/grader 上重写的（README 逐字 'both reimplemented on the same decoder, prompts and grader'），**基线公平性依赖作者实现**；④ GSM8K SFT 配方**改写了 d1 的正确性奖励**（README 逐字换成自己的 numeric grader，见 `scripts/d1_lenient_reward.py`），**这改变了被评的生成器本身**，与原版 d1 结果不可直接比较；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——本体是 MDLM（扩散语言模型）解码策略，离我们主线远；**但「错误信息在隐藏状态里、不在置信度里」这条诊断（0.838 vs 0.685）是可以直接借的**——它说明**我们现有 agent 的 self-check 用的是置信度，而置信度可能并不暴露真正的错误**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第五价值：它给「自检 / 自我验证」这件事找出了一个具体的失败原因，并给出了一个成本远低于搜索的替代方案——但它的领域是扩散语言模型，离我们主线有距离。**（arXiv 2611.17320《Learning When Diffusion Language Models Should Regenerate》，Minhae Oh、Jeonghye ",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第五价值：它给「自检 / 自我验证」这件事找出了一个具体的失败原因，并给出了一个成本远低于搜索的替代方案——但它的领域是扩散语言模型，离我们主线有距离。**（arXiv 2611.",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17320v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.17320v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=learning-when-diffusion-language-models-should-regenerate",
+  "daily_path": "daily-detail.html?date=2026-11-14",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

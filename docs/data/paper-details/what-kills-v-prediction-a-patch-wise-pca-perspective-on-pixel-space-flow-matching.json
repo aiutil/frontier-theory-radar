@@ -1,0 +1,132 @@
+{
+  "id": "what-kills-v-prediction-a-patch-wise-pca-perspective-on-pixel-space-flow-matching",
+  "title": "What kills $v$-prediction? A Patch-wise PCA Perspective on Pixel-Space Flow Matching",
+  "authors": [
+    "Tianze Luo",
+    "Haofeng Huang",
+    "Yuan Yao"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12852v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12852v1",
+  "code_url": "https://github.com/THUMAI-Lab/RiT",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 5.0,
+    "evidence": 5.9,
+    "engineering_testability": 5.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 63.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第六价值：它把「生成模型训练难」追到了一个可测量的「带宽瓶颈」上，结论的形状对任何系统都有用。**（arXiv 2611.128…",
+  "one_line_essence": "★ **今日第六价值：它把「生成模型训练难」追到了一个可测量的「带宽瓶颈」上，结论的形状对任何系统都有用。**（arXiv 2611.12852《What kills $v$-prediction? A Patch-wise PCA Perspective on Pixel-Space Flow Matching》，清华；**arXiv comment 逐字 'Accepted as a Spotlight paper at NeurIPS 2026. Our code is available at https://github.com/THUMAI-Lab/RiT'**；README 逐字 'NeurIPS 2026 Spotlight, top 1.3% of submissions'）★ 核心：像素空间 Flow Matching 用标准 v-prediction 目标常训练困难，近期研究把原因归给「加噪目标在流形之外」，于是转向 x-prediction；本文用 **patch-wise PCA** 检验这个解释，**识别出一个带宽瓶颈**：次要分量上的速度**基本由原始带噪输入决定**，迫使深层 backbone 去保留那些**与主成分建模相竞争**的信息；随后给出解释：**x-prediction 之所以有效，是因为它的参数化提供了一条「原始输入旁路」，且学到的输入表征会自发集中到主方向上**；在低秩观测下，其诱导流**把 x-prediction 刻画成一个隐式条件均值解码器**（用保留信息重建被丢弃的分量）。由此提出 **RiT（Raw-injected Transformer）**：轻量 raw-conditioned 解码器 + 输出侧捷径，**把语义建模与原始状态传播分离**，**让有效的 v-prediction 得以恢复**，在 ImageNet 256×256 上取得有竞争力的性能。★ 今日实测的工件：`github.com/THUMAI-Lab/RiT` 实测存在——**19 文件 / 2 目录 / 5,928 KB、★16、MIT、pushed 2026-11-06**；README 实测 10,797 B，**给出逐模型的具体成绩单**（50 步 Heun 采样、EMA 0.9996）：RiT-B/16@750k **IS 300.3 / FID-50K 3.01**、RiT-L/16@750k **IS 331.4 / FID 2.06**、RiT-H/16@600k **IS 332.9 / FID 1.79**；代码结构逐字对应论文：`rit.py`（架构与解码器变体）、`models.py`（flow-matching 目标与采样）、`train.py`/`inference.py`（分布式）、`evaluator.py`（指标，注明改编自 ADM）、`get_stats.py` + **`stats.pt`（预计算的 ImageNet patch 统计量，即论文 PCA 分析的输入）**、`analysis/` 三个绘图脚本（PCA 特征谱、embedding 有效秩与 PCA 对齐、逐层线性重建 R²）；`requirements_rit.txt` 实测钉 **torch==2.7.1 + cu126 / torchvision==0.22.1 / timm==1.0.15 / diffusers==0.33.1**；config 里 `use_v_pred`、`decoder_input`、`shortcut_type`、`principal_dim` 逐项对应论文的消融轴。★ 证据不足项（必须写清）：① **HuggingFace 全站今日不可达**，因此 README 声明的权重仓 `luotianze666/RiT_ckpts`（**完整发布约 400 GB**，含 `RiT-B-v/config.yaml`、`RiT-B-v/ckpts/750000.pt` 与 ADM 的 `VIRTUAL_imagenet256_labeled.npz`）**今日无法核验是否存在、体积多大**；② **训练需 8 卡**（README 逐字 `torchrun --nproc_per_node=8 train.py`），本机无 GPU；③ **OpenReview 页面 `forum?id=FwWaPhPb2O` 实测 HTTP 200 但只返回浏览器校验页，api2 接口实测 403**，**今日无法核验其审稿状态与讨论**；④ README 未给出与论文主表的逐项对照表，只给参考批次；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——本体是视觉生成（离主线远），但**「把语义建模与原始状态传播分离、给次要信息一条不经主成分建模的旁路」这个架构形状，在语言模型侧同样成立**（旁路、skip、raw-state 传递都是同一件事），值得存着；今天不投入。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第六价值：它把「生成模型训练难」追到了一个可测量的「带宽瓶颈」上，结论的形状对任何系统都有用。**（arXiv 2611.12852《What kills $v$-prediction? A Patch-wise PCA Perspective on Pixel-Space Flow Matching》，清华；**arXiv comment 逐字",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第六价值：它把「生成模型训练难」追到了一个可测量的「带宽瓶颈」上，结论的形状对任何系统都有用。**（arXiv 2611.12852《What kills $v$-predicti",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-02"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12852v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12852v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=what-kills-v-prediction-a-patch-wise-pca-perspective-on-pixel-space-flow-matching",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

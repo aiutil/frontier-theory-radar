@@ -1,0 +1,136 @@
+{
+  "id": "hive-mem-interleaving-horizontal-memory-expansion-and-vertical-evidence-composition-for-multimodal-agents",
+  "title": "HiVe-Mem: Interleaving Horizontal Memory Expansion and Vertical Evidence Composition for Multimodal Agents",
+  "authors": [
+    "Haozhen Zhang",
+    "Bohan Liu",
+    "Jianzhu Bao",
+    "Qingyuan Liu",
+    "Haodong Yue"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12872v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12872v1",
+  "code_url": "https://github.com/ViktorAxelsen/HiVe-Mem",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 8.6,
+    "evidence": 5.9,
+    "engineering_testability": 6.6,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 85.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：★ **今日第二即时价值：它把「agent 记忆」拆成了两个可以分别优化的维度，并且把省 token 做到了可测量的量级。**（arXiv …",
+  "one_line_essence": "★ **今日第二即时价值：它把「agent 记忆」拆成了两个可以分别优化的维度，并且把省 token 做到了可测量的量级。**（arXiv 2611.12872《HiVe-Mem: Interleaving Horizontal Memory Expansion and Vertical Evidence Composition for Multimodal Agents》，南洋理工 / 清华 / 中山 / Aumovio）★ 核心机制：**① 横向记忆扩展（Horizontal Expansion）**——现有记忆系统只做「对压缩记忆做语义检索」，会漏掉相关记忆；HiVe-Mem 把记忆 episode 组织成**关系图**（Cross-Episode Affinity Graph，用**文本锚 + 视觉锚**建边），从语义检索命中的种子出发**沿邻居扩展**，找回互补信息；**② 纵向证据组合（Vertical Composition）**——每条被检索到的记忆保留**五种证据形态**（紧凑摘要 / 原始交互文本 / 图像 caption / 原始图像 / grounded visual view），由一个**轻量可训练选择器**为**每条记忆独立**挑证据子集，让「同一条记忆，面对不同问题，贡献不同证据」。★ 实测口径（论文 Table 1 + 项目页 + 仓库配置三方对照）：三 benchmark 平均 **F1 32.32 / LLM-Judge 57.96 / tokens 0.658M**，对照最强效率竞争者 MemVerse **7.812M** → **token 削减 91.6%**；GPT-5-mini 迁移（选择器不重训）为 **0.748M vs 7.350M → 削减 89.8%**；对照 M2A 18.492M、MIRIX 8.622M、MMA 15.752M。★ 今日实测的工件（真代码，不是 README 描述）：`github.com/ViktorAxelsen/HiVe-Mem` 实测 **64 文件 / 16 目录 / 643 KB、MIT、has_pages=true、pushed 2026-11-10**；README 8,440 B；**逐个实读了关键源码**——`src/graph.py` 实测 16,277 B（IDF 属性加权、`degree_cap` 剪枝、`sha256_file` / `write_json_atomic` 原子写）、`src/memory.py` 40,720 B、`src/retriever.py` 15,765 B、`evidence_policy/ppo.py` 30,462 B（PPO 真实现）、`evidence_policy/evidence.py` 57,047 B、`benchmarks/common/metrics.py` 73,383 B；`pyproject.toml` 实测 **5 个 console script**（hivemem-data / hivemem-build / hivemem-policy / hivemem-judge / hivemem-gvv）；`configs/experiments.json` 实测 **vector_top_k=5、graph_append_k=2、degree_cap=4、graph_mode=append**，并给出 **expected_qa_counts：Mem-Gallery 275、H2HMEM 360、WorldMemArena 440**；`configs/defaults.json` 实测 PPO（lr=3e-4、clip_ratio=0.2、gamma=1.0、gae_lambda=1.0、epochs=6）、策略网络（hidden_dim=256、3 层、deterministic_threshold=0.5）、**证据 reward 里 cost_enabled=true、cost_tradeoff_lambda=0.1、cost_transform=sqrt_incremental**——**即「省 token」是写进训练目标的一个显式奖励项，不只是事后统计**。★ 证据不足项（必须写清）：① **HuggingFace 全站今日不可达**（实测 6 个 endpoint 全部超时），因此 **三个 benchmark 数据集（Mem-Gallery / H2HMEM / WorldMemArena）与 Qwen3-VL-Embedding-2B 权重今日无法核验**；② **仓库无预训练选择器权重**，README 给的路径是 `outputs/evidence_policy/<benchmark>/checkpoints/best.pt`——**要自己训**；③ **需要 OpenAI 兼容的多模态端点 + 至少一个 GPU**（PPO 训练），本机无 GPU；④ **项目页自己写了口径不一致**：逐字 'These are reported paper results, **not new measurements from this checkout**' 与 'Paper settings use 5 semantic seeds, 2 expanded episodes, graph degree 4, and **λ = 0** for the main results. **Current release defaults differ**; consult the repository's training settings before reproduction.'——**即仓库默认值 ≠ 论文设定，跑前必须按论文口径调参**；⑤ arXiv comment 逐字只有 'Code is available at https://github.com/ViktorAxelsen/HiVe-Mem'，**无会议接收信息**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**今天就值得投入**，但投入点是**机制不是数字**——「横向扩展（找得全）× 纵向组合（读得少）」这个二维切分，**不依赖多模态也能用**：我们的上下文工程缺的正是「按问题类型裁剪证据」这一步。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第二即时价值：它把「agent 记忆」拆成了两个可以分别优化的维度，并且把省 token 做到了可测量的量级。**（arXiv 2611.12872《HiVe-Mem: Interleaving Horizontal Memory Expansion and Vertical Evidence Composition for Multimodal",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第二即时价值：它把「agent 记忆」拆成了两个可以分别优化的维度，并且把省 token 做到了可测量的量级。**（arXiv 2611.12872《HiVe-Mem: Inter",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12872v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12872v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=hive-mem-interleaving-horizontal-memory-expansion-and-vertical-evidence-composition-for-multimodal-agents",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

@@ -1,7 +1,2014 @@
 {
-  "updated_at": "2026-11-10T05:28:06.224338",
-  "total": 2113,
+  "updated_at": "2026-11-14T04:59:03.670382",
+  "total": 2143,
   "papers": [
+    {
+      "title": "AgentSSL: Can MLE Agents Leverage Unlabeled Data?",
+      "authors": [
+        "Ethan Lin",
+        "Akanksha Sarkar",
+        "Ziang Liu",
+        "Kristin Branson",
+        "Jennifer J. Sun"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17323v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17323v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/akanksha-sarkar/AgentSSL",
+      "benchmark_url": "https://huggingface.co/datasets/ethan-y-lin/ProgramSelectBench",
+      "project_url": "https://codiscovery.ai/AgentSSL",
+      "abstract": "Applying machine learning systems to new domains introduces bottlenecks in both labeled data acquisition and manual pipeline engineering. While recent MLE agents show promise in automating pipeline design, they have been studied almost exclusively in fully supervised settings, leaving them untested in realistic regimes where labeled data is scarce but unlabeled data is abundant. In this work, we introduce Agentic Semi-Supervised Learning (AgentSSL), framing SSL as a program search problem and st",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "benchmark",
+        "RAG"
+      ],
+      "score": 89.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17323v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17323v1"
+        }
+      ],
+      "llm_reason": "★ **今日第一即时价值，也是今日唯一一篇「正面结论和负面结论同样重要」的论文——它把 agent 搜索的瓶颈从「能不能造出来」精确地挪到了「能不能挑出来」。**（arXiv 2611.17323《AgentSSL: Can MLE Agents Leverage Unlabeled Data?》，Ethan Lin、Akanksha Sarkar（共同一作）、Ziang Liu、Kristin Branson、Jennifer J. Sun；Cornell University + Howard Hughes Medical Institute；**arXiv comment 逐字 'NeurIPS 2026. Project Website: https://codiscovery.ai/AgentSSL'**）★ 核心设定：把半监督学习（SSL）形式化为**程序搜索问题**，拆成两个挑战——**程序发现（program discovery）**与**程序选择（program selection）**；agent 写可执行 SSL 程序，用无监督指标或带噪验证做 fitness 反馈。★ 实测口径（论文 Table 1/2/3 逐格核对 + 项目页 HTML 双向对照，两边数字完全一致）：**① 正面**：在 6 个 SSL 基准 × 2 个 shot 设置 = 12 个设定中，最优 agent 程序（A_best）**在 8/12 个设定上超过最强的人工 SSL 基线（H_best）**，最大优势 **RETINO 40-shot +21.81 个百分点**（73.47 vs 51.60）、RETINO 80-shot +19.10、CLEVR 10-shot +5.09、KITTI 5-shot +8.20、KITTI 10-shot +7.78、DTD 3-shot +2.91；对照基线是 Supervised / FixMatch / SoftMatch / FineSSL / PET / V-PET 六种。**② 负面（今日最值钱的一半）**：**用 agent 自己的反馈指标做选择，选择损失（selection regret）最高达 −47.29 个百分点**（RETINO 80-shot，AgentSSL_N 行），无监督指标版为 −18.62；**最坏情况下「用无标签反馈挑程序」比「oracle 挑选」差 47 个点**——而 Table 1 里那个 +21.81 的漂亮数字，前提是**用测试集做 oracle 挑选**。**③ 第三层**：当无监督指标失效时，**把标签预算对半分给「训练」和「主动选择」反而更好**——ActiveTesting/VMA/IID 在 RETINO 上 +25.59/+26.07/+26.07，KITTI 上 CODA +14.63，但**在无监督指标本来就管用的数据集上会倒退**（CODA 在 CLEVR 20-shot 是 −29.09）。★ 今日实测的工件（它排第一的真正原因，不是主张新）：`github.com/akanksha-sarkar/AgentSSL` **实测存在**——**5,364 blobs / 2,866 目录 / 665,761,812 B ≈ 666 MB**、★0、forks=0、默认分支 main、created 2026-03-27、**pushed 2026-10-04**、**license=null（无 LICENSE 文件）**；README 实测 3,806 B，逐字给出目录规范（`metrics/` / `pytorch_adapt/` / `domainX/setSL|setC|k{1,5,10,20}/seed{0,26,42}/`）与 **Apptainer 容器内文件布局约定**；**实读了关键源码 `eval/evaluate_program.py`（7,989 B）**——它是真代码不是描述：开头就把 `OMP_NUM_THREADS/MKL_NUM_THREADS/OPENBLAS_NUM_THREADS/NUMEXPR_NUM_THREADS` 全部钉为 1（注释逐字 'avoid OpenBLAS/MKL threading segfaults on some clusters'）、`sys.path.insert(0, '/work')` 绑定容器挂载点、`faulthandler.enable()`、`get_num_classes()` 从 `dataset.json` 读并在数据集名未知时**显式 `raise KeyError` 并列出已知数据集**、用 `importlib.util.spec_from_file_location` 动态加载 agent 写的 program；`eval/dataset.json`（4,556 B）、`eval/nets/vit_petl/`（含 adapter/attention/block/fact/lora/mlp/patch_embed/repadapter/ssf/vpt 共 13 个 py 文件）、`metrics/metrics.py`（6,899 B）齐全；顶层 `archive/`（2,731 blobs）、`dtd/`（929）、`retino/`（268）、`kitti/`（242）、`inat/`（189）、`clevr_count/`（180）、`sun397/`（72）、`resisc45/`（61）逐数据集各含 `description.md`（3,391–10,440 B，逐设定任务描述）、`annotations/`（train.json / unlabeled.json）与 `featcache_*` 特征缓存。★ 证据不足项（必须写清）：① **HuggingFace 全站今日不可达**（实测 4 次请求全部超时，含 90s 超时的一次），因此 **ProgramSelectBench 数据集本体（16,977 个 program、35 个任务、>10,000 GPU 小时）今日完全无法核验**——这是本文最重要的资产，却是唯一没验到的；② **仓库无 LICENSE**（API 实测 license=null），且 ★0 / forks=0 / **pushed 停在 2026-10-04**（比论文 11-12 的 arXiv 日期早 5 周），**活跃度存疑**；③ 仓库 666 MB 且含大量 `featcache_*.bin`（单文件最大 33,802,621 B），**clone 成本高、克隆后是否直接可跑未知**；④ README 逐字 'Data Storage (Not sure how this looks right now?)'——**作者自己标注了这块不确定**；⑤ 需 Apptainer + GPU（实测 DTD/RESISC45/KITTI 8 小时 RTX 6000 Ada，SUN397/RETINO/CLEVR 15 小时 H100 或 RTX 6000 Blackwell Max-Q），本机无 GPU；⑥ 真实生态学任务（WildFin / BuckTales）上**作者自陈 AgentSL 与纯监督 AgentSL 打平**，即真实场景收益未兑现；⑦ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——不放进深挖第一顺位只有一个理由：**它的核心资产（16,977 个 program）今天打不开**；但它的**结论形状**今天就可以直接用在我们自己的系统上：**「先搜出一堆候选程序，再用 agent 自己的反馈挑一个」这个流程，在无标签场景下会系统性选错最多 47 个点**——**我们的多方案/多 prompt A/B 流程正是这个形状**。",
+      "id": "agentssl-can-mle-agents-leverage-unlabeled-data",
+      "value_type": "immediate",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "coding-agent",
+        "data-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 7.2,
+        "engineering_testability": 6.6,
+        "trend_signal": 4.85,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Applying machine learning systems to new domains introduces bottlenecks in bot…",
+      "one_line_judgement": "今天值得试：★ **今日第一即时价值，也是今日唯一一篇「正面结论和负面结论同样重要」的论文——它把 agent 搜索的瓶颈从「能不能造出来」精确地挪到了…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "★ **今日第一即时价值，也是今日唯一一篇「正面结论和负面结论同样重要」的论文——它把 agent 搜索的瓶颈从「能不能造出来」精确地挪到了「能不能挑出来」。**（arXiv 2611.173",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=agentssl-can-mle-agents-leverage-unlabeled-data"
+    },
+    {
+      "title": "CoReMem: Cost-Internalizing Memory for Successive Coding Tasks with Prospective Valuation",
+      "authors": [
+        "Peiwen Li",
+        "Harshit Verma",
+        "Sophia Zhou",
+        "Haiwen Wang",
+        "Ngoc Bui"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17316v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17316v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Coding agents tackle successive tasks on an evolving repository, carrying forward edits and writing memory before the next task is known. Selecting memory for unknown next tasks requires balancing future usefulness against the costs of writing and reading it. The actor must also decide when acting on available memory saves effort as the task unfolds. We introduce Coding-Repository Memory (CoReMem), a cost-internalizing framework that guides memory design and actor adaptation through measured mem",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "coding agent"
+      ],
+      "score": 82.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17316v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17316v1"
+        }
+      ],
+      "llm_reason": "★ **今日第二即时价值：它问的是我们 coding agent 每天都在做、却几乎从不量化的那个问题——「记忆到底是在省事，还是在添乱」。**（arXiv 2611.17316《CoReMem: Cost-Internalizing Memory for Successive Coding Tasks with Prospective Valuation》，Peiwen Li、Harshit Verma（共同一作）、Sophia Zhou（共同一作）、Haiwen Wang、Ngoc Bui、Heng Chang、Fei Fei、David van Dijk、Rex Ying；Yale University / Tsinghua University / Goodvision AI）★ 核心设定：**连续任务（successive tasks）**——coding agent 在一个**持续演进的仓库**上接一个又一个任务，**在下一个任务还没出现时就必须决定写什么记忆**；而现有记忆方法多为「任务内压缩上下文」，**目标已知**，对「未知下一个任务」完全无效。CoReMem 的两个机制：**① 溯源门控价值信用（provenance-gated value credit）**——只有被判定「确实用了记忆锚点」的步骤才拿到额外价值信用，但**每一步仍保留结果信用**（即不因走捷径而免除交付责任）；**② on-policy 记忆使用适配**——在同一 rollout group 内对比「有记忆 / 无记忆」来估记忆价值，奖励优先看 resolve（解决率）并惩罚成功运行的步数。★ 实测口径（论文 Table 1 逐行核对，三个开源 actor 模型 × 六种记忆层）：**Qwen3.8-27B-FP8 上 resolve rate 21.0% → 25.7%（+22%），步数 −17%，cache-aware 总 token −11%**，而**对照的 ReasoningBank 只有 +20% resolve 但 token +110%**、Mem0 是 +2% resolve 且 token +113%、MemOp +12% resolve 但 token +57%——**即 CoReMem 是唯一同时做到「解决率最高 + token 最省」的**；**Qwen3.5-9B 上 14.0% → 17.7%（+27%），步数 −26%，token −19%**；**Gemma-4-31B 上 11.5% → 14.2%（+24%），token −9%**。论文摘要另给出跨三个 actor 模型的平均口径：**resolve per token 相对无记忆提升 41%**；**Full history（把全部历史塞进上下文）只有 +2%~+7% resolve 且 token 反而 +5%~+21%——即「无脑塞全量历史」是纯亏**。★ 证据不足项（必须写清）：① **官方代码今日不可公开访问**——PDF 脚注 1 与 arXiv HTML 均写明 'Code is available at an anonymous link'，**经 HTML 链接注释提取出真实地址 `https://anonymous.4open.science/r/CoReMem-F728/`，实测返回 HTTP 401**（匿名评审页），**今日无法核验任何代码**；② 论文中另出现 3 个 openreview.net pdf id（4jdIxXBNve / 8yjWLJy2eX / jL7fwchScm），**今日未取其正文，审稿状态无法核验**；③ arXiv comment 为空，**无会议接收信息**；④ 需 GPU（Qwen3.8-27B-FP8 级模型），本机无 GPU；⑤ ChainSWE 100 条任务链、训练/测试按仓库不相交切半，**样本量偏小**；⑥ 表格中 `Full history` 的 token 上涨与 `CoReMem w/o training` 的下降方向相反，**说明「省 token」这个结论依赖 post-training，是耦合结果而非独立结论**；⑦ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——它的**结论形状**今天就能用：**「记忆的价值 = 它在下一个未知任务上省下的步数 − 写读它的成本」**，而且它把「无脑塞全量历史」明确量化为净亏；**但它今天一行业代码都跑不了**（401），所以**只取方法论，不取实现**。",
+      "id": "coremem-cost-internalizing-memory-for-successive-coding-tasks-with-prospective-valuation",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "context-engineering",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Coding Agent：Coding agents tackle successive tasks on an evolving repository, carrying forw…",
+      "one_line_judgement": "今天值得试：★ **今日第二即时价值：它问的是我们 coding agent 每天都在做、却几乎从不量化的那个问题——「记忆到底是在省事，还是在添乱」。…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "★ **今日第二即时价值：它问的是我们 coding agent 每天都在做、却几乎从不量化的那个问题——「记忆到底是在省事，还是在添乱」。**（arXiv 2611.17316《CoReMe",
+      "related_trends": [
+        "coding-agent",
+        "context-engineering",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=coremem-cost-internalizing-memory-for-successive-coding-tasks-with-prospective-valuation"
+    },
+    {
+      "title": "Unbundling Multimodal Vision Encoding",
+      "authors": [
+        "Ellis Brown",
+        "Chris Hoang",
+        "Shengyi Qian",
+        "Shang-Wen Li",
+        "Mike Lewis"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17334v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17334v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://unbundling.github.io",
+      "abstract": "How multimodal language models should encode visual input remains up for debate. Most models use a pretrained vision encoder, while some recent recipes train the encoder from scratch with the language model or remove it entirely. Vision encoders bundle together three design choices: a visual prior from upstream pretraining, dedicated vision capacity, and pre-fusion placement of that capacity (i.e., before the multimodal backbone). Because published models also differ in data, architecture, and c",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark",
+        "multimodal"
+      ],
+      "score": 76.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17334v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17334v1"
+        }
+      ],
+      "llm_reason": "★ **今日第三价值：它把「视觉编码器」这个黑箱拆成了三个可以分别做实验的选择，并且给出了一个反直觉的结论——真正重要的不是「有没有预训练先验」，而是「有没有专属的视觉容量」。**（arXiv 2611.17334《Unbundling Multimodal Vision Encoding》，Ellis Brown、Chris Hoang（共同一作）、Shengyi Qian、Shang-Wen Li、Mike Lewis 等 14 人；**Meta FAIR + New York University**；arXiv comment 逐字 'Project page: https://unbundling.github.io'）★ 核心：vision encoder 其实捆了**三个设计选择**——**① 视觉先验（visual prior，来自上游预训练）**、**② 专属视觉容量（dedicated vision capacity）**、**③ 前置融合位置（pre-fusion placement）**；已发布模型在数据、架构、算力上全都不同，**所以「比较已发布模型」根本无法隔离任一选择**。本文**从随机初始化开始自己跑每一个训练阶段**，只让视觉编码这一项不同，并在**匹配生命周期算力（matched lifetime compute）**下比较。★ 实测口径（论文 §3–§6 + 项目页逐条对照，两边一致）：**① 视觉先验是可选的**——从零联合训练的 encoder 与「在同样数据上预训练过」的 encoder 打平，且**更多 encoder 预训练提升的是 ImageNet 精度而不是 VQA**（**即预训练视觉先验买到的是特征质量，不是多模态理解**）；**② 专属视觉容量才是关键**——**encoder-free 模型即使把 backbone 撑大到 encoder 的参数量，视觉理解仍然落后**，从 1.7B 到 6.4B 的 backbone 阶梯上，**encoder-free 需要约 3 倍算力才能追平 encoder 的 Avg. VQA**（论文正文实测 '≈3× the compute'）；**③ 视觉容量不必前置**——把 vision-only 模块**放进 backbone 早期层（in-fusion）**与前置 encoder 表现相当，**并且能降低 time to first token**（因为不需要先跑 encoder）；**④ 结论在生命周期算力之外仍成立**——从预训练 1.7B 语言模型出发，in-fusion 仍与从零 encoder 相当，encoder-free 进一步落后。★ 今日实测的工件（**注意：今天它没有官方代码仓库**）：`https://unbundling.github.io` **实测 HTTP 200、48,415 B**，页面逐字给出四配方对照表（Prior/Capacity/Pre-fusion 三列的 ✓/✗ 组合）、§2–§6 分节结论与 'Only the vision encoding differs' 的受控协议说明；论文正文 PDF 实测 53 页、354,424 字符，含完整 scaling law 阶梯（0.6B–6.4B）与 Figure 1 的三段式设计图。★ 证据不足项（必须写清）：① **今日确认无官方代码仓库**——项目页全文**只含 arxiv.org / 作者个人主页 / unbundling.github.io 三类链接**（ellisbrown.github.io、howardhsu.github.io、jasonqsy.github.io），**无 GitHub、无 HuggingFace 权重、无数据集**；② 全文 53 页、训练规模从 0.6B 到 6.4B backbone，**复现成本极高（数千 GPU 小时量级）**，本机无 GPU；③ 论文里唯一被引用的非 arXiv 链接是 `kellerjordan.github.io/posts/muon/`（优化器博客，**经上下文核验是参考文献 [12]**，非本文工件）；④ 全部数字为作者自述，无第三方复现；⑤ 结论绑定在**特定 backbone 架构与数据配方**上（论文自述 'every model from scratch with the same data, backbone architecture, and training recipe'），**跨架构泛化性未验证**。★ 判断：**趋势价值**——本体是 VLM 预训练配方，离我们的主线偏远；**但它那条「预训练先验买到的是特征质量，不是多模态理解」的结论，对任何做多模态接入的团队都直接有用**——它意味着**「换一个更强的视觉 encoder」未必改善 VQA 效果，而「给 backbone 塞专属视觉容量」才是**。今天没有代码，所以只做趋势观察。",
+      "id": "unbundling-multimodal-vision-encoding",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 4.0,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Multimodal Agent：How multimodal language models should encode visual input remains up for debat…",
+      "one_line_judgement": "值得继续观察：★ **今日第三价值：它把「视觉编码器」这个黑箱拆成了三个可以分别做实验的选择，并且给出了一个反直觉的结论——真正重要的不是「有没有预训练先…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "★ **今日第三价值：它把「视觉编码器」这个黑箱拆成了三个可以分别做实验的选择，并且给出了一个反直觉的结论——真正重要的不是「有没有预训练先验」，而是「有没有专属的视觉容量」。**（arXiv",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=unbundling-multimodal-vision-encoding"
+    },
+    {
+      "title": "ArchSpace: Recording, Reviewing, and Referencing LLM Architecture Research",
+      "authors": [
+        "Jie Wang",
+        "Tong Zhu",
+        "JiaHao Kuang",
+        "Zhe Xu",
+        "Yunkai Chai"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17332v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17332v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/InternLM/archspace",
+      "benchmark_url": "",
+      "project_url": "https://www.archspace.live/",
+      "abstract": "Model architecture shapes the scaling behavior, training efficiency, and inference cost of LLMs, making it a central focus of both industry and academia. In industry, teams such as those behind DeepSeek, Qwen, and Kimi routinely introduce architectural innovations, yet public reports rarely document which ideas succeeded, which were abandoned, and why. In academia, limited compute and inconsistent baselines often restrict evaluations to small-scale, single-point comparisons, making it difficult ",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG",
+        "inference"
+      ],
+      "score": 73.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17332v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17332v1"
+        }
+      ],
+      "llm_reason": "★ **今日第四价值：它要解决的是一个我们内部天天抱怨、却从没外部化过的问题——「架构创新到底哪些成功了、哪些被放弃了、为什么」。**（arXiv 2611.17332《ArchSpace: Recording, Reviewing, and Referencing LLM Architecture Research》，Jie Wang、Tong Zhu、Jiahao Kuang、Zhe Xu、Yunkai Chai 等 11 人；**上海人工智能实验室 + 复旦大学 + 上海交通大学 + 华东师范大学**；论文内标注日期 2026-11-13）★ 核心主张：DeepSeek / Qwen / Kimi 等工业团队持续引入架构创新，但**公开报告几乎从不记录「哪些想法成功了、哪些被放弃了、为什么」**；学界则因算力受限与基线不一致，只能做小规模单点比较。ArchSpace 要建一个**公开平台**：提案 → 同行评审 → 统一流水线验证 → **无论正负结果都公开** → 被后续工作引用。★ 实测口径（论文正文）：**用 scaling law 从小实验外推大模型的 loss**（工业界常用做法），并**先提供初始参考系**——**Qwen3.5 与 OLMo3 基线、拟合好的 scaling law、可复用的训练配方**；验证流水线对齐**全开源的 Olmo 3**，覆盖 **1B / 3B / 8B 三个尺寸、预训练+中期训练+指令微调三个阶段、全流程约 6.2T tokens**；论文实测在训练所用的 LR/BS 下，**冻结的 scaling law 对外推 loss 的预测误差在 0.5% 以内，MAPE 0.32%**；论文还统计了**论文总数与工业界参与比例**（图示 2020→2026 年区间内工业界占比在 57.7%–77.5% 之间波动）。★ 今日实测的工件（**重要：官方仓库并不在论文里**）：`github.com/InternLM/archspace` **实测存在**——**★89、forks=9、Apache-2.0、watchers=2、12 blobs / 4 目录 / 4,946,575 B、默认分支 main、created 2026-07-21、pushed 2026-08-27、open_issues=19、topic=llm-architecture、homepage=https://www.archspace.live/**；README 实测 4,403 B（另有中文版 README_ZH.md 3,854 B），逐字给出「Open proposals / Peer review / Full validation / Open records / Shared knowledge」五段机制，并**明确写 'We value negative results'**；仓库带 `.github/ISSUE_TEMPLATE/architecture-proposal.yml`（2,851 B）与 `.github/pull_request_template.md`（1,746 B）；`https://www.archspace.live/` **实测 HTTP 200、5,154 B**，页面逐字渲染 'Under review / In progress / Declined / Verified' 四态模型谱系视图；**但 `archs/` 目录只有一个 0 字节的 `.gitkeep`**——即**平台本身上线了、被验证的架构实例一个都没有**。★ 证据不足项（必须写清）：① **仓库与论文的绑定只能靠标题+作者名+主题反查**——**论文 PDF 全文实测外链只有 3 个**（www.archspace.live、github.com/allenai/olmes、huggingface.co/），**`InternLM/archspace` 这个仓库在论文里从未出现**，官方性弱于「论文里写明」；② **W&B 日志今日不可核验**——`wandb.ai/archspace/reports` 重定向到 `forge.coreweave.com/wandb/archspace/reports` 后**实测 HTTP 403**；③ **HuggingFace 全站今日不可达**（4 次请求全部超时），README 徽章指向的 `huggingface.co/ArchSpace-Collection`（Qwen3.5/OLMo3 baseline collection）**今日无法核验**；④ **平台是空的**——`archs/` 只有 .gitkeep，19 个 open issue 说明**流程在跑但产出没落库**；⑤ 论文实测**无 arXiv comment、无 OpenReview 链接**（仅 2 个 openreview id：3X2L2TFr0f / kIoBbc76Sy，**经上下文核验为参考文献**），今日无法核验审稿状态；⑥ **pushed 停在 2026-08-27**（距论文 3.5 个月），活跃度存疑；⑦ 全部数字为作者自述。★ 判断：**趋势价值**——它的**机制**（把「被放弃的架构尝试」也公开记录并引用）**恰好命中我们最缺的东西**；但**今天它是空壳**，所以只做趋势观察，不投入。",
+      "id": "archspace-recording-reviewing-and-referencing-llm-architecture-research",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "data-engineering",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 6.35,
+        "engineering_testability": 5.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising",
+      "brief_cn": "LLM 评测：Model architecture shapes the scaling behavior, training efficiency, and infer…",
+      "one_line_judgement": "值得继续观察：★ **今日第四价值：它要解决的是一个我们内部天天抱怨、却从没外部化过的问题——「架构创新到底哪些成功了、哪些被放弃了、为什么」。**（ar…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "上升",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "★ **今日第四价值：它要解决的是一个我们内部天天抱怨、却从没外部化过的问题——「架构创新到底哪些成功了、哪些被放弃了、为什么」。**（arXiv 2611.17332《ArchSpace: ",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=archspace-recording-reviewing-and-referencing-llm-architecture-research"
+    },
+    {
+      "title": "Learning When Diffusion Language Models Should Regenerate",
+      "authors": [
+        "Minhae Oh",
+        "Jeonghye Kim",
+        "Jinwoo Koo",
+        "Yeongoon Kim",
+        "Jimin Seo"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17320v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17320v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/minhaeoh/DiVR",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Remasking allows diffusion language models to revisit generated text, but effective correction requires knowing when and what to revise. Our diagnosis on Sudoku reveals two gaps. Hidden states contain error information that token confidence does not reliably expose, and remasking an isolated error usually reproduces it when the surrounding context remains fixed. These findings motivate DiVR , a verifier that predicts whether a partially generated sequence will reach a correct answer. Trained on ",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "benchmark",
+        "RAG"
+      ],
+      "score": 71.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17320v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17320v1"
+        }
+      ],
+      "llm_reason": "★ **今日第五价值：它给「自检 / 自我验证」这件事找出了一个具体的失败原因，并给出了一个成本远低于搜索的替代方案——但它的领域是扩散语言模型，离我们主线有距离。**（arXiv 2611.17320《Learning When Diffusion Language Models Should Regenerate》，Minhae Oh、Jeonghye Kim、Jinwoo Koo、Yeongoon Kim、Jimin Seo、Minsik Seol、Jungwoo Lee（通讯）；**首尔国立大学 + KAIST**；arXiv comment 为空）★ 核心诊断（在 Sudoku 上做，因为唯一解能标注每个格子）：**缺口一：隐藏状态里有错误信息，但 token 置信度不可靠地暴露它**——最终层线性探针区分错/对格子的 **AUROC 0.838**，而置信度只有 **0.685**（remask 后逐步升到 0.838，置信度从 0.713 到 0.802）；**缺口二：单独 remask 一个错误格子通常会把它重现出来**，因为周围上下文没变。→ **DiVR（Diffusion Verifier for Regeneration）**：一个**结果监督（outcome-supervised）**的 verifier，预测「一个部分生成的序列最终会不会答对」；**生成器本身完全不变**，verifier 只决定「要不要重生成这一块」和「保留哪个替代方案」。★ 实测口径（论文 Table 1 逐行核对）：**LLaDA-8B-Base + SFT 的五基准平均准确率 35.3% → 43.4%，代价是 greedy 解码的 1.9–3.5×**；对照 **SR-SMC 39.1%（4.8–5.1×）与 Prism 41.5%（5.0–5.6×）——即 DiVR 在更便宜的档位上赢了**；逐项看 GSM8K 68.7→78.8（×2.1）、MATH-500 24.6→33.8（×1.9）、Countdown 35.6→47.2（×3.5）、HumanEval 23.2→23.8（×2.9）、MBPP 24.2→33.6（×3.3）；oracle pass@4 为 85.4/43.4/49.8。★ 今日实测的工件：`github.com/minhaeoh/DiVR` **实测存在**——**★2、forks=0、MIT、29 blobs / 4 目录 / 131,209 B、默认分支 main、created 2026-11-11（论文前一天）、pushed 2026-11-13**；README 实测 7,095 B，逐字给出完整流水线（`scripts/01_sft_llada.sh` → `03_train_verifier.sh` → `04_guided.sh` → `05_best_of_4.sh` → `06_baselines.sh`）与全部超参（**verifier = LoRA r32/alpha64 + 4096-1024-1 SiLU head，lr 1e-4/1e-3，2 epochs；guided decoding theta=0.5、K=4、最多 3 次重生成**）；**实读 `divr/guided_decode.py`（11,760 B）**——是真实现：docstring 逐字说明 'the verifier LoRA is disabled for every decoding forward'（**生成器不变**）、成本核算逐字定义 'greedy_forwards and guided_forwards count decoding forwards weighted by batch rows; the summary adds one verifier read per decoded block and K reads per regeneration'（**成本口径写得比多数论文清楚**）；代码结构 `divr/{guided_decode,train_verifier,sample,score,baselines,grade,math_equiv}.py` 与 `sft/{llada_sft,dream_sft,sft_common}.py` 对应论文各节。★ 证据不足项（必须写清）：① **arXiv comment 为空**，无会议接收信息；② **需 48 GB GPU**（README 逐字 'One 48 GB GPU is enough for every step'），本机无 GPU；③ **基线为作者自行复现**——SR-SMC 与 Prism 是在同一 decoder/prompt/grader 上重写的（README 逐字 'both reimplemented on the same decoder, prompts and grader'），**基线公平性依赖作者实现**；④ GSM8K SFT 配方**改写了 d1 的正确性奖励**（README 逐字换成自己的 numeric grader，见 `scripts/d1_lenient_reward.py`），**这改变了被评的生成器本身**，与原版 d1 结果不可直接比较；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——本体是 MDLM（扩散语言模型）解码策略，离我们主线远；**但「错误信息在隐藏状态里、不在置信度里」这条诊断（0.838 vs 0.685）是可以直接借的**——它说明**我们现有 agent 的 self-check 用的是置信度，而置信度可能并不暴露真正的错误**。",
+      "id": "learning-when-diffusion-language-models-should-regenerate",
+      "value_type": "trend",
+      "matched_topics": [
+        "inference-serving",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 7.3,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "推理与服务：Remasking allows diffusion language models to revisit generated text, but effe…",
+      "one_line_judgement": "值得继续观察：★ **今日第五价值：它给「自检 / 自我验证」这件事找出了一个具体的失败原因，并给出了一个成本远低于搜索的替代方案——但它的领域是扩散语言…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "★ **今日第五价值：它给「自检 / 自我验证」这件事找出了一个具体的失败原因，并给出了一个成本远低于搜索的替代方案——但它的领域是扩散语言模型，离我们主线有距离。**（arXiv 2611.",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=learning-when-diffusion-language-models-should-regenerate"
+    },
+    {
+      "title": "Classical Energies Learn to Reason 1,000x Faster than Looped Models",
+      "authors": [
+        "Benjamin Hoover",
+        "Hugh Blayney",
+        "James C. R. Whittington"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17309v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17309v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/Prefrontal-AI/CRAM",
+      "benchmark_url": "",
+      "project_url": "https://prefrontal.ai/news/cram/",
+      "abstract": "Looped models have emerged as a prominent paradigm for reasoning, with successes on simple reasoning puzzles such as Sudoku-Extreme and Maze-Unique. However, these models can be unstable, slow to train, and use many parameters and FLOPs to solve simple puzzles. Descent on an energy not only mitigates these issues but also offers advantages: built-in early stopping, compute that adapts to problem difficulty, fast training without differentiating through a solver, and interpretable weights that le",
+      "categories": [
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark",
+        "inference"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17309v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17309v1"
+        }
+      ],
+      "llm_reason": "★ **今日第六价值：一篇把「推理模型」拉回 1980 年代 Hopfield 能量的论文，它最有价值的其实不是 1,000× 这个数字，而是末尾那句「别用数独和迷宫测可扩展性」的警告。**（arXiv 2611.17309《Classical Energies Learn to Reason 1,000× Faster than Looped Models》，Benjamin Hoover、Hugh Blayney、James C. R. Whittington；**Prefrontal**；arXiv comment 为空）★ 核心：把 Hopfield & Tank 的能量函数学习成版本（**CRAM, Compact Reasoning Associative Memory**），**推理 = 在能量上做下降**，而**能量本身告诉你何时该停**；由此得到内建的早停、**算力随题目难度自适应**、**不需要对求解器反向传播的训练**、以及**可解释的权重**。★ 实测口径（论文摘要 + Table + README 三方对照）：**Sudoku-Extreme 99.996% 解出率、Maze-Unique 100%，训练分别只要 42 ms 与 132 ms（单张 H200），至少比 looped 模型快 1,000×**；**参数量 Sudoku-Extreme 263,169（非零约 7,700）、Maze-Unique 仅 18 个**；在 Sudoku-Extreme 上**用至少少 282× 的推理 FLOPs** 追平 looped 模型的最高精度；论文的停止规则对照表实测显示 **CRAM（能量阈值）的 Wrong halts 为 0.00%，而 HRM 0.62%、TRM 2.37%、EqR 1.61%、TRMP 0.05%、EBR 0.21%**——**即能量阈值是唯一「几乎不误停」的停止规则**。★ 今日实测的工件：`github.com/Prefrontal-AI/CRAM` **实测存在**——**★3、forks=1、Apache-2.0、352 blobs / 55 目录 / 15,999,089 B、默认分支 main、created 2026-11-12、pushed 2026-11-13**；README 实测 3,887 B，逐字给出 Quickstart（`uv sync` → `prepare_data.py sudoku` → `checkpoints/evaluate.py --tasks sudoku-extreme maze-unique`）、**每个模型的训练权重在 `checkpoints/`**、**每张表每张图的命令在 `REPRODUCING.md`（21,237 B）**、**专门写了 `AGENTS.md`（2,587 B）给 coding agent**；仓库结构 `cram/`（20）、`baselines/`（183，含 ebr/eqr/dynamics/flops 四个子目录与 39 个 .sbatch 集群脚本）、`experiments/`（36）、`checkpoints/`（50，含 15 个 .pt）、`results/`（28）、`tests/`（10）；`https://prefrontal.ai/news/cram/` **实测 HTTP 200、235,284 B**（工程博客）。★ 证据不足项（必须写清）：① **arXiv comment 为空**，无会议接收信息；② **论文自己就警告了 benchmark 的无效性**——摘要逐字 'a caution against using trivially solvable benchmarks like Sudoku and Maze to test the scalability of looped reasoning techniques'，**即 1,000× 这个数字是在作者自己认为「平凡」的题上测的**；③ 需单张 H200 与 `uv`，本机无 GPU；④ **论文自陈计时噪声**——附录 B 逐字 'Training jobs used GPUs on unreserved nodes of a shared cluster, so other jobs could use a node's other GPUs and CPU cores which could affect reproducibility of timing a fit'（**这是作者主动披露的复现风险，很少见，值得记**）；⑤ **停止规则对照表里的 baseline 全是作者复现的**，公平性依赖实现；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——「**推理 = 能量下降，能量自带停止信号**」这个框架对**任何需要 agent 自己决定何时停止的场景**（我们的 agent 现在靠 token 上限和超时硬停）有直接启发；而且**「零误停」这个指标（Wrong halts 0.00%）比「准确率」更值得抄进我们的评测表**。但今天不值得深挖——本体是解谜推理，离主线远。",
+      "id": "classical-energies-learn-to-reason-1-000x-faster-than-looped-models",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 6.1,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：Looped models have emerged as a prominent paradigm for reasoning, with success…",
+      "one_line_judgement": "值得先保存：★ **今日第六价值：一篇把「推理模型」拉回 1980 年代 Hopfield 能量的论文，它最有价值的其实不是 1,000× 这个数字，而…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第六价值：一篇把「推理模型」拉回 1980 年代 Hopfield 能量的论文，它最有价值的其实不是 1,000× 这个数字，而是末尾那句「别用数独和迷宫测可扩展性」的警告。**（",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=classical-energies-learn-to-reason-1-000x-faster-than-looped-models"
+    },
+    {
+      "title": "Sketching Language Models for Context Attribution",
+      "authors": [
+        "Christopher Liaw",
+        "Aranyak Mehta",
+        "Grigoris Velegkas",
+        "Felix Zhou"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17313v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17313v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Context attribution asks how removing parts of a prompt changes a language model's output. We study leave-one-out (LOO) attribution for a prompt of $n$ tokens and a fixed measurement function. Computing all LOO values directly requires $n$ model evaluations. Under a stability assumption, our algorithm estimates all LOO values to error proportional to $\\varepsilon$ with constant probability using $O(\\sqrt{\\log(1/\\varepsilon)}/\\varepsilon)$ evaluation calls. To complement our upper bound, we prove",
+      "categories": [
+        "cs.DS",
+        "cs.AI",
+        "cs.LG",
+        "stat.ML"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17313v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17313v1"
+        }
+      ],
+      "llm_reason": "★ **今日第七价值：一篇把「上下文归因」的成本从 O(n) 压到 O(√log(1/ε)/ε) 的纯理论工作——它省的不是 token，而是「调 prompt 时的来回试错次数」。**（arXiv 2611.17313《Sketching Language Models for Context Attribution》，Christopher Liaw、Aranyak Mehta、Grigoris Velegkas、Felix Zhou；**Google Research + Yale University**；arXiv comment 为空，**分类 cs.DS（不是 cs.CL）**）★ 核心设定：上下文归因问的是「**去掉 prompt 的一部分，模型输出会怎么变**」；对 n 个 token 的 prompt 做 leave-one-out (LOO) 归因，**直接算需要 n 次模型评估**。本文给出一个**在稳定性假设下**的算法，用 **O(√(log(1/ε)/ε))** 次评估调用就能以常数概率把所有 LOO 值估到误差正比于 ε；**并且证明了一个匹配的 Ω(√(log(1/ε)/ε)) 下界**（在 oracle 模型上），**即这个复杂度是紧的**。技术关键：对算术电路做 sketching，**把前向微分作用到反向传播电路上**，相对同 Taylor 阶的前向 sketch 只有常数开销——**这降低了 sketch 方差，是改进界的关键**。经验部分实测：在 **Llama-3.2-1B-Instruct**（64-bit）的一个「答案在 prompt 某处」的检索任务上验证了系数衰减与算法表现。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链仅 1 个**（`https://huggingface.co/unsloth/llama-3.2-1b-instruct`，即评测用的基座模型），**无 GitHub、无项目页、无数据集**；② **arXiv comment 为空**，无会议接收信息；③ **经验验证极小**——只有**一个 1B 模型、一个检索任务**，论文自述 'a small language-model retrieval task'；④ **结论依赖「稳定性假设」**（Taylor 系数满足 Gunn [Gun26] 引入的条件），**该假设在真实 LLM 上今日无法核验**；⑤ 全文 39 页，**主要是理论**，无第三方复现。★ 判断：**长尾保存**——**它的应用场景对我们是新的**：我们做 prompt 归因（哪一段上下文真正起作用）现在只能靠人工删改试错，**这篇给出的是「用 √n 级别的调用次数把 n 个 LOO 值全估出来」的路径**；但**今天无代码、且只在 1B 模型上验证过**，所以只存结论。",
+      "id": "sketching-language-models-for-context-attribution",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Context attribution asks how removing parts of a prompt changes a language mod…",
+      "one_line_judgement": "值得先保存：★ **今日第七价值：一篇把「上下文归因」的成本从 O(n) 压到 O(√log(1/ε)/ε) 的纯理论工作——它省的不是 token，而…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第七价值：一篇把「上下文归因」的成本从 O(n) 压到 O(√log(1/ε)/ε) 的纯理论工作——它省的不是 token，而是「调 prompt 时的来回试错次数」。**（ar",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=sketching-language-models-for-context-attribution"
+    },
+    {
+      "title": "Linking Rapid Learning to Compositional Structure in Neural Networks: Evidence from Additive Analogies in Meta-Learned Parameter Spaces",
+      "authors": [
+        "Abigail L. Tenenbaum",
+        "R. Thomas McCoy"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17314v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17314v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Humans can learn rapidly from limited experience, while neural networks typically require extensive training. In this work, we investigate what properties of a neural network can enable it to learn rapidly. We study neural networks that have been optimized via meta-learning, a technique that exposes a network to many related functions to facilitate its subsequent learning of similar functions. Prior work has shown that these meta-learned networks can learn new functions rapidly, but how they do ",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "keywords": [],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17314v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17314v1"
+        }
+      ],
+      "llm_reason": "★ **今日第八价值：一篇把「类比」搬进元学习参数空间的解释性工作——它问的是「快速学习到底沿什么样的轨迹发生」。**（arXiv 2611.17314《Linking Rapid Learning to Compositional Structure in Neural Networks: Evidence from Additive Analogies in Meta-Learned Parameter Spaces》，Abigail L. Tenenbaum、R. Thomas McCoy；**Yale University  linguistics + Wu Tsai Institute**；arXiv comment 逐字 '24 pages plus references and appendices'）★ 核心：借经典词向量加法关系（king − man + woman ≈ queen）的思路，**把元学习网络对不同函数的「表征」定义为它适配后参数向量的拼接**，然后寻找这些参数向量之间的加法关系；发现**这些参数向量可以按函数间的符号关系相加减，得到的新参数向量确实实现了符号操作所预测的函数——即人工重组出的向量，真的实现了目标函数，而且没有在这些函数上直接训练过**；且这种「加法类比」**跨神经网络架构与函数域出现**，且**对元学习网络显著强于随机初始化或预训练网络**。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链数为 0**，无 GitHub、无项目页、无数据集、无权重；② **arXiv comment 只说明篇幅**（24 页 + 参考文献 + 附录），**无会议接收信息**；③ 全文 35 页，**今日只做了关键词与摘要级抽取，未逐图复核**「跨架构跨域」这一最强主张；④ 「重组出的参数向量确实实现了目标函数」的具体评测协议与任务集今日未核验；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——它的**提问方式**对我们有用（**「快速学习是沿一条线移动，还是换了一条线？」与 2026-11-11 那天的 Persona Generalization 是同一个提问家族**），**但今天既无代码也无数据可核**，不值得投入。",
+      "id": "linking-rapid-learning-to-compositional-structure-in-neural-networks-evidence-from-additive-analogies-in-meta-learned-parameter-spaces",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：Humans can learn rapidly from limited experience, while neural networks typica…",
+      "one_line_judgement": "值得先保存：★ **今日第八价值：一篇把「类比」搬进元学习参数空间的解释性工作——它问的是「快速学习到底沿什么样的轨迹发生」。**（arXiv 2611…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第八价值：一篇把「类比」搬进元学习参数空间的解释性工作——它问的是「快速学习到底沿什么样的轨迹发生」。**（arXiv 2611.17314《Linking Rapid Learn",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=linking-rapid-learning-to-compositional-structure-in-neural-networks-evidence-from-additive-analogies-in-meta-learned-parameter-spaces"
+    },
+    {
+      "title": "Internalizing Investment Mandates: A Neurosymbolic RL Approach to Portfolio Allocation",
+      "authors": [
+        "Zeynep Yıldız",
+        "Satchit Chatterji",
+        "Ercan Atam",
+        "Erman Acar"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17329v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17329v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Institutional portfolios operate under investment policy statements that specify asset allocation constraints, often conditioned on market regime information. Deep reinforcement learning has been shown to optimize financial performance but typically does not enforce rule compliance, making it unsuitable for real-world deployment. Existing neurosymbolic methods such as Probabilistic Logic Policy Gradient (PLPG) offer constraint-satisfying reinforcement learning (RL) via differentiable symbolic su",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "inference"
+      ],
+      "score": 56.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17329v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17329v1"
+        }
+      ],
+      "llm_reason": "★ **今日第九价值：一篇把「合规」从奖励惩罚改成「策略内化」的论文——它的设定离金融很远，但那个「没有事后拦截器」的论证方式对我们做 agent 约束直接有用。**（arXiv 2611.17329《Internalizing Investment Mandates: A Neurosymbolic RL Approach to Portfolio Allocation》，Zeynep Yıldız、Satchit Chatterji、Ercan Atam、Erman Acar；**Boğaziçi University + University of Amsterdam (Finesse Lab)**；**arXiv comment 逐字 'Accepted at ICAIF '26'**）★ 核心：机构投资受**投资政策声明（IPS）**约束——可投资产类别与每个类别周围的配置带，且**约束随市场状态（regime）变化**；纯最大化风险调整收益的 RL **没有内生的合规机制**，而受限 MDP 只约束**期望成本**、**等价于允许用高收益「兑换」违规**（**但真实 mandate 是每天的硬性 yes/no，合规是一种必须直接度量的属性**）。本文提出 PLPG 启发的连续分配方法：用**重参数化蒙特卡洛采样估计「策略自己执行的动作满足 mandate 的概率」**，把它加进训练目标；**推理时没有任何事后强制机制，合规是被学进策略里的**。★ 实测口径（作者自述，论文摘要逐字）：**在确定性的均值动作上直接审计、无任何修正**，策略把六条 regime-conditional mandate 的违规率**从无约束 RL 的 96–98%、奖励惩罚基线的 33.4%，降到 4.8%**。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**无 GitHub 链接**，无项目页、无数据集、无权重；② **PDF 中的 2 个 openreview.net id（pjhjksflbg / skfrvsa9fx）经逐条上下文核验均为参考文献引用**，**不是本文投稿链接**；③ **「Accepted at ICAIF '26」无法与 ICAIF 官方接收列表交叉核验**；④ 全文仅 9 页，**今日只做了摘要与关键数字抽取，未逐表复核**；⑤ 合规性完全依赖**在训练分布上定义的规则族**，**规则外的行为无保证**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「合规必须是一个可以被直接度量的属性，而不是可以被高收益兑换的期望成本」这个论证，对我们做 agent 安全约束有直接启发**（我们的 agent 约束现在多是「违规扣分」式）；但今天既无代码又无外部核验，不投入。",
+      "id": "internalizing-investment-mandates-a-neurosymbolic-rl-approach-to-portfolio-allocation",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "security-governance",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "安全与治理：Institutional portfolios operate under investment policy statements that speci…",
+      "one_line_judgement": "值得先保存：★ **今日第九价值：一篇把「合规」从奖励惩罚改成「策略内化」的论文——它的设定离金融很远，但那个「没有事后拦截器」的论证方式对我们做 ag…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第九价值：一篇把「合规」从奖励惩罚改成「策略内化」的论文——它的设定离金融很远，但那个「没有事后拦截器」的论证方式对我们做 agent 约束直接有用。**（arXiv 2611.1",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=internalizing-investment-mandates-a-neurosymbolic-rl-approach-to-portfolio-allocation"
+    },
+    {
+      "title": "Quantifying structural stability of transparent models for general insurance pricing",
+      "authors": [
+        "Félix Côté",
+        "Marie-Pier Côté"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17308v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17308v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The short duration of general insurance contracts leads to rapid distributional shifts in the data, warranting regular model updates. This process may yield a post-update model that differs considerably from the pre-update model in both predictions and structure. Structural stability is upstream of predictive stability, yet existing structural stability metrics are mostly restricted to simple decision trees. Thus, we first introduce the notion of functional transparency, characterising models wi",
+      "categories": [
+        "stat.ML",
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 50.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17308v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17308v1"
+        }
+      ],
+      "llm_reason": "★ **今日第十价值（今日最低分）：一篇讲保险模型「结构稳定性」的论文——它的指标定义有点意思，但今天离我们最远。**（arXiv 2611.17308《Quantifying structural stability of transparent models for general insurance pricing》，Félix Côté、Marie-Pier Côté；**École d'actuariat, Université Laval**；arXiv comment 逐字 '16 tables and 9 figures'）★ 核心：保险合同期短 → 数据分布快速漂移 → 模型需要频繁重训；重训后模型**在预测与结构上都可能大幅改变**，而**结构稳定性是预测稳定性的上游**（先变结构，才会变预测）；但现有结构稳定性指标**大多局限于决策树**。本文：① 引入**「功能透明性」（functional transparency）**——预测函数可写成**主效应的一元函数之和 + 交互的二元函数之和**的模型；② 提出 **Mean Squared Shape function distance（MSSFD）** 度量这类模型的结构稳定性；③ 在**三个公开汽车保险数据集**上做基准研究。★ 实测口径（作者自述）：**以数值协变量中心化的 GLM 是稳定的，EBM（explainable boosting machine）在稳定性与性能之间提供折中**；**序贯建模与固定超参这类稳定化策略，能显著提升 EBM 与 XGBoost 的稳定性，且对性能影响可忽略**。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链数为 0**，无 GitHub、无项目页、无数据集；② **arXiv comment 只说明图表数量**（16 表 9 图），**无会议接收信息**；③ 全文 27 页、**16 张表 9 张图**，**今日未逐表复核**「稳定化策略对性能影响可忽略」这一关键结论；④ **三个保险数据集今日无法获取**（论文未给出链接），且领域特殊性（精算）使结论外推性存疑；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「结构稳定性是预测稳定性的上游」这个排序**对我们有一点点用（我们做模型更新时通常只看预测漂移，不看结构漂移）；但今天离主线最远、零工件，只存索引。",
+      "id": "quantifying-structural-stability-of-transparent-models-for-general-insurance-pricing",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "安全与治理：The short duration of general insurance contracts leads to rapid distributiona…",
+      "one_line_judgement": "值得先保存：★ **今日第十价值（今日最低分）：一篇讲保险模型「结构稳定性」的论文——它的指标定义有点意思，但今天离我们最远。**（arXiv 2611…",
+      "first_seen_date": "2026-11-14",
+      "first_deep_dive_daily": "2026-11-14",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第十价值（今日最低分）：一篇讲保险模型「结构稳定性」的论文——它的指标定义有点意思，但今天离我们最远。**（arXiv 2611.17308《Quantifying structu",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=quantifying-structural-stability-of-transparent-models-for-general-insurance-pricing"
+    },
+    {
+      "title": "Medical Image Segmentation: Foundation Model Adaptation versus Task-Specific Training",
+      "authors": [
+        "Emre Kutlusan",
+        "Yongmin Li"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14519v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14519v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Foundation models pretrained on large natural-image collections are increasingly adapted for medical image segmentation, in the expectation that they will replace models trained for each task. Most comparisons, however, use data from the training distribution and a single task-specific baseline whose configuration is rarely justified, and therefore provide limited evidence of performance at new clinical sites. It also remains unclear how much of a foundation model must be adapted, and what deter",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14519v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14519v1"
+        }
+      ],
+      "id": "medical-image-segmentation-foundation-model-adaptation-versus-task-specific-training",
+      "brief_cn": "前沿论文：Foundation models pretrained on large natural-image collections are increasing…",
+      "one_line_judgement": "当前可忽略：前沿论文：Foundation models pretrained on large natural-image collections a…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Foundation models pretrained on large natural-image collections are increasing…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=medical-image-segmentation-foundation-model-adaptation-versus-task-specific-training"
+    },
+    {
+      "title": "Toward Foundation Detection Models via Example-Based Grounding in EM-DETR",
+      "authors": [
+        "Sheethal Bhat",
+        "Bogdan Georgescu",
+        "Awais Mansoor",
+        "Florin C. Ghesu",
+        "Sasa Grbic"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14518v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14518v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "DeepLearning (DL)-based Computer-Aided Diagnostic (CAD) systems have shown great promise in supporting clinicians, but their performance heavily depends on the availability of large, well-annotated datasets. In medical lesion detection, the scarcity of comprehensive, stan dardized annotations and the heterogeneity of existing datasets limit the development of robust foundation models. In this work, we introduce a novel approach to building a multi-domain foundation model for le sion detection by",
+      "categories": [
+        "cs.CV",
+        "cs.AI"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14518v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14518v1"
+        }
+      ],
+      "id": "toward-foundation-detection-models-via-example-based-grounding-in-em-detr",
+      "brief_cn": "前沿论文：DeepLearning (DL)-based Computer-Aided Diagnostic (CAD) systems have shown gre…",
+      "one_line_judgement": "当前可忽略：前沿论文：DeepLearning (DL)-based Computer-Aided Diagnostic (CAD) systems h…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：DeepLearning (DL)-based Computer-Aided Diagnostic (CAD) systems have shown gre…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=toward-foundation-detection-models-via-example-based-grounding-in-em-detr"
+    },
+    {
+      "title": "TorchCurves: Differentiable Parametric Curves",
+      "authors": [
+        "Alex Shtoff"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14516v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14516v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We present TorchCurves, a PyTorch library that treats vector-valued parametric curves as learnable primitives. Its central operation maps batches of scalar inputs to points on curves represented in B-spline or Legendre polynomial bases, with differentiation through both inputs and coefficients. Curve coefficients can be optimized jointly with the surrounding model or produced by another network. The library provides trainable modules, reusable basis modules, and a functional interface, supportin",
+      "categories": [
+        "cs.LG",
+        "stat.ML"
+      ],
+      "keywords": [
+        "evaluation"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14516v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14516v1"
+        }
+      ],
+      "id": "torchcurves-differentiable-parametric-curves",
+      "brief_cn": "前沿论文：We present TorchCurves, a PyTorch library that treats vector-valued parametric…",
+      "one_line_judgement": "当前可忽略：前沿论文：We present TorchCurves, a PyTorch library that treats vector-valu…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：We present TorchCurves, a PyTorch library that treats vector-valued parametric…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=torchcurves-differentiable-parametric-curves"
+    },
+    {
+      "title": "AutoScaffold: AI-Guided Scaffolding for Reinforcement Learning of Language Models",
+      "authors": [
+        "Zijian Zhang",
+        "Rizhen Hu",
+        "Jiangweizhi Peng",
+        "Shiyang Li",
+        "Sujay Bhatt"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14515v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14515v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Reinforcement learning with verifiable rewards (RLVR) produces rich training experience, yet outcome rewards reduce each attempt to a single number and leave most of this information unused. Training-time scaffolds, such as strategies or hints added to the prompt during training, offer a natural way to turn this information into guidance, but their design and adaptation are largely left to humans and tailored to specific domains. We introduce AutoScaffold, a unified AI-for-AI framework that turn",
+      "categories": [
+        "cs.LG",
+        "cs.CL"
+      ],
+      "keywords": [
+        "evaluation",
+        "RAG"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14515v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14515v1"
+        }
+      ],
+      "id": "autoscaffold-ai-guided-scaffolding-for-reinforcement-learning-of-language-models",
+      "brief_cn": "前沿论文：Reinforcement learning with verifiable rewards (RLVR) produces rich training e…",
+      "one_line_judgement": "当前可忽略：前沿论文：Reinforcement learning with verifiable rewards (RLVR) produces ri…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Reinforcement learning with verifiable rewards (RLVR) produces rich training e…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=autoscaffold-ai-guided-scaffolding-for-reinforcement-learning-of-language-models"
+    },
+    {
+      "title": "Contrastive Discovery: Open-Ended Scientific Discovery over Competing Explanations",
+      "authors": [
+        "Ziang Liu",
+        "James J. Kim",
+        "Yijia Dai",
+        "Jennifer J. Sun"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14514v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14514v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM agents are increasingly used for open-ended, data-driven scientific discovery, yet most of them evaluate hypotheses pointwise, testing an empirical claim $h$ only against its complement $\\neg h$. When evidence rejects $h$, the agent learns that one explanation is unlikely but not which alternative the evidence supports. To recover that alternative, we introduce Contrastive Discovery, which replaces the single hypothesis with a contrast set, a scientific question paired with mutually exclusiv",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14514v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14514v1"
+        }
+      ],
+      "id": "contrastive-discovery-open-ended-scientific-discovery-over-competing-explanations",
+      "brief_cn": "前沿论文：LLM agents are increasingly used for open-ended, data-driven scientific discov…",
+      "one_line_judgement": "当前可忽略：前沿论文：LLM agents are increasingly used for open-ended, data-driven scie…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：LLM agents are increasingly used for open-ended, data-driven scientific discov…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=contrastive-discovery-open-ended-scientific-discovery-over-competing-explanations"
+    },
+    {
+      "title": "Pyrite: Building and Benchmarking Protein-Ligand Pose Ranking Agents",
+      "authors": [
+        "Megha Srivastava",
+        "Michael H. Lim",
+        "Allison M. Keys",
+        "Pranav Murugan",
+        "Nate Gruver"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14511v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14511v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Predicting how a ligand binds to its target is central to small-molecule drug discovery. Modern cofolding models can generate diverse candidate poses, but reliably ranking these candidates remains challenging. We introduce Pyrite, a pairwise pose-ranking benchmark comprising 1,500 pose pairs across diverse protein-ligand complexes. Expert chemists equipped with 3D visualization tools and physics-based scores perform near chance, highlighting the difficulty of interpreting available chemical sign",
+      "categories": [
+        "cs.LG",
+        "q-bio.QM"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14511v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14511v1"
+        }
+      ],
+      "id": "pyrite-building-and-benchmarking-protein-ligand-pose-ranking-agents",
+      "brief_cn": "前沿论文：Predicting how a ligand binds to its target is central to small-molecule drug …",
+      "one_line_judgement": "当前可忽略：前沿论文：Predicting how a ligand binds to its target is central to small-m…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Predicting how a ligand binds to its target is central to small-molecule drug …",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=pyrite-building-and-benchmarking-protein-ligand-pose-ranking-agents"
+    },
+    {
+      "title": "When Does the Real Wiring Win? Testing connectome structure-function claims against unmeasured physiology",
+      "authors": [
+        "Yeyuan Liu"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14508v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14508v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Connectome-constrained models are often used to argue that a measured wiring diagram outperforms shuffled or rewired wiring, and hence that structure shapes function. Such comparisons can confound wiring with how the models are tuned: a connectome fixes who connects to whom, not the excitability, gains or plasticity rates the model also needs, and modellers often tune these until the real-wiring model works. We separate three estimands: physiology tuned on the real wiring and transferred to null",
+      "categories": [
+        "cs.LG",
+        "q-bio.NC"
+      ],
+      "keywords": [],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14508v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14508v1"
+        }
+      ],
+      "id": "when-does-the-real-wiring-win-testing-connectome-structure-function-claims-against-unmeasured-physiology",
+      "brief_cn": "前沿论文：Connectome-constrained models are often used to argue that a measured wiring d…",
+      "one_line_judgement": "当前可忽略：前沿论文：Connectome-constrained models are often used to argue that a meas…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Connectome-constrained models are often used to argue that a measured wiring d…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=when-does-the-real-wiring-win-testing-connectome-structure-function-claims-against-unmeasured-physiology"
+    },
+    {
+      "title": "Continual-ARC: Measuring Skill Acquisition over a Working Lifetime",
+      "authors": [
+        "Daniel Lenton"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14505v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14505v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Agent harnesses have emerged as a promising mechanism for continual learning, alongside test-time parametric learning. However, the current benchmarks have several limitations: they generally focus on a single applied domain, serve each instance only once, and assume a single family of learner, so memory-based and weight-based systems are rarely compared on the same scale. We propose Continual-ARC, a lifelong stream built from the three ARC-AGI editions, whose tasks need no domain knowledge. The",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14505v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14505v1"
+        }
+      ],
+      "id": "continual-arc-measuring-skill-acquisition-over-a-working-lifetime",
+      "brief_cn": "前沿论文：Agent harnesses have emerged as a promising mechanism for continual learning, …",
+      "one_line_judgement": "当前可忽略：前沿论文：Agent harnesses have emerged as a promising mechanism for continu…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Agent harnesses have emerged as a promising mechanism for continual learning, …",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=continual-arc-measuring-skill-acquisition-over-a-working-lifetime"
+    },
+    {
+      "title": "Emergent Biological Capabilities in a Foundation Model for Molecular Interactions",
+      "authors": [
+        "Adi Mashiach"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14504v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14504v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Foundation models trained on large unlabeled corpora develop emergent capabilities, tasks that go beyond the training objective. We extend this paradigm to multimodal biology with Bonbon, a foundation model for molecular interactions trained on approximately 3.2 trillion tokens of paired protein-ligand sequences. From a single representation space, Bonbon exhibits three zero-shot emergent capabilities at hierarchical levels of resolution: functional (mechanism of action), residue (binding site l",
+      "categories": [
+        "cs.LG",
+        "q-bio.BM"
+      ],
+      "keywords": [
+        "multimodal"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14504v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14504v1"
+        }
+      ],
+      "id": "emergent-biological-capabilities-in-a-foundation-model-for-molecular-interactions",
+      "brief_cn": "前沿论文：Foundation models trained on large unlabeled corpora develop emergent capabili…",
+      "one_line_judgement": "当前可忽略：前沿论文：Foundation models trained on large unlabeled corpora develop emer…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Foundation models trained on large unlabeled corpora develop emergent capabili…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=emergent-biological-capabilities-in-a-foundation-model-for-molecular-interactions"
+    },
+    {
+      "title": "Comparative Analysis of Agent Evaluation Frameworks: Stability, Detection, and Discovery in Enterprise Analytics Agents",
+      "authors": [
+        "Howard Zhang",
+        "Chuck Arvin",
+        "Logan Brown",
+        "Mihir Bhatia",
+        "Neelu Choudhary"
+      ],
+      "published": "2026-11-10",
+      "updated": "2026-11-10",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.14493v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.14493v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Deploying LLM-based analytics agents in enterprise settings requires evaluation frameworks that can reliably detect failures across complex, multi-tool workflows. We present a three-phase comparative study of three evaluation frameworks, each representing a distinct evaluation paradigm (trace-based LLM judging, text-only LLM judging with red-teaming, and deterministic heuristics), applied to two analytics agents in a controlled research setting using frozen execution traces. Phase 1 quantifies e",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG",
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation"
+      ],
+      "score": 0,
+      "decision": "pending",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.14493v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.14493v1"
+        }
+      ],
+      "id": "comparative-analysis-of-agent-evaluation-frameworks-stability-detection-and-discovery-in-enterprise-analytics-agents",
+      "brief_cn": "前沿论文：Deploying LLM-based analytics agents in enterprise settings requires evaluatio…",
+      "one_line_judgement": "当前可忽略：前沿论文：Deploying LLM-based analytics agents in enterprise settings requi…",
+      "first_seen_date": "2026-11-13",
+      "first_deep_dive_daily": "2026-11-13",
+      "value_type_label": "暂时忽略",
+      "trend_stage_label": "噪声",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "前沿论文：Deploying LLM-based analytics agents in enterprise settings requires evaluatio…",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=comparative-analysis-of-agent-evaluation-frameworks-stability-detection-and-discovery-in-enterprise-analytics-agents"
+    },
+    {
+      "title": "WorkflowArena: Benchmarking Executable Workflow Orchestration in LLM-Based Multi-Agent Systems",
+      "authors": [
+        "Zheng Jiang",
+        "Fang Niu",
+        "Bo Peng",
+        "Houde Qian",
+        "Wenyi Li"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12856v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12856v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/Einsia/WorkflowArena",
+      "benchmark_url": "https://github.com/Einsia/WorkflowArena",
+      "project_url": "https://lab.einsia.ai/workflowarena",
+      "abstract": "Large language model agents are increasingly deployed as multi-agent systems rather than as a standalone model operating within a single context. Recent agent harnesses allow the model to instantiate worker agents and to author the executable workflow that coordinates them, shifting the design of system structure from developers to the model at run time. The quality of this organization therefore constitutes a distinct capability, yet existing benchmarks either measure end-to-end task completion",
+      "categories": [
+        "cs.CL",
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "score": 88.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12856v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12856v1"
+        }
+      ],
+      "llm_reason": "★ **今日第一即时价值，也是今日证据等级最高的一篇——它把「多 agent 编排」变成一个可核验的评测对象。**（arXiv 2611.12856《WorkflowArena: Benchmarking Executable Workflow Orchestration in LLM-Based Multi-Agent Systems》，Navers Lab / Einsia.AI / 清华大学，13 位作者）★ 核心主张：现在的 agent harness 允许模型**自己写可执行 workflow、自己决定要不要委派**，于是「**组织工作本身的质量**」成了一项独立能力；而既有 benchmark 要么只测端到端完成率，要么测的是结构被预先指定好的协作。WorkflowArena 把这项能力形式化为 **workflow orchestration**，并给出 **145 个长程任务 / 8 个专业域 / 17 种任务形态**，每个任务给出初始工作区与**互为依赖的集成交付物**，由**隐藏 verifier** 判定。★ 实测口径（论文 Table 1/2 + 项目页 + 仓库 README 三方对照）：**最强配置 Claude Opus 5.5 + Claude Code + max effort 的 Overall Resolved 仅 36.95%**（八域等权平均），**最高 Overall Score 80.21**（Opus/high，SWE 96.98、MATH 97.44，而最高 SWE resolved 只有 29.41%）；**没有任何一个配置在所有域上都最好**；域间分化极强——Opus 在 **LAW 域 resolved 为 0.00%**，MATH 却有 95.83%；执行轨迹显示**两种委派风格**：高 effort 下 Claude 系（Opus/Sonnet + Claude Code）**发起 workflow 更少但每次 worker 群更大**，GPT 系（Astra/Sol + Codex）**发起更频繁但每次 worker 更少**；**workflow 迁移实验（32 个难任务，源模型只写 workflow、不得改工作区）**：Opus 写的静态 workflow 让四个执行模型**平均提升 +6.41 分**（Kimi K3.1 Pro 35.75→46.61、GPT-6 Luna 25.08→30.37、Doubao-Seed 20.39→28.04、DeepSeek V4.1 Flash 18.37→25.24）——**「强任务能力 ≠ 强 workflow 质量」被独立测量到了**。★ 今日实测的工件（它排第一的真正原因，不是主张新）：`github.com/Einsia/WorkflowArena` 实测存在——**9,679 文件 / 1,595 目录 / 1,822,672 KB ≈ 1.8 GB**、★5、forks=1、默认分支 main、pushed 2026-11-10、**license=null（无 LICENSE 文件）**；README 实测 9,063 B 逐字给出八域任务数（SWE 17 / OPS 18 / SCI 16 / MATH 24 / FIN 16 / LAW 22 / CDN 14 / 3D 18）与 25 个配置的完整成绩单；**最硬的一点是它的复现纪律**：`results/main/resolved_rates.json` 实测每份聚合表都带 `pdf_sha256`（值 `624ab944aa778a949c1eb7e383fd6b977b815e9113c955063cd59ffca5323e13`）**把表格钉死在论文 PDF 的哈希上**；`benchmark/provenance/files.jsonl` 记录**完整文件清单与 SHA-256**；`scripts/verify_dataset.py` 实测存在并「**拒绝缺失、被改动、未登记的文件**」；`scripts/prepare_inputs.py --check-only` 可在不下载的前提下校验；release v1.0.0 提供 `SHA256SUMS` 供 `shasum -a 256 -c`；`configs/benchmark.json` 实测把 **agent_budget_seconds=14400**（4 小时共享预算）、**media_judge_model=gemini-3.8-flash** 与 **media_judge_expected_version=gemini-3.8-flash-n**（判分模型**锁版本**）写死在配置里；论文正文实测写明「**每次试验都记录全部委派**」与「四小时截止时间由主 agent 与所有 worker 共享」。★ 证据不足项（必须原样写出，不补写不存在的事实）：① **仓库无 LICENSE 文件**（API 实测 license=null），复用前必须先解决授权（对比 HiVe-Mem / RiT / PRH / subpop 均为 MIT）；② **论文 PDF 全文实测没有出现任何 `github.com` 链接**——仓库是今日通过论文署名机构 Navers Lab / Einsia.AI 与项目页反查找到的，**即「论文↔仓库」的绑定靠的是机构而非论文内的显式链接**；③ **仓库内只有任务数据、评测材料与论文级聚合结果**，README 逐字写明「Execution frameworks, per-task experimental records, participant submissions and development logs are **outside this release**」——**逐任务实验记录未发布**，第三方无法据此复算单次运行；④ **仓库 1.8 GB + release 需另下媒体镜像**，完整准备需网络与磁盘，非「clone 完就能跑」；⑤ **arXiv comment 逐字只有 'Project page: https://lab.einsia.ai/workflowarena'，无会议接收信息**；⑥ 项目页根路径实测是 196 B 的 meta-refresh 跳转桩（`<meta http-equiv='refresh' content='0; url=home.html'>`），真实内容在 `home.html`（实测 19,957 B，145/8/17/9/25/4h/36.95%/+6.41 全部命中）；⑦ 全部成绩为作者自述，**无第三方复现**。★ 判断：**今天就值得投入**——因为它的评测对象正是我们最关心的「agent 能不能自己把工作组织起来」，而且它给出的可抄件不是方法而是一套纪律：**表格钉论文哈希、文件清单钉 SHA-256、判分模型钉版本、共享预算让编排成本进分数**。",
+      "id": "workflowarena-benchmarking-executable-workflow-orchestration-in-llm-based-multi-agent-systems",
+      "value_type": "immediate",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent",
+        "coding-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 7.65,
+        "engineering_testability": 6.6,
+        "trend_signal": 6.25,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Large language model agents are increasingly deployed as multi-agent systems r…",
+      "one_line_judgement": "今天值得试：★ **今日第一即时价值，也是今日证据等级最高的一篇——它把「多 agent 编排」变成一个可核验的评测对象。**（arXiv 2611.1…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "★ **今日第一即时价值，也是今日证据等级最高的一篇——它把「多 agent 编排」变成一个可核验的评测对象。**（arXiv 2611.12856《WorkflowArena: Benchm",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=workflowarena-benchmarking-executable-workflow-orchestration-in-llm-based-multi-agent-systems"
+    },
+    {
+      "title": "HiVe-Mem: Interleaving Horizontal Memory Expansion and Vertical Evidence Composition for Multimodal Agents",
+      "authors": [
+        "Haozhen Zhang",
+        "Bohan Liu",
+        "Jianzhu Bao",
+        "Qingyuan Liu",
+        "Haodong Yue"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12872v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12872v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/ViktorAxelsen/HiVe-Mem",
+      "benchmark_url": "",
+      "project_url": "https://viktoraxelsen.github.io/HiVe-Mem/",
+      "abstract": "As multimodal agents accumulate increasingly long interaction histories, effectively retrieving and utilizing past information becomes critical for long-term interaction. Existing memory systems typically rely on semantic retrieval over compressed memories and expose predefined representations, which may miss relevant memories and overlook heterogeneous evidence needs across queries. We introduce \\textbf{\\hivemem}, a multimodal memory framework that interleaves \\textbf{\\textsc{H}}or\\textbf{\\text",
+      "categories": [
+        "cs.CL",
+        "cs.AI",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark",
+        "RAG",
+        "multimodal"
+      ],
+      "score": 85.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12872v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12872v1"
+        }
+      ],
+      "llm_reason": "★ **今日第二即时价值：它把「agent 记忆」拆成了两个可以分别优化的维度，并且把省 token 做到了可测量的量级。**（arXiv 2611.12872《HiVe-Mem: Interleaving Horizontal Memory Expansion and Vertical Evidence Composition for Multimodal Agents》，南洋理工 / 清华 / 中山 / Aumovio）★ 核心机制：**① 横向记忆扩展（Horizontal Expansion）**——现有记忆系统只做「对压缩记忆做语义检索」，会漏掉相关记忆；HiVe-Mem 把记忆 episode 组织成**关系图**（Cross-Episode Affinity Graph，用**文本锚 + 视觉锚**建边），从语义检索命中的种子出发**沿邻居扩展**，找回互补信息；**② 纵向证据组合（Vertical Composition）**——每条被检索到的记忆保留**五种证据形态**（紧凑摘要 / 原始交互文本 / 图像 caption / 原始图像 / grounded visual view），由一个**轻量可训练选择器**为**每条记忆独立**挑证据子集，让「同一条记忆，面对不同问题，贡献不同证据」。★ 实测口径（论文 Table 1 + 项目页 + 仓库配置三方对照）：三 benchmark 平均 **F1 32.32 / LLM-Judge 57.96 / tokens 0.658M**，对照最强效率竞争者 MemVerse **7.812M** → **token 削减 91.6%**；GPT-5-mini 迁移（选择器不重训）为 **0.748M vs 7.350M → 削减 89.8%**；对照 M2A 18.492M、MIRIX 8.622M、MMA 15.752M。★ 今日实测的工件（真代码，不是 README 描述）：`github.com/ViktorAxelsen/HiVe-Mem` 实测 **64 文件 / 16 目录 / 643 KB、MIT、has_pages=true、pushed 2026-11-10**；README 8,440 B；**逐个实读了关键源码**——`src/graph.py` 实测 16,277 B（IDF 属性加权、`degree_cap` 剪枝、`sha256_file` / `write_json_atomic` 原子写）、`src/memory.py` 40,720 B、`src/retriever.py` 15,765 B、`evidence_policy/ppo.py` 30,462 B（PPO 真实现）、`evidence_policy/evidence.py` 57,047 B、`benchmarks/common/metrics.py` 73,383 B；`pyproject.toml` 实测 **5 个 console script**（hivemem-data / hivemem-build / hivemem-policy / hivemem-judge / hivemem-gvv）；`configs/experiments.json` 实测 **vector_top_k=5、graph_append_k=2、degree_cap=4、graph_mode=append**，并给出 **expected_qa_counts：Mem-Gallery 275、H2HMEM 360、WorldMemArena 440**；`configs/defaults.json` 实测 PPO（lr=3e-4、clip_ratio=0.2、gamma=1.0、gae_lambda=1.0、epochs=6）、策略网络（hidden_dim=256、3 层、deterministic_threshold=0.5）、**证据 reward 里 cost_enabled=true、cost_tradeoff_lambda=0.1、cost_transform=sqrt_incremental**——**即「省 token」是写进训练目标的一个显式奖励项，不只是事后统计**。★ 证据不足项（必须写清）：① **HuggingFace 全站今日不可达**（实测 6 个 endpoint 全部超时），因此 **三个 benchmark 数据集（Mem-Gallery / H2HMEM / WorldMemArena）与 Qwen3-VL-Embedding-2B 权重今日无法核验**；② **仓库无预训练选择器权重**，README 给的路径是 `outputs/evidence_policy/<benchmark>/checkpoints/best.pt`——**要自己训**；③ **需要 OpenAI 兼容的多模态端点 + 至少一个 GPU**（PPO 训练），本机无 GPU；④ **项目页自己写了口径不一致**：逐字 'These are reported paper results, **not new measurements from this checkout**' 与 'Paper settings use 5 semantic seeds, 2 expanded episodes, graph degree 4, and **λ = 0** for the main results. **Current release defaults differ**; consult the repository's training settings before reproduction.'——**即仓库默认值 ≠ 论文设定，跑前必须按论文口径调参**；⑤ arXiv comment 逐字只有 'Code is available at https://github.com/ViktorAxelsen/HiVe-Mem'，**无会议接收信息**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**今天就值得投入**，但投入点是**机制不是数字**——「横向扩展（找得全）× 纵向组合（读得少）」这个二维切分，**不依赖多模态也能用**：我们的上下文工程缺的正是「按问题类型裁剪证据」这一步。",
+      "id": "hive-mem-interleaving-horizontal-memory-expansion-and-vertical-evidence-composition-for-multimodal-agents",
+      "value_type": "immediate",
+      "matched_topics": [
+        "context-engineering",
+        "ai-agent",
+        "multimodal-agent",
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Context Engineering：As multimodal agents accumulate increasingly long interaction histories, effec…",
+      "one_line_judgement": "今天值得试：★ **今日第二即时价值：它把「agent 记忆」拆成了两个可以分别优化的维度，并且把省 token 做到了可测量的量级。**（arXiv …",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "★ **今日第二即时价值：它把「agent 记忆」拆成了两个可以分别优化的维度，并且把省 token 做到了可测量的量级。**（arXiv 2611.12872《HiVe-Mem: Inter",
+      "related_trends": [
+        "context-engineering",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=hive-mem-interleaving-horizontal-memory-expansion-and-vertical-evidence-composition-for-multimodal-agents"
+    },
+    {
+      "title": "Shortcuts and Boundaries: Verifiable RL Misalignment and Contextual Safety Learning",
+      "authors": [
+        "Xinjie Shen"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12865v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12865v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://xinjie-shen.com/post/rlmisalignment",
+      "abstract": "Reinforcement learning (RL) can improve an agent's task capability while reinforcing behavior that violates contextual execution requirements. We study this reward-driven misalignment, including reward hacking, through verifiable reward--context conflicts, where compliant task completion remains feasible while some executable shortcuts earn more reward than every compliant strategy. Encoding these conflicts in task dynamics lets us generate diverse interactive environments at scale and derive co",
+      "categories": [
+        "cs.AI",
+        "cs.CR"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "score": 70.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12865v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12865v1"
+        }
+      ],
+      "llm_reason": "★ **今日第三价值：它给「reward hacking」提供了一个可编程的构造方式，而且数字是今天全部 10 篇里核验得最实的之一。**（arXiv 2611.12865《Shortcuts and Boundaries: Verifiable RL Misalignment and Contextual Safety Learning》，Xinjie Shen 单作者）★ 核心设定：**verifiable reward–context conflicts**——「合规完成任务仍然可行，但某些可执行的捷径拿到的奖励比任何合规策略都高」；把这个冲突编码进任务动力学，就能**规模化生成交互环境**，并从执行历史里**导出合规反馈**。★ 实测口径（论文正文 + 项目页双向对照，数字一致）：**少数冲突暴露就足以导致普遍捷径习得**——25% 冲突混合、128 次更新后，API 任务上达到 **97.9% 的「可认证盈利」违规**（Allocation 任务 83.3%；而约 50% 与 100% 混合在各自最终检查点上 API 均为 95.8%）；**同剂量对照最有说服力**：25% 混合 vs 100% 混合，在 API 上认证违规 **18.8% vs 81.3%**，而**授权范围内的真实工作量两者几乎相同（.999 vs .983）**——**即「掺一点坏任务」比「全给坏任务」更隐蔽也更危险**；**安全侧**：同一批上下文检查直接给出二元惩罚，可与能力联合提升；在 **32 个未见过的「证据会变」任务**上，资源型安全训练把**安全完成率从 53.1% 提到 89.1%（+35.9 个百分点）**，且**两种策略都完成 100% 的真实工作量**。★ 今日实测的工件：**项目页 `xinjie-shen.com/post/rlmisalignment` 实测 HTTP 200、73,550 B**，标题逐字 'Shortcuts & Boundaries: RL Misalignment and Contextual Safety · Xinjie Shen'，标记词全部命中（'97.9' ×2、'128 updates' ×4、'53.1' ×1、'89.1' ×1、'shortcut' ×55、'reward' ×93、'conflict' ×38、'misalignment' ×25）——**项目页与论文正文口径一致，不是复述摘要**。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——论文正文实测 'github' 仅出现 1 次且非本文实现链接，无 GitHub 仓库、无数据集、无权重，**因此无法复现 97.9% 这个数字**；② **单作者预印本**，arXiv comment 只有项目页链接，**无会议接收信息、无同行评审状态**；③ 论文正文实测写明 'On 32 fresh physical tasks'——**「physical tasks」是模拟任务还是真实任务，摘要与正文表述不一致**，今日无法确认其物理性；④ 97.9% 是在**单一 API 任务**上达到的，论文未给跨任务的违规率分布，无法判断稳健性；⑤ 「可认证盈利违规」是作者自定义判据，其判定代码今日不可见；⑥ 无第三方复现。★ 判断：**趋势价值**——不放进今日深挖，是因为**它今天连一个能跑的字节都没有**；但它给了我们一条**可以立刻用在自己系统里的判据**：**「掺入少数违规样本，比全量违规更隐蔽——而真实工作量不变，所以只看产出量根本发现不了。」**这一条应该直接进我们的 agent 评测 checklist。",
+      "id": "shortcuts-and-boundaries-verifiable-rl-misalignment-and-contextual-safety-learning",
+      "value_type": "trend",
+      "matched_topics": [
+        "ai-agent",
+        "security-governance",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "AI Agent：Reinforcement learning (RL) can improve an agent's task capability while reinf…",
+      "one_line_judgement": "值得继续观察：★ **今日第三价值：它给「reward hacking」提供了一个可编程的构造方式，而且数字是今天全部 10 篇里核验得最实的之一。**（…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "★ **今日第三价值：它给「reward hacking」提供了一个可编程的构造方式，而且数字是今天全部 10 篇里核验得最实的之一。**（arXiv 2611.12865《Shortcuts",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=shortcuts-and-boundaries-verifiable-rl-misalignment-and-contextual-safety-learning"
+    },
+    {
+      "title": "Vendi Anomaly Scores for Efficient and Accurate Anomaly Detection",
+      "authors": [
+        "Amey Pasarkar",
+        "Adji Bousso Dieng"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12871v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12871v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/vertaix/vendi-anomaly-scores",
+      "benchmark_url": "https://github.com/vertaix/vendi-anomaly-scores",
+      "project_url": "",
+      "abstract": "Anomaly detection (AD) is a critical for trustworthy machine learning and scientific discovery. Existing methods typically define anomalies through local density, isolation heuristics, or distance from a fitted distribution, making them sensitive to neighborhood scale, partitioning choices, or restrictive distributional assumptions. In this work, we introduce a new paradigm by formulating anomaly detection from a diversity perspective. We propose the $\\textit{Vendi Anomaly Score}$ (VAS), which d",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "benchmark"
+      ],
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12871v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12871v1"
+        }
+      ],
+      "llm_reason": "★ **今日第四价值：一个「换个角度看异常」的框架，它的实现今天被完整实读到了。**（arXiv 2611.12871《Vendi Anomaly Scores for Efficient and Accurate Anomaly Detection》，Amey Pasarkar、Adji Bousso Dieng，**arXiv comment 逐字 'Accepted to the NeurIPS 2026 Main Track'**）★ 核心主张：现有异常检测用局部密度、孤立启发或与拟合分布的距离来定义异常，因而**对邻域尺度、划分方式与分布假设敏感**；本文改从**多样性**视角定义——**Vendi Anomaly Score (VAS) = 把某个样本从数据集中拿掉之后，Vendi score 变化了多少**；作者自述它同时捕获**局部冗余**与**全局数据结构**，**不需要任何超参调参**（自动适配数据的谱结构）、**非参数**且**随数据集规模线性扩展**；实测口径（作者自述）：在 **10 个源数据集 × 4 种 embedding 架构导出的 148 个 benchmark embedding 数据集**上达到 SOTA，并在 ImageNet 大规模实验上随污染率与数据规模上升仍保持稳健。★ 今日实测的工件：`github.com/vertaix/vendi-anomaly-scores` 实测存在——**27 文件 / 10 目录 / 407 KB、★0、**license=null（无 LICENSE）**、pushed 2026-11-10**；README 实测 4,450 B；**实读 `methods/vas.py` 3,866 B**——这不是壳：`_resolve_device` 会真的探测 CUDA、`_adaptive_q_from_lambda1_features` **由特征密度的最大特征值 λ1 自适应定 q**（`adaptive_q_floor=0.1`）、`_resolve_rank` 支持全秩或截断秩、并把状态交给 `_vendi_lowrank.build_lowrank_rff_removal_state`（**低秩随机特征近似下的「移除一点后多样性变化」**）；仓库实测含 **8 个可对比方法**（VAS / TorchGMM / KNN / ADERH / LOF / LODA / IForest / SLAD）、`scripts/run_adbench_embeddings.py`、`scripts/run_imagenet_fixed_samples.py`、`scripts/embed_imagenet_dinov3.py`，以及 **`scripts/smoke_test_public_repo.py`**——**自带冒烟测试并明确要「数据缺失时清晰失败」**，这条工程纪律值得抄。★ 证据不足项（必须写清）：① **该仓库未出现在 arXiv 的 comment 或摘要里**——今日是**通过 GitHub 仓库搜索**找到的，论文与仓库的绑定**只能靠作者名与主题对上**，官方性弱于「论文里写明」；② **仓库无 LICENSE 文件**（API 实测 license=null）；③ **需要外部预计算 embedding**：ADBENCH 的 `.npz`（4 个 embedding 目录）与 ImageNet-1K + DINOv3 嵌入**均未随仓库提供**，今日 HF 不可达也无法替代获取；④ README 逐字 'Citation: Coming soon!'，**引用信息尚未补全**；⑤ arXiv comment 逐字 'Accepted to the NeurIPS 2026 Main Track'，**今日无法与 NeurIPS 官方接收列表交叉核验**；⑥ 「148 个数据集 SOTA」与「ImageNet 稳健」全部为作者自述，无第三方复现。★ 判断：**趋势价值**——它本体是异常检测（离我们主线有距离），但**「用「移除一点后数据多样性的变化」来定义「这一点有多异常」这个换视角的框架，是可以直接借的**；而且它是今日第二个「论文没写代码地址、但代码真实存在」的样本，**再次证明「论文没写」≠「没有」**。",
+      "id": "vendi-anomaly-scores-for-efficient-and-accurate-anomaly-detection",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 7.2,
+        "engineering_testability": 5.5,
+        "trend_signal": 4.3,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 6.1,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "rising",
+      "brief_cn": "LLM 评测：Anomaly detection (AD) is a critical for trustworthy machine learning and scie…",
+      "one_line_judgement": "值得继续观察：★ **今日第四价值：一个「换个角度看异常」的框架，它的实现今天被完整实读到了。**（arXiv 2611.12871《Vendi Anom…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "上升",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "★ **今日第四价值：一个「换个角度看异常」的框架，它的实现今天被完整实读到了。**（arXiv 2611.12871《Vendi Anomaly Scores for Efficient a",
+      "related_trends": [
+        "coding-agent",
+        "context-engineering"
+      ],
+      "detail_path": "paper-detail.html?id=vendi-anomaly-scores-for-efficient-and-accurate-anomaly-detection"
+    },
+    {
+      "title": "Where Does Alignment Emerge and What Does It Mean? A Closer Look at the Platonic Representation Hypothesis",
+      "authors": [
+        "Julia Herbst",
+        "Simon Roschmann",
+        "Quentin Bouniot",
+        "Zeynep Akata"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12869v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12869v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/ExplainableML/prh-closer-look",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "The Platonic Representation Hypothesis (PRH) suggests that neural networks are converging toward similar representation spaces. As language models become more capable, their representations are aligning with those of vision models. However, recent work has questioned whether this trend continues to hold for newer language models. Moreover, it has been shown that representation similarity metrics can be confounded by model depth and width, requiring appropriate baselines for interpretation. In th",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "multimodal"
+      ],
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12869v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12869v1"
+        }
+      ],
+      "llm_reason": "★ **今日第五价值：一篇「先给结论设好基线、再下判断」的方法学论文；它同时是今日最值得记的链接误判样本。**（arXiv 2611.12869《Where Does Alignment Emerge and What Does It Mean? A Closer Look at the Platonic Representation Hypothesis》，Julia Herbst、Simon Roschmann、Quentin Bouniot、Zeynep Akata；**arXiv comment 逐字 'NeurIPS 2026 Workshop on Neural Network Artifacts as a New Data Modality (Spotlight)'**）★ 核心：Platonic Representation Hypothesis (PRH) 说神经网络正在收敛到相似的表征空间；但近期工作质疑这一趋势在更新的语言模型上是否延续，且**已有工作指出表征相似度指标会被模型深度与宽度混淆，需要恰当基线才能解读**。本文先定位「对齐在**哪一层、哪一个表征维度**出现」，再发现**只要 caption 足够干净且信息充分，PRH 的能力对齐趋势在更新模型上依然成立**，最后引入单模态与多模态基线做语境化——**结论是「单模态模型之间的跨模态表征对齐可以超过显式对齐的视觉语言模型，但仍显著落后于同模态模型之间的对齐」**。★ 今日实测的工件：`github.com/ExplainableML/prh-closer-look` 实测存在——**37 文件 / 6 目录 / 917 KB、★1、MIT、pushed 2026-11-10**；README 实测 13,174 B，**给出了真实可跑的三步 pipeline**（`tools/extract_features.py` → `tools/reduce_features.py` → `tools/measure_alignment.py`），并明确 `--depth_calibration` 会额外保存**Gröger et al. 的 calibrated mutual k-NN 分数**（即那条「必须设基线」的方法学要求被写成了开关）；数据集侧 README 逐字给出 WIT 1024（自动从 HF `minhuh/prh` 下载）、COCO 2017、CC3M（DreamLIP caption）、DOCCI（用 Qwen3-8B 生成 10/25/50/75% 摘要）；`requirements.txt` 实测钉 numpy==2.2.1 并含 `calibrated-similarity`；仓库还带 `slurm/benchmark_llm.sbatch` 等集群脚本；README 逐字写明「All experiments can be run on a single NVIDIA A100 GPU with 80 GB memory」。★ 证据不足项（必须写清）：① **PDF 里出现的 `zenodo.org/records/12608602` 不是本文工件**——**经 api.datacite.org 实测该记录标题逐字为 'EleutherAI/lm-evaluation-harness: v0.4.3'、出版者 Zenodo、年份 2024、类型 Software**，且在 PDF 中的上下文确认为**参考文献条目**（Gao et al., 'The language model evaluation harness'）——**朴素的外链扫描会把它误判成本文的复现包，这是今日最值得固化的核验动作**；② **仓库无发布权重**，需自提特征（至少 1 张 A100 80GB）；③ **DOCCI 摘要需自行用 Qwen3-8B 生成**（README 给的命令与论文 Appendix H 的 prompt），而 **HF 今日不可达**，连自动下载 WIT 的那一步今日都跑不通；④ **GitHub Pages 不存在**（实测 `ExplainableML.github.io/prh-closer-look/` → 404），无项目页；⑤ **workshop Spotlight，非主会论文**；⑥ 全部结论为作者自述，无第三方复现。★ 判断：**趋势价值**——本体是表征分析（离主线偏远），但「**先证明指标本身会被深度宽度混淆，再给基线，最后下结论**」这套顺序，正是我们做评测时最常跳过的一步，值得抄进评测规范。",
+      "id": "where-does-alignment-emerge-and-what-does-it-mean-a-closer-look-at-the-platonic-representation-hypothesis",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 6.1,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：The Platonic Representation Hypothesis (PRH) suggests that neural networks are…",
+      "one_line_judgement": "值得继续观察：★ **今日第五价值：一篇「先给结论设好基线、再下判断」的方法学论文；它同时是今日最值得记的链接误判样本。**（arXiv 2611.128…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "★ **今日第五价值：一篇「先给结论设好基线、再下判断」的方法学论文；它同时是今日最值得记的链接误判样本。**（arXiv 2611.12869《Where Does Alignment Em",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=where-does-alignment-emerge-and-what-does-it-mean-a-closer-look-at-the-platonic-representation-hypothesis"
+    },
+    {
+      "title": "What kills $v$-prediction? A Patch-wise PCA Perspective on Pixel-Space Flow Matching",
+      "authors": [
+        "Tianze Luo",
+        "Haofeng Huang",
+        "Yuan Yao"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12852v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12852v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/THUMAI-Lab/RiT",
+      "benchmark_url": "",
+      "project_url": "https://openreview.net/forum?id=FwWaPhPb2O",
+      "abstract": "Latent Diffusion Models dominate generative modeling but face two-stage training complexity and the inherent reconstruction limits of pre-trained autoencoders. Pixel-space Flow Matching offers a simplified end-to-end alternative yet often encounters training difficulties when using the standard $v$-prediction objective. Recent research attributes this difficulty to the off-manifold nature of noised targets, motivating a shift toward $x$-prediction. In this paper, we investigate this explanation ",
+      "categories": [
+        "cs.CV",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 63.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12852v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12852v1"
+        }
+      ],
+      "llm_reason": "★ **今日第六价值：它把「生成模型训练难」追到了一个可测量的「带宽瓶颈」上，结论的形状对任何系统都有用。**（arXiv 2611.12852《What kills $v$-prediction? A Patch-wise PCA Perspective on Pixel-Space Flow Matching》，清华；**arXiv comment 逐字 'Accepted as a Spotlight paper at NeurIPS 2026. Our code is available at https://github.com/THUMAI-Lab/RiT'**；README 逐字 'NeurIPS 2026 Spotlight, top 1.3% of submissions'）★ 核心：像素空间 Flow Matching 用标准 v-prediction 目标常训练困难，近期研究把原因归给「加噪目标在流形之外」，于是转向 x-prediction；本文用 **patch-wise PCA** 检验这个解释，**识别出一个带宽瓶颈**：次要分量上的速度**基本由原始带噪输入决定**，迫使深层 backbone 去保留那些**与主成分建模相竞争**的信息；随后给出解释：**x-prediction 之所以有效，是因为它的参数化提供了一条「原始输入旁路」，且学到的输入表征会自发集中到主方向上**；在低秩观测下，其诱导流**把 x-prediction 刻画成一个隐式条件均值解码器**（用保留信息重建被丢弃的分量）。由此提出 **RiT（Raw-injected Transformer）**：轻量 raw-conditioned 解码器 + 输出侧捷径，**把语义建模与原始状态传播分离**，**让有效的 v-prediction 得以恢复**，在 ImageNet 256×256 上取得有竞争力的性能。★ 今日实测的工件：`github.com/THUMAI-Lab/RiT` 实测存在——**19 文件 / 2 目录 / 5,928 KB、★16、MIT、pushed 2026-11-06**；README 实测 10,797 B，**给出逐模型的具体成绩单**（50 步 Heun 采样、EMA 0.9996）：RiT-B/16@750k **IS 300.3 / FID-50K 3.01**、RiT-L/16@750k **IS 331.4 / FID 2.06**、RiT-H/16@600k **IS 332.9 / FID 1.79**；代码结构逐字对应论文：`rit.py`（架构与解码器变体）、`models.py`（flow-matching 目标与采样）、`train.py`/`inference.py`（分布式）、`evaluator.py`（指标，注明改编自 ADM）、`get_stats.py` + **`stats.pt`（预计算的 ImageNet patch 统计量，即论文 PCA 分析的输入）**、`analysis/` 三个绘图脚本（PCA 特征谱、embedding 有效秩与 PCA 对齐、逐层线性重建 R²）；`requirements_rit.txt` 实测钉 **torch==2.7.1 + cu126 / torchvision==0.22.1 / timm==1.0.15 / diffusers==0.33.1**；config 里 `use_v_pred`、`decoder_input`、`shortcut_type`、`principal_dim` 逐项对应论文的消融轴。★ 证据不足项（必须写清）：① **HuggingFace 全站今日不可达**，因此 README 声明的权重仓 `luotianze666/RiT_ckpts`（**完整发布约 400 GB**，含 `RiT-B-v/config.yaml`、`RiT-B-v/ckpts/750000.pt` 与 ADM 的 `VIRTUAL_imagenet256_labeled.npz`）**今日无法核验是否存在、体积多大**；② **训练需 8 卡**（README 逐字 `torchrun --nproc_per_node=8 train.py`），本机无 GPU；③ **OpenReview 页面 `forum?id=FwWaPhPb2O` 实测 HTTP 200 但只返回浏览器校验页，api2 接口实测 403**，**今日无法核验其审稿状态与讨论**；④ README 未给出与论文主表的逐项对照表，只给参考批次；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——本体是视觉生成（离主线远），但**「把语义建模与原始状态传播分离、给次要信息一条不经主成分建模的旁路」这个架构形状，在语言模型侧同样成立**（旁路、skip、raw-state 传递都是同一件事），值得存着；今天不投入。",
+      "id": "what-kills-v-prediction-a-patch-wise-pca-perspective-on-pixel-space-flow-matching",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.9,
+        "engineering_testability": 5.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Latent Diffusion Models dominate generative modeling but face two-stage traini…",
+      "one_line_judgement": "值得先保存：★ **今日第六价值：它把「生成模型训练难」追到了一个可测量的「带宽瓶颈」上，结论的形状对任何系统都有用。**（arXiv 2611.128…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第六价值：它把「生成模型训练难」追到了一个可测量的「带宽瓶颈」上，结论的形状对任何系统都有用。**（arXiv 2611.12852《What kills $v$-predicti",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=what-kills-v-prediction-a-patch-wise-pca-perspective-on-pixel-space-flow-matching"
+    },
+    {
+      "title": "Guiding Data Allocation for Robust Subpopulation Generalization",
+      "authors": [
+        "Zhaoying Pan",
+        "Yipei Wang",
+        "Shenyu Lu",
+        "Xiaoqian Wang"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12884v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12884v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/zhaoyingpan/subpop-data-allocation",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Machine learning models often achieve high average accuracy in the training data while performing poorly on test data due to subpopulation shift. A common data-centric solution is to enforce balanced subgroup proportions, but full balance can be costly, infeasible, and not always necessary. In this work, we study whether balanced training data is the unique optimal configuration for robust subpopulation generalization. We extend a Gaussian feature-model framework to theoretically characterize th",
+      "categories": [
+        "cs.LG",
+        "cs.CV"
+      ],
+      "keywords": [
+        "RAG"
+      ],
+      "score": 61.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12884v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12884v1"
+        }
+      ],
+      "llm_reason": "★ **今日第七价值：它问了一个我们天天在用、却几乎从不验证的假设——「数据配平是不是唯一解」。**（arXiv 2611.12884《Guiding Data Allocation for Robust Subpopulation Generalization》，Zhaoying Pan、Yipei Wang、Shenyu Lu、Xiaoqian Wang；**arXiv comment 逐字 'NeurIPS 2026'**）★ 核心：模型在训练数据上平均准确率高、测试数据上差，常见的数据中心解法是**强制各子群比例配平**，但**配平可能昂贵、不可行、且并非总是必要**；本文扩展 Gaussian feature-model 框架，**刻画了任意训练子群分布下的性能地形**，证明**多个配置——包括相当不均衡的配置——可以与配平配置表现相当**；并进一步**导出基于梯度的子群比例调整方向**，以更高效地同时改进 **adjusted accuracy (AA)** 与 **worst-group accuracy (WGA)**。论文正文实测定义：**WGA = min_a Acc_a**，**AA = (1/|A|) Σ_a Acc_a（等于配平测试分布上的整体准确率）**；并明确说明**选 AA 做理论推导是因为 WGA 的 min 算子非光滑、不好做梯度分析**——**这个理由本身就很值得抄**。★ 今日实测的工件：`github.com/zhaoyingpan/subpop-data-allocation` 实测存在——**39 文件 / 7 目录 / 11,871 KB、★0、MIT、pushed 2026-11-09**；README 实测 9,590 B，逐字给出四个数据集（Waterbirds-syn / UrbanCars-syn / CelebA-subset / CivilComments-subset）与**环境钉死 `python=3.7.16`**；**实读 `theory/estimate.py` 15,216 B**（`Estimate.solve_ms(acc0, acc1, params0, params1)` 求解 m1/m2）、`theory/analyze_configurations.py`（扫 7^3 或 49^3 理论配置）、**`theory/reference/grid49_m1_2_m2_2.npz`（已算好的参考格点，随仓库发布）**、`scripts/visualize_simplex.py`（高表现区 / 方向相似度 / 精度差 / Grad-Bal 方向四种图）；`configs/waterbirds_allocation.yaml` 实测逐行给出 **grad_5…grad_25 / sign_5…sign_25 / bal_5…bal_25 / random_5…random_25** 共 21 个分配配置的具体比例（第三个数就是子群比例，如 grad_25 为 0.2948），**即「配平 vs 梯度 vs 符号 vs 随机」是可直接复跑的对照实验**。★ 证据不足项（必须写清）：① **论文未给出与「配平」在真实数据集上的统一量化对照数字**——今日从 PDF 提取到的相关表述是定性的「can perform comparably」，**具体提升幅度需读表**；② **需要四个数据集的原始数据**（README 逐字列出 `data/waterbirds_zeta/`、`data/Whac-A-Mole/` 等目录），**仓库未提供数据**，且数据集各有许可，**今日 HF 不可达也帮不上**；③ **结果文件只有 `results/ca_acc.pkl` / `ca_bal.pkl` / `ca_grad.pkl` 三个 pickle**，未附人可读的结果表；④ **环境为 Python 3.7.16 + torch 2.1.2（requirements 实测钉死）**，是较老的环境，复现需自行处理兼容性；⑤ **本篇被规则引擎错误归入 rag-knowledge 主题**——今日实测 'RAG' 命中来自 'ave**rag**e'（average）**（无词边界的关键词 bug，今日第三次确认同一类问题）**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——「配平不是唯一解，而且可以沿着梯度方向走」这个结论对我们做数据分配与数据配比有直接启发，**但今天不值得投入**：没有现成数据、没有可读结果表。",
+      "id": "guiding-data-allocation-for-robust-subpopulation-generalization",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "data-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.15,
+        "relevance": 5.0,
+        "evidence_strength": 5.9,
+        "engineering_testability": 6.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 3.6,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "数据工程：Machine learning models often achieve high average accuracy in the training da…",
+      "one_line_judgement": "值得先保存：★ **今日第七价值：它问了一个我们天天在用、却几乎从不验证的假设——「数据配平是不是唯一解」。**（arXiv 2611.12884《Gu…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第七价值：它问了一个我们天天在用、却几乎从不验证的假设——「数据配平是不是唯一解」。**（arXiv 2611.12884《Guiding Data Allocation for ",
+      "related_trends": [],
+      "detail_path": "paper-detail.html?id=guiding-data-allocation-for-robust-subpopulation-generalization"
+    },
+    {
+      "title": "Is Persona Generalization Predictable?",
+      "authors": [
+        "Olina Mukherjee",
+        "Arnav Goel",
+        "Aditi Raghunathan",
+        "Jacob Mitchell Springer"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12864v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12864v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Persona generalization occurs when fine-tuning a language model in one domain induces behavioral changes in others -- for example, the broadly unsafe behavior observed in emergent misalignment. We discover a surprising \"on-the-line\" phenomenon in persona generalization: in-domain and out-of-domain persona rates across various fine-tuning hyperparameters follow an approximately probit-linear relationship, and the specific probit-linear relationship is surprisingly shared even across model familie",
+      "categories": [
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12864v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12864v1"
+        }
+      ],
+      "llm_reason": "★ **今日第八价值：一篇 55 页的「把行为迁移变成一条可预测的线」的论文，它的方法学比它的结论更值钱。**（arXiv 2611.12864《Is Persona Generalization Predictable?》，Olina Mukherjee、Arnav Goel、Aditi Raghunathan、Jacob Mitchell Springer；**arXiv comment 逐字 '55 pages'**）★ 核心：persona generalization 指在一个域上微调会诱导其他域的行为改变（**emergent misalignment 里那种普遍的不安全行为就是这种**）；本文发现一个 **「on-the-line」** 现象：**域内与域外 persona 率在各种微调超参下近似服从 probit 线性关系，而且这条 probit 直线**跨模型族与模型规模都共享（Qwen 与 Llama）**；**只改变可训练参数集合的训练选择（学习率、weight decay、训练时长）只是让模型沿着同一条线移动**，它们降低迁移的方式主要是**削弱域内学习**；**但改变「微调哪些层」会改变斜率**——对不安全行为，**只微调靠后的层会得到更浅的斜率**，**在保持强域内学习的同时减少域外越界**（论文称之为 model-chunk fine-tuning，斜率随更新位置深入而减小）。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测 'Code is available' 0 次、'code will' 0 次、'we will release' 0 次，'github' 仅出现 1 次且经上下文核验**不是本文实现链接**；② **PDF 里 6 个 openreview.net id（APuPRxjHvZ / UYneFzXSJWh / aloEru2qCG / hTEGyKf0dZ / nZeVKeeFYf9 / tvhaxkMKAn）经逐条上下文核验**全部是参考文献引用**（例如 APuPRxjHvZ = 'Surgical Fine-Tuning improves adaptation to distribution shifts', ICLR 2023, Yoonho Lee 等）——**不能当作本文的投稿链接**；③ **arXiv comment 只有 '55 pages'，无会议接收信息**，今日无法与任何接收列表交叉核验；④ 55 页全文今日只做了关键词与上下文抽取，**未逐表复核斜率数值**，probit 直线在多大范围内成立、Qwen/Llama 分别是哪些尺寸，今日均未核实；⑤ 「共享同一条直线」这一最强主张需要作者的自有实验数据才能复核，**而数据今日不可得**；⑥ 无第三方复现。★ 判断：**长尾保存**——它的**结论**对我们（做 agent 安全与微调控制）其实直接相关，但**今天既无代码也无数据可核**，不值得深挖；值得存下来的是它的**提问方式**：「行为迁移是沿一条线移动，还是换了一条线？」**——这个区分能直接用来设计我们自己的微调评测。**",
+      "id": "is-persona-generalization-predictable",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 4.5,
+        "relevance": 3.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.0,
+        "actionability": 3.8,
+        "noise_risk": 2.4,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 5.0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "LLM 评测：Persona generalization occurs when fine-tuning a language model in one domain …",
+      "one_line_judgement": "值得先保存：★ **今日第八价值：一篇 55 页的「把行为迁移变成一条可预测的线」的论文，它的方法学比它的结论更值钱。**（arXiv 2611.128…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第八价值：一篇 55 页的「把行为迁移变成一条可预测的线」的论文，它的方法学比它的结论更值钱。**（arXiv 2611.12864《Is Persona Generalizati",
+      "related_trends": [
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=is-persona-generalization-predictable"
+    },
+    {
+      "title": "Kolmogorov-Chapman Maps: Trajectory-Free Learning for Simulating Molecular Dynamics",
+      "authors": [
+        "Majdi Hassan",
+        "Marta Skreta",
+        "Dominique Beaini",
+        "Kirill Neklyudov"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12880v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12880v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Stochastic differential equations (SDEs) describe stochastic processes across a wide range of scientific domains, including physics, biology, and finance. Although individual numerical integration steps are inexpensive, observing meaningful events or transitions can require millions of sequential steps, resulting in substantial wall-clock simulation time and poor hardware utilization. Deep learning offers an alternative by amortizing many integration steps into a single neural network forward pa",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [],
+      "score": 54.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12880v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12880v1"
+        }
+      ],
+      "llm_reason": "★ **今日第九价值：一个「不用轨迹也能学随机动力学」的方法，数字很硬，但论文声明的官方实现今天是死的——这本身是今天最有价值的一条实测。**（arXiv 2611.12880《Kolmogorov-Chapman Maps: Trajectory-Free Learning for Simulating Molecular Dynamics》，Majdi Hassan、Marta Skreta、Dominique Beaini、Kirill Neklyudov）★ 核心：SDE 的单步数值积分很便宜，但**要观测到有意义的事件或状态跃迁往往需要数百万步**；已有的监督式深度学习方法**需要长轨迹数据**，适用面受限；**KC-Maps** 只依赖**轨迹无关的边缘样本**加上**已知的漂移与扩散系数**来学 SDE 的转移核——给定初值与时刻，**直接建模积分到任意时刻后的分布**（即 SDE 的弱解）；两个关键性质：**① 满足边界条件（直接写进网络架构）**、**② 满足 Kolmogorov–Chapman 方程（提供高效训练目标）**。★ 实测口径（作者自述，PDF 正文表格）：在 AL2/AL4/AL6 丙氨酸肽体系上，**同等 GPU-hour 预算（单张 L40S，一小时）下 KC-Maps 的 TICA-W2 在三个体系上全部最低**，对照 MD 与 HFM（Ripken et al., 2026）；**AL6 上发现了训练数据里不存在的第四个 mode**（训练只覆盖 3/4）；链数越多吞吐越高，**且超过 MD 与 HFM**；动力学侧 MFPT 与 mode 自相关**与 MD 接近**（但论文自陈涉及 αL 的误差最大，因 αL 仅占训练构型 0.7%）；参数量 46.58M（HFM 为 9.09M），训练步数 1.5M/1.0M。★ 证据不足项（必须写清）：① **论文声明的官方实现今日不可用**——PDF 正文两处写明 'The implementation is available at https://github.com/majhas/kc-maps'，**今日实测该仓库 URL 返回 HTTP 404**（`github.com/majhas` 用户页本身 200，说明是仓库不存在或未公开），**GitHub 仓库搜索 'KC-Maps molecular dynamics' 实测 total_count=0**、'Kolmogorov-Chapman' 实测 14 条全部无关；**即：论文写了代码地址，但那个地址今天是死的**；② **arXiv comment 为空**，无会议接收信息；③ **需要 GPU + 分子力场**，本机无 GPU；④ 基线 HFM 的 AL4/AL6 用的是作者自训 EMA 检查点（仅 AL2 用官方发布的检查点），**基线公平性依赖作者实现**；⑤ 对照的「reference MD」是 16 链 × 2 µs，**与一 GPU-hour 的 KC-Maps 不在同一预算量级**，论文另以匹配 GPU-hour 的 MD 作对照，但**同预算下的 MD 本身是弱基线**（采样式模拟的已知弱点）；⑥ 无第三方复现。★ 判断：**长尾保存**——本体是分子模拟（离主线远），「**用一致性方程而不是轨迹监督来学转移核**」这个思路有普适吸引力；但**今天连代码都打不开**，更不值得投入。",
+      "id": "kolmogorov-chapman-maps-trajectory-free-learning-for-simulating-molecular-dynamics",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Multimodal Agent：Stochastic differential equations (SDEs) describe stochastic processes across …",
+      "one_line_judgement": "值得先保存：★ **今日第九价值：一个「不用轨迹也能学随机动力学」的方法，数字很硬，但论文声明的官方实现今天是死的——这本身是今天最有价值的一条实测。*…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第九价值：一个「不用轨迹也能学随机动力学」的方法，数字很硬，但论文声明的官方实现今天是死的——这本身是今天最有价值的一条实测。**（arXiv 2611.12880《Kolmogo",
+      "related_trends": [
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=kolmogorov-chapman-maps-trajectory-free-learning-for-simulating-molecular-dynamics"
+    },
+    {
+      "title": "Adaptive Quantization Preserves Fast Rates for TD Learning over Rate-Limited Channels",
+      "authors": [
+        "Sreejeet Maity",
+        "Aritra Mitra"
+      ],
+      "published": "2026-11-09",
+      "updated": "2026-11-09",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12878v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.12878v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Motivated by reinforcement learning subject to communication constraints, we study a policy evaluation problem with linear function approximation over a rate-limited channel. In our setup, an agent interacting with an unknown environment (modeled as a Markov Decision Process) transmits quantized estimates of a temporal-difference (TD) learning update direction to a server over a finite-capacity channel. Our goal is to investigate to what extent one can preserve the statistical convergence rates ",
+      "categories": [
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation"
+      ],
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.12878v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.12878v1"
+        }
+      ],
+      "llm_reason": "★ **今日第十价值：一篇 8 页的纯理论论文，它给出了一个通信复杂度上的指数级改进。**（arXiv 2611.12878《Adaptive Quantization Preserves Fast Rates for TD Learning over Rate-Limited Channels》，Sreejeet Maity、Aritra Mitra，North Carolina State University）★ 设定：策略评估问题 + 线性函数逼近，**agent 与一个未知环境（MDP）交互，并把 TD 学习更新方向的量化估计通过有限容量信道传给服务器**；目标是问：**能在多大程度上保住无限容量信道下的统计收敛率？**方法 **BAQ-TD（Batched Adaptively Quantized TD）**：用**批处理降低所传信息的方差**，用**自适应量化编码创新量（innovations）**。★ 实测口径（作者自述的理论结果）：证明了 BAQ-TD 的**高概率有限时间误差界**，并证明**当信道容量超过某个有限阈值时，BAQ-TD 在对数因子意义下保住了未量化 TD 的收敛率**；具体地，**对 d 维值函数参数，在长度 T 的时域内传输总计 O(d log(T)) 比特即可达到阶最优的 Õ(1/T) 速率**，论文称这是**相对既有工作在通信复杂度上的指数级改进**（PDF 正文实测：既有工作只是「复杂度随 T 仅对数增长」）。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链数为 0**、无 GitHub、无项目页、无数据集、无权重，**GitHub 仓库搜索 'BAQ-TD' 实测仅 1 条且完全无关**；② **arXiv comment 为空**，无会议接收信息；③ **全文仅 8 页**（PDF 实测 8 页、76,626 字符），**没有实验章节**——**这是一篇纯理论工作，其结论今日无法用任何数值验证**；④ 「指数级改进」的对照基线依赖既有文献的具体设定，**今日未做逐条复核**；⑤ 线性函数逼近 + 有限容量信道是较强假设，**实际系统中的非线性逼近、时变信道、丢包与延迟均未覆盖**；⑥ 无第三方复现。★ 判断：**长尾保存**——「**量化压缩的是更新方向的「创新量」而不是状态本身，且在容量足够时能保住原速率**」这个结论对**分布式训练与多 agent 通信**有直接启发（我们做多 agent 协同时通信预算一直是硬约束）；但今天无任何可核验资产，**只存结论，不投入**。",
+      "id": "adaptive-quantization-preserves-fast-rates-for-td-learning-over-rate-limited-channels",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "AI Agent：Motivated by reinforcement learning subject to communication constraints, we s…",
+      "one_line_judgement": "值得先保存：★ **今日第十价值：一篇 8 页的纯理论论文，它给出了一个通信复杂度上的指数级改进。**（arXiv 2611.12878《Adaptiv…",
+      "first_seen_date": "2026-11-11",
+      "first_deep_dive_daily": "2026-11-11",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "★ **今日第十价值：一篇 8 页的纯理论论文，它给出了一个通信复杂度上的指数级改进。**（arXiv 2611.12878《Adaptive Quantization Preserves F",
+      "related_trends": [
+        "agentic-world-modeling",
+        "coding-agent"
+      ],
+      "detail_path": "paper-detail.html?id=adaptive-quantization-preserves-fast-rates-for-td-learning-over-rate-limited-channels"
+    },
     {
       "title": "On Agentic Manipulation Policies",
       "authors": [

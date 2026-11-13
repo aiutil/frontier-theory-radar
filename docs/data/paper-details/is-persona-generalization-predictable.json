@@ -1,0 +1,133 @@
+{
+  "id": "is-persona-generalization-predictable",
+  "title": "Is Persona Generalization Predictable?",
+  "authors": [
+    "Olina Mukherjee",
+    "Arnav Goel",
+    "Aditi Raghunathan",
+    "Jacob Mitchell Springer"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12864v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12864v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 6.0,
+    "relevance": 3.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 2.4
+  },
+  "score": 58.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第八价值：一篇 55 页的「把行为迁移变成一条可预测的线」的论文，它的方法学比它的结论更值钱。**（arXiv 2611.128…",
+  "one_line_essence": "★ **今日第八价值：一篇 55 页的「把行为迁移变成一条可预测的线」的论文，它的方法学比它的结论更值钱。**（arXiv 2611.12864《Is Persona Generalization Predictable?》，Olina Mukherjee、Arnav Goel、Aditi Raghunathan、Jacob Mitchell Springer；**arXiv comment 逐字 '55 pages'**）★ 核心：persona generalization 指在一个域上微调会诱导其他域的行为改变（**emergent misalignment 里那种普遍的不安全行为就是这种**）；本文发现一个 **「on-the-line」** 现象：**域内与域外 persona 率在各种微调超参下近似服从 probit 线性关系，而且这条 probit 直线**跨模型族与模型规模都共享（Qwen 与 Llama）**；**只改变可训练参数集合的训练选择（学习率、weight decay、训练时长）只是让模型沿着同一条线移动**，它们降低迁移的方式主要是**削弱域内学习**；**但改变「微调哪些层」会改变斜率**——对不安全行为，**只微调靠后的层会得到更浅的斜率**，**在保持强域内学习的同时减少域外越界**（论文称之为 model-chunk fine-tuning，斜率随更新位置深入而减小）。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测 'Code is available' 0 次、'code will' 0 次、'we will release' 0 次，'github' 仅出现 1 次且经上下文核验**不是本文实现链接**；② **PDF 里 6 个 openreview.net id（APuPRxjHvZ / UYneFzXSJWh / aloEru2qCG / hTEGyKf0dZ / nZeVKeeFYf9 / tvhaxkMKAn）经逐条上下文核验**全部是参考文献引用**（例如 APuPRxjHvZ = 'Surgical Fine-Tuning improves adaptation to distribution shifts', ICLR 2023, Yoonho Lee 等）——**不能当作本文的投稿链接**；③ **arXiv comment 只有 '55 pages'，无会议接收信息**，今日无法与任何接收列表交叉核验；④ 55 页全文今日只做了关键词与上下文抽取，**未逐表复核斜率数值**，probit 直线在多大范围内成立、Qwen/Llama 分别是哪些尺寸，今日均未核实；⑤ 「共享同一条直线」这一最强主张需要作者的自有实验数据才能复核，**而数据今日不可得**；⑥ 无第三方复现。★ 判断：**长尾保存**——它的**结论**对我们（做 agent 安全与微调控制）其实直接相关，但**今天既无代码也无数据可核**，不值得深挖；值得存下来的是它的**提问方式**：「行为迁移是沿一条线移动，还是换了一条线？」**——这个区分能直接用来设计我们自己的微调评测。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第八价值：一篇 55 页的「把行为迁移变成一条可预测的线」的论文，它的方法学比它的结论更值钱。**（arXiv 2611.12864《Is Persona Generalization Predictable?》，Olina Mukherjee、Arnav Goel、Aditi Raghunathan、Jacob Mitchell Springe",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第八价值：一篇 55 页的「把行为迁移变成一条可预测的线」的论文，它的方法学比它的结论更值钱。**（arXiv 2611.12864《Is Persona Generalizati",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-02"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12864v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12864v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=is-persona-generalization-predictable",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

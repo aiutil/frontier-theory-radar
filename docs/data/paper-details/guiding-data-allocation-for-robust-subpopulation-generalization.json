@@ -1,0 +1,129 @@
+{
+  "id": "guiding-data-allocation-for-robust-subpopulation-generalization",
+  "title": "Guiding Data Allocation for Robust Subpopulation Generalization",
+  "authors": [
+    "Zhaoying Pan",
+    "Yipei Wang",
+    "Shenyu Lu",
+    "Xiaoqian Wang"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12884v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12884v1",
+  "code_url": "https://github.com/zhaoyingpan/subpop-data-allocation",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 5.0,
+    "evidence": 5.9,
+    "engineering_testability": 6.05,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 61.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第七价值：它问了一个我们天天在用、却几乎从不验证的假设——「数据配平是不是唯一解」。**（arXiv 2611.12884《Gu…",
+  "one_line_essence": "★ **今日第七价值：它问了一个我们天天在用、却几乎从不验证的假设——「数据配平是不是唯一解」。**（arXiv 2611.12884《Guiding Data Allocation for Robust Subpopulation Generalization》，Zhaoying Pan、Yipei Wang、Shenyu Lu、Xiaoqian Wang；**arXiv comment 逐字 'NeurIPS 2026'**）★ 核心：模型在训练数据上平均准确率高、测试数据上差，常见的数据中心解法是**强制各子群比例配平**，但**配平可能昂贵、不可行、且并非总是必要**；本文扩展 Gaussian feature-model 框架，**刻画了任意训练子群分布下的性能地形**，证明**多个配置——包括相当不均衡的配置——可以与配平配置表现相当**；并进一步**导出基于梯度的子群比例调整方向**，以更高效地同时改进 **adjusted accuracy (AA)** 与 **worst-group accuracy (WGA)**。论文正文实测定义：**WGA = min_a Acc_a**，**AA = (1/|A|) Σ_a Acc_a（等于配平测试分布上的整体准确率）**；并明确说明**选 AA 做理论推导是因为 WGA 的 min 算子非光滑、不好做梯度分析**——**这个理由本身就很值得抄**。★ 今日实测的工件：`github.com/zhaoyingpan/subpop-data-allocation` 实测存在——**39 文件 / 7 目录 / 11,871 KB、★0、MIT、pushed 2026-11-09**；README 实测 9,590 B，逐字给出四个数据集（Waterbirds-syn / UrbanCars-syn / CelebA-subset / CivilComments-subset）与**环境钉死 `python=3.7.16`**；**实读 `theory/estimate.py` 15,216 B**（`Estimate.solve_ms(acc0, acc1, params0, params1)` 求解 m1/m2）、`theory/analyze_configurations.py`（扫 7^3 或 49^3 理论配置）、**`theory/reference/grid49_m1_2_m2_2.npz`（已算好的参考格点，随仓库发布）**、`scripts/visualize_simplex.py`（高表现区 / 方向相似度 / 精度差 / Grad-Bal 方向四种图）；`configs/waterbirds_allocation.yaml` 实测逐行给出 **grad_5…grad_25 / sign_5…sign_25 / bal_5…bal_25 / random_5…random_25** 共 21 个分配配置的具体比例（第三个数就是子群比例，如 grad_25 为 0.2948），**即「配平 vs 梯度 vs 符号 vs 随机」是可直接复跑的对照实验**。★ 证据不足项（必须写清）：① **论文未给出与「配平」在真实数据集上的统一量化对照数字**——今日从 PDF 提取到的相关表述是定性的「can perform comparably」，**具体提升幅度需读表**；② **需要四个数据集的原始数据**（README 逐字列出 `data/waterbirds_zeta/`、`data/Whac-A-Mole/` 等目录），**仓库未提供数据**，且数据集各有许可，**今日 HF 不可达也帮不上**；③ **结果文件只有 `results/ca_acc.pkl` / `ca_bal.pkl` / `ca_grad.pkl` 三个 pickle**，未附人可读的结果表；④ **环境为 Python 3.7.16 + torch 2.1.2（requirements 实测钉死）**，是较老的环境，复现需自行处理兼容性；⑤ **本篇被规则引擎错误归入 rag-knowledge 主题**——今日实测 'RAG' 命中来自 'ave**rag**e'（average）**（无词边界的关键词 bug，今日第三次确认同一类问题）**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——「配平不是唯一解，而且可以沿着梯度方向走」这个结论对我们做数据分配与数据配比有直接启发，**但今天不值得投入**：没有现成数据、没有可读结果表。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第七价值：它问了一个我们天天在用、却几乎从不验证的假设——「数据配平是不是唯一解」。**（arXiv 2611.12884《Guiding Data Allocation for Robust Subpopulation Generalization》，Zhaoying Pan、Yipei Wang、Shenyu Lu、Xiaoqian Wang",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第七价值：它问了一个我们天天在用、却几乎从不验证的假设——「数据配平是不是唯一解」。**（arXiv 2611.12884《Guiding Data Allocation for ",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-02"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12884v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12884v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=guiding-data-allocation-for-robust-subpopulation-generalization",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

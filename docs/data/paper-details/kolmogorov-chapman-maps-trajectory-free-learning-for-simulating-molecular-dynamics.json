@@ -1,0 +1,133 @@
+{
+  "id": "kolmogorov-chapman-maps-trajectory-free-learning-for-simulating-molecular-dynamics",
+  "title": "Kolmogorov-Chapman Maps: Trajectory-Free Learning for Simulating Molecular Dynamics",
+  "authors": [
+    "Majdi Hassan",
+    "Marta Skreta",
+    "Dominique Beaini",
+    "Kirill Neklyudov"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12880v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12880v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 54.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第九价值：一个「不用轨迹也能学随机动力学」的方法，数字很硬，但论文声明的官方实现今天是死的——这本身是今天最有价值的一条实测。*…",
+  "one_line_essence": "★ **今日第九价值：一个「不用轨迹也能学随机动力学」的方法，数字很硬，但论文声明的官方实现今天是死的——这本身是今天最有价值的一条实测。**（arXiv 2611.12880《Kolmogorov-Chapman Maps: Trajectory-Free Learning for Simulating Molecular Dynamics》，Majdi Hassan、Marta Skreta、Dominique Beaini、Kirill Neklyudov）★ 核心：SDE 的单步数值积分很便宜，但**要观测到有意义的事件或状态跃迁往往需要数百万步**；已有的监督式深度学习方法**需要长轨迹数据**，适用面受限；**KC-Maps** 只依赖**轨迹无关的边缘样本**加上**已知的漂移与扩散系数**来学 SDE 的转移核——给定初值与时刻，**直接建模积分到任意时刻后的分布**（即 SDE 的弱解）；两个关键性质：**① 满足边界条件（直接写进网络架构）**、**② 满足 Kolmogorov–Chapman 方程（提供高效训练目标）**。★ 实测口径（作者自述，PDF 正文表格）：在 AL2/AL4/AL6 丙氨酸肽体系上，**同等 GPU-hour 预算（单张 L40S，一小时）下 KC-Maps 的 TICA-W2 在三个体系上全部最低**，对照 MD 与 HFM（Ripken et al., 2026）；**AL6 上发现了训练数据里不存在的第四个 mode**（训练只覆盖 3/4）；链数越多吞吐越高，**且超过 MD 与 HFM**；动力学侧 MFPT 与 mode 自相关**与 MD 接近**（但论文自陈涉及 αL 的误差最大，因 αL 仅占训练构型 0.7%）；参数量 46.58M（HFM 为 9.09M），训练步数 1.5M/1.0M。★ 证据不足项（必须写清）：① **论文声明的官方实现今日不可用**——PDF 正文两处写明 'The implementation is available at https://github.com/majhas/kc-maps'，**今日实测该仓库 URL 返回 HTTP 404**（`github.com/majhas` 用户页本身 200，说明是仓库不存在或未公开），**GitHub 仓库搜索 'KC-Maps molecular dynamics' 实测 total_count=0**、'Kolmogorov-Chapman' 实测 14 条全部无关；**即：论文写了代码地址，但那个地址今天是死的**；② **arXiv comment 为空**，无会议接收信息；③ **需要 GPU + 分子力场**，本机无 GPU；④ 基线 HFM 的 AL4/AL6 用的是作者自训 EMA 检查点（仅 AL2 用官方发布的检查点），**基线公平性依赖作者实现**；⑤ 对照的「reference MD」是 16 链 × 2 µs，**与一 GPU-hour 的 KC-Maps 不在同一预算量级**，论文另以匹配 GPU-hour 的 MD 作对照，但**同预算下的 MD 本身是弱基线**（采样式模拟的已知弱点）；⑥ 无第三方复现。★ 判断：**长尾保存**——本体是分子模拟（离主线远），「**用一致性方程而不是轨迹监督来学转移核**」这个思路有普适吸引力；但**今天连代码都打不开**，更不值得投入。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第九价值：一个「不用轨迹也能学随机动力学」的方法，数字很硬，但论文声明的官方实现今天是死的——这本身是今天最有价值的一条实测。**（arXiv 2611.12880《Kolmogorov-Chapman Maps: Trajectory-Free Learning for Simulating Molecular Dynamics》，Majdi ",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第九价值：一个「不用轨迹也能学随机动力学」的方法，数字很硬，但论文声明的官方实现今天是死的——这本身是今天最有价值的一条实测。**（arXiv 2611.12880《Kolmogo",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-02"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12880v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12880v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=kolmogorov-chapman-maps-trajectory-free-learning-for-simulating-molecular-dynamics",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

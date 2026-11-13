@@ -1,0 +1,133 @@
+{
+  "id": "adaptive-quantization-preserves-fast-rates-for-td-learning-over-rate-limited-channels",
+  "title": "Adaptive Quantization Preserves Fast Rates for TD Learning over Rate-Limited Channels",
+  "authors": [
+    "Sreejeet Maity",
+    "Aritra Mitra"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12878v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12878v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 4.95,
+    "engineering_testability": 3.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 52.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第十价值：一篇 8 页的纯理论论文，它给出了一个通信复杂度上的指数级改进。**（arXiv 2611.12878《Adaptiv…",
+  "one_line_essence": "★ **今日第十价值：一篇 8 页的纯理论论文，它给出了一个通信复杂度上的指数级改进。**（arXiv 2611.12878《Adaptive Quantization Preserves Fast Rates for TD Learning over Rate-Limited Channels》，Sreejeet Maity、Aritra Mitra，North Carolina State University）★ 设定：策略评估问题 + 线性函数逼近，**agent 与一个未知环境（MDP）交互，并把 TD 学习更新方向的量化估计通过有限容量信道传给服务器**；目标是问：**能在多大程度上保住无限容量信道下的统计收敛率？**方法 **BAQ-TD（Batched Adaptively Quantized TD）**：用**批处理降低所传信息的方差**，用**自适应量化编码创新量（innovations）**。★ 实测口径（作者自述的理论结果）：证明了 BAQ-TD 的**高概率有限时间误差界**，并证明**当信道容量超过某个有限阈值时，BAQ-TD 在对数因子意义下保住了未量化 TD 的收敛率**；具体地，**对 d 维值函数参数，在长度 T 的时域内传输总计 O(d log(T)) 比特即可达到阶最优的 Õ(1/T) 速率**，论文称这是**相对既有工作在通信复杂度上的指数级改进**（PDF 正文实测：既有工作只是「复杂度随 T 仅对数增长」）。★ 证据不足项（必须写清）：① **今日确认无任何官方实现**——PDF 全文实测**外链数为 0**、无 GitHub、无项目页、无数据集、无权重，**GitHub 仓库搜索 'BAQ-TD' 实测仅 1 条且完全无关**；② **arXiv comment 为空**，无会议接收信息；③ **全文仅 8 页**（PDF 实测 8 页、76,626 字符），**没有实验章节**——**这是一篇纯理论工作，其结论今日无法用任何数值验证**；④ 「指数级改进」的对照基线依赖既有文献的具体设定，**今日未做逐条复核**；⑤ 线性函数逼近 + 有限容量信道是较强假设，**实际系统中的非线性逼近、时变信道、丢包与延迟均未覆盖**；⑥ 无第三方复现。★ 判断：**长尾保存**——「**量化压缩的是更新方向的「创新量」而不是状态本身，且在容量足够时能保住原速率**」这个结论对**分布式训练与多 agent 通信**有直接启发（我们做多 agent 协同时通信预算一直是硬约束）；但今天无任何可核验资产，**只存结论，不投入**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第十价值：一篇 8 页的纯理论论文，它给出了一个通信复杂度上的指数级改进。**（arXiv 2611.12878《Adaptive Quantization Preserves Fast Rates for TD Learning over Rate-Limited Channels》，Sreejeet Maity、Aritra Mitra，No",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第十价值：一篇 8 页的纯理论论文，它给出了一个通信复杂度上的指数级改进。**（arXiv 2611.12878《Adaptive Quantization Preserves F",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-02"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12878v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12878v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=adaptive-quantization-preserves-fast-rates-for-td-learning-over-rate-limited-channels",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

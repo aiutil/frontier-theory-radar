@@ -1,0 +1,136 @@
+{
+  "id": "workflowarena-benchmarking-executable-workflow-orchestration-in-llm-based-multi-agent-systems",
+  "title": "WorkflowArena: Benchmarking Executable Workflow Orchestration in LLM-Based Multi-Agent Systems",
+  "authors": [
+    "Zheng Jiang",
+    "Fang Niu",
+    "Bo Peng",
+    "Houde Qian",
+    "Wenyi Li"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-09",
+  "url": "http://arxiv.org/abs/2611.12856v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.12856v1",
+  "code_url": "https://github.com/Einsia/WorkflowArena",
+  "benchmark_url": "https://github.com/Einsia/WorkflowArena",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-11",
+  "first_deep_dive_daily": "2026-11-11",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 7.65,
+    "engineering_testability": 6.6,
+    "trend_signal": 6.25,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 88.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：★ **今日第一即时价值，也是今日证据等级最高的一篇——它把「多 agent 编排」变成一个可核验的评测对象。**（arXiv 2611.1…",
+  "one_line_essence": "★ **今日第一即时价值，也是今日证据等级最高的一篇——它把「多 agent 编排」变成一个可核验的评测对象。**（arXiv 2611.12856《WorkflowArena: Benchmarking Executable Workflow Orchestration in LLM-Based Multi-Agent Systems》，Navers Lab / Einsia.AI / 清华大学，13 位作者）★ 核心主张：现在的 agent harness 允许模型**自己写可执行 workflow、自己决定要不要委派**，于是「**组织工作本身的质量**」成了一项独立能力；而既有 benchmark 要么只测端到端完成率，要么测的是结构被预先指定好的协作。WorkflowArena 把这项能力形式化为 **workflow orchestration**，并给出 **145 个长程任务 / 8 个专业域 / 17 种任务形态**，每个任务给出初始工作区与**互为依赖的集成交付物**，由**隐藏 verifier** 判定。★ 实测口径（论文 Table 1/2 + 项目页 + 仓库 README 三方对照）：**最强配置 Claude Opus 5.5 + Claude Code + max effort 的 Overall Resolved 仅 36.95%**（八域等权平均），**最高 Overall Score 80.21**（Opus/high，SWE 96.98、MATH 97.44，而最高 SWE resolved 只有 29.41%）；**没有任何一个配置在所有域上都最好**；域间分化极强——Opus 在 **LAW 域 resolved 为 0.00%**，MATH 却有 95.83%；执行轨迹显示**两种委派风格**：高 effort 下 Claude 系（Opus/Sonnet + Claude Code）**发起 workflow 更少但每次 worker 群更大**，GPT 系（Astra/Sol + Codex）**发起更频繁但每次 worker 更少**；**workflow 迁移实验（32 个难任务，源模型只写 workflow、不得改工作区）**：Opus 写的静态 workflow 让四个执行模型**平均提升 +6.41 分**（Kimi K3.1 Pro 35.75→46.61、GPT-6 Luna 25.08→30.37、Doubao-Seed 20.39→28.04、DeepSeek V4.1 Flash 18.37→25.24）——**「强任务能力 ≠ 强 workflow 质量」被独立测量到了**。★ 今日实测的工件（它排第一的真正原因，不是主张新）：`github.com/Einsia/WorkflowArena` 实测存在——**9,679 文件 / 1,595 目录 / 1,822,672 KB ≈ 1.8 GB**、★5、forks=1、默认分支 main、pushed 2026-11-10、**license=null（无 LICENSE 文件）**；README 实测 9,063 B 逐字给出八域任务数（SWE 17 / OPS 18 / SCI 16 / MATH 24 / FIN 16 / LAW 22 / CDN 14 / 3D 18）与 25 个配置的完整成绩单；**最硬的一点是它的复现纪律**：`results/main/resolved_rates.json` 实测每份聚合表都带 `pdf_sha256`（值 `624ab944aa778a949c1eb7e383fd6b977b815e9113c955063cd59ffca5323e13`）**把表格钉死在论文 PDF 的哈希上**；`benchmark/provenance/files.jsonl` 记录**完整文件清单与 SHA-256**；`scripts/verify_dataset.py` 实测存在并「**拒绝缺失、被改动、未登记的文件**」；`scripts/prepare_inputs.py --check-only` 可在不下载的前提下校验；release v1.0.0 提供 `SHA256SUMS` 供 `shasum -a 256 -c`；`configs/benchmark.json` 实测把 **agent_budget_seconds=14400**（4 小时共享预算）、**media_judge_model=gemini-3.8-flash** 与 **media_judge_expected_version=gemini-3.8-flash-n**（判分模型**锁版本**）写死在配置里；论文正文实测写明「**每次试验都记录全部委派**」与「四小时截止时间由主 agent 与所有 worker 共享」。★ 证据不足项（必须原样写出，不补写不存在的事实）：① **仓库无 LICENSE 文件**（API 实测 license=null），复用前必须先解决授权（对比 HiVe-Mem / RiT / PRH / subpop 均为 MIT）；② **论文 PDF 全文实测没有出现任何 `github.com` 链接**——仓库是今日通过论文署名机构 Navers Lab / Einsia.AI 与项目页反查找到的，**即「论文↔仓库」的绑定靠的是机构而非论文内的显式链接**；③ **仓库内只有任务数据、评测材料与论文级聚合结果**，README 逐字写明「Execution frameworks, per-task experimental records, participant submissions and development logs are **outside this release**」——**逐任务实验记录未发布**，第三方无法据此复算单次运行；④ **仓库 1.8 GB + release 需另下媒体镜像**，完整准备需网络与磁盘，非「clone 完就能跑」；⑤ **arXiv comment 逐字只有 'Project page: https://lab.einsia.ai/workflowarena'，无会议接收信息**；⑥ 项目页根路径实测是 196 B 的 meta-refresh 跳转桩（`<meta http-equiv='refresh' content='0; url=home.html'>`），真实内容在 `home.html`（实测 19,957 B，145/8/17/9/25/4h/36.95%/+6.41 全部命中）；⑦ 全部成绩为作者自述，**无第三方复现**。★ 判断：**今天就值得投入**——因为它的评测对象正是我们最关心的「agent 能不能自己把工作组织起来」，而且它给出的可抄件不是方法而是一套纪律：**表格钉论文哈希、文件清单钉 SHA-256、判分模型钉版本、共享预算让编排成本进分数**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第一即时价值，也是今日证据等级最高的一篇——它把「多 agent 编排」变成一个可核验的评测对象。**（arXiv 2611.12856《WorkflowArena: Benchmarking Executable Workflow Orchestration in LLM-Based Multi-Agent Systems》，Navers La",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": true,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第一即时价值，也是今日证据等级最高的一篇——它把「多 agent 编排」变成一个可核验的评测对象。**（arXiv 2611.12856《WorkflowArena: Benchm",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.12856v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.12856v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=workflowarena-benchmarking-executable-workflow-orchestration-in-llm-based-multi-agent-systems",
+  "daily_path": "daily-detail.html?date=2026-11-11",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
