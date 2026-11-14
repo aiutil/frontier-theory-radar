@@ -38,7 +38,7 @@ NS = {"dc": DC_NS, "arxiv": ARXIV_NS}
 ARXIV_CATEGORIES = [
     "cs.AI", "cs.CL", "cs.LG", "cs.SE", "cs.IR",
     "cs.MA", "cs.RO", "cs.CV", "cs.DC", "cs.DB", "cs.CR",
-    "stat.ML"
+    "stat.ML", "cs.NE"
 ]
 
 # 高优先级关键词
