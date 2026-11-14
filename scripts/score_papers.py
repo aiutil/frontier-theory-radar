@@ -23,6 +23,13 @@ TOPIC_KEYWORDS = {
     "security-governance": ["security", "governance", "privacy", "reliability", "guardrail", "audit", "risk"],
 }
 
+# 关键词匹配必须带词边界：否则 'rag' 命中 'program'、'search' 命中 'research'、
+# 'agent' 命中泛用词，会把论文错误归入 rag-knowledge 等主题。
+TOPIC_REGEX = {
+    topic_id: [re.compile(r"\b" + re.escape(kw.lower()) + r"\w*\b") for kw in kws]
+    for topic_id, kws in TOPIC_KEYWORDS.items()
+}
+
 HIGH_VALUE_KEYWORDS = {
     "novelty": ["novel", "new", "first", "foundation", "frontier", "upcycling", "generalization", "emergent", "hypothesis"],
     "evidence": ["experiment", "evaluation", "ablation", "agreement", "benchmark", "validation", "proof", "empirical"],
@@ -46,8 +53,8 @@ def clamp(v, lo=0, hi=10):
 
 def match_topics(text: str):
     matched = []
-    for topic_id, kws in TOPIC_KEYWORDS.items():
-        if any(kw in text for kw in kws):
+    for topic_id, patterns in TOPIC_REGEX.items():
+        if any(p.search(text) for p in patterns):
             matched.append(topic_id)
     return matched
 

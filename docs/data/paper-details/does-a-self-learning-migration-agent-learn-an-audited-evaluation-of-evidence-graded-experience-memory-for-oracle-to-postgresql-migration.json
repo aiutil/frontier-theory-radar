@@ -1,0 +1,138 @@
+{
+  "id": "does-a-self-learning-migration-agent-learn-an-audited-evaluation-of-evidence-graded-experience-memory-for-oracle-to-postgresql-migration",
+  "title": "Does a Self-Learning Migration Agent Learn? An Audited Evaluation of Evidence-Graded Experience Memory for Oracle-to-PostgreSQL Migration",
+  "authors": [
+    "Oleg Grynets",
+    "Vasyl Lyashkevych",
+    "Valeriia Oliferuk",
+    "Vladyslav Babenko",
+    "Danylo Kovalchuk"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.16143v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.16143v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 9.8,
+    "evidence": 4.95,
+    "engineering_testability": 4.05,
+    "trend_signal": 4.6,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 84.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：★ **今日第一即时价值：它今天做的事，正是我们这个仓库连续多日在踩的坑——它用受控审计证明「agent 看起来在从经验里学习」很可能只是检…",
+  "one_line_essence": "★ **今日第一即时价值：它今天做的事，正是我们这个仓库连续多日在踩的坑——它用受控审计证明「agent 看起来在从经验里学习」很可能只是检索复用与数据泄漏，并且给出了六条可以把这件事查清楚的评测规则。**（arXiv 2611.16143《Does a Self-Learning Migration Agent Learn? An Audited Evaluation of Evidence-Graded Experience Memory for Oracle-to-PostgreSQL Migration》，Oleg Grynets、Vasyl Lyashkevych、Valeriia Oliferuk、Vladyslav Babenko、Danylo Kovalchuk；arXiv comment 逐字 '16 pages, 15 figures, 25 tables, 36 references'；一级分类 cs.LO / cs.DB / cs.SE）★ 核心提问：迁移 agent 累积经验后性能变好，到底是跨任务学习，还是仅仅因为检索到了参考答案？★ 实测口径（论文摘要逐项核对）：**① 记忆的真实效应极小且不显著**——在 1,833 对文档派生的 source-reference 对上，持久记忆相对无记忆基线把 reference conformity (RC) 提升 **0.015 [0.004, 0.025]**（区间下界刚过 0），而**策略自适应带来的增益是 −0.004 [−0.010, 0.001]（即没有增益，区间含 0）**；**② 泄漏审计击穿了上面的数字**——审计发现 367 个留出单元中有 **264 个（72%）与训练集共享同一个 PostgreSQL 参考**，而在 **103 个无泄漏单元上记忆效应降到 0.002 [−0.008, 0.011]（区间完全含 0，即不可区分于零）**；**③ 一个无模型的最近目标复制基线打赢了所有 LLM 系统**——RC 0.222，而所有 LLM 系统最高只有 0.163；改用参考分组切分后复制率降到 0.119；在 118 个独立目标组的 374 个单元上重跑，**记忆效应 0.005 [−0.003, 0.017] 无统计可区分性，策略效应同样无**；**④ 真实 PL/SQL 单元的独立核验**——在 216–224 个真实单元上，**10–22% 被 PostgreSQL 接受的单元在行为上是错误的**；一个人工把关的修复循环把「可证明正确」的单元从 **98/216 提到 167/224**；**⑤ 写回研究的负结果**——当知识库从 12 条增长到 1,200 条时，**检索 margin 下降 54%**（即记忆库变大反而检索质量变差）；**⑥ 论文提炼出六条评测规则**，用于区分「跨任务学习」与「参考泄漏 / 复制 / 指标假象 / 不稳定反馈」。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额在核验中途耗尽（连续 2 次 HTTP 403），**无法完成仓库反查**；② 一级分类 cs.LO / cs.DB / cs.SE，**不是 cs.AI**，与本仓库主线（agent / LLM 工程）有一段距离，**结论外推到 LLM agent 需要额外论证**；③ 全文 16 页，**今日只做了摘要与关键数字抽取，未逐表复核**；④ 迁移任务是 Oracle→PostgreSQL 这一具体场景，**domain-specific**；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——**它今天给我们的不是一篇 agent 方法论，而是一把尺子**：我们内部也在做「agent 从历史任务里学到了吗」这类评估，而这篇告诉我们**在用记忆做 A/B 时，第一件事不是测记忆，而是先查测试集有没有泄漏**。**这条今天可以直接用。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第一即时价值：它今天做的事，正是我们这个仓库连续多日在踩的坑——它用受控审计证明「agent 看起来在从经验里学习」很可能只是检索复用与数据泄漏，并且给出了六条可以把这件事查清楚的评测规则。**（arXiv 2611.16143《Does a Self-Learning Migration Agent Learn? An Audited Eval",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第一即时价值：它今天做的事，正是我们这个仓库连续多日在踩的坑——它用受控审计证明「agent 看起来在从经验里学习」很可能只是检索复用与数据泄漏，并且给出了六条可以把这件事查清楚的",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16143v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.16143v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=does-a-self-learning-migration-agent-learn-an-audited-evaluation-of-evidence-graded-experience-memory-for-oracle-to-postgresql-migration",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

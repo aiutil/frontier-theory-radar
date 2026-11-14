@@ -1,0 +1,130 @@
+{
+  "id": "contain-conform-compare-extended-version-a-red-teamed-evaluation-kit-for-small-coding-agents-and-the-full-record-of-its-experiments",
+  "title": "Contain, Conform, Compare (Extended Version): A Red-Teamed Evaluation Kit for Small Coding Agents and the Full Record of Its Experiments",
+  "authors": [
+    "Nguyen Minh Thang"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.16485v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.16485v1",
+  "code_url": "https://github.com/MinhThanghus/drydock-eval",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 10,
+    "evidence": 6.8,
+    "engineering_testability": 5.5,
+    "trend_signal": 4.6,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 80.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：★ **今日第二即时价值：它是今天唯一一篇「把评测方法的失败模式自己量化出来」的论文——它实测出 agent 评测的噪声底噪有多大，以及为什…",
+  "one_line_essence": "★ **今日第二即时价值：它是今天唯一一篇「把评测方法的失败模式自己量化出来」的论文——它实测出 agent 评测的噪声底噪有多大，以及为什么「看着涨了」的 prompt 改动多半是噪声。**（arXiv 2611.16485《Contain, Conform, Compare (Extended Version): A Red-Teamed Evaluation Kit for Small Coding Agents and the Full Record of Its Experiments》，Nguyen Minh Thang（单一作者）；arXiv comment 逐字 '52 pages, 15 figures, 37 tables. Code: https://github.com/MinhThanghus/drydock-eval (tag v0.4.0). Data and analysis scripts are included as ancillary files'）★ 核心：主办方的 Gemma 4 Developer Agent 竞赛分数「只是一个含噪的数」，所以需要一个本地评测器——**快、对 agent 写的代码安全、并且请求与主办方评分器的配置一致**。三个模块：**contain**（每个作业跑在无网络的新容器里，**通过 200 个脚本化逃逸测试**）、**conform**（八项检查，把本地栈的请求与评分器配置逐项比对，**精确到渲染后的 token**）、**compare**（按仓库聚类的配对统计）。★ 实测口径（论文摘要逐项核对）：**① 规模**：共 **9,660 行 agent 运行记录、2,494 条评分对照、72 次服务测量，全部公开**；单张 RTX 5090 上 **约 250 runs/小时**；四张 L4 上 31B 模型单流解码 38.1 tokens/s、E4B 为 105.8 tokens/s；**② 最扎眼的一组对照**——31B agent 的六种配置在 70 个开发任务上解开 **37 到 44** 个，**「未检测到任何两两之间的差异」**；**③ 预注册五臂实验**（231 个任务、4,620 个作业）测了四种 prompt 分歧，**E4B 解题率没有检测到变化（最大估计 −2.1 分，95% 区间 −4.4 到 +0.4）**；**④ 全文最诚实的一段**——三次改动在各自筛选集上领先 **+1.0 到 +6.2 分**，但**每一个都在新任务上用冻结的通过规则测了一次，结果没有一个被确认（−0.35、−0.39、+4.10）**；**⑤ 噪声底噪实测**：完全不变的基线在同一批 128 个任务上重跑，**移动了 1.17 分**，且**65% 的任务在八次运行中一次都没解开**；**⑥ 发布伦理**：agent 既参与构建也参与攻击这套工具包，机器使用与发布由人类所有者批准；**但 prompts 与 agent bundle 被 withheld，只公开逐次运行结果。**★ 今日实测的工件：`github.com/MinhThanghus/drydock-eval` **实测存在**——**★0、forks=0、Apache-2.0、2,746 KB、默认分支 `develop`（不是 main）**、created 2026-11-12、pushed 2026-11-12、homepage 为空。★ 证据不足项（必须写清）：① **默认分支是 `develop` 而非 main**——引用文件时必须写明分支，否则 checkout 拿不到内容；② **★0 且单作者**，社区采用度未验证；③ 论文自陈 **prompts 与 agent bundle 被 withheld**，即**最可复现的部分（提示词）不可得**，只有逐次运行结果公开；④ 需 RTX 5090 / 4×L4 GPU，**本机无 GPU**；⑤ 数字全部为作者自述，无第三方复现；⑥ 今日**未读取仓库源码**（GitHub API 配额已用去 32 次，优先留给身份核验）；⑦ 标题里的 \"Extended Version\" 意味着**短论文另有其文**，今日只见长版本。★ 判断：**即时价值**——**它的「未确认」数据和「1.17 分噪声底噪」这两个数今天就能用**：我们内部对 agent 改动的每一次「有提升」判断，都应该先问「这个提升超过了基线重跑的漂移吗」。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第二即时价值：它是今天唯一一篇「把评测方法的失败模式自己量化出来」的论文——它实测出 agent 评测的噪声底噪有多大，以及为什么「看着涨了」的 prompt 改动多半是噪声。**（arXiv 2611.16485《Contain, Conform, Compare (Extended Version): A Red-Teamed Evaluat",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第二即时价值：它是今天唯一一篇「把评测方法的失败模式自己量化出来」的论文——它实测出 agent 评测的噪声底噪有多大，以及为什么「看着涨了」的 prompt 改动多半是噪声。**",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16485v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.16485v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=contain-conform-compare-extended-version-a-red-teamed-evaluation-kit-for-small-coding-agents-and-the-full-record-of-its-experiments",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

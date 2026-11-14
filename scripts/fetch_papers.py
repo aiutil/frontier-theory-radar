@@ -16,6 +16,7 @@ import urllib.request
 import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime, date
+from pathlib import Path
 import time
 import re
 
@@ -48,13 +49,73 @@ HIGH_PRIORITY_KEYWORDS = [
     "tool use", "function calling", "planning"
 ]
 
+# 关键词匹配使用词边界，避免 'RAG' 命中 'program'、'search' 命中 'research' 这类子串误报。
+KEYWORD_PATTERNS = {
+    "agent": r"\bagents?\b|\bagentic\b",
+    "agentic": r"\bagentic\b",
+    "world model": r"\bworld[- ]models?\b",
+    "context engineering": r"\bcontext engineering\b",
+    "memory": r"\bmemor(y|ies|isation|ization)\b",
+    "coding agent": r"\bcoding agents?\b",
+    "evaluation": r"\bevaluat(e|ion|ions|ing)\b",
+    "benchmark": r"\bbenchmark(s|ing|ed)?\b",
+    "RAG": r"\bRAG\b|\bretrieval[- ]augmented\b",
+    "retrieval augmented": r"\bretrieval[- ]augmented\b",
+    "multimodal": r"\bmulti-?modal\b",
+    "inference": r"\binference\b",
+    "tool use": r"\btool[- ]use\b|\btool[- ]calling\b",
+    "function calling": r"\bfunction calling\b",
+    "planning": r"\bplanning\b",
+}
+
+# 主题相关性模式（带词边界），用于从宽候选池中做初筛。
+TOPIC_PATTERNS = {
+    "ai-agent": [r"\bagents?\b", r"\bagentic\b", r"\btool[- ]use\b", r"\bfunction calling\b",
+                 r"\bplanning\b", r"\bmulti-?agent\b", r"\bautonomous agents?\b",
+                 r"\bagentic (workflow|system|pipeline|framework)\b"],
+    "coding-agent": [r"\bcoding agents?\b", r"\bcode generation\b", r"\bprogram synthesis\b",
+                     r"\bsoftware engineering\b", r"\bcode review\b", r"\bdebugging\b",
+                     r"\brepositor(y|ies)\b", r"\bsoftware[- ]engineering agent"],
+    "context-engineering": [r"\bcontext engineering\b", r"\blong[- ]context\b", r"\bmemor(y|ies)\b",
+                            r"\bin-context learning\b", r"\bprompt(s|ing)?\b", r"\bskill learning\b"],
+    "rag-knowledge": [r"\bRAG\b", r"\bretrieval", r"\bknowledge graph\b", r"\bsemantic search\b"],
+    "multimodal-agent": [r"\bmulti-?modal\b", r"\bworld[- ]models?\b", r"\bvision[- ]language\b",
+                         r"\bembodied\b", r"\brobotics?\b", r"\bsimulation\b", r"\bVLMs?\b"],
+    "llm-evaluation": [r"\bevaluat(e|ion|ions|ing)\b", r"\bbenchmark(s|ing|ed)?\b", r"\brubric",
+                        r"\bjudge\b", r"\bleaderboard\b", r"\bauto-?eval", r"\bpeer review\b",
+                        r"\bLLM[- ]as[- ]a[- ]judge\b"],
+    "inference-serving": [r"\binference\b", r"\bserving\b", r"\blatency\b", r"\bthroughput\b",
+                          r"\bquantization\b", r"\bspeculative decoding\b", r"\bdistillation\b",
+                          r"\bmakespan\b", r"\bGPU schedul"],
+    "ai-k8s-platform": [r"\bkubernetes\b", r"\bplatform engineering\b", r"\bGPUs?\b",
+                        r"\binfrastructure\b", r"\bcluster", r"\bbatch execution\b"],
+    "data-engineering": [r"\bdata pipeline\b", r"\bstreaming\b", r"\bCDC\b", r"\blakehouse\b",
+                          r"\breal-?time\b", r"\bstate management\b"],
+    "security-governance": [r"\bsecurity\b", r"\bgovernance\b", r"\bprivacy\b", r"\breliability\b",
+                            r"\bguardrail", r"\baudit", r"\brisks?\b", r"\bred[- ]team",
+                            r"\binjection\b", r"\bsafety\b", r"\battacks?\b", r"\bcompliance\b"],
+}
+
+# 与主线无关的物理/数学等一级分类，初筛时降权。
+OFF_TOPIC_PRIMARY = re.compile(
+    r"^(physics\.|astro-ph\.|cond-mat\.|math\.|q-bio\.|econ\.|quant-ph|nlin\.|hep\.|"
+    r"gr-qc/|math-ph\.|supr-|cmp-lg/|dg-ga/|acc-phys/|atom-ph/|plasm-|q-alg\.|eess\.)")
+
+# 摘要存储长度。500 字符会截断掉方法与实验设定，逼迫每次重新下载 PDF 全文。
+ABSTRACT_LIMIT = 2000
+
+# 宽候选池规模与最终入选数量。
+ARXIV_MAX_RESULTS = int(os.environ.get("ARXIV_MAX_RESULTS", "400"))
+RADAR_SELECT_TOP_N = int(os.environ.get("RADAR_SELECT_TOP_N", "15"))
+
 
 def load_config():
     """加载配置"""
     # 简单配置加载，避免引入 yaml 依赖
     return {
-        "max_results_per_category": 10,
+        "max_results_per_category": ARXIV_MAX_RESULTS,
         "categories": ARXIV_CATEGORIES,
+        "select_top_n": RADAR_SELECT_TOP_N,
     }
 
 
@@ -79,7 +140,9 @@ def fetch_arxiv_api(categories, max_results=10):
 
     # 构建查询 - 按多个分类搜索
     # 使用批量查询减少 API 调用
-    cat_query = " OR ".join([f"cat:{cat}" for cat in categories[:5]])
+    # 注意：这里必须覆盖 categories 全部条目。早期版本只取 categories[:5]，
+    # 而 ARXIV_CATEGORIES 有 13 个分类，导致主分类落在后 8 个分类的论文整体失联。
+    cat_query = " OR ".join([f"cat:{cat}" for cat in categories])
 
     params = {
         "search_query": cat_query,
@@ -98,7 +161,7 @@ def fetch_arxiv_api(categories, max_results=10):
             data = resp.read().decode("utf-8")
 
         root = ET.fromstring(data)
-        ns = {"atom": "http://www.w3.org/2005/Atom"}
+        ns = {"atom": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
 
         for entry in root.findall("atom:entry", ns):
             try:
@@ -215,6 +278,9 @@ def parse_arxiv_rss_item(item, default_cat):
     if pdf_url:
         links.append({"label": "PDF", "url": pdf_url})
 
+    # RSS 后备源没有 comment 字段，留空即可。
+    comment = ""
+
     return {
         "title": title,
         "authors": authors[:5],
@@ -228,7 +294,7 @@ def parse_arxiv_rss_item(item, default_cat):
         "code_url": "",
         "benchmark_url": "",
         "project_url": "",
-        "abstract": abstract[:500] if abstract else "",
+        "abstract": abstract[:ABSTRACT_LIMIT] if abstract else "",
         "categories": categories,
         "keywords": extract_keywords(title, abstract),
         "announce_type": announce_type,
@@ -254,9 +320,13 @@ def parse_arxiv_entry(entry, ns):
 
     # 摘要
     summary_elem = entry.find("atom:summary", ns)
-    abstract = summary_elem.text.strip().replace("\n", " ") if summary_elem is not None else ""
+    abstract = summary_elem.text.strip().replace("\n", " ").replace("\r", "") if summary_elem is not None else ""
     abstract = re.sub(r"\s+", " ", abstract)
 
+    # arXiv comment：常包含会议接收信息与代码 / 数据地址，是重要的核验线索。
+    # 早期版本直接丢弃了它，导致「论文声明了工件」这一信号在初筛阶段丢失。
+    comment_elem = entry.find("arxiv:comment", ns)
+    comment = comment_elem.text.strip() if comment_elem is not None and comment_elem.text else ""
     # 作者
     authors = []
     for author in entry.findall("atom:author", ns):
@@ -299,9 +369,10 @@ def parse_arxiv_entry(entry, ns):
         "code_url": "",
         "benchmark_url": "",
         "project_url": "",
-        "abstract": abstract[:500] if abstract else "",
+        "abstract": abstract[:ABSTRACT_LIMIT] if abstract else "",
         "categories": categories,
         "keywords": extract_keywords(title, abstract),
+        "comment": comment,
         "score": 0,
         "decision": "pending",
         "links": links
@@ -309,13 +380,89 @@ def parse_arxiv_entry(entry, ns):
 
 
 def extract_keywords(title, abstract):
-    """从标题和摘要中提取关键词"""
+    """从标题和摘要中提取关键词（带词边界，避免子串误报）"""
     text = (title + " " + abstract).lower()
     found = []
     for kw in HIGH_PRIORITY_KEYWORDS:
-        if kw.lower() in text:
+        pattern = KEYWORD_PATTERNS.get(kw.lower())
+        if pattern and re.search(pattern, text):
             found.append(kw)
     return found
+
+
+def match_topics(text):
+    """按主题模式（带词边界）匹配一篇论文所属方向"""
+    matched = []
+    for topic_id, patterns in TOPIC_PATTERNS.items():
+        if any(re.search(p, text) for p in patterns):
+            matched.append(topic_id)
+    return matched
+
+
+def prescore_paper(paper):
+    """宽候选池初筛分：主题覆盖度 + 标题关键词权重 - 离题分类惩罚"""
+    title = (paper.get("title") or "").lower()
+    text = f"{title} {paper.get('abstract') or ''}".lower()
+    topics = match_topics(text)
+    title_topics = match_topics(title)
+    score = len(topics) * 2 + len(title_topics) * 3
+    for pattern, weight in [
+        (r"\bagent", 6), (r"\bmemor", 4), (r"\bbenchmark", 4), (r"\bevaluat", 4),
+        (r"\bcoding agent", 7), (r"\bprompt injection", 6), (r"\bred[- ]team", 5),
+        (r"\bself-?verif", 4), (r"\bverifier", 4), (r"\bcontext", 3),
+    ]:
+        if re.search(pattern, title):
+            score += weight
+    categories = paper.get("categories") or []
+    if categories and OFF_TOPIC_PRIMARY.match(categories[0]):
+        score -= 12
+    return score, topics
+
+
+def select_candidates(papers, top_n, seen_urls=None):
+    """
+    从宽候选池中选出进入日报的论文。
+
+    选择优先级：
+      1. 排除历史批次已出现过的论文（去重，避免重复日报）
+      2. 主题相关度初筛
+      3. 论文是否声明了可核验工件（代码 / 数据 / 项目页）优先
+    """
+    seen_urls = seen_urls or set()
+    pool = [p for p in papers if p.get("url") not in seen_urls]
+    scored = []
+    for paper in pool:
+        score, topics = prescore_paper(paper)
+        blob = (paper.get("comment") or "") + " " + (paper.get("abstract") or "")
+        has_artifact = bool(
+            re.search(r"https?://[^\s]*\b(github\.com|huggingface\.co|gitlab\.com)\b", blob)
+        )
+        scored.append((score, 1 if has_artifact else 0, paper, topics))
+    scored.sort(key=lambda x: (-x[0], -x[1], x[2].get("title", "")))
+    selected = []
+    for score, has_artifact, paper, topics in scored[:top_n]:
+        paper["prescreen_score"] = score
+        paper["prescreen_topics"] = topics
+        paper["has_declared_artifact"] = bool(has_artifact)
+        selected.append(paper)
+    return selected, len(pool)
+
+
+def load_seen_urls(exclude_date=None):
+    """加载历史批次已出现过的论文 URL，用于跨日去重"""
+    seen = set()
+    for path in sorted(Path(PAPERS_DIR).glob("*/*-papers.json")):
+        if exclude_date and path.name == f"{exclude_date}-papers.json":
+            continue
+        try:
+            data = json.loads(path.read_text(encoding="utf-8"))
+        except Exception:
+            continue
+        for p in data.get("papers", []):
+            url = p.get("url")
+            if url:
+                seen.add(url)
+    return seen
 
 
 def fetch_openreview_papers():
@@ -352,7 +499,7 @@ def merge_and_deduplicate(papers_list):
     return merged
 
 
-def save_papers(papers, target_date=None):
+def save_papers(papers, target_date=None, pool_stats=None):
     """保存论文数据到 JSON"""
     if target_date is None:
         target_date = date.today().isoformat()
@@ -369,6 +516,8 @@ def save_papers(papers, target_date=None):
         "generated_at": datetime.now().isoformat(),
         "papers": papers
     }
+    if pool_stats:
+        output["pool_stats"] = pool_stats
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(output, f, ensure_ascii=False, indent=2)
@@ -411,6 +560,7 @@ def main():
 
     # 合并去重
     papers = merge_and_deduplicate(all_papers)
+    fetched_count = len(papers)
 
     if not papers:
         print("[warn] 未获取到任何论文，生成空占位数据")
@@ -434,9 +584,34 @@ def main():
             "decision": "pending",
             "links": []
         }]
+        output_path = save_papers(papers, target_date)
+        print(f"[fetch] 完成！论文数据已保存到: {output_path}")
+        return 0
+
+    # 宽候选池 -> 入选候选：跨日去重 + 主题初筛
+    seen_urls = load_seen_urls(exclude_date=target_date)
+    selected, unseen_count = select_candidates(papers, config["select_top_n"], seen_urls)
+    duplicate_count = fetched_count - unseen_count
+
+    pool_stats = {
+        "fetched_from_sources": fetched_count,
+        "unseen_after_dedup": unseen_count,
+        "duplicates_of_history": duplicate_count,
+        "selected_for_review": len(selected),
+        "selection_note": (
+            f"今日从宽候选池 {fetched_count} 篇中选出 {len(selected)} 篇进入日报；"
+            f"其中 {duplicate_count} 篇与历史批次重复，已在跨日去重中剔除。"
+        ),
+    }
+    print(f"[fetch] 宽候选池 {fetched_count} 篇 → 去重后 {unseen_count} 篇 → 入选 {len(selected)} 篇")
+
+    if not selected:
+        print("[warn] 宽候选池中没有新的相关论文，保留历史批次作为今日候选")
+        selected = papers[: config["select_top_n"]]
+        pool_stats["fallback_to_raw_batch"] = True
 
     # 保存
-    output_path = save_papers(papers, target_date)
+    output_path = save_papers(selected, target_date, pool_stats=pool_stats)
     print(f"[fetch] 完成！论文数据已保存到: {output_path}")
 
     return 0

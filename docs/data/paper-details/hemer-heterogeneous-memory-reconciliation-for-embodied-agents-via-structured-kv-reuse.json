@@ -1,0 +1,136 @@
+{
+  "id": "hemer-heterogeneous-memory-reconciliation-for-embodied-agents-via-structured-kv-reuse",
+  "title": "HeMeR: Heterogeneous Memory Reconciliation for Embodied Agents via Structured KV Reuse",
+  "authors": [
+    "Saehun Chun",
+    "Wonje Choi",
+    "Jinwoo Jang",
+    "Taeyoon Kwack",
+    "Honguk Woo"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.16487v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.16487v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 6.0,
+    "relevance": 9.8,
+    "evidence": 4.5,
+    "engineering_testability": 4.6,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 63.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第十价值：它把「记忆模块化的代价」定位到具体机制上——因为记忆分成声明式 / 程序式 / 工作记忆三套独立接口，每一步都被当成全…",
+  "one_line_essence": "★ **今日第十价值：它把「记忆模块化的代价」定位到具体机制上——因为记忆分成声明式 / 程序式 / 工作记忆三套独立接口，每一步都被当成全新输入重算，于是 KV cache 完全无法复用。**（arXiv 2611.16487《HeMeR: Heterogeneous Memory Reconciliation for Embodied Agents via Structured KV Reuse》，Saehun Chun、Wonje Choi、Jinwoo Jang、Taeyoon Kwack、Honguk Woo；**arXiv comment 逐字 'Accepted at NeurIPS 2026 (Oral)'**）★ 核心：具身 agent 的决策要组合异构记忆模块（声明式记忆存显式知识、程序式记忆存习得流程、工作记忆存当前观察）。**交互过程中，决策所需记忆内容随状态、目标与任务进度而变，但许多内容在相邻决策之间是共享的。** 然而现有记忆模块通过独立接口访问，**每个更新后的记忆上下文都被当成新输入处理**——这**使得未变内容的 KV cache 无法选择性复用，即使大部分记忆上下文仍然有效，也被迫全量重算**。HeMeR 在动态更新的记忆上下文与可复用 KV 状态之间做 **KV reconciliation**：跨动作决策跟踪三类记忆内容，保留未变内容的 KV 状态，只对受记忆更新影响的部分做 reconcile。★ 实测口径（论文摘要逐项核对）：在 **ALFWorld、Habitat 与真实机器人部署**上评测；**真实场景中任务成功率 83.20%，每步推理时间从 2.94 秒降到 1.87 秒（对比 MemRL）**，同时在任务推进更新记忆上下文时保留兼容的 KV 状态。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查仓库；② **需 GPU 与真实机器人硬件**，本机无 GPU、无法复现；③ 「真实机器人部署」的具体平台未在摘要中给出；④ 摘要**未给出 ALFWorld / Habitat 上的分项数字**，只有真实场景的一组；⑤ 「Accepted at NeurIPS 2026 (Oral)」**无法与 NeurIPS 官方接收列表交叉核验**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「记忆模块各自独立接口 → KV cache 无法复用 → 每次全量重算」这条因果链对我们有直接诊断价值**（我们的 agent 上下文组装如果也按模块拼接，每次请求都在重算相同前缀）；**但它是具身 + KV 层的实现，且今天零工件，所以只存结论。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第十价值：它把「记忆模块化的代价」定位到具体机制上——因为记忆分成声明式 / 程序式 / 工作记忆三套独立接口，每一步都被当成全新输入重算，于是 KV cache 完全无法复用。**（arXiv 2611.16487《HeMeR: Heterogeneous Memory Reconciliation for Embodied Agents vi",
+  "research_position": "long_tail_insight",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第十价值：它把「记忆模块化的代价」定位到具体机制上——因为记忆分成声明式 / 程序式 / 工作记忆三套独立接口，每一步都被当成全新输入重算，于是 KV cache 完全无法复用。*",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-06"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16487v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.16487v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=hemer-heterogeneous-memory-reconciliation-for-embodied-agents-via-structured-kv-reuse",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

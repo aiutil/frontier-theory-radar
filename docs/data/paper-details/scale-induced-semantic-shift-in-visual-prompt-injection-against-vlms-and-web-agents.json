@@ -1,0 +1,136 @@
+{
+  "id": "scale-induced-semantic-shift-in-visual-prompt-injection-against-vlms-and-web-agents",
+  "title": "Scale-Induced Semantic Shift in Visual Prompt Injection Against VLMs and Web Agents",
+  "authors": [
+    "Yiheng Zhao",
+    "Runze Ji",
+    "Chenyu Yi",
+    "Yi Yu",
+    "Bingquan Shen"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.16744v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.16744v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 10,
+    "evidence": 5.4,
+    "engineering_testability": 4.6,
+    "trend_signal": 6.0,
+    "long_tail_potential": 4.15,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 67.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：★ **今日第八价值：它报告了一个具体、可复现、且反直觉的多模态安全失效——图像在预处理里被缩小，会改变它对模型的可读语义。**（arXiv…",
+  "one_line_essence": "★ **今日第八价值：它报告了一个具体、可复现、且反直觉的多模态安全失效——图像在预处理里被缩小，会改变它对模型的可读语义。**（arXiv 2611.16744《Scale-Induced Semantic Shift in Visual Prompt Injection Against VLMs and Web Agents》，Yiheng Zhao、Runze Ji、Chenyu Yi、Yi Yu、Bingquan Shen、Alex Kot、Xudong Jiang；arXiv comment 逐字 '14 pages, 10 figures, including supplementary material'）★ 核心设定：多媒体内容在送进 VLM 之前可能被缩放、压缩或重新渲染。**论文发现这类变换会改变图像的机器可读语义**——在 512×512 的呈现分辨率下不可恢复的文本指令，**在激进的降采样之后变得可恢复**。论文把这个行为形式化为 **Scale-Induced Semantic Shift (SISS)**。★ 实测口径（论文摘要逐项核对）：**① 攻击侧**：固定 300 例基准上，第三轮 SISS 精炼在四个闭源 VLM 上取得 **58.75% 的平均攻击成功率**，对比最强生成基线的 **41.08%**；**② 边界扫描（关键）**：**平均成功率随分辨率变化——128×128 为 17.68%、224×224 为 6.85%、336×336 为 5.60%**，即**该效应被限定在「激进压缩」范围内**，不是普遍成立；**③ 下游 web agent**：生成的图像确实提高了隐藏指令的感知率，**但绝对行为沦陷仍只有约 4%**（**攻击成功率与实际行为改变之间差距很大——这条必须和 58.75% 一起读**）；**④ 防御侧**：通用输入变换几乎无效，而提出的 **ScaleGuard 一致性检测器**把非自适应成功率从 **61.4% 降到 24.3%**、一轮防御感知成功率从 **42.5% 降到 15.0%**，**且在匹配的干净对照上没有观察到拒绝**。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查；② **攻击侧方法本身是对闭源模型的攻击**，伦理与授权情况未在摘要中交代；③ 「闭源 VLM」未具名，**无法确认受测对象**；④ 300 例基准未说明来源，**ScaleGuard 未见公开实现**；⑤ 全文 14 页，**今日未逐表复核**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——**它给我们的多模态输入管线埋了一个必须记下的检查项**：任何对图像做缩放/压缩/重渲染的预处理，都可能**制造**出原始图像里没有的可读指令。**我们如果做图像压缩，必须把压缩后的版本也过一遍注入检测。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第八价值：它报告了一个具体、可复现、且反直觉的多模态安全失效——图像在预处理里被缩小，会改变它对模型的可读语义。**（arXiv 2611.16744《Scale-Induced Semantic Shift in Visual Prompt Injection Against VLMs and Web Agents》，Yiheng Zhao、R",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第八价值：它报告了一个具体、可复现、且反直觉的多模态安全失效——图像在预处理里被缩小，会改变它对模型的可读语义。**（arXiv 2611.16744《Scale-Induced ",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16744v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.16744v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=scale-induced-semantic-shift-in-visual-prompt-injection-against-vlms-and-web-agents",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

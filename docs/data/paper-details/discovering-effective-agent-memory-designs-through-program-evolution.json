@@ -1,0 +1,138 @@
+{
+  "id": "discovering-effective-agent-memory-designs-through-program-evolution",
+  "title": "Discovering Effective Agent Memory Designs through Program Evolution",
+  "authors": [
+    "Xinheng Ding",
+    "Seyyed Saeid Cheshmi",
+    "Ziyang Zhang",
+    "Tairan Chen",
+    "Wenya Xie"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.17068v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.17068v1",
+  "code_url": "https://github.com/ash-ding/MAPE",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 9.8,
+    "evidence": 8.15,
+    "engineering_testability": 6.6,
+    "trend_signal": 6.55,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 75.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：★ **今日第四即时价值：它不是提出一个新记忆系统，而是把「记忆程序」当成可进化的代码，用程序演化去搜出哪些记忆设计真正有效——并且给出了两…",
+  "one_line_essence": "★ **今日第四即时价值：它不是提出一个新记忆系统，而是把「记忆程序」当成可进化的代码，用程序演化去搜出哪些记忆设计真正有效——并且给出了两个可以立刻搬走的具体设计模式。**（arXiv 2611.17068《Discovering Effective Agent Memory Designs through Program Evolution》，Xinheng Ding、Seyyed Saeid Cheshmi、Ziyang Zhang、Tairan Chen、Wenya Xie、Yu Hou、Rui Zhang、Zirui Liu；arXiv comment 逐字 '24 pages, 8 figures, 10 tables'）★ 核心：MAPE 框架从最小种子出发，**通过标准化的生命周期接口演化整个记忆程序**，迭代「诊断 → 提案」循环。★ 实测口径（论文摘要逐项核对）：**① 在 LoCoMo 与 LongMemEval 上，绝对准确率相对人工设计的基线最高提升 12%，且服务成本只有 35%**；**② 支持跨服务后端与跨基准的迁移**；**③ 两条被验证的设计模式（这是今天最可复用的部分）**——**其一：保留原始对话作为可检索证据，能保住抽取式记忆里丢失的细节**；**其二：按查询意图组合检索到的证据，能让回答模型真正用上它**；**④ 可迁移性实测**——把「组合模块」移植进**五个已有记忆系统，五个全部提升**；**⑤ 一个反直觉的次级发现**——把服务成本与准确率一起作为搜索目标时，**计算量会从「LLM 侧构造记忆」迁移到「查询时选择性处理」，而准确率仍然保持竞争力**。★ 今日实测的工件：`github.com/ash-ding/MAPE` **实测存在**——**★2、forks=0、Apache-2.0、1,848 KB、默认分支 main、created 2026-10-23、pushed 2026-11-09、homepage 为空**；代码地址写在论文摘要末尾（逐字 'Code is available at https://github.com/ash-ding/MAPE'），**绑定强度高（论文写明）**。★ 证据不足项（必须写清）：① 需 LLM 服务与 LoCoMo / LongMemEval，**本机无 GPU**；② **arXiv comment 只写篇幅图表数，无会议接收信息**；③ 「12% 提升 / 35% 成本」是**相对人工设计基线的相对值**，不同基线之间不可比；④ 「移植进五个系统全部提升」的**提升幅度未在摘要中给出**；⑤ 全文 24 页，**今日未逐表复核**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——**「保留原始对话当证据 + 按查询意图组合证据」这两条今天就能改**：我们现在的记忆模块普遍是「抽取 → 存储 → 检索」，**这篇说被丢掉的信息恰好在被抽取时丢的**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第四即时价值：它不是提出一个新记忆系统，而是把「记忆程序」当成可进化的代码，用程序演化去搜出哪些记忆设计真正有效——并且给出了两个可以立刻搬走的具体设计模式。**（arXiv 2611.17068《Discovering Effective Agent Memory Designs through Program Evolution》，Xinhe",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第四即时价值：它不是提出一个新记忆系统，而是把「记忆程序」当成可进化的代码，用程序演化去搜出哪些记忆设计真正有效——并且给出了两个可以立刻搬走的具体设计模式。**（arXiv 26",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17068v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.17068v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=discovering-effective-agent-memory-designs-through-program-evolution",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

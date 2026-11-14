@@ -1,0 +1,138 @@
+{
+  "id": "astromembench-a-benchmark-for-memory-systems-in-embodied-spacecraft-agents",
+  "title": "AstroMemBench: A Benchmark for Memory Systems in Embodied Spacecraft Agents",
+  "authors": [
+    "You Wu",
+    "Guhong Zhang",
+    "Hongwei Li",
+    "Xinyue Hong",
+    "Yuan Jia"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.16590v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.16590v1",
+  "code_url": "https://github.com/flyingView/AstroMemBench-v1",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 10,
+    "evidence": 7.7,
+    "engineering_testability": 6.05,
+    "trend_signal": 6.55,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 77.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：★ **今日第三即时价值：它给出的是一篇「记忆系统选型报告」，而且结论对主流是负面的——三个记忆系统打不过 RAG，直到会话重启才分出高下。…",
+  "one_line_essence": "★ **今日第三即时价值：它给出的是一篇「记忆系统选型报告」，而且结论对主流是负面的——三个记忆系统打不过 RAG，直到会话重启才分出高下。**（arXiv 2611.16590《AstroMemBench: A Benchmark for Memory Systems in Embodied Spacecraft Agents》，You Wu、Guhong Zhang、Hongwei Li、Xinyue Hong、Yuan Jia；arXiv comment 逐字 '31 pages, 4 figures, 19 tables. Includes Appendices A-E'；一级分类 cs.AI / cs.RO）★ 场景是长时航天自主：通信延迟、时间紧迫操作、环境不确定性、物理交互、算力与功耗约束、安全可靠性要求。方法上有 **Scenario-Challenge-Capability 三段设计法**，把需求映射成可执行的记忆测试。★ 实测口径（论文摘要逐项核对）：**规模**——16 个记忆子挑战、140 个模板、**2,240 个实例**、9 个任务（行星表面作业、在轨服务、深空探测）；**确定性环境**按任务完成度、状态变化、安全性与资源使用打分；**九个条件的消融**证明该基准对「agent 多准地回忆并使用历史信息」以及「记忆系统设计差异」是敏感的。**主实验比较六种配置，关键结论有三条**：**① 同会话内，Mem0 / Chain-of-Memory / LightMem / RAG 都能提升相对原生 Pi Agent 的平均分，但「三个记忆系统相对 RAG 没有明显优势」**——**这是对「专用记忆系统值得额外复杂度」的一次直接质疑**；**② 会话重启后，Mem0 反超 RAG 12.25 分**（即记忆的价值要在跨会话时才体现出来）；**③ 收益来源被定位得很具体**——「指令保留」与「结果复用」带来的收益，**大于**「持续状态跟踪」与「能量预留」带来的收益。★ 今日实测的工件：`github.com/flyingView/AstroMemBench-v1` **实测存在**——**★1、forks=0、MIT、12,278 KB、默认分支 main、created 2026-10-30、pushed 2026-11-12、homepage 为空**；仓库地址写在论文摘要末尾（逐字 'AstroMemBench 1.0 and its evaluation code are publicly available'），**绑定强度高（论文写明）**。★ 证据不足项（必须写清）：① **本机无 GPU 且无航天仿真环境**，全部数字无法复现；② 领域是**航天器具身智能**，与我们的软件 agent 有距离；③ **论文未在 comment 中声明会议接收信息**（comment 只写篇幅图表数）；④ 全文 31 页、19 张表，**今日只做了摘要与关键数字抽取，未逐表复核**；⑤ 基准与环境**由同一作者团队构建**，存在自评偏袒风险，无第三方独立评测；⑥ 全部数字为作者自述。★ 判断：**即时价值**——**它最值钱的一条是「会话内记忆系统打不过 RAG」这个反直觉结论**：如果我们正在考虑引入 Mem0 / 之类的专用记忆层，这篇提醒我们**先在「跨会话」这个真正需要记忆的场景上测，而不是在同会话里测**；**同会话里测，RAG 就是天花板**。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第三即时价值：它给出的是一篇「记忆系统选型报告」，而且结论对主流是负面的——三个记忆系统打不过 RAG，直到会话重启才分出高下。**（arXiv 2611.16590《AstroMemBench: A Benchmark for Memory Systems in Embodied Spacecraft Agents》，You Wu、Guhong",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第三即时价值：它给出的是一篇「记忆系统选型报告」，而且结论对主流是负面的——三个记忆系统打不过 RAG，直到会话重启才分出高下。**（arXiv 2611.16590《AstroM",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16590v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.16590v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=astromembench-a-benchmark-for-memory-systems-in-embodied-spacecraft-agents",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

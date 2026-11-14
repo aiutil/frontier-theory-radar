@@ -1,0 +1,136 @@
+{
+  "id": "visual-cipher-bench-benchmarking-llm-agents-on-long-horizon-visual-reasoning",
+  "title": "Visual Cipher Bench: Benchmarking LLM Agents on Long-Horizon Visual Reasoning",
+  "authors": [
+    "Deyao Hong",
+    "Jiayi Jiang",
+    "Yuchun Chen",
+    "Yixuan Shi",
+    "Wenyi Li"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.16861v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.16861v1",
+  "code_url": "https://github.com/Einsia/Visual-Cipher-Bench",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 8.6,
+    "evidence": 6.8,
+    "engineering_testability": 5.5,
+    "trend_signal": 6.55,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 65.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：★ **今日第九价值：它用一组视觉谜题测出一个反直觉结论——当前 agent 在「视觉里的长程推理」上，不是执行能力不行，而是根本不会从图像…",
+  "one_line_essence": "★ **今日第九价值：它用一组视觉谜题测出一个反直觉结论——当前 agent 在「视觉里的长程推理」上，不是执行能力不行，而是根本不会从图像里自己发现规则。**（arXiv 2611.16861《Visual Cipher Bench: Benchmarking LLM Agents on Long-Horizon Visual Reasoning》，arXiv comment 为空；一级分类 cs.CV）★ 核心：语言模型 agent 在长程编程与终端任务上表现优秀，但**这个成功依赖两个条件——明确的文字规格与即时的执行反馈**；**在真实问题里这两条都不成立**（关键信息只存在于图像中），于是不清楚长程能力能否从文本迁移到视觉推理。**视觉设定下，规则与线索难以转写为文本、也没有测试用例反馈**，agent 必须反复检查图像、模拟空间变换、自主交叉验证线索。而现有评测都抓不住这个能力：**视觉推理基准大多退化成单轮短链问答，agent 基准则是纯文本环境或允许试错的交互状态**。★ 实测口径（论文摘要逐项核对）：**① 规模**——40 个原创视觉谜题，分四类（空间操作与模拟、逻辑约束与规划、规则归纳、基于知识的解码），**每题只给 1–3 张黑白线稿和一条极简提交指令**，机制必须完全从图像里发现；**② 覆盖 8 个前沿模型 × 29 种 reasoning-effort 配置**；**③ 最强模型 GPT-6 Astra (max) 只有 26.7% 准确率，8 个模型里有 5 个低于 1%**；**④ 关键对照**——在 10 题子集上**只给一条不剧透的机制提示，准确率从 7.8% 跳到 55.6%**；**作者的结论是：当前 agent 的主要瓶颈不在于执行多步计划，而在于从视觉证据中自主发现规则。**★ 今日实测的工件：`github.com/Einsia/Visual-Cipher-Bench` **实测存在**——**★0、forks=0、Apache-2.0、54,989 KB、默认分支 main、created 2026-11-11、pushed 2026-11-13**；**但该仓库是通过 GitHub search 按名称反查到的（论文 comment 与 abstract 中均无 URL），绑定强度弱于「论文里写明」，官方性需保留**。★ 证据不足项（必须写清）：① **仓库绑定靠反查**，今日未读 README 与源码，未核验其内容是否即本文基准；② **GPT-6 Astra 这个模型名今日无法核验**（可能是论文自述或非公开模型）；③ 需多模态 API 调用与高 reasoning effort，**成本与本机条件均不具备**；④ **arXiv comment 为空**，无会议接收信息；⑤ 40 题规模偏小，**子集只有 10 题**（7.8%→55.6% 的对照建立在 10 题上）；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——**「给一条不剧透的机制提示，准确率从 7.8% 跳到 55.6%」这个对照今天就能用**：它说明**很多 agent 的视觉失败不是能力失败，是「不知道要找什么」的失败**——这对我们写提示词是直接可用的。**但仓库绑定靠反查，所以只存结论。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第九价值：它用一组视觉谜题测出一个反直觉结论——当前 agent 在「视觉里的长程推理」上，不是执行能力不行，而是根本不会从图像里自己发现规则。**（arXiv 2611.16861《Visual Cipher Bench: Benchmarking LLM Agents on Long-Horizon Visual Reasoning》，arX",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "rising",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第九价值：它用一组视觉谜题测出一个反直觉结论——当前 agent 在「视觉里的长程推理」上，不是执行能力不行，而是根本不会从图像里自己发现规则。**（arXiv 2611.1686",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16861v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.16861v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=visual-cipher-bench-benchmarking-llm-agents-on-long-horizon-visual-reasoning",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

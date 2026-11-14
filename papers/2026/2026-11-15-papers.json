@@ -1,0 +1,1156 @@
+{
+  "date": "2026-11-15",
+  "total": 15,
+  "generated_at": "2026-11-15T05:05:17.394184",
+  "papers": [
+    {
+      "title": "Does a Self-Learning Migration Agent Learn? An Audited Evaluation of Evidence-Graded Experience Memory for Oracle-to-PostgreSQL Migration",
+      "authors": [
+        "Oleg Grynets",
+        "Vasyl Lyashkevych",
+        "Valeriia Oliferuk",
+        "Vladyslav Babenko",
+        "Danylo Kovalchuk"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16143v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16143v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Do large language model (LLM) migration agents learn from accumulated experience, or do apparent gains reflect retrieval and reference reuse? We evaluate an evidence-graded agent for Oracle-to-PostgreSQL migration across four studies. On 1,833 documentation-derived source-reference pairs, persistent memory improved reference conformity (RC) over a no-memory baseline by 0.015 [0.004, 0.025], while policy adaptation added no gain (-0.004 [-0.010, 0.001]). An audit found that 264 of 367 held-out units (72%) shared a PostgreSQL reference with training, and the memory effect on the 103 leak-free units fell to 0.002 [-0.008, 0.011]. A model-free nearest-target copy baseline scored RC 0.222, outperforming all LLM systems (at most 0.163). A reference-grouped split reduced copying to 0.119; a rerun on 374 units in 118 independent target groups found no statistically distinguishable memory effect (0.005 [-0.003, 0.017]) and no policy effect. A separate Oracle-grounded evaluation on 216-224 real PL/SQL units showed that 10-22% of PostgreSQL-accepted units were behaviorally incorrect; a human-gated fix cycle increased demonstrably correct units from 98/216 to 167/224. A write-back study showed a 54% decline in retrieval margin as the knowledge base grew from 12 to 1,200 entries. We derive six evaluation rules that distinguish cross-task learning from reference leakage, copying, metric artifacts, and unstable feedback.",
+      "categories": [
+        "cs.LO",
+        "cs.DB",
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation"
+      ],
+      "comment": "16 pages, 15 figures, 25 tables, 36 references",
+      "score": 84.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16143v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16143v1"
+        }
+      ],
+      "prescreen_score": 36,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "rag-knowledge",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第一即时价值：它今天做的事，正是我们这个仓库连续多日在踩的坑——它用受控审计证明「agent 看起来在从经验里学习」很可能只是检索复用与数据泄漏，并且给出了六条可以把这件事查清楚的评测规则。**（arXiv 2611.16143《Does a Self-Learning Migration Agent Learn? An Audited Evaluation of Evidence-Graded Experience Memory for Oracle-to-PostgreSQL Migration》，Oleg Grynets、Vasyl Lyashkevych、Valeriia Oliferuk、Vladyslav Babenko、Danylo Kovalchuk；arXiv comment 逐字 '16 pages, 15 figures, 25 tables, 36 references'；一级分类 cs.LO / cs.DB / cs.SE）★ 核心提问：迁移 agent 累积经验后性能变好，到底是跨任务学习，还是仅仅因为检索到了参考答案？★ 实测口径（论文摘要逐项核对）：**① 记忆的真实效应极小且不显著**——在 1,833 对文档派生的 source-reference 对上，持久记忆相对无记忆基线把 reference conformity (RC) 提升 **0.015 [0.004, 0.025]**（区间下界刚过 0），而**策略自适应带来的增益是 −0.004 [−0.010, 0.001]（即没有增益，区间含 0）**；**② 泄漏审计击穿了上面的数字**——审计发现 367 个留出单元中有 **264 个（72%）与训练集共享同一个 PostgreSQL 参考**，而在 **103 个无泄漏单元上记忆效应降到 0.002 [−0.008, 0.011]（区间完全含 0，即不可区分于零）**；**③ 一个无模型的最近目标复制基线打赢了所有 LLM 系统**——RC 0.222，而所有 LLM 系统最高只有 0.163；改用参考分组切分后复制率降到 0.119；在 118 个独立目标组的 374 个单元上重跑，**记忆效应 0.005 [−0.003, 0.017] 无统计可区分性，策略效应同样无**；**④ 真实 PL/SQL 单元的独立核验**——在 216–224 个真实单元上，**10–22% 被 PostgreSQL 接受的单元在行为上是错误的**；一个人工把关的修复循环把「可证明正确」的单元从 **98/216 提到 167/224**；**⑤ 写回研究的负结果**——当知识库从 12 条增长到 1,200 条时，**检索 margin 下降 54%**（即记忆库变大反而检索质量变差）；**⑥ 论文提炼出六条评测规则**，用于区分「跨任务学习」与「参考泄漏 / 复制 / 指标假象 / 不稳定反馈」。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额在核验中途耗尽（连续 2 次 HTTP 403），**无法完成仓库反查**；② 一级分类 cs.LO / cs.DB / cs.SE，**不是 cs.AI**，与本仓库主线（agent / LLM 工程）有一段距离，**结论外推到 LLM agent 需要额外论证**；③ 全文 16 页，**今日只做了摘要与关键数字抽取，未逐表复核**；④ 迁移任务是 Oracle→PostgreSQL 这一具体场景，**domain-specific**；⑤ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——**它今天给我们的不是一篇 agent 方法论，而是一把尺子**：我们内部也在做「agent 从历史任务里学到了吗」这类评估，而这篇告诉我们**在用记忆做 A/B 时，第一件事不是测记忆，而是先查测试集有没有泄漏**。**这条今天可以直接用。**",
+      "id": "does-a-self-learning-migration-agent-learn-an-audited-evaluation-of-evidence-graded-experience-memory-for-oracle-to-postgresql-migration",
+      "value_type": "immediate",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Contain, Conform, Compare (Extended Version): A Red-Teamed Evaluation Kit for Small Coding Agents and the Full Record of Its Experiments",
+      "authors": [
+        "Nguyen Minh Thang"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16485v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16485v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/MinhThanghus/drydock-eval",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "A hosted score in the Gemma 4 Developer Agent competition is one noisy number, so development needs a local evaluator that is fast, safe for agent-written code, and matching the hosted scorer's prompts. drydock-eval evaluates a small coding agent (Gemma 4 E4B) at about 250 runs per hour on one RTX 5090. Contain runs each job in a fresh container without network and passed 200 scripted escape tests; conform provides eight checks that compare a local stack's requests with the scorer's configuration, down to rendered tokens; compare provides paired statistics that respect repository clusters. AI agents built and attacked the kit; a human owner approved machine use and release. This extended version repeats the short paper and adds the full record of the experiments made with and around the kit: 9,660 rows of agent runs, 2,494 grading controls and 72 serving measurements, all released. On four L4 GPUs the 31B model decodes 38.1 tokens per second in one stream and E4B 105.8. Six configurations of a 31B agent solved between 37 and 44 of 70 development tasks, and no pairwise difference was detected. A pre-registered five-arm experiment (231 tasks, 4,620 jobs) measured four prompt divergences: no E4B solve-rate change was detected (largest estimate -2.1 points, 95% interval -4.4 to +0.4). Three changes of the E4B agent led their screens by +1.0 to +6.2 points; each was then tested once on new tasks under a frozen pass rule, and none was confirmed (gains -0.35, -0.39 and +4.10 points). The unchanged baseline, run again on the same 128 tasks, moved by 1.17 points, and 65% of these tasks were solved in none of eight runs. Prompts and agent bundles are withheld; every run-level result is public.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation"
+      ],
+      "comment": "52 pages, 15 figures, 37 tables. Code: https://github.com/MinhThanghus/drydock-eval (tag v0.4.0). Data and analysis scripts are included as ancillary files",
+      "score": 80.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16485v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16485v1"
+        }
+      ],
+      "prescreen_score": 48,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "inference-serving",
+        "ai-k8s-platform",
+        "security-governance"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "★ **今日第二即时价值：它是今天唯一一篇「把评测方法的失败模式自己量化出来」的论文——它实测出 agent 评测的噪声底噪有多大，以及为什么「看着涨了」的 prompt 改动多半是噪声。**（arXiv 2611.16485《Contain, Conform, Compare (Extended Version): A Red-Teamed Evaluation Kit for Small Coding Agents and the Full Record of Its Experiments》，Nguyen Minh Thang（单一作者）；arXiv comment 逐字 '52 pages, 15 figures, 37 tables. Code: https://github.com/MinhThanghus/drydock-eval (tag v0.4.0). Data and analysis scripts are included as ancillary files'）★ 核心：主办方的 Gemma 4 Developer Agent 竞赛分数「只是一个含噪的数」，所以需要一个本地评测器——**快、对 agent 写的代码安全、并且请求与主办方评分器的配置一致**。三个模块：**contain**（每个作业跑在无网络的新容器里，**通过 200 个脚本化逃逸测试**）、**conform**（八项检查，把本地栈的请求与评分器配置逐项比对，**精确到渲染后的 token**）、**compare**（按仓库聚类的配对统计）。★ 实测口径（论文摘要逐项核对）：**① 规模**：共 **9,660 行 agent 运行记录、2,494 条评分对照、72 次服务测量，全部公开**；单张 RTX 5090 上 **约 250 runs/小时**；四张 L4 上 31B 模型单流解码 38.1 tokens/s、E4B 为 105.8 tokens/s；**② 最扎眼的一组对照**——31B agent 的六种配置在 70 个开发任务上解开 **37 到 44** 个，**「未检测到任何两两之间的差异」**；**③ 预注册五臂实验**（231 个任务、4,620 个作业）测了四种 prompt 分歧，**E4B 解题率没有检测到变化（最大估计 −2.1 分，95% 区间 −4.4 到 +0.4）**；**④ 全文最诚实的一段**——三次改动在各自筛选集上领先 **+1.0 到 +6.2 分**，但**每一个都在新任务上用冻结的通过规则测了一次，结果没有一个被确认（−0.35、−0.39、+4.10）**；**⑤ 噪声底噪实测**：完全不变的基线在同一批 128 个任务上重跑，**移动了 1.17 分**，且**65% 的任务在八次运行中一次都没解开**；**⑥ 发布伦理**：agent 既参与构建也参与攻击这套工具包，机器使用与发布由人类所有者批准；**但 prompts 与 agent bundle 被 withheld，只公开逐次运行结果。**★ 今日实测的工件：`github.com/MinhThanghus/drydock-eval` **实测存在**——**★0、forks=0、Apache-2.0、2,746 KB、默认分支 `develop`（不是 main）**、created 2026-11-12、pushed 2026-11-12、homepage 为空。★ 证据不足项（必须写清）：① **默认分支是 `develop` 而非 main**——引用文件时必须写明分支，否则 checkout 拿不到内容；② **★0 且单作者**，社区采用度未验证；③ 论文自陈 **prompts 与 agent bundle 被 withheld**，即**最可复现的部分（提示词）不可得**，只有逐次运行结果公开；④ 需 RTX 5090 / 4×L4 GPU，**本机无 GPU**；⑤ 数字全部为作者自述，无第三方复现；⑥ 今日**未读取仓库源码**（GitHub API 配额已用去 32 次，优先留给身份核验）；⑦ 标题里的 \"Extended Version\" 意味着**短论文另有其文**，今日只见长版本。★ 判断：**即时价值**——**它的「未确认」数据和「1.17 分噪声底噪」这两个数今天就能用**：我们内部对 agent 改动的每一次「有提升」判断，都应该先问「这个提升超过了基线重跑的漂移吗」。",
+      "id": "contain-conform-compare-extended-version-a-red-teamed-evaluation-kit-for-small-coding-agents-and-the-full-record-of-its-experiments",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "llm-evaluation",
+        "security-governance",
+        "ai-k8s-platform"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 8.4,
+        "relevance": 10,
+        "evidence_strength": 6.8,
+        "engineering_testability": 5.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "AstroMemBench: A Benchmark for Memory Systems in Embodied Spacecraft Agents",
+      "authors": [
+        "You Wu",
+        "Guhong Zhang",
+        "Hongwei Li",
+        "Xinyue Hong",
+        "Yuan Jia"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16590v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16590v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/flyingView/AstroMemBench-v1",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Long-term spacecraft autonomy requires embodied agents to use operational history under communication delays, time-critical operations, environmental uncertainty, complex physical interactions, power and computational constraints, and safety and reliability requirements. We introduce AstroMemBench and a Scenario-Challenge-Capability design method that maps these requirements to executable memory tests. The benchmark covers 16 memory subchallenges through 140 templates and 2240 instances across nine tasks in planetary surface operations, on-orbit servicing, and deep-space exploration. A deterministic environment scores actions for task completion, state changes, safety, and resource use. Ablations under nine conditions show that the benchmark is sensitive to how accurately agents recover and use historical information and to differences in memory-system design. Main experiments compare six configurations. Mem0, Chain-of-Memory, LightMem, and retrieval-augmented generation (RAG) improve same-session mean scores over native Pi Agent, with no clear advantage of the three memory systems over RAG. After a session restart, Mem0 outperforms RAG by 12.25 points. Benefits favor instruction retention and result reuse over ongoing state tracking and energy reservation. AstroMemBench supports the design, development, and selection of memory systems for embodied spacecraft agents. AstroMemBench 1.0 and its evaluation code are publicly available: https://github.com/flyingView/AstroMemBench-v1.",
+      "categories": [
+        "cs.AI",
+        "cs.RO"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "benchmark",
+        "retrieval augmented"
+      ],
+      "comment": "31 pages, 4 figures, 19 tables. Includes Appendices A-E",
+      "score": 77.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16590v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16590v1"
+        }
+      ],
+      "prescreen_score": 38,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "rag-knowledge",
+        "multimodal-agent",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "★ **今日第三即时价值：它给出的是一篇「记忆系统选型报告」，而且结论对主流是负面的——三个记忆系统打不过 RAG，直到会话重启才分出高下。**（arXiv 2611.16590《AstroMemBench: A Benchmark for Memory Systems in Embodied Spacecraft Agents》，You Wu、Guhong Zhang、Hongwei Li、Xinyue Hong、Yuan Jia；arXiv comment 逐字 '31 pages, 4 figures, 19 tables. Includes Appendices A-E'；一级分类 cs.AI / cs.RO）★ 场景是长时航天自主：通信延迟、时间紧迫操作、环境不确定性、物理交互、算力与功耗约束、安全可靠性要求。方法上有 **Scenario-Challenge-Capability 三段设计法**，把需求映射成可执行的记忆测试。★ 实测口径（论文摘要逐项核对）：**规模**——16 个记忆子挑战、140 个模板、**2,240 个实例**、9 个任务（行星表面作业、在轨服务、深空探测）；**确定性环境**按任务完成度、状态变化、安全性与资源使用打分；**九个条件的消融**证明该基准对「agent 多准地回忆并使用历史信息」以及「记忆系统设计差异」是敏感的。**主实验比较六种配置，关键结论有三条**：**① 同会话内，Mem0 / Chain-of-Memory / LightMem / RAG 都能提升相对原生 Pi Agent 的平均分，但「三个记忆系统相对 RAG 没有明显优势」**——**这是对「专用记忆系统值得额外复杂度」的一次直接质疑**；**② 会话重启后，Mem0 反超 RAG 12.25 分**（即记忆的价值要在跨会话时才体现出来）；**③ 收益来源被定位得很具体**——「指令保留」与「结果复用」带来的收益，**大于**「持续状态跟踪」与「能量预留」带来的收益。★ 今日实测的工件：`github.com/flyingView/AstroMemBench-v1` **实测存在**——**★1、forks=0、MIT、12,278 KB、默认分支 main、created 2026-10-30、pushed 2026-11-12、homepage 为空**；仓库地址写在论文摘要末尾（逐字 'AstroMemBench 1.0 and its evaluation code are publicly available'），**绑定强度高（论文写明）**。★ 证据不足项（必须写清）：① **本机无 GPU 且无航天仿真环境**，全部数字无法复现；② 领域是**航天器具身智能**，与我们的软件 agent 有距离；③ **论文未在 comment 中声明会议接收信息**（comment 只写篇幅图表数）；④ 全文 31 页、19 张表，**今日只做了摘要与关键数字抽取，未逐表复核**；⑤ 基准与环境**由同一作者团队构建**，存在自评偏袒风险，无第三方独立评测；⑥ 全部数字为作者自述。★ 判断：**即时价值**——**它最值钱的一条是「会话内记忆系统打不过 RAG」这个反直觉结论**：如果我们正在考虑引入 Mem0 / 之类的专用记忆层，这篇提醒我们**先在「跨会话」这个真正需要记忆的场景上测，而不是在同会话里测**；**同会话里测，RAG 就是天花板**。",
+      "id": "astromembench-a-benchmark-for-memory-systems-in-embodied-spacecraft-agents",
+      "value_type": "immediate",
+      "matched_topics": [
+        "context-engineering",
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 8.4,
+        "relevance": 10,
+        "evidence_strength": 7.7,
+        "engineering_testability": 6.05,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Discovering Effective Agent Memory Designs through Program Evolution",
+      "authors": [
+        "Xinheng Ding",
+        "Seyyed Saeid Cheshmi",
+        "Ziyang Zhang",
+        "Tairan Chen",
+        "Wenya Xie"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17068v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17068v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/ash-ding/MAPE",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Program evolution provides a promising approach to discover agent memory designs and study the choices underlying their effectiveness. We introduce MAPE, a framework that evolves whole memory programs from minimal seeds through a standardized lifecycle interface and an iterative diagnosis-proposal loop. Experiments on LoCoMo and LongMemEval yield an absolute accuracy gain of up to 12% over manually designed baselines at 35% of the serving cost, with further evaluations supporting transfer across serving backbones and benchmarks. Empirical analyses and ablations identify and validate two recurring design patterns: retaining raw conversations as retrievable evidence preserves details omitted from extracted memories, while composing retrieved evidence according to query intent helps the answering model use it effectively. Transplanting the composition module into five existing memory systems improves accuracy across all five. Beyond these patterns, the search objective shapes where computation goes: optimizing serving cost alongside accuracy shifts computation from LLM-based memory construction to selective processing at query time while retaining competitive accuracy. Together, these findings offer empirical lessons for agent memory design. Code is available at https://github.com/ash-ding/MAPE.",
+      "categories": [
+        "cs.CL",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "24 pages, 8 figures, 10 tables",
+      "score": 75.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17068v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17068v1"
+        }
+      ],
+      "prescreen_score": 24,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "★ **今日第四即时价值：它不是提出一个新记忆系统，而是把「记忆程序」当成可进化的代码，用程序演化去搜出哪些记忆设计真正有效——并且给出了两个可以立刻搬走的具体设计模式。**（arXiv 2611.17068《Discovering Effective Agent Memory Designs through Program Evolution》，Xinheng Ding、Seyyed Saeid Cheshmi、Ziyang Zhang、Tairan Chen、Wenya Xie、Yu Hou、Rui Zhang、Zirui Liu；arXiv comment 逐字 '24 pages, 8 figures, 10 tables'）★ 核心：MAPE 框架从最小种子出发，**通过标准化的生命周期接口演化整个记忆程序**，迭代「诊断 → 提案」循环。★ 实测口径（论文摘要逐项核对）：**① 在 LoCoMo 与 LongMemEval 上，绝对准确率相对人工设计的基线最高提升 12%，且服务成本只有 35%**；**② 支持跨服务后端与跨基准的迁移**；**③ 两条被验证的设计模式（这是今天最可复用的部分）**——**其一：保留原始对话作为可检索证据，能保住抽取式记忆里丢失的细节**；**其二：按查询意图组合检索到的证据，能让回答模型真正用上它**；**④ 可迁移性实测**——把「组合模块」移植进**五个已有记忆系统，五个全部提升**；**⑤ 一个反直觉的次级发现**——把服务成本与准确率一起作为搜索目标时，**计算量会从「LLM 侧构造记忆」迁移到「查询时选择性处理」，而准确率仍然保持竞争力**。★ 今日实测的工件：`github.com/ash-ding/MAPE` **实测存在**——**★2、forks=0、Apache-2.0、1,848 KB、默认分支 main、created 2026-10-23、pushed 2026-11-09、homepage 为空**；代码地址写在论文摘要末尾（逐字 'Code is available at https://github.com/ash-ding/MAPE'），**绑定强度高（论文写明）**。★ 证据不足项（必须写清）：① 需 LLM 服务与 LoCoMo / LongMemEval，**本机无 GPU**；② **arXiv comment 只写篇幅图表数，无会议接收信息**；③ 「12% 提升 / 35% 成本」是**相对人工设计基线的相对值**，不同基线之间不可比；④ 「移植进五个系统全部提升」的**提升幅度未在摘要中给出**；⑤ 全文 24 页，**今日未逐表复核**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**即时价值**——**「保留原始对话当证据 + 按查询意图组合证据」这两条今天就能改**：我们现在的记忆模块普遍是「抽取 → 存储 → 检索」，**这篇说被丢掉的信息恰好在被抽取时丢的**。",
+      "id": "discovering-effective-agent-memory-designs-through-program-evolution",
+      "value_type": "immediate",
+      "matched_topics": [
+        "context-engineering",
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 8.15,
+        "engineering_testability": 6.6,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Eliciting and Mitigating Specification Satisficing in Coding Agents",
+      "authors": [
+        "Ruixin Wang",
+        "Tianyi Zhang"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16289v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16289v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/agentic-debugging/SatisFix",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Coding agents often fail to meet all requirements in the task description. In some of these failures, the agent considers an implementation choice that meets a requirement, but later decides to commit to another one that does not meet the requirement for a reason it finds acceptable. We call this specification satisficing. It is challenging to identify and mitigate specification satisficing because the agent accepts such choices for its own reasons, and existing self-correction methods are biased toward them. We propose SatisFix, which guides a coding agent to report these choices and their reasons, and then check each choice against the task description. We evaluate SatisFix on DeepSWE and SWE-bench Pro with five LLMs as backbones and two different agent frameworks, and compare it with three self-correction methods. SatisFix improves the pass@1 of the base agent by an average of 5.09% on DeepSWE and 7.06% on the hard subset of SWE-bench Pro. On DeepSWE, it outperforms the best baseline by 3.98%. Our ablation study shows that both steps of SatisFix contribute to the improvement.",
+      "categories": [
+        "cs.SE",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation"
+      ],
+      "comment": "12 pages, 2 figures, 7 tables",
+      "score": 73.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16289v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16289v1"
+        }
+      ],
+      "prescreen_score": 25,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第五价值：它给 agent 的「明知故犯」起了名字——agent 认真想过要不要满足某条需求，然后出于自认为可接受的理由决定不满足——并且说明为什么现有的自纠错方法对这个失败模式系统性失灵。**（arXiv 2611.16289《Eliciting and Mitigating Specification Satisficing in Coding Agents》，Ruixin Wang、Tianyi Zhang；arXiv comment 逐字 '12 pages, 2 figures, 7 tables'；一级分类 cs.SE / cs.AI / cs.CL）★ 核心：coding agent 经常没能满足任务描述里的全部要求。**有一类失败特别难处理：agent 考虑过某个满足需求的实现选择，但后来出于它自己认为可接受的理由，改为提交另一个不满足该需求的选择。** 论文称之为 **specification satisficing（规格满足化）**。**难点在于 agent 是出于自己的理由接受这些选择的，而现有的自纠错方法对这些选择有偏**——也就是说，**让 agent「自我反思」的方法，恰恰会把这种明知故犯合理化**。★ 实测口径（论文摘要逐项核对）：SatisFix 的做法是**引导 agent 报告这些选择及其理由，然后逐条对照任务描述检查**；在 **DeepSWE 与 SWE-bench Pro 的困难子集**上，用 5 个 LLM 作后端、2 种 agent 框架评测，与三种自纠错方法对比：**DeepSWE 上 pass@1 平均提升 5.09%，SWE-bench Pro 困难子集平均提升 7.06%；在 DeepSWE 上比最好的基线高 3.98%**；**消融表明 SatisFix 的两个步骤（报告 + 对照检查）都有贡献**。★ 今日实测的工件：`github.com/agentic-debugging/SatisFix` **实测存在**——**★0、forks=0、MIT、4,246 KB、默认分支 main、created 2026-10-09、pushed 2026-10-13、homepage 为空**；**实读 README 全文**：逐字 'SatisFix is a coding agent built on mini-swe-agent'，并给出四步流程——**① Detect**（每次模型查询前快照仓库；每一步改动仓库就问模型「这段新代码是否实现了任务指定的行为」；**第一次「是」即标记干预点**）、**② Roll back**（把仓库恢复到该步之前的状态，**该步仍留在对话里，但其命令输出被替换为一个说明已回滚的占位符**）、**③ Report**（模型报告它在哪些地方决定某条需求不需要按字面满足）、**④ Reflect**（若报告有内容，模型把每条需求转成对任务描述的检查）。★ 证据不足项（必须写清）：① **该仓库不在论文的 comment 或 abstract 中**——论文正文只写 'SatisFix'，**仓库是通过 GitHub search 按名称反查到的（desc 逐字 'Built on mini-swe-agent'）**，**绑定强度弱于「论文里写明」，官方性需保留**；② 需 SWE-bench / DeepSWE 全流程与 LLM 后端，**本机无 GPU**；③ **arXiv comment 无会议接收信息**；④ 摘要未给出各 LLM 后端的分项数字，也未说明 deep dive 的模型成本；⑤ 全文 12 页，**今日未逐表复核**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——**它的失败模式命名今天就有用**（我们内部 review agent 输出时，需要一个词来描述「agent 说它知道要做什么，但它自己决定不用严格满足」）；**但它是 12 页、单机构、仓库绑定靠反查的一篇，所以先纳入观察，不改我们的流程。**",
+      "id": "eliciting-and-mitigating-specification-satisficing-in-coding-agents",
+      "value_type": "trend",
+      "matched_topics": [
+        "coding-agent",
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 6.35,
+        "engineering_testability": 6.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 6.2,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising"
+    },
+    {
+      "title": "Metal Sandbox: Isolated Execution and Command Scheduling for GPU Coding Agents on Apple Silicon",
+      "authors": [
+        "Haozhe Wang",
+        "Lina Chen",
+        "Fanqi Wan",
+        "Qi Han",
+        "Yinmin Zhang"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17294v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17294v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/WangHaoZhe/metal-sandbox",
+      "benchmark_url": "",
+      "project_url": "https://harborframework.com/",
+      "abstract": "On-device inference requires kernels that make effective use of local accelerators. Efficient training and evaluation of models that generate Apple Metal kernels benefit from native macOS tools and concurrent agent sessions. These sessions alternate between model requests, development commands, and GPU execution, leaving GPU capacity idle for much of a rollout. We present Metal Sandbox, infrastructure that combines restricted per-instance file access, native command execution, and command-level scheduling across interconnected Macs. Each agent retains its workspace and private development environment. Parallel commands can run concurrently, while serial commands share one execution slot per node; eligible waiting commands can migrate to available Macs and return results to the original agent. Integration with Harbor supports task execution, automatic verification, and rollout collection through a common workflow. Controlled experiments on four Mac mini M4 nodes achieve $1.68\\times$--$2.05\\times$ gains in command throughput under concentrated demand. Sixteen static agent traces give an estimated $2.14\\times$ sustained-throughput gain for four sessions per node versus one, assuming continuously replenished sessions and unchanged mean durations. Replaying these measured traces under dynamic scheduling reduces mean tool waiting by 18.8% and batch elapsed time by 22.3%, assuming unchanged phase durations. Metal Sandbox and its Harbor integration are open-source on GitHub.",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL",
+        "cs.DC"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation",
+        "inference"
+      ],
+      "comment": "16 pages, 7 figures, 5 tables. Code available at https://github.com/WangHaoZhe/metal-sandbox and https://github.com/WangHaoZhe/harbor",
+      "score": 71.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17294v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17294v1"
+        }
+      ],
+      "prescreen_score": 29,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "llm-evaluation",
+        "inference-serving",
+        "ai-k8s-platform"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "★ **今日第六价值：它量化了一个我们每次跑 agent 批处理都在付出、却从没算过的成本——「agent 等工具」的空转时间。**（arXiv 2611.17294《Metal Sandbox: Isolated Execution and Command Scheduling for GPU Coding Agents on Apple Silicon》，Haozhe Wang、Lina Chen、Fanqi Wan、Qi Han、Yinmin Zhang、Zheng Ge、Daxin Jiang、Junchi Yan；arXiv comment 逐字 '16 pages, 7 figures, 5 tables. Code available at https://github.com/WangHaoZhe/metal-sandbox and https://github.com/WangHaoZhe/harbor'）★ 核心：agent 会话在「模型请求 → 开发命令 → GPU 执行」之间交替，**GPU 容量在 rollout 的大部分时间里是空转的**。Metal Sandbox 把「受限的每实例文件访问、原生命令执行、跨多台 Mac 的命令级调度」组合起来：**每个 agent 保留自己的工作区与私有开发环境**；并行命令可并发，串行命令每节点共享一个执行槽；**可迁移的等待命令能在多台 Mac 间迁移并把结果送回原 agent**。与 Harbor 集成后支持任务执行、自动验证与 rollout 收集。★ 实测口径（论文摘要逐项核对）：**① 受控实验**：四台 Mac mini M4 节点上，**集中负载下命令吞吐提升 1.68×–2.05×**；**② 基于 16 条静态 agent trace 的估算**：每节点四会话对一会话，**持续吞吐提升约 2.14×**（前提是会话持续补充且平均时长不变）；**③ trace 重放**：动态调度把**平均工具等待降低 18.8%、批次总时长降低 22.3%**（前提是各阶段时长不变）。★ 今日实测的工件：`github.com/WangHaoZhe/metal-sandbox` **实测存在**——**★1、forks=0、license=None（无 LICENSE 文件）、5,944 KB、默认分支 main、created 2026-11-12、pushed 2026-11-12**；配套 `github.com/WangHaoZhe/harbor` **实测存在**——**★0、Apache-2.0、83,528 KB、默认分支 `metal-sandbox-support`（不是 main）**、created 2026-11-12、pushed 2026-11-12、**homepage `https://harborframework.com/` 实测 HTTP 200 / 37,759 B**。★ 证据不足项（必须写清）：① **需要 4 台 Mac mini M4 与 Apple Silicon**，**本机不具备该硬件**；② **2.14× 这个数字是「基于静态 trace 的估算」，不是实测**，且明确带两个假设前提（会话持续补充、平均时长不变）——**不能当作实测值引用**；③ `metal-sandbox` **无 LICENSE**，复用前需确认授权；④ `harbor` 默认分支是 `metal-sandbox-support`；⑤ 论文把 1.68×–2.05× 归因于「集中负载」这一特定场景；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——**「agent 批处理里工具等待占多少」这个问题今天就该问**（我们做 agent 评测批处理时一直在等 GPU 空转）；**但它的解法绑死在 Apple Silicon 集群上，与我们的 Linux 部署不能直接搬，所以只取问题，不取实现。**",
+      "id": "metal-sandbox-isolated-execution-and-command-scheduling-for-gpu-coding-agents-on-apple-silicon",
+      "value_type": "trend",
+      "matched_topics": [
+        "coding-agent",
+        "ai-k8s-platform",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 6.8,
+        "engineering_testability": 6.6,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising"
+    },
+    {
+      "title": "ReA-Bench: Benchmarking Responsible Agent Auditing",
+      "authors": [
+        "Zipeng Ye",
+        "Shenyu Dai",
+        "Yong Xie",
+        "Kun Wang",
+        "Jiyang Guan"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16493v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16493v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "As agents perform tasks autonomously in local and cloud environments, auditing their execution trajectories can help service providers identify risks and improve agent harnesses and foundation models. Our analysis of production and red-team trajectories shows that some risks are repeatedly missed across auditing configurations. Overall recall obscures which risks are missed and whether higher recall comes with more false positives on legitimate behavior. Existing benchmarks offer limited insight into these failures. Generated trajectories can contain inconsistent tool calls and responses, conspicuous risky actions, or repetitive attack patterns. Grouping results by risk type also makes it difficult to tell whether auditors overlooked evidence, accepted an unsupported conclusion, or lacked information needed to make a judgment. We introduce ReA-Bench, a diagnostic benchmark for auditing responsible agent behavior. It organizes auditing challenges into six tiers: internal safety knowledge, contradictions within trajectories, evidence retrieval in long contexts, verification of sources and reasoning, indirect steering, and missing information. It includes challenging benign cases in which actions resemble risky ones but are consistent with the task and its authorization. It also provides paired trajectory versions to test whether auditors detect the same risks more reliably when the trajectory is shortened or missing information is supplied. Most samples are drawn from real production trajectories, with scenarios manually selected and adapted to preserve realistic tasks and risks that could plausibly arise during execution.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16493v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16493v1"
+        }
+      ],
+      "prescreen_score": 27,
+      "prescreen_topics": [
+        "ai-agent",
+        "rag-knowledge",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第七价值：它把「agent 审计」从「总体召回率」这个单一数字拆成了六层可诊断的失败类型，并给出配对轨迹来区分「没看到证据」和「看到了但不认」。**（arXiv 2611.16493《ReA-Bench: Benchmarking Responsible Agent Auditing》，Zipeng Ye、Shenyu Dai、Yong Xie、Kun Wang、Jiyang Guan、Zhikai Chen、Jiaqi Weng、Jialing Tao；**arXiv comment 为空**，无会议接收信息）★ 核心前提：agent 在本地与云端环境自主执行任务，**审计其执行轨迹**才能帮服务方定位风险并改进 agent harness 与基础模型。作者对生产轨迹与红队轨迹的分析显示：**某些风险在多种审计配置下被反复漏掉**；而**总体召回率掩盖了「漏了哪些风险」以及「更高召回是否伴随更多对合法行为的误报」**这两个关键问题。★ 实测口径（论文摘要逐项核对）：**① 六层难度分级**——内部安全知识、轨迹内部的矛盾、长上下文中的证据检索、对来源与推理的核验、间接引导、信息缺失；**② 刻意包含「良性但像风险」的案例**（动作看起来危险，但与任务及其授权一致）——这是与一般安全基准最大的区别；**③ 提供配对轨迹版本**——同一风险在轨迹被缩短、或补充了缺失信息时，审计者检出是否更可靠，用来**区分「漏看证据」与「没有信息可判」**；**④ 样本大多取自真实生产轨迹**，场景人工筛选并改编以保留真实性。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，**GitHub search 配额耗尽（HTTP 403）导致无法反查仓库**；② **「Recall」与具体数字未在摘要中给出**，无法引用其量化结论；③ **摘要未说明基准是否公开 / 是否计划发布**；④ 「生产轨迹」的来源与授权方式未在摘要中交代；⑤ 全文未读，**今日只做摘要级抽取**；⑥ 全部表述为作者自述，无第三方复现。★ 判断：**趋势价值**——**「审计召回率要拆成失败类型」这个结构今天就能抄**（我们的 agent 审计表现在只有一个总体数字），**但没有可核验工件、也没有量化结果，所以先存结构，不投入。**",
+      "id": "rea-bench-benchmarking-responsible-agent-auditing",
+      "value_type": "trend",
+      "matched_topics": [
+        "security-governance",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 5.45,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Scale-Induced Semantic Shift in Visual Prompt Injection Against VLMs and Web Agents",
+      "authors": [
+        "Yiheng Zhao",
+        "Runze Ji",
+        "Chenyu Yi",
+        "Yi Yu",
+        "Bingquan Shen"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16744v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16744v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Visual content in multimedia systems may be resized, compressed, or re-rendered before it is interpreted by a vision-language model. We study a security failure mode in which these transformations change the machine-readable semantics of an image: a textual instruction is not recovered at a $512\\times512$ presentation resolution under our evaluation protocol but becomes recoverable after aggressive downsampling. We formulate this behavior as Scale-Induced Semantic Shift (SISS) and develop a closed-loop black-box framework that combines dual-scale verification, selective self-hardening, shallow-layer low-rank adaptation, and pixel-space noise regularization. On a fixed 300-case benchmark, the third SISS refinement round obtains a $58.75\\%$ average attack success rate across four closed-source vision-language models, compared with $41.08\\%$ for the strongest generation baseline. A controlled sweep bounds the effect to aggressive compression: average success decreases to $17.68\\%$, $6.85\\%$, and $5.60\\%$ at $128\\times128$, $224\\times224$, and $336\\times336$, respectively. In a downstream web-agent study, the generated images increase hidden-instruction perception, but absolute behavioral compromise remains about $4\\%$. Generic input transformations provide little protection in a separate defense protocol, whereas the proposed ScaleGuard consistency detector reduces non-adaptive success from $61.4\\%$ to $24.3\\%$ and one-round defense-aware success from $42.5\\%$ to $15.0\\%$, with no observed rejection among matched clean controls. The results characterize a bounded but reproducible semantic inconsistency in multimedia preprocessing and motivate scale-consistent visual-language inference.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark",
+        "inference"
+      ],
+      "comment": "14 pages, 10 figures, including supplementary material",
+      "score": 67.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16744v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16744v1"
+        }
+      ],
+      "prescreen_score": 33,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent",
+        "llm-evaluation",
+        "inference-serving",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第八价值：它报告了一个具体、可复现、且反直觉的多模态安全失效——图像在预处理里被缩小，会改变它对模型的可读语义。**（arXiv 2611.16744《Scale-Induced Semantic Shift in Visual Prompt Injection Against VLMs and Web Agents》，Yiheng Zhao、Runze Ji、Chenyu Yi、Yi Yu、Bingquan Shen、Alex Kot、Xudong Jiang；arXiv comment 逐字 '14 pages, 10 figures, including supplementary material'）★ 核心设定：多媒体内容在送进 VLM 之前可能被缩放、压缩或重新渲染。**论文发现这类变换会改变图像的机器可读语义**——在 512×512 的呈现分辨率下不可恢复的文本指令，**在激进的降采样之后变得可恢复**。论文把这个行为形式化为 **Scale-Induced Semantic Shift (SISS)**。★ 实测口径（论文摘要逐项核对）：**① 攻击侧**：固定 300 例基准上，第三轮 SISS 精炼在四个闭源 VLM 上取得 **58.75% 的平均攻击成功率**，对比最强生成基线的 **41.08%**；**② 边界扫描（关键）**：**平均成功率随分辨率变化——128×128 为 17.68%、224×224 为 6.85%、336×336 为 5.60%**，即**该效应被限定在「激进压缩」范围内**，不是普遍成立；**③ 下游 web agent**：生成的图像确实提高了隐藏指令的感知率，**但绝对行为沦陷仍只有约 4%**（**攻击成功率与实际行为改变之间差距很大——这条必须和 58.75% 一起读**）；**④ 防御侧**：通用输入变换几乎无效，而提出的 **ScaleGuard 一致性检测器**把非自适应成功率从 **61.4% 降到 24.3%**、一轮防御感知成功率从 **42.5% 降到 15.0%**，**且在匹配的干净对照上没有观察到拒绝**。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查；② **攻击侧方法本身是对闭源模型的攻击**，伦理与授权情况未在摘要中交代；③ 「闭源 VLM」未具名，**无法确认受测对象**；④ 300 例基准未说明来源，**ScaleGuard 未见公开实现**；⑤ 全文 14 页，**今日未逐表复核**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——**它给我们的多模态输入管线埋了一个必须记下的检查项**：任何对图像做缩放/压缩/重渲染的预处理，都可能**制造**出原始图像里没有的可读指令。**我们如果做图像压缩，必须把压缩后的版本也过一遍注入检测。**",
+      "id": "scale-induced-semantic-shift-in-visual-prompt-injection-against-vlms-and-web-agents",
+      "value_type": "trend",
+      "matched_topics": [
+        "security-governance",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 8.4,
+        "relevance": 10,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Visual Cipher Bench: Benchmarking LLM Agents on Long-Horizon Visual Reasoning",
+      "authors": [
+        "Deyao Hong",
+        "Jiayi Jiang",
+        "Yuchun Chen",
+        "Yixuan Shi",
+        "Wenyi Li"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16861v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16861v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/Einsia/Visual-Cipher-Bench",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "While language-model agents excel at long-horizon coding and terminal tasks, this success relies on two conditions: explicit text specifications and immediate execution feedback. However, neither condition holds in real-world problems where critical information exists only in images, leaving it unclear whether long-horizon capability transfers from text to visual reasoning. In such visual settings, because rules and clues resist text transcription and lack test-case feedback, agents must repeatedly inspect images, simulate spatial transformations, and autonomously cross-check clues. Despite this challenge, existing evaluations fail to capture such capability: visual reasoning benchmarks largely reduce tasks to single-turn, short-chain question answering, whereas agent benchmarks focus on text-based environments or interactive states that permit trial-and-error. To bridge this gap, we introduce Visual Cipher Bench, a collection of 40 original visual puzzles across four categories: spatial manipulation and simulation, logical constraints and planning, rule induction, and knowledge-based decoding. Each puzzle provides only one to three black-and-white line drawings and a minimal submission instruction, requiring agents to discover the underlying solving mechanism entirely from the images. Across 29 reasoning-effort configurations of eight frontier models, even the strongest model, GPT-6 Astra (max), achieves only 26.7% accuracy, while five of the eight models score below 1%. Yet on a ten-task subset, providing a single non-spoiler mechanism hint boosts accuracy from 7.8% to 55.6%. This sharp contrast shows that the primary bottleneck of current agents lies not in executing multi-step plans, but in autonomously discovering rules from visual evidence. Visual Cipher Bench thus provides a rigorous benchmark for measuring long-horizon visual reasoning in agents.",
+      "categories": [
+        "cs.CV"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark",
+        "planning"
+      ],
+      "comment": "",
+      "score": 65.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16861v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16861v1"
+        }
+      ],
+      "prescreen_score": 22,
+      "prescreen_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第九价值：它用一组视觉谜题测出一个反直觉结论——当前 agent 在「视觉里的长程推理」上，不是执行能力不行，而是根本不会从图像里自己发现规则。**（arXiv 2611.16861《Visual Cipher Bench: Benchmarking LLM Agents on Long-Horizon Visual Reasoning》，arXiv comment 为空；一级分类 cs.CV）★ 核心：语言模型 agent 在长程编程与终端任务上表现优秀，但**这个成功依赖两个条件——明确的文字规格与即时的执行反馈**；**在真实问题里这两条都不成立**（关键信息只存在于图像中），于是不清楚长程能力能否从文本迁移到视觉推理。**视觉设定下，规则与线索难以转写为文本、也没有测试用例反馈**，agent 必须反复检查图像、模拟空间变换、自主交叉验证线索。而现有评测都抓不住这个能力：**视觉推理基准大多退化成单轮短链问答，agent 基准则是纯文本环境或允许试错的交互状态**。★ 实测口径（论文摘要逐项核对）：**① 规模**——40 个原创视觉谜题，分四类（空间操作与模拟、逻辑约束与规划、规则归纳、基于知识的解码），**每题只给 1–3 张黑白线稿和一条极简提交指令**，机制必须完全从图像里发现；**② 覆盖 8 个前沿模型 × 29 种 reasoning-effort 配置**；**③ 最强模型 GPT-6 Astra (max) 只有 26.7% 准确率，8 个模型里有 5 个低于 1%**；**④ 关键对照**——在 10 题子集上**只给一条不剧透的机制提示，准确率从 7.8% 跳到 55.6%**；**作者的结论是：当前 agent 的主要瓶颈不在于执行多步计划，而在于从视觉证据中自主发现规则。**★ 今日实测的工件：`github.com/Einsia/Visual-Cipher-Bench` **实测存在**——**★0、forks=0、Apache-2.0、54,989 KB、默认分支 main、created 2026-11-11、pushed 2026-11-13**；**但该仓库是通过 GitHub search 按名称反查到的（论文 comment 与 abstract 中均无 URL），绑定强度弱于「论文里写明」，官方性需保留**。★ 证据不足项（必须写清）：① **仓库绑定靠反查**，今日未读 README 与源码，未核验其内容是否即本文基准；② **GPT-6 Astra 这个模型名今日无法核验**（可能是论文自述或非公开模型）；③ 需多模态 API 调用与高 reasoning effort，**成本与本机条件均不具备**；④ **arXiv comment 为空**，无会议接收信息；⑤ 40 题规模偏小，**子集只有 10 题**（7.8%→55.6% 的对照建立在 10 题上）；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**趋势价值**——**「给一条不剧透的机制提示，准确率从 7.8% 跳到 55.6%」这个对照今天就能用**：它说明**很多 agent 的视觉失败不是能力失败，是「不知道要找什么」的失败**——这对我们写提示词是直接可用的。**但仓库绑定靠反查，所以只存结论。**",
+      "id": "visual-cipher-bench-benchmarking-llm-agents-on-long-horizon-visual-reasoning",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 6.8,
+        "engineering_testability": 5.5,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising"
+    },
+    {
+      "title": "HeMeR: Heterogeneous Memory Reconciliation for Embodied Agents via Structured KV Reuse",
+      "authors": [
+        "Saehun Chun",
+        "Wonje Choi",
+        "Jinwoo Jang",
+        "Taeyoon Kwack",
+        "Honguk Woo"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16487v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16487v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Embodied agents make decisions by combining information from heterogeneous memory modules, including declarative memory for explicit knowledge, procedural memory for learned routines, and working memory for current observations. During interaction, the memory contents required for decision making change with the agent's state, goal, and task progress, while many contents remain shared across consecutive decisions. However, existing memory modules are typically accessed through separate interfaces, so each updated memory context is often processed as a new input to the foundation model. This prevents selective key-value (KV) cache reuse for unchanged memory contents and forces full KV cache recomputation even when much of the memory context remains valid. We introduce HeMeR, an inference framework that performs KV reconciliation between dynamically updated memory contexts and reusable KV states. HeMeR tracks declarative, procedural, and working memory contents across action decisions, preserves KV states for unchanged contents, and reconciles only the KV states affected by memory-content updates. This enables efficient and stable inference as memory contents evolve during interaction. We evaluate HeMeR on ALFWorld, Habitat, and real-world robotic deployments requiring coordinated use of heterogeneous memory contents. In the real-world setting, HeMeR achieves 83.20% task success and reduces per-step inference time from 2.94 to 1.87 seconds compared with MemRL, while preserving compatible KV states as task progress updates the memory context.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "inference"
+      ],
+      "comment": "Accepted at NeurIPS 2026 (Oral)",
+      "score": 63.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16487v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16487v1"
+        }
+      ],
+      "prescreen_score": 29,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第十价值：它把「记忆模块化的代价」定位到具体机制上——因为记忆分成声明式 / 程序式 / 工作记忆三套独立接口，每一步都被当成全新输入重算，于是 KV cache 完全无法复用。**（arXiv 2611.16487《HeMeR: Heterogeneous Memory Reconciliation for Embodied Agents via Structured KV Reuse》，Saehun Chun、Wonje Choi、Jinwoo Jang、Taeyoon Kwack、Honguk Woo；**arXiv comment 逐字 'Accepted at NeurIPS 2026 (Oral)'**）★ 核心：具身 agent 的决策要组合异构记忆模块（声明式记忆存显式知识、程序式记忆存习得流程、工作记忆存当前观察）。**交互过程中，决策所需记忆内容随状态、目标与任务进度而变，但许多内容在相邻决策之间是共享的。** 然而现有记忆模块通过独立接口访问，**每个更新后的记忆上下文都被当成新输入处理**——这**使得未变内容的 KV cache 无法选择性复用，即使大部分记忆上下文仍然有效，也被迫全量重算**。HeMeR 在动态更新的记忆上下文与可复用 KV 状态之间做 **KV reconciliation**：跨动作决策跟踪三类记忆内容，保留未变内容的 KV 状态，只对受记忆更新影响的部分做 reconcile。★ 实测口径（论文摘要逐项核对）：在 **ALFWorld、Habitat 与真实机器人部署**上评测；**真实场景中任务成功率 83.20%，每步推理时间从 2.94 秒降到 1.87 秒（对比 MemRL）**，同时在任务推进更新记忆上下文时保留兼容的 KV 状态。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查仓库；② **需 GPU 与真实机器人硬件**，本机无 GPU、无法复现；③ 「真实机器人部署」的具体平台未在摘要中给出；④ 摘要**未给出 ALFWorld / Habitat 上的分项数字**，只有真实场景的一组；⑤ 「Accepted at NeurIPS 2026 (Oral)」**无法与 NeurIPS 官方接收列表交叉核验**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「记忆模块各自独立接口 → KV cache 无法复用 → 每次全量重算」这条因果链对我们有直接诊断价值**（我们的 agent 上下文组装如果也按模块拼接，每次请求都在重算相同前缀）；**但它是具身 + KV 层的实现，且今天零工件，所以只存结论。**",
+      "id": "hemer-heterogeneous-memory-reconciliation-for-embodied-agents-via-structured-kv-reuse",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "context-engineering",
+        "multimodal-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection",
+      "authors": [
+        "Yingbin Jin",
+        "Ji'an Wang",
+        "HaoYang Chai",
+        "Hanjun Luo",
+        "Li Hu"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16693v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16693v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Mobile GUI agents read the screen of a phone and operate apps on a user's behalf to complete multi-step tasks such as online shopping or messaging. Because the agent acts on whatever the screen shows, an attacker can embed malicious instructions into ordinary UI content and redirect its actions. We refer to this threat as environmental injection attack (EIA). Existing benchmarks measure this risk by pinning hand-crafted payloads to a fixed step of a fixed task. This approach faces two limitations. First, each payload is bound to one task in one app and does not transfer without manual redesign. Second, agents given the same task may follow different routes, so an agent that never reaches the injected page is recorded as safe without being tested. This insufficient test coverage can cause fixed-point benchmarks to underestimate the security risk of deployed mobile agents. In this work, we propose MobileProbe, a trajectory-aware red-teaming framework that evaluates mobile agents adaptively. MobileProbe discovers attacker-controllable content surfaces through automated pentesting, localizes vulnerable decision points along the agent's trajectory, and iteratively refines context-aware payloads through a surrogate-filtered evolutionary loop. We construct a benchmark of 83 long-horizon attack instances spanning 12 mobile applications. Each is annotated with a Confidentiality, Integrity, or Availability (CIA) attack goal to cover the principal categories of security threats facing mobile agents. On three representative agent architectures, MobileProbe attains higher attack success rates than human-written, zero-shot LLM, and prior automated red-teaming baselines adapted to the mobile domain. MobileProbe can serve as a pre-deployment auditing tool to systematically uncover vulnerabilities and inform security hardening of mobile agents.",
+      "categories": [
+        "cs.CR",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "Accepted at NDSS 2027",
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16693v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16693v1"
+        }
+      ],
+      "prescreen_score": 25,
+      "prescreen_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第十一价值：它指出了「固定点注入基准」的一个系统性低估机制——agent 根本没走到被注入的页面，就被记成「安全」。**（arXiv 2611.16693《MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection》，Yingbin Jin、Ji'an Wang、HaoYang Chai、Hanjun Luo、Li Hu；**arXiv comment 逐字 'Accepted at NDSS 2027'**；一级分类 cs.CR / cs.AI）★ 核心：移动 GUI agent 读手机屏幕并代用户操作应用；**因为 agent 依据屏幕所见行动，攻击者可以把恶意指令嵌进普通 UI 内容并改写它的动作**（论文称之为 environmental injection attack, EIA）。**现有基准的两个局限**：**其一，每个 payload 绑定在一个应用的一个固定任务上，换任务不迁移；其二，同一任务的 agent 可能走不同路径——「一个从未到达被注入页面的 agent 被记为安全，却从未真正被测试过」**，这种覆盖不足会让固定点基准**低估已部署移动 agent 的真实安全风险**。★ 实测口径（论文摘要逐项核对）：MobileProbe 是**轨迹感知的自适应红队框架**——自动渗透发现攻击者可控的内容面，沿 agent 轨迹定位脆弱决策点，用**代理模型过滤的进化循环**迭代精炼上下文相关 payload；**基准含 83 个长程攻击实例、覆盖 12 个移动应用**，每个标注 Confidentiality / Integrity / Availability 三类攻击目标；在**三种代表性 agent 架构**上，**攻击成功率高于人工编写、零样本 LLM 与迁移到移动域的既有自动红队基线**。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查；② 需真实移动设备/模拟器与多 agent 框架，**本机不具备**；③ **摘要未给出具体攻击成功率数字**，只说「更高」；④ **「Accepted at NDSS 2027」无法与 NDSS 官方接收列表交叉核验**；⑤ 攻击方法本身是攻击性的，授权与伦理交代未在摘要中给出；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「agent 没走到被注入页面就算安全」这条是评测覆盖率的通用陷阱**（不只是移动端），对我们做 agent 安全评测有直接启发；**但今天零工件、零数字，只存结论。**",
+      "id": "mobileprobe-adaptive-security-evaluation-of-mobile-agents-via-trajectory-aware-injection",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "security-governance",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 5.4,
+        "engineering_testability": 5.7,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Reducing Batch Makespan for LLM Agent Workloads through Inference-Environment Coordination",
+      "authors": [
+        "Wei Feng",
+        "Meiling Chen",
+        "Boxiao Chen",
+        "Lu Liu",
+        "Bin Zi"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16661v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16661v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Efficient batch execution of agent tasks is critical to LLM training and development workflows, including benchmark evaluation, synthetic-data generation, and RL rollouts. Since these tasks alternate between LLM inference and environment interaction, we present coordinated optimizations to reduce batch makespan, the time required to complete all tasks in a batch. For hybrid LLMs, a workload-based resource model guides GPU-memory allocation between key-value (KV) cache and recurrent state and provides a reference sample concurrency to exploit parallelism while limiting recomputation. Trajectory-aware routing and scheduling promote cache reuse while balancing worker load. Under constrained environment capacity, we decouple sample admission from environment execution and introduce Chain-Advancing Action Scheduling (CAAS), which prioritizes long chains using observed progress to shorten the batch tail. Controlled replay combines actual inference with recorded environment responses and durations for ablations of individual optimizations. Live evaluations with Ling-3.0-Flash and Ling-3.1-Flash on the BFCL, SWE-bench Multilingual, WideSearch, and MCP-Atlas benchmarks demonstrate makespan reductions of 10.4% to 65.0%, while evaluation scores remain aligned. Furthermore, these methods have been successfully applied to training and evaluation workflows for the Ling-3.x model series, accelerating the model-development cycle.",
+      "categories": [
+        "cs.DC",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "benchmark",
+        "inference"
+      ],
+      "comment": "26 pages, 12 figures. Technical report",
+      "score": 60.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16661v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16661v1"
+        }
+      ],
+      "prescreen_score": 22,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "inference-serving",
+        "ai-k8s-platform"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第十二价值：一篇来自模型团队的工程报告，它把 agent 批处理的瓶颈量化到了「批次尾部」这个我们熟悉的形状上。**（arXiv 2611.16661《Reducing Batch Makespan for LLM Agent Workloads through Inference-Environment Coordination》，Wei Feng、Meiling Chen、Boxiao Chen、Lu Liu、Bin Zi、Libin Ye、Xingyu Lu、Lei Xu；**arXiv comment 逐字 '26 pages, 12 figures. Technical report'**；一级分类 cs.DC / cs.AI）★ 核心：agent 任务的有效批执行对 LLM 训练与研发流程至关重要（基准评测、合成数据生成、RL rollout），**因为这些任务在 LLM 推理与环境交互之间交替**。论文提出一组协同优化来降低**批次 makespan**（完成一批全部任务的时间）：**① 工作负载驱动的资源模型**，在混合 LLM 的 KV cache 与循环状态之间分配 GPU 显存，并给出一个参考样本并发度以在利用并行性的同时限制重算；**② 轨迹感知的路由与调度**，在复用 cache 的同时平衡 worker 负载；**③ 在环境容量受限时把样本接纳与环境执行解耦**，并提出 **Chain-Advancing Action Scheduling (CAAS)**——**按已观测到的进度优先处理长链，以缩短批次尾部**。★ 实测口径（论文摘要逐项核对）：**① 受控重放**把真实推理与录制的环境响应和时长结合起来做逐项优化消融；**② 实测**：用 Ling-3.0-Flash 与 Ling-3.1-Flash，在 **BFCL、SWE-bench Multilingual、WideSearch、MCP-Atlas** 四个基准上，**makespan 降低 10.4%–65.0%，同时评测分数保持一致**；**③ 已应用于 Ling-3.x 系列的训练与评测工作流**。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查；② **Ling-3.0/3.1-Flash 是作者自家模型**，外部无法直接复现；③ **需要 4 块以上 GPU 的多 worker 集群**，本机无 GPU；④ 「评测分数保持一致」的判定阈值未在摘要中给出；⑤ **论文自陈是 technical report，26 页**，今日未逐图复核；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「批次尾部」这个诊断形状对我们有用**（我们跑 agent 批处理时尾部任务拖垮整批的现象完全对得上），**但实现绑死在自家模型栈上，今天零工件，先存结论。**",
+      "id": "reducing-batch-makespan-for-llm-agent-workloads-through-inference-environment-coordination",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-k8s-platform",
+        "inference-serving",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 5.85,
+        "engineering_testability": 4.05,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "LiveGeo: Benchmarking Geographic Agents in Continuously Evolving Worlds",
+      "authors": [
+        "Pengcheng Zhou",
+        "Xuanyu Liu",
+        "Yanchen Yin",
+        "Tianjie Ju",
+        "Bobo Li"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17267v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17267v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/LiveGeoWorld/GeoWorld",
+      "benchmark_url": "https://github.com/LiveGeoWorld/LiveGeo-benchmark",
+      "project_url": "https://livegeoworld.github.io/",
+      "abstract": "We introduce GeoWorld, a controllable and continuously evolving geographic environment platform for LLM agents, and LiveGeo, a benchmark for evaluating reliable decision-making in real-world geographic environments using GeoWorld. Unlike existing evaluations that largely reason and plan over fixed geographic states, GeoWorld is grounded in real-world geographic structure and allows external world states to evolve along their own temporal processes while preserving verifiable state histories. LiveGeo places geographic tasks within this evolving environment, requiring agents to actively acquire task-relevant information, verify whether the evidence supporting prior decisions remains valid, and revise their plans when necessary. Our results reveal that even frontier LLMs struggle with static tasks, with no model consistently excelling across tasks, while strong static performance does not ensure dynamic reliability. Further analysis identifies a key bottleneck: agents struggle to acquire and translate relevant evidence into valid decisions and maintain their correctness as the world evolves. By releasing LiveGeo together with its GeoWorld platform, we aim to provide the community with a flexible and extensible infrastructure for studying the next generation of agents capable of reliable action in evolving geographic worlds.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17267v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17267v1"
+        }
+      ],
+      "prescreen_score": 24,
+      "prescreen_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "ai-k8s-platform",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第十三价值：它把「世界会变」这件事做成了可执行基准，并给出一条对我们非常直接的结论——静态任务表现好，不等于动态可靠。**（arXiv 2611.17267《LiveGeo: Benchmarking Geographic Agents in Continuously Evolving Worlds》，Pengcheng Zhou、Xuanyu Liu、Yanchen Yin、Tianjie Ju、Bobo Li；**arXiv comment 为空**；一级分类 cs.AI）★ 核心：GeoWorld 是一个可控且持续演化的地理环境平台，LiveGeo 是其上的评测基准。**与「在固定地理状态上推理与规划」的既有评测不同，GeoWorld 扎根于真实地理结构，允许外部世界状态沿其自身的时间过程演化，同时保留可验证的状态历史。** LiveGeo 把地理任务放进这个演化环境，**要求 agent 主动获取任务相关信息、验证支撑先前决策的证据是否仍然有效，并在必要时修正计划**。★ 实测口径（论文摘要逐项核对）：**① 结果的核心是一句否定**——**即使前沿 LLM 在静态任务上也很吃力，且没有哪个模型能在所有任务上持续领先；而「强静态表现并不保证动态可靠性」**；**② 瓶颈定位**：**agent 难以获取并把相关证据转化为有效决策，也难以在世界演化中保持结论的正确性**；**③ 同时发布 LiveGeo 与 GeoWorld 平台**，定位为「下一代能在演化世界中可靠行动的 agent」的基础设施。★ 今日实测的工件（**这里有一条今天必须写清的否定性实测**）：`github.com/LiveGeoWorld/GeoWorld` **实测存在**——**★3、forks=0、license=None（无 LICENSE）、11,484 KB、默认分支 main、created 2026-10-25、pushed 2026-11-13、homepage `https://livegeoworld.github.io/` 实测 HTTP 200 / 65,107 B**；**实读 README**：逐字 'This is the code for \"LiveGeo: Benchmarking Geographic Agents in Continuously Evolving Worlds\"'，且 README 徽章链回 arXiv 2611.17267——**绑定强度高（仓库自述 + 论文 id 双向对应）**；**但 `github.com/LiveGeoWorld/LiveGeo-benchmark` 实测 size=0KB（空仓库）**——**即真正的 benchmark 代码没有发布，只有平台代码发布了**。★ 证据不足项（必须写清）：① **LiveGeo 基准本身是空仓库**，benchmark 的可运行性今日无法核验；② **两个仓库均无 LICENSE**；③ **项目页与 README 绑定高，但论文 comment 与 abstract 中未直接给出 URL**，仍属反查；④ 需地图 / 地理 API 与 LLM 服务，本机条件不具备；⑤ **「前沿 LLM 在静态任务上也很吃力」未给出具体模型与数字**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「静态强 ≠ 动态可靠」是 agent 评测的一条通用警告**（我们的 agent 回归测试全是静态任务），**但今天拿不到可运行的基准代码，所以只存结论。**",
+      "id": "livegeo-benchmarking-geographic-agents-in-continuously-evolving-worlds",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 8.1,
+        "engineering_testability": 5.5,
+        "trend_signal": 6.8,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 2.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Rasoi: Visual Diffs for Evaluating Structural Changes Made by Coding Agents",
+      "authors": [
+        "Riya Sahni",
+        "Aryan Kaul",
+        "Anushka Bhatnagar",
+        "Xuanming Zhang",
+        "Vivian Liu"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16293v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16293v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Coding agents let developers modify software rapidly through natural language. However, as agents take on larger changes, developers can lose track of how the codebase is evolving. These edits may look correct on the surface while restructuring the system in unexpected ways: duplicating logic, changing modules outside the requested scope, removing functionality developers meant to keep, or introducing architectural drift. We investigate how visual diffs can help developers understand and evaluate the structural changes that coding agents make. We present Rasoi, a design probe that maps how a codebase's architecture evolves after each agent-made edit, letting developers inspect which architectural elements and relationships were added, modified, or removed across multiple levels of abstraction. We deployed Rasoi in a week-long study with 12 developers working on their own codebases across varied technical domains. We found that visual diffs helped developers see whether changes stayed within scope, notice unexpected restructuring, and understand how modified parts related to the system as a whole. Our findings suggest that the value of oversight tools for coding agents lies less in making developers trust the agent and more in helping developers feel confident in their own evaluation of agent-made changes. We discuss implications for visual tools that support code comprehension and human oversight in AI-assisted software development.",
+      "categories": [
+        "cs.SE",
+        "cs.HC"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation"
+      ],
+      "comment": "",
+      "score": 55.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16293v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16293v1"
+        }
+      ],
+      "prescreen_score": 32,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第十四价值：一篇 HCI 论文，问的却是我们 review agent 改动时真正卡住的问题——「改动到底有没有跑出范围」。**（arXiv 2611.16293《Rasoi: Visual Diffs for Evaluating Structural Changes Made by Coding Agents》，Riya Sahni、Aryan Kaul、Anushka Bhatnagar、Xuanming Zhang、Vivian Liu；**arXiv comment 为空**；一级分类 cs.SE / cs.HC）★ 核心：coding agent 让开发者用自然语言快速改软件，但**随着 agent 承担更大改动，开发者会跟丢代码库怎么演化的**。**这些改动表面看起来正确，却在结构上以意料之外的方式重组了系统：重复逻辑、把改动带出请求范围之外、删掉开发者想保留的功能、引入架构漂移。** Rasoi 是一个设计探针（design probe），**把代码库架构在每次 agent 编辑后的演化映射成可视化 diff**，让开发者在多个抽象层级上检查哪些架构元素与关系被新增、修改或删除。★ 实测口径（论文摘要逐项核对）：**部署研究**——**为期一周的研究，12 名开发者**在各自不同技术领域的代码库上工作；发现可视化 diff 帮助开发者**判断改动是否留在范围内、察觉意料之外的结构重组、理解被修改部分与整体系统的关系**。★ 作者的结论值得单独记：**监督工具的价值不在于「让开发者信任 agent」，而在于「帮助开发者对自己评估 agent 改动这件事有信心」。**★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查；② **这是 HCI 定性研究（12 人、一周）**，**不是可复现的量化实验**，无统计显著性检验；③ **未报告任何定量指标**（如发现缺陷数、耗时）；④ **论文摘要未提到工具是否已开源**；⑤ 样本量小且单团队（申请人所属机构），外部效度未验证；⑥ 全部表述为作者自述。★ 判断：**长尾保存**——**它对「agent 改动的范围漂移」的描述与我们日常痛点一致**，而且「监督工具该给人信心而不是给信任」这个判断有意思；**但今天零工件、零定量结果，只存一条观察。**",
+      "id": "rasoi-visual-diffs-for-evaluating-structural-changes-made-by-coding-agents",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "coding-agent",
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "AnalogLayoutWorld: An Open Benchmark for Agentic Analog Layout Design",
+      "authors": [
+        "NovaSilicon Team"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16991v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16991v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Coding agents have demonstrated strong capabilities in software development, yet their ability to tackle long-horizon engineering tasks governed by physical constraints remains less understood. We study this question through analog circuit layout, which demands domain knowledge, geometric reasoning, and iterative interaction with design and verification tools. We introduce \\textbf{AnalogLayoutWorld}, an open-source agent benchmark with 40 expert-reviewed tasks for end-to-end layout generation from fixed transistor-level netlists. It combines an integrated design environment with independent physical and post-layout electrical verification, as well as objective layout quality metrics co-designed with analog layout experts. Across 13 model--harness configurations, 91.1\\% of attempts produce GDS layouts, but only 23.0\\% satisfy the benchmark's acceptance criteria. We also evaluate Novara, an internally developed agent system, which achieves the highest reported aggregate score. Our analysis links performance differences to test-time scaling under fixed budgets, suggesting that reasoning efficiency and effective use of verification feedback help sustain design quality as task complexity grows.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "coding agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16991v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16991v1"
+        }
+      ],
+      "prescreen_score": 22,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "★ **今日第十五价值（今日最低分）：一个模拟电路布局基准，它的真正数字不是「生成了多少布局」，而是「生成了多少通过验收的布局」。**（arXiv 2611.16991《AnalogLayoutWorld: An Open Benchmark for Agentic Analog Layout Design》，**作者署名逐字 'NovaSilicon Team'**；**arXiv comment 为空**；一级分类 cs.AI）★ 核心：coding agent 在软件开发上已有强能力，**但它处理「受物理约束支配的长程工程任务」的能力仍不清楚**。论文用模拟电路布局来研究这个问题——它需要领域知识、几何推理，以及与设计和验证工具的迭代交互。AnalogLayoutWorld 是一个开源 agent 基准，含 **40 个专家评审任务**，从固定的晶体管级网表端到端生成版图；它结合了集成设计环境、**独立的物理与后仿真电学验证**，以及与模拟版图专家共同设计的客观版图质量指标。★ 实测口径（论文摘要逐项核对）：**① 13 种「模型 × harness」配置下，91.1% 的尝试能产出 GDS 版图，但只有 23.0% 满足基准的验收标准**——**这个 91.1% → 23.0% 的落差是全文最有价值的一行**（**「产出了东西」和「东西是对的」是两回事**）；**② 论文也评测了 Novara（作者内部开发的 agent 系统），它取得最高报告的总分**；**③ 分析把性能差异与固定预算下的测试时扩展联系起来**，认为推理效率与有效利用验证反馈有助于在任务复杂度上升时维持设计质量。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查（**「open benchmark」这个措辞暗示代码应公开，但今日未能核验是否存在官方仓库**，**官方性待核验**）；② **★0 可见度且作者署名是团队名而非个人**，无法定位责任作者；③ 需 EDA 工具链与大量算力，**本机不具备**；④ **Novara 是内部系统，其实现与细节在摘要中完全不可见**；⑤ **「最高报告的总分」是作者自评自家系统**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**91.1% 产出 vs 23.0% 通过验收这个落差，对我们任何「agent 产出物」类指标都有警示价值**（我们统计 agent 任务时也要区分「产出了」与「通过了验收」）；**但今天零工件、无作者可追溯，只存这个观察。**",
+      "id": "analoglayoutworld-an-open-benchmark-for-agentic-analog-layout-design",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "coding-agent",
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 7.1,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    }
+  ],
+  "pool_stats": {
+    "fetched_from_sources": 400,
+    "unseen_after_dedup": 390,
+    "duplicates_of_history": 10,
+    "selected_for_review": 15,
+    "selection_note": "今日从宽候选池 400 篇中选出 15 篇进入日报；其中 10 篇与历史批次重复，已在跨日去重中剔除。"
+  },
+  "scored_at": "2026-11-15"
+}

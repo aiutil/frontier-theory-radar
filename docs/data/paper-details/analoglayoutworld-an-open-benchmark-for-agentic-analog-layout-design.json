@@ -1,0 +1,132 @@
+{
+  "id": "analoglayoutworld-an-open-benchmark-for-agentic-analog-layout-design",
+  "title": "AnalogLayoutWorld: An Open Benchmark for Agentic Analog Layout Design",
+  "authors": [
+    "NovaSilicon Team"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.16991v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.16991v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 8.6,
+    "evidence": 4.95,
+    "engineering_testability": 4.6,
+    "trend_signal": 7.1,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 52.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第十五价值（今日最低分）：一个模拟电路布局基准，它的真正数字不是「生成了多少布局」，而是「生成了多少通过验收的布局」。**（ar…",
+  "one_line_essence": "★ **今日第十五价值（今日最低分）：一个模拟电路布局基准，它的真正数字不是「生成了多少布局」，而是「生成了多少通过验收的布局」。**（arXiv 2611.16991《AnalogLayoutWorld: An Open Benchmark for Agentic Analog Layout Design》，**作者署名逐字 'NovaSilicon Team'**；**arXiv comment 为空**；一级分类 cs.AI）★ 核心：coding agent 在软件开发上已有强能力，**但它处理「受物理约束支配的长程工程任务」的能力仍不清楚**。论文用模拟电路布局来研究这个问题——它需要领域知识、几何推理，以及与设计和验证工具的迭代交互。AnalogLayoutWorld 是一个开源 agent 基准，含 **40 个专家评审任务**，从固定的晶体管级网表端到端生成版图；它结合了集成设计环境、**独立的物理与后仿真电学验证**，以及与模拟版图专家共同设计的客观版图质量指标。★ 实测口径（论文摘要逐项核对）：**① 13 种「模型 × harness」配置下，91.1% 的尝试能产出 GDS 版图，但只有 23.0% 满足基准的验收标准**——**这个 91.1% → 23.0% 的落差是全文最有价值的一行**（**「产出了东西」和「东西是对的」是两回事**）；**② 论文也评测了 Novara（作者内部开发的 agent 系统），它取得最高报告的总分**；**③ 分析把性能差异与固定预算下的测试时扩展联系起来**，认为推理效率与有效利用验证反馈有助于在任务复杂度上升时维持设计质量。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查（**「open benchmark」这个措辞暗示代码应公开，但今日未能核验是否存在官方仓库**，**官方性待核验**）；② **★0 可见度且作者署名是团队名而非个人**，无法定位责任作者；③ 需 EDA 工具链与大量算力，**本机不具备**；④ **Novara 是内部系统，其实现与细节在摘要中完全不可见**；⑤ **「最高报告的总分」是作者自评自家系统**；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**91.1% 产出 vs 23.0% 通过验收这个落差，对我们任何「agent 产出物」类指标都有警示价值**（我们统计 agent 任务时也要区分「产出了」与「通过了验收」）；**但今天零工件、无作者可追溯，只存这个观察。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第十五价值（今日最低分）：一个模拟电路布局基准，它的真正数字不是「生成了多少布局」，而是「生成了多少通过验收的布局」。**（arXiv 2611.16991《AnalogLayoutWorld: An Open Benchmark for Agentic Analog Layout Design》，**作者署名逐字 'NovaSilicon Te",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第十五价值（今日最低分）：一个模拟电路布局基准，它的真正数字不是「生成了多少布局」，而是「生成了多少通过验收的布局」。**（arXiv 2611.16991《AnalogLayou",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-06"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16991v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.16991v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=analoglayoutworld-an-open-benchmark-for-agentic-analog-layout-design",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

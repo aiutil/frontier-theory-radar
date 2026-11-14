@@ -1,0 +1,136 @@
+{
+  "id": "mobileprobe-adaptive-security-evaluation-of-mobile-agents-via-trajectory-aware-injection",
+  "title": "MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection",
+  "authors": [
+    "Yingbin Jin",
+    "Ji'an Wang",
+    "HaoYang Chai",
+    "Hanjun Luo",
+    "Li Hu"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-12",
+  "url": "http://arxiv.org/abs/2611.16693v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.16693v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-15",
+  "first_deep_dive_daily": "2026-11-15",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 7.4,
+    "evidence": 5.4,
+    "engineering_testability": 5.7,
+    "trend_signal": 6.0,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 62.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：★ **今日第十一价值：它指出了「固定点注入基准」的一个系统性低估机制——agent 根本没走到被注入的页面，就被记成「安全」。**（arX…",
+  "one_line_essence": "★ **今日第十一价值：它指出了「固定点注入基准」的一个系统性低估机制——agent 根本没走到被注入的页面，就被记成「安全」。**（arXiv 2611.16693《MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection》，Yingbin Jin、Ji'an Wang、HaoYang Chai、Hanjun Luo、Li Hu；**arXiv comment 逐字 'Accepted at NDSS 2027'**；一级分类 cs.CR / cs.AI）★ 核心：移动 GUI agent 读手机屏幕并代用户操作应用；**因为 agent 依据屏幕所见行动，攻击者可以把恶意指令嵌进普通 UI 内容并改写它的动作**（论文称之为 environmental injection attack, EIA）。**现有基准的两个局限**：**其一，每个 payload 绑定在一个应用的一个固定任务上，换任务不迁移；其二，同一任务的 agent 可能走不同路径——「一个从未到达被注入页面的 agent 被记为安全，却从未真正被测试过」**，这种覆盖不足会让固定点基准**低估已部署移动 agent 的真实安全风险**。★ 实测口径（论文摘要逐项核对）：MobileProbe 是**轨迹感知的自适应红队框架**——自动渗透发现攻击者可控的内容面，沿 agent 轨迹定位脆弱决策点，用**代理模型过滤的进化循环**迭代精炼上下文相关 payload；**基准含 83 个长程攻击实例、覆盖 12 个移动应用**，每个标注 Confidentiality / Integrity / Availability 三类攻击目标；在**三种代表性 agent 架构**上，**攻击成功率高于人工编写、零样本 LLM 与迁移到移动域的既有自动红队基线**。★ 证据不足项（必须写清）：① **今日确认无官方工件**——comment 与 abstract 中**无任何 URL**，GitHub search 配额耗尽无法反查；② 需真实移动设备/模拟器与多 agent 框架，**本机不具备**；③ **摘要未给出具体攻击成功率数字**，只说「更高」；④ **「Accepted at NDSS 2027」无法与 NDSS 官方接收列表交叉核验**；⑤ 攻击方法本身是攻击性的，授权与伦理交代未在摘要中给出；⑥ 全部数字为作者自述，无第三方复现。★ 判断：**长尾保存**——**「agent 没走到被注入页面就算安全」这条是评测覆盖率的通用陷阱**（不只是移动端），对我们做 agent 安全评测有直接启发；**但今天零工件、零数字，只存结论。**",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "★ **今日第十一价值：它指出了「固定点注入基准」的一个系统性低估机制——agent 根本没走到被注入的页面，就被记成「安全」。**（arXiv 2611.16693《MobileProbe: Adaptive Security Evaluation of Mobile Agents via Trajectory-Aware Injection》，Yingb",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "★ **今日第十一价值：它指出了「固定点注入基准」的一个系统性低估机制——agent 根本没走到被注入的页面，就被记成「安全」。**（arXiv 2611.16693《MobileProbe:",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-06"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16693v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.16693v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=mobileprobe-adaptive-security-evaluation-of-mobile-agents-via-trajectory-aware-injection",
+  "daily_path": "daily-detail.html?date=2026-11-15",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
