@@ -1,0 +1,137 @@
+{
+  "date": "2026-11-19",
+  "generated_at": "2026-11-19",
+  "method": "人工证据审阅 + 实测仓库/数据核验；每条判断回指可核验来源（arXiv 摘要、作者仓库 README、results/numbers 数值文件）。链接或证据缺失时明确标注待核验。",
+  "notes": [
+    "本轮共 15 篇候选，全部来自 2026-11-17 arXiv 提交（cs.AI/cs.CL/cs.LG/cs.SE/cs.IR/cs.MA/cs.RO/cs.CV/cs.DC/cs.DB/cs.CR/stat.ML/cs.NE 共 13 类，527 篇原始提交，经抓取脚本 400 篇上限后筛选）。",
+    "与 2026-11-16 / 11-17 / 11-18 三份历史池比对后，15 篇 URL 交集为 0，属全新批次。",
+    "仅 2611.23174 一篇的仓库声明被逐条复核到具体数值文件；其余声明的代码/数据入口未能核实，均标为待核验。"
+  ],
+  "by_url": {
+    "http://arxiv.org/abs/2611.23174v1": {
+      "score": 82.0,
+      "value_type": "immediate",
+      "decision": "重点学习",
+      "reason": "提出了'重放式选择校正'——把 agent 自己的选择性行为本身变成可估计量，从而修正 p 值。证据强度在今天这批里最扎实：作者自建复现包 github.com/Davidvandijcke/inference_after_coding_agents_replication 实测可达（HTTP 200，2177 个文件，含 code/、results/numbers/、paper/main.tex），results/numbers/10_self_correction.json 直接写明四个前沿 agent 在零效应数据上报告显著 p 值的比例为 [53.61%, 97.98%]，与摘要中的 '54% 到 98%' 完全吻合；02_open_ended.json 给出 agent 拒绝率 0.9798 vs 重放后 0.0505，即把误拒率拉回名义 5%。main.tex 可下载（223767 字节），复现包 run_all.sh 约 8 分钟跑完且不调用任何语言模型。工程价值在于方法本身就是一段可复制的流程（分析完成后重置 agent、在子样本上重放、估计'看起来显著时它会选中该分析的概率'），可以直接落到我们对 agent 生成结果的统计复核上。长期价值在于它把'agent 时代的推断'变成一个持续有效的对象：校正量是从黑箱 agent 的实际选择中学出来的，而不是假设某个搜索模型。",
+      "evidence_status": "已核验：作者复现包仓库可达，数值文件与 main.tex 均与摘要一致",
+      "code_url": "https://github.com/Davidvandijcke/inference_after_coding_agents_replication",
+      "matched_topics": ["llm-evaluation", "ai-agent", "coding-agent"]
+    },
+    "http://arxiv.org/abs/2611.22901v1": {
+      "score": 66.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "把 coding agent 的'何时停'做成 anytime evaluation：重放已录制轨迹、用隐藏测试给中间 patch 打分，从而在不生成新轨迹的前提下做成对比较。规模扎实（约 6000 次运行、8 个开源模型、2 种 scaffold、SWE-bench Verified），并给出可行动结论——自测通过后继续工作的节省空间在 <1% 到 57% 之间，'同一 patch 通过两次就停'的规则在预注册复现实验里省 23%，但预注册的质量检验并未确立非劣性；模仿该规则微调后 6 个种子省 30%，质量保持仍不确定。证据强度中等偏上：有预注册、有多种子、作者主动标注了负面结论（non-inferiority 未成立），这一点比常见的只报正面数字更可信。但摘要未给出可核验的代码仓库或数据入口，'隐藏测试'的构造细节无法从外部核验，因此暂不列为立即可用资产。",
+      "evidence_status": "待核验：摘要声称有预注册复现，但未提供可访问的代码或数据入口",
+      "matched_topics": ["coding-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2611.22461v1": {
+      "score": 65.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "多 agent 辩论的记忆层里，'保留矛盾而不是折叠成一个胜者'反而更好：把排序后的冲突集原样交给辩论，F1 +0.340（95% CI [+0.267, +0.414]），122 个被投毒条目中攻击成功率从 22 降到 7（McNemar 精确检验 p=0.0003），且成本不变。方法学最扎实的一点是它按预声明阈值做门控消融（39 次运行），并且如实报告了两个机制比什么都不做更差（写信任门 -0.075 F1、router 来源特征 -0.096 F1），以及一个结构性失败原因（被投毒对象总是图里已有的实体，对照真实答案 53%，所以 groundedness 反而给谎言打高分）。工程上它揭示了一个可操作的陷阱：我们的多 agent 系统默认会'消解矛盾'，这可能正是掩盖投毒的机制。局限：其仓库 ziakhan1516/Debat-Agent-NeurIPS-2026 实测可达且 README 含 DebateGraph 描述，但 README 未出现本文的 arXiv 编号 2611.22461，'该仓库即本文实现'这一绑定只能算部分支持。",
+      "evidence_status": "部分核验：仓库可达且 README 含 DebateGraph，但未出现本论文 arXiv 编号，绑定未坐实",
+      "code_url": "https://github.com/ziakhan1516/Debat-Agent-NeurIPS-2026",
+      "matched_topics": ["ai-agent", "context-engineering", "security-governance"]
+    },
+    "http://arxiv.org/abs/2611.22425v1": {
+      "score": 63.5,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "为小模型 agent 做多粒度记忆检索：同时决定'取哪一份来源'和'读多少'，在 400 token 预算下用冻结的 2B 答案模型在 HotpotQA/2WikiMultihopQA/MuSiQue 官方验证集（22398 题）拿到 61.47/43.26/30.58 F1，相对 query expansion 提升 3.06/2.14/4.55，且记忆输入减少 23.1-26.9%；对比同条件粗检索器再接 LLMLingua-2，F1 最高 +3.99 且在 HotpotQA 与 2Wiki 上经 Holm 校正后显著，8 个小答案模型全部改善。数字完整、做了多重比较校正，工程可复现性较高。仓库 sungkites/LMMR 实测 HTTP 200 可达。但摘要与 README 未给出本文 arXiv 编号的直接绑定，且我们内部没有 2B 小模型 + 三跳 QA 的评测基线，落地成本不低，因此暂列趋势观察而非立即试用。",
+      "evidence_status": "已核验：仓库 sungkites/LMMR 可达；但与本论文 arXiv 编号的直接绑定未在 README 中找到",
+      "code_url": "https://github.com/sungkites/LMMR",
+      "matched_topics": ["context-engineering", "rag-knowledge", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2611.23045v1": {
+      "score": 62.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "预测类 agent 的评测基准，方法上有一个真正重要的设计：把证据采集与推理解耦——每两天记录四个商用 web search API 对公开预测市场问题的返回，结果揭晓后离线重放冻结证据，从而在固定证据获取策略下比较模型、记忆策略和搜索源。首版 150 题、614 个证据状态、13.1 万条搜索结果。摘要给出两个诊断性结论：结算后重跑同样查询，对高达 92% 的问题结果会直接说出答案（说明日期过滤不可靠，回溯式评测会泄漏未来信息）；在冻结证据上所有被测 LLM 的预测准确率都不如市场；切换搜索 API 使某模型 Brier 分数变化最多 0.043，大于模型之间的差距。对我们的实际意义很直接——做 agent 评测时，'检索源'可能比'模型'更能决定结论，但摘要未提供可核验的仓库或数据入口，且依赖 4 个商用搜索 API，复现成本较高。",
+      "evidence_status": "待核验：未找到公开仓库或数据入口，冻结证据集无法外部验证",
+      "matched_topics": ["llm-evaluation", "rag-knowledge", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.23067v1": {
+      "score": 60.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "把 Schwartz 价值理论中的四类高层价值观写进自改进 coding agent 的持久指令文件，观察的不只是分数，还有'agent 造出什么'（解法的规模、复杂度与路径都随价值取向改变）。结论有反直觉成分：开放性价值提升留出集表现，保守性价值反而低于完全不设价值；让 agent 自己改价值会抹平差异；从 AI 文献里蒸馏出的价值则无可检测增益。观点新、且是少见地把'怎么做事'而非'做成什么'作为研究对象的论文。但证据基础是单篇摘要里的定性描述，'across diverse coding tasks' 的任务集、样本量、显著性都没有给出，无法判断效应量是否稳健；也未找到对应仓库。长尾价值在于它把 agent 指令设计从'写好目标'扩展到'写好取向'，这个视角值得存档。",
+      "evidence_status": "待核验：任务集、样本量与统计口径均未在摘要给出，未找到仓库",
+      "matched_topics": ["ai-agent", "coding-agent"]
+    },
+    "http://arxiv.org/abs/2611.23202v1": {
+      "score": 58.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "跨组织 agent 的身份/信任/证明架构：基于 PKI + 零信任 + 远程证明，用对等组织 CA（AgentCA）替代共享根，先校验证书再验证模型、工具与系统提示词配置，用三项策略检查做授权，实现为不改动底层模型的外置安全层。宣称用 WIMSE 工作负载令牌格式与实体证明令牌（EAT）。摘要给出 8 组织联邦、6 种框架、每组 5 agent 的模拟评测，14 个攻击场景 + 6 个良性任务 × 5 种攻击变体 × 3 次重复，开启全部机制后攻击遏制率从 43% 升到 84%，每请求额外开销约 174 微秒。仓库 CalPolyPomonaCS/Agent-Trust-Infrastructure-ATI-Official 实测可达，README 确有 attestation、WIMSE 等描述，与摘要一致；但评测全部在模拟环境、由 judge 模型打分，没有真实生产部署证据，'open-source package' 的完整度也未核验。架构思路对我们做跨组织 agent 协作有参考价值。",
+      "evidence_status": "部分核验：官方仓库可达且 README 含 attestation/WIMSE 描述，但 README 未出现 arXiv 2611.23202，评测为模拟环境",
+      "code_url": "https://github.com/CalPolyPomonaCS/Agent-Trust-Infrastructure-ATI-Official",
+      "matched_topics": ["security-governance", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.22835v1": {
+      "score": 56.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "coding agent 里'通过检查'不等于'任务完成'——把验证职责拆成执行事实保全、范围解释与检查义务履行三层，并做了一项 13 任务的前瞻因子研究。值得记下的数字：一项留出回执研究中 122 条已交付标签全部正确，但另有 16 条回复误报事实、11 条越出授权范围；118 个修复回合覆盖 31 个任务。最诚实的一点是作者主动限制了结论边界——'强普通基线、新任务与 Skill 迁移研究并未显示一致的整体优势'。但全文以高度压缩的术语写成，摘要难以判断实验规模与显著性，也没有可核验的仓库或数据入口，落到工程上暂时无法据以设计检查项。适合作为'验证语义'方向的概念存档。",
+      "evidence_status": "待核验：摘要术语高度压缩，无可访问的代码或数据入口",
+      "matched_topics": ["coding-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2611.22511v1": {
+      "score": 55.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "把 agent 可解释性从'模型权重'扩展到'会话内的推理与决策'：为每句输出归因到支撑输入片段并给出校准置信度（无需白盒、不额外推理），再叠加概念漂移微压缩——只压缩已不再被引用的输入文档、用户指令原样保留。评测规模偏小（10 个中文 web-QA 案例共 71 条人工标注句 + 三个生成模型的 90 轮多轮会话），且结论多为弱形式（窗口级嵌入相似度优于全文/词面匹配；贪心窗口快路径平均优于穷举行匹配，原因是后者多重比较偏差抬高了 web recall 但损害整体准确率；每轮归因单 GPU 1 秒内完成且到 40 轮仍稳定；漂移检测保守，0% 误压缩）。'0% 误压缩'在 71 条标注上意义有限。摘要提到有配套专利申请，可能影响代码开源程度。未找到仓库。",
+      "evidence_status": "待核验：未找到仓库；评测语料仅 71 条标注句，'0% 误压缩'样本量不足以支撑强结论",
+      "matched_topics": ["context-engineering", "llm-evaluation", "security-governance"]
+    },
+    "http://arxiv.org/abs/2611.22991v1": {
+      "score": 54.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "RAG 修复过程的审计层：把每次'要不要修、修成什么样'的决策都记进轨迹，再审计轨迹完整性、校验是否作用在正确的候选上、接受规则能触达哪些答案。摘要有两个对工程有用的事实：聚合指标掩盖了失败模式，审计层暴露出'修复接受代价 vs 回归'以及高达 77% 和 76% 的'可用但未实现的修复'缺口；修订后的 harness 在开发集与复现集上分别比 BM25 基线高 3.6 和 3.7 分，甚至超过了'全文可见'的参考分（+1.1 / +2.4），后者是个不太常见但可信的对照。局限：语料是 ContractNLI 非披露协议，领域极窄；只测两个 reader 模型；未找到对应仓库。'可用但未实现修复'这个度量本身值得借鉴。",
+      "evidence_status": "待核验：未找到仓库；评测限于 ContractNLI 与两个 reader 模型",
+      "matched_topics": ["rag-knowledge", "ai-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2611.23010v1": {
+      "score": 53.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "物理推理里的'前提越界'问题——VLM 能读懂物理图示，却把只在特定状态/条件下成立的约束搬到别处，于是前提错误沿着计算链传播。PhysScope 在推理期加视觉护栏，把物理 scope 绑定到具体视觉观察，显式构造派生视图，修订时对照来源与 scope 检查，被接受的修订会作废已登记的依赖项，从而维持 scope 感知的working memory。摘要给出在 PhysAlign 上对全部六个 VLM 都有提升，相对 Canvas-CoT 在 Gemini-3.8-flash 上高 9.34 分，并在 OOD 的 PhysUniBench 上明显改善，另有消融支持'显式 scope 管理 + 依赖维护'两条设计原则。'被接受的修订作废依赖项'这条工程做法有直接启发。局限：无仓库、无数据入口，+9.34 分是相对单一基线在单一模型上的差值，缺少方差与显著性信息。",
+      "evidence_status": "待核验：未找到仓库或数据入口；关键增益未给出方差与显著性",
+      "matched_topics": ["multimodal-agent", "context-engineering"]
+    },
+    "http://arxiv.org/abs/2611.22509v1": {
+      "score": 50.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "MIPR 意图到商品的多模态检索基准：3522 条多模态查询、30731 件商品语料，特点是推理密集、一个意图可由多个品类商品满足、带细粒度相关性标注。最好embedding 检索器 nDCG@10 仅 49.23%，多解品类问题的 solution-category recall@10 为 55.86%，加 rerank 后升到 60.11% 与 67.00%，但与候选池 oracle 仍有明显差距。对做电商检索的团队有参考价值：它量化了'一个意图多品类解'这一场景的检索难度。但我们无电商检索业务，评测数据在 huggingface.co/datasets/leequeue/MIPR，本环境到 huggingface.co 的连接反复超时/被拒，无法确认该数据集是否存在及其内容，因此其可用性标记为待核验。",
+      "evidence_status": "待核验：huggingface.co 在本环境连接超时/被拒，无法确认 leequeue/MIPR 数据集存在与内容",
+      "matched_topics": ["rag-knowledge", "multimodal-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2611.22338v1": {
+      "score": 48.0,
+      "value_type": "ignore",
+      "decision": "暂时忽略",
+      "reason": "投研 agent 的评测框架，区分结果质量与执行质量，并用确定性校验器 + 独立 judge 模型 + 专家复核来兜住评测有效性。方向合理，但摘要只给出定性结论（'数值结果显示框架能区分不同维度的表现，并识别出评测过程中的可靠性问题'），没有给出任何具体数值、基准规模或数据集；代码仅承诺'will be made available on GitHub'，检索 GitHub 未找到对应仓库。同批中 ForecastGym 在'评测设计'这一维度上给出了更硬的具体数字，优先级更高。金融投研场景与我们当前方向也不重合。",
+      "evidence_status": "待核验：摘要无具体数值，承诺的 GitHub 仓库未找到",
+      "matched_topics": ["llm-evaluation", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.22539v1": {
+      "score": 47.0,
+      "value_type": "ignore",
+      "decision": "暂时忽略",
+      "reason": "仓库级 QA 的'过度探索'问题与 JET 微调法：截断训练轨迹到信息刚够用的那一步、插入解释为什么现在能答的 rationale 并对该 rationale 加权重。摘要给出两个场景的量化结果（自生成轨迹上工具调用减少 11-33%、专家轨迹上比 SFT 少 18-28% 且保留大部分增益），并明确'分数大体保持'。方向与 2611.22901（anytime 停止）重叠，而后者在 anytime 评测与预注册上做得更严谨，且今天的深挖名额不应重复给同一主题。证据细节不足：未给出完整基线表、所用基准名称、两个 8B 模型的评测协议，未找到仓库。",
+      "evidence_status": "待核验：未给出基准名称与完整基线，未找到仓库",
+      "matched_topics": ["coding-agent", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.22297v1": {
+      "score": 46.0,
+      "value_type": "ignore",
+      "decision": "暂时忽略",
+      "reason": "扩散式端到端自动驾驶规划：动态可行锚点初始化 + 候选相关的 BEV 风险证据 + 紧凑候选监督，NAVSIM v1 上 PDM Score 91.5（ResNet34），220 条 Bench2Drive 闭环路线上 Driving Score 71.43、Success Rate 42.73%，有组件消融。数字具体、代码仓库 Latte00/FIRE-drive 实测 HTTP 200 可达且与摘要一致——这是今天少数几个仓库声明能被直接坐实的。但方向是自动驾驶端到端规划，与我们的 agent 工程实践无交集，投入产出不匹配，故列为忽略而非低分否定其质量。",
+      "evidence_status": "已核验：仓库 Latte00/FIRE-drive 可达，与摘要一致",
+      "code_url": "https://github.com/Latte00/FIRE-drive",
+      "matched_topics": ["multimodal-agent"]
+    }
+  }
+}

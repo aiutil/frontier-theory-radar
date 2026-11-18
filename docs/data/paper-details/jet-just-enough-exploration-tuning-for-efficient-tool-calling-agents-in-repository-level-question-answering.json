@@ -1,0 +1,130 @@
+{
+  "id": "jet-just-enough-exploration-tuning-for-efficient-tool-calling-agents-in-repository-level-question-answering",
+  "title": "JET: Just-Enough Exploration Tuning for Efficient Tool-Calling Agents in Repository-Level Question Answering",
+  "authors": [
+    "Yoonho Choi",
+    "Taehyeon Han",
+    "Seonghyeon Lee"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-17",
+  "url": "http://arxiv.org/abs/2611.22539v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.22539v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-19",
+  "first_deep_dive_daily": "2026-11-19",
+  "value_type": "ignore",
+  "value_type_label": "暂时忽略",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 5.4,
+    "engineering_testability": 4.05,
+    "trend_signal": 5.45,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 47.0,
+  "decision": "暂时忽略",
+  "one_line_judgement": "当前可忽略：仓库级 QA 的'过度探索'问题与 JET 微调法：截断训练轨迹到信息刚够用的那一步、插入解释为什么现在能答的 rationale 并对该 …",
+  "one_line_essence": "仓库级 QA 的'过度探索'问题与 JET 微调法：截断训练轨迹到信息刚够用的那一步、插入解释为什么现在能答的 rationale 并对该 rationale 加权重。摘要给出两个场景的量化结果（自生成轨迹上工具调用减少 11-33%、专家轨迹上比 SFT 少 18-28% 且保留大部分增益），并明确'分数大体保持'。方向与 2611.22901（anytime 停止）重叠，而后者在 anytime 评测与预注册上做得更严谨，且今天的深挖名额不应重复给同一主题。证据细节不足：未给出完整基线表、所用基准名称、两个 8B 模型的评测协议，未找到仓库。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "仓库级 QA 的'过度探索'问题与 JET 微调法：截断训练轨迹到信息刚够用的那一步、插入解释为什么现在能答的 rationale 并对该 rationale 加权重。摘要给出两个场景的量化结果（自生成轨迹上工具调用减少 11-33%、专家轨迹上比 SFT 少 18-28% 且保留大部分增益），并明确'分数大体保持'。方向与 2611.22901（anyti",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "noise",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "仓库级 QA 的'过度探索'问题与 JET 微调法：截断训练轨迹到信息刚够用的那一步、插入解释为什么现在能答的 rationale 并对该 rationale 加权重。摘要给出两个场景的量化结",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": "新意弱、证据弱、相关性有限，当前不建议投入。"
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.22539v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.22539v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=jet-just-enough-exploration-tuning-for-efficient-tool-calling-agents-in-repository-level-question-answering",
+  "daily_path": "daily-detail.html?date=2026-11-19",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

@@ -1,0 +1,1115 @@
+{
+  "date": "2026-11-16",
+  "total": 15,
+  "generated_at": "2026-11-16T04:31:37.364912",
+  "papers": [
+    {
+      "title": "Auditing AI peer reviewers: a benchmark on real scientific papers",
+      "authors": [
+        "Íñigo Zubeldia",
+        "Boris Bolliet",
+        "Francisco Villaescusa-Navarro",
+        "Pablo Villanueva-Domingo",
+        "Miles Cranmer"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17052v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17052v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM-based peer review is now used at production scale, but its evaluation remains limited. We introduce a benchmark that injects objective, localisable errors of four types (general issues, mathematics, numerics, citations) at three severity levels into real papers and measures each reviewer's detection rate by error type and severity, together with its false-positive rate on clean copies. We also present Skepthical, a multi-agent reviewer that verifies citation-backed claims by retrieving the cited papers, mathematics with computer algebra, and numerical claims with executed code. We apply the benchmark to two corpora of 15 recent arXiv preprints each, one in astrophysics and one in machine learning (ML), injecting a total of 357 errors, and evaluate twelve reviewer systems: six single-LLM reviewers, two Claude Code configurations, three publicly available reviewers, and Skepthical. The choice of model has the largest impact on detection rate: given the same prompt, three frontier LLMs differ by about 50 percentage points in total detection on both corpora. Tools and scaffolding help when they contribute what the model cannot supply on its own. In particular, on astrophysics, Claude Code improves on a single Claude call in mathematics and numerics detection, and enforced citation retrieval gives Skepthical the highest citation error detection rate of all systems by a large margin. This citation lead, however, is not observed on ML, where the models appear to know the literature better and Skepthical's citation detection rate is statistically indistinguishable from that of the best single LLM. False-positive rates are below 10% for most systems, but vary with prompt, model, and scaffolding, with mathematics flags the main source of false positives. The evaluation pipeline, the injected errors, and the adjudication logs are released as a benchmark.",
+      "categories": [
+        "cs.CL",
+        "astro-ph.IM",
+        "cs.AI",
+        "cs.DL"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "Accepted at NeurIPS 2026",
+      "score": 55.7,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17052v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17052v1"
+        }
+      ],
+      "prescreen_score": 20,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "rag-knowledge",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "id": "auditing-ai-peer-reviewers-a-benchmark-on-real-scientific-papers",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "rag-knowledge",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 5.4,
+        "engineering_testability": 5.7,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "PolicySniff: Inferring Agent Policy States through Shared-GPU Execution",
+      "authors": [
+        "Weimin Fu",
+        "Minghao Shao",
+        "Zeng Wang",
+        "Qiying Li",
+        "Yuntao Liu"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16158v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16158v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM agents apply approval settings, such as whether to ask before a consequential tool call, through instructions in their system prompt, and operators keep these settings confidential by restricting access to prompts and responses. Audits check whether an agent obeys its setting, not whether a neighboring process can infer which setting is deployed. PolicySniff infers an agent's approval-policy state through shared-GPU execution. A co-resident attacker that knows the candidate settings and the task first profiles both settings, then times only its own GPU kernels while the agent processes the task. The policy prefix is cached before capture, so the attacker observes processing of a task suffix that is identical under both settings. On an eager sparse mixture-of-experts runtime, where each selected expert runs as separate work, a frozen and blinded study identified the deployed setting at 94.17% balanced accuracy on its primary estimand. Across all authorization conditions, accuracy was 88.82% on tasks for which both settings produce the same decision and 91.98% on tasks where they differ. Hardware replays of expert routing show that its temporal density and layer-and-bucket alignment carry the policy information. Behavioral compliance does not imply configuration confidentiality: deployments that keep their approval setting private should measure its distinguishability on the serving runtime and enforce authorization outside the model.",
+      "categories": [
+        "cs.CR"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "comment": "",
+      "score": 50.3,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16158v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16158v1"
+        }
+      ],
+      "prescreen_score": 17,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "inference-serving",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "id": "policysniff-inferring-agent-policy-states-through-shared-gpu-execution",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "inference-serving",
+        "ai-k8s-platform",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 4.5,
+        "engineering_testability": 5.15,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Evidence-Governed Adoption of Self-Generated Updates in Autonomous AI Agents",
+      "authors": [
+        "Subodh Lonkar"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16378v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16378v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Autonomous agents modify prompts, memories, tools, workflows, and policies using interaction histories. Yet a plausible modification is not necessarily suitable for persistent adoption: candidate selection is adaptive, evaluators may be imperfect, and local gains can hide degradation against an earlier baseline. We introduce Evidence-Governed Evolution (EGE), a framework for governing adoption of self-generated agent modifications. EGE separates candidate generation from confirmatory adoption, evaluates frozen candidates on fresh paired audits, requires meaningful improvement on a prespecified primary objective, protects declared capabilities through reference-relative non-inferiority tests, and applies governance constraints before bounded canary deployment. We establish an evaluator-calibrated simultaneous lower-bound construction for a countable sequence of adaptively generated candidates. It combines candidate-wise Hoeffding bounds with independent calibration samples comparing the operational evaluator with a prespecified reference procedure. We also formalise reference replacement through bridge tests, derive a cumulative degradation bound along a versioned reference lineage, and provide an audit-planning condition relating effect-size margin, sample sizes, and acceptance probability. A Monte Carlo stress test illustrates calibration under candidate-dependent evaluator optimism; it is a stylised statistical experiment, not an evaluation of a deployed agent. The guarantees are conditional on bounded paired scores, fresh sampling, a valid reference-evaluation construct, and declared evaluation distributions; they do not establish universal agent safety or robustness to arbitrary distribution shift.",
+      "categories": [
+        "cs.AI",
+        "cs.MA"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "planning"
+      ],
+      "comment": "",
+      "score": 49.8,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16378v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16378v1"
+        }
+      ],
+      "prescreen_score": 17,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "id": "evidence-governed-adoption-of-self-generated-updates-in-autonomous-ai-agents",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 5.4,
+        "engineering_testability": 5.7,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "BWM-Forge: Agentic World Programming for Embodied Intelligence",
+      "authors": [
+        "BWM Team"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16221v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16221v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Generating diverse robot videos requires control over scene geometry, robot motion, and viewpoints. End-to-end video generation offers limited direct access to these variables, making targeted edits and reuse across tasks difficult. We present BWM-Forge, a code-driven framework for controllable video generation in robotics. Given robot assets and a task description, the framework accepts an initial image, an image with motion data, or a human demonstration video. A coding agent constructs editable Blender scene programs that specify objects, robot motion, and cameras. The resulting proxy videos provide structural and motion references for a video generation model, which adds visual detail. A multi-agent harness coordinates input processing, scene construction, review, and rendering. Automated evaluation and user feedback support iterative refinement, while an experience repository stores and retrieves reusable modeling and rendering rules. This design supports multiple robot embodiments, synchronized viewpoints, and appearance variation from a shared scene program. We evaluate the framework on 15 tasks covering five robot types. Compared with LingBot-World Base Cam on these tasks, BWM-Forge achieves higher aesthetic quality, imaging quality, subject and background consistency, motion smoothness, and RoboJudge-9B physical adherence and instruction alignment scores. The baseline scores higher in dynamic degree. Qualitative cases illustrate viewpoint control, scene variation, feedback-driven edits, and experience reuse across scenes. These results demonstrate a practical approach to generating controllable robot videos through editable, executable scene representations.",
+      "categories": [
+        "cs.RO"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "coding agent",
+        "evaluation"
+      ],
+      "comment": "Technical Report",
+      "score": 49.1,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16221v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16221v1"
+        }
+      ],
+      "prescreen_score": 20,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "id": "bwm-forge-agentic-world-programming-for-embodied-intelligence",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "coding-agent",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 5.15,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "JudgeMix: Judge-Guided Mixed-Rollout Data Synthesis for LLM Agents",
+      "authors": [
+        "Cheng-Yu Hsieh",
+        "Ting-Yao Hu",
+        "Sanjoy Chowdhury",
+        "Oncel Tuzel",
+        "Raviteja Vemulapalli"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16174v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16174v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Supervised fine-tuning (SFT) on expert trajectories is a standard paradigm for training LLM agents. However, it suffers from a well-known training-inference distribution mismatch, calling for target-aware data synthesis strategies that ground the training data in the target model's native state distribution. To bridge this gap, emerging approaches incorporate the expert either to guide mixed rollouts alongside the target model, or to provide dense step-wise supervision. Nonetheless, existing methods apply expert assistance blind to the target model's inherent behavior: they either disrupt the rollout using sub-optimal random intervention heuristics, or they enforce indiscriminate uniform supervision that unnecessarily overwrites the model's already-correct actions. We introduce JudgeMix, a judge-guided data synthesis framework that dynamically interleaves the target model and expert based on step-wise semantic evaluations. JudgeMix queries expert guidance precisely when the target model struggles, ensuring high trajectory success rates while keeping the state distribution aligned with the target model. It additionally uses the judge evaluation to reweight expert supervision on different steps, preserving model's inherent valid behavior while correcting its errors. On two agentic tool-use benchmarks, AppWorld and AutomationBench, JudgeMix demonstrates consistent superior performance to existing methods, with improvements up to 10 pass@1 points.",
+      "categories": [
+        "cs.LG",
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "evaluation",
+        "benchmark",
+        "inference",
+        "tool use"
+      ],
+      "comment": "",
+      "score": 49.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16174v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16174v1"
+        }
+      ],
+      "prescreen_score": 18,
+      "prescreen_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "has_declared_artifact": false,
+      "id": "judgemix-judge-guided-mixed-rollout-data-synthesis-for-llm-agents",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Singularity-Bench: Can Agents Build Agents?",
+      "authors": [
+        "Yang Zhou",
+        "Krish Agarwal",
+        "Zhuoming Chen",
+        "Zerui Wang",
+        "Zhenyu Zhang"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16591v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16591v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Frontier AI agents increasingly succeed on realistic, long-horizon tasks and are beginning to improve the systems through which they operate. Yet existing benchmarks often restrict agents to narrow action spaces, use simplified environments, or rely on verification methods that are unreliable for evaluating arbitrary agent-generated systems. We introduce Singularity-Bench, an open-ended benchmark for autonomous AI development with six end-to-end tasks spanning pre-training, mid-training, post-training, inference, the agent harness, and cluster orchestration. Each task requires agents to implement core systems from a minimal starting point and evaluates them against mature human-engineered baselines on identical hardware. Additionally, through extensive red-teaming covering 9 of the 10 categories in the OWASP Top 10 for Agentic Applications, we expose reward-hacking vulnerabilities in the conventional Harbor framework and develop Breakwater, an extension of Harbor that blocks all attacks tested in our study. Across 11 agents built from 7 frontier models and 2 harnesses, Opus 5.5 with Claude Code matches or outperforms the human baseline on all six tasks with a Singularity-Index of 1.25, suggesting it may have the skills needed to reach the singularity. The remaining agents average only 0.58. Our vision is for Singularity-Bench to track how much of AI development agents can already automate and when they may transition from assisting to taking end-to-end responsibility for building stronger successors.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "evaluation",
+        "benchmark",
+        "inference"
+      ],
+      "comment": "",
+      "score": 48.2,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16591v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16591v1"
+        }
+      ],
+      "prescreen_score": 19,
+      "prescreen_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "inference-serving",
+        "ai-k8s-platform",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "id": "singularity-bench-can-agents-build-agents",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "We Are What We Remember: Mental-State-Driven Memory for Long-Term Character Dialogue",
+      "authors": [
+        "Zhicheng Jia",
+        "Shuchen Wu",
+        "Zhuoshi Tong",
+        "Haisen Liao",
+        "Sicheng Zhou"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16223v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16223v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Shared history in human dialogue is not merely a repository of facts, but the foundation of evolving relationships and mutual understanding. However, mainstream conversational memory systems rely on passive semantic similarity over external fact stores, frequently retrieving topically similar records while missing relationally pivotal experiences. Inspired by cognitive psychology's Self-Memory System (SMS), we propose MindMem, a mental-state-driven memory framework that asynchronously consolidates shared experiences into source-linked mental states of the character, the user, and their relationship. At each turn, a specialized mental-state reasoner (Mind) contextualizes these persistent states to anticipate latent user needs, form proactive intentions, and recover supporting episodic evidence that surface-level matching overlooks. To evaluate history-sensitive adaptation beyond factual recall, we introduce MemReal-Bench, a longitudinal benchmark grounded in month-long real-user interactions across dyadic and group scenes. By pairing Direct Question Answering (DQA) with Situated Memory Realization (SMR), it tests whether agents bridge the gap between knowing past facts and naturally using shared history, world rules, and relational trajectories. On MemReal-Bench, MindMem reaches 59.03% SMR and 82.58% DQA, exceeding the strongest memory baseline by 24.19 and 9.19 percentage points, respectively, and outperforming oracle target-memory injection on SMR. Code and dataset are available at https://github.com/jiazhicheng7-ctrl/MindMem.",
+      "categories": [
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "Zhicheng Jia, Shuchen Wu, and Zhuoshi Tong contributed equally to this work",
+      "score": 48.2,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16223v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16223v1"
+        }
+      ],
+      "prescreen_score": 17,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "has_declared_artifact": true,
+      "id": "we-are-what-we-remember-mental-state-driven-memory-for-long-term-character-dialogue",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Paper-Faithful Federated Learning: Scientific Checks for Practitioner and Agent Development",
+      "authors": [
+        "Ali Dadras",
+        "Alp Yurtsever"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17129v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17129v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Federated learning experiments can produce reasonable-looking results even when the experiment implementation differs from the intended experimental protocol. Small errors in configuration, data partitioning, aggregation, randomness, evaluation, or checkpoint recovery may therefore affect a comparison without causing the program to fail. We present FedBrew, a research codebase for controlled and reproducible federated learning experiments. Its focus is controlled simulation with checks of specified conditions of the intended experimental protocol. FedBrew uses configuration checks, identifiable client data partitions, checkpoint recovery checks, self-describing run records, and development-time checks of scientific conditions. These checks assess, for example, whether client partitions are disjoint and exhaustive and aggregation weights match the prescribed rule; numerical and recovery checks examine non-finite client model states and interrupted runs. The same structure also provides clear extension points and automated checks for new algorithms, datasets, models, and tasks, whether they are added by researchers or AI coding agents. FedBrew therefore supports reproducible and inspectable FL experiments through checks of specified software and scientific conditions and the run records associated with reported results.",
+      "categories": [
+        "cs.LG",
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation"
+      ],
+      "comment": "13 pages, 2 tables. Code: https://github.com/DadrasAli/fedbrew",
+      "score": 47.1,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17129v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17129v1"
+        }
+      ],
+      "prescreen_score": 17,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": true,
+      "id": "paper-faithful-federated-learning-scientific-checks-for-practitioner-and-agent-development",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "coding-agent",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 5.4,
+        "engineering_testability": 3.5,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Time and Space: A Dual-Axis, Evidence-Grounded Context Substrate for Personal Agents",
+      "authors": [
+        "Haitao Cheng",
+        "Jerry Hu",
+        "Longdong Mao",
+        "Dong Huang",
+        "Dongming Li"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16492v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16492v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "We argue that a binding constraint for personal agents is not model capacity but the form in which context is represented: the agent does not know which entity a phrase denotes, when a fact held, or which source record licenses a claim. We call the missing representation spatio-temporal context (STC) and define it on two axes. The temporal axis carries event time, validity intervals and ingestion time. The spatial axis is a relational space in which entities are points, typed relations are edges, and distance is semantic rather than geographic; physical places are one entity type among many. Every relation is anchored to immutable source records, and every answer must be closed over those records. We formalise the substrate and six invariants, a context operator that composes temporal intersection with relational expansion, an ambiguity-preserving resolution state machine, a conflict detector that converts mutually exclusive facts into user adjudication rather than silent overwrite, and a four-regime consumption taxonomy spanning query, insight, triage and proactive reminder. We describe a local-first prototype of the retrieval layer built on SQLite with on-device embeddings and hybrid lexical-dense recall, report measurements from a deployed store of 341 documents, 340,079 chunks and 190,271 embedded vectors, and specify, but do not yet implement, the analytic layer on which the framework depends. We close with an evaluation protocol with per-invariant metrics for evidence coverage, temporal correctness, conflict precision and interruption cost. The proposal targets the representation of context rather than the volume of it.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation"
+      ],
+      "comment": "",
+      "score": 46.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16492v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16492v1"
+        }
+      ],
+      "prescreen_score": 18,
+      "prescreen_topics": [
+        "ai-agent",
+        "rag-knowledge",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "id": "time-and-space-a-dual-axis-evidence-grounded-context-substrate-for-personal-agents",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "rag-knowledge",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 4.05,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Where LLM Agents Get Stuck Debugging Databases: Access More Than Reasoning",
+      "authors": [
+        "Gustavo Pinto"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17304v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17304v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Large language model (LLM) coding agents are increasingly asked not only to write code but to debug running systems from live runtime data. We report a field observation of one such agent (Claude Code) as it diagnosed eight database incidents in a production message-dispatch engine. In every incident whose root cause depended on runtime concurrency, the agent announced a cause, shipped a fix, and later walked it back, and each wrong guess cost a deploy-and-observe cycle. Mapping each incident to what the agent lacked, we find that access to production state was the most pervasive bottleneck. The missing access included live lock views, untruncated deadlock reports, read-only execution, and an explicit environment context. An access gap was present in all five concurrency-dependent incidents: alone in one, and in four combined with a reasoning error such as anchoring on an early cause, incomplete exploration of the configuration, or a misreading of the code's transaction semantics. The three incidents that did not depend on concurrency needed nothing beyond what the agent already had. Within the incidents, the agent's wrong hypotheses were consistent with the evidence it could see; they were not fabrications. We argue that the next step for production-debugging agents is a forensics layer that gives the agent the access it lacks inside existing security controls. Such a layer would combine a safe interrogation API, a lock-and-deadlock flight recorder, and a production replay harness.",
+      "categories": [
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent"
+      ],
+      "comment": "12 pages, 2 figures, 2 tables. Submitted to the Journal of Systems and Software",
+      "score": 42.8,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17304v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17304v1"
+        }
+      ],
+      "prescreen_score": 18,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "id": "where-llm-agents-get-stuck-debugging-databases-access-more-than-reasoning",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "coding-agent",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Turning Multi-Agent Communication into Token-Level Credit with On Policy Self Distillation",
+      "authors": [
+        "Zixu Wang",
+        "Yu Zhao",
+        "Xing Zheng",
+        "Bingbing Xu",
+        "Tian Xueyun"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16206v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16206v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Reinforcement learning improves problem solving in large language model multi-agent systems. Existing approaches overlook communication knowledge or compress it into scalar rewards, leaving coarse credit with little guidance on which decisions each agent should reinforce or revise. OPSD4MAS converts future communication into fine-grained token-level credit through On Policy Self Distillation (OPSD). An external model extracts facts and assesses their trajectory relations for coarse-grained filtering, followed by fine-grained leave-one-out filtering of target-token influence against agent-wise outcome advantages. The fact-conditioned policy supplies token-level credit, combined with GRPO through a linearly annealed joint objective. Our method improves mathematical pass@4 over GRPO by up to 20.00 percentage points. Ablations support complete filtering, while frozen-history injection diagnostics support fact utility. Together, these results support combining agent-level outcome guidance with communication-derived token-level credit. Code is available at https://github.com/Camel-Prince/OPSD4MAS.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "comment": "14pages,4 figures",
+      "score": 42.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16206v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16206v1"
+        }
+      ],
+      "prescreen_score": 18,
+      "prescreen_topics": [
+        "ai-agent",
+        "inference-serving",
+        "security-governance"
+      ],
+      "has_declared_artifact": true,
+      "id": "turning-multi-agent-communication-into-token-level-credit-with-on-policy-self-distillation",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "rag-knowledge",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "CapLite: Prompt-Injection Defense for Small Language Model Agents without Model-Written Security Artifacts",
+      "authors": [
+        "Zimo Xu",
+        "Wenzhuo Liu",
+        "Hideki Nakayama"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17115v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17115v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Enforcement defenses against prompt injection, such as CaMeL, Progent, IPIGuard and DRIFT, ask the agent's own model to write a security artifact (a program, a privilege policy, a dependency graph or a constraint list) that code then enforces. We ask whether small language model (SLM) agents can be trusted to write these artifacts. Across 15 open-weight models, 13 of them between 1.7B and 12B parameters, they cannot: the policies, graphs and constraints that the agent's model writes admit attacks on 14 (Progent), 13 (IPIGuard) and 11 (DRIFT) of the models, and CaMeL's programs fail to run in up to 68% of episodes. We present CapLite, which derives its policy from the tool schemas, commits the write calls before any tool result is read, and admits a write only if every argument that decides whom or what it affects is stated in the user's request. This guarantees write integrity: injected text cannot add a write, and no write reaches a recipient, amount, object or destination that the user did not state. No attack succeeds in 13,935 attacked AgentDojo episodes. CapLite reaches utility under attack comparable to CaMeL's (29.0% vs. 27.2%) with fewer tokens than every other enforcement defense and than the undefended agent: 17.1k per episode, 18% of CaMeL's, and the highest utility per token of all enforcement defenses.",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.CR"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "comment": "19 pages, 11 figures, 9 tables",
+      "score": 41.9,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17115v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17115v1"
+        }
+      ],
+      "prescreen_score": 21,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "id": "caplite-prompt-injection-defense-for-small-language-model-agents-without-model-written-security-artifacts",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "security-governance"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "What Can a VLA Learn from the Agent That Calls It? Task-Level Experience Distillation for Embodied Navigation",
+      "authors": [
+        "Jinze Tao",
+        "Yuxiao Han",
+        "Kangkang Dong",
+        "Yancong Wei",
+        "Xiaojun Zhu"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16246v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16246v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Navigation agents use a large language model (LLM) planner to call a vision-language-action (VLA) model. Each episode needs the LLM, adding cost and delay. We distill successful agent experience into the VLA instead of distilling the planner. The VLA then navigates alone at test time. Agent sessions are not VLA demonstrations. They include motions driven by planner tools and sub-instructions, along with detours. We present H2E, a task-level experience distillation method that converts these sessions into VLA training data. Every motion becomes a VLA action under the original task instruction, with the resulting poses as targets. H2E masks the loss on steps that move away from the goal. It labels every visited state within 1 m of the goal as a stop. We then update the VLA with low-rank adaptation. The VLA learns to stop at the goal and find goals the base model never reaches. On all 3,189 REVERIE-CE val-unseen episodes, H2E raises the success rate of an 8B VLA from 35.0% to 44.9%.",
+      "categories": [
+        "cs.RO",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "comment": "11 pages, 5 figures, 9 tables",
+      "score": 40.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16246v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16246v1"
+        }
+      ],
+      "prescreen_score": 21,
+      "prescreen_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "inference-serving"
+      ],
+      "has_declared_artifact": false,
+      "id": "what-can-a-vla-learn-from-the-agent-that-calls-it-task-level-experience-distillation-for-embodied-navigation",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.5,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Context Graph: Explainable Multi-Agent Decision Chains in AI-RAN",
+      "authors": [
+        "Xijun Wang",
+        "Zhaoyang Liu",
+        "Xiang Chen",
+        "Howard H. Yang",
+        "Chenyuan Feng"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.16879v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.16879v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "AI-RAN distributes network control across multiple autonomous agents, namely xApps and rApps operating over shared radio resources. When an alert or degradation appears, operators currently lack a structured way to trace which decision caused it, what context triggered that decision, and how other agents interacted. Existing explainability tools focus on single-model feature attribution or linear event logging, neither of which captures cross-agent decision chains. We propose the Context Graph, a heterogeneous directed graph that organizes policies, measurements, decisions, and alerts into a queryable explanation layer. Its foundational primitive is the Decision-Event node acting as a causal junction, where incoming edges capture triggering context and outgoing edges track downstream consequences that are progressively upgraded through counterfactual verification. Instantiated over existing E2, A1, and O1 data flows, our proof-of-concept demonstrates that compliance and diagnosis queries are resolved at sub-millisecond latency over graphs of tens of thousands of nodes, while reliably distinguishing true causal impacts from spurious correlations.",
+      "categories": [
+        "cs.NI",
+        "cs.AI",
+        "cs.IT"
+      ],
+      "keywords": [
+        "agent"
+      ],
+      "comment": "This work has been submitted to the IEEE for possible publication",
+      "score": 39.7,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.16879v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.16879v1"
+        }
+      ],
+      "prescreen_score": 18,
+      "prescreen_topics": [
+        "ai-agent",
+        "inference-serving",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "id": "context-graph-explainable-multi-agent-decision-chains-in-ai-ran",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.05,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    },
+    {
+      "title": "Actor, Judge, or Teacher? Understanding Decision Models in Long-Horizon Agents",
+      "authors": [
+        "Haochen Liu",
+        "Qianhao Zhu",
+        "Zixuan Wang",
+        "Dingming Li",
+        "Tongbo Chen"
+      ],
+      "published": "2026-11-12",
+      "updated": "2026-11-12",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.17167v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.17167v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Decision models answer a question with a typed output, such as a choice among options with a probability for each, so one model can choose an agent's actions, evaluate actions already taken, or score every action to teach a policy with reinforcement learning. Prior work has studied them mainly as actors, judging their usefulness by how well they act. We ask whether a decision model that acts poorly can still teach well. We compare three decision models and three general LLMs as actors and judges on ALFWorld, and use JEV as a teacher on ALFWorld and WebShop. As actors, all six models are pulled away from a subgoal that must come first by an easier one. As judges that see the whole trajectory, the same models credit the steps toward that subgoal, and asking whether each action helped, rather than whether the task will succeed, separates useful from useless actions. As a teacher, JEV raises a Qwen2.5-1.5B policy over GRPO from 72.8% to 82.9% success on ALFWorld and from 56.8% to 71.4% on WebShop. These results suggest that a poor actor can still teach well, because judging an action after the episode ends reveals the consequences that acting must anticipate. Code is available at https://github.com/ZJU-REAL/decision-agents.",
+      "categories": [
+        "cs.AI",
+        "cs.CL"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation"
+      ],
+      "comment": "",
+      "score": 37.5,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.17167v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.17167v1"
+        }
+      ],
+      "prescreen_score": 16,
+      "prescreen_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": true,
+      "id": "actor-judge-or-teacher-understanding-decision-models-in-long-horizon-agents",
+      "value_type": "ignore",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 4.5,
+        "engineering_testability": 3.5,
+        "trend_signal": 3.5,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "noise"
+    }
+  ],
+  "pool_stats": {
+    "fetched_from_sources": 400,
+    "unseen_after_dedup": 375,
+    "duplicates_of_history": 25,
+    "selected_for_review": 15,
+    "selection_note": "今日从宽候选池 400 篇中选出 15 篇进入日报；其中 25 篇与历史批次重复，已在跨日去重中剔除。"
+  },
+  "scored_at": "2026-11-19"
+}

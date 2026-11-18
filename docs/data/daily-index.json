@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-11-15T05:34:30.841740",
+  "updated_at": "2026-11-19T05:13:38.313834",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-11-19",
+      "title": "论文价值发现日报 - 2026-11-19",
+      "deep_dive_title": "Inference after coding agents",
+      "deep_dive_url": "http://arxiv.org/abs/2611.23174v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做三件事，全部零依赖、不需要 GPU、不需要 API key：",
+      "max_uncertainty": "1. **校正依赖选择行为稳定性。** 论文的有效性前提是 'for agents with stable selection behavior'——作者本人把稳定性写成了适用条件，这意味着当 agent 升级、提示改写或工具集变化时，校正量需要重新估计。论文没有给出「行为漂移到何种程度就失效」的量化边界，这是最需要后续跟进的问题。",
+      "one_line_judgement": "它指出 AI coding agent 做实证研究时会引入一种新的后选择性推断，并给出一个几乎零成本的对策——把 agent 的选择过程重放一遍，用它自己实际的选择概率来校正 p 值。**在零效应数据上，四个前沿 agent 报告显著 p 值的比例为 54% 到 98%**；作者复现包中 `results/numbers/10_self_correction.json` 实测记录该区间为 [53.61%, 97.98%]，与摘要完全一致。",
+      "path": "daily-detail.html?date=2026-11-19"
+    },
     {
       "date": "2026-11-15",
       "title": "论文价值发现日报 - 2026-11-15",
@@ -378,19 +391,6 @@
       "max_uncertainty": "RSI-Anything（[2610.13912](http://arxiv.org/abs/2610.13912v1)）JEPA-Anything 形式化（predictive head / latent state / 兼容性检查条件）、跨 task domain 验证、与 naive self-improve / pure world-model baseline 对照、是否开源 world model 与 curriculum 调度是否公开；AI Models Can Provably Hide Arbitrary Capabilities（[2610.13928](http://arxiv.org/abs/2610.13928v1)）digital locker 形式化、加密 circuit 与 trigger 形式化、跨 trigger 条件验证、'provably hard to elicit/interpret' 的形式化证明、是否开源 attack pipeline 与 evaluation harness 是否公开；Hide and Seek (HnS)（[2610.13935](http://arxiv.org/abs/2610.13935v1)）small concept set 形式化、image-level attribution 输出形式、跨 vision task 验证、与 pixel-level saliency / concept bottleneck baseline 对照、是否开源 HnS pipeline 与 concept set 协议是否公开；When VLMs Destroy What They Know（[2610.13910](http://arxiv.org/abs/2610.13910v1)）EICS metric 形式化、CASP-VL perturbation 协议、跨 VLM 验证是否公开；Can Language Models Play the Wikipedia Game?（[2610.13948](http://arxiv.org/abs/2610.13948v1)）5 languages / 5 academic datasets 具体清单、sentence embedding vs LLM 对照、跨难度验证是否公开；Prompteina（[2610.13917](http://arxiv.org/abs/2610.13917v1)）text encoder 与 all-atom structure decoder 形式化、Prompteina-Data 配对规模、跨 protein family 验证是否公开。今日与昨日（2026-10-13）抓取列表完全一致，所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
       "one_line_judgement": "据摘要（arXiv [2610.13912](http://arxiv.org/abs/2610.13912v1)），论文把 recursive self-improvement（RSI）的'external feedback 昂贵 / 不可靠 / world-model predictions 随 policy 演化变得 unreliable'拉到'JEPA-Anything 框架：predictive world models 引导 action selection + learning-data selection；observed feedback 驱动 policy/workflow 改进 + conditional world-model adaptation；component & compatibility checks 担保'——一个 domain-general 的世界模型驱动的自改进框架。是 ai-agent × llm-evaluation × rag-knowledge × multimodal-agent 的 'world-model-guided recursive self-improvement' 即时价值资产——把 'agent self-improve' 从 '依赖 external feedback / 静态 world model' 两态拉到 'world-model-driven action + learning-data selection with compatibility checks'，与昨日（2026-10-13）同篇 RSI-Anything 在 'agent runtime governance / capability scaling' 层面同源，与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'world-model-as-self-improvement-curriculum' 层面同源。",
       "path": "daily-detail.html?date=2026-10-14"
-    },
-    {
-      "date": "2026-10-13",
-      "title": "论文价值发现日报 - 2026-10-13",
-      "deep_dive_title": "RSI-Anything: Unlocking Recursive Self-Improvement with World Models",
-      "deep_dive_url": "http://arxiv.org/abs/2610.13912v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 [2610.13912](http://arxiv.org/abs/2610.13912v1) RSI-Anything 'world-model-guided recursive self-improvement' 列为即时试点方向，写 'world-model-driven self-improve' checklist 草稿；把 [2610.13928](http://arxiv.org/abs/2610.13928v1) AI Models Can Provably Hide Arbitrary Capabilities 'provably-hard-to-elicit hidden capability' 列为即时路线资产，写 'capability-hiding evaluation attack' checklist 草稿；把 [2610.13935](http://arxiv.org/abs/2610.13935v1) Hide and Seek (HnS) 'image-level concept attribution for black-box vision' 列为即时路线资产，写 'small-concept-set VLM XAI' checklist 草稿；为 [2610.13910](http://arxiv.org/abs/2610.13910v1) When VLMs Destroy What They Know 'EICS + CASP-VL representation audit'、[2610.13948](http://arxiv.org/abs/2610.13948v1) Can Language Models Play the Wikipedia Game? 'link-traversal IR analogy' 维持分类趋势卡片并设置 7 天观察周期；为 [2610.13917](http://arxiv.org/abs/2610.13917v1) Prompteina 'natural-language-conditioned protein structure generation' 维持长尾卡片。⚠️ 持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 RSI-Anything 是否公开 world model 与 curriculum 调度、AI Models Can Provably Hide Arbitrary Capabilities 是否公开 attack pipeline 与 evaluation harness、Hide and Seek (HnS) 是否公开 HnS pipeline 与 concept set 协议。",
-      "max_uncertainty": "RSI-Anything（[2610.13912](http://arxiv.org/abs/2610.13912v1)）JEPA-Anything 形式化（predictive head / latent state / 兼容性检查条件）、跨 task domain 验证、与 naive self-improve / pure world-model baseline 对照、是否开源 world model 与 curriculum 调度是否公开；AI Models Can Provably Hide Arbitrary Capabilities（[2610.13928](http://arxiv.org/abs/2610.13928v1)）digital locker 形式化、加密 circuit 与 trigger 形式化、跨 trigger 条件验证、'provably hard to elicit/interpret' 的形式化证明、是否开源 attack pipeline 与 evaluation harness 是否公开；Hide and Seek (HnS)（[2610.13935](http://arxiv.org/abs/2610.13935v1)）small concept set 形式化、image-level attribution 输出形式、跨 vision task 验证、与 pixel-level saliency / concept bottleneck baseline 对照、是否开源 HnS pipeline 与 concept set 协议是否公开；When VLMs Destroy What They Know（[2610.13910](http://arxiv.org/abs/2610.13910v1)）EICS metric 形式化、CASP-VL perturbation 协议、跨 VLM 验证是否公开；Can Language Models Play the Wikipedia Game?（[2610.13948](http://arxiv.org/abs/2610.13948v1)）5 languages / 5 academic datasets 具体清单、sentence embedding vs LLM 对照、跨难度验证是否公开；Prompteina（[2610.13917](http://arxiv.org/abs/2610.13917v1)）text encoder 与 all-atom structure decoder 形式化、Prompteina-Data 配对规模、跨 protein family 验证是否公开。所有 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
-      "one_line_judgement": "据摘要（arXiv [2610.13912](http://arxiv.org/abs/2610.13912v1)），论文把 recursive self-improvement（RSI）的'external feedback 昂贵 / 不可靠 / world-model predictions 随 policy 演化变得 unreliable'拉到'JEPA-Anything 框架：predictive world models 引导 action selection + learning-data selection；observed feedback 驱动 policy/workflow 改进 + conditional world-model adaptation；component & compatibility checks 担保'——一个 domain-general 的世界模型驱动的自改进框架。是 ai-agent × llm-evaluation × rag-knowledge × multimodal-agent 的 'world-model-guided recursive self-improvement' 即时价值资产——把 'agent self-improve' 从 '依赖 external feedback / 静态 world model' 两态拉到 'world-model-driven action + learning-data selection with compatibility checks'，与昨日 / 上周 BOTTLED（capability→artifact）/ Caught in the Act（white-box probe monitoring）/ CSF（scene-grounded safety filter）在 'agent runtime governance / capability scaling' 层面同源，与 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'world-model-as-self-improvement-curriculum' 层面同源。",
-      "path": "daily-detail.html?date=2026-10-13"
     }
   ]
 }

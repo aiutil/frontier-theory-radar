@@ -1,0 +1,136 @@
+{
+  "id": "forecastgym-a-live-controlled-and-replayable-benchmark-for-forecasting-agents",
+  "title": "ForecastGym: A Live, Controlled, and Replayable Benchmark for Forecasting Agents",
+  "authors": [
+    "Yicheng Tao",
+    "Yuante Li",
+    "Zipei Fan"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-17",
+  "url": "http://arxiv.org/abs/2611.23045v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.23045v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-19",
+  "first_deep_dive_daily": "2026-11-19",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 8.6,
+    "evidence": 5.4,
+    "engineering_testability": 4.05,
+    "trend_signal": 6.55,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 62.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得继续观察：预测类 agent 的评测基准，方法上有一个真正重要的设计：把证据采集与推理解耦——每两天记录四个商用 web search API 对公开…",
+  "one_line_essence": "预测类 agent 的评测基准，方法上有一个真正重要的设计：把证据采集与推理解耦——每两天记录四个商用 web search API 对公开预测市场问题的返回，结果揭晓后离线重放冻结证据，从而在固定证据获取策略下比较模型、记忆策略和搜索源。首版 150 题、614 个证据状态、13.1 万条搜索结果。摘要给出两个诊断性结论：结算后重跑同样查询，对高达 92% 的问题结果会直接说出答案（说明日期过滤不可靠，回溯式评测会泄漏未来信息）；在冻结证据上所有被测 LLM 的预测准确率都不如市场；切换搜索 API 使某模型 Brier 分数变化最多 0.043，大于模型之间的差距。对我们的实际意义很直接——做 agent 评测时，'检索源'可能比'模型'更能决定结论，但摘要未提供可核验的仓库或数据入口，且依赖 4 个商用搜索 API，复现成本较高。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "预测类 agent 的评测基准，方法上有一个真正重要的设计：把证据采集与推理解耦——每两天记录四个商用 web search API 对公开预测市场问题的返回，结果揭晓后离线重放冻结证据，从而在固定证据获取策略下比较模型、记忆策略和搜索源。首版 150 题、614 个证据状态、13.1 万条搜索结果。摘要给出两个诊断性结论：结算后重跑同样查询，对高达 92%",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "context-engineering",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "预测类 agent 的评测基准，方法上有一个真正重要的设计：把证据采集与推理解耦——每两天记录四个商用 web search API 对公开预测市场问题的返回，结果揭晓后离线重放冻结证据，从而",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.23045v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.23045v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=forecastgym-a-live-controlled-and-replayable-benchmark-for-forecasting-agents",
+  "daily_path": "daily-detail.html?date=2026-11-19",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

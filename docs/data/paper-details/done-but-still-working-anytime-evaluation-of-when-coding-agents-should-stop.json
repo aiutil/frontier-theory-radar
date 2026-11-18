@@ -1,0 +1,134 @@
+{
+  "id": "done-but-still-working-anytime-evaluation-of-when-coding-agents-should-stop",
+  "title": "Done, But Still Working: Anytime Evaluation of When Coding Agents Should Stop",
+  "authors": [
+    "Zerui Yang",
+    "Quan Xue",
+    "Miaomiao Dong",
+    "Chaorui Zhang",
+    "Xuanyu Zheng"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-17",
+  "url": "http://arxiv.org/abs/2611.22901v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.22901v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-19",
+  "first_deep_dive_daily": "2026-11-19",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 8.6,
+    "evidence": 4.95,
+    "engineering_testability": 3.5,
+    "trend_signal": 4.6,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：把 coding agent 的'何时停'做成 anytime evaluation：重放已录制轨迹、用隐藏测试给中间 patch 打分，从…",
+  "one_line_essence": "把 coding agent 的'何时停'做成 anytime evaluation：重放已录制轨迹、用隐藏测试给中间 patch 打分，从而在不生成新轨迹的前提下做成对比较。规模扎实（约 6000 次运行、8 个开源模型、2 种 scaffold、SWE-bench Verified），并给出可行动结论——自测通过后继续工作的节省空间在 <1% 到 57% 之间，'同一 patch 通过两次就停'的规则在预注册复现实验里省 23%，但预注册的质量检验并未确立非劣性；模仿该规则微调后 6 个种子省 30%，质量保持仍不确定。证据强度中等偏上：有预注册、有多种子、作者主动标注了负面结论（non-inferiority 未成立），这一点比常见的只报正面数字更可信。但摘要未给出可核验的代码仓库或数据入口，'隐藏测试'的构造细节无法从外部核验，因此暂不列为立即可用资产。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "把 coding agent 的'何时停'做成 anytime evaluation：重放已录制轨迹、用隐藏测试给中间 patch 打分，从而在不生成新轨迹的前提下做成对比较。规模扎实（约 6000 次运行、8 个开源模型、2 种 scaffold、SWE-bench Verified），并给出可行动结论——自测通过后继续工作的节省空间在 <1% 到 57%",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "把 coding agent 的'何时停'做成 anytime evaluation：重放已录制轨迹、用隐藏测试给中间 patch 打分，从而在不生成新轨迹的前提下做成对比较。规模扎实（约 6",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.22901v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.22901v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=done-but-still-working-anytime-evaluation-of-when-coding-agents-should-stop",
+  "daily_path": "daily-detail.html?date=2026-11-19",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
