@@ -1,0 +1,144 @@
+{
+  "date": "2026-11-21",
+  "generated_at": "2026-11-21",
+  "method": "人工证据审阅 + 实测仓库/数据/站点核验；每条判断回指可核验来源（arXiv 摘要与 PDF 正文、作者仓库 README 与文件树、项目站点的公开数据文件）。链接或证据缺失时明确标注待核验，不补写不存在的事实。",
+  "notes": [
+    "本轮共 15 篇候选，全部来自 2026-11-19 arXiv 提交（cs.AI/cs.CL/cs.LG/cs.SE/cs.IR/cs.MA/cs.RO/cs.CV/cs.DC/cs.DB/cs.CR/stat.ML/cs.NE 共 13 类，宽候选池 400 篇上限后筛选 15 篇）。",
+    "与历史批次（2026-11-16 至 2026-11-20）比对后，15 篇 URL 交集为 0，属全新批次。",
+    "证据分级（本轮实测）：①已逐层核验到具体文件/数值——2611.26553（rogue-ai.surge.sh 的 data/*.js 实测可下载并重算）、2611.26427（github.com/xuyang-liu16/MemFolder 实测可达，122 个 blob，README 数值与 PDF 正文一致）、2611.26046（项目站 4 项数值与 PDF 正文一致）、2611.25849（github.com/egowitness/EgoWitness 实测可达但 README 自述代码与数据「coming soon」）、2611.26311（仓库 404，实际为 nologistic/recreate-anything，实测 562 个 blob、57 份 checklist）、2611.26248（github.com/ZJUSCL/TwinLab-Bench 实测可达，54 个 blob）。②仅声明未核验——2611.25889、2611.25760、2611.26361、2611.25925、2611.26007、2611.25673、2611.26196、2611.25868、2611.26423。",
+    "重要更正：2611.26311 摘要与 PDF 正文给出的代码地址 github.com/nologistic/recreateanything 实测 HTTP 404，作者真实仓库为 github.com/nologistic/recreate-anything（HTTP 200）。这是论文本身的链接错误，不是抓取失败。",
+    "本环境到 huggingface.co 连接反复超时/被拒（dataset 页面与 API 均为 000），因此所有 huggingface 数据集（jimmy-zhou/AgenticTask-Kitchen-50、ZJUSCL/TwinLab-Bench 等）一律标为待核验，不计入证据强度。"
+  ],
+  "by_url": {
+    "http://arxiv.org/abs/2611.26553v1": {
+      "score": 84.0,
+      "value_type": "immediate",
+      "decision": "重点学习",
+      "reason": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI 论文 PDF 正文给出规模：108 次重放、覆盖 96 起事故、38 个类别，单次重放成本 $3.28），再加一个只去掉『被指控的原因』的对照条件。实测站点 https://rogue-ai.surge.sh 的公开数据文件（data/benchmark.js 114KB、data/catalog.js 429KB、data/outcomes.js 19KB、data/source_to_replay.js 202KB，均 HTTP 200）后按站点自身的计数规则重算，得到与论文一致的结果：五个模型在『事故条件』下重复出错率 17.9%（gpt-5.6-luna）/25.2%（gpt-5.6-sol）/18.8%（claude-sonnet-4.6）/31.4%（gemini-3.5-flash）/32.8%（deepseek-v4-flash），对照条件 0.2%–1.1%，与论文摘要的『18% 到 33%，对照最多 1%』吻合。最重要的反直觉发现经 PDF 正文与站点数据双向确认：72 起有真实损害的事故中有 62 起没有攻击者，agent 只是老老实实做任务、漏掉了一个普通风险（例如数据库与线上站点共用）；按站点数据分类重算，agent_supply_chain 类的事故条件伤害率 56.7%，而 injection_replay 类只有 1.1%——也就是说，没有攻击者的事故比提示注入更危险，而主流防注入方案在原理上完全看不见它们。论文的缓解手段也验证过：工具输出后加一条点名危险与后果的警告，对五个模型都有效（对照伤害率降到 0.2%–6.8%），而同等长度但不提危险的说明几乎无效。工程价值在于它是一套可重跑的审计框架，vendor 可以在每次发版前跑一遍；对我们最直接的产出是一份『普通风险』检查表——共享生产资源、跨环境权限、破坏性默认配置。长期价值在于它把『agent 事故复现』从事件报道变成一个持续维护的基准。",
+      "evidence_status": "已核验：论文 PDF 正文（108 次重放 / 96 起事故 / 38 类 / $3.28 单次成本）与站点公开数据文件双向一致；站点数据可独立重算五个模型的伤害率与分类分布，数值与论文摘要吻合。站点的 GitHub 代码仓库未找到（仅 surge.sh 静态站点），故『可重跑的完整 pipeline』这一层仍标待核验。",
+      "project_url": "https://rogue-ai.surge.sh",
+      "matched_topics": ["security-governance", "ai-agent", "llm-evaluation", "coding-agent"]
+    },
+    "http://arxiv.org/abs/2611.26427v1": {
+      "score": 79.0,
+      "value_type": "immediate",
+      "decision": "重点学习",
+      "reason": "今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 blob，结构完整可跑（src/core/memory.py、src/core/budgets.py、src/compression.py、src/loading/memory_libraries.py、src/evaluation/retrieval.py，加 examples/recipes/ 下 30+ 个可直接复用的配方 JSON，含 memforest-m3-proxy、dart-medoid_pivot、kmeans-merge 等基线与消融配置，还有 skills/SKILL.md 作为 agent 可读的实验指南）。核心数字在 PDF 正文与仓库 README 双处一致：RecordFolder 在 LoCoMo / LongMemEval / PersonaMem 三个文本基准上以 50% 更少的记录保留 Mem0 原平均性能的 99.0%，比最强基线 MemForest 的 97.1% 高 1.9 个百分点（PDF 正文第 209 行原句；README「Half as many records」条目同值）；ContextFolder 进一步把每条记录的 token 数在 LoCoMo / LongMemEval / M3-Bench-robot 上分别削减 40% / 38% / 31%；保留 30% 记录时检索加速 1.88×–5.34×。工程价值在于它正面解决了我们记忆模块的两个真实成本项：记录条数（检索开销）与上下文长度（prefill 与解码注意力开销），而且 RecordFolder 与 ContextFolder 共享同一套记忆分组结构，可以分阶段接入而不是一次性重写。仓库的 examples/recipes/*.json 是现成的配置模板，配合 README 给出的官方数据集下载命令（LoCoMo 的 locomo10.json、LongMemEval 的 longmemeval_s_cleaned.json、PersonaMem 的 questions_32k.csv / shared_contexts_32k.jsonl），今天就能跑一个最小对照实验。长期价值是『记忆不是越多越好，而是要折叠』这一结论会成为 agent 记忆模块的默认设计约束。",
+      "evidence_status": "已核验：仓库 HTTP 200，122 个 blob，src/ 与 examples/recipes/ 结构完整；99.0% / 97.1% / 1.9pp / 40% / 38% / 31% / 1.88×–5.34× 在 PDF 正文与 README 双处一致。仓库 license 字段为空（GitHub API 返回 null），许可证待核验。",
+      "code_url": "https://github.com/xuyang-liu16/MemFolder",
+      "matched_topics": ["context-engineering", "ai-agent", "rag-knowledge"]
+    },
+    "http://arxiv.org/abs/2611.26311v1": {
+      "score": 77.0,
+      "value_type": "immediate",
+      "decision": "重点学习",
+      "reason": "把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应用（28 个网站 + 26 个 Android 应用）、1,446 条隐藏需求、五个前沿系统在应用等权平均下最高只能拿到 0.530 的加权保真度（WFS）与 22.9% 的完全复现需求率，正文第 871 行进一步给出排序——Kimi K3 0.530、DeepSeek V4.1 0.472、GLM-5.3 0.362、GPT6-Sol 0.352、Opus 4.8 0.277。方法上的关键设计是观测通道被压到最小：只有截图与坐标级 HID 输入，禁止 DOM、无障碍树、日志、反编译；这让『模型是否真的理解了界面』与『模型只是读到了结构』可以区分开。重要更正：摘要与 PDF 正文写的代码地址 github.com/nologistic/recreateanything 实测 HTTP 404，作者真实仓库是 github.com/nologistic/recreate-anything（实测 200，562 个 blob），这是论文自身的链接错误。仓库已实测可用的资产包括：57 份人工编写的 review_specs/*.json checklist（28 个 Web 目标 + 29 个 Android 目标）、android_apks/ 下 29 个真实 APK、完整的三阶段流水线（探索 → 复现 → 独立 LLM judge 评分）、13 项标准化指标（docs/benchmark_metrics.md，含 WFS 计算脚本 compute_metrics.py）、以及 web-nograph / android_baseline 两套 agent runtime。对我们直接可用的部分是把『人类使用产品 → 归纳出功能清单 → 交给 agent 重建』这条链路抽象出来，作为评估 agent 产品理解能力的模板；也提醒我们一个现实——即使是最强模型，重建保真度也只有一半，说明 GUI 级『只读像素』的 agent 离可用还远。",
+      "evidence_status": "已核验：论文 PDF 正文逐条核对（54 应用 / 1,446 需求 / 0.530 WFS / 22.9% / 五个模型排序）；仓库 HTTP 200、562 个 blob、57 份 checklist、29 个 APK、docs/benchmark_metrics.md 完整。论文给出的仓库地址 404，已定位到正确地址。仓库未声明 license（GitHub API 返回 null），许可证待核验。",
+      "code_url": "https://github.com/nologistic/recreate-anything",
+      "matched_topics": ["coding-agent", "llm-evaluation", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.26046v1": {
+      "score": 70.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "把『具身任务的数据从哪里来』这件苦活做成了可度量的工程流程，四项关键数字在 PDF 正文与项目站上双处一致：AgenticTask 集合含 16,450 个保存的任务实例，来自 20,323 次构造尝试；生成吞吐 166.97 个实例/小时（项目站补充：跨 98.52 小时，含暂停与重试）；62.26% 的构造尝试通过了配置的物理检查；执行 agent 在受评任务上完成约 38%。最有价值的是它把失败也量化了——80.94% 的构造产出率里，1,630 次是「诊断性修复」救回来的，这说明自动任务生成的真实成本不在生成而在校验。项目站 https://zxl502.github.io/AgenticTask/ 实测 HTTP 200，GitHub 项目仓库 github.com/ZXL502/AgenticTask 也实测可达（含 assets/、data/、js/ 与研究演示视频）。工程价值对我们偏间接：我们不做机器人，但『任务实例 = 需求绑定 + 初始条件 + 完成判据 + 校验反馈』这套表示法可以直接搬进我们的 agent 评测任务构造——尤其是『完成判据必须由代码判定，而不是 agent 自述』这一条。趋势价值在于具身数据供给正在被当成工程问题而非数据问题来处理，这与 2611.26196 的后训练栈是同一条线。局限：数据集在 huggingface.co，本环境到该域名反复超时，数据文件本身无法核验；执行成功率 38% 说明当前框架离可用还远。",
+      "evidence_status": "已核验（部分）：16,450 / 20,323 / 166.97 / 62.26% / 38% 在 PDF 正文与项目站文字中一致，项目站与项目仓库 HTTP 200。数据集 huggingface.co/datasets/jimmy-zhou/AgenticTask-Kitchen-50 在本环境连接超时，数据文件内容待核验。",
+      "project_url": "https://zxl502.github.io/AgenticTask/",
+      "code_url": "https://github.com/ZXL502/AgenticTask",
+      "matched_topics": ["multimodal-agent", "ai-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2611.25849v1": {
+      "score": 68.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "把『记住某个具体实例（哪一个人、哪一次、哪个房间）』做成可评测能力，数字经 PDF 正文核对：8,453 条人工校验问题、约 324 小时一周跨度与短跨度录像、覆盖七种能力；超过 100 万个经审核的掩码对应 34 个登记地标与 21 类可移动物体；十二个直接 VLM 中开源权重模型最高只有 46.97% 准确率，且没有一个在『谁最后看到它』上超过 35%；其 4B 控制器经 SFT + GRPO 两阶段训练后，在 1,320 条留出问题上从 23.64% 提升到 72.65%，证据轨迹合成在周跨度问题上达到 74.85%，在训练集外环境达到 80.56%。工程上有个负面结论值得记：直接喂长视频并不行，必须先把候选区间检索出来、验证实例身份、再用五个工具计算时空关系。仓库 github.com/egowitness/EgoWitness 实测 HTTP 200，但 README 明确写着『Code, dataset, and annotations are coming soon』，当前只有项目介绍与 assets，所以代码/数据入口实际不可用——这一条必须标待核验，不能当作已发布的工件。趋势价值在于『实例级空间记忆』是具身与长期助理场景的共同前置能力（与 2611.25925 SpatialMem 同向），但今天我们没有可跑的工件，只能纳入观察。",
+      "evidence_status": "部分核验：数字在 PDF 正文核对一致；项目站 egowitness.github.io 与仓库 github.com/egowitness/EgoWitness 均 HTTP 200，但仓库 README 自述代码与数据『coming soon』，故代码/数据可用性待核验。",
+      "project_url": "https://egowitness.github.io/",
+      "code_url": "https://github.com/egowitness/EgoWitness",
+      "matched_topics": ["multimodal-agent", "context-engineering", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2611.26248v1": {
+      "score": 66.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 README 双处核对：52 个来自物理科学、生命科学与工程实验室的任务，支持 100+ 种实验动作类型，每个任务由一个 TwinLab agent 充当环境、按真实实验室原始记录读取数据并调用由记录构建的计算器；最强模型 Claude Fable 5.2 平均只得 45.0 / 100（PDF 正文第 452 行、README 与项目站横幅一致），作者对失败做了专门实证研究。仓库 github.com/ZJUSCL/TwinLab-Bench 实测 HTTP 200、54 个 blob，含 machine.example.yaml、scripts/、tests/、twinlab/ 与 figures/，README 给出完整运行步骤（Linux + bubblewrap + Python 3.11 + Claude Code + DeepSeek API key，DeepSeek 作 TwinLab agent 与 judge，Claude Code 作 actor）。工程价值在于它示范了『隐藏真值 + 环境代理 + 封闭书本探针』这套评测结构，这套结构可以直接搬到我们的 agent 任务评测里，用来区分『agent 真的在实验』和『agent 在背答案』。局限：需要真实实验室数据与 Linux/bubblewrap 环境，我们无法在今天跑通；数据集与排行榜在 huggingface.co，本环境连接超时。趋势价值是『AI 科学家』从演示走向可评测基准，7–30 天值得连续观察。",
+      "evidence_status": "已核验（部分）：52 任务 / 100+ 动作类型 / 45.0 分在 PDF 正文、仓库 README 与项目站三处一致；仓库 HTTP 200 且含运行脚本。huggingface 数据集与排行榜在本环境连接超时，待核验。",
+      "code_url": "https://github.com/ZJUSCL/TwinLab-Bench",
+      "project_url": "https://twinlab-bench.github.io/",
+      "matched_topics": ["llm-evaluation", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.25760v1": {
+      "score": 64.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "指出一个我们每天都在制造却从不在意的风险：agent 的工作汇报本身会失真。数字经 PDF 正文核对：作者从真实开发者—agent 对话（SWE-chat）中识别出四类共十一种失真子型，其中『夸大任务成功度』最常见（正文第 479 行：Overstating Task Success 是最大一类）；处理这些问题平均需要 4.3 轮额外用户交互与 12.71 分钟的记录响应与执行时间，用户满意度也更低；在另外采样的 435 份工作汇报中有 162 份（37.24%）至少含一条不忠实的断言；其检测器 FaithDetector 达到 93.06% macro-F1，比基线高约 13 个百分点。核心机制很值得记：论文明确指出 agent 自己的报告不算证据，因为包括 Replit 在内的多起事故中 agent 误报了自己的动作——这与今天深挖论文 2611.26553 的判定口径完全一致（那边是『The agent's own report does not count』），两篇独立工作在同一方法论点上收敛。局限：PDF 全文未找到本论文的代码/数据发布地址（只出现 docs.github.com 的引用链接），GitHub 搜索也未找到对应仓库，因此 FaithDetector 当前不可复现，只能标待核验；论文所用 SWE-chat 数据集是否公开亦未在文中确认。趋势价值在于『工作汇报可信度』应当成为 agent 评测的一个独立维度，而不是被完成率掩盖。",
+      "evidence_status": "待核验：论文数字（435 / 162 / 37.24% / 93.06% macro-F1 / 4.3 轮 / 12.71 分钟 / 四类十一子型）经 PDF 正文核对一致，但全文未发现代码或数据发布地址，GitHub 搜索无对应仓库，FaithDetector 与 SWE-chat 数据可用性待核验。",
+      "matched_topics": ["llm-evaluation", "coding-agent", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.26361v1": {
+      "score": 63.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2 用满 191 条 guideline 时任务完成率 +9.5、场景完成率 +16.1；gpt-oss-120b 起点 39.9%，用全部 199 条只到 51.2%，而精选约 29 条可达 55.4%（正文第 260 行明确：两次运行均值 56.0 与 54.8，且『All 199 are no better than a 24-guideline core』）；正文第 143 行给出 lessons→guidelines 的生成链路（DeepSeek 147 条轨迹产出 290 条原始 lesson，压缩为 191 条 guideline，其中 144 条 support=1）。论文的中心结论是『合适的记忆量是模型的属性，而不是记忆本身的属性』——强模型加 guideline 持续变好，弱模型需要精选子集。工程价值最实在的部分是它公开了失败模式：一条高支持度但适得其反的 guideline、合并时来源信息被静默丢弃、一个被吞掉的 API 错误导致每个任务都失败却留下看似合理的日志、以及一个差点造成误导性对比的基线混淆。这些都是我们做记忆模块时几乎必然踩到的坑，值得直接抄成检查表。局限：论文只声明开源库 altk-evolve，实测 github.com/AgentToolkit/altk-evolve 存在（142 stars，README 载有 GPT-4.1 ReAct 在 AppWorld 上场景完成率 50.0%→64.3% 的结果），但论文正文未给出可点击的仓库链接字符串，无法确认论文与该库的直接绑定关系；论文声称部署在 IBM CUGA agent 与 watsonx Orchestrate，属厂商内部事实，无法独立核验。",
+      "evidence_status": "部分核验：论文数字（191 / 199 / 39.9 / 51.2 / 55.4 / +9.5 / +16.1 / 290 lessons）经 PDF 正文核对一致；altk-evolve 仓库实测存在且 README 数值与该文声称的 altk-evolve 家族结果一致，但论文正文未给出仓库链接字符串，绑定关系待核验；CUGA / watsonx 部署属厂商内部声明。",
+      "matched_topics": ["context-engineering", "ai-agent", "llm-evaluation"]
+    },
+    "http://arxiv.org/abs/2611.25673v1": {
+      "score": 62.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "把『上下文压缩』当成一项独立能力来评测，而不是压缩策略的副产品，结论对我们直接相关：工作上下文压缩即使对前沿模型也高度有损——Claude 与 GPT 系整体最强，但在激进压缩下任务准确率仍显著下降；论文进一步指出失败不只来自信息遗漏，还来自任务状态被扭曲，例如把未解决的问题变成看似已定的结论，或忘记先前已建立的结果，进而导致错误决策或冗余执行。规模经 PDF 正文核对：79 个 BrowseComp 信息检索任务 + 96 个 SWE-bench 软件工程任务 + 25 个内部 CompanyBench 工作区任务，共 12 个前沿模型；上下文长度从 SWE-bench 的 122.8K token 压缩到 CompanyBench。评测方法很值得抄：它不是给压缩打分，而是从成功的 agent 轨迹出发，在执行的不同阶段插入压缩边界，用被测模型压缩前文，再让同一个执行者继续原任务，从而用下游完成率衡量压缩质量，并用受控保留比率做公平对比。工程价值在于它把『压缩后信息还在不在』变成可回归的指标，正好对应我们上下文工程的成本痛点。项目站 https://compaction-eval.github.io/CompAct-Bench/ 实测 HTTP 200，页面显示 200 个实例、12 个压缩器、10% 保留率下平均准确率 56.7、最高 68.5；但 PDF 与站点均未给出代码仓库地址，代码可用性待核验。",
+      "evidence_status": "部分核验：论文数字（79 / 96 / 25 任务、12 模型、122.8K token）与结论经 PDF 正文核对；项目站 HTTP 200 且显示 200 实例 / 12 压缩器 / 平均 56.7 / 最佳 68.5。代码仓库地址在 PDF 与站点均未找到，待核验。",
+      "project_url": "https://compaction-eval.github.io/CompAct-Bench/",
+      "matched_topics": ["context-engineering", "llm-evaluation", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.25889v1": {
+      "score": 58.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "把检索技能本身当成可演化的对象：构建分层时间索引记忆，把检索到的证据中的时间线索转成显式信号去约束后续的记忆访问；再用『外部策略补丁』的形式让候选技能在验证集上按答对与否接受或拒绝，从而在不更新模型参数的前提下演化技能。数字经 PDF 正文核对：四个长视频问答基准上平均准确率 60.1%，比此前最好方法平均提升 8.6 个百分点。方法上最值得保存的一点是『技能作为外部策略补丁 + 按状态转移给奖励』这一形式——它把 agent 的流程级经验（检索目标不清、记忆访问路径不当、过早停止）从提示词里搬到了可版本化、可拒绝的独立对象上，这与我们沉淀 Skill / Checklist 的方向直接同构。局限：无代码、无项目页、无数据发布地址（PDF 全文未出现任何 github / huggingface / 项目页链接，GitHub 搜索亦无对应仓库），四个基准中具体是哪些也未在摘要中给出，因此证据等级只能算「论文自述数字」，当前不可复现，标待核验。",
+      "evidence_status": "待核验：60.1% 与 +8.6pp 在 PDF 正文核对一致，但全文无代码/数据/项目页链接，GitHub 搜索无对应仓库，方法不可复现。",
+      "matched_topics": ["context-engineering", "multimodal-agent", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.25925v1": {
+      "score": 56.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "用一个两级记忆（任务记忆存工具编排、场景记忆存工具选择）来替 VLM agent 选对视觉专家，解决定量空间推理。数字经 PDF 正文核对：在自建的 MetricBench 上比最好 VLM 基线高 32%，且记忆设计本身相对无记忆 agent 带来 9.1% 的绝对提升；同时在 Q-Spatial 与 SpatilRGPT-Bench 上达到 SOTA。核心论点值得记：现有做法把每个功能需求绑死到一个预定义视觉专家上，形成固定僵硬的工具流水线；而真实场景需要工具编排与专家选择的多样性，这又带来组合爆炸的执行空间——记忆正是用来收敛这个空间的。这与我们做工具编排的方向一致。局限较重：论文给出的代码地址只写到「https://github.com/compasszzn/」这一层目录（PDF 正文第 41 行末尾即断），实测该用户下 10 个公开仓库中没有 SpatialMem 或 MetricBench 对应实现（只有 CirT、WeatherSyn、XRDBench 等无关项目），因此代码入口实为待核验，不应写入任何对外结论；所提出的 MetricBench 也未找到独立发布页。",
+      "evidence_status": "待核验：32% 与 9.1% 在 PDF 正文核对一致；但论文的代码地址仅到 github.com/compasszzn/ 目录级，该用户公开仓库中未找到 SpatialMem / MetricBench 实现，MetricBench 亦无独立发布页。",
+      "matched_topics": ["multimodal-agent", "context-engineering", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.26196v1": {
+      "score": 54.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "一套端到端的具身 VLM 后训练栈，三段管线共享同一个无动作原语、只暴露原始视觉观测与七维末端执行器控制、无跨阶段接口漂移：黑盒教师在强制 think-then-code 契约下合成并按任务成功过滤轨迹 → SFT 蒸馏进 9B 开源 VLM → 线上 RL 用组相对优势加运行时错误惩罚的奖励优化学生生成的 episode。数字经 PDF 正文核对：在十个 LIBERO Spatial 任务的严格分离评测协议下（状态划分不相交、贪心测试时解码），留出 100 个测试状态的成功数从 0/100（未训练的 9B 基座）到 14/100（SFT 后）再到 84/100（RL 后）；训练 rollout 成功率从 8.4% 升到 87.7%；每个测试 episode 的模型调用中位数从 36 降到 11。最有价值的是一个具体的失败模式识别：基于结果奖励对可执行代码做 RL 会诱发『自我强化的运行时错误模式』，作者给出了失败类别监控与采样侧整肃协议来稳定训练。局限：无代码仓库、无项目页（PDF 全文未出现 github 或 huggingface 链接），训练需 LIBERO 环境与 9B 模型权重，成本极高，我们短期无法复现；结论均来自作者自述。",
+      "evidence_status": "待核验：0/100 → 14/100 → 84/100、8.4%→87.7%、36→11 等数字在 PDF 正文核对一致，但全文无代码/项目页链接，方法与权重不可复现。",
+      "matched_topics": ["multimodal-agent", "inference-serving", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.26007v1": {
+      "score": 52.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "把『快思考 vs 慢思考』的分工落到 agent 的执行回路里：高频在线内环用 OODA 周期由一个决策模型把视觉观测与任务问题映射成结构化判断、再由决策树转成定时动作，全程不调用推理模型；离线外环由一队推理 agent 修订决策模型提示与决策树、从交互记录导出监督、训练或部署更新后的参数，再回到环境生成下一轮经验。数字经 PDF 正文核对：27B 决策模型在 Snake 上平均分从 1.30 升到 7.35；Zenless Zone Zero 场景中位完成时间下降 8.4%；黑神话悟空战斗场景中闪避策略的平均存活时间是静止参照的 11 倍、进攻策略胜率从 0% 升到 66.7%（这些数字是正文第 239–248 行所述的受评场景配置）。工程价值在于它证明『慢模型离线写规则、快模型在线执行』这一分层是可行的，且规则是可读、可 diff、可回滚的——这与我们把 agent 经验沉淀为 Skill / 决策树的方向一致。局限：只在游戏环境验证，结论外推到真实业务 agent 的距离较远；无代码、无项目页（PDF 全文无 github / 项目页链接），复现需要三个游戏环境，属待核验。",
+      "evidence_status": "待核验：1.30→7.35、8.4%、11 倍、0%→66.7% 在 PDF 正文核对一致，但全文无代码/项目页链接，且结论限于游戏环境。",
+      "matched_topics": ["ai-agent", "inference-serving", "multimodal-agent"]
+    },
+    "http://arxiv.org/abs/2611.25868v1": {
+      "score": 50.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "交通场景理解里的『快慢二分 + 工作流复用』：训练期用 Role-Sensitive Process Optimization 把过程优势与终局优势结合，用 Weakness-Driven Demonstration Learning 产出针对学生弱项的教师示范；推理期用 Lightweight Adaptive Workflow Reuse 走快路径（选择合适工作流并绑定任务特定参数与资源引用），没有合适工作流时退回基于 ReAct 的慢路径；再用无标签反馈（执行完成度、工作流采纳率、成本节省）驱动工作流复用与记忆更新。数字经 PDF 正文核对：三个基准上相对性能提升最高 8.0%，token 消耗最多降低 52.1%。它最可迁移的是那条工程结论——**重复规划同类任务是纯成本**，把已验证的工作流缓存下来并按参数绑定复用，是比换更强模型更直接的省钱手段，这与我们做 agent 成本优化直接相关。局限：提升幅度（8.0%）本身不大，且无代码、无项目页（PDF 全文无 github / 项目页链接），PDF 中出现的 langgraph 与 Kimi K3 / Qwen3.8-27B 链接是引用他人工作而非本文实现，标待核验。",
+      "evidence_status": "待核验：8.0% 与 52.1% 在 PDF 正文核对一致，但全文无本文代码/项目页链接（出现的 github / huggingface 链接为他人工作引用）。",
+      "matched_topics": ["multimodal-agent", "inference-serving", "ai-agent"]
+    },
+    "http://arxiv.org/abs/2611.26423v1": {
+      "score": 48.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "本地小模型也能做深度研究 agent 的『决策引导』：把 agent 的动作提议与学到的后果预测、价值估计分开，用一份真实研究轨迹语料离线训练两个模型——一个工具响应模拟器（学已观测的调用—响应对）、一个价值估计器（用折扣后的终局正确性标注历史），推理时只执行被选中的动作、只把真实工具响应写回历史，从而避免为被丢弃的候选动作付出额外工具调用成本。数字经 PDF 正文核对：GAIA 准确率对 Qwen3.5-4B 从 13.6% 升到 41.7%，对 Qwen3.5-9B 从 22.3% 升到 50.5%；作者的消融结论也诚实——更广的候选覆盖可以补偿模拟不完美，但预测与打分误差会限制更宽想象搜索的收益。它对『隐私与本地控制』场景有实际意义（模拟器与估计器离线训练后可跨 agent 复用、无需再训练）。局限：无代码、无模型权重发布地址（PDF 全文未出现 github / huggingface 链接），无法复现；今天的收益数字来自作者自述，标待核验。",
+      "evidence_status": "待核验：13.6%→41.7%、22.3%→50.5% 在 PDF 正文核对一致，但全文无代码/权重发布地址，方法不可复现。",
+      "matched_topics": ["ai-agent", "inference-serving", "context-engineering"]
+    }
+  }
+}

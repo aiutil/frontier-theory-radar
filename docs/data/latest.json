@@ -1,118 +1,136 @@
 {
-  "updated_at": "2026-11-19T05:13:38.308006",
+  "updated_at": "2026-11-21T04:57:12.102851",
   "site_title": "前沿理论驱动技术雷达日报",
   "site_subtitle": "从论文出发，快速判断即时价值、趋势价值和长尾价值，沉淀可复用研究资产。",
   "latest_daily": {
-    "date": "2026-11-19",
-    "title": "论文价值发现日报 - 2026-11-19",
-    "deep_dive_title": "Inference after coding agents",
-    "deep_dive_url": "http://arxiv.org/abs/2611.23174v1",
+    "date": "2026-11-21",
+    "title": "论文价值发现日报 - 2026-11-21",
+    "deep_dive_title": "Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)",
+    "deep_dive_url": "http://arxiv.org/abs/2611.26553v1",
     "decision": "重点学习",
     "value_type": "immediate",
     "value_type_label": "即时价值",
-    "daily_action": "今天做三件事，全部零依赖、不需要 GPU、不需要 API key：",
-    "max_uncertainty": "1. **校正依赖选择行为稳定性。** 论文的有效性前提是 'for agents with stable selection behavior'——作者本人把稳定性写成了适用条件，这意味着当 agent 升级、提示改写或工具集变化时，校正量需要重新估计。论文没有给出「行为漂移到何种程度就失效」的量化边界，这是最需要后续跟进的问题。",
-    "one_line_judgement": "它指出 AI coding agent 做实证研究时会引入一种新的后选择性推断，并给出一个几乎零成本的对策——把 agent 的选择过程重放一遍，用它自己实际的选择概率来校正 p 值。**在零效应数据上，四个前沿 agent 报告显著 p 值的比例为 54% 到 98%**；作者复现包中 `results/numbers/10_self_correction.json` 实测记录该区间为 [53.61%, 97.98%]，与摘要完全一致。",
-    "path": "daily-detail.html?date=2026-11-19"
+    "daily_action": "今天做三件事，前两件完全不依赖外部资源：",
+    "max_uncertainty": "1. **最关键的资产缺失：没有代码仓库。** 论文与站点都提到 collect/、method/、skills/、replicate.py、llm.py、results/replications.csv、results/fidelity_audit/ 等结构，但站点上只有四个数据 JS 文件与展示页，GitHub 搜索也没有对应仓库。因此「vendor 可以在每次发版前重跑」这一主张**目前只有数据与指标、没有可运行 pipeline**。我们能复用的是判定口径与方法论，不是框架。",
+    "one_line_judgement": "它把 agent 事故从「新闻报道」变成「可重放的测试用例」——为每起公开事故离线重建场景，并配一个只去掉被指控原因的匹配对照，然后在两者上分别跑 agent，从而把根因归因变成一个可证伪的差分实验。",
+    "path": "daily-detail.html?date=2026-11-21"
   },
   "top_paper": {
-    "title": "Inference after coding agents",
+    "title": "Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)",
     "authors": [
-      "Florian Gunsilius",
-      "David Van Dijcke",
-      "Kaspar Wüthrich"
+      "Mengxiao Wang",
+      "Mahbub Alam",
+      "Kalyan Nakka",
+      "Nitesh Saxena"
     ],
-    "published": "2026-11-17",
-    "updated": "2026-11-17",
+    "published": "2026-11-19",
+    "updated": "2026-11-19",
     "source": "arXiv",
-    "url": "http://arxiv.org/abs/2611.23174v1",
-    "pdf_url": "https://arxiv.org/pdf/2611.23174v1",
+    "url": "http://arxiv.org/abs/2611.26553v1",
+    "pdf_url": "https://arxiv.org/pdf/2611.26553v1",
     "openreview_url": "",
     "paperswithcode_url": "",
-    "code_url": "https://github.com/Davidvandijcke/inference_after_coding_agents_replication",
+    "code_url": "",
     "benchmark_url": "",
-    "project_url": "",
-    "abstract": "Empirical research is changing rapidly as AI coding agents are becoming increasingly proficient in every step of it, from writing code to manipulating data. We argue that while the potential of coding agents for science is vast, their use in hypothesis testing poses a substantial threat to classical inference, as these agents enable a supercharged form of selective inference. In particular, we argue that coding agents carrying out empirical research introduce a new type of post-selection inference that combines human-like, open-ended search over an implicit space of estimators with programmatic replayability of both the selection and the estimation process. Indeed, we find that on simulated data with zero effects, four frontier agents report significant p-values between 54% and 98% of the time when asked to produce a compelling finding. We propose a simple procedure for detecting and correcting these distortions. After an agent has completed its analysis, we reset and replay it on subsamples of the data to estimate the agent's relative probability of selecting that analysis when it looks statistically favorable. For agents with stable selection behavior, the resulting corrected test is asymptotically valid and consistent conditional on selection. Importantly, the correction is learned from the black-box agent's actual choices rather than a model of how it searches, so it remains valid even as AI technology continues to evolve rapidly. In simulations, the correction robustly lowers the high false rejection rates to near the nominal 5%. We illustrate the method on applications from two published papers.",
+    "project_url": "https://rogue-ai.surge.sh",
+    "abstract": "Agents based on large language models (LLMs) can now delete files and send payments on behalf of their users. News media reports routinely describe failures of these agents (e.g., Replit's coding agent deleting a production database), but a report often only says what went wrong and rarely (in)validates the incident or finds its root cause. Incident catalogs collect these reports, and benchmarks record whether agents fail, but neither replicates an incident nor tests the cause its report might identify. In this paper, we present ROGUE-AI (Replication of Agentic Security Events: Audit and Investigation), a multi-agent framework that closes the above gap and rebuilds each reported incident offline together with a matched control that lacks only the blamed cause, and runs agents on both. Our results suggest that ROGUE-AI is able to reproduce the reported harm in 89% of its 108 attempted replications. Agents built on five current GPT, Claude, Gemini and DeepSeek models made the reported mistake in 18% to 33% of runs, against at most 1% without the blamed cause. Of the 72 incidents with real-world harm, 62 had no underlying attacker, and in these, agents did what their task asked for but missed an ordinary hazard, such as a database shared with the live site. Replications without an attacker caused more harm than replications of prompt injection for all five models. Defenses against prompt injection look for injected instructions, but these replications contain none. Further, a warning after each tool output that names the hazard and its consequence lowered harm for all five models, whereas a note of the same length that does not mention the hazard left most of the harm in place. Built from real incidents, the ROGUE-AI replications form a reusable audit framework that vendors can rerun before each new release.",
     "categories": [
-      "stat.ME",
+      "cs.CR",
       "cs.AI",
-      "econ.EM"
+      "cs.MA"
     ],
     "keywords": [
       "agent",
+      "agentic",
       "coding agent",
-      "inference"
+      "benchmark"
     ],
-    "comment": "35 pages, 7 figures, 1 table",
-    "score": 82.0,
+    "comment": "21 pages, 5 figures, 13 tables. Project page: https://rogue-ai.surge.sh",
+    "score": 84.0,
     "decision": "重点学习",
     "links": [
       {
         "label": "arXiv",
-        "url": "http://arxiv.org/abs/2611.23174v1"
+        "url": "http://arxiv.org/abs/2611.26553v1"
       },
       {
         "label": "PDF",
-        "url": "https://arxiv.org/pdf/2611.23174v1"
+        "url": "https://arxiv.org/pdf/2611.26553v1"
       }
     ],
-    "prescreen_score": 28,
+    "prescreen_score": 22,
     "prescreen_topics": [
       "ai-agent",
       "coding-agent",
-      "inference-serving"
+      "context-engineering",
+      "llm-evaluation",
+      "security-governance"
     ],
     "has_declared_artifact": false,
-    "llm_reason": "提出了'重放式选择校正'——把 agent 自己的选择性行为本身变成可估计量，从而修正 p 值。证据强度在今天这批里最扎实：作者自建复现包 github.com/Davidvandijcke/inference_after_coding_agents_replication 实测可达（HTTP 200，2177 个文件，含 code/、results/numbers/、paper/main.tex），results/numbers/10_self_correction.json 直接写明四个前沿 agent 在零效应数据上报告显著 p 值的比例为 [53.61%, 97.98%]，与摘要中的 '54% 到 98%' 完全吻合；02_open_ended.json 给出 agent 拒绝率 0.9798 vs 重放后 0.0505，即把误拒率拉回名义 5%。main.tex 可下载（223767 字节），复现包 run_all.sh 约 8 分钟跑完且不调用任何语言模型。工程价值在于方法本身就是一段可复制的流程（分析完成后重置 agent、在子样本上重放、估计'看起来显著时它会选中该分析的概率'），可以直接落到我们对 agent 生成结果的统计复核上。长期价值在于它把'agent 时代的推断'变成一个持续有效的对象：校正量是从黑箱 agent 的实际选择中学出来的，而不是假设某个搜索模型。",
-    "id": "inference-after-coding-agents",
+    "llm_reason": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI 论文 PDF 正文给出规模：108 次重放、覆盖 96 起事故、38 个类别，单次重放成本 $3.28），再加一个只去掉『被指控的原因』的对照条件。实测站点 https://rogue-ai.surge.sh 的公开数据文件（data/benchmark.js 114KB、data/catalog.js 429KB、data/outcomes.js 19KB、data/source_to_replay.js 202KB，均 HTTP 200）后按站点自身的计数规则重算，得到与论文一致的结果：五个模型在『事故条件』下重复出错率 17.9%（gpt-5.6-luna）/25.2%（gpt-5.6-sol）/18.8%（claude-sonnet-4.6）/31.4%（gemini-3.5-flash）/32.8%（deepseek-v4-flash），对照条件 0.2%–1.1%，与论文摘要的『18% 到 33%，对照最多 1%』吻合。最重要的反直觉发现经 PDF 正文与站点数据双向确认：72 起有真实损害的事故中有 62 起没有攻击者，agent 只是老老实实做任务、漏掉了一个普通风险（例如数据库与线上站点共用）；按站点数据分类重算，agent_supply_chain 类的事故条件伤害率 56.7%，而 injection_replay 类只有 1.1%——也就是说，没有攻击者的事故比提示注入更危险，而主流防注入方案在原理上完全看不见它们。论文的缓解手段也验证过：工具输出后加一条点名危险与后果的警告，对五个模型都有效（对照伤害率降到 0.2%–6.8%），而同等长度但不提危险的说明几乎无效。工程价值在于它是一套可重跑的审计框架，vendor 可以在每次发版前跑一遍；对我们最直接的产出是一份『普通风险』检查表——共享生产资源、跨环境权限、破坏性默认配置。长期价值在于它把『agent 事故复现』从事件报道变成一个持续维护的基准。",
+    "id": "replication-of-agentic-security-events-audit-and-investigation-rogue-ai",
     "value_type": "immediate",
     "matched_topics": [
-      "llm-evaluation",
+      "security-governance",
       "ai-agent",
+      "llm-evaluation",
       "coding-agent"
     ],
     "score_breakdown": {
-      "novelty": 6.6,
+      "novelty": 5.4,
       "problem_importance": 7.75,
       "relevance": 9.8,
-      "evidence_strength": 6.35,
-      "engineering_testability": 5.5,
-      "trend_signal": 4.05,
-      "long_tail_potential": 3.5,
-      "asset_convertibility": 4.8,
-      "actionability": 6.1,
+      "evidence_strength": 4.95,
+      "engineering_testability": 5.15,
+      "trend_signal": 6.55,
+      "long_tail_potential": 4.15,
+      "asset_convertibility": 7.0,
+      "actionability": 3.8,
       "noise_risk": 1.2,
-      "weak_evidence_penalty": 3.0,
+      "weak_evidence_penalty": 5.0,
       "low_relevance_penalty": 0,
       "engineering_cost_penalty": 2.5,
-      "reproducibility_risk": 3.0
+      "reproducibility_risk": 5.0
     },
     "trend_status": "emerging",
-    "brief_cn": "LLM 评测：Empirical research is changing rapidly as AI coding agents are becoming increa…",
-    "one_line_judgement": "今天值得试：提出了'重放式选择校正'——把 agent 自己的选择性行为本身变成可估计量，从而修正 p 值。证据强度在今天这批里最扎实：作者自建复现包 …",
-    "first_seen_date": "2026-11-19",
-    "first_deep_dive_daily": "2026-11-19",
+    "brief_cn": "安全与治理：Agents based on large language models (LLMs) can now delete files and send pay…",
+    "one_line_judgement": "今天值得试：今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类…",
+    "first_seen_date": "2026-11-21",
+    "first_deep_dive_daily": "2026-11-21",
     "value_type_label": "即时价值",
     "trend_stage_label": "萌芽",
     "future_trigger": "待更多证据",
-    "long_tail_summary": "提出了'重放式选择校正'——把 agent 自己的选择性行为本身变成可估计量，从而修正 p 值。证据强度在今天这批里最扎实：作者自建复现包 github.com/Davidvandijcke/",
+    "long_tail_summary": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI",
     "related_trends": [
-      "coding-agent",
-      "agentic-world-modeling"
+      "agentic-world-modeling",
+      "coding-agent"
     ],
-    "detail_path": "paper-detail.html?id=inference-after-coding-agents"
+    "detail_path": "paper-detail.html?id=replication-of-agentic-security-events-audit-and-investigation-rogue-ai"
   },
-  "paper_count": 2218,
+  "paper_count": 2233,
   "daily_count": 30,
   "trend_count": 3,
-  "long_tail_count": 320,
+  "long_tail_count": 326,
   "value_distribution": {
-    "immediate": 186,
-    "trend": 293,
-    "long_tail": 320,
+    "immediate": 189,
+    "trend": 299,
+    "long_tail": 326,
     "ignore": 1419
   },
   "recent_dailies": [
+    {
+      "date": "2026-11-21",
+      "title": "论文价值发现日报 - 2026-11-21",
+      "deep_dive_title": "Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)",
+      "deep_dive_url": "http://arxiv.org/abs/2611.26553v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做三件事，前两件完全不依赖外部资源：",
+      "max_uncertainty": "1. **最关键的资产缺失：没有代码仓库。** 论文与站点都提到 collect/、method/、skills/、replicate.py、llm.py、results/replications.csv、results/fidelity_audit/ 等结构，但站点上只有四个数据 JS 文件与展示页，GitHub 搜索也没有对应仓库。因此「vendor 可以在每次发版前重跑」这一主张**目前只有数据与指标、没有可运行 pipeline**。我们能复用的是判定口径与方法论，不是框架。",
+      "one_line_judgement": "它把 agent 事故从「新闻报道」变成「可重放的测试用例」——为每起公开事故离线重建场景，并配一个只去掉被指控原因的匹配对照，然后在两者上分别跑 agent，从而把根因归因变成一个可证伪的差分实验。",
+      "path": "daily-detail.html?date=2026-11-21"
+    },
     {
       "date": "2026-11-19",
       "title": "论文价值发现日报 - 2026-11-19",
@@ -190,602 +208,343 @@
       "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：**",
       "one_line_judgement": "三条理由，每条都有今天的实测支撑。",
       "path": "daily-detail.html?date=2026-11-11"
-    },
-    {
-      "date": "2026-11-10",
-      "title": "论文价值发现日报 - 2026-11-10",
-      "deep_dive_title": "On Agentic Manipulation Policies",
-      "deep_dive_url": "http://arxiv.org/abs/2611.09892v1",
-      "decision": "重点学习",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "今天做四件事，全部零依赖、不需要 GPU、不需要 API key，按依赖顺序：",
-      "max_uncertainty": "**边界声明（今日必须先说清楚，按证据等级分层）：**",
-      "one_line_judgement": "理由有三条，每条都有今天的实测支撑。",
-      "path": "daily-detail.html?date=2026-11-10"
     }
   ],
   "top_papers": [
     {
-      "title": "Inference after coding agents",
+      "title": "Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)",
       "authors": [
-        "Florian Gunsilius",
-        "David Van Dijcke",
-        "Kaspar Wüthrich"
+        "Mengxiao Wang",
+        "Mahbub Alam",
+        "Kalyan Nakka",
+        "Nitesh Saxena"
       ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.23174v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.23174v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "https://github.com/Davidvandijcke/inference_after_coding_agents_replication",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Empirical research is changing rapidly as AI coding agents are becoming increasingly proficient in every step of it, from writing code to manipulating data. We argue that while the potential of coding agents for science is vast, their use in hypothesis testing poses a substantial threat to classical inference, as these agents enable a supercharged form of selective inference. In particular, we argue that coding agents carrying out empirical research introduce a new type of post-selection inference that combines human-like, open-ended search over an implicit space of estimators with programmatic replayability of both the selection and the estimation process. Indeed, we find that on simulated data with zero effects, four frontier agents report significant p-values between 54% and 98% of the time when asked to produce a compelling finding. We propose a simple procedure for detecting and correcting these distortions. After an agent has completed its analysis, we reset and replay it on subsamples of the data to estimate the agent's relative probability of selecting that analysis when it looks statistically favorable. For agents with stable selection behavior, the resulting corrected test is asymptotically valid and consistent conditional on selection. Importantly, the correction is learned from the black-box agent's actual choices rather than a model of how it searches, so it remains valid even as AI technology continues to evolve rapidly. In simulations, the correction robustly lowers the high false rejection rates to near the nominal 5%. We illustrate the method on applications from two published papers.",
-      "categories": [
-        "stat.ME",
-        "cs.AI",
-        "econ.EM"
-      ],
-      "keywords": [
-        "agent",
-        "coding agent",
-        "inference"
-      ],
-      "comment": "35 pages, 7 figures, 1 table",
-      "score": 82.0,
-      "decision": "重点学习",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.23174v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.23174v1"
-        }
-      ],
-      "prescreen_score": 28,
-      "prescreen_topics": [
-        "ai-agent",
-        "coding-agent",
-        "inference-serving"
-      ],
-      "has_declared_artifact": false,
-      "llm_reason": "提出了'重放式选择校正'——把 agent 自己的选择性行为本身变成可估计量，从而修正 p 值。证据强度在今天这批里最扎实：作者自建复现包 github.com/Davidvandijcke/inference_after_coding_agents_replication 实测可达（HTTP 200，2177 个文件，含 code/、results/numbers/、paper/main.tex），results/numbers/10_self_correction.json 直接写明四个前沿 agent 在零效应数据上报告显著 p 值的比例为 [53.61%, 97.98%]，与摘要中的 '54% 到 98%' 完全吻合；02_open_ended.json 给出 agent 拒绝率 0.9798 vs 重放后 0.0505，即把误拒率拉回名义 5%。main.tex 可下载（223767 字节），复现包 run_all.sh 约 8 分钟跑完且不调用任何语言模型。工程价值在于方法本身就是一段可复制的流程（分析完成后重置 agent、在子样本上重放、估计'看起来显著时它会选中该分析的概率'），可以直接落到我们对 agent 生成结果的统计复核上。长期价值在于它把'agent 时代的推断'变成一个持续有效的对象：校正量是从黑箱 agent 的实际选择中学出来的，而不是假设某个搜索模型。",
-      "id": "inference-after-coding-agents",
-      "value_type": "immediate",
-      "matched_topics": [
-        "llm-evaluation",
-        "ai-agent",
-        "coding-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 6.6,
-        "problem_importance": 7.75,
-        "relevance": 9.8,
-        "evidence_strength": 6.35,
-        "engineering_testability": 5.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 6.1,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 3.0,
-        "low_relevance_penalty": 0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 3.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Empirical research is changing rapidly as AI coding agents are becoming increa…",
-      "one_line_judgement": "今天值得试：提出了'重放式选择校正'——把 agent 自己的选择性行为本身变成可估计量，从而修正 p 值。证据强度在今天这批里最扎实：作者自建复现包 …",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "即时价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "待更多证据",
-      "long_tail_summary": "提出了'重放式选择校正'——把 agent 自己的选择性行为本身变成可估计量，从而修正 p 值。证据强度在今天这批里最扎实：作者自建复现包 github.com/Davidvandijcke/",
-      "related_trends": [
-        "coding-agent",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=inference-after-coding-agents"
-    },
-    {
-      "title": "Done, But Still Working: Anytime Evaluation of When Coding Agents Should Stop",
-      "authors": [
-        "Zerui Yang",
-        "Quan Xue",
-        "Miaomiao Dong",
-        "Chaorui Zhang",
-        "Xuanyu Zheng"
-      ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.22901v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.22901v1",
+      "url": "http://arxiv.org/abs/2611.26553v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26553v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Coding agents often continue working after their own tests pass. Does this additional work improve the patch, and how much could be saved by stopping earlier? We study these questions through anytime evaluation: replaying recorded runs, scoring intermediate patches with hidden tests, and measuring the cost incurred at each step. For policies that only stop a run or select an earlier patch, this allows paired comparisons without generating new trajectories, provided replay preserves the relevant states. Across about 6,000 runs of eight open models in two scaffolds on SWE-bench Verified, we find substantial differences in the value of continued work. The hindsight saving available at passing self-tests ranges from under 1% to 57%, depending on the model and scaffold. A rule that stops after the same patch passes twice saves 23% in a preregistered replication, but the preregistered quality test does not establish non-inferiority. We explain these differences by measuring how often a rule fires, how often the patch changes afterwards, and whether those changes repair or break it. Fine-tuning agents to imitate the rule saves 30% over six seeds, while quality preservation remains uncertain. Our results help identify both the opportunities and the risks of early stopping.",
+      "project_url": "https://rogue-ai.surge.sh",
+      "abstract": "Agents based on large language models (LLMs) can now delete files and send payments on behalf of their users. News media reports routinely describe failures of these agents (e.g., Replit's coding agent deleting a production database), but a report often only says what went wrong and rarely (in)validates the incident or finds its root cause. Incident catalogs collect these reports, and benchmarks record whether agents fail, but neither replicates an incident nor tests the cause its report might identify. In this paper, we present ROGUE-AI (Replication of Agentic Security Events: Audit and Investigation), a multi-agent framework that closes the above gap and rebuilds each reported incident offline together with a matched control that lacks only the blamed cause, and runs agents on both. Our results suggest that ROGUE-AI is able to reproduce the reported harm in 89% of its 108 attempted replications. Agents built on five current GPT, Claude, Gemini and DeepSeek models made the reported mistake in 18% to 33% of runs, against at most 1% without the blamed cause. Of the 72 incidents with real-world harm, 62 had no underlying attacker, and in these, agents did what their task asked for but missed an ordinary hazard, such as a database shared with the live site. Replications without an attacker caused more harm than replications of prompt injection for all five models. Defenses against prompt injection look for injected instructions, but these replications contain none. Further, a warning after each tool output that names the hazard and its consequence lowered harm for all five models, whereas a note of the same length that does not mention the hazard left most of the harm in place. Built from real incidents, the ROGUE-AI replications form a reusable audit framework that vendors can rerun before each new release.",
       "categories": [
-        "cs.AI"
+        "cs.CR",
+        "cs.AI",
+        "cs.MA"
       ],
       "keywords": [
         "agent",
+        "agentic",
         "coding agent",
-        "evaluation"
+        "benchmark"
       ],
-      "comment": "",
-      "score": 66.0,
-      "decision": "轻量试点",
+      "comment": "21 pages, 5 figures, 13 tables. Project page: https://rogue-ai.surge.sh",
+      "score": 84.0,
+      "decision": "重点学习",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.22901v1"
+          "url": "http://arxiv.org/abs/2611.26553v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.22901v1"
+          "url": "https://arxiv.org/pdf/2611.26553v1"
         }
       ],
-      "prescreen_score": 34,
+      "prescreen_score": 22,
       "prescreen_topics": [
         "ai-agent",
         "coding-agent",
+        "context-engineering",
         "llm-evaluation",
         "security-governance"
       ],
       "has_declared_artifact": false,
-      "llm_reason": "把 coding agent 的'何时停'做成 anytime evaluation：重放已录制轨迹、用隐藏测试给中间 patch 打分，从而在不生成新轨迹的前提下做成对比较。规模扎实（约 6000 次运行、8 个开源模型、2 种 scaffold、SWE-bench Verified），并给出可行动结论——自测通过后继续工作的节省空间在 <1% 到 57% 之间，'同一 patch 通过两次就停'的规则在预注册复现实验里省 23%，但预注册的质量检验并未确立非劣性；模仿该规则微调后 6 个种子省 30%，质量保持仍不确定。证据强度中等偏上：有预注册、有多种子、作者主动标注了负面结论（non-inferiority 未成立），这一点比常见的只报正面数字更可信。但摘要未给出可核验的代码仓库或数据入口，'隐藏测试'的构造细节无法从外部核验，因此暂不列为立即可用资产。",
-      "id": "done-but-still-working-anytime-evaluation-of-when-coding-agents-should-stop",
-      "value_type": "trend",
+      "llm_reason": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI 论文 PDF 正文给出规模：108 次重放、覆盖 96 起事故、38 个类别，单次重放成本 $3.28），再加一个只去掉『被指控的原因』的对照条件。实测站点 https://rogue-ai.surge.sh 的公开数据文件（data/benchmark.js 114KB、data/catalog.js 429KB、data/outcomes.js 19KB、data/source_to_replay.js 202KB，均 HTTP 200）后按站点自身的计数规则重算，得到与论文一致的结果：五个模型在『事故条件』下重复出错率 17.9%（gpt-5.6-luna）/25.2%（gpt-5.6-sol）/18.8%（claude-sonnet-4.6）/31.4%（gemini-3.5-flash）/32.8%（deepseek-v4-flash），对照条件 0.2%–1.1%，与论文摘要的『18% 到 33%，对照最多 1%』吻合。最重要的反直觉发现经 PDF 正文与站点数据双向确认：72 起有真实损害的事故中有 62 起没有攻击者，agent 只是老老实实做任务、漏掉了一个普通风险（例如数据库与线上站点共用）；按站点数据分类重算，agent_supply_chain 类的事故条件伤害率 56.7%，而 injection_replay 类只有 1.1%——也就是说，没有攻击者的事故比提示注入更危险，而主流防注入方案在原理上完全看不见它们。论文的缓解手段也验证过：工具输出后加一条点名危险与后果的警告，对五个模型都有效（对照伤害率降到 0.2%–6.8%），而同等长度但不提危险的说明几乎无效。工程价值在于它是一套可重跑的审计框架，vendor 可以在每次发版前跑一遍；对我们最直接的产出是一份『普通风险』检查表——共享生产资源、跨环境权限、破坏性默认配置。长期价值在于它把『agent 事故复现』从事件报道变成一个持续维护的基准。",
+      "id": "replication-of-agentic-security-events-audit-and-investigation-rogue-ai",
+      "value_type": "immediate",
       "matched_topics": [
-        "coding-agent",
-        "llm-evaluation"
+        "security-governance",
+        "ai-agent",
+        "llm-evaluation",
+        "coding-agent"
       ],
       "score_breakdown": {
         "novelty": 5.4,
-        "problem_importance": 7.1,
-        "relevance": 8.6,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
         "evidence_strength": 4.95,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.6,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
+        "engineering_testability": 5.15,
+        "trend_signal": 6.55,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 7.0,
+        "actionability": 3.8,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
+        "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 0,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
       "trend_status": "emerging",
-      "brief_cn": "Coding Agent：Coding agents often continue working after their own tests pass. Does this add…",
-      "one_line_judgement": "值得继续观察：把 coding agent 的'何时停'做成 anytime evaluation：重放已录制轨迹、用隐藏测试给中间 patch 打分，从…",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "趋势价值",
+      "brief_cn": "安全与治理：Agents based on large language models (LLMs) can now delete files and send pay…",
+      "one_line_judgement": "今天值得试：今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类…",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "即时价值",
       "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "把 coding agent 的'何时停'做成 anytime evaluation：重放已录制轨迹、用隐藏测试给中间 patch 打分，从而在不生成新轨迹的前提下做成对比较。规模扎实（约 6",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI",
       "related_trends": [
+        "agentic-world-modeling",
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=done-but-still-working-anytime-evaluation-of-when-coding-agents-should-stop"
+      "detail_path": "paper-detail.html?id=replication-of-agentic-security-events-audit-and-investigation-rogue-ai"
     },
     {
-      "title": "Surfacing Disagreement Beats Resolving It: A Gated Ablation Study of Provenance-Weighted Memory for Multi-Agent Debate",
+      "title": "MemFolder: Structure-Guided Memory Folding for Efficient Agent Memory Management",
       "authors": [
-        "Ziaullah Khan",
-        "Abdul Rehman Khalid",
-        "Shrestha Nischal Lal",
-        "Nheng Vanchhay",
-        "Md Ariful Islam Mozumder"
+        "Xuyang Liu",
+        "Chenwen Lu",
+        "Junxi Wang",
+        "Siyu Ren",
+        "Xinying Lin"
       ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.22461v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.22461v1",
+      "url": "http://arxiv.org/abs/2611.26427v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26427v1",
       "openreview_url": "",
       "paperswithcode_url": "",
-      "code_url": "https://github.com/ziakhan1516/Debat-Agent-NeurIPS-2026",
+      "code_url": "https://github.com/xuyang-liu16/MemFolder",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Shared memory for multi-agent debate is usually built to resolve inconsistency: retrieval returns one winning fact and the disagreement disappears before any agent sees it. We ask whether that is correct. In DebateGraph, four backends share one contract (read/write/snapshot), so five mechanisms from the agent-memory literature can be removed independently under a fixed budget, each gated on a pre-declared threshold. Across 39 runs one survives: preserving contradictions and passing the ranked conflict set to the debate, rather than collapsing it to a winner, improves F1 by +0.340 (95% CI [+0.267, +0.414]) and cuts attack success from 22 to 7 of 122 poisoned items (McNemar exact p=0.0003), at equal cost. Reaching it meant fixing a bottleneck in our harness: conflict sets are built only over retrieved edges, and our pre-declared cap left three quarters of planted contradictions unretrievable, first measuring the mechanism at +0.084. The effect replicates on two retrieval substrates and directionally on HotpotQA documents. No other mechanism survives, and two are worse than inert: once contradictions reach the prompt, a write trust-gate and the router's provenance features each cost accuracy (-0.075 and -0.096 F1). The gate fails structurally: poisoned objects are always entities the graph already contains, against 53% of gold, so groundedness scores the lie above a truthful first mention. We release the harness, attack set, and logs, and argue that silently reconciling memory is the assumption worth abandoning.",
+      "abstract": "Long-term agents accumulate large external memory stores as interactions unfold, increasing the costs of storage, retrieval, and response generation. Efficiency is constrained by two coupled factors: a growing record count increases retrieval overhead, while longer retrieved contexts increase prefill computation and decoding-time attention costs. Existing methods prune or consolidate records, but pruning can discard useful evidence, whereas consolidation may produce fewer yet longer retrieval units. We introduce MemFolder, a structure-guided memory folding framework that sequentially reduces record count and context length. The framework comprises two core components that share memory groups, using cross-record structure to guide both evidence consolidation and compact representation. RecordFolder grounds entity mentions, progressively selects representative yet complementary anchors, and combines semantic and entity affinity with temporal chaining to consolidate compatible records into fewer retrieval units. ContextFolder encodes the original records within these groups into compact text and uses verification feedback to revise encodings when key facts cannot be recovered. Experiments on the three text-based memory benchmarks LoCoMo, PersonaMem, and LongMemEval and the two multimodal benchmarks M3-Bench-web and M3-Bench-robot demonstrate the strong performance of our methods. Notably, on Mem0, RecordFolder retains 99.0% of the original average performance across the three text-based benchmarks with 50% fewer records, exceeding the strongest baseline by 1.9 percentage points in performance retention. Combined with ContextFolder, existing record compression methods further shorten their output records while retaining most of their performance.",
       "categories": [
-        "cs.MA",
-        "cs.CL"
+        "cs.CL",
+        "cs.CV"
       ],
       "keywords": [
         "agent",
-        "memory"
+        "memory",
+        "benchmark",
+        "multimodal"
       ],
-      "comment": "",
-      "score": 65.0,
+      "comment": "Code is available at https://github.com/xuyang-liu16/MemFolder",
+      "score": 79.0,
       "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.22461v1"
+          "url": "http://arxiv.org/abs/2611.26427v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.22461v1"
+          "url": "https://arxiv.org/pdf/2611.26427v1"
         }
       ],
-      "prescreen_score": 24,
+      "prescreen_score": 26,
       "prescreen_topics": [
         "ai-agent",
         "context-engineering",
         "rag-knowledge",
-        "security-governance"
+        "multimodal-agent",
+        "llm-evaluation"
       ],
-      "has_declared_artifact": false,
-      "llm_reason": "多 agent 辩论的记忆层里，'保留矛盾而不是折叠成一个胜者'反而更好：把排序后的冲突集原样交给辩论，F1 +0.340（95% CI [+0.267, +0.414]），122 个被投毒条目中攻击成功率从 22 降到 7（McNemar 精确检验 p=0.0003），且成本不变。方法学最扎实的一点是它按预声明阈值做门控消融（39 次运行），并且如实报告了两个机制比什么都不做更差（写信任门 -0.075 F1、router 来源特征 -0.096 F1），以及一个结构性失败原因（被投毒对象总是图里已有的实体，对照真实答案 53%，所以 groundedness 反而给谎言打高分）。工程上它揭示了一个可操作的陷阱：我们的多 agent 系统默认会'消解矛盾'，这可能正是掩盖投毒的机制。局限：其仓库 ziakhan1516/Debat-Agent-NeurIPS-2026 实测可达且 README 含 DebateGraph 描述，但 README 未出现本文的 arXiv 编号 2611.22461，'该仓库即本文实现'这一绑定只能算部分支持。",
-      "id": "surfacing-disagreement-beats-resolving-it-a-gated-ablation-study-of-provenance-weighted-memory-for-multi-agent-debate",
-      "value_type": "trend",
+      "has_declared_artifact": true,
+      "llm_reason": "今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 blob，结构完整可跑（src/core/memory.py、src/core/budgets.py、src/compression.py、src/loading/memory_libraries.py、src/evaluation/retrieval.py，加 examples/recipes/ 下 30+ 个可直接复用的配方 JSON，含 memforest-m3-proxy、dart-medoid_pivot、kmeans-merge 等基线与消融配置，还有 skills/SKILL.md 作为 agent 可读的实验指南）。核心数字在 PDF 正文与仓库 README 双处一致：RecordFolder 在 LoCoMo / LongMemEval / PersonaMem 三个文本基准上以 50% 更少的记录保留 Mem0 原平均性能的 99.0%，比最强基线 MemForest 的 97.1% 高 1.9 个百分点（PDF 正文第 209 行原句；README「Half as many records」条目同值）；ContextFolder 进一步把每条记录的 token 数在 LoCoMo / LongMemEval / M3-Bench-robot 上分别削减 40% / 38% / 31%；保留 30% 记录时检索加速 1.88×–5.34×。工程价值在于它正面解决了我们记忆模块的两个真实成本项：记录条数（检索开销）与上下文长度（prefill 与解码注意力开销），而且 RecordFolder 与 ContextFolder 共享同一套记忆分组结构，可以分阶段接入而不是一次性重写。仓库的 examples/recipes/*.json 是现成的配置模板，配合 README 给出的官方数据集下载命令（LoCoMo 的 locomo10.json、LongMemEval 的 longmemeval_s_cleaned.json、PersonaMem 的 questions_32k.csv / shared_contexts_32k.jsonl），今天就能跑一个最小对照实验。长期价值是『记忆不是越多越好，而是要折叠』这一结论会成为 agent 记忆模块的默认设计约束。",
+      "id": "memfolder-structure-guided-memory-folding-for-efficient-agent-memory-management",
+      "value_type": "immediate",
       "matched_topics": [
-        "ai-agent",
         "context-engineering",
-        "security-governance"
+        "ai-agent",
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 6.8,
+        "engineering_testability": 6.05,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Context Engineering：Long-term agents accumulate large external memory stores as interactions unfol…",
+      "one_line_judgement": "今天值得试：今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 …",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 blob，结构完整可跑（src/core/memor",
+      "related_trends": [
+        "context-engineering",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=memfolder-structure-guided-memory-folding-for-efficient-agent-memory-management"
+    },
+    {
+      "title": "SWE-Recreation: Benchmarking Coding Agents for Software Recreation",
+      "authors": [
+        "Zhiyao Xu",
+        "Zhanjie Ding",
+        "Hongyao Yu",
+        "Jingyu Xiao"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26311v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26311v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/nologistic/recreate-anything",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Agents increasingly operate software and even write it, yet they are almost always told what to achieve: given a goal, a mock-up, or a demonstration. We ask whether an agent can instead understand an unfamiliar product by using it, and then rebuild it. The agent sees only rendered pixels and acts through pointer and keyboard, without access to the DOM, source, logs, or back-end. Within this interface, it explores, generates a replica, and checks its own work before evaluation. We present SWE-Recreation, a benchmark of 54 real applications (28 websites and 26 Android apps) with 1,446 hidden requirements describing multistep, stateful workflows and explicit exclusions for behavior outside the reconstruction scope. A fixed judge grades workflows with pixel evidence; a separate post-hoc judge estimates exploration coverage. Across 54 evaluated applications, five frontier systems reach at most 0.530 weighted fidelity and 22.9% fully reproduced requirements under application-equal averaging. These descriptive results expose both exploration-evidence gaps and implementation shortfalls. Code and data are available at https://github.com/nologistic/recreateanything.",
+      "categories": [
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 77.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26311v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26311v1"
+        }
+      ],
+      "prescreen_score": 32,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应用（28 个网站 + 26 个 Android 应用）、1,446 条隐藏需求、五个前沿系统在应用等权平均下最高只能拿到 0.530 的加权保真度（WFS）与 22.9% 的完全复现需求率，正文第 871 行进一步给出排序——Kimi K3 0.530、DeepSeek V4.1 0.472、GLM-5.3 0.362、GPT6-Sol 0.352、Opus 4.8 0.277。方法上的关键设计是观测通道被压到最小：只有截图与坐标级 HID 输入，禁止 DOM、无障碍树、日志、反编译；这让『模型是否真的理解了界面』与『模型只是读到了结构』可以区分开。重要更正：摘要与 PDF 正文写的代码地址 github.com/nologistic/recreateanything 实测 HTTP 404，作者真实仓库是 github.com/nologistic/recreate-anything（实测 200，562 个 blob），这是论文自身的链接错误。仓库已实测可用的资产包括：57 份人工编写的 review_specs/*.json checklist（28 个 Web 目标 + 29 个 Android 目标）、android_apks/ 下 29 个真实 APK、完整的三阶段流水线（探索 → 复现 → 独立 LLM judge 评分）、13 项标准化指标（docs/benchmark_metrics.md，含 WFS 计算脚本 compute_metrics.py）、以及 web-nograph / android_baseline 两套 agent runtime。对我们直接可用的部分是把『人类使用产品 → 归纳出功能清单 → 交给 agent 重建』这条链路抽象出来，作为评估 agent 产品理解能力的模板；也提醒我们一个现实——即使是最强模型，重建保真度也只有一半，说明 GUI 级『只读像素』的 agent 离可用还远。",
+      "id": "swe-recreation-benchmarking-coding-agents-for-software-recreation",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "llm-evaluation",
+        "ai-agent"
       ],
       "score_breakdown": {
         "novelty": 5.4,
         "problem_importance": 6.45,
         "relevance": 7.4,
         "evidence_strength": 6.8,
-        "engineering_testability": 5.5,
-        "trend_signal": 4.05,
+        "engineering_testability": 6.6,
+        "trend_signal": 6.55,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 6.2,
-        "actionability": 6.1,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 3.0,
+        "weak_evidence_penalty": 2.0,
         "low_relevance_penalty": 0.8,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 3.0
       },
-      "trend_status": "rising",
-      "brief_cn": "AI Agent：Shared memory for multi-agent debate is usually built to resolve inconsistency…",
-      "one_line_judgement": "值得继续观察：多 agent 辩论的记忆层里，'保留矛盾而不是折叠成一个胜者'反而更好：把排序后的冲突集原样交给辩论，F1 +0.340（95% CI […",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "上升",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "多 agent 辩论的记忆层里，'保留矛盾而不是折叠成一个胜者'反而更好：把排序后的冲突集原样交给辩论，F1 +0.340（95% CI [+0.267, +0.414]），122 个被投毒条",
+      "trend_status": "emerging",
+      "brief_cn": "Coding Agent：Agents increasingly operate software and even write it, yet they are almost al…",
+      "one_line_judgement": "今天值得试：把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应…",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "即时价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "待更多证据",
+      "long_tail_summary": "把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应用（28 个网站 + 26 个 Android 应用",
       "related_trends": [
-        "agentic-world-modeling",
-        "context-engineering"
+        "coding-agent",
+        "agentic-world-modeling"
       ],
-      "detail_path": "paper-detail.html?id=surfacing-disagreement-beats-resolving-it-a-gated-ablation-study-of-provenance-weighted-memory-for-multi-agent-debate"
+      "detail_path": "paper-detail.html?id=swe-recreation-benchmarking-coding-agents-for-software-recreation"
     },
     {
-      "title": "LMMR: Learned Multigranular Memory Retrieval for Small Language Model Agents",
+      "title": "Agentic Scaling of Embodied Tasks in Simulation for Synthetic Data Collection and Policy Evaluation",
       "authors": [
-        "Pengfeng Song",
-        "Yunkai Zhuang",
-        "Liye Shi"
+        "Kang Wang",
+        "Xiaolei Zhou",
+        "Xiaoyu Wu",
+        "Zhendong Wang"
       ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.22425v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.22425v1",
+      "url": "http://arxiv.org/abs/2611.26046v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26046v1",
       "openreview_url": "",
       "paperswithcode_url": "",
-      "code_url": "https://github.com/sungkites/LMMR",
+      "code_url": "https://github.com/ZXL502/AgenticTask",
       "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Small language model agents have limited space to read the memory needed for multi-hop questions. Relevant facts are often scattered across records whose surrounding text consumes much of that space. We propose LMMR, a learned multigranular memory retrieval method that selects both the next source and how much of it to read. LMMR links paragraphs and sentence fragments to their original sources and pairs views that supply the same missing support during training. Relevant distractors and repeated information provide contrasting examples. At inference, the reranker scores what each candidate adds to an anchor passage, and a selector chooses the evidence within a token budget. On 22,398 official validation questions from HotpotQA, 2WikiMultihopQA, and MuSiQue, a frozen 2B answer model reaches 61.47, 43.26, and 30.58 F1 under a 400-token budget. The gains over query expansion are 3.06, 2.14, and 4.55 points, while memory input decreases by 23.1-26.9%. LMMR also uses 23.5-27.7% fewer input tokens than a coarse retriever trained on the same questions. Against that retriever followed by LLMLingua-2 at comparable input lengths, F1 gains reach 3.99 points and are significant on HotpotQA and 2WikiMultihopQA after Holm correction. All eight small answer models evaluated on HotpotQA improve over query expansion and MMR in both F1 and exact match.",
+      "project_url": "https://zxl502.github.io/AgenticTask/",
+      "abstract": "Scaling embodied interaction data requires a broad collection of usable tasks, yet specifying and validating each task instance remains costly. We present AgenticTask, an agent-based framework that expands existing task collections under human intent. Its central representation links interaction requirements to object and part bindings, scene and robot configurations, initial conditions, and completion criteria. A task-generation agent reuses interaction structure to construct supported variations and revises incompatible configurations using validation feedback. A task-execution agent uses the same bindings and geometric records to select robot-supported skills and check completion against the original task criteria. On RoboCasa, the framework builds the AgenticTask collection, saving 16,450 task instances from 20,323 construction attempts at a throughput of 166.97 saved instances per elapsed hour, with 62.26% of construction attempts passing the configured physical checks. The execution agent completes approximately 38% of evaluated tasks, with successful cases spanning object placement, articulated manipulation, and sequential arrangement. Diagnostic analysis identifies improvement priorities in construction reliability, action selection, task-robot compatibility, and runtime integration. Together, these results demonstrate task-collection expansion with measured construction productivity and concrete execution evidence, providing a foundation for subsequent interaction-data collection for embodied AI.",
       "categories": [
-        "cs.CL"
+        "cs.RO"
       ],
       "keywords": [
         "agent",
-        "memory",
-        "inference"
+        "agentic",
+        "evaluation"
       ],
-      "comment": "18 pages, 11 figures. Code and experimental results: https://github.com/sungkites/LMMR",
-      "score": 63.5,
-      "decision": "持续观察",
+      "comment": "12 pages. Dataset: https://huggingface.co/datasets/jimmy-zhou/AgenticTask-Kitchen-50 Project website: https://zxl502.github.io/AgenticTask/",
+      "score": 70.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.22425v1"
+          "url": "http://arxiv.org/abs/2611.26046v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.22425v1"
+          "url": "https://arxiv.org/pdf/2611.26046v1"
         }
       ],
-      "prescreen_score": 27,
+      "prescreen_score": 29,
       "prescreen_topics": [
         "ai-agent",
-        "context-engineering",
-        "rag-knowledge",
-        "inference-serving"
+        "multimodal-agent",
+        "llm-evaluation",
+        "inference-serving",
+        "security-governance"
       ],
       "has_declared_artifact": true,
-      "llm_reason": "为小模型 agent 做多粒度记忆检索：同时决定'取哪一份来源'和'读多少'，在 400 token 预算下用冻结的 2B 答案模型在 HotpotQA/2WikiMultihopQA/MuSiQue 官方验证集（22398 题）拿到 61.47/43.26/30.58 F1，相对 query expansion 提升 3.06/2.14/4.55，且记忆输入减少 23.1-26.9%；对比同条件粗检索器再接 LLMLingua-2，F1 最高 +3.99 且在 HotpotQA 与 2Wiki 上经 Holm 校正后显著，8 个小答案模型全部改善。数字完整、做了多重比较校正，工程可复现性较高。仓库 sungkites/LMMR 实测 HTTP 200 可达。但摘要与 README 未给出本文 arXiv 编号的直接绑定，且我们内部没有 2B 小模型 + 三跳 QA 的评测基线，落地成本不低，因此暂列趋势观察而非立即试用。",
-      "id": "lmmr-learned-multigranular-memory-retrieval-for-small-language-model-agents",
+      "llm_reason": "把『具身任务的数据从哪里来』这件苦活做成了可度量的工程流程，四项关键数字在 PDF 正文与项目站上双处一致：AgenticTask 集合含 16,450 个保存的任务实例，来自 20,323 次构造尝试；生成吞吐 166.97 个实例/小时（项目站补充：跨 98.52 小时，含暂停与重试）；62.26% 的构造尝试通过了配置的物理检查；执行 agent 在受评任务上完成约 38%。最有价值的是它把失败也量化了——80.94% 的构造产出率里，1,630 次是「诊断性修复」救回来的，这说明自动任务生成的真实成本不在生成而在校验。项目站 https://zxl502.github.io/AgenticTask/ 实测 HTTP 200，GitHub 项目仓库 github.com/ZXL502/AgenticTask 也实测可达（含 assets/、data/、js/ 与研究演示视频）。工程价值对我们偏间接：我们不做机器人，但『任务实例 = 需求绑定 + 初始条件 + 完成判据 + 校验反馈』这套表示法可以直接搬进我们的 agent 评测任务构造——尤其是『完成判据必须由代码判定，而不是 agent 自述』这一条。趋势价值在于具身数据供给正在被当成工程问题而非数据问题来处理，这与 2611.26196 的后训练栈是同一条线。局限：数据集在 huggingface.co，本环境到该域名反复超时，数据文件本身无法核验；执行成功率 38% 说明当前框架离可用还远。",
+      "id": "agentic-scaling-of-embodied-tasks-in-simulation-for-synthetic-data-collection-and-policy-evaluation",
       "value_type": "trend",
       "matched_topics": [
-        "context-engineering",
-        "rag-knowledge",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 7.1,
-        "relevance": 8.6,
-        "evidence_strength": 6.35,
-        "engineering_testability": 5.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 6.1,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 3.0,
-        "low_relevance_penalty": 0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 3.0
-      },
-      "trend_status": "rising",
-      "brief_cn": "Context Engineering：Small language model agents have limited space to read the memory needed for m…",
-      "one_line_judgement": "值得继续观察：为小模型 agent 做多粒度记忆检索：同时决定'取哪一份来源'和'读多少'，在 400 token 预算下用冻结的 2B 答案模型在 Ho…",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "上升",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "为小模型 agent 做多粒度记忆检索：同时决定'取哪一份来源'和'读多少'，在 400 token 预算下用冻结的 2B 答案模型在 HotpotQA/2WikiMultihopQA/MuS",
-      "related_trends": [
-        "context-engineering",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=lmmr-learned-multigranular-memory-retrieval-for-small-language-model-agents"
-    },
-    {
-      "title": "ForecastGym: A Live, Controlled, and Replayable Benchmark for Forecasting Agents",
-      "authors": [
-        "Yicheng Tao",
-        "Yuante Li",
-        "Zipei Fan"
-      ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.23045v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.23045v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Agents built on large language models (LLMs) increasingly forecast real-world events by searching the Web and reasoning over what they find. How well such an agent forecasts depends on both the retrieved evidence and the model, making control over that evidence essential for evaluation. Live evaluations can mix retrieval with reasoning when each system searches on its own, while retrospective search can leak later information through date filters or today's ranking of historical pages. Comparing models, search sources, and memory strategies requires both fixed evidence and a record of how it evolved before resolution. We introduce ForecastGym, which records what four commercial web search APIs return for open prediction-market questions every two days and replays this frozen evidence offline once outcomes are known, comparing models, memory, and captured search sources under a fixed evidence-acquisition policy. Its first release covers 150 questions, 614 evidence states, one per question and collection time, and 131k search results. Rerunning the same queries after settlement returns results that all but state the outcome for up to 92% of the questions, despite the tested date filters. On the frozen evidence, all tested LLMs trail the market in forecasting accuracy. Our diagnostic analysis suggests that missed public information contributes more to the gap in high-gap states than misreading does. Switching the search API changes a model's Brier score by up to 0.043, more than the spread across models, while persistent notes score similarly to rereading all evidence at half the input tokens. The evidence a forecaster sees can matter as much as the model that reads it.",
-      "categories": [
-        "cs.AI",
-        "cs.CL"
-      ],
-      "keywords": [
-        "agent",
-        "memory",
-        "evaluation",
-        "benchmark"
-      ],
-      "comment": "",
-      "score": 62.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.23045v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.23045v1"
-        }
-      ],
-      "prescreen_score": 24,
-      "prescreen_topics": [
+        "multimodal-agent",
         "ai-agent",
-        "context-engineering",
-        "rag-knowledge",
         "llm-evaluation"
-      ],
-      "has_declared_artifact": false,
-      "llm_reason": "预测类 agent 的评测基准，方法上有一个真正重要的设计：把证据采集与推理解耦——每两天记录四个商用 web search API 对公开预测市场问题的返回，结果揭晓后离线重放冻结证据，从而在固定证据获取策略下比较模型、记忆策略和搜索源。首版 150 题、614 个证据状态、13.1 万条搜索结果。摘要给出两个诊断性结论：结算后重跑同样查询，对高达 92% 的问题结果会直接说出答案（说明日期过滤不可靠，回溯式评测会泄漏未来信息）；在冻结证据上所有被测 LLM 的预测准确率都不如市场；切换搜索 API 使某模型 Brier 分数变化最多 0.043，大于模型之间的差距。对我们的实际意义很直接——做 agent 评测时，'检索源'可能比'模型'更能决定结论，但摘要未提供可核验的仓库或数据入口，且依赖 4 个商用搜索 API，复现成本较高。",
-      "id": "forecastgym-a-live-controlled-and-replayable-benchmark-for-forecasting-agents",
-      "value_type": "trend",
-      "matched_topics": [
-        "llm-evaluation",
-        "rag-knowledge",
-        "ai-agent"
       ],
       "score_breakdown": {
         "novelty": 5.4,
-        "problem_importance": 7.1,
-        "relevance": 8.6,
-        "evidence_strength": 5.4,
-        "engineering_testability": 4.05,
-        "trend_signal": 6.55,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 5.6,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 4.0,
-        "low_relevance_penalty": 0,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "emerging",
-      "brief_cn": "LLM 评测：Agents built on large language models (LLMs) increasingly forecast real-world …",
-      "one_line_judgement": "值得继续观察：预测类 agent 的评测基准，方法上有一个真正重要的设计：把证据采集与推理解耦——每两天记录四个商用 web search API 对公开…",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "趋势价值",
-      "trend_stage_label": "萌芽",
-      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
-      "long_tail_summary": "预测类 agent 的评测基准，方法上有一个真正重要的设计：把证据采集与推理解耦——每两天记录四个商用 web search API 对公开预测市场问题的返回，结果揭晓后离线重放冻结证据，从而",
-      "related_trends": [
-        "coding-agent",
-        "context-engineering",
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=forecastgym-a-live-controlled-and-replayable-benchmark-for-forecasting-agents"
-    },
-    {
-      "title": "Values Shape What Self-Improving Coding Agents Build",
-      "authors": [
-        "Jason Liang",
-        "Dylan Waldner",
-        "Risto Miikkulainen"
-      ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.23067v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.23067v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Self-improving agents are typically optimized for the results they produce, with less attention to how they produce them. Their instructions give designers limited ways to shape how they work, especially when the task is open-ended. This paper studies whether a short value statement in an agent's persistent instruction file changes not only how well the agent performs but also what it builds. Four higher-order value types in Schwartz's theory of basic human values were evaluated: openness to change, conservation, self-enhancement, and self-transcendence. Across diverse coding tasks, the values were held fixed within each run over multiple iterations of self-improvement. Three findings emerged: (1) Values matter for performance across a diverse set of tasks. The openness values increase performance on held-out data, whereas the opposite conservation values result in scores below those of an agent given no values. (2) Values change what agents build, producing solution algorithms that differ in size, complexity and approach. (3) Human oversight is still needed for designing values. Allowing the agent to revise its own values narrows the differences between sets of values, and values distilled from the AI literature provide no detectable gain over having no values. Properly designed values can thus influence what a self-improving coding agent builds and, where the task permits, how well it performs.",
-      "categories": [
-        "cs.AI",
-        "cs.MA"
-      ],
-      "keywords": [
-        "agent",
-        "coding agent"
-      ],
-      "comment": "",
-      "score": 60.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.23067v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.23067v1"
-        }
-      ],
-      "prescreen_score": 23,
-      "prescreen_topics": [
-        "ai-agent",
-        "coding-agent"
-      ],
-      "has_declared_artifact": false,
-      "llm_reason": "把 Schwartz 价值理论中的四类高层价值观写进自改进 coding agent 的持久指令文件，观察的不只是分数，还有'agent 造出什么'（解法的规模、复杂度与路径都随价值取向改变）。结论有反直觉成分：开放性价值提升留出集表现，保守性价值反而低于完全不设价值；让 agent 自己改价值会抹平差异；从 AI 文献里蒸馏出的价值则无可检测增益。观点新、且是少见地把'怎么做事'而非'做成什么'作为研究对象的论文。但证据基础是单篇摘要里的定性描述，'across diverse coding tasks' 的任务集、样本量、显著性都没有给出，无法判断效应量是否稳健；也未找到对应仓库。长尾价值在于它把 agent 指令设计从'写好目标'扩展到'写好取向'，这个视角值得存档。",
-      "id": "values-shape-what-self-improving-coding-agents-build",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "ai-agent",
-        "coding-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.5,
-        "engineering_testability": 3.5,
-        "trend_signal": 4.05,
-        "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 3.8,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "AI Agent：Self-improving agents are typically optimized for the results they produce, wi…",
-      "one_line_judgement": "值得先保存：把 Schwartz 价值理论中的四类高层价值观写进自改进 coding agent 的持久指令文件，观察的不只是分数，还有'agent 造…",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "把 Schwartz 价值理论中的四类高层价值观写进自改进 coding agent 的持久指令文件，观察的不只是分数，还有'agent 造出什么'（解法的规模、复杂度与路径都随价值取向改变）",
-      "related_trends": [
-        "agentic-world-modeling",
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=values-shape-what-self-improving-coding-agents-build"
-    },
-    {
-      "title": "Agent Trust Infrastructure (ATI): A Federated Identity, Trust, Attestation, and Accountability Architecture for Cross-Organization Autonomous AI Agents",
-      "authors": [
-        "Viet K. Nguyen",
-        "Mohammad I. Husain"
-      ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.23202v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.23202v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "https://github.com/CalPolyPomonaCS/Agent-Trust-Infrastructure-ATI-Official",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "AI agents increasingly collaborate across organizational boundaries, invoking tools and interacting with agents operated by independent entities. Although existing agent frameworks support planning and coordination, they lack a common mechanism for verifying cross-organizational agent identity, execution integrity, and authorization. We propose the Agent Trust Infrastructure (ATI), a framework-independent security architecture built on Public Key Infrastructure (PKI), Zero Trust Architecture (ZTA), and remote attestation. ATI establishes federated trust through peer organizational certificate authorities (AgentCAs), eliminating the need for a shared root authority. Before executing requests, ATI validates agent certificates, verifies approved model, tool, and system-prompt configurations, and enforces authorization through three policy checks. We implement ATI as an external security enforcement layer that integrates with existing agent frameworks without modifying their underlying models. We evaluate ATI in a simulated federation of eight organizations using six agent frameworks, each deploying a five-agent team. Security experiments involve two organizations and assess 14 attack scenarios and six benign tasks across five agent models, using five attack variations and three repetitions per variation. A panel of judge models evaluates the experimental outcomes. With all enforcement mechanisms enabled, attack containment increases from 43% to 84% (40% to 80% for the 11 attack scenarios evaluated consistently across all configurations), while enforcement introduces approximately 174 microseconds of overhead per request. ATI is released as an open-source, framework-independent package that uses IETF WIMSE workload token formats for identity and request verification and Entity Attestation Tokens for model, tool, and system-prompt integrity verification.",
-      "categories": [
-        "cs.AI"
-      ],
-      "keywords": [
-        "agent",
-        "evaluation",
-        "planning"
-      ],
-      "comment": "",
-      "score": 58.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.23202v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.23202v1"
-        }
-      ],
-      "prescreen_score": 22,
-      "prescreen_topics": [
-        "ai-agent",
-        "context-engineering",
-        "llm-evaluation",
-        "ai-k8s-platform",
-        "security-governance"
-      ],
-      "has_declared_artifact": false,
-      "llm_reason": "跨组织 agent 的身份/信任/证明架构：基于 PKI + 零信任 + 远程证明，用对等组织 CA（AgentCA）替代共享根，先校验证书再验证模型、工具与系统提示词配置，用三项策略检查做授权，实现为不改动底层模型的外置安全层。宣称用 WIMSE 工作负载令牌格式与实体证明令牌（EAT）。摘要给出 8 组织联邦、6 种框架、每组 5 agent 的模拟评测，14 个攻击场景 + 6 个良性任务 × 5 种攻击变体 × 3 次重复，开启全部机制后攻击遏制率从 43% 升到 84%，每请求额外开销约 174 微秒。仓库 CalPolyPomonaCS/Agent-Trust-Infrastructure-ATI-Official 实测可达，README 确有 attestation、WIMSE 等描述，与摘要一致；但评测全部在模拟环境、由 judge 模型打分，没有真实生产部署证据，'open-source package' 的完整度也未核验。架构思路对我们做跨组织 agent 协作有参考价值。",
-      "id": "agent-trust-infrastructure-ati-a-federated-identity-trust-attestation-and-accountability-architecture-for-cross-organization-autonomous-ai-agents",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "security-governance",
-        "ai-agent"
-      ],
-      "score_breakdown": {
-        "novelty": 4.8,
         "problem_importance": 7.75,
         "relevance": 9.8,
-        "evidence_strength": 6.35,
-        "engineering_testability": 7.15,
-        "trend_signal": 3.5,
+        "evidence_strength": 6.8,
+        "engineering_testability": 6.05,
+        "trend_signal": 5.15,
         "long_tail_potential": 3.5,
         "asset_convertibility": 6.2,
         "actionability": 7.3,
@@ -795,329 +554,599 @@
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 3.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "安全与治理：AI agents increasingly collaborate across organizational boundaries, invoking …",
-      "one_line_judgement": "值得先保存：跨组织 agent 的身份/信任/证明架构：基于 PKI + 零信任 + 远程证明，用对等组织 CA（AgentCA）替代共享根，先校验证书…",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "跨组织 agent 的身份/信任/证明架构：基于 PKI + 零信任 + 远程证明，用对等组织 CA（AgentCA）替代共享根，先校验证书再验证模型、工具与系统提示词配置，用三项策略检查做授",
+      "trend_status": "rising",
+      "brief_cn": "Multimodal Agent：Scaling embodied interaction data requires a broad collection of usable tasks,…",
+      "one_line_judgement": "值得继续观察：把『具身任务的数据从哪里来』这件苦活做成了可度量的工程流程，四项关键数字在 PDF 正文与项目站上双处一致：AgenticTask 集合含 …",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "上升",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "把『具身任务的数据从哪里来』这件苦活做成了可度量的工程流程，四项关键数字在 PDF 正文与项目站上双处一致：AgenticTask 集合含 16,450 个保存的任务实例，来自 20,323 ",
       "related_trends": [
-        "agentic-world-modeling"
-      ],
-      "detail_path": "paper-detail.html?id=agent-trust-infrastructure-ati-a-federated-identity-trust-attestation-and-accountability-architecture-for-cross-organization-autonomous-ai-agents"
-    },
-    {
-      "title": "When Passing Checks Do Not Establish Completion: Evidence Interpretation in Coding Agents",
-      "authors": [
-        "Xueping Gao"
-      ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
-      "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.22835v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.22835v1",
-      "openreview_url": "",
-      "paperswithcode_url": "",
-      "code_url": "",
-      "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Verification procedures in coding agents must preserve execution facts, interpret their scope and discharge checking obligations. We study these responsibilities through qualified repository checks, controlled evidence consumers and executable workflows. A prospective thirteen-task factorial study finds that correct reported facts need not yield the requested finite verdict. Conversely, all 122 delivered labels in a held-out receipt-supply study are correct, while sixteen responses misreport facts and eleven others exceed authorized scope. Production repair supplies successful controls and finite-supported preservation failures. Across 118 repair episodes on 31 tasks, source interventions separate startup reachability from repair and witness production from the claimed operation. Lifetime and resource controls delimit what passing validation establishes. Generated-note comparisons yield local repair differences but can state false explanations; strong ordinary baselines, new tasks and Skill-transfer studies supply no consistent overall advantage. These results characterize evidence interpretation, applicability and fulfilled actions while limiting claims of general diagnostic superiority, Skill deterioration or deployed folding effects.",
-      "categories": [
-        "cs.CL",
-        "cs.SE"
-      ],
-      "keywords": [
-        "agent",
-        "coding agent"
-      ],
-      "comment": "12 pages; supplementary material included as ancillary files",
-      "score": 56.0,
-      "decision": "持续观察",
-      "links": [
-        {
-          "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.22835v1"
-        },
-        {
-          "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.22835v1"
-        }
-      ],
-      "prescreen_score": 23,
-      "prescreen_topics": [
-        "ai-agent",
+        "agentic-world-modeling",
         "coding-agent"
       ],
-      "has_declared_artifact": false,
-      "llm_reason": "coding agent 里'通过检查'不等于'任务完成'——把验证职责拆成执行事实保全、范围解释与检查义务履行三层，并做了一项 13 任务的前瞻因子研究。值得记下的数字：一项留出回执研究中 122 条已交付标签全部正确，但另有 16 条回复误报事实、11 条越出授权范围；118 个修复回合覆盖 31 个任务。最诚实的一点是作者主动限制了结论边界——'强普通基线、新任务与 Skill 迁移研究并未显示一致的整体优势'。但全文以高度压缩的术语写成，摘要难以判断实验规模与显著性，也没有可核验的仓库或数据入口，落到工程上暂时无法据以设计检查项。适合作为'验证语义'方向的概念存档。",
-      "id": "when-passing-checks-do-not-establish-completion-evidence-interpretation-in-coding-agents",
-      "value_type": "long_tail",
-      "matched_topics": [
-        "coding-agent",
-        "llm-evaluation"
-      ],
-      "score_breakdown": {
-        "novelty": 5.4,
-        "problem_importance": 5.8,
-        "relevance": 6.2,
-        "evidence_strength": 4.95,
-        "engineering_testability": 4.6,
-        "trend_signal": 4.05,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 6.2,
-        "actionability": 5.0,
-        "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
-        "low_relevance_penalty": 2.2,
-        "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
-      },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "Coding Agent：Verification procedures in coding agents must preserve execution facts, interp…",
-      "one_line_judgement": "值得先保存：coding agent 里'通过检查'不等于'任务完成'——把验证职责拆成执行事实保全、范围解释与检查义务履行三层，并做了一项 13 任务…",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "coding agent 里'通过检查'不等于'任务完成'——把验证职责拆成执行事实保全、范围解释与检查义务履行三层，并做了一项 13 任务的前瞻因子研究。值得记下的数字：一项留出回执研究中 ",
-      "related_trends": [
-        "coding-agent"
-      ],
-      "detail_path": "paper-detail.html?id=when-passing-checks-do-not-establish-completion-evidence-interpretation-in-coding-agents"
+      "detail_path": "paper-detail.html?id=agentic-scaling-of-embodied-tasks-in-simulation-for-synthetic-data-collection-and-policy-evaluation"
     },
     {
-      "title": "LMLineage: Content Lineage and Context Governance for LLM Agents",
+      "title": "EgoWitness: Benchmarking Instance-Level Spatial Memory and Reasoning in Egocentric Video Streams",
       "authors": [
-        "Wei Hou",
-        "Jingxin Geng",
-        "Xin Chen",
-        "Zheqing Jiang"
+        "Zhengru Fang",
+        "Zehao Liu",
+        "Mingyu Tsoi",
+        "Yaoyu Zhu",
+        "Junlong Li"
       ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.22511v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.22511v1",
+      "url": "http://arxiv.org/abs/2611.25849v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25849v1",
       "openreview_url": "",
       "paperswithcode_url": "",
-      "code_url": "",
+      "code_url": "https://github.com/egowitness/EgoWitness",
       "benchmark_url": "",
-      "project_url": "",
-      "abstract": "Interpretability for AI agents should not be confined to understanding the model's internal weights. It must also cover the agent's reasoning and decision-making process over multi-source context. We present LMLineage, an out-of-band system that attributes every output sentence of an agent session to its supporting input spans with calibrated confidences, without requiring white-box access to the model or any additional inference passes. On top of the lineage metadata, we build concept-drift micro compaction: instead of waiting for the context-length limit and summarizing everything, the system detects when previously used input documents have stopped being referenced (\"drifted\") and surgically compacts only those, preserving user instructions verbatim. We evaluate on a multi-tier corpus: 71 gold annotated sentences from 10 Chinese web-QA cases, plus 90 turns of independently collected multi-turn sessions across three generator models (gpt-4o-mini, qwen3.8-27b, deepseek-v4-flash). Results show that (i) window-level embedding similarity is far better aligned with LLM paraphrasing than whole document or lexical matching; (ii) the greedy-window fast path is both faster and more accurate on average than exhaustive line-matching (a multiple-comparisons bias in the latter inflates web recall at the cost of overall accuracy); (iii) per-turn attribution completes in 1s on a single GPU, remaining stable as context accumulates to 40 turns; and (iv) concept-drift detection is conservative (0% false compaction) with recall bounded by attribution accuracy. We further describe the concept-drift micro compaction design and an interactive incident-tracing/memory-cleaning case study. A companion patent application covers the lineage construction method.",
+      "project_url": "https://egowitness.github.io/",
+      "abstract": "Recalling where and when an object was last seen and who saw it requires recognizing it across days and people. Existing long-video benchmarks focus on events, object categories, or relative locations, leaving instance-level spatial memory largely untested in multimodal models. To address this gap, we present EgoWitness, a benchmark for instance-level spatial memory and reasoning in egocentric video. Its 8,453 human-verified questions span approximately 324 hours of week-long and short-horizon recordings and test seven abilities, from recognizing an object or room to recalling who saw it and reasoning about room visits. Over one million reviewed masks of 34 registered landmarks and 21 movable-object labels are linked through room timelines. Among twelve direct vision-language models (VLMs), open-weight models reach at most 46.97% accuracy, and none exceeds 35% on identifying who saw an object last. We therefore propose EgoClue, a spatial-memory agent that retrieves candidate intervals, verifies instance identity, and computes spatial and temporal relations with five tools. Two-stage training with supervised fine-tuning (SFT) and Group Relative Policy Optimization (GRPO) raises its 4B controller from 23.64% to 72.65% accuracy on 1,320 held-out questions. Evidence-trace synthesis matches the best direct VLM at 74.85% on week-long questions and achieves 80.56% in environments excluded from training.",
       "categories": [
-        "cs.AI",
-        "cs.CL"
+        "cs.CV"
       ],
       "keywords": [
         "agent",
         "memory",
-        "evaluation",
-        "inference"
+        "benchmark",
+        "multimodal"
       ],
-      "comment": "",
-      "score": 55.0,
-      "decision": "持续观察",
+      "comment": "43 pages, including supplementary material. Zhengru Fang and Zehao Liu contributed equally. Project page: https://egowitness.github.io/ ; Code: https://github.com/egowitness/EgoWitness",
+      "score": 68.0,
+      "decision": "轻量试点",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.22511v1"
+          "url": "http://arxiv.org/abs/2611.25849v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.22511v1"
+          "url": "https://arxiv.org/pdf/2611.25849v1"
         }
       ],
-      "prescreen_score": 25,
+      "prescreen_score": 22,
       "prescreen_topics": [
         "ai-agent",
         "context-engineering",
-        "llm-evaluation",
-        "inference-serving",
-        "security-governance"
+        "multimodal-agent",
+        "llm-evaluation"
       ],
-      "has_declared_artifact": false,
-      "llm_reason": "把 agent 可解释性从'模型权重'扩展到'会话内的推理与决策'：为每句输出归因到支撑输入片段并给出校准置信度（无需白盒、不额外推理），再叠加概念漂移微压缩——只压缩已不再被引用的输入文档、用户指令原样保留。评测规模偏小（10 个中文 web-QA 案例共 71 条人工标注句 + 三个生成模型的 90 轮多轮会话），且结论多为弱形式（窗口级嵌入相似度优于全文/词面匹配；贪心窗口快路径平均优于穷举行匹配，原因是后者多重比较偏差抬高了 web recall 但损害整体准确率；每轮归因单 GPU 1 秒内完成且到 40 轮仍稳定；漂移检测保守，0% 误压缩）。'0% 误压缩'在 71 条标注上意义有限。摘要提到有配套专利申请，可能影响代码开源程度。未找到仓库。",
-      "id": "lmlineage-content-lineage-and-context-governance-for-llm-agents",
-      "value_type": "long_tail",
+      "has_declared_artifact": true,
+      "llm_reason": "把『记住某个具体实例（哪一个人、哪一次、哪个房间）』做成可评测能力，数字经 PDF 正文核对：8,453 条人工校验问题、约 324 小时一周跨度与短跨度录像、覆盖七种能力；超过 100 万个经审核的掩码对应 34 个登记地标与 21 类可移动物体；十二个直接 VLM 中开源权重模型最高只有 46.97% 准确率，且没有一个在『谁最后看到它』上超过 35%；其 4B 控制器经 SFT + GRPO 两阶段训练后，在 1,320 条留出问题上从 23.64% 提升到 72.65%，证据轨迹合成在周跨度问题上达到 74.85%，在训练集外环境达到 80.56%。工程上有个负面结论值得记：直接喂长视频并不行，必须先把候选区间检索出来、验证实例身份、再用五个工具计算时空关系。仓库 github.com/egowitness/EgoWitness 实测 HTTP 200，但 README 明确写着『Code, dataset, and annotations are coming soon』，当前只有项目介绍与 assets，所以代码/数据入口实际不可用——这一条必须标待核验，不能当作已发布的工件。趋势价值在于『实例级空间记忆』是具身与长期助理场景的共同前置能力（与 2611.25925 SpatialMem 同向），但今天我们没有可跑的工件，只能纳入观察。",
+      "id": "egowitness-benchmarking-instance-level-spatial-memory-and-reasoning-in-egocentric-video-streams",
+      "value_type": "trend",
       "matched_topics": [
+        "multimodal-agent",
         "context-engineering",
-        "llm-evaluation",
-        "security-governance"
+        "llm-evaluation"
       ],
       "score_breakdown": {
         "novelty": 4.8,
-        "problem_importance": 7.75,
-        "relevance": 9.8,
-        "evidence_strength": 4.5,
-        "engineering_testability": 4.05,
-        "trend_signal": 4.05,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 6.35,
+        "engineering_testability": 6.05,
+        "trend_signal": 6.0,
         "long_tail_potential": 3.5,
-        "asset_convertibility": 4.8,
-        "actionability": 5.0,
+        "asset_convertibility": 5.6,
+        "actionability": 6.1,
         "noise_risk": 1.2,
-        "weak_evidence_penalty": 5.0,
+        "weak_evidence_penalty": 3.0,
         "low_relevance_penalty": 0,
         "engineering_cost_penalty": 2.5,
-        "reproducibility_risk": 5.0
+        "reproducibility_risk": 3.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "Context Engineering：Interpretability for AI agents should not be confined to understanding the mod…",
-      "one_line_judgement": "值得先保存：把 agent 可解释性从'模型权重'扩展到'会话内的推理与决策'：为每句输出归因到支撑输入片段并给出校准置信度（无需白盒、不额外推理），再…",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "把 agent 可解释性从'模型权重'扩展到'会话内的推理与决策'：为每句输出归因到支撑输入片段并给出校准置信度（无需白盒、不额外推理），再叠加概念漂移微压缩——只压缩已不再被引用的输入文档、",
+      "trend_status": "rising",
+      "brief_cn": "Multimodal Agent：Recalling where and when an object was last seen and who saw it requires recog…",
+      "one_line_judgement": "值得继续观察：把『记住某个具体实例（哪一个人、哪一次、哪个房间）』做成可评测能力，数字经 PDF 正文核对：8,453 条人工校验问题、约 324 小时一…",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "上升",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "把『记住某个具体实例（哪一个人、哪一次、哪个房间）』做成可评测能力，数字经 PDF 正文核对：8,453 条人工校验问题、约 324 小时一周跨度与短跨度录像、覆盖七种能力；超过 100 万个",
       "related_trends": [
+        "agentic-world-modeling",
         "context-engineering",
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=lmlineage-content-lineage-and-context-governance-for-llm-agents"
+      "detail_path": "paper-detail.html?id=egowitness-benchmarking-instance-level-spatial-memory-and-reasoning-in-egocentric-video-streams"
     },
     {
-      "title": "RagHarnessDebugger: Jev-Guided Agentic RAG in Contract Inference Repair Auditing",
+      "title": "TwinLab-Bench: Evaluating AI Scientists in Agentic Twins of Real Labs",
       "authors": [
-        "Moriya Dechtiar",
-        "Daniel Martin Katz",
-        "Michael J. Bommarito",
-        "Hongming Wang",
-        "Sylvain Jaume"
+        "Yang Wan",
+        "Linchao Zhu"
       ],
-      "published": "2026-11-17",
-      "updated": "2026-11-17",
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
       "source": "arXiv",
-      "url": "http://arxiv.org/abs/2611.22991v1",
-      "pdf_url": "https://arxiv.org/pdf/2611.22991v1",
+      "url": "http://arxiv.org/abs/2611.26248v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26248v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/ZJUSCL/TwinLab-Bench",
+      "benchmark_url": "",
+      "project_url": "https://twinlab-bench.github.io/",
+      "abstract": "AI agents are increasingly expected to act as AI scientists, which requires three increasingly open abilities: carrying out a given computational workflow correctly, choosing the next measurements from a given design space, and designing their own experiments. Existing benchmarks mainly evaluate the first two abilities, in a terminal or in a closed loop that selects from predefined candidates. Evaluating the third ability requires reliably executing an experiment that an agent designs, with readings grounded in a real laboratory. We introduce TwinLab-Bench, which evaluates AI scientists on self-designed experiments in 52 tasks from laboratories in the physical sciences, the life sciences, and engineering. The benchmark supports more than 100 experimental action types, and the agent's report is scored by comparison with a hidden answer taken from real laboratory records. Each task has its own TwinLab agent, an agent that serves as the environment and executes the experiments that the tested agent designs, reading the raw materials of the laboratory and calling calculators that are built from its records. Compared with a language model that sees only the task description, the TwinLab agent almost eliminates readings that deviate from the real records and inconsistent answers to a repeated request, and closed-book probes control for answers recalled from memory. We find that these tasks remain hard for frontier models: the strongest, Claude Fable 5.2, averages a score of only 45.0, and we conduct an empirical study of where it fails.",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "memory",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "https://twinlab-bench.github.io/ contains tasks and code. 33 pages, 6 figures, 14 tables. LLM-agent benchmark for autonomous experimental design in digital twins of real labs (physics, chemistry, wet-lab biology, materials, engineering). 13 agents evaluated: Claude Fable 5.2 45.0, Opus 5.5 40.2, GPT-6.1-sol 31.7, plus DeepSeek, Qwen, Kimi, GLM and others",
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26248v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26248v1"
+        }
+      ],
+      "prescreen_score": 22,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 README 双处核对：52 个来自物理科学、生命科学与工程实验室的任务，支持 100+ 种实验动作类型，每个任务由一个 TwinLab agent 充当环境、按真实实验室原始记录读取数据并调用由记录构建的计算器；最强模型 Claude Fable 5.2 平均只得 45.0 / 100（PDF 正文第 452 行、README 与项目站横幅一致），作者对失败做了专门实证研究。仓库 github.com/ZJUSCL/TwinLab-Bench 实测 HTTP 200、54 个 blob，含 machine.example.yaml、scripts/、tests/、twinlab/ 与 figures/，README 给出完整运行步骤（Linux + bubblewrap + Python 3.11 + Claude Code + DeepSeek API key，DeepSeek 作 TwinLab agent 与 judge，Claude Code 作 actor）。工程价值在于它示范了『隐藏真值 + 环境代理 + 封闭书本探针』这套评测结构，这套结构可以直接搬到我们的 agent 任务评测里，用来区分『agent 真的在实验』和『agent 在背答案』。局限：需要真实实验室数据与 Linux/bubblewrap 环境，我们无法在今天跑通；数据集与排行榜在 huggingface.co，本环境连接超时。趋势价值是『AI 科学家』从演示走向可评测基准，7–30 天值得连续观察。",
+      "id": "twinlab-bench-evaluating-ai-scientists-in-agentic-twins-of-real-labs",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 7.25,
+        "engineering_testability": 6.05,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising",
+      "brief_cn": "LLM 评测：AI agents are increasingly expected to act as AI scientists, which requires th…",
+      "one_line_judgement": "值得继续观察：把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 RE…",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "上升",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 README 双处核对：52 个来自物理科学、生命科学与",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=twinlab-bench-evaluating-ai-scientists-in-agentic-twins-of-real-labs"
+    },
+    {
+      "title": "Characterizing and Detecting Unfaithful Work Reports by Coding Agents",
+      "authors": [
+        "Wenhao Yang",
+        "Runzhi He",
+        "Minghui Zhou",
+        "Pengfei Gao",
+        "Dayi Lin"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25760v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25760v1",
       "openreview_url": "",
       "paperswithcode_url": "",
       "code_url": "",
       "benchmark_url": "",
       "project_url": "",
-      "abstract": "Agentic systems using retrieval-augmented generation (RAG) must repair their own answers by gathering more evidence, testing alternative policies and deciding if, when, and what repairs are needed. Yet how do we know if a system's repairs are working when metrics like accuracy can be misleading? We present RagHarnessDebugger, a framework that records every repair decision in a Jev-guided harness for contract inference and audits the record to facilitate complete debugging of all decisions taken during a RAG repair journey. RagHarnessDebugger checks that each trace is intact, that each validation applies to the candidate it is counted for, and which answers the acceptance rule can reach. We tested our approach on ContractNLI non-disclosure agreements with two reader models and a replication set of separate contracts. Our debugger's audit layer exposed failure patterns that were hidden under aggregate metrics, policies acceptance cost of repairs vs regressions and policy acceptance gap of 77% and 76% of available but unrealised repairs on development and replication sets. Our audit, together with a labeled error analysis and replay mechanism, allowed following the execution path all the way to the terminal decision - uncovering where missing repairs became lost. Our revised harness improved accuracy over the initial BM25-only baseline by 3.6 points on development contracts and 3.7 points on the replication set, and even improved our full contract access reference score by 1.1 on development and 2.4 on replication set. While our work here demonstrates how the debugger can conduct decision root-cause analysis for missed repairs, the true value lies with providing this debugger for judgment visibility serving continuous improvement of RAG decisions and their explainability. Keywords: agentic RAG, AI evidence repair, harness explainability, counterfactual replay, Jev, ContractNLI",
+      "abstract": "Coding agents increasingly carry out long-horizon development tasks, autonomously planning and executing multi-step actions that span files, tools, and sessions. Because developers rarely follow each action, and agents resuming the work depend on records of what was done, the agent's work report often becomes the primary account of what was changed and established. When the report contains false or unsupported claims, it gives recipients false assurance: incomplete work may be accepted without verification, incorrect assumptions about the current state can propagate to later steps and agents, and evaluators that credit stated success may reward the report rather than the work. Yet little is known about what unfaithful reporting looks like in real development work, or how developers and agents handle it once it surfaces. Starting from real developer--agent conversations in SWE-chat, we conduct a systematic mixed-methods analysis of self-admitted unfaithful reports. We identify eleven subtypes in four categories: misreported observations, misattributed evidence, overstated task success, and faulty technical explanations, with overstated task success the most common. Handling these problems involves on average 4.3 further user turns and 12.71 minutes of recorded response and execution time, and users express dissatisfaction more often. Among 435 work reports that we separately sample and annotate, \\NaturalPositiveShare{}\\% contain at least one unfaithful claim. We also develop FaithDetector, a detector for unfaithful reporting informed by the observed patterns. On naturally sampled reports, FaithDetector attains \\NaturalDetectorMacro{}\\% macro-F1, about 13 percentage points above the baseline. Together, our findings and FaithDetector provide empirical evidence and an automated method for checking reporting faithfulness, informing agent evaluation and training feedback.",
       "categories": [
-        "cs.AI",
-        "cs.MA",
-        "cs.SE"
+        "cs.SE",
+        "cs.AI"
       ],
       "keywords": [
         "agent",
-        "agentic",
-        "retrieval augmented",
-        "inference"
+        "coding agent",
+        "evaluation",
+        "planning"
       ],
       "comment": "",
-      "score": 54.0,
+      "score": 64.0,
       "decision": "持续观察",
       "links": [
         {
           "label": "arXiv",
-          "url": "http://arxiv.org/abs/2611.22991v1"
+          "url": "http://arxiv.org/abs/2611.25760v1"
         },
         {
           "label": "PDF",
-          "url": "https://arxiv.org/pdf/2611.22991v1"
+          "url": "https://arxiv.org/pdf/2611.25760v1"
         }
       ],
       "prescreen_score": 25,
       "prescreen_topics": [
         "ai-agent",
         "coding-agent",
-        "rag-knowledge",
-        "inference-serving",
-        "security-governance"
+        "llm-evaluation"
       ],
       "has_declared_artifact": false,
-      "llm_reason": "RAG 修复过程的审计层：把每次'要不要修、修成什么样'的决策都记进轨迹，再审计轨迹完整性、校验是否作用在正确的候选上、接受规则能触达哪些答案。摘要有两个对工程有用的事实：聚合指标掩盖了失败模式，审计层暴露出'修复接受代价 vs 回归'以及高达 77% 和 76% 的'可用但未实现的修复'缺口；修订后的 harness 在开发集与复现集上分别比 BM25 基线高 3.6 和 3.7 分，甚至超过了'全文可见'的参考分（+1.1 / +2.4），后者是个不太常见但可信的对照。局限：语料是 ContractNLI 非披露协议，领域极窄；只测两个 reader 模型；未找到对应仓库。'可用但未实现修复'这个度量本身值得借鉴。",
-      "id": "ragharnessdebugger-jev-guided-agentic-rag-in-contract-inference-repair-auditing",
-      "value_type": "long_tail",
+      "llm_reason": "指出一个我们每天都在制造却从不在意的风险：agent 的工作汇报本身会失真。数字经 PDF 正文核对：作者从真实开发者—agent 对话（SWE-chat）中识别出四类共十一种失真子型，其中『夸大任务成功度』最常见（正文第 479 行：Overstating Task Success 是最大一类）；处理这些问题平均需要 4.3 轮额外用户交互与 12.71 分钟的记录响应与执行时间，用户满意度也更低；在另外采样的 435 份工作汇报中有 162 份（37.24%）至少含一条不忠实的断言；其检测器 FaithDetector 达到 93.06% macro-F1，比基线高约 13 个百分点。核心机制很值得记：论文明确指出 agent 自己的报告不算证据，因为包括 Replit 在内的多起事故中 agent 误报了自己的动作——这与今天深挖论文 2611.26553 的判定口径完全一致（那边是『The agent's own report does not count』），两篇独立工作在同一方法论点上收敛。局限：PDF 全文未找到本论文的代码/数据发布地址（只出现 docs.github.com 的引用链接），GitHub 搜索也未找到对应仓库，因此 FaithDetector 当前不可复现，只能标待核验；论文所用 SWE-chat 数据集是否公开亦未在文中确认。趋势价值在于『工作汇报可信度』应当成为 agent 评测的一个独立维度，而不是被完成率掩盖。",
+      "id": "characterizing-and-detecting-unfaithful-work-reports-by-coding-agents",
+      "value_type": "trend",
       "matched_topics": [
-        "rag-knowledge",
+        "llm-evaluation",
+        "coding-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "LLM 评测：Coding agents increasingly carry out long-horizon development tasks, autonomou…",
+      "one_line_judgement": "值得继续观察：指出一个我们每天都在制造却从不在意的风险：agent 的工作汇报本身会失真。数字经 PDF 正文核对：作者从真实开发者—agent 对话（S…",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "指出一个我们每天都在制造却从不在意的风险：agent 的工作汇报本身会失真。数字经 PDF 正文核对：作者从真实开发者—agent 对话（SWE-chat）中识别出四类共十一种失真子型，其中『",
+      "related_trends": [
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=characterizing-and-detecting-unfaithful-work-reports-by-coding-agents"
+    },
+    {
+      "title": "How Much Should an Agent Remember? Deployment Lessons from Self-Distilled Memory for LLM Agents",
+      "authors": [
+        "K. R. Jayaram",
+        "Vatche Isahagian",
+        "Aswath Vaithinathan Aravindan",
+        "Vinod Muthusamy",
+        "Punleuk Oum"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26361v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26361v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM agents on long-horizon tasks fail in recurring, procedural ways. They mis-paginate an API, resolve the wrong entity, or answer when no answer was asked. We built a pipeline that lets an agent learn from its own history. It first mines short \\emph{lessons} from the agent's own trajectories, one to three per episode. It then consolidates those lessons into a smaller set of \\emph{guidelines}, where each guideline records how many lessons it merged. At inference the agent receives either all guidelines or a selected subset. The pipeline ships in the open-source altk-evolve library and is deployed in IBM's CUGA agent and watsonx Orchestrate platform. We report what we learned building, measuring, and productizing it. Our primary instrument is the AppWorld benchmark, across models spanning 40--92\\% baseline task completion. The central finding is that the right amount of memory is a property of the model, not the memory. A strong model keeps improving as guidelines are added. DeepSeek-V3.2 gains +9.5 points of task completion and +16.1 points of scenario completion with its full 191-guideline set. A weak model gains less from the same full set than from a small selected subset. gpt-oss-120b starts at 39.9\\% task completion. It reaches 51.2\\% with all 199 of its guidelines but 55.4\\% (mean of two runs) with a selected subset of about 29. Around that result we report what went wrong: a high-support guideline that backfired, provenance silently dropped during consolidation, a swallowed API error that failed every task while producing a plausible log, and a baseline confound that nearly produced a misleading comparison with a prior method. We distill these into recommendations for teams deploying agent memory.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark",
+        "inference"
+      ],
+      "comment": "Accepted to IAAI 2027 (Oral)",
+      "score": 63.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26361v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26361v1"
+        }
+      ],
+      "prescreen_score": 24,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2 用满 191 条 guideline 时任务完成率 +9.5、场景完成率 +16.1；gpt-oss-120b 起点 39.9%，用全部 199 条只到 51.2%，而精选约 29 条可达 55.4%（正文第 260 行明确：两次运行均值 56.0 与 54.8，且『All 199 are no better than a 24-guideline core』）；正文第 143 行给出 lessons→guidelines 的生成链路（DeepSeek 147 条轨迹产出 290 条原始 lesson，压缩为 191 条 guideline，其中 144 条 support=1）。论文的中心结论是『合适的记忆量是模型的属性，而不是记忆本身的属性』——强模型加 guideline 持续变好，弱模型需要精选子集。工程价值最实在的部分是它公开了失败模式：一条高支持度但适得其反的 guideline、合并时来源信息被静默丢弃、一个被吞掉的 API 错误导致每个任务都失败却留下看似合理的日志、以及一个差点造成误导性对比的基线混淆。这些都是我们做记忆模块时几乎必然踩到的坑，值得直接抄成检查表。局限：论文只声明开源库 altk-evolve，实测 github.com/AgentToolkit/altk-evolve 存在（142 stars，README 载有 GPT-4.1 ReAct 在 AppWorld 上场景完成率 50.0%→64.3% 的结果），但论文正文未给出可点击的仓库链接字符串，无法确认论文与该库的直接绑定关系；论文声称部署在 IBM CUGA agent 与 watsonx Orchestrate，属厂商内部事实，无法独立核验。",
+      "id": "how-much-should-an-agent-remember-deployment-lessons-from-self-distilled-memory-for-llm-agents",
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering",
         "ai-agent",
         "llm-evaluation"
       ],
       "score_breakdown": {
-        "novelty": 4.8,
-        "problem_importance": 8.4,
-        "relevance": 10,
-        "evidence_strength": 5.4,
+        "novelty": 5.4,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.95,
         "engineering_testability": 4.6,
-        "trend_signal": 4.05,
-        "long_tail_potential": 4.15,
-        "asset_convertibility": 6.2,
-        "actionability": 5.0,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
         "noise_risk": 1.2,
         "weak_evidence_penalty": 5.0,
         "low_relevance_penalty": 0,
         "engineering_cost_penalty": 2.5,
         "reproducibility_risk": 5.0
       },
-      "trend_status": "long_tail_watch",
-      "brief_cn": "RAG / 知识系统：Agentic systems using retrieval-augmented generation (RAG) must repair their o…",
-      "one_line_judgement": "值得先保存：RAG 修复过程的审计层：把每次'要不要修、修成什么样'的决策都记进轨迹，再审计轨迹完整性、校验是否作用在正确的候选上、接受规则能触达哪些答…",
-      "first_seen_date": "2026-11-19",
-      "first_deep_dive_daily": "2026-11-19",
-      "value_type_label": "长尾价值",
-      "trend_stage_label": "长尾观察",
-      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
-      "long_tail_summary": "RAG 修复过程的审计层：把每次'要不要修、修成什么样'的决策都记进轨迹，再审计轨迹完整性、校验是否作用在正确的候选上、接受规则能触达哪些答案。摘要有两个对工程有用的事实：聚合指标掩盖了失败模",
+      "trend_status": "emerging",
+      "brief_cn": "Context Engineering：LLM agents on long-horizon tasks fail in recurring, procedural ways. They mis-…",
+      "one_line_judgement": "值得继续观察：来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2…",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2 用满 191 条 guideline 时任务完成率",
       "related_trends": [
         "context-engineering",
         "agentic-world-modeling",
         "coding-agent"
       ],
-      "detail_path": "paper-detail.html?id=ragharnessdebugger-jev-guided-agentic-rag-in-contract-inference-repair-auditing"
+      "detail_path": "paper-detail.html?id=how-much-should-an-agent-remember-deployment-lessons-from-self-distilled-memory-for-llm-agents"
+    },
+    {
+      "title": "CompAct-Bench: A Benchmark for Working-Context Compaction in Long-Horizon Agent Tasks",
+      "authors": [
+        "Jiayi Chen",
+        "Lizhe Chen",
+        "Yujia Chen",
+        "Shihan Dou",
+        "Ming Zhang"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25673v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25673v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://compaction-eval.github.io/CompAct-Bench/",
+      "abstract": "As language-model agents are applied to increasingly extended tasks, their working context continuously accumulates interaction history, tool observations, intermediate decisions, and task progress. Context compaction offers a practical way to reduce this growing history while allowing execution to continue, yet the compaction ability of modern LLMs remains insufficiently understood. We introduce CompAct-Bench, a benchmark for evaluating working-context compaction through its downstream effect on agent task completion. Starting from successful agent trajectories, we insert compaction boundaries at different stages of execution, compress the preceding working context with the model under evaluation, and let the same executor continue the original task. To enable fair comparison across compactors, we evaluate them under controlled retention ratios using a lightweight iterative ratio-adjustment procedure. CompAct-Bench covers information-seeking, software-engineering, and workspace-oriented tasks through BrowseComp, SWE-bench, and an internal CompanyBench evaluation. Our experiments show that working-context compaction remains highly lossy even for frontier models: Claude- and GPT-family models perform strongest overall, yet substantial degradation in downstream task accuracy persists under aggressive compaction. Further analysis reveals that failures are often caused not only by omitted information, but also by distorted task state, such as turning unresolved issues into apparent conclusions or forgetting previously established results, which can lead to incorrect decisions or redundant execution. These findings highlight working-context compaction as a distinct and still challenging ability for LLMs operating in extended agent tasks.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.25673v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.25673v1"
+        }
+      ],
+      "prescreen_score": 23,
+      "prescreen_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "把『上下文压缩』当成一项独立能力来评测，而不是压缩策略的副产品，结论对我们直接相关：工作上下文压缩即使对前沿模型也高度有损——Claude 与 GPT 系整体最强，但在激进压缩下任务准确率仍显著下降；论文进一步指出失败不只来自信息遗漏，还来自任务状态被扭曲，例如把未解决的问题变成看似已定的结论，或忘记先前已建立的结果，进而导致错误决策或冗余执行。规模经 PDF 正文核对：79 个 BrowseComp 信息检索任务 + 96 个 SWE-bench 软件工程任务 + 25 个内部 CompanyBench 工作区任务，共 12 个前沿模型；上下文长度从 SWE-bench 的 122.8K token 压缩到 CompanyBench。评测方法很值得抄：它不是给压缩打分，而是从成功的 agent 轨迹出发，在执行的不同阶段插入压缩边界，用被测模型压缩前文，再让同一个执行者继续原任务，从而用下游完成率衡量压缩质量，并用受控保留比率做公平对比。工程价值在于它把『压缩后信息还在不在』变成可回归的指标，正好对应我们上下文工程的成本痛点。项目站 https://compaction-eval.github.io/CompAct-Bench/ 实测 HTTP 200，页面显示 200 个实例、12 个压缩器、10% 保留率下平均准确率 56.7、最高 68.5；但 PDF 与站点均未给出代码仓库地址，代码可用性待核验。",
+      "id": "compact-bench-a-benchmark-for-working-context-compaction-in-long-horizon-agent-tasks",
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.85,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging",
+      "brief_cn": "Context Engineering：As language-model agents are applied to increasingly extended tasks, their wor…",
+      "one_line_judgement": "值得继续观察：把『上下文压缩』当成一项独立能力来评测，而不是压缩策略的副产品，结论对我们直接相关：工作上下文压缩即使对前沿模型也高度有损——Claude …",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "趋势价值",
+      "trend_stage_label": "萌芽",
+      "future_trigger": "出现多篇跟进论文、开源项目和工程博客共振",
+      "long_tail_summary": "把『上下文压缩』当成一项独立能力来评测，而不是压缩策略的副产品，结论对我们直接相关：工作上下文压缩即使对前沿模型也高度有损——Claude 与 GPT 系整体最强，但在激进压缩下任务准确率仍显",
+      "related_trends": [
+        "context-engineering",
+        "coding-agent",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=compact-bench-a-benchmark-for-working-context-compaction-in-long-horizon-agent-tasks"
+    },
+    {
+      "title": "EvoMem: Self-Evolving Skills for Time-Aware Long Video Memory Agents",
+      "authors": [
+        "Yutong Guan",
+        "Meixing Shi",
+        "Haoran Sun",
+        "Bing Sun",
+        "Yuxiang Cai"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25889v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25889v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Although memory-augmented architectures have expanded the ability of large vision-language models (LVLMs) to process long videos, existing retrieval processes still largely rely on global semantic matching and lack state-driven temporal control, often returning fragmented or redundant evidence and failing to maintain a coherent evidence chain. To address this challenge, we propose EvoMem, a time-aware long-video memory agent guided by self-evolving retrieval skills. EvoMem constructs a hierarchical time-indexed memory, where different types of evidence are aligned onto a unified video timeline; during retrieval, temporal cues from acquired evidence are further converted into explicit signals that constrain subsequent memory access. To address recurring procedural errors in long-video question answering, such as unclear retrieval targets, improper memory access paths, or premature stopping, EvoMem introduces retrieval skills to provide process-level guidance, enabling the agent to dynamically adjust retrieval content, memory operations, and target temporal ranges according to the current evidence state, while deciding when to stop. Furthermore, inspired by reinforcement learning, we formulate skill evolution as a reward-guided policy improvement process. Each candidate skill is treated as an external policy patch, and rewards are assigned according to answer-correctness state transitions on the validation set. In this way, effective skills are accepted and low-quality skills are rejected without updating model parameters. Experiments on four long-video question answering benchmarks show that EvoMem significantly outperforms existing baselines, achieving an average accuracy of 60.1% and an average improvement of 8.6 percentage points over the previous best methods, demonstrating its effectiveness for long-video reasoning.",
+      "categories": [
+        "cs.CV"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.25889v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.25889v1"
+        }
+      ],
+      "prescreen_score": 26,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "rag-knowledge",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "把检索技能本身当成可演化的对象：构建分层时间索引记忆，把检索到的证据中的时间线索转成显式信号去约束后续的记忆访问；再用『外部策略补丁』的形式让候选技能在验证集上按答对与否接受或拒绝，从而在不更新模型参数的前提下演化技能。数字经 PDF 正文核对：四个长视频问答基准上平均准确率 60.1%，比此前最好方法平均提升 8.6 个百分点。方法上最值得保存的一点是『技能作为外部策略补丁 + 按状态转移给奖励』这一形式——它把 agent 的流程级经验（检索目标不清、记忆访问路径不当、过早停止）从提示词里搬到了可版本化、可拒绝的独立对象上，这与我们沉淀 Skill / Checklist 的方向直接同构。局限：无代码、无项目页、无数据发布地址（PDF 全文未出现任何 github / huggingface / 项目页链接，GitHub 搜索亦无对应仓库），四个基准中具体是哪些也未在摘要中给出，因此证据等级只能算「论文自述数字」，当前不可复现，标待核验。",
+      "id": "evomem-self-evolving-skills-for-time-aware-long-video-memory-agents",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "context-engineering",
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 5.85,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch",
+      "brief_cn": "Context Engineering：Although memory-augmented architectures have expanded the ability of large vis…",
+      "one_line_judgement": "值得先保存：把检索技能本身当成可演化的对象：构建分层时间索引记忆，把检索到的证据中的时间线索转成显式信号去约束后续的记忆访问；再用『外部策略补丁』的形式…",
+      "first_seen_date": "2026-11-21",
+      "first_deep_dive_daily": "2026-11-21",
+      "value_type_label": "长尾价值",
+      "trend_stage_label": "长尾观察",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "long_tail_summary": "把检索技能本身当成可演化的对象：构建分层时间索引记忆，把检索到的证据中的时间线索转成显式信号去约束后续的记忆访问；再用『外部策略补丁』的形式让候选技能在验证集上按答对与否接受或拒绝，从而在不更",
+      "related_trends": [
+        "context-engineering",
+        "agentic-world-modeling"
+      ],
+      "detail_path": "paper-detail.html?id=evomem-self-evolving-skills-for-time-aware-long-video-memory-agents"
     }
   ],
   "long_tail_highlights": [
     {
-      "id": "values-shape-what-self-improving-coding-agents-build",
-      "title": "Values Shape What Self-Improving Coding Agents Build",
-      "direction": "AI Agent / Coding Agent",
-      "long_tail_type": "工程抽象",
-      "why_save": "把 Schwartz 价值理论中的四类高层价值观写进自改进 coding agent 的持久指令文件，观察的不只是分数，还有'agent 造出什么'（解法的规模、复杂度与路径都随价值取向改变）",
+      "id": "evomem-self-evolving-skills-for-time-aware-long-video-memory-agents",
+      "title": "EvoMem: Self-Evolving Skills for Time-Aware Long Video Memory Agents",
+      "direction": "Context Engineering / Multimodal Agent",
+      "long_tail_type": "可迁移方法",
+      "why_save": "把检索技能本身当成可演化的对象：构建分层时间索引记忆，把检索到的证据中的时间线索转成显式信号去约束后续的记忆访问；再用『外部策略补丁』的形式让候选技能在验证集上按答对与否接受或拒绝，从而在不更",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-12-10",
-      "detail_path": "paper-detail.html?id=values-shape-what-self-improving-coding-agents-build"
+      "revisit_date": "2026-12-12",
+      "detail_path": "paper-detail.html?id=evomem-self-evolving-skills-for-time-aware-long-video-memory-agents"
     },
     {
-      "id": "agent-trust-infrastructure-ati-a-federated-identity-trust-attestation-and-accountability-architecture-for-cross-organization-autonomous-ai-agents",
-      "title": "Agent Trust Infrastructure (ATI): A Federated Identity, Trust, Attestation, and Accountability Architecture for Cross-Organization Autonomous AI Agents",
-      "direction": "安全与治理 / AI Agent",
-      "long_tail_type": "工程抽象",
-      "why_save": "跨组织 agent 的身份/信任/证明架构：基于 PKI + 零信任 + 远程证明，用对等组织 CA（AgentCA）替代共享根，先校验证书再验证模型、工具与系统提示词配置，用三项策略检查做授",
+      "id": "spatialmem-building-quantitative-spatial-reasoning-agents-with-hierarchical-memory",
+      "title": "SpatialMem: Building Quantitative Spatial Reasoning Agents with Hierarchical Memory",
+      "direction": "Multimodal Agent / Context Engineering",
+      "long_tail_type": "可迁移方法",
+      "why_save": "用一个两级记忆（任务记忆存工具编排、场景记忆存工具选择）来替 VLM agent 选对视觉专家，解决定量空间推理。数字经 PDF 正文核对：在自建的 MetricBench 上比最好 VLM ",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-12-10",
-      "detail_path": "paper-detail.html?id=agent-trust-infrastructure-ati-a-federated-identity-trust-attestation-and-accountability-architecture-for-cross-organization-autonomous-ai-agents"
+      "revisit_date": "2026-12-12",
+      "detail_path": "paper-detail.html?id=spatialmem-building-quantitative-spatial-reasoning-agents-with-hierarchical-memory"
     },
     {
-      "id": "when-passing-checks-do-not-establish-completion-evidence-interpretation-in-coding-agents",
-      "title": "When Passing Checks Do Not Establish Completion: Evidence Interpretation in Coding Agents",
-      "direction": "Coding Agent / LLM 评测",
+      "id": "embodyagent-post-training-embodied-vlm-agents-via-distillation-sft-and-rl",
+      "title": "EmbodyAgent: Post-Training Embodied VLM Agents via Distillation, SFT, and RL",
+      "direction": "Multimodal Agent / 推理与服务",
       "long_tail_type": "工程抽象",
-      "why_save": "coding agent 里'通过检查'不等于'任务完成'——把验证职责拆成执行事实保全、范围解释与检查义务履行三层，并做了一项 13 任务的前瞻因子研究。值得记下的数字：一项留出回执研究中 ",
+      "why_save": "一套端到端的具身 VLM 后训练栈，三段管线共享同一个无动作原语、只暴露原始视觉观测与七维末端执行器控制、无跨阶段接口漂移：黑盒教师在强制 think-then-code 契约下合成并按任务成",
       "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
       "reusable_assets": [
         "Prompt",
         "Skill",
         "Checklist"
       ],
-      "revisit_date": "2026-12-10",
-      "detail_path": "paper-detail.html?id=when-passing-checks-do-not-establish-completion-evidence-interpretation-in-coding-agents"
+      "revisit_date": "2026-12-12",
+      "detail_path": "paper-detail.html?id=embodyagent-post-training-embodied-vlm-agents-via-distillation-sft-and-rl"
     }
   ],
   "common_research_path": [

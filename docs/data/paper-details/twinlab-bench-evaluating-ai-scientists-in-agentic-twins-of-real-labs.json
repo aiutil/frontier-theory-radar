@@ -1,0 +1,133 @@
+{
+  "id": "twinlab-bench-evaluating-ai-scientists-in-agentic-twins-of-real-labs",
+  "title": "TwinLab-Bench: Evaluating AI Scientists in Agentic Twins of Real Labs",
+  "authors": [
+    "Yang Wan",
+    "Linchao Zhu"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26248v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26248v1",
+  "code_url": "https://github.com/ZJUSCL/TwinLab-Bench",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-21",
+  "first_deep_dive_daily": "2026-11-21",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 6.0,
+    "relevance": 7.4,
+    "evidence": 7.25,
+    "engineering_testability": 6.05,
+    "trend_signal": 6.55,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 66.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 RE…",
+  "one_line_essence": "把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 README 双处核对：52 个来自物理科学、生命科学与工程实验室的任务，支持 100+ 种实验动作类型，每个任务由一个 TwinLab agent 充当环境、按真实实验室原始记录读取数据并调用由记录构建的计算器；最强模型 Claude Fable 5.2 平均只得 45.0 / 100（PDF 正文第 452 行、README 与项目站横幅一致），作者对失败做了专门实证研究。仓库 github.com/ZJUSCL/TwinLab-Bench 实测 HTTP 200、54 个 blob，含 machine.example.yaml、scripts/、tests/、twinlab/ 与 figures/，README 给出完整运行步骤（Linux + bubblewrap + Python 3.11 + Claude Code + DeepSeek API key，DeepSeek 作 TwinLab agent 与 judge，Claude Code 作 actor）。工程价值在于它示范了『隐藏真值 + 环境代理 + 封闭书本探针』这套评测结构，这套结构可以直接搬到我们的 agent 任务评测里，用来区分『agent 真的在实验』和『agent 在背答案』。局限：需要真实实验室数据与 Linux/bubblewrap 环境，我们无法在今天跑通；数据集与排行榜在 huggingface.co，本环境连接超时。趋势价值是『AI 科学家』从演示走向可评测基准，7–30 天值得连续观察。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 README 双处核对：52 个来自物理科学、生命科学与工程实验室的任务，支持 100+ 种实验动作类型，每个任务由一个 TwinLab agent 充当环境、按真实实验室原始记录读取数据并调用由记录构建的计算器；最强模型 ",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "rising",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 README 双处核对：52 个来自物理科学、生命科学与",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26248v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26248v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=twinlab-bench-evaluating-ai-scientists-in-agentic-twins-of-real-labs",
+  "daily_path": "daily-detail.html?date=2026-11-21",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

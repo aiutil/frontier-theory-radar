@@ -1,0 +1,135 @@
+{
+  "id": "swe-recreation-benchmarking-coding-agents-for-software-recreation",
+  "title": "SWE-Recreation: Benchmarking Coding Agents for Software Recreation",
+  "authors": [
+    "Zhiyao Xu",
+    "Zhanjie Ding",
+    "Hongyao Yu",
+    "Jingyu Xiao"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26311v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26311v1",
+  "code_url": "https://github.com/nologistic/recreate-anything",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-21",
+  "first_deep_dive_daily": "2026-11-21",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 7.4,
+    "evidence": 6.8,
+    "engineering_testability": 6.6,
+    "trend_signal": 6.55,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 77.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应…",
+  "one_line_essence": "把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应用（28 个网站 + 26 个 Android 应用）、1,446 条隐藏需求、五个前沿系统在应用等权平均下最高只能拿到 0.530 的加权保真度（WFS）与 22.9% 的完全复现需求率，正文第 871 行进一步给出排序——Kimi K3 0.530、DeepSeek V4.1 0.472、GLM-5.3 0.362、GPT6-Sol 0.352、Opus 4.8 0.277。方法上的关键设计是观测通道被压到最小：只有截图与坐标级 HID 输入，禁止 DOM、无障碍树、日志、反编译；这让『模型是否真的理解了界面』与『模型只是读到了结构』可以区分开。重要更正：摘要与 PDF 正文写的代码地址 github.com/nologistic/recreateanything 实测 HTTP 404，作者真实仓库是 github.com/nologistic/recreate-anything（实测 200，562 个 blob），这是论文自身的链接错误。仓库已实测可用的资产包括：57 份人工编写的 review_specs/*.json checklist（28 个 Web 目标 + 29 个 Android 目标）、android_apks/ 下 29 个真实 APK、完整的三阶段流水线（探索 → 复现 → 独立 LLM judge 评分）、13 项标准化指标（docs/benchmark_metrics.md，含 WFS 计算脚本 compute_metrics.py）、以及 web-nograph / android_baseline 两套 agent runtime。对我们直接可用的部分是把『人类使用产品 → 归纳出功能清单 → 交给 agent 重建』这条链路抽象出来，作为评估 agent 产品理解能力的模板；也提醒我们一个现实——即使是最强模型，重建保真度也只有一半，说明 GUI 级『只读像素』的 agent 离可用还远。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应用（28 个网站 + 26 个 Android 应用）、1,446 条隐藏需求、五个前沿系统在应用等权平均下最高只能拿到 0.530 的加权保真度（WFS）与 22.9% 的完全复现需求率，正文第 871 行进一步给出排",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应用（28 个网站 + 26 个 Android 应用",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26311v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26311v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=swe-recreation-benchmarking-coding-agents-for-software-recreation",
+  "daily_path": "daily-detail.html?date=2026-11-21",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

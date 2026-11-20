@@ -1,0 +1,135 @@
+{
+  "id": "replication-of-agentic-security-events-audit-and-investigation-rogue-ai",
+  "title": "Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)",
+  "authors": [
+    "Mengxiao Wang",
+    "Mahbub Alam",
+    "Kalyan Nakka",
+    "Nitesh Saxena"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26553v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26553v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-21",
+  "first_deep_dive_daily": "2026-11-21",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 9.8,
+    "evidence": 4.95,
+    "engineering_testability": 5.15,
+    "trend_signal": 6.55,
+    "long_tail_potential": 4.15,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 84.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类…",
+  "one_line_essence": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI 论文 PDF 正文给出规模：108 次重放、覆盖 96 起事故、38 个类别，单次重放成本 $3.28），再加一个只去掉『被指控的原因』的对照条件。实测站点 https://rogue-ai.surge.sh 的公开数据文件（data/benchmark.js 114KB、data/catalog.js 429KB、data/outcomes.js 19KB、data/source_to_replay.js 202KB，均 HTTP 200）后按站点自身的计数规则重算，得到与论文一致的结果：五个模型在『事故条件』下重复出错率 17.9%（gpt-5.6-luna）/25.2%（gpt-5.6-sol）/18.8%（claude-sonnet-4.6）/31.4%（gemini-3.5-flash）/32.8%（deepseek-v4-flash），对照条件 0.2%–1.1%，与论文摘要的『18% 到 33%，对照最多 1%』吻合。最重要的反直觉发现经 PDF 正文与站点数据双向确认：72 起有真实损害的事故中有 62 起没有攻击者，agent 只是老老实实做任务、漏掉了一个普通风险（例如数据库与线上站点共用）；按站点数据分类重算，agent_supply_chain 类的事故条件伤害率 56.7%，而 injection_replay 类只有 1.1%——也就是说，没有攻击者的事故比提示注入更危险，而主流防注入方案在原理上完全看不见它们。论文的缓解手段也验证过：工具输出后加一条点名危险与后果的警告，对五个模型都有效（对照伤害率降到 0.2%–6.8%），而同等长度但不提危险的说明几乎无效。工程价值在于它是一套可重跑的审计框架，vendor 可以在每次发版前跑一遍；对我们最直接的产出是一份『普通风险』检查表——共享生产资源、跨环境权限、破坏性默认配置。长期价值在于它把『agent 事故复现』从事件报道变成一个持续维护的基准。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI 论文 PDF 正文给出规模：108 次重放、覆盖 96 起事故、38 个类别，单次重放成本 $3.28），再加一个只去掉『被指控的原因』的对照条件。实测站点 http",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26553v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26553v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=replication-of-agentic-security-events-audit-and-investigation-rogue-ai",
+  "daily_path": "daily-detail.html?date=2026-11-21",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

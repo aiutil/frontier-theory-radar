@@ -1,0 +1,138 @@
+{
+  "id": "how-much-should-an-agent-remember-deployment-lessons-from-self-distilled-memory-for-llm-agents",
+  "title": "How Much Should an Agent Remember? Deployment Lessons from Self-Distilled Memory for LLM Agents",
+  "authors": [
+    "K. R. Jayaram",
+    "Vatche Isahagian",
+    "Aswath Vaithinathan Aravindan",
+    "Vinod Muthusamy",
+    "Punleuk Oum"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26361v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26361v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-21",
+  "first_deep_dive_daily": "2026-11-21",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 8.6,
+    "evidence": 4.95,
+    "engineering_testability": 4.6,
+    "trend_signal": 6.0,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 63.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得继续观察：来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2…",
+  "one_line_essence": "来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2 用满 191 条 guideline 时任务完成率 +9.5、场景完成率 +16.1；gpt-oss-120b 起点 39.9%，用全部 199 条只到 51.2%，而精选约 29 条可达 55.4%（正文第 260 行明确：两次运行均值 56.0 与 54.8，且『All 199 are no better than a 24-guideline core』）；正文第 143 行给出 lessons→guidelines 的生成链路（DeepSeek 147 条轨迹产出 290 条原始 lesson，压缩为 191 条 guideline，其中 144 条 support=1）。论文的中心结论是『合适的记忆量是模型的属性，而不是记忆本身的属性』——强模型加 guideline 持续变好，弱模型需要精选子集。工程价值最实在的部分是它公开了失败模式：一条高支持度但适得其反的 guideline、合并时来源信息被静默丢弃、一个被吞掉的 API 错误导致每个任务都失败却留下看似合理的日志、以及一个差点造成误导性对比的基线混淆。这些都是我们做记忆模块时几乎必然踩到的坑，值得直接抄成检查表。局限：论文只声明开源库 altk-evolve，实测 github.com/AgentToolkit/altk-evolve 存在（142 stars，README 载有 GPT-4.1 ReAct 在 AppWorld 上场景完成率 50.0%→64.3% 的结果），但论文正文未给出可点击的仓库链接字符串，无法确认论文与该库的直接绑定关系；论文声称部署在 IBM CUGA agent 与 watsonx Orchestrate，属厂商内部事实，无法独立核验。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2 用满 191 条 guideline 时任务完成率 +9.5、场景完成率 +16.1；gpt-oss-120b 起点 39.9%，用全部 199 条只到 51.2%，而精选约 29 条可达 55.4%（正文第 260 ",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2 用满 191 条 guideline 时任务完成率",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26361v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26361v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=how-much-should-an-agent-remember-deployment-lessons-from-self-distilled-memory-for-llm-agents",
+  "daily_path": "daily-detail.html?date=2026-11-21",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

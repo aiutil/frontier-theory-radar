@@ -1,0 +1,1153 @@
+{
+  "date": "2026-11-21",
+  "total": 15,
+  "generated_at": "2026-11-21T04:31:49.917964",
+  "papers": [
+    {
+      "title": "Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)",
+      "authors": [
+        "Mengxiao Wang",
+        "Mahbub Alam",
+        "Kalyan Nakka",
+        "Nitesh Saxena"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26553v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26553v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://rogue-ai.surge.sh",
+      "abstract": "Agents based on large language models (LLMs) can now delete files and send payments on behalf of their users. News media reports routinely describe failures of these agents (e.g., Replit's coding agent deleting a production database), but a report often only says what went wrong and rarely (in)validates the incident or finds its root cause. Incident catalogs collect these reports, and benchmarks record whether agents fail, but neither replicates an incident nor tests the cause its report might identify. In this paper, we present ROGUE-AI (Replication of Agentic Security Events: Audit and Investigation), a multi-agent framework that closes the above gap and rebuilds each reported incident offline together with a matched control that lacks only the blamed cause, and runs agents on both. Our results suggest that ROGUE-AI is able to reproduce the reported harm in 89% of its 108 attempted replications. Agents built on five current GPT, Claude, Gemini and DeepSeek models made the reported mistake in 18% to 33% of runs, against at most 1% without the blamed cause. Of the 72 incidents with real-world harm, 62 had no underlying attacker, and in these, agents did what their task asked for but missed an ordinary hazard, such as a database shared with the live site. Replications without an attacker caused more harm than replications of prompt injection for all five models. Defenses against prompt injection look for injected instructions, but these replications contain none. Further, a warning after each tool output that names the hazard and its consequence lowered harm for all five models, whereas a note of the same length that does not mention the hazard left most of the harm in place. Built from real incidents, the ROGUE-AI replications form a reusable audit framework that vendors can rerun before each new release.",
+      "categories": [
+        "cs.CR",
+        "cs.AI",
+        "cs.MA"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "coding agent",
+        "benchmark"
+      ],
+      "comment": "21 pages, 5 figures, 13 tables. Project page: https://rogue-ai.surge.sh",
+      "score": 84.0,
+      "decision": "重点学习",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26553v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26553v1"
+        }
+      ],
+      "prescreen_score": 22,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "今天唯一一篇证据可以逐层打开重算的论文，而且结论直接推翻了一条我们默认的安全假设。做法：把 253 条公开 agent 事故编成 38 个类别，每个事故在离线沙箱里重建成场景（ROGUE-AI 论文 PDF 正文给出规模：108 次重放、覆盖 96 起事故、38 个类别，单次重放成本 $3.28），再加一个只去掉『被指控的原因』的对照条件。实测站点 https://rogue-ai.surge.sh 的公开数据文件（data/benchmark.js 114KB、data/catalog.js 429KB、data/outcomes.js 19KB、data/source_to_replay.js 202KB，均 HTTP 200）后按站点自身的计数规则重算，得到与论文一致的结果：五个模型在『事故条件』下重复出错率 17.9%（gpt-5.6-luna）/25.2%（gpt-5.6-sol）/18.8%（claude-sonnet-4.6）/31.4%（gemini-3.5-flash）/32.8%（deepseek-v4-flash），对照条件 0.2%–1.1%，与论文摘要的『18% 到 33%，对照最多 1%』吻合。最重要的反直觉发现经 PDF 正文与站点数据双向确认：72 起有真实损害的事故中有 62 起没有攻击者，agent 只是老老实实做任务、漏掉了一个普通风险（例如数据库与线上站点共用）；按站点数据分类重算，agent_supply_chain 类的事故条件伤害率 56.7%，而 injection_replay 类只有 1.1%——也就是说，没有攻击者的事故比提示注入更危险，而主流防注入方案在原理上完全看不见它们。论文的缓解手段也验证过：工具输出后加一条点名危险与后果的警告，对五个模型都有效（对照伤害率降到 0.2%–6.8%），而同等长度但不提危险的说明几乎无效。工程价值在于它是一套可重跑的审计框架，vendor 可以在每次发版前跑一遍；对我们最直接的产出是一份『普通风险』检查表——共享生产资源、跨环境权限、破坏性默认配置。长期价值在于它把『agent 事故复现』从事件报道变成一个持续维护的基准。",
+      "id": "replication-of-agentic-security-events-audit-and-investigation-rogue-ai",
+      "value_type": "immediate",
+      "matched_topics": [
+        "security-governance",
+        "ai-agent",
+        "llm-evaluation",
+        "coding-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 4.95,
+        "engineering_testability": 5.15,
+        "trend_signal": 6.55,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 7.0,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "MemFolder: Structure-Guided Memory Folding for Efficient Agent Memory Management",
+      "authors": [
+        "Xuyang Liu",
+        "Chenwen Lu",
+        "Junxi Wang",
+        "Siyu Ren",
+        "Xinying Lin"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26427v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26427v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/xuyang-liu16/MemFolder",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Long-term agents accumulate large external memory stores as interactions unfold, increasing the costs of storage, retrieval, and response generation. Efficiency is constrained by two coupled factors: a growing record count increases retrieval overhead, while longer retrieved contexts increase prefill computation and decoding-time attention costs. Existing methods prune or consolidate records, but pruning can discard useful evidence, whereas consolidation may produce fewer yet longer retrieval units. We introduce MemFolder, a structure-guided memory folding framework that sequentially reduces record count and context length. The framework comprises two core components that share memory groups, using cross-record structure to guide both evidence consolidation and compact representation. RecordFolder grounds entity mentions, progressively selects representative yet complementary anchors, and combines semantic and entity affinity with temporal chaining to consolidate compatible records into fewer retrieval units. ContextFolder encodes the original records within these groups into compact text and uses verification feedback to revise encodings when key facts cannot be recovered. Experiments on the three text-based memory benchmarks LoCoMo, PersonaMem, and LongMemEval and the two multimodal benchmarks M3-Bench-web and M3-Bench-robot demonstrate the strong performance of our methods. Notably, on Mem0, RecordFolder retains 99.0% of the original average performance across the three text-based benchmarks with 50% fewer records, exceeding the strongest baseline by 1.9 percentage points in performance retention. Combined with ContextFolder, existing record compression methods further shorten their output records while retaining most of their performance.",
+      "categories": [
+        "cs.CL",
+        "cs.CV"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark",
+        "multimodal"
+      ],
+      "comment": "Code is available at https://github.com/xuyang-liu16/MemFolder",
+      "score": 79.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26427v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26427v1"
+        }
+      ],
+      "prescreen_score": 26,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "rag-knowledge",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 blob，结构完整可跑（src/core/memory.py、src/core/budgets.py、src/compression.py、src/loading/memory_libraries.py、src/evaluation/retrieval.py，加 examples/recipes/ 下 30+ 个可直接复用的配方 JSON，含 memforest-m3-proxy、dart-medoid_pivot、kmeans-merge 等基线与消融配置，还有 skills/SKILL.md 作为 agent 可读的实验指南）。核心数字在 PDF 正文与仓库 README 双处一致：RecordFolder 在 LoCoMo / LongMemEval / PersonaMem 三个文本基准上以 50% 更少的记录保留 Mem0 原平均性能的 99.0%，比最强基线 MemForest 的 97.1% 高 1.9 个百分点（PDF 正文第 209 行原句；README「Half as many records」条目同值）；ContextFolder 进一步把每条记录的 token 数在 LoCoMo / LongMemEval / M3-Bench-robot 上分别削减 40% / 38% / 31%；保留 30% 记录时检索加速 1.88×–5.34×。工程价值在于它正面解决了我们记忆模块的两个真实成本项：记录条数（检索开销）与上下文长度（prefill 与解码注意力开销），而且 RecordFolder 与 ContextFolder 共享同一套记忆分组结构，可以分阶段接入而不是一次性重写。仓库的 examples/recipes/*.json 是现成的配置模板，配合 README 给出的官方数据集下载命令（LoCoMo 的 locomo10.json、LongMemEval 的 longmemeval_s_cleaned.json、PersonaMem 的 questions_32k.csv / shared_contexts_32k.jsonl），今天就能跑一个最小对照实验。长期价值是『记忆不是越多越好，而是要折叠』这一结论会成为 agent 记忆模块的默认设计约束。",
+      "id": "memfolder-structure-guided-memory-folding-for-efficient-agent-memory-management",
+      "value_type": "immediate",
+      "matched_topics": [
+        "context-engineering",
+        "ai-agent",
+        "rag-knowledge"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 6.8,
+        "engineering_testability": 6.05,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "SWE-Recreation: Benchmarking Coding Agents for Software Recreation",
+      "authors": [
+        "Zhiyao Xu",
+        "Zhanjie Ding",
+        "Hongyao Yu",
+        "Jingyu Xiao"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26311v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26311v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/nologistic/recreate-anything",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Agents increasingly operate software and even write it, yet they are almost always told what to achieve: given a goal, a mock-up, or a demonstration. We ask whether an agent can instead understand an unfamiliar product by using it, and then rebuild it. The agent sees only rendered pixels and acts through pointer and keyboard, without access to the DOM, source, logs, or back-end. Within this interface, it explores, generates a replica, and checks its own work before evaluation. We present SWE-Recreation, a benchmark of 54 real applications (28 websites and 26 Android apps) with 1,446 hidden requirements describing multistep, stateful workflows and explicit exclusions for behavior outside the reconstruction scope. A fixed judge grades workflows with pixel evidence; a separate post-hoc judge estimates exploration coverage. Across 54 evaluated applications, five frontier systems reach at most 0.530 weighted fidelity and 22.9% fully reproduced requirements under application-equal averaging. These descriptive results expose both exploration-evidence gaps and implementation shortfalls. Code and data are available at https://github.com/nologistic/recreateanything.",
+      "categories": [
+        "cs.SE"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 77.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26311v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26311v1"
+        }
+      ],
+      "prescreen_score": 32,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "把『agent 能不能只靠像素看懂并重建一个陌生产品』做成了可执行基准，且仓库资产可直接拿来用。核心数字经 PDF 正文核对：54 个真实应用（28 个网站 + 26 个 Android 应用）、1,446 条隐藏需求、五个前沿系统在应用等权平均下最高只能拿到 0.530 的加权保真度（WFS）与 22.9% 的完全复现需求率，正文第 871 行进一步给出排序——Kimi K3 0.530、DeepSeek V4.1 0.472、GLM-5.3 0.362、GPT6-Sol 0.352、Opus 4.8 0.277。方法上的关键设计是观测通道被压到最小：只有截图与坐标级 HID 输入，禁止 DOM、无障碍树、日志、反编译；这让『模型是否真的理解了界面』与『模型只是读到了结构』可以区分开。重要更正：摘要与 PDF 正文写的代码地址 github.com/nologistic/recreateanything 实测 HTTP 404，作者真实仓库是 github.com/nologistic/recreate-anything（实测 200，562 个 blob），这是论文自身的链接错误。仓库已实测可用的资产包括：57 份人工编写的 review_specs/*.json checklist（28 个 Web 目标 + 29 个 Android 目标）、android_apks/ 下 29 个真实 APK、完整的三阶段流水线（探索 → 复现 → 独立 LLM judge 评分）、13 项标准化指标（docs/benchmark_metrics.md，含 WFS 计算脚本 compute_metrics.py）、以及 web-nograph / android_baseline 两套 agent runtime。对我们直接可用的部分是把『人类使用产品 → 归纳出功能清单 → 交给 agent 重建』这条链路抽象出来，作为评估 agent 产品理解能力的模板；也提醒我们一个现实——即使是最强模型，重建保真度也只有一半，说明 GUI 级『只读像素』的 agent 离可用还远。",
+      "id": "swe-recreation-benchmarking-coding-agents-for-software-recreation",
+      "value_type": "immediate",
+      "matched_topics": [
+        "coding-agent",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 6.8,
+        "engineering_testability": 6.6,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "Agentic Scaling of Embodied Tasks in Simulation for Synthetic Data Collection and Policy Evaluation",
+      "authors": [
+        "Kang Wang",
+        "Xiaolei Zhou",
+        "Xiaoyu Wu",
+        "Zhendong Wang"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26046v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26046v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/ZXL502/AgenticTask",
+      "benchmark_url": "",
+      "project_url": "https://zxl502.github.io/AgenticTask/",
+      "abstract": "Scaling embodied interaction data requires a broad collection of usable tasks, yet specifying and validating each task instance remains costly. We present AgenticTask, an agent-based framework that expands existing task collections under human intent. Its central representation links interaction requirements to object and part bindings, scene and robot configurations, initial conditions, and completion criteria. A task-generation agent reuses interaction structure to construct supported variations and revises incompatible configurations using validation feedback. A task-execution agent uses the same bindings and geometric records to select robot-supported skills and check completion against the original task criteria. On RoboCasa, the framework builds the AgenticTask collection, saving 16,450 task instances from 20,323 construction attempts at a throughput of 166.97 saved instances per elapsed hour, with 62.26% of construction attempts passing the configured physical checks. The execution agent completes approximately 38% of evaluated tasks, with successful cases spanning object placement, articulated manipulation, and sequential arrangement. Diagnostic analysis identifies improvement priorities in construction reliability, action selection, task-robot compatibility, and runtime integration. Together, these results demonstrate task-collection expansion with measured construction productivity and concrete execution evidence, providing a foundation for subsequent interaction-data collection for embodied AI.",
+      "categories": [
+        "cs.RO"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "evaluation"
+      ],
+      "comment": "12 pages. Dataset: https://huggingface.co/datasets/jimmy-zhou/AgenticTask-Kitchen-50 Project website: https://zxl502.github.io/AgenticTask/",
+      "score": 70.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26046v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26046v1"
+        }
+      ],
+      "prescreen_score": 29,
+      "prescreen_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "llm-evaluation",
+        "inference-serving",
+        "security-governance"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "把『具身任务的数据从哪里来』这件苦活做成了可度量的工程流程，四项关键数字在 PDF 正文与项目站上双处一致：AgenticTask 集合含 16,450 个保存的任务实例，来自 20,323 次构造尝试；生成吞吐 166.97 个实例/小时（项目站补充：跨 98.52 小时，含暂停与重试）；62.26% 的构造尝试通过了配置的物理检查；执行 agent 在受评任务上完成约 38%。最有价值的是它把失败也量化了——80.94% 的构造产出率里，1,630 次是「诊断性修复」救回来的，这说明自动任务生成的真实成本不在生成而在校验。项目站 https://zxl502.github.io/AgenticTask/ 实测 HTTP 200，GitHub 项目仓库 github.com/ZXL502/AgenticTask 也实测可达（含 assets/、data/、js/ 与研究演示视频）。工程价值对我们偏间接：我们不做机器人，但『任务实例 = 需求绑定 + 初始条件 + 完成判据 + 校验反馈』这套表示法可以直接搬进我们的 agent 评测任务构造——尤其是『完成判据必须由代码判定，而不是 agent 自述』这一条。趋势价值在于具身数据供给正在被当成工程问题而非数据问题来处理，这与 2611.26196 的后训练栈是同一条线。局限：数据集在 huggingface.co，本环境到该域名反复超时，数据文件本身无法核验；执行成功率 38% 说明当前框架离可用还远。",
+      "id": "agentic-scaling-of-embodied-tasks-in-simulation-for-synthetic-data-collection-and-policy-evaluation",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 6.8,
+        "engineering_testability": 6.05,
+        "trend_signal": 5.15,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising"
+    },
+    {
+      "title": "EgoWitness: Benchmarking Instance-Level Spatial Memory and Reasoning in Egocentric Video Streams",
+      "authors": [
+        "Zhengru Fang",
+        "Zehao Liu",
+        "Mingyu Tsoi",
+        "Yaoyu Zhu",
+        "Junlong Li"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25849v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25849v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/egowitness/EgoWitness",
+      "benchmark_url": "",
+      "project_url": "https://egowitness.github.io/",
+      "abstract": "Recalling where and when an object was last seen and who saw it requires recognizing it across days and people. Existing long-video benchmarks focus on events, object categories, or relative locations, leaving instance-level spatial memory largely untested in multimodal models. To address this gap, we present EgoWitness, a benchmark for instance-level spatial memory and reasoning in egocentric video. Its 8,453 human-verified questions span approximately 324 hours of week-long and short-horizon recordings and test seven abilities, from recognizing an object or room to recalling who saw it and reasoning about room visits. Over one million reviewed masks of 34 registered landmarks and 21 movable-object labels are linked through room timelines. Among twelve direct vision-language models (VLMs), open-weight models reach at most 46.97% accuracy, and none exceeds 35% on identifying who saw an object last. We therefore propose EgoClue, a spatial-memory agent that retrieves candidate intervals, verifies instance identity, and computes spatial and temporal relations with five tools. Two-stage training with supervised fine-tuning (SFT) and Group Relative Policy Optimization (GRPO) raises its 4B controller from 23.64% to 72.65% accuracy on 1,320 held-out questions. Evidence-trace synthesis matches the best direct VLM at 74.85% on week-long questions and achieves 80.56% in environments excluded from training.",
+      "categories": [
+        "cs.CV"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark",
+        "multimodal"
+      ],
+      "comment": "43 pages, including supplementary material. Zhengru Fang and Zehao Liu contributed equally. Project page: https://egowitness.github.io/ ; Code: https://github.com/egowitness/EgoWitness",
+      "score": 68.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.25849v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.25849v1"
+        }
+      ],
+      "prescreen_score": 22,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": true,
+      "llm_reason": "把『记住某个具体实例（哪一个人、哪一次、哪个房间）』做成可评测能力，数字经 PDF 正文核对：8,453 条人工校验问题、约 324 小时一周跨度与短跨度录像、覆盖七种能力；超过 100 万个经审核的掩码对应 34 个登记地标与 21 类可移动物体；十二个直接 VLM 中开源权重模型最高只有 46.97% 准确率，且没有一个在『谁最后看到它』上超过 35%；其 4B 控制器经 SFT + GRPO 两阶段训练后，在 1,320 条留出问题上从 23.64% 提升到 72.65%，证据轨迹合成在周跨度问题上达到 74.85%，在训练集外环境达到 80.56%。工程上有个负面结论值得记：直接喂长视频并不行，必须先把候选区间检索出来、验证实例身份、再用五个工具计算时空关系。仓库 github.com/egowitness/EgoWitness 实测 HTTP 200，但 README 明确写着『Code, dataset, and annotations are coming soon』，当前只有项目介绍与 assets，所以代码/数据入口实际不可用——这一条必须标待核验，不能当作已发布的工件。趋势价值在于『实例级空间记忆』是具身与长期助理场景的共同前置能力（与 2611.25925 SpatialMem 同向），但今天我们没有可跑的工件，只能纳入观察。",
+      "id": "egowitness-benchmarking-instance-level-spatial-memory-and-reasoning-in-egocentric-video-streams",
+      "value_type": "trend",
+      "matched_topics": [
+        "multimodal-agent",
+        "context-engineering",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 6.35,
+        "engineering_testability": 6.05,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 6.1,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 3.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising"
+    },
+    {
+      "title": "TwinLab-Bench: Evaluating AI Scientists in Agentic Twins of Real Labs",
+      "authors": [
+        "Yang Wan",
+        "Linchao Zhu"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26248v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26248v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "https://github.com/ZJUSCL/TwinLab-Bench",
+      "benchmark_url": "",
+      "project_url": "https://twinlab-bench.github.io/",
+      "abstract": "AI agents are increasingly expected to act as AI scientists, which requires three increasingly open abilities: carrying out a given computational workflow correctly, choosing the next measurements from a given design space, and designing their own experiments. Existing benchmarks mainly evaluate the first two abilities, in a terminal or in a closed loop that selects from predefined candidates. Evaluating the third ability requires reliably executing an experiment that an agent designs, with readings grounded in a real laboratory. We introduce TwinLab-Bench, which evaluates AI scientists on self-designed experiments in 52 tasks from laboratories in the physical sciences, the life sciences, and engineering. The benchmark supports more than 100 experimental action types, and the agent's report is scored by comparison with a hidden answer taken from real laboratory records. Each task has its own TwinLab agent, an agent that serves as the environment and executes the experiments that the tested agent designs, reading the raw materials of the laboratory and calling calculators that are built from its records. Compared with a language model that sees only the task description, the TwinLab agent almost eliminates readings that deviate from the real records and inconsistent answers to a repeated request, and closed-book probes control for answers recalled from memory. We find that these tasks remain hard for frontier models: the strongest, Claude Fable 5.2, averages a score of only 45.0, and we conduct an empirical study of where it fails.",
+      "categories": [
+        "cs.AI",
+        "cs.CL",
+        "cs.LG"
+      ],
+      "keywords": [
+        "agent",
+        "agentic",
+        "memory",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "https://twinlab-bench.github.io/ contains tasks and code. 33 pages, 6 figures, 14 tables. LLM-agent benchmark for autonomous experimental design in digital twins of real labs (physics, chemistry, wet-lab biology, materials, engineering). 13 agents evaluated: Claude Fable 5.2 45.0, Opus 5.5 40.2, GPT-6.1-sol 31.7, plus DeepSeek, Qwen, Kimi, GLM and others",
+      "score": 66.0,
+      "decision": "轻量试点",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26248v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26248v1"
+        }
+      ],
+      "prescreen_score": 22,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "把『AI 科学家自己设计实验』这件事从『闭卷答题』升级为『在真实实验室的数字孪生里动手』，并给出了运行手册。数字经 PDF 正文与仓库 README 双处核对：52 个来自物理科学、生命科学与工程实验室的任务，支持 100+ 种实验动作类型，每个任务由一个 TwinLab agent 充当环境、按真实实验室原始记录读取数据并调用由记录构建的计算器；最强模型 Claude Fable 5.2 平均只得 45.0 / 100（PDF 正文第 452 行、README 与项目站横幅一致），作者对失败做了专门实证研究。仓库 github.com/ZJUSCL/TwinLab-Bench 实测 HTTP 200、54 个 blob，含 machine.example.yaml、scripts/、tests/、twinlab/ 与 figures/，README 给出完整运行步骤（Linux + bubblewrap + Python 3.11 + Claude Code + DeepSeek API key，DeepSeek 作 TwinLab agent 与 judge，Claude Code 作 actor）。工程价值在于它示范了『隐藏真值 + 环境代理 + 封闭书本探针』这套评测结构，这套结构可以直接搬到我们的 agent 任务评测里，用来区分『agent 真的在实验』和『agent 在背答案』。局限：需要真实实验室数据与 Linux/bubblewrap 环境，我们无法在今天跑通；数据集与排行榜在 huggingface.co，本环境连接超时。趋势价值是『AI 科学家』从演示走向可评测基准，7–30 天值得连续观察。",
+      "id": "twinlab-bench-evaluating-ai-scientists-in-agentic-twins-of-real-labs",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 6.0,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 7.25,
+        "engineering_testability": 6.05,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 7.3,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 2.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 3.0
+      },
+      "trend_status": "rising"
+    },
+    {
+      "title": "Characterizing and Detecting Unfaithful Work Reports by Coding Agents",
+      "authors": [
+        "Wenhao Yang",
+        "Runzhi He",
+        "Minghui Zhou",
+        "Pengfei Gao",
+        "Dayi Lin"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25760v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25760v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Coding agents increasingly carry out long-horizon development tasks, autonomously planning and executing multi-step actions that span files, tools, and sessions. Because developers rarely follow each action, and agents resuming the work depend on records of what was done, the agent's work report often becomes the primary account of what was changed and established. When the report contains false or unsupported claims, it gives recipients false assurance: incomplete work may be accepted without verification, incorrect assumptions about the current state can propagate to later steps and agents, and evaluators that credit stated success may reward the report rather than the work. Yet little is known about what unfaithful reporting looks like in real development work, or how developers and agents handle it once it surfaces. Starting from real developer--agent conversations in SWE-chat, we conduct a systematic mixed-methods analysis of self-admitted unfaithful reports. We identify eleven subtypes in four categories: misreported observations, misattributed evidence, overstated task success, and faulty technical explanations, with overstated task success the most common. Handling these problems involves on average 4.3 further user turns and 12.71 minutes of recorded response and execution time, and users express dissatisfaction more often. Among 435 work reports that we separately sample and annotate, \\NaturalPositiveShare{}\\% contain at least one unfaithful claim. We also develop FaithDetector, a detector for unfaithful reporting informed by the observed patterns. On naturally sampled reports, FaithDetector attains \\NaturalDetectorMacro{}\\% macro-F1, about 13 percentage points above the baseline. Together, our findings and FaithDetector provide empirical evidence and an automated method for checking reporting faithfulness, informing agent evaluation and training feedback.",
+      "categories": [
+        "cs.SE",
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "coding agent",
+        "evaluation",
+        "planning"
+      ],
+      "comment": "",
+      "score": 64.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.25760v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.25760v1"
+        }
+      ],
+      "prescreen_score": 25,
+      "prescreen_topics": [
+        "ai-agent",
+        "coding-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "指出一个我们每天都在制造却从不在意的风险：agent 的工作汇报本身会失真。数字经 PDF 正文核对：作者从真实开发者—agent 对话（SWE-chat）中识别出四类共十一种失真子型，其中『夸大任务成功度』最常见（正文第 479 行：Overstating Task Success 是最大一类）；处理这些问题平均需要 4.3 轮额外用户交互与 12.71 分钟的记录响应与执行时间，用户满意度也更低；在另外采样的 435 份工作汇报中有 162 份（37.24%）至少含一条不忠实的断言；其检测器 FaithDetector 达到 93.06% macro-F1，比基线高约 13 个百分点。核心机制很值得记：论文明确指出 agent 自己的报告不算证据，因为包括 Replit 在内的多起事故中 agent 误报了自己的动作——这与今天深挖论文 2611.26553 的判定口径完全一致（那边是『The agent's own report does not count』），两篇独立工作在同一方法论点上收敛。局限：PDF 全文未找到本论文的代码/数据发布地址（只出现 docs.github.com 的引用链接），GitHub 搜索也未找到对应仓库，因此 FaithDetector 当前不可复现，只能标待核验；论文所用 SWE-chat 数据集是否公开亦未在文中确认。趋势价值在于『工作汇报可信度』应当成为 agent 评测的一个独立维度，而不是被完成率掩盖。",
+      "id": "characterizing-and-detecting-unfaithful-work-reports-by-coding-agents",
+      "value_type": "trend",
+      "matched_topics": [
+        "llm-evaluation",
+        "coding-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.6,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 4.8,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "How Much Should an Agent Remember? Deployment Lessons from Self-Distilled Memory for LLM Agents",
+      "authors": [
+        "K. R. Jayaram",
+        "Vatche Isahagian",
+        "Aswath Vaithinathan Aravindan",
+        "Vinod Muthusamy",
+        "Punleuk Oum"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26361v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26361v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "LLM agents on long-horizon tasks fail in recurring, procedural ways. They mis-paginate an API, resolve the wrong entity, or answer when no answer was asked. We built a pipeline that lets an agent learn from its own history. It first mines short \\emph{lessons} from the agent's own trajectories, one to three per episode. It then consolidates those lessons into a smaller set of \\emph{guidelines}, where each guideline records how many lessons it merged. At inference the agent receives either all guidelines or a selected subset. The pipeline ships in the open-source altk-evolve library and is deployed in IBM's CUGA agent and watsonx Orchestrate platform. We report what we learned building, measuring, and productizing it. Our primary instrument is the AppWorld benchmark, across models spanning 40--92\\% baseline task completion. The central finding is that the right amount of memory is a property of the model, not the memory. A strong model keeps improving as guidelines are added. DeepSeek-V3.2 gains +9.5 points of task completion and +16.1 points of scenario completion with its full 191-guideline set. A weak model gains less from the same full set than from a small selected subset. gpt-oss-120b starts at 39.9\\% task completion. It reaches 51.2\\% with all 199 of its guidelines but 55.4\\% (mean of two runs) with a selected subset of about 29. Around that result we report what went wrong: a high-support guideline that backfired, provenance silently dropped during consolidation, a swallowed API error that failed every task while producing a plausible log, and a baseline confound that nearly produced a misleading comparison with a prior method. We distill these into recommendations for teams deploying agent memory.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark",
+        "inference"
+      ],
+      "comment": "Accepted to IAAI 2027 (Oral)",
+      "score": 63.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26361v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26361v1"
+        }
+      ],
+      "prescreen_score": 24,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "来自 IBM 一线部署的 agent 记忆工程复盘，含一批少见但具体的『踩坑数字』。核心数字经 PDF 正文核对：DeepSeek-V3.2 用满 191 条 guideline 时任务完成率 +9.5、场景完成率 +16.1；gpt-oss-120b 起点 39.9%，用全部 199 条只到 51.2%，而精选约 29 条可达 55.4%（正文第 260 行明确：两次运行均值 56.0 与 54.8，且『All 199 are no better than a 24-guideline core』）；正文第 143 行给出 lessons→guidelines 的生成链路（DeepSeek 147 条轨迹产出 290 条原始 lesson，压缩为 191 条 guideline，其中 144 条 support=1）。论文的中心结论是『合适的记忆量是模型的属性，而不是记忆本身的属性』——强模型加 guideline 持续变好，弱模型需要精选子集。工程价值最实在的部分是它公开了失败模式：一条高支持度但适得其反的 guideline、合并时来源信息被静默丢弃、一个被吞掉的 API 错误导致每个任务都失败却留下看似合理的日志、以及一个差点造成误导性对比的基线混淆。这些都是我们做记忆模块时几乎必然踩到的坑，值得直接抄成检查表。局限：论文只声明开源库 altk-evolve，实测 github.com/AgentToolkit/altk-evolve 存在（142 stars，README 载有 GPT-4.1 ReAct 在 AppWorld 上场景完成率 50.0%→64.3% 的结果），但论文正文未给出可点击的仓库链接字符串，无法确认论文与该库的直接绑定关系；论文声称部署在 IBM CUGA agent 与 watsonx Orchestrate，属厂商内部事实，无法独立核验。",
+      "id": "how-much-should-an-agent-remember-deployment-lessons-from-self-distilled-memory-for-llm-agents",
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering",
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "CompAct-Bench: A Benchmark for Working-Context Compaction in Long-Horizon Agent Tasks",
+      "authors": [
+        "Jiayi Chen",
+        "Lizhe Chen",
+        "Yujia Chen",
+        "Shihan Dou",
+        "Ming Zhang"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25673v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25673v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "https://compaction-eval.github.io/CompAct-Bench/",
+      "abstract": "As language-model agents are applied to increasingly extended tasks, their working context continuously accumulates interaction history, tool observations, intermediate decisions, and task progress. Context compaction offers a practical way to reduce this growing history while allowing execution to continue, yet the compaction ability of modern LLMs remains insufficiently understood. We introduce CompAct-Bench, a benchmark for evaluating working-context compaction through its downstream effect on agent task completion. Starting from successful agent trajectories, we insert compaction boundaries at different stages of execution, compress the preceding working context with the model under evaluation, and let the same executor continue the original task. To enable fair comparison across compactors, we evaluate them under controlled retention ratios using a lightweight iterative ratio-adjustment procedure. CompAct-Bench covers information-seeking, software-engineering, and workspace-oriented tasks through BrowseComp, SWE-bench, and an internal CompanyBench evaluation. Our experiments show that working-context compaction remains highly lossy even for frontier models: Claude- and GPT-family models perform strongest overall, yet substantial degradation in downstream task accuracy persists under aggressive compaction. Further analysis reveals that failures are often caused not only by omitted information, but also by distorted task state, such as turning unresolved issues into apparent conclusions or forgetting previously established results, which can lead to incorrect decisions or redundant execution. These findings highlight working-context compaction as a distinct and still challenging ability for LLMs operating in extended agent tasks.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 62.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.25673v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.25673v1"
+        }
+      ],
+      "prescreen_score": 23,
+      "prescreen_topics": [
+        "ai-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "把『上下文压缩』当成一项独立能力来评测，而不是压缩策略的副产品，结论对我们直接相关：工作上下文压缩即使对前沿模型也高度有损——Claude 与 GPT 系整体最强，但在激进压缩下任务准确率仍显著下降；论文进一步指出失败不只来自信息遗漏，还来自任务状态被扭曲，例如把未解决的问题变成看似已定的结论，或忘记先前已建立的结果，进而导致错误决策或冗余执行。规模经 PDF 正文核对：79 个 BrowseComp 信息检索任务 + 96 个 SWE-bench 软件工程任务 + 25 个内部 CompanyBench 工作区任务，共 12 个前沿模型；上下文长度从 SWE-bench 的 122.8K token 压缩到 CompanyBench。评测方法很值得抄：它不是给压缩打分，而是从成功的 agent 轨迹出发，在执行的不同阶段插入压缩边界，用被测模型压缩前文，再让同一个执行者继续原任务，从而用下游完成率衡量压缩质量，并用受控保留比率做公平对比。工程价值在于它把『压缩后信息还在不在』变成可回归的指标，正好对应我们上下文工程的成本痛点。项目站 https://compaction-eval.github.io/CompAct-Bench/ 实测 HTTP 200，页面显示 200 个实例、12 个压缩器、10% 保留率下平均准确率 56.7、最高 68.5；但 PDF 与站点均未给出代码仓库地址，代码可用性待核验。",
+      "id": "compact-bench-a-benchmark-for-working-context-compaction-in-long-horizon-agent-tasks",
+      "value_type": "trend",
+      "matched_topics": [
+        "context-engineering",
+        "llm-evaluation",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 5.8,
+        "relevance": 6.2,
+        "evidence_strength": 5.85,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 5.6,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 2.2,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "emerging"
+    },
+    {
+      "title": "EvoMem: Self-Evolving Skills for Time-Aware Long Video Memory Agents",
+      "authors": [
+        "Yutong Guan",
+        "Meixing Shi",
+        "Haoran Sun",
+        "Bing Sun",
+        "Yuxiang Cai"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25889v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25889v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Although memory-augmented architectures have expanded the ability of large vision-language models (LVLMs) to process long videos, existing retrieval processes still largely rely on global semantic matching and lack state-driven temporal control, often returning fragmented or redundant evidence and failing to maintain a coherent evidence chain. To address this challenge, we propose EvoMem, a time-aware long-video memory agent guided by self-evolving retrieval skills. EvoMem constructs a hierarchical time-indexed memory, where different types of evidence are aligned onto a unified video timeline; during retrieval, temporal cues from acquired evidence are further converted into explicit signals that constrain subsequent memory access. To address recurring procedural errors in long-video question answering, such as unclear retrieval targets, improper memory access paths, or premature stopping, EvoMem introduces retrieval skills to provide process-level guidance, enabling the agent to dynamically adjust retrieval content, memory operations, and target temporal ranges according to the current evidence state, while deciding when to stop. Furthermore, inspired by reinforcement learning, we formulate skill evolution as a reward-guided policy improvement process. Each candidate skill is treated as an external policy patch, and rewards are assigned according to answer-correctness state transitions on the validation set. In this way, effective skills are accepted and low-quality skills are rejected without updating model parameters. Experiments on four long-video question answering benchmarks show that EvoMem significantly outperforms existing baselines, achieving an average accuracy of 60.1% and an average improvement of 8.6 percentage points over the previous best methods, demonstrating its effectiveness for long-video reasoning.",
+      "categories": [
+        "cs.CV"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark"
+      ],
+      "comment": "",
+      "score": 58.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.25889v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.25889v1"
+        }
+      ],
+      "prescreen_score": 26,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "rag-knowledge",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "把检索技能本身当成可演化的对象：构建分层时间索引记忆，把检索到的证据中的时间线索转成显式信号去约束后续的记忆访问；再用『外部策略补丁』的形式让候选技能在验证集上按答对与否接受或拒绝，从而在不更新模型参数的前提下演化技能。数字经 PDF 正文核对：四个长视频问答基准上平均准确率 60.1%，比此前最好方法平均提升 8.6 个百分点。方法上最值得保存的一点是『技能作为外部策略补丁 + 按状态转移给奖励』这一形式——它把 agent 的流程级经验（检索目标不清、记忆访问路径不当、过早停止）从提示词里搬到了可版本化、可拒绝的独立对象上，这与我们沉淀 Skill / Checklist 的方向直接同构。局限：无代码、无项目页、无数据发布地址（PDF 全文未出现任何 github / huggingface / 项目页链接，GitHub 搜索亦无对应仓库），四个基准中具体是哪些也未在摘要中给出，因此证据等级只能算「论文自述数字」，当前不可复现，标待核验。",
+      "id": "evomem-self-evolving-skills-for-time-aware-long-video-memory-agents",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "context-engineering",
+        "multimodal-agent",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 5.85,
+        "engineering_testability": 3.5,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 5.6,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "SpatialMem: Building Quantitative Spatial Reasoning Agents with Hierarchical Memory",
+      "authors": [
+        "Zinan Zheng",
+        "Nuo Chen",
+        "Jia Li"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25925v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25925v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Vision Language Models (VLMs) have shown remarkable capabilities in qualitative spatial reasoning, but remain limited in quantitative spatial reasoning. Current work leverages the VLM agent to invoke external vision tools to perform computation. However, these methods usually bind each functional requirement to a single predefined vision specialist, implicitly resulting in fixed and rigid tool pipelines. In practice, addressing diverse spatial scenarios and tasks demands a broader diversity in pipeline orchestration and vision specialist selection to achieve robust spatial reasoning. However, such diversity leads to a combinatorial execution space, making it challenging for the agent to orchestrate the optimal pipelines and specialists for different scenarios. In this work, we propose SpatialMem, a memory framework that enables a VLM agent to accumulate tool-use experience and leverage that memory to orchestrate vision specialists to solve the spatial reasoning problem. SpatialMem builds a two-level memory structure, with task memory capturing tool orchestration and scene memory capturing tool selection. It further introduces a dual-state trajectory optimization process to preserve successful tool experiences and refine suboptimal ones. Moreover, existing spatial reasoning benchmarks suffer from quality issues and limited coverage of scene types and tasks. To address these gap, we propose MetricBench, a benchmark covering both indoor and outdoor scenes and three quantitative spatial reasoning tasks. Our method achieves state-of-the-art results on MetricBench, Q-Spatial, and SpatilRGPT-Bench, outperforming best VLM baselines by 32% on MetricBench. Additionally, the memory design yields a 9.1% absolute gain over a memory-free agent on MetricBench.",
+      "categories": [
+        "cs.CV"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark",
+        "tool use"
+      ],
+      "comment": "",
+      "score": 56.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.25925v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.25925v1"
+        }
+      ],
+      "prescreen_score": 24,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent",
+        "llm-evaluation"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "用一个两级记忆（任务记忆存工具编排、场景记忆存工具选择）来替 VLM agent 选对视觉专家，解决定量空间推理。数字经 PDF 正文核对：在自建的 MetricBench 上比最好 VLM 基线高 32%，且记忆设计本身相对无记忆 agent 带来 9.1% 的绝对提升；同时在 Q-Spatial 与 SpatilRGPT-Bench 上达到 SOTA。核心论点值得记：现有做法把每个功能需求绑死到一个预定义视觉专家上，形成固定僵硬的工具流水线；而真实场景需要工具编排与专家选择的多样性，这又带来组合爆炸的执行空间——记忆正是用来收敛这个空间的。这与我们做工具编排的方向一致。局限较重：论文给出的代码地址只写到「https://github.com/compasszzn/」这一层目录（PDF 正文第 41 行末尾即断），实测该用户下 10 个公开仓库中没有 SpatialMem 或 MetricBench 对应实现（只有 CirT、WeatherSyn、XRDBench 等无关项目），因此代码入口实为待核验，不应写入任何对外结论；所提出的 MetricBench 也未找到独立发布页。",
+      "id": "spatialmem-building-quantitative-spatial-reasoning-agents-with-hierarchical-memory",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "context-engineering",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 6.45,
+        "relevance": 7.4,
+        "evidence_strength": 4.95,
+        "engineering_testability": 5.15,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 3.8,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0.8,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "EmbodyAgent: Post-Training Embodied VLM Agents via Distillation, SFT, and RL",
+      "authors": [
+        "Wei Dai",
+        "Jinkun Liu",
+        "Jiayi Chen",
+        "Han Liu",
+        "Wenbo Ding"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26196v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26196v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Vision-language models (VLMs) can act as closed-loop robot-use agents (RUAs) by writing and executing control code through tool interfaces. However, turning an open-weight VLM into a high-performing embodied agent requires a complete post-training stack: out-of-the-box open VLMs fail completely at interactive tool contracts, strong frontier teachers are accessible only as black-box endpoints without exposed weights or token probabilities, and supervised imitation alone plateaus under rollout distribution shift. We present EmbodyAgent, an end-to-end post-training framework with three tightly coupled pipelines: (1) a black-box data synthesis pipeline that queries a strong teacher under a forced think-then-code contract and filters trajectories by task success; (2) an SFT pipeline that distills the explanation-and-program targets into an open-weight 9B VLM with both vision and language encoders trainable; and (3) an online RL pipeline that optimizes student-generated episodes via group-relative advantage with a runtime-error-penalized outcome reward. All three pipelines share one primitive-free Python execution tool exposing only raw visual observation and seven-dimensional end-effector control, with no action decoder and no interface shift across stages. Under a strictly separated evaluation protocol on ten LIBERO Spatial tasks (disjoint state splits, greedy test-time decoding, training-only safeguards), held-out success on 100 test states rises from 0/100 (base 9B VLM) to 14/100 (after SFT) and 84/100 (after RL), while training rollout success climbs from 8.4% to 87.7% and median model calls per episode drop from 36 to 11. We further identify a self-reinforcing runtime-error mode induced by outcome-based RL on executable code, and establish a failure-category monitoring and sampling-side curation protocol that stabilizes training.",
+      "categories": [
+        "cs.RO"
+      ],
+      "keywords": [
+        "agent",
+        "evaluation"
+      ],
+      "comment": "11 pages, 4 figures. Code-as-policy robot-use agent post-training",
+      "score": 54.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26196v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26196v1"
+        }
+      ],
+      "prescreen_score": 23,
+      "prescreen_topics": [
+        "ai-agent",
+        "multimodal-agent",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "一套端到端的具身 VLM 后训练栈，三段管线共享同一个无动作原语、只暴露原始视觉观测与七维末端执行器控制、无跨阶段接口漂移：黑盒教师在强制 think-then-code 契约下合成并按任务成功过滤轨迹 → SFT 蒸馏进 9B 开源 VLM → 线上 RL 用组相对优势加运行时错误惩罚的奖励优化学生生成的 episode。数字经 PDF 正文核对：在十个 LIBERO Spatial 任务的严格分离评测协议下（状态划分不相交、贪心测试时解码），留出 100 个测试状态的成功数从 0/100（未训练的 9B 基座）到 14/100（SFT 后）再到 84/100（RL 后）；训练 rollout 成功率从 8.4% 升到 87.7%；每个测试 episode 的模型调用中位数从 36 降到 11。最有价值的是一个具体的失败模式识别：基于结果奖励对可执行代码做 RL 会诱发『自我强化的运行时错误模式』，作者给出了失败类别监控与采样侧整肃协议来稳定训练。局限：无代码仓库、无项目页（PDF 全文未出现 github 或 huggingface 链接），训练需 LIBERO 环境与 9B 模型权重，成本极高，我们短期无法复现；结论均来自作者自述。",
+      "id": "embodyagent-post-training-embodied-vlm-agents-via-distillation-sft-and-rl",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "inference-serving",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.95,
+        "engineering_testability": 5.15,
+        "trend_signal": 4.6,
+        "long_tail_potential": 4.15,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "System-One RSI: Building Muscle Memory for Interactive Agents through Guided Practice",
+      "authors": [
+        "Qingxu Fu",
+        "Xuanfa Jin",
+        "Ziqian Chen",
+        "Zhaoyang Liu",
+        "Bolin Ding"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26007v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26007v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Reasoning models provide strong multimodal task understanding but struggle with sub-second control because deliberation increases decision latency. Fast decision models can meet the response window, yet prompting and few-shot examples do not readily provide the fine-grained experience required by a new task. Inspired by coached motor learning, this paper presents System-One Recursive Self-Improvement (System-One RSI), which couples two loops. The high-frequency online inner loop is an Observe, Orient, Decide, Act (OODA) cycle: a decision model maps each visual observation and task question to structured judgments, and a decision tree converts them into timed actions without invoking a reasoning model. The offline outer loop is a recursive improvement cycle carried out by a team of reasoning agents. The team revises the decision-model prompt and decision tree, captures interaction records, derives supervision from those records, and trains or deploys updated model parameters. The improved system then returns to the environment and generates the experience for the next round, consolidating learned distinctions as external muscle memory. The framework operates with a small number of real episodes, without expert demonstrations, environment modification, sandboxing, or parallel simulation. Experiments in Snake, Zenless Zone Zero, and Black Myth: Wukong use a 27B decision model. Mean Snake score increases from 1.30 to 7.35. In an evaluated scenario of Zenless Zone Zero, median completion time decreases by 8.4%. In an evaluated combat scenario of Black Myth: Wukong, the evasive policy achieves 11 times the mean survival time of a stationary reference, while the offensive policy win rate rises from 0% to 66.7% across the evaluated configurations.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "multimodal"
+      ],
+      "comment": "19 pages, 9 figures, 5 tables",
+      "score": 52.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26007v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26007v1"
+        }
+      ],
+      "prescreen_score": 24,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent",
+        "inference-serving"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "把『快思考 vs 慢思考』的分工落到 agent 的执行回路里：高频在线内环用 OODA 周期由一个决策模型把视觉观测与任务问题映射成结构化判断、再由决策树转成定时动作，全程不调用推理模型；离线外环由一队推理 agent 修订决策模型提示与决策树、从交互记录导出监督、训练或部署更新后的参数，再回到环境生成下一轮经验。数字经 PDF 正文核对：27B 决策模型在 Snake 上平均分从 1.30 升到 7.35；Zenless Zone Zero 场景中位完成时间下降 8.4%；黑神话悟空战斗场景中闪避策略的平均存活时间是静止参照的 11 倍、进攻策略胜率从 0% 升到 66.7%（这些数字是正文第 239–248 行所述的受评场景配置）。工程价值在于它证明『慢模型离线写规则、快模型在线执行』这一分层是可行的，且规则是可读、可 diff、可回滚的——这与我们把 agent 经验沉淀为 Skill / 决策树的方向一致。局限：只在游戏环境验证，结论外推到真实业务 agent 的距离较远；无代码、无项目页（PDF 全文无 github / 项目页链接），复现需要三个游戏环境，属待核验。",
+      "id": "system-one-rsi-building-muscle-memory-for-interactive-agents-through-guided-practice",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving",
+        "multimodal-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 5.4,
+        "problem_importance": 7.1,
+        "relevance": 8.6,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 4.05,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 6.2,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Generalist Meets Specialists: An Evolving Multimodal Agent with Persistent Tool Orchestration for Traffic Scenario Understanding",
+      "authors": [
+        "Linjia Kang",
+        "Binhan Jiang",
+        "Juan Yang",
+        "Zhiqin Song",
+        "Xiangsen Wu"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25868v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.25868v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Traffic scenario understanding requires combining fine-grained visual evidence with spatial and temporal reasoning. Tool-augmented vision-language models (VLMs) can use specialized perception tools, but effective collaboration faces two challenges: terminal rewards provide limited guidance for intermediate decisions and error recovery, while repeated planning adds unnecessary cost across similar tasks. Echoing the fast-slow dichotomy of human cognition, we propose StarTV-Agent, which combines policy learning with experience evolution to support adaptive reasoning when needed and efficient reuse of prior experience when possible. During training, Role-Sensitive Process Optimization (RSPO) combines process advantages with terminal advantages, while Weakness-Driven Demonstration Learning (WDL) provides validated teacher demonstrations targeting the student's weak questions. During inference, Lightweight Adaptive Workflow Reuse (LAWR) enables a fast path by selecting suitable workflows and binding task-specific arguments and resource references, while a slow ReAct-based path handles tasks without suitable workflows. We further design label-free feedback based on execution completion, workflow adoption, and cost savings to guide workflow reuse and memory updates. Across three challenging benchmarks, StarTV-Agent achieves up to 8.0% relative performance improvement, while reducing token consumption by up to 52.1%.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "benchmark",
+        "multimodal",
+        "inference",
+        "planning"
+      ],
+      "comment": "",
+      "score": 50.0,
+      "decision": "持续观察",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.25868v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.25868v1"
+        }
+      ],
+      "prescreen_score": 22,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent",
+        "llm-evaluation",
+        "inference-serving"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "交通场景理解里的『快慢二分 + 工作流复用』：训练期用 Role-Sensitive Process Optimization 把过程优势与终局优势结合，用 Weakness-Driven Demonstration Learning 产出针对学生弱项的教师示范；推理期用 Lightweight Adaptive Workflow Reuse 走快路径（选择合适工作流并绑定任务特定参数与资源引用），没有合适工作流时退回基于 ReAct 的慢路径；再用无标签反馈（执行完成度、工作流采纳率、成本节省）驱动工作流复用与记忆更新。数字经 PDF 正文核对：三个基准上相对性能提升最高 8.0%，token 消耗最多降低 52.1%。它最可迁移的是那条工程结论——**重复规划同类任务是纯成本**，把已验证的工作流缓存下来并按参数绑定复用，是比换更强模型更直接的省钱手段，这与我们做 agent 成本优化直接相关。局限：提升幅度（8.0%）本身不大，且无代码、无项目页（PDF 全文无 github / 项目页链接），PDF 中出现的 langgraph 与 Kimi K3 / Qwen3.8-27B 链接是引用他人工作而非本文实现，标待核验。",
+      "id": "generalist-meets-specialists-an-evolving-multimodal-agent-with-persistent-tool-orchestration-for-traffic-scenario-understanding",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "multimodal-agent",
+        "inference-serving",
+        "ai-agent"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 7.75,
+        "relevance": 9.8,
+        "evidence_strength": 4.95,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.0,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 5.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    },
+    {
+      "title": "Seer: Guiding Small Deep-Research Agents with Shared Decision Models",
+      "authors": [
+        "Yuhao Zhou",
+        "Yang Zhou",
+        "Yuanxi Li",
+        "Jindi Lv",
+        "Dan Si"
+      ],
+      "published": "2026-11-19",
+      "updated": "2026-11-19",
+      "source": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26423v1",
+      "pdf_url": "https://arxiv.org/pdf/2611.26423v1",
+      "openreview_url": "",
+      "paperswithcode_url": "",
+      "code_url": "",
+      "benchmark_url": "",
+      "project_url": "",
+      "abstract": "Deep-research agents repeatedly decide what to search, read, and verify, often using large cloud-hosted language models for action proposal. However, privacy and local control motivate running agents on users' devices, where limited memory and compute favor smaller models and complicate on-device training. Yet inference-time guidance faces three obstacles: exploring alternatives through real execution adds tool calls, prompted self-evaluation is bounded by the agent's judgment, and model-specific guidance risks repeated adaptation costs. We introduce Seer, an inference-time framework providing local guidance that separates the agent's action proposal from learned consequence prediction and value estimation. From a shared corpus of real research trajectories, we train two models: a tool-response simulator on observed call--response pairs and a value estimator on histories labeled with discounted terminal correctness. The simulator and estimator are trained offline and reused across agents without further training. Moreover, Seer executes only the selected action and adds only real tool responses to the committed history, avoiding tool calls on discarded candidates at additional inference cost. Across multiple deep-research benchmarks, Seer substantially improves agent performance for different language models. For instance, GAIA accuracy rises from 13.6% to 41.7% for Qwen3.5-4B and from 22.3% to 50.5% for Qwen3.5-9B. Furthermore, our analyses suggest that broader candidate coverage can compensate for imperfect simulation, while prediction and scoring errors limit the benefits of wider imagined search. These findings highlight the potential of reusable models for prediction and evaluation to strengthen small research agents through extra local computation without the real execution of the discarded candidates.",
+      "categories": [
+        "cs.AI"
+      ],
+      "keywords": [
+        "agent",
+        "memory",
+        "evaluation",
+        "benchmark",
+        "inference"
+      ],
+      "comment": "24 pages",
+      "score": 48.0,
+      "decision": "暂时忽略",
+      "links": [
+        {
+          "label": "arXiv",
+          "url": "http://arxiv.org/abs/2611.26423v1"
+        },
+        {
+          "label": "PDF",
+          "url": "https://arxiv.org/pdf/2611.26423v1"
+        }
+      ],
+      "prescreen_score": 21,
+      "prescreen_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent",
+        "llm-evaluation",
+        "inference-serving",
+        "security-governance"
+      ],
+      "has_declared_artifact": false,
+      "llm_reason": "本地小模型也能做深度研究 agent 的『决策引导』：把 agent 的动作提议与学到的后果预测、价值估计分开，用一份真实研究轨迹语料离线训练两个模型——一个工具响应模拟器（学已观测的调用—响应对）、一个价值估计器（用折扣后的终局正确性标注历史），推理时只执行被选中的动作、只把真实工具响应写回历史，从而避免为被丢弃的候选动作付出额外工具调用成本。数字经 PDF 正文核对：GAIA 准确率对 Qwen3.5-4B 从 13.6% 升到 41.7%，对 Qwen3.5-9B 从 22.3% 升到 50.5%；作者的消融结论也诚实——更广的候选覆盖可以补偿模拟不完美，但预测与打分误差会限制更宽想象搜索的收益。它对『隐私与本地控制』场景有实际意义（模拟器与估计器离线训练后可跨 agent 复用、无需再训练）。局限：无代码、无模型权重发布地址（PDF 全文未出现 github / huggingface 链接），无法复现；今天的收益数字来自作者自述，标待核验。",
+      "id": "seer-guiding-small-deep-research-agents-with-shared-decision-models",
+      "value_type": "long_tail",
+      "matched_topics": [
+        "ai-agent",
+        "inference-serving",
+        "context-engineering"
+      ],
+      "score_breakdown": {
+        "novelty": 4.8,
+        "problem_importance": 9.05,
+        "relevance": 10,
+        "evidence_strength": 5.4,
+        "engineering_testability": 4.6,
+        "trend_signal": 6.55,
+        "long_tail_potential": 3.5,
+        "asset_convertibility": 7.0,
+        "actionability": 5.0,
+        "noise_risk": 1.2,
+        "weak_evidence_penalty": 4.0,
+        "low_relevance_penalty": 0,
+        "engineering_cost_penalty": 2.5,
+        "reproducibility_risk": 5.0
+      },
+      "trend_status": "long_tail_watch"
+    }
+  ],
+  "pool_stats": {
+    "fetched_from_sources": 400,
+    "unseen_after_dedup": 400,
+    "duplicates_of_history": 0,
+    "selected_for_review": 15,
+    "selection_note": "今日从宽候选池 400 篇中选出 15 篇进入日报；其中 0 篇与历史批次重复，已在跨日去重中剔除。"
+  },
+  "scored_at": "2026-11-21"
+}

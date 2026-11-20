@@ -1,0 +1,134 @@
+{
+  "id": "generalist-meets-specialists-an-evolving-multimodal-agent-with-persistent-tool-orchestration-for-traffic-scenario-understanding",
+  "title": "Generalist Meets Specialists: An Evolving Multimodal Agent with Persistent Tool Orchestration for Traffic Scenario Understanding",
+  "authors": [
+    "Linjia Kang",
+    "Binhan Jiang",
+    "Juan Yang",
+    "Zhiqin Song",
+    "Xiangsen Wu"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.25868v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.25868v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-21",
+  "first_deep_dive_daily": "2026-11-21",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 9.8,
+    "evidence": 4.95,
+    "engineering_testability": 4.6,
+    "trend_signal": 6.0,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 50.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：交通场景理解里的『快慢二分 + 工作流复用』：训练期用 Role-Sensitive Process Optimization 把过程优势与…",
+  "one_line_essence": "交通场景理解里的『快慢二分 + 工作流复用』：训练期用 Role-Sensitive Process Optimization 把过程优势与终局优势结合，用 Weakness-Driven Demonstration Learning 产出针对学生弱项的教师示范；推理期用 Lightweight Adaptive Workflow Reuse 走快路径（选择合适工作流并绑定任务特定参数与资源引用），没有合适工作流时退回基于 ReAct 的慢路径；再用无标签反馈（执行完成度、工作流采纳率、成本节省）驱动工作流复用与记忆更新。数字经 PDF 正文核对：三个基准上相对性能提升最高 8.0%，token 消耗最多降低 52.1%。它最可迁移的是那条工程结论——**重复规划同类任务是纯成本**，把已验证的工作流缓存下来并按参数绑定复用，是比换更强模型更直接的省钱手段，这与我们做 agent 成本优化直接相关。局限：提升幅度（8.0%）本身不大，且无代码、无项目页（PDF 全文无 github / 项目页链接），PDF 中出现的 langgraph 与 Kimi K3 / Qwen3.8-27B 链接是引用他人工作而非本文实现，标待核验。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "交通场景理解里的『快慢二分 + 工作流复用』：训练期用 Role-Sensitive Process Optimization 把过程优势与终局优势结合，用 Weakness-Driven Demonstration Learning 产出针对学生弱项的教师示范；推理期用 Lightweight Adaptive Workflow Reuse 走快路径（选择",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "交通场景理解里的『快慢二分 + 工作流复用』：训练期用 Role-Sensitive Process Optimization 把过程优势与终局优势结合，用 Weakness-Driven D",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-12"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25868v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.25868v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=generalist-meets-specialists-an-evolving-multimodal-agent-with-persistent-tool-orchestration-for-traffic-scenario-understanding",
+  "daily_path": "daily-detail.html?date=2026-11-21",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

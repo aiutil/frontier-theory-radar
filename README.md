@@ -21,13 +21,13 @@
 
 ![Frontier Theory Radar live research workspace](docs/images/readme-overview.png)
 
-## Latest research run · 2026-11-19
+## Latest research run · 2026-11-21
 
 | Papers reviewed | Immediate | Trend | Long tail | Deferred |
 | ---: | ---: | ---: | ---: | ---: |
-| 15 | 186 | 293 | 320 | 1419 |
+| 15 | 189 | 299 | 326 | 1419 |
 
-**Deep dive:** [Inference after coding agents](daily/2026/2026-11-19.md) · Immediate · 重点学习
+**Deep dive:** [Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)](daily/2026/2026-11-21.md) · Immediate · 重点学习
 
 ![Thirty-day research activity](docs/images/research-activity.svg)
 
@@ -35,21 +35,21 @@
 
 | Date | Deep dive | Value | Decision |
 | --- | --- | --- | --- |
+| [2026-11-21](daily/2026/2026-11-21.md) | Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI) | Immediate | 重点学习 |
 | [2026-11-19](daily/2026/2026-11-19.md) | Inference after coding agents | Immediate | 重点学习 |
 | [2026-11-15](daily/2026/2026-11-15.md) | Does a Self-Learning Migration Agent Learn? An Audited Evaluation of Evidence-Graded Experience Memory for Oracle-to-PostgreSQL Migration | Immediate | 重点学习 |
 | [2026-11-14](daily/2026/2026-11-14.md) | AgentSSL: Can MLE Agents Leverage Unlabeled Data? | Immediate | 重点学习 |
 | [2026-11-13](daily/2026/2026-11-13.md) | Continual-ARC: Measuring Skill Acquisition over a Working Lifetime | Ignore | 暂时忽略 |
 | [2026-11-12](daily/2026/2026-11-12.md) | Continual-ARC: Measuring Skill Acquisition over a Working Lifetime | Ignore | 暂时忽略 |
 | [2026-11-11](daily/2026/2026-11-11.md) | WorkflowArena: Benchmarking Executable Workflow Orchestration in LLM-Based Multi-Agent Systems | Immediate | 重点学习 |
-| [2026-11-10](daily/2026/2026-11-10.md) | On Agentic Manipulation Policies | Immediate | 重点学习 |
 
 ## Directions under active observation
 
 | Direction | Stage | Related papers |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 674 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 762 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 674 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 681 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 770 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 681 |
 
 ## Why this repository exists
 

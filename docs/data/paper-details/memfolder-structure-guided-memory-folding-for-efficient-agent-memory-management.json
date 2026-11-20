@@ -1,0 +1,136 @@
+{
+  "id": "memfolder-structure-guided-memory-folding-for-efficient-agent-memory-management",
+  "title": "MemFolder: Structure-Guided Memory Folding for Efficient Agent Memory Management",
+  "authors": [
+    "Xuyang Liu",
+    "Chenwen Lu",
+    "Junxi Wang",
+    "Siyu Ren",
+    "Xinying Lin"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26427v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26427v1",
+  "code_url": "https://github.com/xuyang-liu16/MemFolder",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-21",
+  "first_deep_dive_daily": "2026-11-21",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 9.8,
+    "evidence": 6.8,
+    "engineering_testability": 6.05,
+    "trend_signal": 6.55,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 79.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 …",
+  "one_line_essence": "今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 blob，结构完整可跑（src/core/memory.py、src/core/budgets.py、src/compression.py、src/loading/memory_libraries.py、src/evaluation/retrieval.py，加 examples/recipes/ 下 30+ 个可直接复用的配方 JSON，含 memforest-m3-proxy、dart-medoid_pivot、kmeans-merge 等基线与消融配置，还有 skills/SKILL.md 作为 agent 可读的实验指南）。核心数字在 PDF 正文与仓库 README 双处一致：RecordFolder 在 LoCoMo / LongMemEval / PersonaMem 三个文本基准上以 50% 更少的记录保留 Mem0 原平均性能的 99.0%，比最强基线 MemForest 的 97.1% 高 1.9 个百分点（PDF 正文第 209 行原句；README「Half as many records」条目同值）；ContextFolder 进一步把每条记录的 token 数在 LoCoMo / LongMemEval / M3-Bench-robot 上分别削减 40% / 38% / 31%；保留 30% 记录时检索加速 1.88×–5.34×。工程价值在于它正面解决了我们记忆模块的两个真实成本项：记录条数（检索开销）与上下文长度（prefill 与解码注意力开销），而且 RecordFolder 与 ContextFolder 共享同一套记忆分组结构，可以分阶段接入而不是一次性重写。仓库的 examples/recipes/*.json 是现成的配置模板，配合 README 给出的官方数据集下载命令（LoCoMo 的 locomo10.json、LongMemEval 的 longmemeval_s_cleaned.json、PersonaMem 的 questions_32k.csv / shared_contexts_32k.jsonl），今天就能跑一个最小对照实验。长期价值是『记忆不是越多越好，而是要折叠』这一结论会成为 agent 记忆模块的默认设计约束。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 blob，结构完整可跑（src/core/memory.py、src/core/budgets.py、src/compression.py、src/loading/memory_libraries.py、src/eval",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今天证据链第二完整的一篇：作者仓库 github.com/xuyang-liu16/MemFolder 实测 HTTP 200、122 个 blob，结构完整可跑（src/core/memor",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26427v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26427v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=memfolder-structure-guided-memory-folding-for-efficient-agent-memory-management",
+  "daily_path": "daily-detail.html?date=2026-11-21",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
