@@ -1,7 +1,20 @@
 {
-  "updated_at": "2026-11-21T04:57:12.109113",
+  "updated_at": "2026-11-22T04:59:30.956290",
   "total": 30,
   "reports": [
+    {
+      "date": "2026-11-22",
+      "title": "论文价值发现日报 - 2026-11-22",
+      "deep_dive_title": "Validation-driven Deployment of LLM Inference Platforms for Agentic Workloads",
+      "deep_dive_url": "http://arxiv.org/abs/2611.25905v1",
+      "decision": "重点学习",
+      "value_type": "immediate",
+      "value_type_label": "即时价值",
+      "daily_action": "今天做三件事，第一件完全不需要外部资源，第二件需要一点抓取时间，第三件是本周的跟进项。",
+      "max_uncertainty": "1. **数据集本体本轮无法独立验证。** huggingface.co 在本环境持续 80 秒超时，Exgentic/agent-llm-traces-v2（10,056 sessions / 241,674 calls）无法下载确认内容与规模，10,056 与 241,674 两个数字按论文自述处理。llm-d 仓库与 inference-perf 上游文档可达，但数据集本身未验。",
+      "one_line_judgement": "它把「验证工具本身准不准」当成一等问题，并用可复跑的数字回答了 agentic 负载到底该怎么压测——结论对任何自建推理平台的团队都直接可用。",
+      "path": "daily-detail.html?date=2026-11-22"
+    },
     {
       "date": "2026-11-21",
       "title": "论文价值发现日报 - 2026-11-21",
@@ -378,19 +391,6 @@
       "max_uncertainty": "Co-Evolving Acting and Forecasting（[2610.20597](http://arxiv.org/abs/2610.20597v1)）forecast head 形式化（参数共享 / 损失设计）、acting head 与 forecast head 共训练稳定性、跨 long-horizon task 验证、与 value-target / observation-target baseline 对照、是否开源 Co-Evolving pipeline；Your Transformer Is Secretly Elastic（[2610.20588](http://arxiv.org/abs/2610.20588v1)）on-the-fly adaptation 形式化（哪些层 / 哪些 token 参与 / 切换成本）、跨 task 验证、与 early-exit / MoE-routing / cascade baseline 对照、是否开源 elastic transformer wrapper；Latent Compaction（[2610.20582](http://arxiv.org/abs/2610.20582v1)）TTT cache 形式化（参数 / 优化步数）、跨 document 验证、与 quantize / prune / generic compression baseline 对照、是否开源 Latent Compaction harness；Continuum Attention（[2610.20586](http://arxiv.org/abs/2610.20586v1)）连续 memory curve 形式化（piecewise linear 参数化）、closed-form moment 在长上下文下稳定性、跨 task 验证、与 sparse / sliding-window / linear attention baseline 对照是否公开；HiRe-MoMa（[2610.20607](http://arxiv.org/abs/2610.20607v1)）hierarchical residual 形式化（哪一层 residual / sparse guidance 触发条件）、跨 MoMa task 验证、与 flat policy baseline 对照是否公开；Price of Anarchy（[2610.20587](http://arxiv.org/abs/2610.20587v1)）PoA bound 形式化（假设集合）、与 VCG / second-price baseline 对照、跨 agent distribution 验证是否公开；Player-1（[2610.20584](http://arxiv.org/abs/2610.20584v1)）environment generator 形式化、Player-1 训练协议、跨 game 验证是否公开。今日 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
       "one_line_judgement": "据摘要（arXiv [2610.20597](http://arxiv.org/abs/2610.20597v1)），论文把 language agent RL 的'长 horizon rollout cost 高 / 中间步骤监督浪费 / value target 与 observation target 都难构造'拉到'co-evolving acting and forecasting：用一个 forecast head 提供 intermediate supervision / 提升 sample efficiency'。是 ai-agent × llm-evaluation × inference-serving 的 'agentic RL co-evolving supervision' 即时价值资产——把 'language agent training' 从 'one terminal scalar reward' 或 'hand-crafted value / observation target' 三态拉到 'co-evolving acting and forecasting'，与昨日 2026-10-15 的 Two Clocks 在 'RLVR rollout sample efficiency'、DoubtLess 在 'reasoning cost' 层面同源；今日新观点：'co-evolving acting-and-forecasting supervision' 是 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'agentic RL intermediate supervision' 的具体范式响应。",
       "path": "daily-detail.html?date=2026-10-16"
-    },
-    {
-      "date": "2026-10-15",
-      "title": "论文价值发现日报 - 2026-10-15",
-      "deep_dive_title": "Hybrid Reasoning Agents",
-      "deep_dive_url": "http://arxiv.org/abs/2610.18861v1",
-      "decision": "轻量试点",
-      "value_type": "immediate",
-      "value_type_label": "即时价值",
-      "daily_action": "把 [2610.18861](http://arxiv.org/abs/2610.18861v1) Hybrid Reasoning Agents 'latent-text hybrid reasoning' 列为即时试点方向，写 'hybrid latent-text agent reasoning' checklist 草稿；把 [2610.18868](http://arxiv.org/abs/2610.18868v1) Tev 'long-horizon dense-progress-reward environment' 列为即时路线资产，写 'long-horizon env synthesis' checklist 草稿；把 [2610.18862](http://arxiv.org/abs/2610.18862v1) DoubtLess 'training-free reasoning trim contrastive decoding' 列为即时路线资产，写 'training-free reasoning trim' checklist 草稿；为 [2610.18853](http://arxiv.org/abs/2610.18853v1) Two Clocks 'RLVR rollout-batch two-clock'、[2610.18874](http://arxiv.org/abs/2610.18874v1) ChunkAct 'agentic robotics action-chunking'、[2610.18860](http://arxiv.org/abs/2610.18860v1) AesCode 'cross-modal aesthetic code' 设置 7 天观察周期；为 [2610.18869](http://arxiv.org/abs/2610.18869v1) VLA Pretraining Quality 'demo-quality VLA pretraining benchmark' 维持长尾卡片。⚠️ 今日抓取列表与前两日（2026-10-13 / 2026-10-14）的 2610.139xx 区间完全不同，新一批 arXiv 提交（2610.1885x-1887x）进入 submittedDate desc 前列，价值路由发生根本性变化（不是 '维持 / 微调'）——前两日的 RSI-Anything / AI Models Can Provably Hide Arbitrary Capabilities / Hide and Seek / When VLMs Destroy What They Know / Can Language Models Play the Wikipedia Game? / Prompteina 不再出现，今日改为 Hybrid Reasoning Agents / Tev / DoubtLess 即时试点 + Two Clocks / ChunkAct / AesCode 趋势卡片 + VLA Pretraining Quality 长尾 + Cepheid / Exact Topological Compliance / Data Free Diffusion 暂忽略；持续观察所有 10 篇是否开源 code / benchmark / project page；尤其关注 Hybrid Reasoning Agents 是否公开 unified generation process 协议、Tev 是否公开 long-horizon env + training recipe、DoubtLess 是否公开 contrastive decoding harness。",
-      "max_uncertainty": "Hybrid Reasoning Agents（[2610.18861](http://arxiv.org/abs/2610.18861v1)）unified generation process 形式化（latent state × text interaction 切换条件）、tool access 在 latent 段的注入方式、reasoning transparency 协议、跨 task 验证、与 pure text agent / pure latent agent baseline 对照、是否开源 HybridAgents pipeline 与 environment 接口是否公开；Tev（[2610.18868](http://arxiv.org/abs/2610.18868v1)）environment synthesis 协议、dense progress reward 形式化、跨 hours-to-days 任务验证、与 sparse-reward long-horizon baseline 对照、是否开源 Tev environment + training recipe 是否公开；DoubtLess（[2610.18862](http://arxiv.org/abs/2610.18862v1)）contrastive decoding 形式化（small vs large logit difference）、accuracy preservation 跨 benchmark 验证、token reduction 比、与 early-stop / wait-ban baseline 对照、是否开源 DoubtLess 推理与 decoding harness 是否公开；Two Clocks（[2610.18853](http://arxiv.org/abs/2610.18853v1)）two-clock 形式化（progress clock + collapse clock）、local quadratic 模型范围、跨 task / model 验证是否公开；ChunkAct（[2610.18874](http://arxiv.org/abs/2610.18874v1)）action chunk 形式化（chunk length / chunk trigger / reasoning reuse 协议）、跨 VLA task 验证、与 naive per-primitive baseline 对照是否公开；AesCode（[2610.18860](http://arxiv.org/abs/2610.18860v1)）decoupled cross-modal reward 形式化、code model 与 image generator 接口、跨 artifact type 验证是否公开；VLA Pretraining Quality（[2610.18869](http://arxiv.org/abs/2610.18869v1)）24 target tasks 具体清单、reward × label granularity 协议、跨 VLA model 验证是否公开。今日 10 篇论文均未在摘要里显式披露 code / benchmark / project URL（仅 PDF / arXiv），按规则统一标'暂无'，证据不足项明确写入每条 reason；链接或证据缺失时明确写'待核验/暂无'，不补写不存在的事实。",
-      "one_line_judgement": "据摘要（arXiv [2610.18861](http://arxiv.org/abs/2610.18861v1)），论文把 agent reasoning 的'latent reasoning 缺少 tool access + reasoning transparency / text reasoning 通过 LLM 交互但 efficiency 不足'拉到'HybridAgents：在一个 unified generation process 中动态在 latent reasoning 与 text-based interaction 之间导航'。是 ai-agent × llm-evaluation × inference-serving 的 'latent-text hybrid reasoning' 即时价值资产——把 'agent reasoning' 从 'latent-only（无 tool access / 透明度低）' 或 'text-only（效率低）' 二态拉到 'unified generation 动态切换 latent / text'，与前两日（2026-10-13 / 2026-10-14）的 RSI-Anything 在 'agent self-improve'、Hide and Seek 在 'reasoning transparency' 层面同源；今日新观点：'hybrid latent-text reasoning' 是 aiutil 长期关注的 ai-agent × llm-evaluation 主线在 'reasoning efficiency + tool access + transparency 三难' 的具体范式响应。",
-      "path": "daily-detail.html?date=2026-10-15"
     }
   ]
 }

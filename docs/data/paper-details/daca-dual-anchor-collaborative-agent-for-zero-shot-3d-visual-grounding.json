@@ -1,0 +1,133 @@
+{
+  "id": "daca-dual-anchor-collaborative-agent-for-zero-shot-3d-visual-grounding",
+  "title": "DACA: Dual-Anchor Collaborative Agent for Zero-Shot 3D Visual Grounding",
+  "authors": [
+    "Jiaming Liu",
+    "Linghe Kong",
+    "Guixu Zhang",
+    "Huaxi Huang"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.25722v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.25722v1",
+  "code_url": "https://github.com/liujia99/DACA",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-22",
+  "first_deep_dive_daily": "2026-11-22",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 8.6,
+    "evidence": 6.8,
+    "engineering_testability": 6.6,
+    "trend_signal": 5.45,
+    "long_tail_potential": 4.15,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 63.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：它批评的架构问题在我们自己的多工具 agent 里同样存在：单向流水线式的工具调用把语义理解与几何重建分成前后两段，误差会累积，且失败后无法…",
+  "one_line_essence": "它批评的架构问题在我们自己的多工具 agent 里同样存在：单向流水线式的工具调用把语义理解与几何重建分成前后两段，误差会累积，且失败后无法自主恢复。它的修法是把 3D 视觉定位重述为语义-几何双锚点协同：语义锚点持有目标视觉语义特征，用光流跟踪加 VLM 局部验证；几何锚点持有 3D 空间几何特征，用体素化与多关键点投影做全局空间推理；两者通过标准化的工具调用协议双向交换信息，自主决定下一步感知-动作，形成闭环。正文核对一致的结果：zero-shot 在 ScanRefer 上 Acc@0.25 达 73.6%、在 Nr3D 上整体准确率 70.4%，作者称远超此前的 zero-shot 3D-VG 方法。方法论上的可迁移点是「用双向协议把两个专用工具接成闭环，而不是用流水线串起来」——这个模式在纯文本 agent 里同样成立。局限：仅限 3D 视觉定位任务，与我们的工程距离较远。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它批评的架构问题在我们自己的多工具 agent 里同样存在：单向流水线式的工具调用把语义理解与几何重建分成前后两段，误差会累积，且失败后无法自主恢复。它的修法是把 3D 视觉定位重述为语义-几何双锚点协同：语义锚点持有目标视觉语义特征，用光流跟踪加 VLM 局部验证；几何锚点持有 3D 空间几何特征，用体素化与多关键点投影做全局空间推理；两者通过标准化的工具",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它批评的架构问题在我们自己的多工具 agent 里同样存在：单向流水线式的工具调用把语义理解与几何重建分成前后两段，误差会累积，且失败后无法自主恢复。它的修法是把 3D 视觉定位重述为语义-几",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-13"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25722v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.25722v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=daca-dual-anchor-collaborative-agent-for-zero-shot-3d-visual-grounding",
+  "daily_path": "daily-detail.html?date=2026-11-22",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

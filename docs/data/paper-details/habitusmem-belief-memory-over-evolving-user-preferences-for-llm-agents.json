@@ -1,0 +1,136 @@
+{
+  "id": "habitusmem-belief-memory-over-evolving-user-preferences-for-llm-agents",
+  "title": "HabitusMem: Belief Memory over Evolving User Preferences for LLM Agents",
+  "authors": [
+    "Yifan Lu",
+    "Gaoyang Guo",
+    "Wen Chen",
+    "Ziyun Zou",
+    "Jian Wu"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.25855v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.25855v1",
+  "code_url": "https://github.com/csyifan/HabitusMem",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-22",
+  "first_deep_dive_daily": "2026-11-22",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.6,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 76.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：它批评的正是我们大部分 agent 记忆系统的实现方式：只存「发生过什么」，把「这条偏好是否还成立、适用于哪里」留给下游 LLM 现场推断，…",
+  "one_line_essence": "它批评的正是我们大部分 agent 记忆系统的实现方式：只存「发生过什么」，把「这条偏好是否还成立、适用于哪里」留给下游 LLM 现场推断，于是 agent 反复用过时偏好。它的替代方案是把记忆建模成「助手对用户的信念」——每条信念带证据、作用域与状态，且每条信念都是文本记录、可被读出与审计。正文核对一致的关键数字有一组反直觉：在 Knowledge 场景下，不给记忆的 base LLM（Qwen）反而胜过 full context 和所有基于内容的记忆——说明注入历史会干扰本来能答对的问题；而 HabitusMem 只传相关信念，在生成分上比 full context 高 13 分（Qwen）和 11 分（DeepSeek），但准确率仍低于 full context（后者不丢证据，这符合预期）。消融也很诚实：请求内容单独或训练单独各自最多只加 2.3 分，工具使用上的完整混合相对 Direct 只提升 3.3 分（Qwen）和 4.5 分（DeepSeek）。工程可验证性：github.com/csyifan/HabitusMem 实测可达（32 个 blob、Apache-2.0），含 writer.py、train_sft.py、modeling.py、prompts.py 与 splits/，是完整可训练实现而非演示代码。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它批评的正是我们大部分 agent 记忆系统的实现方式：只存「发生过什么」，把「这条偏好是否还成立、适用于哪里」留给下游 LLM 现场推断，于是 agent 反复用过时偏好。它的替代方案是把记忆建模成「助手对用户的信念」——每条信念带证据、作用域与状态，且每条信念都是文本记录、可被读出与审计。正文核对一致的关键数字有一组反直觉：在 Knowledge 场景下",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "context-engineering",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它批评的正是我们大部分 agent 记忆系统的实现方式：只存「发生过什么」，把「这条偏好是否还成立、适用于哪里」留给下游 LLM 现场推断，于是 agent 反复用过时偏好。它的替代方案是把记",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25855v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.25855v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=habitusmem-belief-memory-over-evolving-user-preferences-for-llm-agents",
+  "daily_path": "daily-detail.html?date=2026-11-22",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

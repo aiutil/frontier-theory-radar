@@ -1,7 +1,142 @@
 {
-  "updated_at": "2026-11-21T04:57:12.880321",
-  "total": 326,
+  "updated_at": "2026-11-22T04:59:31.751951",
+  "total": 335,
   "items": [
+    {
+      "id": "nariq-sub-3-bit-quantization-for-long-horizon-agentic-tasks",
+      "title": "NariQ: Sub-3-Bit Quantization for Long-Horizon Agentic Tasks",
+      "direction": "推理与服务 / AI Agent",
+      "long_tail_type": "可迁移方法",
+      "why_save": "它抓的是一个评测错配：低比特量化方法在短文本上按困惑度标定和评测，而 agentic 长程任务的上下文是 100K token 量级、动辄上百次工具调用，两者的失配代价很高。论文给的前车之鉴数",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=nariq-sub-3-bit-quantization-for-long-horizon-agentic-tasks"
+    },
+    {
+      "id": "backtracking-agent-applications-security-incidents",
+      "title": "Backtracking Agent Applications Security Incidents",
+      "direction": "安全与治理 / Coding Agent",
+      "long_tail_type": "工程抽象",
+      "why_save": "它处理的是我们迟早要面对的运营问题：agent 应用出了安全事故，事后要回溯「入侵入口点（CEP）」在哪。难点被它说得很准——可用的日志是 agent 功能层（trajectory log），",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=backtracking-agent-applications-security-incidents"
+    },
+    {
+      "id": "mind2act-world-a-diagnostic-benchmark-for-embodied-mind-physical-action-and-mind-action-composition-in-robotic-manipulation",
+      "title": "Mind2Act World: A Diagnostic Benchmark for Embodied Mind, Physical Action, and Mind-Action Composition in Robotic Manipulation",
+      "direction": "Multimodal Agent / LLM 评测",
+      "long_tail_type": "工程抽象",
+      "why_save": "它的诊断式设计比结论更有价值：把任务拆成 Mind（基于历史观察做决策）、Act（精确及时执行）、Mind2Act（在闭环里把两者接起来）三个视角，于是能区分「系统缺这项能力」还是「有这项能力",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=mind2act-world-a-diagnostic-benchmark-for-embodied-mind-physical-action-and-mind-action-composition-in-robotic-manipulation"
+    },
+    {
+      "id": "ace-brain-0-7-learning-execution-grounded-reasoning-for-embodied-agents",
+      "title": "ACE-Brain-0.7: Learning Execution-Grounded Reasoning for Embodied Agents",
+      "direction": "Multimodal Agent / AI Agent",
+      "long_tail_type": "工程抽象",
+      "why_save": "它提出的问题很实在：长程具身任务的推理如果只基于语言先验而不落在「已观察到的执行状态」上，就会做出看起来合理但与现场不符的判断。正文核对一致的数字：ACE-Brain-0.7 是 9B VLM",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=ace-brain-0-7-learning-execution-grounded-reasoning-for-embodied-agents"
+    },
+    {
+      "id": "stark-moving-towards-personalized-agents-that-truly-learn-and-remember",
+      "title": "STARK: Moving towards Personalized Agents That Truly Learn and Remember",
+      "direction": "Context Engineering / AI Agent",
+      "long_tail_type": "工程抽象",
+      "why_save": "它对长期记忆做了一个我们迟早要面对的区分：事件本身（经历）是节点，而「这段经历如何塑造了行为倾向」是边——后者才是跨会话、跨用户可迁移的东西。结构上是双图（Episodic Graph 记交互",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=stark-moving-towards-personalized-agents-that-truly-learn-and-remember"
+    },
+    {
+      "id": "daca-dual-anchor-collaborative-agent-for-zero-shot-3d-visual-grounding",
+      "title": "DACA: Dual-Anchor Collaborative Agent for Zero-Shot 3D Visual Grounding",
+      "direction": "Multimodal Agent / AI Agent",
+      "long_tail_type": "可迁移方法",
+      "why_save": "它批评的架构问题在我们自己的多工具 agent 里同样存在：单向流水线式的工具调用把语义理解与几何重建分成前后两段，误差会累积，且失败后无法自主恢复。它的修法是把 3D 视觉定位重述为语义-几",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=daca-dual-anchor-collaborative-agent-for-zero-shot-3d-visual-grounding"
+    },
+    {
+      "id": "decoupled-knowledge-retrieval-and-compact-memory-enable-reliable-lifelong-model-editing",
+      "title": "Decoupled Knowledge Retrieval and Compact Memory Enable Reliable Lifelong Model Editing",
+      "direction": "Context Engineering / AI Agent",
+      "long_tail_type": "可迁移方法",
+      "why_save": "它处理的是一个具体但会随时间变糟的问题：基于记忆的模型编辑器在持续编辑下存储量线性增长、检索质量退化。它的做法是把「检索」与「注入」拆到两个表示空间——查询路由与编辑定位在外部语义空间完成，知",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=decoupled-knowledge-retrieval-and-compact-memory-enable-reliable-lifelong-model-editing"
+    },
+    {
+      "id": "raven-a-self-rag-based-agent-for-threat-classification-and-response",
+      "title": "RAVEN: A Self-RAG Based Agent for Threat Classification and Response",
+      "direction": "安全与治理 / RAG / 知识系统",
+      "long_tail_type": "工程抽象",
+      "why_save": "它把 RAG 用在 SOC 告警初筛上，思路本身不新，但有一处细节值得记：它强调生成的缓解建议要结合目标企业自身的基础设施知识，而不是套通用缓解模板——这一点在我们给内部平台生成修复建议时同样",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=raven-a-self-rag-based-agent-for-threat-classification-and-response"
+    },
+    {
+      "id": "democratizing-cross-project-knowledge-for-transforming-water-governance-and-climate-resilience-an-agentic-ai-ecosystem",
+      "title": "Democratizing Cross-Project Knowledge for Transforming Water Governance and Climate Resilience: an Agentic AI Ecosystem",
+      "direction": "RAG / 知识系统 / AI Agent",
+      "long_tail_type": "工程抽象",
+      "why_save": "它是一个领域化 RAG 应用的完整小案例：把三个欧盟项目的文档重建为层次化 section tree 并用结构化元数据索引，为水与气候两个领域分别微调嵌入模型，再用一个 ReAct 式控制器跨",
+      "future_trigger": "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强",
+      "reusable_assets": [
+        "Prompt",
+        "Skill",
+        "Checklist"
+      ],
+      "revisit_date": "2026-12-13",
+      "detail_path": "paper-detail.html?id=democratizing-cross-project-knowledge-for-transforming-water-governance-and-climate-resilience-an-agentic-ai-ecosystem"
+    },
     {
       "id": "evomem-self-evolving-skills-for-time-aware-long-video-memory-agents",
       "title": "EvoMem: Self-Evolving Skills for Time-Aware Long Video Memory Agents",

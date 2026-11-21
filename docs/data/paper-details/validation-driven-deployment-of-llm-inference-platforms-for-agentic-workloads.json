@@ -1,0 +1,136 @@
+{
+  "id": "validation-driven-deployment-of-llm-inference-platforms-for-agentic-workloads",
+  "title": "Validation-driven Deployment of LLM Inference Platforms for Agentic Workloads",
+  "authors": [
+    "Shai Gretz",
+    "Alon Halfon",
+    "Yoav Katz",
+    "Lena Dankin",
+    "Michal Jacovi"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.25905v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.25905v1",
+  "code_url": "https://github.com/Exgentic/eval-containers",
+  "benchmark_url": "https://huggingface.co/datasets/Exgentic/agent-llm-traces-v2",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-22",
+  "first_deep_dive_daily": "2026-11-22",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 9.0,
+    "engineering_testability": 7.7,
+    "trend_signal": 5.4,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 86.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今天唯一一篇把「验证工具本身准不准」当成一等问题、并给出可复跑数字的论文。做法：先用真实 agent session 抓 trace，再分三…",
+  "one_line_essence": "今天唯一一篇把「验证工具本身准不准」当成一等问题、并给出可复跑数字的论文。做法：先用真实 agent session 抓 trace，再分三种负载（live / replayed / synthetic）打 vLLM v0.31.0（8×H200 节点），同时用 Python statement coverage 判据回答「这三种负载是不是在做同一件事」。三个硬结论都在 PDF 正文核对一致：①重放保真度——重放的 P95 输入 token 稳定落在记录的 1.18x 以内，而 live re-run 高达 4.98x（40 sessions/benchmark，HWE-Bench 配 GLM-5.3、CyberGym 配 DeepSeek-V4.1-Flash-1017），即少量录制 session 就能得到可重复的 per-session token 负载；②覆盖互补而非重复——vLLM 安装共 419,671 条可测语句（2,705 文件），本次部署可达 239,319 条，三类负载各自走到其他两类没走到的 Python 路径；③真实 rollout 的教训——四个 MoE 模型（GLM-5.3、Nemotron 3 Ultra、DeepSeek-V4.1-Flash-1017、Kimi-K3）在 H100/H200 上，用公共 trace 只达到约一半最优并发、约 60% 吞吐，目标模型自抓的 trace 才暴露出 routing imbalance，而该 imbalance 只在常量共享 prompt 前缀下出现（WEKA trace 没有这个前缀）。工程价值在于三件工具（workflow 级 OTel trace replay、per-session error reporting、合成 agentic workload 生成）都贡献回上游 kubernetes-sigs/inference-perf（实测 281 stars，docs/otel_trace_replay.md 57KB、docs/synthetic_agentic.md 9.8KB 均 HTTP 200），并发布 10,056 个 agent sessions / 241,674 次 LLM 调用，Exgentic/eval-containers 实测可达（1372 个 blob）。长期价值在于「保真度」会成为 agentic serving 评测的标准论证形式。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今天唯一一篇把「验证工具本身准不准」当成一等问题、并给出可复跑数字的论文。做法：先用真实 agent session 抓 trace，再分三种负载（live / replayed / synthetic）打 vLLM v0.31.0（8×H200 节点），同时用 Python statement coverage 判据回答「这三种负载是不是在做同一件事」。三",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": true,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今天唯一一篇把「验证工具本身准不准」当成一等问题、并给出可复跑数字的论文。做法：先用真实 agent session 抓 trace，再分三种负载（live / replayed / synt",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25905v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.25905v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=validation-driven-deployment-of-llm-inference-platforms-for-agentic-workloads",
+  "daily_path": "daily-detail.html?date=2026-11-22",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

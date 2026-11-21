@@ -21,17 +21,17 @@
 
 ![前沿理论雷达真实研究工作台](docs/images/readme-overview.png)
 
-## 最新研究 · 2026-11-21
+## 最新研究 · 2026-11-22
 
 | 审阅论文 | 即时价值 | 趋势价值 | 长尾价值 | 暂时忽略 |
 | ---: | ---: | ---: | ---: | ---: |
-| 15 | 189 | 299 | 326 | 1419 |
+| 15 | 191 | 302 | 335 | 1420 |
 
-**今日深挖：** [Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI)](daily/2026/2026-11-21.md) · 即时价值 · 重点学习
+**今日深挖：** [Validation-driven Deployment of LLM Inference Platforms for Agentic Workloads](daily/2026/2026-11-22.md) · 即时价值 · 重点学习
 
-**核心判断：** 它把 agent 事故从「新闻报道」变成「可重放的测试用例」——为每起公开事故离线重建场景，并配一个只去掉被指控原因的匹配对照，然后在两者上分别跑 agent，从而把根因归因变成一个可证伪的差分实验。
+**核心判断：** 它把「验证工具本身准不准」当成一等问题，并用可复跑的数字回答了 agentic 负载到底该怎么压测——结论对任何自建推理平台的团队都直接可用。
 
-**建议动作：** 今天做三件事，前两件完全不依赖外部资源：
+**建议动作：** 今天做三件事，第一件完全不需要外部资源，第二件需要一点抓取时间，第三件是本周的跟进项。
 
 ![最近三十次研究活动](docs/images/research-activity.svg)
 
@@ -39,21 +39,21 @@
 
 | 日期 | 深挖论文 | 价值类型 | 判断 |
 | --- | --- | --- | --- |
+| [2026-11-22](daily/2026/2026-11-22.md) | Validation-driven Deployment of LLM Inference Platforms for Agentic Workloads | 即时价值 | 重点学习 |
 | [2026-11-21](daily/2026/2026-11-21.md) | Replication of Agentic Security Events: Audit and Investigation (ROGUE-AI) | 即时价值 | 重点学习 |
 | [2026-11-19](daily/2026/2026-11-19.md) | Inference after coding agents | 即时价值 | 重点学习 |
 | [2026-11-15](daily/2026/2026-11-15.md) | Does a Self-Learning Migration Agent Learn? An Audited Evaluation of Evidence-Graded Experience Memory for Oracle-to-PostgreSQL Migration | 即时价值 | 重点学习 |
 | [2026-11-14](daily/2026/2026-11-14.md) | AgentSSL: Can MLE Agents Leverage Unlabeled Data? | 即时价值 | 重点学习 |
 | [2026-11-13](daily/2026/2026-11-13.md) | Continual-ARC: Measuring Skill Acquisition over a Working Lifetime | 暂时忽略 | 暂时忽略 |
 | [2026-11-12](daily/2026/2026-11-12.md) | Continual-ARC: Measuring Skill Acquisition over a Working Lifetime | 暂时忽略 | 暂时忽略 |
-| [2026-11-11](daily/2026/2026-11-11.md) | WorkflowArena: Benchmarking Executable Workflow Orchestration in LLM-Based Multi-Agent Systems | 即时价值 | 重点学习 |
 
 ## 当前重点趋势
 
 | 方向 | 阶段 | 关联论文 |
 | --- | --- | ---: |
-| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 681 |
-| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 770 |
-| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 681 |
+| [Agentic World Modeling](https://radar.aiutil.com/trend-detail.html?id=agentic-world-modeling) | 上升 | 687 |
+| [Coding Agent](https://radar.aiutil.com/trend-detail.html?id=coding-agent) | 主流化 | 775 |
+| [Context Engineering](https://radar.aiutil.com/trend-detail.html?id=context-engineering) | 上升 | 687 |
 
 ## 为什么做这个项目
 
