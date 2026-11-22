@@ -1,0 +1,134 @@
+{
+  "id": "badas-3-0-real-time-driving-perception-and-planning-from-one-camera",
+  "title": "BADAS-3.0: Real-Time Driving Perception and Planning from One Camera",
+  "authors": [
+    "Roni Goldshmidt",
+    "Hamish Scott",
+    "Lorenzo Niccolini"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26294v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26294v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 9.8,
+    "evidence": 4.95,
+    "engineering_testability": 3.5,
+    "trend_signal": 5.45,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 54.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：自动驾驶方向，与主线距离最远，但它示范了一种「小模型 + 严格延迟预算 + 安全基准」的打法，且顺手补了主流 benchmark 缺的失败面…",
+  "one_line_essence": "自动驾驶方向，与主线距离最远，但它示范了一种「小模型 + 严格延迟预算 + 安全基准」的打法，且顺手补了主流 benchmark 缺的失败面。做法：BADAS-3.0 是一个 1B 参数视频 ViT（输入 2 秒单前视摄像头片段，256×256、8 fps，patch 16×16×2 → 2048 个 1408 维 token，40 层 transformer），配四个轻量读出头（轨迹头出 6 条候选未来轨迹加软选择分数、速度头回归当前车速、ego-pose 头预测刚驶过的米制路径、risk 头预测未来碰撞风险分），单次前向 43 ms。论文正文核对一致的数字与结论：给定当前车速时，minADE_6 比 34B 的 Alpamayo 2 Super 低 44%，而后者读六路摄像头且慢 100 倍以上；补齐其余 ego 历史带来的改进不足 1%；不给车速时用自己的速度估计，用 10 个样本标定可恢复大部分差距；NavSim 上 PDMS 89.0、微调后 91.1；另外新增两个开环安全基准（真实行车记录仪碰撞与险情的 DCA-Bench、Euro NCAP 协议场景仿真），在两者上通过率高于所测全部已发表 planner；backbone 从零用 V-JEPA 目标在约 110,000 小时专有行车记录视频上预训练。对我们的价值主要是「补充安全类基准」这个动作本身，以及「小模型也够用」的架构反例。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "自动驾驶方向，与主线距离最远，但它示范了一种「小模型 + 严格延迟预算 + 安全基准」的打法，且顺手补了主流 benchmark 缺的失败面。做法：BADAS-3.0 是一个 1B 参数视频 ViT（输入 2 秒单前视摄像头片段，256×256、8 fps，patch 16×16×2 → 2048 个 1408 维 token，40 层 transforme",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "自动驾驶方向，与主线距离最远，但它示范了一种「小模型 + 严格延迟预算 + 安全基准」的打法，且顺手补了主流 benchmark 缺的失败面。做法：BADAS-3.0 是一个 1B 参数视频 ",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-14"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26294v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26294v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=badas-3-0-real-time-driving-perception-and-planning-from-one-camera",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

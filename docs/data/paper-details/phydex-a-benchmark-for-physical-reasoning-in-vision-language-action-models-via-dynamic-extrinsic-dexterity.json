@@ -1,0 +1,136 @@
+{
+  "id": "phydex-a-benchmark-for-physical-reasoning-in-vision-language-action-models-via-dynamic-extrinsic-dexterity",
+  "title": "PhyDEX: A Benchmark for Physical Reasoning in Vision-Language-Action Models via Dynamic Extrinsic Dexterity",
+  "authors": [
+    "Hao Vo",
+    "Taisei Hanyu",
+    "Yuki Ikebe",
+    "Pham Tri Quang",
+    "Sreevenkata Anjani Tishita Godavarthi"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26565v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26565v1",
+  "code_url": "https://github.com/UARK-AICV/PhyDEX",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 6.8,
+    "engineering_testability": 6.05,
+    "trend_signal": 5.45,
+    "long_tail_potential": 4.15,
+    "actionability": 6.1,
+    "noise_risk": 1.2
+  },
+  "score": 60.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：它对本雷达的价值不在机器人本身，而在它用一个干净的对照实验说明了「benchmark 上的近零分常常是多样性造成的，不一定是能力为零」——这…",
+  "one_line_essence": "它对本雷达的价值不在机器人本身，而在它用一个干净的对照实验说明了「benchmark 上的近零分常常是多样性造成的，不一定是能力为零」——这个判据对我们评估任何新 benchmark 都有用。做法：用投掷任务逼策略推断物体的质量、质心与摩擦（这类属性不可从图像、语言或额外传感器直接观测），35K 轨迹 / 9 个任务 / 100 个场景，覆盖均匀、不规则与动态质量物体与静态、多目标、移动目标。论文正文核对一致的数字与结论：三个代表策略（GR00T N1.7、DynamicVLA、ForceVLA）总成功率均低于 3%；只有约 21.24% 的轨迹完成抓取（DynamicVLA 仅 3.57%），而平均 21.24% 进入投掷阶段后整体成功率只有约 1.2%，即投掷命中率仅 5.6%；提供 ground-truth 物理属性可让成功率大致翻倍；多样性分数 α 消融显示 ForceVLA 从 α=1 的 3.3% 升到 α=0.5 的 11.3%、α=0 的 35.3%，GR00T N1.7 从 2% 升到 4.7% 再到 9.3%，即使 α=0 也没有策略在任一物体类型上超过 44%；Unitree 人形平台 2,400 episode 上 GR00T N1.7 平均 6%、ForceVLA 8.7%；真机 UR10e + Robotiq 2F-85 上 DynamicVLA 全败、GR00T N1.7 平均 10.7%（均匀 16% / 偏移质心 12% / 轻质低摩擦 4%）、ForceVLA 平均 51.3%（轻质低摩擦从 58% 掉到 40%）。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它对本雷达的价值不在机器人本身，而在它用一个干净的对照实验说明了「benchmark 上的近零分常常是多样性造成的，不一定是能力为零」——这个判据对我们评估任何新 benchmark 都有用。做法：用投掷任务逼策略推断物体的质量、质心与摩擦（这类属性不可从图像、语言或额外传感器直接观测），35K 轨迹 / 9 个任务 / 100 个场景，覆盖均匀、不规则与动",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它对本雷达的价值不在机器人本身，而在它用一个干净的对照实验说明了「benchmark 上的近零分常常是多样性造成的，不一定是能力为零」——这个判据对我们评估任何新 benchmark 都有用。",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-14"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26565v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26565v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=phydex-a-benchmark-for-physical-reasoning-in-vision-language-action-models-via-dynamic-extrinsic-dexterity",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

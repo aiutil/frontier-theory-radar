@@ -1,0 +1,130 @@
+{
+  "id": "held-while-waiting-what-llm-agent-sessions-reserve-on-serverless-and-agent-runtimes",
+  "title": "Held While Waiting: What LLM Agent Sessions Reserve on Serverless and Agent Runtimes",
+  "authors": [
+    "Mekhala Hithyshini Sreenivasa"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26480v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26480v1",
+  "code_url": "https://github.com/MEKHALA/agent-runtime-capacity",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 8.6,
+    "evidence": 6.35,
+    "engineering_testability": 6.05,
+    "trend_signal": 6.0,
+    "long_tail_potential": 5.35,
+    "actionability": 5.5,
+    "noise_risk": 1.2
+  },
+  "score": 88.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：今天唯一一篇把「agent 运行时到底占了什么」量化到可复跑程度的论文，而且结论直接命中我们自己的平台瓶颈。核心问题：agent step …",
+  "one_line_essence": "今天唯一一篇把「agent 运行时到底占了什么」量化到可复跑程度的论文，而且结论直接命中我们自己的平台瓶颈。核心问题：agent step 的绝大部分时间不是在算，而是在等模型；但按会话隔离的运行时（Bedrock AgentCore 每会话一个 microVM、Azure Foundry 每会话一个 sandbox）在等待期间仍然占着环境配额。论文正文逐条核对一致的数字：模型等待中位数 2.7 s、计算仅 5–40 ms（部署态实测「只有 0.2%–1.5% 的时间在计算」），于是任意时刻 1000 个被占环境中只有 2–15 个真正在用处理器——即每 1 核真实工作量要占住 70–600 个环境；实测并发上限做到 400 个会话；客服基准里一次会话平均只持续 33 s，但环境在客户端不显式关闭的情况下会被多留 15 分钟。九条解法中最有用的一条：我们实测 shipped 的 results/remedy_sim.json，k=64（64 个会话共享一个环境）时 envs_mean 从 1007.57 降到 16.81、比值 59.93，且该配置 added_latency_ms.p99 = 39.67 ms——即「59 倍更少的环境」与「99/100 的回复延迟不超过 40 ms」这两个数字可以从仓库数据独立重算出来，不是作者单方面主张。工程可验证性极好：github.com/MEKHALA/agent-runtime-capacity 实测可达（Apache-2.0，4864 KB），含 agentprof/（纯标准库的 span tracer 与 LangGraph/Strands 适配器）、scripts/measure_framework_cpu.py、scripts/simulate_remedy.py、scripts/validate_capacity.py、data/deployed_turns.csv、results/、tests/test_agentprof.py 与 paper/figures/；README 明确给出「表 2/图 1 本地复现 ~15 min、Section 4.4–7 分析脚本秒级复现」，且全程离线、不调用任何模型、不烧 token。对我们的直接产出：我们自己的 agent 服务要区分「计费口径」和「配额口径」——等待不计 CPU 不代表不占环境，而 AgentCore 默认 5000 活跃会话配额正是先撞到的墙。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "今天唯一一篇把「agent 运行时到底占了什么」量化到可复跑程度的论文，而且结论直接命中我们自己的平台瓶颈。核心问题：agent step 的绝大部分时间不是在算，而是在等模型；但按会话隔离的运行时（Bedrock AgentCore 每会话一个 microVM、Azure Foundry 每会话一个 sandbox）在等待期间仍然占着环境配额。论文正文逐条",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "今天唯一一篇把「agent 运行时到底占了什么」量化到可复跑程度的论文，而且结论直接命中我们自己的平台瓶颈。核心问题：agent step 的绝大部分时间不是在算，而是在等模型；但按会话隔离的",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26480v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26480v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=held-while-waiting-what-llm-agent-sessions-reserve-on-serverless-and-agent-runtimes",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

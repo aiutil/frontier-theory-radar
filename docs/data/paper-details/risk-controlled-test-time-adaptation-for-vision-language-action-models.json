@@ -1,0 +1,137 @@
+{
+  "id": "risk-controlled-test-time-adaptation-for-vision-language-action-models",
+  "title": "Risk-Controlled Test-Time Adaptation for Vision-Language-Action Models",
+  "authors": [
+    "Zixuan Liu",
+    "Hashem Haghbayan",
+    "Zizhan Zheng",
+    "Siavash Khajavi"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26438v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26438v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 9.8,
+    "evidence": 5.4,
+    "engineering_testability": 4.05,
+    "trend_signal": 6.0,
+    "long_tail_potential": 4.15,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 69.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：它给出一个我们迟早要自己写的东西：**带风险保证的「自己做还是问人」决策器**，而且保证的形式是可检验的统计声明而不是口头承诺。做法：R2-…",
+  "one_line_essence": "它给出一个我们迟早要自己写的东西：**带风险保证的「自己做还是问人」决策器**，而且保证的形式是可检验的统计声明而不是口头承诺。做法：R2-VLA 学一个不确定性预测器，估计「给定检索到的示范之后，VLA 预测动作的不确定性」，据此在 Act 与 Ask 之间选择；再用任务级 risk-control 过程把阈值 λ 校准到满足用户指定的任务级失败风险上；专家纠正持续写回检索记忆，同时保持既定风险保证。论文正文核对一致的关键点：三个 VLA backbone（π0-FAST、OpenVLA、miniVLA）× 四个 LIBERO suite，平均任务成功率相对 RICL 提升 9.2–11.2 个百分点且用更少专家请求；Theorem 1 建立「不确定性预测精度 ↔ 任务级失败风险」的理论连接，Theorem 2 证明持续适配过程中风险保证仍可保持；风险控制用 held-out calibration 集上检验 p_λ ≤ δ/K 的 Bonferroni 修正构造安全阈值集合 Λ̂_safe；训练不确定性头时刻意注入被破坏的检索上下文（错任务检索、视觉相似但语义无关的检索）以覆盖「检索反而有害」的失败模式。对我们的价值：我们的 agent 也有「要不要升级给人」的分叉点，如果那一步能带一个可审计的风险保证，而不是拍脑袋阈值，工程上完全不同。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它给出一个我们迟早要自己写的东西：**带风险保证的「自己做还是问人」决策器**，而且保证的形式是可检验的统计声明而不是口头承诺。做法：R2-VLA 学一个不确定性预测器，估计「给定检索到的示范之后，VLA 预测动作的不确定性」，据此在 Act 与 Ask 之间选择；再用任务级 risk-control 过程把阈值 λ 校准到满足用户指定的任务级失败风险上；专",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "context-engineering",
+      "coding-agent"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它给出一个我们迟早要自己写的东西：**带风险保证的「自己做还是问人」决策器**，而且保证的形式是可检验的统计声明而不是口头承诺。做法：R2-VLA 学一个不确定性预测器，估计「给定检索到的示范",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26438v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26438v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=risk-controlled-test-time-adaptation-for-vision-language-action-models",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=coding-agent"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

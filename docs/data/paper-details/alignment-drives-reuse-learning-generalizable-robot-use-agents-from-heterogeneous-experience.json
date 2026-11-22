@@ -1,0 +1,132 @@
+{
+  "id": "alignment-drives-reuse-learning-generalizable-robot-use-agents-from-heterogeneous-experience",
+  "title": "Alignment Drives Reuse: Learning Generalizable Robot-Use Agents from Heterogeneous Experience",
+  "authors": [
+    "Ziyue Wang",
+    "Yaopeng Yang",
+    "Liyi Zhou"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26376v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26376v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "long_tail",
+  "value_type_label": "长尾价值",
+  "value_scores": {
+    "novelty": 6.0,
+    "relevance": 7.4,
+    "evidence": 4.95,
+    "engineering_testability": 4.05,
+    "trend_signal": 5.45,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 56.0,
+  "decision": "持续观察",
+  "one_line_judgement": "值得先保存：它和本雷达主线（agent 平台、context 工程、评测治理）距离最远，属于机器人技能迁移方向，保留是因为它的方法论主张有普适性：把「异…",
+  "one_line_essence": "它和本雷达主线（agent 平台、context 工程、评测治理）距离最远，属于机器人技能迁移方向，保留是因为它的方法论主张有普适性：把「异构」当成对齐问题而不是数据问题。做法：UniCraft 用一致的几何坐标系表示场景几何、对齐不同机器人的感知与控制接口、把不同 benchmark 的任务归一到规范格式，于是不同 benchmark、不同 embodiment 的交互反馈可以共同改进同一套共享技能与调度策略，而且全程不需要示范数据、也不更新模型权重。论文正文核对一致的数字：交错 3 个 benchmark、6 种机器人形态，每个 agent 模型采集 2,700 条学习 rollout，训练任务池合计 180 个任务（LIBERO-PRO / RoboTwin 2.0 / RoboCasa365），在未见场景与未见任务上的合并成功率从第 1 轮到第 3 轮提升 LIBERO-PRO 9–28 个百分点、RoboTwin 2.0 10.8–13.3、RoboCasa365 3.1–14.4；冻结已学技能后，零样本迁移到 4 种新机器人形态与 5 个额外 agent 模型（robosuite 与 RoboDojo）；另有 66 个未见场景用例与 36 个留出任务。对我们唯一可迁移的点是「把异构数据对齐到同一规范格式，比堆更多数据更有效」这一主张。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它和本雷达主线（agent 平台、context 工程、评测治理）距离最远，属于机器人技能迁移方向，保留是因为它的方法论主张有普适性：把「异构」当成对齐问题而不是数据问题。做法：UniCraft 用一致的几何坐标系表示场景几何、对齐不同机器人的感知与控制接口、把不同 benchmark 的任务归一到规范格式，于是不同 benchmark、不同 embodim",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "long_tail_watch",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它和本雷达主线（agent 平台、context 工程、评测治理）距离最远，属于机器人技能迁移方向，保留是因为它的方法论主张有普适性：把「异构」当成对齐问题而不是数据问题。做法：UniCraf",
+    "future_trigger": [
+      "出现开源实现 / 被高质量论文引用 / 进入 benchmark / 与当前系统问题交集增强"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": "2026-12-14"
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [],
+    "long_tail_actions": [
+      "加入长尾库",
+      "标注未来触发条件",
+      "先沉淀 Prompt / Skill 草案"
+    ],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26376v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26376v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=alignment-drives-reuse-learning-generalizable-robot-use-agents-from-heterogeneous-experience",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

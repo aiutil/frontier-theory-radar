@@ -1,0 +1,137 @@
+{
+  "id": "lineage-a-benchmark-for-empirical-lineage-retrieval-in-ai-scientific-literature",
+  "title": "LINEAGE: A Benchmark for Empirical Lineage Retrieval in AI Scientific Literature",
+  "authors": [
+    "Pangjing Wu",
+    "Xu Yuan",
+    "Wenqi Fan",
+    "Qing Li"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.25845v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.25845v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 7.4,
+    "evidence": 6.3,
+    "engineering_testability": 4.6,
+    "trend_signal": 6.0,
+    "long_tail_potential": 3.5,
+    "actionability": 5.0,
+    "noise_risk": 1.2
+  },
+  "score": 75.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：它质疑的是我们这个雷达本身依赖的检索地基：现有文献检索 benchmark 用主题相关性或引用链接做监督，而这两者都无法反映「哪些前作被当作…",
+  "one_line_essence": "它质疑的是我们这个雷达本身依赖的检索地基：现有文献检索 benchmark 用主题相关性或引用链接做监督，而这两者都无法反映「哪些前作被当作了实证对比基线」。它改用 empirical lineage relation——一篇基线论文 → 一篇明确把它作为实证对比的源论文，边方向即「基线 → 使用者」，多跳邻域构成检索真值。规模与结论均可在论文正文逐条核对：121,048 篇论文、17 个 AI 顶会、2018–2025；3,950 个有向 lineage 连通分量、67,502 个节点、164,948 条边；80,000 条多面查询；19 个代表性检索系统；最强 agentic 检索器 Tongyi-DeepResearch 也只有 31.87 Recall@20 与 9.92 Precision@20；性能随 lineage 距离迅速衰减，平均 Recall@20 从一跳 28.42 掉到三跳 6.68；结构指标显示「偶尔命中检索」不等于「恢复 lineage 邻域」。另有一个对检索方法论很有价值的机制性发现：作者用 IQR 规则切掉上尾异常分量并做 bridge pruning（Tarjan 1974）做结构校准，去掉 436 条未来年份/成环边（占原始匹配边 0.15%），校准后聚类系数升到 0.3035、平均边邻域 Jaccard 升到 0.1420——即「被反复当作基线的热门方法会把本来无关的方法族连在一起」，这正是结构检索最容易被污染的机制。对我们的价值：这是把「我引用了什么 / 我检索到了什么」升级成「谁在跟谁对比」的评测地基，长期会改变我们雷达的证据结构。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它质疑的是我们这个雷达本身依赖的检索地基：现有文献检索 benchmark 用主题相关性或引用链接做监督，而这两者都无法反映「哪些前作被当作了实证对比基线」。它改用 empirical lineage relation——一篇基线论文 → 一篇明确把它作为实证对比的源论文，边方向即「基线 → 使用者」，多跳邻域构成检索真值。规模与结论均可在论文正文逐条核对：",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "rising",
+    "related_trends": [
+      "context-engineering",
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它质疑的是我们这个雷达本身依赖的检索地基：现有文献检索 benchmark 用主题相关性或引用链接做监督，而这两者都无法反映「哪些前作被当作了实证对比基线」。它改用 empirical lin",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25845v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.25845v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=lineage-a-benchmark-for-empirical-lineage-retrieval-in-ai-scientific-literature",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=context-engineering",
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

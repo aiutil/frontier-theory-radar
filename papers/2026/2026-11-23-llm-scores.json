@@ -1,0 +1,240 @@
+{
+  "date": "2026-11-23",
+  "generated_at": "2026-11-23",
+  "method": "人工证据审阅 + 实测工件核验；本轮先做价值路由（证据强度 / 工程价值 / 趋势价值 / 长期保留价值），再决定是否深入深挖。判断依据全部回指本轮可核验来源（arXiv HTML 全文逐条核对、GitHub API 实测仓库元数据与文件树、raw.githubusercontent.com 实测 README 与结果 JSON、仓库内 shipped 数据重算）。链接或证据缺失时明确写「待核验」，不补写不存在的事实。",
+  "notes": [
+    "本轮共 15 篇候选，全部来自 2026-11-19 arXiv 提交（cs.AI/cs.CL/cs.LG/cs.SE/cs.IR/cs.MA/cs.RO/cs.CV/cs.DC/cs.DB/cs.CR/stat.ML/cs.NE 共 13 类；宽候选池上限 400 篇，去重后 370 篇，入选 15 篇，30 篇与历史批次重复已剔除）。",
+    "本轮证据分级（全部为本轮实测）：①已核验到具体文件/数值并用仓库内 shipped 数据独立重算——2611.26480（github.com/MEKHALA/agent-runtime-capacity 实测可达，Apache-2.0，4864 KB，0 star，pushed 2026-11-16；仓库内 data/deployed_turns.csv 共 3555 行、去掉 5 行注释与 1 行表头后恰为 3549 条数据行，与论文「3,549 steps」一致；results/remedy_sim.json 重算 k=64 时 envs_mean 从 1007.57 降到 16.81、比值 59.93，且该配置 added_latency_ms.p99 = 39.67 ms，与论文「59 times fewer environments」「99 of every 100 replies are delayed by at most 40 milliseconds」一致；results/capacity_validation.json 载明 50/100/200/400 并发会话的实测核数，与论文「up to 400 concurrent sessions」一致；results/PLATFORMS.md 为九平台调查表且每条带 [V]/[R]/[U] 核验标记）、2611.26613（github.com/cxcscmu/AgentRoboCritic 实测可达，MIT，4 star，552 KB；文件树含 src/agentrobocritic/{cli,scoring,runner,providers,efe}.py 与 tests/ 三个测试文件；论文正文表格逐条核对 Muse-Glimmer-30B 微调后 failure-mode accuracy 32.58% → 74.24%、400 动作人工标注集、12,844 条标注动作一致）、2611.25774（github.com/ds2agent/DS2Agent 实测可达，MIT，30079 KB；文件树含 skills/ds2agent/SKILL.md、skills/availability/SKILL.md 等完整 skill 树与 f103-sim-package.zip；论文正文核对 QA 得分 87 → 97/100、token 1,849,354 → 1,021,312（−44.8%）、响应时间 197 s → 137 s（−30.5%）、驱动生成 token −72.9%、三个 FreeRTOS 应用系统集成 token −29.7% 一致）、2611.26557（github.com/ALIENS32/MM-SystemOneBias 实测可达，1497 KB，README 与论文正文核对 5,323 原始实例 / 76,439 干预实例 / 81,762 模型输入 / 8 个决策模型 + 5 个通用 VLM backbone / 6 种干预一致）、2611.26565（github.com/UARK-AICV/PhyDEX 实测可达，但仅是 GitHub Pages 展示站，README 自述「A self-contained static site for GitHub Pages」，无训练/生成代码与数据下载入口）。",
+    "②未找到公开工件（待核验）——2611.25845（LINEAGE，论文给出的唯一入口 anonymous.4open.science/r/Lineage-Benchmark-41F8 实测 HTTP 401，GitHub 仓库检索 total_count=0，121,048 篇 / 3,950 连通分量 / 67,502 节点 / 164,948 边 / 80,000 查询仅在论文正文核对一致）、2611.26341（RoC，仓库检索无同名结果，+24.0pp / −65.3% token / 7.10 Hz 等数值仅在论文正文核对一致）、2611.26438（R2-VLA，仓库检索无对应仓库，9.2–11.2pp 与 Theorem 1/2 仅在论文正文核对一致）、2611.25840（TUNE，仓库检索无结果，2.5K 基准与 +4.0pp/+9.1pp 仅在论文正文核对一致）、2611.26117（ChronoPatch，仓库检索只命中无关的 ahmeddoghri/chronopatch（patch 预测 conformal 区间），293.34% 等数值仅在论文正文核对一致）、2611.26503（JARVIS，仓库检索 total_count=0，2 h 39 min / 50.6 dB 仅在论文正文核对一致）、2611.26376（UniCraft，仓库检索 total_count=0，9–28pp 等数值仅在论文正文核对一致）、2611.26294（BADAS-3.0，仓库检索无结果，44% minADE 与 43 ms 等数值仅在论文正文核对一致）。",
+    "③明确证据不足的项——2611.25809（ALIoTh）：论文 V-A 节原文自述「At the time of writing the experimental campaign is ongoing. The following section therefore describes the experimental design and performance indices.」，即只有实验设计与指标定义（T_RCE / T_Shell / T_Root / Tok_total / SR），没有任何实测结果，无法核验成功率，本轮按暂时忽略处理但保留最小索引。2611.25898（医疗 LLM 可验证逻辑综述）：论文自述「These results come from single studies, mostly in simulated or small-sample settings, and are not directly comparable with neural baselines」，属叙述性综述且未预注册方案（PRISMA-ScR 流程但明确声明非正式 scoping review），无可复现工件。",
+    "④环境限制导致的未核验项：huggingface.co 在本环境持续连接失败（连续多次 curl 超时），因此 2611.26613 的 AgentRoboCritic-Bench / AgentRoboCritic-Dataset / AgentRoboCritic-Muse-Glimmer-30B 与 2611.26557 的 ALIENS232/MM-SystemOneBias 数据集与 2611.26565 的 PhysicalAI-Autonomous-Vehicles 等 HF 入口本轮无法独立下载验证，相关规模只按作者自述处理并标注待核验。",
+    "评分口径：先做价值路由再决定深挖深度。score_papers.py 的规则分对全部 15 篇均落在 46-53 分区间（关键词启发式无法区分本轮质量差异），因此本轮 llm-scores 以人工审阅分覆盖规则分；规则分仍保留在 score_breakdown 中作为可追溯底稿。深挖只做一篇（2611.26480），其余按价值路由分配到 trend / long_tail / ignore，不套用「论文→理论→工程实践→趋势→启发→行动」链路。"
+  ],
+  "by_url": {
+    "http://arxiv.org/abs/2611.26480v1": {
+      "score": 88.0,
+      "value_type": "immediate",
+      "decision": "重点学习",
+      "reason": "今天唯一一篇把「agent 运行时到底占了什么」量化到可复跑程度的论文，而且结论直接命中我们自己的平台瓶颈。核心问题：agent step 的绝大部分时间不是在算，而是在等模型；但按会话隔离的运行时（Bedrock AgentCore 每会话一个 microVM、Azure Foundry 每会话一个 sandbox）在等待期间仍然占着环境配额。论文正文逐条核对一致的数字：模型等待中位数 2.7 s、计算仅 5–40 ms（部署态实测「只有 0.2%–1.5% 的时间在计算」），于是任意时刻 1000 个被占环境中只有 2–15 个真正在用处理器——即每 1 核真实工作量要占住 70–600 个环境；实测并发上限做到 400 个会话；客服基准里一次会话平均只持续 33 s，但环境在客户端不显式关闭的情况下会被多留 15 分钟。九条解法中最有用的一条：我们实测 shipped 的 results/remedy_sim.json，k=64（64 个会话共享一个环境）时 envs_mean 从 1007.57 降到 16.81、比值 59.93，且该配置 added_latency_ms.p99 = 39.67 ms——即「59 倍更少的环境」与「99/100 的回复延迟不超过 40 ms」这两个数字可以从仓库数据独立重算出来，不是作者单方面主张。工程可验证性极好：github.com/MEKHALA/agent-runtime-capacity 实测可达（Apache-2.0，4864 KB），含 agentprof/（纯标准库的 span tracer 与 LangGraph/Strands 适配器）、scripts/measure_framework_cpu.py、scripts/simulate_remedy.py、scripts/validate_capacity.py、data/deployed_turns.csv、results/、tests/test_agentprof.py 与 paper/figures/；README 明确给出「表 2/图 1 本地复现 ~15 min、Section 4.4–7 分析脚本秒级复现」，且全程离线、不调用任何模型、不烧 token。对我们的直接产出：我们自己的 agent 服务要区分「计费口径」和「配额口径」——等待不计 CPU 不代表不占环境，而 AgentCore 默认 5000 活跃会话配额正是先撞到的墙。",
+      "evidence_status": "已核验：论文 HTML 全文逐条核对 2.7 s 中位等待 / 5–40 ms 计算 / 0.2–1.5% 计算占比 / 2–15 per 1,000 / 70–600 环境每核 / 400 并发直测 / 33 s 会话 vs 多留 15 分钟 / 59 倍环境 / 40 ms 延迟上限 / 九平台调查 / AgentCore 5000（部分区域 2500）会话配额；GitHub API 实测 MEKHALA/agent-runtime-capacity（HTTP 200，Apache-2.0，4864 KB，created 2026-10-31，pushed 2026-11-16，0 star，0 fork）；raw.githubusercontent.com 实测 data/deployed_turns.csv（3555 行 → 3549 条数据行，与「3,549 steps」一致）、results/remedy_sim.json（重算 k=64 比值 59.93、p99 39.67 ms、mean_session_s 33.06 与 idle_timeout_s 900）、results/capacity_validation.json（50/100/200/400 会话实测核数）、results/PLATFORMS.md（九平台调查，逐条带 [V]/[R]/[U] 标记）、README.md、paper/figures/ 三张图。待核验：仓库 star 数 0，社区验证程度为零；results/PLATFORMS.md 自述「Before submission: re-fetch every [R] source」，即多数平台条目标注为 [R]（取自研究 agent 报告、未独立复核），本轮未逐条复核这九个平台的当前文档；论文自述「The milliseconds are an estimate」——5–40 ms 是推算值而非直接测量（作者列出 stubbed model、model call 计时、背靠背 step 三种测法都偏低）；deployed_turns.csv 属另一项独立研究的 harness，README 明确「The deployed study's own harness is not part of this artifact」。",
+      "code_url": "https://github.com/MEKHALA/agent-runtime-capacity",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "ai-agent",
+        "ai-k8s-platform",
+        "inference-serving",
+        "data-engineering"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26613v1": {
+      "score": 82.0,
+      "value_type": "immediate",
+      "decision": "重点学习",
+      "reason": "它换掉了评测的最小单元：从 episode 级成功率下沉到 action 级，并给出了一个能复用的「意图—动作—判定」三元结构，这套结构可以直接搬进我们的 agent 评测设计。要点：frontier 多模态语言 agent（GPT-6 Astra）在 12 个操作 benchmark 上直接输出低层数值动作控制机器人，论文用 intent-grounded critique——策略 agent 每一步先声明本地意图，critic 再拿这个意图去判定动作结果与失败模式。论文正文核对一致的关键结论：12 个 benchmark 名单逐个可查（RoboDojo / StationeryBench / Astranomy / UniVTAC / OpenViTac / ContactBench 1.0 / LIBERO-MAX / Meta-World+ / DexJoCo / RoboWits / RoboTwin 2.0 / YAMLab，其中 7 个新采集带意图的 episode，5 个用已发布 trace 经统一对齐适配器摄入）；一半成功 episode 至少含一个被后续纠正的失败动作（即闭环自愈是真实存在的，不是刷分）；失败集中在低层物理抓取（Choice 类语义选择错误极罕见）；400 动作人工标注集上 GPT-6 Astra 与人类判断高度一致，而 ablate 掉本地意图后失败模式归因直接崩掉（只给全局目标时同一动作无法区分「够不到 / 没对齐 / 没抓住」，critic 大量标 unverifiable）；开源微调 critic Muse-Glimmer-30B 的 failure-mode accuracy 从 32.58% 提到 74.24%，并发布 12,844 条标注动作。工程可验证性好：github.com/cxcscmu/AgentRoboCritic 实测可达（MIT，4 star，552 KB），含 src/agentrobocritic/{cli,scoring,runner,providers,efe}.py、src/agentrobocritic/prompts/{benchmark.json,muse.txt}、efe/ 采集工具与 tests/ 三个测试文件，README 给出 arc verify / arc evaluate / arc score 三步本地跑通路径（默认下载四个公开分片，验证过程零模型调用）。对我们的直接产出：我们的 agent 失败分析目前停在 step/trace 级，缺一个「先声明意图再判定成败」的结构，这正是把「模型答错了」细化成「哪一类错」的前提。",
+      "evidence_status": "已核验：论文 HTML 全文核对 12 个 benchmark 名单、7+5 的数据来源划分、一半成功 episode 含被纠正的失败动作、400 动作人工标注集、ablate 意图导致归因崩塌、Muse-Glimmer-30B 微调前后 32.58% → 74.24%（正文表格逐格核对）、12,844 条标注动作；GitHub API 实测 cxcscmu/AgentRoboCritic（HTTP 200，MIT，4 star，552 KB，created 2026-11-20，pushed 2026-11-20），文件树含 LICENSE / src/agentrobocritic/ 全部模块 / efe/ / tests/{test_cli,test_efe,test_evaluation}.py；raw.githubusercontent.com 实测 README.md 与 src/agentrobocritic/prompts/benchmark.json（system+schema 结构）；项目页 https://adu2021.github.io/blog/AgentRoboCritic/ 实测 HTTP 200。待核验：huggingface.co 在本环境持续超时，AgentRoboCritic-Bench / AgentRoboCritic-Dataset / AgentRoboCritic-Muse-Glimmer-30B 三个 HF 入口（README 链接）本轮无法独立下载验证，400 动作标注集与 12,844 条训练数据的实际内容未验；仓库 star 数 4，社区验证程度低；12 个 benchmark 中 5 个依赖已发布的 GPT-6 Astra 评测 trace，其对齐适配器的正确性未独立复核。",
+      "code_url": "https://github.com/cxcscmu/AgentRoboCritic",
+      "project_url": "https://adu2021.github.io/blog/AgentRoboCritic/",
+      "benchmark_url": "",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent",
+        "multimodal-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2611.25774v1": {
+      "score": 77.0,
+      "value_type": "immediate",
+      "decision": "轻量试点",
+      "reason": "它把「一份数据手册」变成一棵可安装的 skill 树加一个可调用的 MCP 服务，这个产物形态和我们的 skill 资产路线高度同构。做法：每个设备由三个模型组成——knowledge model（检索与问答）、digital-twin model（物理功能）、interface model（驱动开发与系统集成），并允许 agent 连到真实设备做标定以压制幻觉。论文正文核对一致的数字：10 个设备、7 个功能类别；QA 得分从 87 提到 97/100，同时 token 从 1,849,354 降到 1,021,312（−44.8%）、响应时间从 197 s 降到 137 s（−30.5%）；驱动生成平均每设备 token −72.9%；系统集成在三个 FreeRTOS 应用上总 token −29.7%；两边用完全相同的 datasheet 转 Markdown 输入，所以改进不来自「多给了上下文」，而来自结构化。这条「同输入、更多结构、更少 token」的证据链对我们特别有用。工程可验证性好：github.com/ds2agent/DS2Agent 实测可达（MIT，30079 KB），含 skills/ds2agent/SKILL.md（9.8 KB）、skills/availability/SKILL.md、skills/ds2agent/datasheet2mcp/ 下的完整参考文档树（agents/、prompts/、orchestration.md、project-skill.md 等）、f103-sim-package.zip（30.5 MB）与 scripts/connect_remote_mcp.sh；README 明说产物是 dist/<scope>-agent/ 下的消费级 SKILL.md + 一个 MCP 服务（agent_mcp.py，按 knowledge / driver / behavior 三组暴露工具），并强调「Conversion is done by your coding agent, not by hand」。",
+      "evidence_status": "已核验：论文 HTML 全文核对 10 设备 / 7 类别、QA 87 → 97/100、token 1,849,354 → 1,021,312（−44.8%）、响应时间 197 s → 137 s（−30.5%）、驱动生成 −72.9%、系统集成 −29.7%（正文逐条核对，数值与表格一致）；GitHub API 实测 ds2agent/DS2Agent（HTTP 200，MIT，0 star，30079 KB，created 2026-11-17，pushed 2026-11-20），文件树含 LICENSE、README.md、skills/availability/SKILL.md、skills/ds2agent/SKILL.md、skills/ds2agent/datasheet2mcp/references/ 下 12 个参考文档、f103-sim-package.zip、scripts/connect_remote_mcp.sh；raw.githubusercontent.com 实测 README.md。待核验：仓库 star 数 0；论文给出的匿名镜像 anonymous.4open.science/r/DS2Agent-9FE8 实测 HTTP 401，无法交叉核对版本对应关系；10 个设备上的 QA 得分 87 / 97 依赖自建 100 题基准（每设备 10 题、6 个类别共 100 题），该基准未随仓库公开下载，评分标准是否可复现未验；f103-sim-package.zip 未解压检查内容。",
+      "code_url": "https://github.com/ds2agent/DS2Agent",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "ai-agent",
+        "rag-knowledge",
+        "context-engineering"
+      ]
+    },
+    "http://arxiv.org/abs/2611.25845v1": {
+      "score": 75.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "它质疑的是我们这个雷达本身依赖的检索地基：现有文献检索 benchmark 用主题相关性或引用链接做监督，而这两者都无法反映「哪些前作被当作了实证对比基线」。它改用 empirical lineage relation——一篇基线论文 → 一篇明确把它作为实证对比的源论文，边方向即「基线 → 使用者」，多跳邻域构成检索真值。规模与结论均可在论文正文逐条核对：121,048 篇论文、17 个 AI 顶会、2018–2025；3,950 个有向 lineage 连通分量、67,502 个节点、164,948 条边；80,000 条多面查询；19 个代表性检索系统；最强 agentic 检索器 Tongyi-DeepResearch 也只有 31.87 Recall@20 与 9.92 Precision@20；性能随 lineage 距离迅速衰减，平均 Recall@20 从一跳 28.42 掉到三跳 6.68；结构指标显示「偶尔命中检索」不等于「恢复 lineage 邻域」。另有一个对检索方法论很有价值的机制性发现：作者用 IQR 规则切掉上尾异常分量并做 bridge pruning（Tarjan 1974）做结构校准，去掉 436 条未来年份/成环边（占原始匹配边 0.15%），校准后聚类系数升到 0.3035、平均边邻域 Jaccard 升到 0.1420——即「被反复当作基线的热门方法会把本来无关的方法族连在一起」，这正是结构检索最容易被污染的机制。对我们的价值：这是把「我引用了什么 / 我检索到了什么」升级成「谁在跟谁对比」的评测地基，长期会改变我们雷达的证据结构。",
+      "evidence_status": "已核验：论文 HTML 全文核对 121,048 篇 / 17 个会场 / 2018–2025、3,950 分量、67,502 节点、164,948 边、80,000 多面查询、19 个检索系统、Tongyi-DeepResearch 31.87 R@20 与 9.92 P@20（正文表格）、一跳 28.42 → 三跳 6.68、去除 436 条未来/成环边（0.15%）、校准后聚类系数 0.3035 与平均边邻域 Jaccard 0.1420、随机种子 42 与 temperature=0 的复现设置。待核验：论文给出的唯一工件入口 https://anonymous.4open.science/r/Lineage-Benchmark-41F8 实测 HTTP 401（匿名评审仓库需要评审账号），GitHub 仓库检索 LINEAGE/empirical lineage retrieval 相关词 total_count=0，因此 Lineage-Constructor 的实现、121,048 篇语料的构成与 80,000 条查询本轮均无法独立验证；文中提到的 grobid、bm25s、pasa-7b 等是上游依赖而非本论文工件。",
+      "code_url": "",
+      "project_url": "https://anonymous.4open.science/r/Lineage-Benchmark-41F8",
+      "benchmark_url": "",
+      "matched_topics": [
+        "rag-knowledge",
+        "llm-evaluation",
+        "ai-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26341v1": {
+      "score": 73.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "它的核心贡献不是机器人，而是「什么时候才值得叫模型」这套触发机制，正好是我们 agent 成本控制的现成模板。做法：一个在线 task-state monitor 把时序视觉观测与有序交互记忆合起来，估计当前子任务进度、预测下一个子任务，只有在进度异常、子任务转移请求或候选动作的关键接触事件时才触发 reasoning agent 介入做执行修复或计划修订；常规执行留在低层策略，reasoning 只处理需要额外判断的决策。论文正文核对一致的数字：RMBench 全部 9 个任务上，相比最强 agent-based 基线任务成功率 +24.0 个百分点、token 消耗 −65.3%；相比最强 policy-based 基线 +15.1 个百分点；monitor 在不生成子任务时 7.10 Hz、生成子任务时 0.53 Hz、整体实测吞吐 2.77 Hz；低层策略用 50 步扩散去噪预测 32 步 action chunk；agent review 阶段可批准 1–32 步执行前缀或对 1–5 步做局部修正；模拟中 agent-based 对比每任务 30 次独立试验、policy-based 对比每任务 100 次；真机用 SO-ARM101 5-DoF 平台三个长时程任务各 10 次试验。对我们的价值：把「模型调用」变成事件驱动而非轮询，这条结构可以直接搬到我们的 agent 编排里评估 token 账。",
+      "evidence_status": "已核验：论文 HTML 全文核对 RMBench 9 任务、+24.0pp / −65.3% token / +15.1pp、7.10 Hz 与 0.53 Hz 与 2.77 Hz、50 步扩散 / 32 步 chunk、1–32 步批准前缀与 1–5 步局部修正、30 与 100 次独立试验、SO-ARM101 三个真机任务各 10 次试验、GPT-6 Astra (xhigh) 基线与 GPT-6.1 Sol (xhigh) RoC 的对照设定。待核验：GitHub 仓库检索 RoC / robot manipulation 相关词只命中 robocurve/worldevals、robot-rocq（RobCoq 数学库）、CPG-ROC-LocoManipulation 等无关项目，未找到本论文实现仓库，因此 monitor 训练代码、RMBench 配置与真机脚本本轮无法复现；RMBench 本身为引用他人工作，其数值依赖 GPT-6.1 Sol 这一具体闭源模型，跨模型可迁移性未验。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "inference-serving"
+      ]
+    },
+    "http://arxiv.org/abs/2611.25840v1": {
+      "score": 71.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "它的结论对任何带工具的 agent 都成立：拿到正确的工具输出不等于用好了它。做法：构造 Mask-Evidence MedVQA（2.5K 样本、覆盖 4 类影像，每题配一个答案相关的 ground-truth mask 以及多种呈现方式），把「证据从哪来」和「证据怎么呈现」拆开量测；随后提出 TUNE（Tool Use is Not Enough）harness，显式管理三件事——采什么证据、怎么呈现、要不要接受由此带来的答案更新。论文正文核对一致的两个发现：一是呈现方式本身就改变模型行为（同一张 mask 不同渲染导致结果显著不同），二是证据存在 trade-off——高亮相关区域能暴露模型原先漏掉的诊断证据，但新增视觉线索也会诱发错误关联，因此**即使给的是 ground-truth mask，也会出现「修正一部分答案、同时把原本正确的答案改错」**。量化上：在三个公开医学 VQA benchmark 上，evidence management 让微调后的 Qwen3.5-9B 平均准确率 +4.0 个百分点；完整 TUNE 相对直接工具调用在七个 benchmark 上平均 +9.1 分；在 SLAKE 上 TUNE 同时拿到最高修正率 7.5% 与最低有害翻转率 2.6%。对我们的价值：我们的 agent 也大量依赖「工具返回一个中间产物」的链路，这篇把「要不要采、怎么呈现、要不要采信」这三问显式化了，是一条低成本可借鉴的评测口径。",
+      "evidence_status": "已核验：论文 HTML 全文核对 2.5K 样本 / 4 类影像、三个公开 benchmark 上 Qwen3.5-9B +4.0pp、七个 benchmark 上 TUNE 相对直接工具调用 +9.1 分、SLAKE 上修正率 7.5% 与有害翻转率 2.6%、TUNE 展开三段结构（Target Planner / Evidence Presenter / 答案更新接受判定）；正文中模型卡链接 huggingface.co/Qwen/Qwen3.5-9B 与 llama-models 模型卡引用一致。待核验：GitHub 仓库检索 Mask-Evidence MedVQA / TUNE 相关词 total_count=0，未找到本论文实现与 Mask-Evidence MedVQA 数据集，因此 2.5K 基准的内容、渲染变体构造与 TUNE 的具体策略本轮无法独立验证；论文为 cs.CV/cs.AI 的 22 页会议格式稿件（comment 标注 22 pages, 3 figures），未见同行评审信号；本轮未下载 PDF 全文核对补充材料中的实验细节。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "ai-agent",
+        "llm-evaluation",
+        "multimodal-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26438v1": {
+      "score": 69.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "它给出一个我们迟早要自己写的东西：**带风险保证的「自己做还是问人」决策器**，而且保证的形式是可检验的统计声明而不是口头承诺。做法：R2-VLA 学一个不确定性预测器，估计「给定检索到的示范之后，VLA 预测动作的不确定性」，据此在 Act 与 Ask 之间选择；再用任务级 risk-control 过程把阈值 λ 校准到满足用户指定的任务级失败风险上；专家纠正持续写回检索记忆，同时保持既定风险保证。论文正文核对一致的关键点：三个 VLA backbone（π0-FAST、OpenVLA、miniVLA）× 四个 LIBERO suite，平均任务成功率相对 RICL 提升 9.2–11.2 个百分点且用更少专家请求；Theorem 1 建立「不确定性预测精度 ↔ 任务级失败风险」的理论连接，Theorem 2 证明持续适配过程中风险保证仍可保持；风险控制用 held-out calibration 集上检验 p_λ ≤ δ/K 的 Bonferroni 修正构造安全阈值集合 Λ̂_safe；训练不确定性头时刻意注入被破坏的检索上下文（错任务检索、视觉相似但语义无关的检索）以覆盖「检索反而有害」的失败模式。对我们的价值：我们的 agent 也有「要不要升级给人」的分叉点，如果那一步能带一个可审计的风险保证，而不是拍脑袋阈值，工程上完全不同。",
+      "evidence_status": "已核验：论文 HTML 全文核对 9.2–11.2 个百分点提升（正文两处：摘要与贡献列表）、三个 backbone（π0-FAST / OpenVLA / miniVLA）与四个 LIBERO suite、Theorem 1 与 Theorem 2 的表述、Bonferroni 修正 p_λ ≤ δ/K 与安全阈值集合 Λ̂_safe、刻意污染检索上下文的训练策略、CC BY 4.0 许可、附录中的具体训练超参（rank-32 / rank-16 LoRA、AdamW、peak lr 2.5e-5 / 1e-5 / 5e-6、RICL priming 与 suite-specific adaptation 两段更新、2,000 / 1,500 / 3,000 / 5,000 / 13,000 / 10,000 次更新）。待核验：GitHub 仓库检索 R2-VLA / risk-controlled 相关词只命中 AutoDrive-R2、r2_Vlaggen、r2-steer-vla、R2A-VLA 等无关项目，未找到本论文实现仓库，因此风险控制代码与校准脚本本轮无法复现；miniVLA 与 openpi、openvla 等均为上游依赖；数值依赖 LIBERO 与 π0 系列权重，未做跨模型复核。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "llm-evaluation",
+        "security-governance"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26557v1": {
+      "score": 67.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "它提供的是一套我们能直接借用的评测协议：把「决策模型」与它的 backbone 放在同一套受控干预下配对比较，并且同时看语义翻转与概率漂移。协议规模在正文与 README 中一致：5,323 条原始实例、9 个公开数据集、11 个任务场景、6 种配对干预（选项顺序、选项标签、外部判断、图像—文本描述、无关信息、评分刻度），展开为 76,439 条干预实例、81,762 次模型输入，评测 8 个 System One 决策模型 + 5 个通用 VLM backbone。有两个结论值得单独记住：其一，决策模型在选项标签、无关信息、评分刻度三类干预下的翻转率在全部 7 个配对里都更低，选项顺序有 6 个配对更低——即「决策接口」确实比通用 backbone 更稳；其二，在语义决策未变的那些实例上，答案概率的绝对变化平均在 4.56 到 11.55 个百分点之间——**准确率完全掩盖了这些输入效应**，所以只报 accuracy 的评测是漏的。工程可验证性不错：github.com/ALIENS32/MM-SystemOneBias 实测可达，configs/models/ 下 13 个模型配置、configs/environments/ 下 8 个环境配置、docs/{dataset_card,inference,metrics,models}.md、scripts/{download_dataset,download_model,infer,serve_autotrust,setup}.sh 齐备。",
+      "evidence_status": "已核验：论文 HTML 全文核对 5,323 原始实例 / 9 数据集 / 11 场景 / 6 干预、76,439 干预实例、81,762 模型输入、8 决策模型 + 5 backbone、7 个配对里翻转率更低的结论、概率绝对变化 4.56–11.55 个百分点、三类接口的实例分布（Choice 3,119 / Yes-No 1,804 / Scoring 400）；GitHub API 实测 ALIENS32/MM-SystemOneBias（HTTP 200，1497 KB，created 2026-11-22，pushed 2026-11-22，0 star，无 LICENSE 文件），文件树含 13 个模型配置、8 个环境配置、6 个 docs、6 个 scripts、6 张 assets 图；raw.githubusercontent.com 实测 README.md。待核验：huggingface.co 在本环境持续超时，ALIENS232/MM-SystemOneBias 数据集本轮无法下载验证；仓库无 LICENSE 文件，许可状态未知；README 中的模型与数据集下载脚本依赖 huggingface.co 与 vllm-sr 的权重，本轮未执行；论文未在正文给出所测模型的完整名单与各模型逐项数值对照表（只给配对聚合结论），逐模型复核需回到 artifacts。",
+      "code_url": "https://github.com/ALIENS32/MM-SystemOneBias",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent",
+        "security-governance"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26117v1": {
+      "score": 65.0,
+      "value_type": "trend",
+      "decision": "轻量试点",
+      "reason": "它是一个具体的部署风险，且对任何把 VLM 当服务暴露出去的 agent 平台都成立：攻击者只看最终回复，就能让生成变长，从而抬高延迟与算力账单。做法：两阶段——先用「响应长度引导的进化搜索」找出能诱发超长生成的视觉延迟锚点（delay anchor），再用「子空间校准的基于决策的优化」在固定可编辑区域内把扰动幅度压到最小。论文正文核对一致的数字：在 5% 图像面积扰动预算下，四个开源 VLM（BLIP-Large、LLaVA-v1.5-7B、Qwen3-VL-8B、InternVL3-8B）上 MSCOCO 的端到端延迟增加 47.86%–293.34%、GPU 能耗增加 41.44%–249.70%，ImageNet 上对应为 40.91%–279.61% 与 34.36%–237.67%，InternVL3 放大最强（响应长度逼近 1024 token 生成上限）；在三个商业 API（ChatGPT-5、Gemini-3.1-Pro-Preview、Claude-Sonnet-4-6）上、总查询预算 ≤500 的条件下，响应长度增加 37.6%–81.5%、客户端观测延迟达 1.82×–2.29×；实验硬件为单卡 NVIDIA RTX PRO 6000 96 GB，Phase I 初始化 S=100 候选、最多 T=500 次搜索迭代，Phase II 最多 T2=50 次精炼迭代、每次 B=128 次探测。对我们的价值：多模态 agent 服务如果直接代理商业 API，这条就是成本侧的可用性攻击面；而且它的度量方式（响应长度 + 客户端延迟，而不是模型内部 logit）说明这类风险在纯黑盒条件下也成立。",
+      "evidence_status": "已核验：论文 HTML 全文核对 47.86%–293.34% / 41.44%–249.70%（MSCOCO）、40.91%–279.61% / 34.36%–237.67%（ImageNet）、37.6%–81.5% 与 1.82×–2.29×（三个商业 API，查询预算 ≤500）、四个开源模型与三个商业 API 的具体名单、三数据集各随机抽 1,000 图、5% 空间预算、greedy decoding 与生成预算 G=512（G=1024 其他）、Phase I S=100/T=500 与 Phase II T2=50/B=128、RTX PRO 6000 96 GB 与 NVML 能量测量、InternVL3 响应长度逼近 1024 上限。待核验：GitHub 仓库检索 ChronoPatch 只命中无关的 ahmeddoghri/chronopatch（patch 预测 + conformal 区间，pushed 2026-10-19），本论文实现与扰动样例本轮无法获取，攻击可复现性未验；商业 API 侧的 1.82×–2.29× 延迟含网络与供应商排队因素，论文自述为「client-observed」，与纯模型计算时间不同源。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "security-governance",
+        "inference-serving",
+        "multimodal-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26565v1": {
+      "score": 60.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "它对本雷达的价值不在机器人本身，而在它用一个干净的对照实验说明了「benchmark 上的近零分常常是多样性造成的，不一定是能力为零」——这个判据对我们评估任何新 benchmark 都有用。做法：用投掷任务逼策略推断物体的质量、质心与摩擦（这类属性不可从图像、语言或额外传感器直接观测），35K 轨迹 / 9 个任务 / 100 个场景，覆盖均匀、不规则与动态质量物体与静态、多目标、移动目标。论文正文核对一致的数字与结论：三个代表策略（GR00T N1.7、DynamicVLA、ForceVLA）总成功率均低于 3%；只有约 21.24% 的轨迹完成抓取（DynamicVLA 仅 3.57%），而平均 21.24% 进入投掷阶段后整体成功率只有约 1.2%，即投掷命中率仅 5.6%；提供 ground-truth 物理属性可让成功率大致翻倍；多样性分数 α 消融显示 ForceVLA 从 α=1 的 3.3% 升到 α=0.5 的 11.3%、α=0 的 35.3%，GR00T N1.7 从 2% 升到 4.7% 再到 9.3%，即使 α=0 也没有策略在任一物体类型上超过 44%；Unitree 人形平台 2,400 episode 上 GR00T N1.7 平均 6%、ForceVLA 8.7%；真机 UR10e + Robotiq 2F-85 上 DynamicVLA 全败、GR00T N1.7 平均 10.7%（均匀 16% / 偏移质心 12% / 轻质低摩擦 4%）、ForceVLA 平均 51.3%（轻质低摩擦从 58% 掉到 40%）。",
+      "evidence_status": "已核验：论文 HTML 全文核对 35K 轨迹 / 143 小时 / 9 任务 / 100 场景、三个策略均低于 3%、21.24% 抓取率与 DynamicVLA 3.57%、1.2% 整体成功率与 5.6% 投掷命中率、ground-truth 物理属性约翻倍、α 消融的 3.3%→11.3%→35.3% 与 2%→4.7%→9.3%、α=0 时无策略超过 44%、人形 2,400 episode 的 6% 与 8.7%、真机 10.7% / 51.3% 与 58%→40%、每策略每任务 50 次 rollout 的评测设定；GitHub API 实测 UARK-AICV/PhyDEX（HTTP 200，created/pushed 2026-11-22，0 star，无 LICENSE），raw.githubusercontent.com 实测 README.md——README 自述为「A self-contained static site for GitHub Pages」，文件树仅含 index.html/app.js/style.css/assets/ 与 .github/workflows/pages.yml，即只有展示站，README 明确「The original data and renders remain untouched outside this folder」「Original .mov recordings in assets/real-experiments/ remain local and are excluded from Git」。待核验：数据集本体（35K 轨迹）本轮无可下载入口，生成流水线（grasp generation / motion planning / closed-loop throw optimization）实现未公开；论文中的物理属性仿真基于 Isaac Sim（上游依赖），本轮未下载核对；huggingface.co 的 nvidia/PhysicalAI-Autonomous-Vehicles 与 Alpamayo 权重入口在本环境超时未验。",
+      "code_url": "https://github.com/UARK-AICV/PhyDEX",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "llm-evaluation",
+        "multimodal-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26503v1": {
+      "score": 58.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "它演示的是一条我们暂时用不上的极端路径（真实电路板的设计—制造—测试闭环），但里面藏着一个可以直接搬走的机制：先在数字孪生里排演，再动真材料。做法：JARVIS 用机器人臂上的 3D 扫描仪扫工作区，构建可执行的数字孪生，在其中排演机器人动作、制造步骤与电路行为，然后用桌面级设备（导电银墨 PCB 打印机、锡膏沉积、贴片机）实际制造，用摄像头与传感器验证进度，用 OPAL-RT 实时仿真器与示波器测试电路，依据实测诊断偏差并在 KiCad 中生成修订设计再回到孪生里排演。论文正文核对一致的关键事实：单条文字指令启动实验；以电网接入变换器传感链上的 60 Hz 陷波器为例，首次运行 2 h 39 min 全程无人干预，板卡在 60 Hz 处实现 50.6 dB 衰减；数字孪生排演在制造前识别出五个问题，其中包含一个「若按原判据会错误否决一块可用电路板」的测试判据；执行过程中 agent 自主处理了实际故障；作者声明这是电力电子领域首个由 agent 闭合物理设计—制造—测试—学习回路的系统。对我们的价值：那条「先在孪生里排演、包括把测试判据本身也排演一遍」的思路，对我们做 agent 的干跑/回放验证同样成立。",
+      "evidence_status": "已核验：论文 HTML 全文核对 60 Hz 陷波器这一具体基准、2 h 39 min 首轮无人工介入、50.6 dB 衰减、孪生排演在制造前识别五个问题且其中一个是会误否决可用板卡的测试判据、执行期自主处置故障、OPAL-RT 与示波器构成的测量链路、KiCad 作为修订设计的落点、「first system in power electronics in which an agent closes the physical design-build-test-learn loop」的作者声明；另核对论文自述需求由 agent 自行设定为「remove 60 Hz mains hum from a ±10 V signal by at least 40 dB, with a flat passband」。待核验：GitHub 仓库检索 JARVIS / power electronics agent 相关词 total_count=0，未找到实现仓库、数字孪生资产或 OPAL-RT 配置，因此 2 h 39 min 与 50.6 dB 无法独立复核；单次演示（论文自述为一次 demonstration）不构成统计结论；作者称「To our knowledge」为该领域首例，该优先权声明本轮未做全面检索核对。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "ai-agent",
+        "context-engineering",
+        "multimodal-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26376v1": {
+      "score": 56.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "它和本雷达主线（agent 平台、context 工程、评测治理）距离最远，属于机器人技能迁移方向，保留是因为它的方法论主张有普适性：把「异构」当成对齐问题而不是数据问题。做法：UniCraft 用一致的几何坐标系表示场景几何、对齐不同机器人的感知与控制接口、把不同 benchmark 的任务归一到规范格式，于是不同 benchmark、不同 embodiment 的交互反馈可以共同改进同一套共享技能与调度策略，而且全程不需要示范数据、也不更新模型权重。论文正文核对一致的数字：交错 3 个 benchmark、6 种机器人形态，每个 agent 模型采集 2,700 条学习 rollout，训练任务池合计 180 个任务（LIBERO-PRO / RoboTwin 2.0 / RoboCasa365），在未见场景与未见任务上的合并成功率从第 1 轮到第 3 轮提升 LIBERO-PRO 9–28 个百分点、RoboTwin 2.0 10.8–13.3、RoboCasa365 3.1–14.4；冻结已学技能后，零样本迁移到 4 种新机器人形态与 5 个额外 agent 模型（robosuite 与 RoboDojo）；另有 66 个未见场景用例与 36 个留出任务。对我们唯一可迁移的点是「把异构数据对齐到同一规范格式，比堆更多数据更有效」这一主张。",
+      "evidence_status": "已核验：论文 HTML 全文核对 3 benchmark / 6 embodiment / 每模型 2,700 rollout / 180 任务、LIBERO-PRO 9–28pp 与 RoboTwin 2.0 10.8–13.3 与 RoboCasa365 3.1–14.4（Epochs 1–3）、冻结技能后零样本迁移到 4 种新形态与 5 个额外 agent 模型（robosuite / RoboDojo）、66 个未见场景用例与 36 个留出任务、「without any demonstrations or model weight updates」的实现约束。待核验：GitHub 仓库检索 UniCraft / robot manipulation skill 相关词 total_count=0，未找到实现仓库与 2,700 条 rollout 的产出路径，因此上述百分比无法独立验证；LIBERO-PRO / RoboTwin 2.0 / RoboCasa365 均为引用 benchmark，本轮未核对这三个基准在本论文中的具体配置与训练轮次定义；论文为 cs.RO 单类投稿，与本雷达主线相关性低，价值上限受限。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "multimodal-agent",
+        "ai-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2611.26294v1": {
+      "score": 54.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "自动驾驶方向，与主线距离最远，但它示范了一种「小模型 + 严格延迟预算 + 安全基准」的打法，且顺手补了主流 benchmark 缺的失败面。做法：BADAS-3.0 是一个 1B 参数视频 ViT（输入 2 秒单前视摄像头片段，256×256、8 fps，patch 16×16×2 → 2048 个 1408 维 token，40 层 transformer），配四个轻量读出头（轨迹头出 6 条候选未来轨迹加软选择分数、速度头回归当前车速、ego-pose 头预测刚驶过的米制路径、risk 头预测未来碰撞风险分），单次前向 43 ms。论文正文核对一致的数字与结论：给定当前车速时，minADE_6 比 34B 的 Alpamayo 2 Super 低 44%，而后者读六路摄像头且慢 100 倍以上；补齐其余 ego 历史带来的改进不足 1%；不给车速时用自己的速度估计，用 10 个样本标定可恢复大部分差距；NavSim 上 PDMS 89.0、微调后 91.1；另外新增两个开环安全基准（真实行车记录仪碰撞与险情的 DCA-Bench、Euro NCAP 协议场景仿真），在两者上通过率高于所测全部已发表 planner；backbone 从零用 V-JEPA 目标在约 110,000 小时专有行车记录视频上预训练。对我们的价值主要是「补充安全类基准」这个动作本身，以及「小模型也够用」的架构反例。",
+      "evidence_status": "已核验：论文 HTML 全文核对 1B 参数 ViT、2 秒单摄输入、256×256@8fps、2048 token × 1408 维、40 层、四头输出、43 ms 单次前向、44% 更低 minADE_6 与 34 倍参数 / 六路摄像头 / 慢 100 倍以上、其余 ego 历史改进不足 1%、10 样本标定车速、NavSim 89.0 PDMS 与微调 91.1、DCA-Bench 与 Euro NCAP 两个新安全基准及「pass rate 高于所测每个已发表 planner」的表述、V-JEPA 目标与约 110,000 小时专有行车记录视频预训练、评测所用五个公开数据集（nuScenes / Argoverse 2 Sensor and TbV / Waymo / PAI-644）与 PAI-100c 的划分方式。待核验：GitHub 仓库检索 BADAS-3.0 / BADAS driving 相关词无本论文结果，backbone 权重、五个数据集的评测脚本与两个安全基准的实现本轮无法获取，44% 与 43 ms 无法独立复核；110,000 小时专有视频不可得，该预训练规模的对比意义受限；作者单位为 Empiricearth（商业实体），自建数据与两个新安全基准的外部可用性待确认。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "llm-evaluation",
+        "inference-serving",
+        "multimodal-agent"
+      ]
+    },
+    "http://arxiv.org/abs/2611.25898v1": {
+      "score": 52.0,
+      "value_type": "long_tail",
+      "decision": "持续观察",
+      "reason": "它是一篇批判性综述，价值主要在它提出的框架而不是它的证据（作者自己就承认证据弱）。综述按四个范式展开：临床幻觉的成因与静态指标为何测不出；agentic hallucination cascade（多 agent 与工具增强系统会传播并放大早期推理错误，把早期错误当成已验证事实继承下去）；process reward modeling 作为步骤级监督；neuro-symbolic grounding（形式逻辑引擎、本体推理器、知识图谱给神经输出加可验证约束）。作者的结论有三层：符号否决层在其编码域内提供的保证是相对其编码知识成立的；这些结果来自单一研究、多为模拟或小样本设定，与纯神经基线不可直接比较；process reward model 受制于训练数据的统计特性。它的核心主张是最有价值的部分——临床 AI 安全实质上取决于系统架构，并据此主张监管认证除了静态基准的准确率之外还应审计推理轨迹。需要留意的是它的自我限定：采用 PRISMA-ScR 报告流程但明确声明未预注册方案，属叙述性综述而非形式化 scoping review。",
+      "evidence_status": "已核验：论文 HTML 全文核对四个范式的划分、agentic hallucination cascade 的定义（后续步骤把早期错误当作已验证事实继承）、符号否决层保证的相对性表述、「These results come from single studies, mostly in simulated or small-sample settings, and are not directly comparable with neural baselines」、process reward model 受训练数据统计特性限制、PRISMA-ScR 流程但非预注册的叙述性综述声明、以及「current frameworks emphasize performance and post-market monitoring and do not require verification of the reasoning process」的监管主张。待核验：论文未给出可复现工件（GitHub 仓库检索无对应项目），综述中引用的 125+ 篇文献与其所述数值本轮未逐条复核；正文未提供各范式之间的可比量化汇总表（作者自述「our synthesis here is structural and architectural, not meta-analytic」），因此任何跨范式数字对比都无依据。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "llm-evaluation",
+        "ai-agent",
+        "security-governance"
+      ]
+    },
+    "http://arxiv.org/abs/2611.25809v1": {
+      "score": 44.0,
+      "value_type": "ignore",
+      "decision": "暂时忽略",
+      "reason": "框架设计本身有可取之处（LangGraph 编排多个专职 agent、Self-RAG 给 Executor 注入 IoT 安全上下文、Shared Board 黑板在 Planner 与 Executor 之间传递已执行命令及其输出以减少重复探索、对高影响操作设 Human-in-the-Loop、对 DoS 类破坏性技术设确定性 kill-switch 并回传负奖励），但**本轮没有任何可核验的实测结果**：论文第 V 节原文自述「At the time of writing the experimental campaign is ongoing. The following section therefore describes the experimental design and performance indices.」，即只定义了 T_RCE / T_Shell / T_Root / Tok_total / SR 五个指标与一个三设备实验室靶场（IP Camera 的 RTSP 劫持与默认凭据、Smart Plug 的 HTTP 头命令注入、MQTT Gateway 的匿名订阅），实验结果尚未产出。GitHub 仓库检索未找到 ALIoTh 实现，anonymous 入口也未在文中给出。因此本轮按「证据不足」处理：保留最小索引（标题、来源、框架结构），但不投入深读与工程搜索，等它补上实测数字再重新评估。",
+      "evidence_status": "已核验：论文 HTML 全文核对第 V 节原文「At the time of writing the experimental campaign is ongoing」，确认只有实验设计与指标定义（T_RCE / T_Shell / T_Root / Tok_total / SR）而无任何实测数值、三个靶场设备与各自已知漏洞（Target A IP Camera 的 RTSP 劫持与默认凭据、Target B Smart Plug 的自定义 HTTP 头命令注入、Target C MQTT Gateway 匿名访问允许未授权 topic 订阅）、工具栈（Nmap、mosquitto_client、coap-client、bettercap、gatttool、binwalk）、Shared Board 黑板与高影响操作 HIL 机制与 kill-switch 回传负奖励的设计。待核验：GitHub 仓库检索 ALIoTh 无结果，论文未给出代码或工件入口，本轮完全无法验证其实现与任何成功率；论文为 cs.CR 单类 4 页会议论文，实验尚未完成，框架主张与实测之间不存在任何已建立的联系。",
+      "code_url": "",
+      "project_url": "",
+      "benchmark_url": "",
+      "matched_topics": [
+        "ai-agent",
+        "rag-knowledge",
+        "security-governance"
+      ]
+    }
+  }
+}

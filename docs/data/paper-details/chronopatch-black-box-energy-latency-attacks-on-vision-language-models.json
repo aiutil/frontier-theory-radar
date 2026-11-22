@@ -1,0 +1,134 @@
+{
+  "id": "chronopatch-black-box-energy-latency-attacks-on-vision-language-models",
+  "title": "ChronoPatch: Black-Box Energy-Latency Attacks on Vision-Language Models",
+  "authors": [
+    "Jiawei Xing",
+    "Li Wang",
+    "Xiangtao Meng",
+    "Chuanchao Zang",
+    "Rui Wen"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26117v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26117v1",
+  "code_url": "",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "trend",
+  "value_type_label": "趋势价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 9.8,
+    "evidence": 4.5,
+    "engineering_testability": 3.5,
+    "trend_signal": 4.05,
+    "long_tail_potential": 3.5,
+    "actionability": 3.8,
+    "noise_risk": 1.2
+  },
+  "score": 65.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "值得继续观察：它是一个具体的部署风险，且对任何把 VLM 当服务暴露出去的 agent 平台都成立：攻击者只看最终回复，就能让生成变长，从而抬高延迟与算力…",
+  "one_line_essence": "它是一个具体的部署风险，且对任何把 VLM 当服务暴露出去的 agent 平台都成立：攻击者只看最终回复，就能让生成变长，从而抬高延迟与算力账单。做法：两阶段——先用「响应长度引导的进化搜索」找出能诱发超长生成的视觉延迟锚点（delay anchor），再用「子空间校准的基于决策的优化」在固定可编辑区域内把扰动幅度压到最小。论文正文核对一致的数字：在 5% 图像面积扰动预算下，四个开源 VLM（BLIP-Large、LLaVA-v1.5-7B、Qwen3-VL-8B、InternVL3-8B）上 MSCOCO 的端到端延迟增加 47.86%–293.34%、GPU 能耗增加 41.44%–249.70%，ImageNet 上对应为 40.91%–279.61% 与 34.36%–237.67%，InternVL3 放大最强（响应长度逼近 1024 token 生成上限）；在三个商业 API（ChatGPT-5、Gemini-3.1-Pro-Preview、Claude-Sonnet-4-6）上、总查询预算 ≤500 的条件下，响应长度增加 37.6%–81.5%、客户端观测延迟达 1.82×–2.29×；实验硬件为单卡 NVIDIA RTX PRO 6000 96 GB，Phase I 初始化 S=100 候选、最多 T=500 次搜索迭代，Phase II 最多 T2=50 次精炼迭代、每次 B=128 次探测。对我们的价值：多模态 agent 服务如果直接代理商业 API，这条就是成本侧的可用性攻击面；而且它的度量方式（响应长度 + 客户端延迟，而不是模型内部 logit）说明这类风险在纯黑盒条件下也成立。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它是一个具体的部署风险，且对任何把 VLM 当服务暴露出去的 agent 平台都成立：攻击者只看最终回复，就能让生成变长，从而抬高延迟与算力账单。做法：两阶段——先用「响应长度引导的进化搜索」找出能诱发超长生成的视觉延迟锚点（delay anchor），再用「子空间校准的基于决策的优化」在固定可编辑区域内把扰动幅度压到最小。论文正文核对一致的数字：在 5% ",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": false,
+    "has_benchmark": false,
+    "can_reproduce": false,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它是一个具体的部署风险，且对任何把 VLM 当服务暴露出去的 agent 平台都成立：攻击者只看最终回复，就能让生成变长，从而抬高延迟与算力账单。做法：两阶段——先用「响应长度引导的进化搜索」",
+    "future_trigger": [
+      "出现多篇跟进论文、开源项目和工程博客共振"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [],
+    "trend_actions": [
+      "纳入趋势雷达",
+      "观察代码 / benchmark / 工程博客",
+      "7-30 天复盘"
+    ],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26117v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26117v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=chronopatch-black-box-energy-latency-attacks-on-vision-language-models",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

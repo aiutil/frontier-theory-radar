@@ -1,0 +1,136 @@
+{
+  "id": "ds2agent-holistic-device-agents-for-accelerated-embedded-board-level-design",
+  "title": "DS2Agent: Holistic Device Agents for Accelerated Embedded Board-Level Design",
+  "authors": [
+    "Hongbin Yang",
+    "Chi Zhang",
+    "Yinhao Xiao",
+    "Runyu Pan",
+    "Yanni Yang"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.25774v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.25774v1",
+  "code_url": "https://github.com/ds2agent/DS2Agent",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 4.8,
+    "relevance": 6.2,
+    "evidence": 5.9,
+    "engineering_testability": 6.6,
+    "trend_signal": 3.5,
+    "long_tail_potential": 3.5,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 77.0,
+  "decision": "轻量试点",
+  "one_line_judgement": "今天值得试：它把「一份数据手册」变成一棵可安装的 skill 树加一个可调用的 MCP 服务，这个产物形态和我们的 skill 资产路线高度同构。做法：…",
+  "one_line_essence": "它把「一份数据手册」变成一棵可安装的 skill 树加一个可调用的 MCP 服务，这个产物形态和我们的 skill 资产路线高度同构。做法：每个设备由三个模型组成——knowledge model（检索与问答）、digital-twin model（物理功能）、interface model（驱动开发与系统集成），并允许 agent 连到真实设备做标定以压制幻觉。论文正文核对一致的数字：10 个设备、7 个功能类别；QA 得分从 87 提到 97/100，同时 token 从 1,849,354 降到 1,021,312（−44.8%）、响应时间从 197 s 降到 137 s（−30.5%）；驱动生成平均每设备 token −72.9%；系统集成在三个 FreeRTOS 应用上总 token −29.7%；两边用完全相同的 datasheet 转 Markdown 输入，所以改进不来自「多给了上下文」，而来自结构化。这条「同输入、更多结构、更少 token」的证据链对我们特别有用。工程可验证性好：github.com/ds2agent/DS2Agent 实测可达（MIT，30079 KB），含 skills/ds2agent/SKILL.md（9.8 KB）、skills/availability/SKILL.md、skills/ds2agent/datasheet2mcp/ 下的完整参考文档树（agents/、prompts/、orchestration.md、project-skill.md 等）、f103-sim-package.zip（30.5 MB）与 scripts/connect_remote_mcp.sh；README 明说产物是 dist/<scope>-agent/ 下的消费级 SKILL.md + 一个 MCP 服务（agent_mcp.py，按 knowledge / driver / behavior 三组暴露工具），并强调「Conversion is done by your coding agent, not by hand」。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它把「一份数据手册」变成一棵可安装的 skill 树加一个可调用的 MCP 服务，这个产物形态和我们的 skill 资产路线高度同构。做法：每个设备由三个模型组成——knowledge model（检索与问答）、digital-twin model（物理功能）、interface model（驱动开发与系统集成），并允许 agent 连到真实设备做标定以压制",
+  "research_position": "source_paper",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "agentic-world-modeling",
+      "context-engineering"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它把「一份数据手册」变成一棵可安装的 skill 树加一个可调用的 MCP 服务，这个产物形态和我们的 skill 资产路线高度同构。做法：每个设备由三个模型组成——knowledge mod",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.25774v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.25774v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=ds2agent-holistic-device-agents-for-accelerated-embedded-board-level-design",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=agentic-world-modeling",
+    "trend-detail.html?id=context-engineering"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}

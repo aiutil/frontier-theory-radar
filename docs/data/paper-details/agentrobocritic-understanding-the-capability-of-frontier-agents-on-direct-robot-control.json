@@ -1,0 +1,136 @@
+{
+  "id": "agentrobocritic-understanding-the-capability-of-frontier-agents-on-direct-robot-control",
+  "title": "AgentRoboCritic: Understanding the Capability of Frontier Agents on Direct Robot Control",
+  "authors": [
+    "Yiyang Du",
+    "Yuxuan Kuang",
+    "Qitao Zhao",
+    "Yixuan Wang",
+    "Zhanqiu Guo"
+  ],
+  "source": "arXiv",
+  "published": "2026-11-19",
+  "url": "http://arxiv.org/abs/2611.26613v1",
+  "pdf_url": "https://arxiv.org/pdf/2611.26613v1",
+  "code_url": "https://github.com/cxcscmu/AgentRoboCritic",
+  "benchmark_url": "",
+  "paperswithcode_url": "",
+  "openreview_url": "",
+  "first_seen_date": "2026-11-23",
+  "first_deep_dive_daily": "2026-11-23",
+  "value_type": "immediate",
+  "value_type_label": "即时价值",
+  "value_scores": {
+    "novelty": 5.4,
+    "relevance": 7.4,
+    "evidence": 6.35,
+    "engineering_testability": 6.6,
+    "trend_signal": 5.45,
+    "long_tail_potential": 4.15,
+    "actionability": 7.3,
+    "noise_risk": 1.2
+  },
+  "score": 82.0,
+  "decision": "重点学习",
+  "one_line_judgement": "今天值得试：它换掉了评测的最小单元：从 episode 级成功率下沉到 action 级，并给出了一个能复用的「意图—动作—判定」三元结构，这套结构可以…",
+  "one_line_essence": "它换掉了评测的最小单元：从 episode 级成功率下沉到 action 级，并给出了一个能复用的「意图—动作—判定」三元结构，这套结构可以直接搬进我们的 agent 评测设计。要点：frontier 多模态语言 agent（GPT-6 Astra）在 12 个操作 benchmark 上直接输出低层数值动作控制机器人，论文用 intent-grounded critique——策略 agent 每一步先声明本地意图，critic 再拿这个意图去判定动作结果与失败模式。论文正文核对一致的关键结论：12 个 benchmark 名单逐个可查（RoboDojo / StationeryBench / Astranomy / UniVTAC / OpenViTac / ContactBench 1.0 / LIBERO-MAX / Meta-World+ / DexJoCo / RoboWits / RoboTwin 2.0 / YAMLab，其中 7 个新采集带意图的 episode，5 个用已发布 trace 经统一对齐适配器摄入）；一半成功 episode 至少含一个被后续纠正的失败动作（即闭环自愈是真实存在的，不是刷分）；失败集中在低层物理抓取（Choice 类语义选择错误极罕见）；400 动作人工标注集上 GPT-6 Astra 与人类判断高度一致，而 ablate 掉本地意图后失败模式归因直接崩掉（只给全局目标时同一动作无法区分「够不到 / 没对齐 / 没抓住」，critic 大量标 unverifiable）；开源微调 critic Muse-Glimmer-30B 的 failure-mode accuracy 从 32.58% 提到 74.24%，并发布 12,844 条标注动作。工程可验证性好：github.com/cxcscmu/AgentRoboCritic 实测可达（MIT，4 star，552 KB），含 src/agentrobocritic/{cli,scoring,runner,providers,efe}.py、src/agentrobocritic/prompts/{benchmark.json,muse.txt}、efe/ 采集工具与 tests/ 三个测试文件，README 给出 arc verify / arc evaluate / arc score 三步本地跑通路径（默认下载四个公开分片，验证过程零模型调用）。对我们的直接产出：我们的 agent 失败分析目前停在 step/trace 级，缺一个「先声明意图再判定成败」的结构，这正是把「模型答错了」细化成「哪一类错」的前提。",
+  "core_problem": "如何把论文信号转成能指导架构、Agent、评测与平台实践的研究资产。",
+  "new_claim_or_method": "它换掉了评测的最小单元：从 episode 级成功率下沉到 action 级，并给出了一个能复用的「意图—动作—判定」三元结构，这套结构可以直接搬进我们的 agent 评测设计。要点：frontier 多模态语言 agent（GPT-6 Astra）在 12 个操作 benchmark 上直接输出低层数值动作控制机器人，论文用 intent-grounded",
+  "research_position": "benchmark",
+  "engineering_testability": {
+    "has_code": true,
+    "has_benchmark": false,
+    "can_reproduce": true,
+    "minimum_experiment": "摘要精读 + Prompt 试验 / 评测脚本 / 最小 PoC",
+    "engineering_scenarios": [
+      "AI Agent",
+      "Context Engineering",
+      "评测治理"
+    ]
+  },
+  "trend_relation": {
+    "status": "emerging",
+    "related_trends": [
+      "coding-agent",
+      "agentic-world-modeling"
+    ],
+    "evidence": [
+      "论文主题匹配固定研究方向"
+    ],
+    "uncertainties": [
+      "是否会出现更多开源实现与生产案例"
+    ]
+  },
+  "long_tail": {
+    "why_save": "它换掉了评测的最小单元：从 episode 级成功率下沉到 action 级，并给出了一个能复用的「意图—动作—判定」三元结构，这套结构可以直接搬进我们的 agent 评测设计。要点：fron",
+    "future_trigger": [
+      "待更多证据"
+    ],
+    "possible_use_cases": [
+      "Prompt 设计",
+      "Skill 草案",
+      "评测方法",
+      "架构模式"
+    ],
+    "reusable_assets": [
+      "Prompt",
+      "Skill",
+      "Checklist",
+      "模板"
+    ],
+    "revisit_condition": "出现开源实现 / 高质量引用 / benchmark 收录 / 与当前场景交集增强",
+    "revisit_date": ""
+  },
+  "insights": {
+    "system_design": [
+      "先判断价值类型，再决定系统性投入。"
+    ],
+    "agent_engineering": [
+      "为 Agent 建立论文价值路由器。"
+    ],
+    "dev_process": [
+      "论文输出应沉淀为可执行资产。"
+    ],
+    "evaluation": [
+      "同时看方法与证据质量。"
+    ],
+    "platform_engineering": [
+      "长尾资产库可降低重复检索成本。"
+    ],
+    "personal_learning": [
+      "优先读能转化为未来复利的论文。"
+    ]
+  },
+  "actions": {
+    "immediate_actions": [
+      "今天读摘要与方法",
+      "今天试最小实验",
+      "一周内沉淀为 Skill / Checklist"
+    ],
+    "trend_actions": [],
+    "long_tail_actions": [],
+    "ignore_reason": ""
+  },
+  "references": [
+    {
+      "label": "arXiv",
+      "url": "http://arxiv.org/abs/2611.26613v1"
+    },
+    {
+      "label": "PDF",
+      "url": "https://arxiv.org/pdf/2611.26613v1"
+    }
+  ],
+  "detail_path": "paper-detail.html?id=agentrobocritic-understanding-the-capability-of-frontier-agents-on-direct-robot-control",
+  "daily_path": "daily-detail.html?date=2026-11-23",
+  "trend_paths": [
+    "trend-detail.html?id=coding-agent",
+    "trend-detail.html?id=agentic-world-modeling"
+  ],
+  "long_tail_path": "long-tail.html",
+  "mermaid": {
+    "value_discovery": "flowchart TD\nP[论文] --> V[价值判断]\nV --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> A[立即学习 / 试点]\nT --> R[纳入趋势雷达 / 持续观察]\nL --> S[沉淀启发 / 加入长尾库]\nN --> X[保留最小索引]",
+    "evidence": "flowchart TD\nP[论文] --> Q[底层问题]\nP --> M[新命题 / 新方法]\nP --> G[研究位置]\nP --> E[工程可验证性]\nP --> C[趋势关联]\nP --> L[长尾价值]",
+    "actions": "flowchart TD\nV[价值类型] --> I[即时价值]\nV --> T[趋势价值]\nV --> L[长尾价值]\nV --> N[暂时忽略]\nI --> I1[30分钟学习]\nI --> I2[2小时实践]\nI --> I3[1周研究]\nT --> T1[纳入趋势雷达]\nT --> T2[设置观察问题]\nT --> T3[周期复盘]\nL --> L1[加入长尾库]\nL --> L2[标注触发条件]\nL --> L3[沉淀 Prompt / Skill / Checklist]\nN --> N1[记录忽略理由]\nN --> N2[保留最小索引]"
+  }
+}
